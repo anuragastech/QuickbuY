@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+<h2>Add Subcategory</h2>
+
+<form action="/admin/subcategories" method="POST" enctype="multipart/form-data">
+  <label for="title">Title:</label>
+  <input type="text" id="title" name="title" required>
+
+  <label for="description">Description:</label>
+  <textarea id="description" name="description" required></textarea>
+
+  <label for="image">Image:</label>
+  <input type="file" id="image" name="image" accept="image/*" required>
+  <button type="submit">Upload</button>
+
+    <label for="category">Category:</label>
+  <select id="category" name="category" required>
+    {{#each categories}}
+      <option value="{{_id}}">{{title}}</option>
+    {{/each}}
+  </select>
+
+  <!-- Assuming you have a dropdown to select the category -->
+  {{!-- <label for="category">Category:</label>
+  <select id="category" name="category" required> --}}
+    <!-- Populate this dropdown with existing categories from your database -->
+    <!-- For each category, create an <option> tag -->
+    <!-- Example: <option value="{{categoryId}}">{{categoryTitle}}</option> -->
+  </select>
+
+  <button type="submit">Add Subcategory</button>
+</form>
+
+
+
+{{#each subcategories}}
+    <div>
+        <h3>{{title}}</h3>
+        <p>{{description}}</p>
+        <img src="{{image.url}}" alt="{{title}} Image">
+    </div>
+{{else}}
+    <p>No subcategories found.</p>
+{{/each}}
+
+
+
+{{!-- -------------------------------------------------------------- --}}
+
+{{!-- {{#if categories.length}}
+  <ul>
+    {{#each categories}}
+      <li>{{title}}</li>
+      <!-- Add other category details as needed -->
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No categories found.</p>
+{{/if}} --}}
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const response = await axios.get('/admin/categories');
+      const categories = response.data.categories;
+
+      if (categories.length) {
+        const categorySelect = document.getElementById('category');
+
+        categories.forEach(category => {
+          const option = document.createElement('option');
+          option.value = category._id;
+          option.textContent = category.title;
+          categorySelect.appendChild(option);
+        });
+      } else {
+        console.error('No categories found.');
+      }
+    } catch (error) {
+      console.error('Error fetching categories:', error.message);
+    }
+  });
+</script>
+
+
+</body>
+</html>

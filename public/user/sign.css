@@ -1,0 +1,106 @@
+/* HTML CSSResult Skip Results Iframe */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.big{
+    display: flex;
+    align-items: center;
+    /* background-image: url("https://res.cloudinary.com/dd6qdgpfr/image/upload/v1699675457/claudio-schwarz-ID43LcHjO3g-unsplash_tx4og5.jpg"); */
+   background-size: cover;
+   background-color: #e5d2d2;
+   background-position: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: sans-serif;
+}
+.wrapper{
+    width: 650px;
+    height: 500px;
+   background: transparent;
+   background-color: rgb(65, 41, 250);
+    padding: 10px 15px;
+    margin: 10px 0;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+}
+.wrapper h1{
+    font-size: 25px;
+    color: #FFF;
+    text-align: center;
+}
+.wrapper .input-box{
+    display: flex;
+    width: 100%;
+    padding: 10px 12px;
+    position: relative;
+}
+.wrapper .input-box input{
+    color: #f8f4f4;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+   background: transparent;
+    border-bottom: 1px solid #fff;
+}
+
+input::placeholder{
+    color: #f8f8f8;
+}
+.wrapper .input-box .bx{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    
+    
+}
+.wrapper .remeber{
+    display: flex;
+    justify-content: space-between;
+    margin:20px 0;
+}
+.wrapper .remeber a{
+    text-decoration:none;
+}
+.wrapper .remeber:hover a{
+    text-decoration: underline;
+}
+.btn{
+    width: 100%;
+    height: 40px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    outline: none;
+    font-weight: 500;
+    background-color: #f8f8f8;
+    box-shadow: 0px 0px 5px rgb(25, 22, 22);
+    margin-bottom: 10px;
+    
+}
+input[value="Login"]{
+    font-weight: 500;
+}
+.wrapper .register{
+    display: inline-flex;
+    justify-content:space-around;
+    margin-left: 45px;
+}
+.register p,a{
+    text-decoration: none;
+    color: #d64f4f;
+    font-size: 16px;
+    word-spacing: 1px;
+   
+}
+.register:hover a{
+    text-decoration: underline;
+}
+
+
+

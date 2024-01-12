@@ -1,0 +1,61 @@
+body {
+    background-color: rgb(236, 236, 236);
+    display: flex;
+    justify-content: center;
+    font-family: Helvetica, sans-serif;
+    background-image: url("https://images.unsplash.com/photo-1678366633407-7f49da199a42?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80");
+    background-size: cover;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    width: 550px;
+    margin-top: 8%;
+    padding: 20px;
+    border-radius: 10px;
+    height: auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-size: medium;
+    margin-bottom: 5px; /* Reduced margin-bottom for a cleaner look */
+    font-weight: 600; /* Adjusted font weight for better visibility */
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    border: 1px solid rgb(216, 216, 216);
+    border-radius: 5px;
+    font-size: medium;
+    padding: 12px; /* Adjusted padding for a cleaner look */
+    width: 100%; /* Set the width to 100% for responsiveness */
+    box-sizing: border-box; /* Ensures padding doesn't affect the width */
+}
+
+input[type="submit"] {
+    margin-top: 20px; /* Increased margin-top for better spacing */
+    width: 100%; /* Make the submit button fill the width */
+    height: 40px; /* Increased height for better visibility */
+    font-size: large;
+    color: #fff;
+    border-radius: 10px;
+    background-color: rgb(1, 0, 0);
+    cursor: pointer;
+}
+
+form {
+    margin-right: auto; /* Center the form within the container */
+    margin-left: auto;
+    width: 70%; /* Adjusted width for better responsiveness */
+}
+
+label:nth-of-type(2) {
+    margin-top: 20px; /* Increased margin-top for better spacing */
+}

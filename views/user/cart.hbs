@@ -1,0 +1,106 @@
+<!DOCTYPE html >
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Yoga Studio Template">
+    <meta name="keywords" content="Yoga, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Violet | Template</title>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="path/to/owl.carousel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- Google Font -->
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
+
+
+
+
+{{!-- <form action="/api/cart/add-to-cart" method="POST">
+        <input type="hidden" name="productId" value="{{productId}}">
+        <button type="submit">Add to Cart</button>
+    </form> --}}
+
+<section class="product-page">
+    <div class="container">
+        <div class="product-list">
+            {{#each products}}
+                <div class="product-item">
+                    <div class="product-img">
+                        <figure>
+                            <img src="{{this.image.url}}" alt="{{this.productname}}">
+                            {{#if this.new}}
+                                <div class="p-status">new</div>
+                            {{/if}}
+                        </figure>
+                    </div>
+                    <div class="product-content">
+                        <h2>{{this.productname}}</h2>
+                        <div class="pc-meta">
+                            <h5>${{this.price}}</h5>
+                        </div>
+                        <p>{{this.description}}</p>
+{{!--                         
+                        <div class="product-variants">
+                            <!-- Product Size Dropdown -->
+                            <label for="size">Size:</label>
+                            <select id="size" name="size">
+                                <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                                <!-- Add more size options as needed -->
+                            </select>
+                            
+                            <!-- Product Color Dropdown -->
+                            <label for="color">Color:</label>
+                            <select id="color" name="color">
+                                <option value="red">Red</option>
+                                <option value="blue">Blue</option>
+                                <option value="green">Green</option>
+                                <!-- Add more color options as needed -->
+                            </select>
+                        </div>
+                         --}}
+                        {{!-- <div class="product-quantity">
+                            <div class="pro-qty">
+                                <input type="text" value="1">
+                            </div>
+                        </div> --}}
+                        
+<button onclick="cartProduct('{{this._id}}')">Add to Cart</button>            
+                <li>Product Information</li>
+                            <li>Reviews</li>
+                            <li>Product Care</li>
+                        </ul>
+                    </div>
+                </div>
+            {{/each}}
+            <!-- End of product loop -->
+        </div>
+    </div>
+</section>
+<script>
+  function cartProduct(productId) {
+    axios.post(`/user/cart/product/${productId}`)
+      .then((response) => {
+        if (response.status !== 200) {
+          throw new Error('Cart request failed');
+        } else {
+          document.location.href = "/";
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+</script>
+
+
+
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
