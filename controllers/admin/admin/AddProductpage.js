@@ -1,3 +1,5 @@
+const product = require("../../../models/admin/productAdd");
+const cloudinary = require("../../../models/admin/cloudinary");
 
 
 getpostProductAdd=async(req,res)=>{

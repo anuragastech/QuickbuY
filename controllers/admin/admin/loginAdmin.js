@@ -1,9 +1,11 @@
 const resgister=require('../../../models/admin/mongodb')
 
-// const secretKey = "mynameissomethinglikestartwithathatsit";
-// const bcrypt = require("bcryptjs");
-// const jwt = require("jsonwebtoken");
-// const cloudinary = require("/home/anurag/");
+const secretKey = "mynameissomethinglikestartwithathatsit";
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+// const secretKey = process.env.JWT_SECRET || 'defaultFallbackSecret';
+
 
 loginAdmin = async (req, res) => {
     try {
@@ -25,9 +27,10 @@ loginAdmin = async (req, res) => {
 
             res.cookie('token', token, options);
 
-            return res.redirect('/admin/home');
+            return res.redirect('/admin/main');
         } else {
             return res.status(401).json({ message: 'Invalid email or password' });
+            res.redirect('/admin/login')
         }
     } catch (error) {
         console.error(error);
@@ -76,5 +79,10 @@ getlogin = (req, res) => {
  getsignup=(req, res) => {
     res.render("admin/signup");
   };
+  logout=(req, res) => {
+    res.clearCookie("token");
+  
+    res.redirect("/admin/login");
+  };
 
-module.exports={loginAdmin,getlogin,signAdmin,getsignup};
+module.exports={loginAdmin,getlogin,signAdmin,getsignup ,logout};
