@@ -11,7 +11,7 @@ const userRouter=require('./routes/user')
 
 
 const app = express();
-const port = 3009;
+const port = 3004;
 
 
 app.set('view engine', 'hbs');
