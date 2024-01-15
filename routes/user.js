@@ -38,7 +38,7 @@ router.get('/user',getAllControllers.getuser)
     router.get('/subcategories',getSubcategoryControllers.getsubcategories)
     
 
-router.get('/productpage', getProductControllers.getproductpage)
+// router.get('/productpage', getProductControllers.getproductpage)
 
 
 router.get('/product',getProductControllers.getproductData)
@@ -63,4 +63,10 @@ router.get('/cart',(req,res)=>{
 router.get('/productpage',(req,res)=>{
   res.render('user/productpage')})
 
+  router.get('/user/productpage/:id',getProductControllers.productpass)
+
+
+
+ 
+  
 module.exports = router;

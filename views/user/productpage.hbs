@@ -89,7 +89,7 @@
 
 
     <!-- Header Info Begin -->
- <link rel="stylesheet" href="">
+ 
     <!-- Header Info End -->
     <!-- Header End -->
    <main class="container">
@@ -101,15 +101,15 @@
     <img data-image="red" class="active" src="images/red.png" alt="">
   </div>
  
-             {{!-- {{#each data}} --}}
+             {{#each data}}
 
   <!-- Right Column -->
   <div class="right-column">
  
     <!-- Product Description -->
     <div class="product-description">
-         <span>{{productdata.category}}</span>
-            <h1>{{productdata.productname}}</h1>
+         {{!-- <span>{{productdata.category}}</span> --}}
+            <h1>{{this.productname}}</h1>
             <p>{{this.productname}}</p>
       {{!-- <span>Headphones</span>
       <h1>Beats EP</h1>
@@ -162,7 +162,7 @@
     </div>
   </div>
 </main>
-            {{!-- {{/each}} --}}
+            {{/each}}
 
 {{!-- **** --}}
 

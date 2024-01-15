@@ -144,6 +144,7 @@
                 <div class="product-img">
                     <figure>
                         <img src="{{this.image.url}}" alt="{{this.productname}}">
+
                         {{#if this.new}}
                             <div class="p-status">new</div>
                         {{/if}}
@@ -151,6 +152,8 @@
                 </div>
                 <div class="product-content">
                     <h2>{{this.productname}}</h2>
+             <a href="/user/productdata/{{ this._id }}">View Details</a>
+
                     <div class="pc-meta">
                         <h5>${{this.price}}</h5>
                     </div>
