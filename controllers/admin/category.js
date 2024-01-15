@@ -1,5 +1,5 @@
-const cloudinary = require("../../../models/admin/cloudinary");
-const category = require('../../../models/admin/category');
+const cloudinary = require("../../models/common/cloudinary");
+const category = require('../../models/admin/category');
 
 
 postCategory= async(req,res)=>{

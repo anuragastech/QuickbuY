@@ -1,5 +1,5 @@
-const product = require("../../../models/admin/productAdd");
-const cloudinary = require("../../../models/admin/cloudinary");
+const product = require("../../models/vender/productAdd");
+const cloudinary = require("../../models/common/cloudinary");
 
 
 getpostProductAdd=async(req,res)=>{
@@ -41,7 +41,7 @@ getpostProductAdd=async(req,res)=>{
 
         const savedProduct = await newProduct.save();
 
-        res.redirect(`/admin/productdetails`);
+        res.redirect(`/vender/productdetails`);
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });
@@ -59,14 +59,14 @@ productDelete=async(req,res)=>{
         }
         return res.status(200).json({ message: "successfully deleted" });
   
-      //   return res.redirect("/admin/productdetails");
+      //   return res.redirect("/vender/productdetails");
       } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Error deleting product data", error: error.message });
       }
     };
   getDelete=(req, res) => {
-        res.redirect("/admin/productdetails");
+        res.redirect("/vender/productdetails");
       };
       
  getproductDetails= async (req, res) => {
@@ -75,7 +75,7 @@ productDelete=async(req,res)=>{
             .find()
             .populate("category")
             .populate("subcategory");
-          res.render("admin/productdetails", { products });
+          res.render("vender/productdetails", { products });
         } catch (error) {
           console.error(error);
           res.status(500).json({ success: false, message: "Internal Server Error" });
@@ -83,6 +83,6 @@ productDelete=async(req,res)=>{
       };
 
     getproductAdd= (req, res) => {
-        res.render("admin/productAdd");
+        res.render("vender/productAdd");
       };
 module.exports={productDelete,getDelete,getpostProductAdd,getproductAdd,getproductDetails};

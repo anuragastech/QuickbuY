@@ -1,4 +1,4 @@
-const product=require('../../models/admin/productAdd')
+const product=require('../../models/vender/productAdd')
 
 
 getproductpage=async (req, res) => {
@@ -11,7 +11,7 @@ getproductpage=async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
-getproductdetails= async (req, res) => {
+getproductData= async (req, res) => {
     try {
         const products = await product.find().populate('category').populate('subcategory');
         res.render('user/productdetails', { products });
@@ -21,4 +21,4 @@ getproductdetails= async (req, res) => {
     }
 };
 
-module.exports={getproductpage,getproductdetails}
+module.exports={getproductpage,getproductData}

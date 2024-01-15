@@ -35,7 +35,7 @@ postSize=async (req, res) => {
     }
 };
 
-postcolor= async (req, res) => {
+postcolor = async (req, res) => {
     try {
         const { title, description } = req.body;
 
@@ -99,6 +99,10 @@ getcolor=async (req, res) => {
     res.render("admin/signup");
   };
 
+  getmain=(req, res) => {
+    res.render('admin/main');
+};
+
   
 
-  module.exports={getHome,getAddsize,getAddproduct,getsize,getcolor,postcolor,postSize};
+  module.exports={getmain,getHome,getAddsize,getAddproduct,getsize,getcolor,postcolor,postSize};

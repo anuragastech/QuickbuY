@@ -1,21 +1,114 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive vender Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="dashboard.css" />
+    <lin
+      rel="shortcut icon"
+      type="image/png"
+      href="./assets/imgs/favicon.ico"
+    />
+  </head>
 
-    <title>Add Product</title>
-        <link rel="stylesheet" href="productAdd.css">
+  <body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+      <div class="navigation">
+        <ul>
+          <li>
+            <a href="#">
+              <span class="icon">
+                <img src="./assets/imgs/favicon.ico" alt="" />
+              </span>
+              <span class="title">Dunprel Store</span>
+            </a>
+          </li>
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+          <li>
+            <a href="/vender/main">
+              <span class="icon">
+                <ion-icon name="home-outline"></ion-icon>
+              </span>
+              <span class="title">Dashboard</span>
+            </a>
+          </li>
 
+          <li>
+            <a href="/vender/productdetails">
+              <span class="icon">
+                <ion-icon name="people-outline"></ion-icon>
+              </span>
+              <span class="title">ProductDeatails</span>
+            </a>
+          </li>
 
+          <li>
+            <a href="/vender/productAdd">
+              <span class="icon">
+                <ion-icon name="chatbubble-outline"></ion-icon>
+              </span>
+              <span class="title">ProductAdd</span>
+            </a>
+          </li>
 
+          <li>
+            <a href="/vender/categorylist">
+              <span class="icon">
+                <ion-icon name="help-outline"></ion-icon>
+              </span>
+              <span class="title">Categorylist</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/vender/category">
+              <span class="icon">
+                <ion-icon name="settings-outline"></ion-icon>
+              </span>
+              <span class="title">Category</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/vender/subcategories">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title">Subcategorylist</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/vender/logout">
+              <span class="icon">
+                <ion-icon name="log-out-outline"></ion-icon>
+              </span>
+              <span class="title">Sign Out</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ========================= Main ==================== -->
 </head>
+
+<style>
+  .main{
+    
+  }
+</style>
+<div class="main">
+
 <body>
+  
+<link rel="stylesheet" href="/vender/productAdd.css">
 
-
-    <form action="/admin/productAdd" method="POST" enctype="multipart/form-data" >
+    <form action="/vender/productAdd" method="POST" enctype="multipart/form-data" >
 
   <label for="productName">Product Name:</label>
   <input type="text" id="productName" name="productname" required>
@@ -46,9 +139,9 @@
   <label for="productDescription">Product Description:</label>
   <textarea id="productDescription" name="description" required></textarea>
 
-
+{{!-- 
   <label for="productDescription">Product Description:</label>
-  <textarea id="productDescription" name="description" required></textarea>
+  <textarea id="productDescription" name="description" required></textarea> --}}
 
 
 
@@ -101,13 +194,13 @@
 
 </form>
 
-
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
     try {
-      const response = await axios.get('admin/categories');
+      const response = await axios.get('vender/categories');
       const categories = response.data.categories;
 
       if (categories.length) {
@@ -133,7 +226,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
     try {
-      const responsed = await axios.get('admin/subcategory');
+      const responsed = await axios.get('vender/subcategory');
       const subcategories = responsed.data.subcategories;
 
       if (subcategories.length) {
@@ -158,7 +251,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
     try {
-      const response = await axios.get('admin/color');
+      const response = await axios.get('vender/color');
       const colors = response.data.newColor;
 
       if (colors.length) {
@@ -182,7 +275,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
     try {
-      const responsed = await axios.get('admin/size');
+      const responsed = await axios.get('vender/size');
       const sizes = responsed.data.newSize;
 
       if (sizes.length) {

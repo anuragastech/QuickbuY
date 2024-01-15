@@ -6,7 +6,7 @@ getcheckout=(req,res)=>{
     };
     getlogin=(req, res) => {
   
-        return res.redirect('/admin/home');
+        return res.redirect('/vender/home');
 
 };
 getindex=(req,res)=>{

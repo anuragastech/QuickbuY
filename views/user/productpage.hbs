@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="/user/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="/user/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="/user/style.css" type="text/css">
+<link rel="stylesheet" href="/user/productdetails.css" type="text/css" >
 </head>
 </head>
 
@@ -88,349 +89,82 @@
 
 
     <!-- Header Info Begin -->
- 
+ <link rel="stylesheet" href="">
     <!-- Header Info End -->
     <!-- Header End -->
-      <style>
-                .am{
-                    width: 100%;
-                height: 600px;
-                background-color: wheat;
-                color: black;
+   <main class="container">
+ 
+  <!-- Left Column / Headphones Image -->
+  <div class="left-column">
+    <img data-image="black" src="images/black.png" alt="">
+    <img data-image="blue" src="images/blue.png" alt="">
+    <img data-image="red" class="active" src="images/red.png" alt="">
+  </div>
+ 
+             {{!-- {{#each data}} --}}
 
-                }
-              .naved{
-                height: 100px;
-              }
-              .footed{
-                height: 500px;
-              }
-            </style>
-            <div class="am">
-  <div class="am">
-    {{#if products}}
-        {{#each products}}
-            <div class="product {{getProductStyle @index}}">
-                <p>Product Name: {{this.productname}}</p>
-                <p>Manufacturer: {{this.manufacturename}}</p>
-                <p>Brand: {{this.brand}}</p>
-                <p>Price: {{this.price}}</p>
-                <p>Description: {{this.description}}</p>
-                <p>Category: {{this.category.title}}</p>
-                <p>Subcategory: {{this.subcategory.title}}</p>
-                <img src="{{this.image.url}}" alt="{{this.productname}} Image" style="max-width: 100px; height: auto;">
-            </div>
-        {{/each}}
-    {{else}}
-        <p>No products found.</p>
-    {{/if}}
-</div>
-
-<script>
-    Handlebars.registerHelper('getProductStyle', function(index) {
-        // You can implement a logic here to determine the style based on the index
-        // For example, alternate between two styles
-        return index % 2 === 0 ? 'even-product' : 'odd-product';
-    });
-</script>
-
-
-            </div>
-
-    <!-- Page Add Section Begin -->
-    
-    {{!-- ------------------------------------------------------------------------------------------- --}}
-    <div class="row">
-    <!-- Existing code ... -->
-
-    <!-- Add the following Handlebars loop for categories -->
-
-
-
-
-    <!-- Page Add Section End -->
-
-    {{!-- <!-- Categories Page Section Begin -->
-    <section class="categories-page spad">
-        <div class="container">
-            <div class="categories-controls">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="categories-filter">
-                            <div class="cf-left">
-                                <form action="#">
-                                    <select class="sort">
-                                        <option value="">Sort by</option>
-                                        <option value="">Orders</option>
-                                        <option value="">Newest</option>
-                                        <option value="">Price</option>
-                                    </select>
-                                </form>
-                            </div>
-                            <div class="cf-right">
-                                <span>20 Products</span>
-                                <a href="#">2</a>
-                                <a href="#" class="active">4</a>
-                                <a href="#">6</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="single-product-item">
-                        <figure>
-                            <img src="/products/img-9.jpg" alt="">
-                            <div class="p-status">new</div>
-                            <div class="hover-icon">
-                                <a href="/products/img-9.jpg" class="pop-up"><img src="/icons/zoom-plus.png"
-                                        alt=""></a>
-                            </div>
-                        </figure>
-                        <div class="product-text">
-                            <a href="#">
-                                <h6>Green Dress with details</h6>
-                            </a>
-                            <p>$22.90</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-product-item">
-                                <figure>
-                                    <img src="/products/img-2.jpg" alt="">
-                                    <div class="p-status sale">sale</div>
-                                </figure>
-                                <div class="product-text">
-                                    <a href="#">
-                                        <h6>Yellow Maxi Dress</h6>
-                                    </a>
-                                    <p>$25.90</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-product-item">
-                                <figure>
-                                    <img src="/products/img-3.jpg" alt="">
-                                    <div class="p-status">new</div>
-                                    <div class="hover-icon">
-                                        <a href="/products/img-3.jpg" class="pop-up"><img
-                                                src="/icons/zoom-plus.png" alt=""></a>
-                                    </div>
-                                </figure>
-                                <div class="product-text">
-                                    <a href="#">
-                                        <h6>One piece bodysuit</h6>
-                                    </a>
-                                    <p>$19.90</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-product-item">
-                                <figure>
-                                    <img src="/products/img-6.jpg" alt="">
-                                    <div class="p-status sale">sale</div>
-                                </figure>
-                                <div class="product-text">
-                                    <a href="#">
-                                        <h6>Yellow Maxi Dress</h6>
-                                    </a>
-                                    <p>$25.90</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-product-item">
-                                <figure>
-                                    <img src="/products/img-1.jpg" alt="">
-                                    <div class="hover-icon">
-                                        <a href="/products/img-1.jpg" class="pop-up"><img
-                                                src="/icons/zoom-plus.png" alt=""></a>
-                                    </div>
-                                </figure>
-                                <div class="product-text">
-                                    <a href="#">
-                                        <h6>One piece bodysuit</h6>
-                                    </a>
-                                    <p>$19.90</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product-item">
-                        <figure>
-                            <img src="/products/img-5.jpg" alt="">
-                            <div class="p-status">new</div>
-                            <div class="hover-icon">
-                                <a href="/products/img-5.jpg" class="pop-up"><img src="/icons/zoom-plus.png"
-                                        alt=""></a>
-                            </div>
-                        </figure>
-                        <div class="product-text">
-                            <a href="#">
-                                <h6>Green Dress with details</h6>
-                            </a>
-                            <p>$22.90</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product-item">
-                        <figure>
-                            <img src="/products/img-4.jpg" alt="">
-                            <div class="p-status popular">popular</div>
-                            <div class="hover-icon">
-                                <a href="/products/img-4.jpg" class="pop-up"><img src="/icons/zoom-plus.png"
-                                        alt=""></a>
-                            </div>
-                        </figure>
-                        <div class="product-text">
-                            <a href="#">
-                                <h6>Blue Dress with details</h6>
-                            </a>
-                            <p>$35.50</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product-item">
-                        <figure>
-                            <img src="/products/img-8.jpg" alt="">
-                            <div class="p-status popular">popular</div>
-                            <div class="hover-icon">
-                                <a href="/products/img-8.jpg" class="pop-up"><img src="/icons/zoom-plus.png"
-                                        alt=""></a>
-                            </div>
-                        </figure>
-                        <div class="product-text">
-                            <a href="#">
-                                <h6>Blue Dress with details</h6>
-                            </a>
-                            <p>$35.50</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product-item">
-                        <figure>
-                            <img src="/products/img-10.jpg" alt="">
-                            <div class="p-status popular">popular</div>
-                            <div class="hover-icon">
-                                <a href="/products/img-10.jpg" class="pop-up"><img src="/icons/zoom-plus.png"
-                                        alt=""></a>
-                            </div>
-                        </figure>
-                        <div class="product-text">
-                            <a href="#">
-                                <h6>Blue Dress with details</h6>
-                            </a>
-                            <p>$35.50</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-product-item">
-                                <figure>
-                                    <img src="/products/img-11.jpg" alt="">
-                                    <div class="p-status sale">sale</div>
-                                </figure>
-                                <div class="product-text">
-                                    <a href="#">
-                                        <h6>Yellow Maxi Dress</h6>
-                                    </a>
-                                    <p>$25.50</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-product-item">
-                                <figure>
-                                    <img src="/products/img-12.jpg" alt="">
-                                    <div class="p-status">new</div>
-                                    <div class="hover-icon">
-                                        <a href="/products/img-12.jpg" class="pop-up"><img
-                                                src="/icons/zoom-plus.png" alt=""></a>
-                                    </div>
-                                </figure>
-                                <div class="product-text">
-                                    <a href="#">
-                                        <h6>One piece bodysuit</h6>
-                                    </a>
-                                    <p>$19.90</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-product-item">
-                                <figure>
-                                    <img src="/products/img-14.jpg" alt="">
-                                    <div class="p-status sale">sale</div>
-                                </figure>
-                                <div class="product-text">
-                                    <a href="#">
-                                        <h6>Yellow Maxi Dress</h6>
-                                    </a>
-                                    <p>$25.90</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-md-6">
-                            <div class="single-product-item">
-                                <figure>
-                                    <img src="/products/img-15.jpg" alt="">
-                                    <div class="hover-icon">
-                                        <a href="/products/img-15.jpg" class="pop-up"><img
-                                                src="/icons/zoom-plus.png" alt=""></a>
-                                    </div>
-                                </figure>
-                                <div class="product-text">
-                                    <a href="#">
-                                        <h6>One piece bodysuit</h6>
-                                    </a>
-                                    <p>$19.90</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="single-product-item">
-                        <figure>
-                            <img src="/products/img-13.jpg" alt="">
-                            <div class="p-status">new</div>
-                            <div class="hover-icon">
-                                <a href="/products/img-13.jpg" class="pop-up"><img src="/icons/zoom-plus.png"
-                                        alt=""></a>
-                            </div>
-                        </figure>
-                        <div class="product-text">
-                            <a href="#">
-                                <h6>Green Dress with details</h6>
-                            </a>
-                            <p>$22.90</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="more-product">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <a href="#" class="primary-btn">Load More</a>
-                    </div>
-                </div>
-            </div>
+  <!-- Right Column -->
+  <div class="right-column">
+ 
+    <!-- Product Description -->
+    <div class="product-description">
+         <span>{{productdata.category}}</span>
+            <h1>{{productdata.productname}}</h1>
+            <p>{{this.productname}}</p>
+      {{!-- <span>Headphones</span>
+      <h1>Beats EP</h1>
+      <p>The preferred choice of a vast range of acclaimed DJs. Punchy, bass-focused sound and high isolation. Sturdy headband and on-ear cushions suitable for live performance</p>
+    </div> --}}
+ 
+    <!-- Product Configuration -->
+    <div class="product-configuration">
+ 
+      <!-- Product Color -->
+      <div class="product-color">
+        <span>Color</span>
+ 
+        <div class="color-choose">
+          <div>
+          <input data-image="{{product.color}}" type="radio" id="{{product.color}}" name="color" value="{{product.color}}" checked>
+                        <label for="{{product.color}}"><span></span></label> 
+                                <img data-image="{{productdata.img}}" src="{{productdata.image}}" alt="">
+          </div>
+          <div>
+            <input data-image="blue" type="radio" id="blue" name="color" value="blue">
+            <label for="blue"><span></span></label>
+          </div>
+          <div>
+            <input data-image="black" type="radio" id="black" name="color" value="black">
+            <label for="black"><span></span></label>
+          </div>
         </div>
-    </section>
-    <!-- Categories Page Section End --> --}}
+ 
+      </div>
+ 
+      <!-- Cable Configuration -->
+      <div class="cable-config">
+        <span>Cable configuration</span>
+ 
+        <div class="cable-choose">
+          <button>Straight</button>
+          <button>Coiled</button>
+          <button>Long-coiled</button>
+        </div>
+ 
+        <a href="#">How to configurate your headphones</a>
+      </div>
+    </div>
+ 
+    <!-- Product Pricing -->
+    <div class="product-price">
+      <span>148$</span>
+      <a href="#" class="cart-btn">Add to cart</a>
+    </div>
+  </div>
+</main>
+            {{!-- {{/each}} --}}
+
+{{!-- **** --}}
 
     <!-- Footer Section Begin -->
     <div class="footed">
@@ -529,6 +263,8 @@
     <script src="/user/jquery.nice-select.min.js"></script>
     <script src="/user/mixitup.min.js"></script>
     <script src="/user/main.js"></script>
+        <script src="/user/productdetails.js"></script>
+
 
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </div>

@@ -1,42 +1,44 @@
 const Cart =require('../../models/user/cart')
+const product=require('../../models/vender/productAdd')
+const subcategory=require('../../models/admin/subcategory')
 
 
-getcartlist= async (req, res) => {
-    try {
-        const userId = req.user.id;
+// getcartlist= async (req, res) => {
+//     try {
+//         const userId = req.user.id;
 
-        const cart = await Cart.aggregate([
-            {
-                $match: {
-                    userId: mongoose.Types.ObjectId(userId),
-                },
-            },
-            {
-                $lookup: {
-                    from: 'products',  
-                    localField: 'product',
-                    foreignField: '_id',
-                    as: 'productDetails',
-                },
-            },
-            {
-                $unwind: '$productDetails',
-            },
-            {
-                $project: {
-                    'productDetails.productName': 1,
-                    // Include other fields from Cart if needed
-                },
-            },
-        ]);
-        res.render('user/cartlist', { cart });
-        console.log('cart');
+//         const cart = await Cart.aggregate([
+//             {
+//                 $match: {
+//                     userId: mongoose.Types.ObjectId(userId),
+//                 },
+//             },
+//             {
+//                 $lookup: {
+//                     from: 'products',  
+//                     localField: 'product',
+//                     foreignField: '_id',
+//                     as: 'productDetails',
+//                 },
+//             },
+//             {
+//                 $unwind: '$productDetails',
+//             },
+//             {
+//                 $project: {
+//                     'productDetails.productName': 1,
+//                     // Include other fields from Cart if needed
+//                 },
+//             },
+//         ]);
+//         res.render('user/cartlist', { cart });
+//         console.log('cart');
 
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, message: 'Internal Server Error' });
-    }
-};
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ success: false, message: 'Internal Server Error' });
+//     }
+// };
 getcartpage=async (req, res) => {
     try {
         const products = await product.find().populate('category').populate('subcategory');
@@ -83,14 +85,25 @@ postcart= async (req, res) => {
         return res.status(500).json({ message: 'Internal server error' });
     }
 };
-getshoppingcart=(req,res)=>{
-    const token = req.cookies.token;
-    
-    if(token){
-        res.render('user/shopping-cart')
+
+getshoppingcart = async (req, res) => {
+    try {
+        // console.log("rinn");
+        const userId = req.user.id;
+
+        const cart = await Cart.find({ userId: userId })
+            .populate({
+                path: 'product',
+                populate: [{ path: 'category' }, { path: 'subcategory' }],
+            });
+          console.log("test",cart);
+        res.render('user/shopping-cart', { cart });
+        console.log('cart');
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
-    else{
-        return res.redirect('/user/login');
-    }
-    };
-module.exports={getcartlist,getcartpage,postcart,getshoppingcart}
+};
+
+module.exports={getcartpage,postcart,getshoppingcart}

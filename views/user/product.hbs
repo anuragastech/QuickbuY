@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Violet | Template</title>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="path/to/owl.carousel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- Google Font -->
                     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -17,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
+
 
     <!-- Css Styles -->
   
@@ -31,8 +31,6 @@
 </head>
 
 <body>
-    <div class="naved">
-
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -54,7 +52,7 @@
         <div class="container-fluid">
             <div class="inner-header">
                 <div class="logo">
-                    {{!-- <a href="/index"><img src=/logo.png" alt=""></a> --}}
+                    {{!-- <a href="/index">img src=/logo.png" alt=""></a> --}}
                 </div>
                 <div class="header-right">
                     <img src="/icons/search.png" alt="" class="search-trigger">
@@ -86,100 +84,312 @@
             </div>
         </div>
     </header>
-        </div>
-
-
-   
-   
-          
-<style>
-    .am {
-        width: auto;
-        height: 2070px;
-        background-color: rgb(248, 251, 251);
-        color: black;
-        overflow: auto; /* Add this line to enable scrolling */
-    }
-
-    .naved {
-        height: 100px;
-    }
-
-    .footed {
-        height: 600px;
-    }
-      .row:nth-child(n+9) {
-                display: none;
-            }
-  
-
-
-
-
-.row:nth-child(n+9) {
-    display: none;
-}
-.product-list {
-    max-height: 2000px; 
-    overflow-y: auto; 
-}
-
-.product-item {
-    border-bottom: 1px solid #ccc; 
-    padding: 10px; 
-}
-
-
-</style>
-
-
-            <div class="am">
-     <div class="am">
-
- <section class="product-page">
-    <div class="container">
-        <div class="product-list">
-            {{!-- {{#each products}} --}}
-            <div class="product-item">
-                <div class="product-img">
-                    <figure>
-                        <img src="{{this.image.url}}" alt="{{this.productname}}">
-                        {{#if this.new}}
-                            <div class="p-status">new</div>
-                        {{/if}}
-                    </figure>
+    <!-- Header Info Begin -->
+    <div class="header-info">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="header-item">
+                        <img src="/icons/delivery.png" alt="">
+                        <p>Free shipping on orders over $30 in USA</p>
+                    </div>
                 </div>
-                <div class="product-content">
-                    <h2>{{this.productname}}</h2>
-                    <div class="pc-meta">
-                        <h5>${{this.price}}</h5>
+                <div class="col-md-4 text-left text-lg-center">
+                    <div class="header-item">
+                        <img src="/icons/voucher.png" alt="">
+                        <p>20% Student Discount</p>
                     </div>
-                    <p>{{this.description}}</p>
-                    <div class="product-quantity">
-                        <div class="pro-qty">
-                            <input type="text" value="1">
-                        </div>
-                    </div>
-                    <a href="#" class="primary-btn pc-btn">Add to cart</a>
-                    <ul class="p-info">
-                        <li>Product Information</li>
-                        <li>Reviews</li>
-                        <li>Product Care</li>
-                    </ul>
+                </div>
+                <div class="col-md-4 text-left text-xl-right">
+                    <div class="header-item">
+                    <img src="/icons/sales.png" alt="">
+                    <p>30% off on dresses. Use code: 30OFF</p>
+                </div>
                 </div>
             </div>
-            {{!-- {{/each}} --}}
-            <!-- End of product loop -->
         </div>
     </div>
-</section>
+    <!-- Header Info End -->
+    <!-- Header End -->
+    
 
+    <!-- Page Add Section Begin -->
+    <section class="page-add">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="page-breadcrumb">
+                        <h2>Dresses<span>.</span></h2>
+                        <a href="#">Home</a>
+                        <a href="#">Dresses</a>
+                        <a class="active" href="#">Night Dresses</a>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <img src="/add.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
 
+   
+    {{!-- ------------------------------------------------------------------------------------------- --}}
+ 
+ <style>
+ html, body{
+  background: #E3E3D8;
+  font-family: sans-serif;
+  padding: 25px;
+}
+
+.wrapper{
+  width: 300px;
+  height: 500px;
+  background: white;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px 10px 10px 10px;
+  box-shadow: 0;
+  transform: scale(0.95);
+  transition: box-shadow 0.5s, transform 0.5s;
+  &:hover{
+    transform: scale(1);
+    box-shadow: 5px 20px 30px rgba(0,0,0,0.2);
+  }
+  
+  .container{
+    width:100%;
+    height:100%;
+    .top{
+      height: 80%;
+      width:100%;
+      background: url(https://s-media-cache-ak0.pinimg.com/736x/49/80/6f/49806f3f1c7483093855ebca1b8ae2c4.jpg) no-repeat center center; 
+  -webkit-background-size: 100%;
+  -moz-background-size: 100%;
+  -o-background-size: 100%;
+  background-size: 100%;
+    }
+    .bottom{
+      width: 200%;
+      height: 20%;
+      transition: transform 0.5s;
+      &.clicked{
+        transform: translateX(-50%);
+      }
+      h1{
+          margin:0;
+          padding:0;
+      }
+      p{
+          margin:0;
+          padding:0;
+      }
+      .left{
+        height:100%;
+        width: 50%;
+        background: #f4f4f4;
+        position:relative;
+        float:left;
+        .details{
+          padding: 20px;
+          float: left;
+          width: calc(70% - 40px);
+        }
+        .buy{
+          float:right;
+          width: calc(30% - 2px);
+          height:100%;
+          background: #f1f1f1;
+          transition: background 0.5s;
+          border-left:solid thin rgba(0,0,0,0.1);
+          i{
+            font-size:30px;
+            padding:30px;
+            color: #254053;
+            transition: transform 0.5s;
+          }
+          &:hover{
+            background: #A6CDDE;
+          }
+          &:hover i{
+            transform: translateY(5px);
+            color:#00394B;
+          }
+        }
+      }
+      .right{
+        width: 50%;
+        background: #A6CDDE;
+        color: white;
+        float:right;
+        height:200%;
+        overflow: hidden;
+        .details{
+          padding: 20px;
+          float: right;
+          width: calc(70% - 40px);
+        }
+        .done{
+          width: calc(30% - 2px);
+          float:left;
+          transition: transform 0.5s;
+          border-right:solid thin rgba(255,255,255,0.3);
+          height:50%;
+          i{
+            font-size:30px;
+            padding:30px;
+            color: white;
+          }
+        }
+        .remove{
+          width: calc(30% - 1px);
+          clear: both;
+          border-right:solid thin rgba(255,255,255,0.3);
+          height:50%;
+          background: #BC3B59;
+          transition: transform 0.5s, background 0.5s;
+          &:hover{
+            background: #9B2847;
+          }
+          &:hover i{
+            transform: translateY(5px);
+          }
+          i{
+            transition: transform 0.5s;
+            font-size:30px;
+            padding:30px;
+            color: white;
+          }
+        }
+        &:hover{
+          .remove, .done{
+            transform: translateY(-100%);
+          }
+        }
+      }
+    }
+  }
+  
+  .inside{
+    z-index:9;
+    background: #92879B;
+    width:140px;
+    height:140px;
+    position: absolute;
+    top: -70px;
+    right: -70px;
+    border-radius: 0px 0px 200px 200px;
+    transition: all 0.5s, border-radius 2s, top 1s;
+    overflow: hidden;
+    .icon{
+      position:absolute;
+      right:85px;
+      top:85px;
+      color:white;
+      opacity: 1;
+    }
+    &:hover{
+      width:100%;
+      right:0;
+      top:0;
+      border-radius: 0;
+      height:80%;
+      .icon{
+        opacity: 0;
+        right:15px;
+        top:15px;
+      }
+      .contents{
+        opacity: 1;
+        transform: scale(1);
+        transform: translateY(0);
+      }
+    }
+    .contents{
+      padding: 5%;
+      opacity: 0;
+      transform: scale(0.5);
+      transform: translateY(-200%);
+      transition: opacity 0.2s, transform 0.8s;
+      table{
+        text-align:left;
+        width:100%;
+      }
+      h1, p, table{
+        color: white;
+      }
+      p{
+        font-size:13px;
+      }
+    }
+  }
+}
+ </style>
+ 
+ <div class="wrapper">
+  <div class="container">
+    <div class="top"></div>
+    <div class="bottom">
+      <div class="left">
+        <div class="details">
+          <h1>Chair</h1>
+          <p>£250</p>
+        </div>
+        <div class="buy"><i class="material-icons">add_shopping_cart</i></div>
+      </div>
+      <div class="right">
+        <div class="done"><i class="material-icons">done</i></div>
+        <div class="details">
+          <h1>Chair</h1>
+          <p>Added to your cart</p>
+        </div>
+        <div class="remove"><i class="material-icons">clear</i></div>
+      </div>
+    </div>
+  </div>
+  <div class="inside">
+    <div class="icon"><i class="material-icons">info_outline</i></div>
+    <div class="contents">
+      <table>
+        <tr>
+          <th>Width</th>
+          <th>Height</th>
+        </tr>
+        <tr>
+          <td>3000mm</td>
+          <td>4000mm</td>
+        </tr>
+        <tr>
+          <th>Something</th>
+          <th>Something</th>
+        </tr>
+        <tr>
+          <td>200mm</td>
+          <td>200mm</td>
+        </tr>
+        <tr>
+          <th>Something</th>
+          <th>Something</th>
+        </tr>
+        <tr>
+          <td>200mm</td>
+          <td>200mm</td>
+        </tr>
+        <tr>
+          <th>Something</th>
+          <th>Something</th>
+        </tr>
+        <tr>
+          <td>200mm</td>
+          <td>200mm</td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>
-
-
+{{!-- ------------------------------------------------------------------------------------------------- --}}
     <!-- Footer Section Begin -->
-    <div class="footed">
     <footer class="footer-section spad">
         <div class="container">
             <div class="newslatter-form">
@@ -277,7 +487,7 @@
     <script src="/user/main.js"></script>
 
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</div>
+
 </body>
 
 </html>

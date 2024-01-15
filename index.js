@@ -6,8 +6,10 @@ const mongoose = require('mongoose');
 
 const cookieParser=require('cookie-parser');
 
-const adminRouter=require('./routes/admin')
+const venderRouter=require('./routes/vender')
 const userRouter=require('./routes/user')
+const adminRouter=require('./routes/admin')
+
 
 
 const app = express();
@@ -22,7 +24,8 @@ app.use(cookieParser());
 
 
 app.use('/user',userRouter);
-app.use('/admin',adminRouter)
+app.use('/vender',venderRouter)
+app.use('/admin', adminRouter);
 
 mongoose
     .connect("mongodb://localhost:27017/data")

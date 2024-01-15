@@ -3,15 +3,17 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
-    display: flex;
+    /* display: flex; */
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     min-height: 100vh;
 }
 
 form {
     max-width: 900px;
+    margin-left: 350px;
     width: 100%;
+    margin-top: 10px;
     padding: 20px;
     border: 2.5px solid #37c214;
     border-radius: 8px;

@@ -29,13 +29,8 @@ router.get('/categories',getCategoryControllers.getcategory)
 router.get('/check-out',getAllControllers.getcheckout)
 router.get('/contact',getAllControllers.getcontact)
 
-router.get('/shopping-cart',getCartControllers.getshoppingcart)
 
 router.get('/user',getAllControllers.getuser)
-
-
-
-
 
 
     router.get('/category',getCategoryControllers.getcategorys)
@@ -46,24 +41,26 @@ router.get('/user',getAllControllers.getuser)
 router.get('/productpage', getProductControllers.getproductpage)
 
 
+router.get('/product',getProductControllers.getproductData)
 
-router.get('/productdetails',getProductControllers.getproductdetails)
+// router.get('/productdetails',getProductControllers.getproductdetails)
 router.get('/cart',authenticateJWT, getCartControllers.getcartpage)
 
 
 
-router.get('/cartlist', authenticateJWT,getCartControllers.getcartlist)
+// router.get('/cartlist', authenticateJWT,getCartControllers.getcartlist)
 
 
 
 router.post('/cart/product/:id',authenticateJWT,getCartControllers.postcart)
+router.get('/shopping-cart',getCartControllers.getshoppingcart)
 
   
-// router.get('/cart',(req,res)=>{
-//     res.render('user/cart')
-//     });
+router.get('/cart',(req,res)=>{
+    res.render('user/cart')
+    });
 
-// router.get('/productpage',(req,res)=>{
-//   res.render('user/productpage')})
+router.get('/productpage',(req,res)=>{
+  res.render('user/productpage')})
 
 module.exports = router;

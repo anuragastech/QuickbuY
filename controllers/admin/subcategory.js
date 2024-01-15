@@ -1,5 +1,5 @@
-const cloudinary = require("../../../models/admin/cloudinary");
-const subcategory = require("../../../models/admin/subcategory");
+const cloudinary = require("../../models/common/cloudinary");
+const subcategory = require("../../models/admin/subcategory");
 
 
 

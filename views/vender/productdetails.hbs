@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive vender Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="dashboard.css" />
+    <lin
+      rel="shortcut icon"
+      type="image/png"
+      href="./assets/imgs/favicon.ico"
+    />
+  </head>
+
+  <body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+      <div class="navigation">
+        <ul>
+          <li>
+            <a href="#">
+              <span class="icon">
+                <img src="./assets/imgs/favicon.ico" alt="" />
+              </span>
+              <span class="title">Dunprel Store</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/vender/main">
+              <span class="icon">
+                <ion-icon name="home-outline"></ion-icon>
+              </span>
+              <span class="title">Dashboard</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/vender/productdetails">
+              <span class="icon">
+                <ion-icon name="people-outline"></ion-icon>
+              </span>
+              <span class="title">ProductDeatails</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/vender/productAdd">
+              <span class="icon">
+                <ion-icon name="chatbubble-outline"></ion-icon>
+              </span>
+              <span class="title">ProductAdd</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/vender/categorylist">
+              <span class="icon">
+                <ion-icon name="help-outline"></ion-icon>
+              </span>
+              <span class="title">Categorylist</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/vender/category">
+              <span class="icon">
+                <ion-icon name="settings-outline"></ion-icon>
+              </span>
+              <span class="title">Category</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/vender/subcategories">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title">Subcategorylist</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/vender/logout">
+              <span class="icon">
+                <ion-icon name="log-out-outline"></ion-icon>
+              </span>
+              <span class="title">Sign Out</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ========================= Main ==================== -->
+
+<style>
+  .bodysec{
+    margin-left: 400px;
+    {{!-- padding-top: 10px --}}
+    
+  }
+  th{
+    background-color:rgb(43, 36, 36);
+    height: 50px;
+    color: azure;
+    border: 2px solid rgb(58, 164, 46);
+  }
+  tr{
+
+    border: 8px solid rgb(208, 14, 95);
+    background-color: rgb(105, 92, 92);
+    
+      }
+
+    
+  td{
+        border: 2px solid rgb(255, 255, 255);
+        text-align: center;
+    {{!-- background-color: rgb(245, 2, 2); --}}
+    
+
+  }
+  table{
+    border-radius: 30px;
+            border: 20px solid rgb(216, 216, 219);
+                background-color: rgb(105, 92, 92);
+color: aliceblue;
+align-items: center;
+
+
+  }
+  thead{
+               border: 20px solid rgb(45, 173, 19);
+
+
+  }
+  .button1{
+    height: 34px;
+    width: 65px;
+    background-color: rgb(245, 2, 2);
+  }
+  .heading{
+    color: black;
+    font-size: 36px;
+    padding-bottom: 10px;
+    
+  }
+  .button2{
+       height: 34px;
+    width: 65px;
+    background-color: rgb(245, 2, 2);
+  }
+</style>
+
+<h1 class="heading">Product Details</h1>
+
+
+<div class="bodysec">
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+{{!-- ------------------------------------------------------------------------------------------------------- --}}
+<h1 class="heading">Product Details</h1>
+
+<div class="container table-responsive py-5"> 
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+        {{!-- <th scope="col">#</th> --}}
+
+      <th scope="col">Product Name</th>
+      <th scope="col">Manufacture Name</th>
+      <th scope="col">Brand</th>
+      {{!-- <th scope="col">Handle</th> --}}
+       <th scope="col">Price</th>
+      <th scope="col">Description</th>
+      <th scope="col">Category</th>
+      <th scope="col">Subcategory</th>
+      <th scope="col">Image</th>
+      <th scope="col">Delete</th>
+     <th scope="col">Edit</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+        {{#each products}}
+
+    <tr>
+            {{!-- <th scope="row">1</th> --}}
+         <td>{{this.productname}}</td>
+        <td>{{this.manufacturename}}</td>
+        <td>{{this.brand}}</td>
+        <td>{{this.price}}</td>
+        <td>{{this.description}}</td>
+        <td>{{this.category.title}}</td>
+        <td>{{this.subcategory.title}}</td>
+        <td>
+          <img src="{{this.image.url}}" alt="{{this.productname}} Image" style="max-width: 100px; height: auto;">
+        </td>
+        <td>
+    <div class="product">
+      {{!-- <p>{{this.productname}}</p> --}}
+      <button class="button1" onclick="deleteProduct( '{{this.productname}}')">Delete</button>
+    </div>
+             <td> <button class="button2" >Edit</button></td>
+
+
+     
+
+    </tr>
+        {{/each}}
+
+  </tbody>
+</table>
+</div>
+
+
+{{!-- --------------------------------------------------------------------------------------------- --}}
+
+<script>
+  function deleteProduct(productId) {
+    axios.delete(`/vender/delete/product/${productId}`)
+      .then((response) => {
+        if (response.status !== 200) {
+          throw new Error('Delete request failed');
+        } else {
+          window.location.href = "/vender/productdetails";
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+</script>
+
+
+</body>
+</html>
