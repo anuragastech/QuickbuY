@@ -1,7 +1,7 @@
 const product=require('../../models/vender/productAdd')
 
 
-getproductpage=async (req, res) => {
+let getproductpage =async (req, res) => {
     try {
         const products = await product.find().populate('category').populate('subcategory');
         // console.log(products); // Add this line
@@ -11,7 +11,7 @@ getproductpage=async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
-getproductData= async (req, res) => {
+let getproductData= async (req, res) => {
     try {
         const products = await product.find().populate('category').populate('subcategory');
         res.render('user/product', { products });
@@ -21,14 +21,16 @@ getproductData= async (req, res) => {
     }
 };
 
-productpass = async (req, res) => {
+let productpass = async (req, res) => {
     try {
+        console.log("try");
         const { id: productId } = req.params;
-        const productData = await product.findById(productId);
+        console.log(productId);
+        const productData = await product.findById({ _id: ObjectId (productId)});
         console.log(productData);
 
         if (productData) {
-            res.status(200).render('user/productpage', { data: productData });
+            res.status(200).render('user/productpage', { productData });
         } else {
             res.status(404).json({ success: false, message: 'Product not found' });
         }
@@ -37,6 +39,8 @@ productpass = async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
+let productpage =(req,res)=>{
+    res.render('user/productpage')};
 
 
-module.exports={getproductpage,getproductData,productpass}
+module.exports= {getproductpage,getproductData,productpass,productpage}

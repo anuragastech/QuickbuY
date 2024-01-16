@@ -38,10 +38,10 @@ router.get('/user',getAllControllers.getuser)
     router.get('/subcategories',getSubcategoryControllers.getsubcategories)
     
 
-// router.get('/productpage', getProductControllers.getproductpage)
+router.get('/productpage', getProductControllers.getproductpage)
 
 
-router.get('/product',getProductControllers.getproductData)
+// router.get('/product',getProductControllers.getproductData)
 
 // router.get('/productdetails',getProductControllers.getproductdetails)
 router.get('/cart',authenticateJWT, getCartControllers.getcartpage)
@@ -60,10 +60,9 @@ router.get('/cart',(req,res)=>{
     res.render('user/cart')
     });
 
-router.get('/productpage',(req,res)=>{
-  res.render('user/productpage')})
+router.get('/productpage',getProductControllers.productpage)
 
-  router.get('/user/productpage/:id',getProductControllers.productpass)
+  // router.get('/productpage',getProductControllers.productpass)
 
 
 

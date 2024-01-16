@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Yoga Studio Template">
@@ -10,34 +11,44 @@
     <title>Violet | Template</title>
 
     <!-- Google Font -->
-                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css">
+
+
+
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+
+
+
 
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
 
     <!-- Css Styles -->
-  
-      <link rel="stylesheet" href="/user/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/user/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/user/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="/user/nice-select.css" type="text/css">
     <link rel="stylesheet" href="/user/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/user/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="/user/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="/user/style.css" type="text/css">
-<link rel="stylesheet" href="/user/productdetails.css" type="text/css" >
 </head>
+
 </head>
 
 <body>
-    <div class="naved">
-
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
     
-   <!-- Search model -->
+    <!-- Search model -->
 	<div class="search-model">
 		<div class="h-100 d-flex align-items-center justify-content-center">
 			<div class="search-close-switch">+</div>
@@ -53,12 +64,12 @@
         <div class="container-fluid">
             <div class="inner-header">
                 <div class="logo">
-                    {{!-- <a href="/index"><img src=/logo.png" alt=""></a> --}}
+                    <a href="./index.hbs"><img src="/logo.png" alt=""></a>
                 </div>
                 <div class="header-right">
                     <img src="/icons/search.png" alt="" class="search-trigger">
-                    <img src="/icons/man.png" alt="">
-                    <a href="#">
+                 <img src="/icons/man.png" alt="">
+                    <a href="/user">   
                         <img src="/icons/bag.png" alt="">
                         <span>2</span>
                     </a>
@@ -66,13 +77,17 @@
                 <div class="user-access">
                     <a href="/user/sign">Register</a>
                     <a href="/user/login" class="in">Sign in</a>
+                    <a href="/user/logout">
+    <button class="bttn3" style="width: 120px; height: 50px;">Logout</button>
+</a>
+
                 </div>
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li><a class="active" href="/user/index">Home</a></li>
                         <li><a href="/user/categories">Shop</a>
                             <ul class="sub-menu">
-                                <li><a href="/user/productpage">Product Page</a></li>
+                                <li><a href="/user/productdetails">Product Page</a></li>
                                 <li><a href="/user/shopping-cart">Shopping Card</a></li>
                                 <li><a href="/user/check-out">Check out</a></li>
                             </ul>
@@ -85,89 +100,139 @@
             </div>
         </div>
     </header>
-        </div>
-
-
     <!-- Header Info Begin -->
- 
+    <div class="header-info">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="header-item">
+                        <img src="/icons/delivery.png" alt="">
+                        <p>Free shipping on orders over $30 in USA</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-left text-lg-center">
+                    <div class="header-item">
+                        <img src="/icons/voucher.png" alt="">
+                        <p>20% Student Discount</p>
+                    </div>
+                </div>
+                <div class="col-md-4 text-left text-xl-right">
+                    <div class="header-item">
+                    <img src="/icons/sales.png" alt="">
+                    <p>30% off on dresses. Use code: 30OFF</p>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Header Info End -->
-    <!-- Header End -->
-   <main class="container">
- 
-  <!-- Left Column / Headphones Image -->
-  <div class="left-column">
-    <img data-image="black" src="images/black.png" alt="">
-    <img data-image="blue" src="images/blue.png" alt="">
-    <img data-image="red" class="active" src="images/red.png" alt="">
-  </div>
- 
-             {{#each data}}
+    <!-- Page Add Section Begin -->
+    <section class="page-add">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="page-breadcrumb">
+                        <h2>Shirts<span>.</span></h2>
+                        <a href="#">Home</a>
+                        <a href="#">Dresses</a>
+                        <a class="active" href="#">Night Dresses</a>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <img src="/add.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Page Add Section End -->
 
-  <!-- Right Column -->
-  <div class="right-column">
- 
-    <!-- Product Description -->
-    <div class="product-description">
-         {{!-- <span>{{productdata.category}}</span> --}}
-            <h1>{{this.productname}}</h1>
-            <p>{{this.productname}}</p>
-      {{!-- <span>Headphones</span>
-      <h1>Beats EP</h1>
-      <p>The preferred choice of a vast range of acclaimed DJs. Punchy, bass-focused sound and high isolation. Sturdy headband and on-ear cushions suitable for live performance</p>
-    </div> --}}
- 
-    <!-- Product Configuration -->
-    <div class="product-configuration">
- 
-      <!-- Product Color -->
-      <div class="product-color">
-        <span>Color</span>
- 
-        <div class="color-choose">
-          <div>
-          <input data-image="{{product.color}}" type="radio" id="{{product.color}}" name="color" value="{{product.color}}" checked>
-                        <label for="{{product.color}}"><span></span></label> 
-                                <img data-image="{{productdata.img}}" src="{{productdata.image}}" alt="">
-          </div>
-          <div>
-            <input data-image="blue" type="radio" id="blue" name="color" value="blue">
-            <label for="blue"><span></span></label>
-          </div>
-          <div>
-            <input data-image="black" type="radio" id="black" name="color" value="black">
-            <label for="black"><span></span></label>
-          </div>
-        </div>
- 
-      </div>
- 
-      <!-- Cable Configuration -->
-      <div class="cable-config">
-        <span>Cable configuration</span>
- 
-        <div class="cable-choose">
-          <button>Straight</button>
-          <button>Coiled</button>
-          <button>Long-coiled</button>
-        </div>
- 
-        <a href="#">How to configurate your headphones</a>
-      </div>
-    </div>
- 
-    <!-- Product Pricing -->
-    <div class="product-price">
-      <span>148$</span>
-      <a href="#" class="cart-btn">Add to cart</a>
-    </div>
-  </div>
-</main>
+    <!-- Product Page Section Beign -->
+    <section class="product-page">
+        {{#each data }}
+        <div class="container">
+            <div class="product-control">
+                <a href="#">Previous</a>
+                <a href="#">Next</a>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="product-slider owl-carousel">
+                        <div class="product-img">
+                            <figure>
+                            <img src="{{this.image.url}}" alt="{{this.productname}}">
+                                <div class="p-status">new</div>
+                            </figure>
+                        </div>
+                        <div class="product-img">
+                            <figure>
+                            <img src="{{this.image.url}}" alt="{{this.productname}}">
+                                <div class="p-status">new</div>
+                            </figure>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-lg-6">
+                    <div class="product-content">
+                        <h2>Dotted Blue Shirt</h2>
+                        <div class="pc-meta">
+                            <h5${{this.price}}</h5>
+                            <div class="rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+                        </div>
+                        <p>{{this.discription}}</p>
+                        <ul class="tags">
+                            <li><span>Category :</span> Men’s Wear</li>
+                            <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
+                        </ul>
+                        <div class="product-quantity">
+                            <div class="pro-qty">
+                                <input type="text" value="1">
+                            </div>
+                        </div>
+                        {{!-- <a href="#" class="primary-btn pc-btn">Add to cart</a> --}}
+                        <button class="primary-btn pc-btn" onclick="cartProduct('{{this._id}}')">Add to Cart</button>
+                        <ul class="p-info">
+                            <li>Product Information</li>
+                            <li>Reviews</li>
+                            <li>Product Care</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
             {{/each}}
+        </div>
+    </section>
+    <!-- Product Page Section End -->
 
-{{!-- **** --}}
+    <!-- Related Product Section Begin -->
+    <section class="related-product spad">
 
+    </section>
+    <!-- Related Product Section End -->
+
+
+<script>
+  function cartProduct(productId) {
+    axios.post(`/user/cart/product/${productId}`)
+      .then((response) => {
+        if (response.status !== 200) {
+          throw new Error('Cart request failed');
+        } else {
+          document.location.href = "/user/shopping-cart";
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+</script>
     <!-- Footer Section Begin -->
-    <div class="footed">
     <footer class="footer-section spad">
         <div class="container">
             <div class="newslatter-form">
@@ -246,7 +311,7 @@
 			</div>
 
 <div class="container text-center pt-5">
-            
+          
             </div>
 
 
@@ -255,7 +320,9 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-   <script src="/user/jquery-3.3.1.min.js"></script>
+ 
+
+    <script src="/user/jquery-3.3.1.min.js"></script>
     <script src="/user/bootstrap.min.js"></script>
     <script src="/user/jquery.magnific-popup.min.js"></script>
     <script src="/user/jquery.slicknav.js"></script>
@@ -263,11 +330,11 @@
     <script src="/user/jquery.nice-select.min.js"></script>
     <script src="/user/mixitup.min.js"></script>
     <script src="/user/main.js"></script>
-        <script src="/user/productdetails.js"></script>
 
-
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 </body>
 
 </html>
