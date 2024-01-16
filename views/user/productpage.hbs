@@ -148,7 +148,7 @@
 
     <!-- Product Page Section Beign -->
     <section class="product-page">
-        {{#each data }}
+        {{#if data }}
         <div class="container">
             <div class="product-control">
                 <a href="#">Previous</a>
@@ -159,13 +159,13 @@
                     <div class="product-slider owl-carousel">
                         <div class="product-img">
                             <figure>
-                            <img src="{{this.image.url}}" alt="{{this.productname}}">
+                            <img src="{{data.image.url}}" alt="{{this.productname}}">
                                 <div class="p-status">new</div>
                             </figure>
                         </div>
                         <div class="product-img">
                             <figure>
-                            <img src="{{this.image.url}}" alt="{{this.productname}}">
+                            <img src="{{data.image.url}}" alt="{{this.productname}}">
                                 <div class="p-status">new</div>
                             </figure>
                         </div>
@@ -176,7 +176,7 @@
                     <div class="product-content">
                         <h2>Dotted Blue Shirt</h2>
                         <div class="pc-meta">
-                            <h5${{this.price}}</h5>
+                            <h5${{data.productname}}</h5>
                             <div class="rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -185,7 +185,7 @@
                                 <i class="fa fa-star"></i>
                             </div>
                         </div>
-                        <p>{{this.discription}}</p>
+                        <p>{{data.discription}}</p>
                         <ul class="tags">
                             <li><span>Category :</span> Men’s Wear</li>
                             <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
@@ -196,7 +196,7 @@
                             </div>
                         </div>
                         {{!-- <a href="#" class="primary-btn pc-btn">Add to cart</a> --}}
-                        <button class="primary-btn pc-btn" onclick="cartProduct('{{this._id}}')">Add to Cart</button>
+                        <button class="primary-btn pc-btn" onclick="cartProduct('{{data._id}}')">Add to Cart</button>
                         <ul class="p-info">
                             <li>Product Information</li>
                             <li>Reviews</li>
@@ -205,7 +205,7 @@
                     </div>
                 </div>
             </div>
-            {{/each}}
+            {{/if}}
         </div>
     </section>
     <!-- Product Page Section End -->

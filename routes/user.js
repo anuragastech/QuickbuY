@@ -60,11 +60,11 @@ router.get('/cart',(req,res)=>{
     res.render('user/cart')
     });
 
-router.get('/productpage',getProductControllers.productpage)
+// router.get('/productpage',getProductControllers.productpage)
 
-  // router.get('/productpage',getProductControllers.productpass)
+  router.get('/productpage',getProductControllers.productpass)
 
-
+ 
 
  
   

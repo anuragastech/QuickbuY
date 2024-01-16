@@ -20,8 +20,8 @@ router.post("/category", upload,categoryControllers.postCategory);
 
 router.get("/categorylist",categoryControllers.getCategorylist);
 
-router.get("/edit-category/:id",categoryControllers.editGetCategory);
-
+router.get("/edit",categoryControllers.editGetCategory);
+router.post('/edit-category/:id',categoryControllers.editpost)
 
 router.delete("/delete/:id",categoryControllers.deleteCategory);
 
@@ -53,5 +53,9 @@ router.post("/size", upload,otherControllers.postSize);
 
 // Logout route
 router.get("/logout",adminControllers.logout )
+
+
+
+
 
 module.exports = router;

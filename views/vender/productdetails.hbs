@@ -206,7 +206,10 @@ align-items: center;
       {{!-- <p>{{this.productname}}</p> --}}
       <button class="button1" onclick="deleteProduct( '{{this.productname}}')">Delete</button>
     </div>
-             <td> <button class="button2" >Edit</button></td>
+             <td>   <button>
+          <a href="/vender/edit-product?name={{this._id}}">Edit</a>
+
+          </button></td>
 
 
      

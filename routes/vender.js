@@ -66,4 +66,7 @@ router.get("/logout",venderControllers.logout )
 
 // router.get("/home", authenticateJWT, getHome)
 
+router.get('/edit-product', productControllers.geteditProduct)
+router.post('/edit-product/:id',authenticateJWT,productControllers.postedit)
+
 module.exports = router;

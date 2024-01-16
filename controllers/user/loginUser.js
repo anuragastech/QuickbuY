@@ -45,7 +45,7 @@ const create=require('../../models/user/mongodb')
         res.status(500).json({ message: 'Internal server error' });
     }
 };
- Addlogin = async (req, res) => {
+ Addlogin  = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await create.findOne({ email });

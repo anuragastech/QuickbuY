@@ -1,4 +1,4 @@
-const product=require('../../models/vender/productAdd')
+const product =require('../../models/vender/productAdd')
 
 
 let getproductpage =async (req, res) => {
@@ -11,6 +11,7 @@ let getproductpage =async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
+
 let getproductData= async (req, res) => {
     try {
         const products = await product.find().populate('category').populate('subcategory');
@@ -21,16 +22,17 @@ let getproductData= async (req, res) => {
     }
 };
 
-let productpass = async (req, res) => {
+let productpass =  async (req, res) => {
     try {
-        console.log("try");
-        const { id: productId } = req.params;
+        console.log("PRODUCT PAGE \n");
+        const productId=req.query.name
         console.log(productId);
-        const productData = await product.findById({ _id: ObjectId (productId)});
-        console.log(productData);
+         const productData = await product.findById({ _id: (productId) });
+         console.log("DATAS ARE",productData);
 
         if (productData) {
-            res.status(200).render('user/productpage', { productData });
+         //  console.log(productData);
+            res.status(200).render('user/productpage', { data: productData });
         } else {
             res.status(404).json({ success: false, message: 'Product not found' });
         }

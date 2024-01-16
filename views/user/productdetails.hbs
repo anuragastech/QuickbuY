@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Violet | Template</title>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="path/to/owl.carousel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <!-- Google Font -->
                     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -17,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
+
 
     <!-- Css Styles -->
   
@@ -31,8 +31,6 @@
 </head>
 
 <body>
-    <div class="naved">
-
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -54,7 +52,7 @@
         <div class="container-fluid">
             <div class="inner-header">
                 <div class="logo">
-                    {{!-- <a href="/index"><img src=/logo.png" alt=""></a> --}}
+                    {{!-- <a href="/index">img src=/logo.png" alt=""></a> --}}
                 </div>
                 <div class="header-right">
                     <img src="/icons/search.png" alt="" class="search-trigger">
@@ -86,103 +84,457 @@
             </div>
         </div>
     </header>
-        </div>
-
-
-   
-   
-          
-<style>
-    .am {
-        width: auto;
-        height: 2070px;
-        background-color: rgb(248, 251, 251);
-        color: black;
-        overflow: auto; /* Add this line to enable scrolling */
-    }
-
-    .naved {
-        height: 100px;
-    }
-
-    .footed {
-        height: 600px;
-    }
-      .row:nth-child(n+9) {
-                display: none;
-            }
-  
-
-
-
-
-.row:nth-child(n+9) {
-    display: none;
-}
-.product-list {
-    max-height: 2000px; 
-    overflow-y: auto; 
-}
-
-.product-item {
-    border-bottom: 1px solid #ccc; 
-    padding: 10px; 
-}
-
-
-</style>
-
-
-            <div class="am">
-     <div class="am">
-
- <section class="product-page">
-    <div class="container">
-        <div class="product-list">
-            {{!-- {{#each products}} --}}
-            <div class="product-item">
-                <div class="product-img">
-                    <figure>
-                        <img src="{{this.image.url}}" alt="{{this.productname}}">
-
-                        {{#if this.new}}
-                            <div class="p-status">new</div>
-                        {{/if}}
-                    </figure>
+    <!-- Header Info Begin -->
+    <div class="header-info">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="header-item">
+                        <img src="/icons/delivery.png" alt="">
+                        <p>Free shipping on orders over $30 in USA</p>
+                    </div>
                 </div>
-                <div class="product-content">
-                    <h2>{{this.productname}}</h2>
-             <a href="/user/productdata/{{ this._id }}">View Details</a>
-
-                    <div class="pc-meta">
-                        <h5>${{this.price}}</h5>
+                <div class="col-md-4 text-left text-lg-center">
+                    <div class="header-item">
+                        <img src="/icons/voucher.png" alt="">
+                        <p>20% Student Discount</p>
                     </div>
-                    <p>{{this.description}}</p>
-                    <div class="product-quantity">
-                        <div class="pro-qty">
-                            <input type="text" value="1">
-                        </div>
-                    </div>
-                    <a href="#" class="primary-btn pc-btn">Add to cart</a>
-                    <ul class="p-info">
-                        <li>Product Information</li>
-                        <li>Reviews</li>
-                        <li>Product Care</li>
-                    </ul>
+                </div>
+                <div class="col-md-4 text-left text-xl-right">
+                    <div class="header-item">
+                    <img src="/icons/sales.png" alt="">
+                    <p>30% off on dresses. Use code: 30OFF</p>
+                </div>
                 </div>
             </div>
-            {{!-- {{/each}} --}}
-            <!-- End of product loop -->
         </div>
     </div>
-</section>
+    <!-- Header Info End -->
+    <!-- Header End -->
+    
+
+   
+    {{!-- ------------------------------------------------------------------------------------------- --}}
+ 
+<style>
+    .filtering {
+        display: flex;
+        flex-direction: grid;
+        justify-content: space-between;
+        align-items: start;
+        margin-right: 700px;
+    }
+
+    .col-sm-4 {
+        flex: 0 0 calc(33.333% - 30px); /* Adjust width as needed */
+        max-width: calc(33.333% - 30px); /* Adjust width as needed */
+    }
+
+    .col-sm-4:last-child {
+        margin-right: 0;
+    }
+</style>
+ {{!-- filter --}}
+ <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+
+<div class="filtering">
+<div class="container">
+{{!-- <br>  <p class="text-center">More bootstrap 4 components on <a href="http://bootstrap-ecommerce.com/"> Bootstrap-ecommerce.com</a></p> --}}
+<hr>
+
+<div class="row" style="display: block ;">
+	<aside class="col-sm-4">
+<p>Filter 1</p>
 
 
+<div class="card">
+	<article class="card-group-item">
+		<header class="card-header">
+			<h6 class="title">Brands </h6>
+		</header>
+		<div class="filter-content">
+			<div class="card-body">
+			<form>
+				<label class="form-check">
+				  <input class="form-check-input" type="checkbox" value="">
+				  <span class="form-check-label">
+				    Mersedes Benz
+				  </span>
+				</label> <!-- form-check.// -->
+				<label class="form-check">
+				  <input class="form-check-input" type="checkbox" value="">
+				  <span class="form-check-label">
+				    Nissan Altima
+				  </span>
+				</label>  <!-- form-check.// -->
+				<label class="form-check">
+				  <input class="form-check-input" type="checkbox" value="">
+				  <span class="form-check-label">
+				    Another Brand
+				  </span>
+				</label>  <!-- form-check.// -->
+			</form>
+
+			</div> <!-- card-body.// -->
+		</div>
+	</article> <!-- card-group-item.// -->
+	
+	<article class="card-group-item">
+		<header class="card-header">
+			<h6 class="title">Choose type </h6>
+		</header>
+		<div class="filter-content">
+			<div class="card-body">
+			<label class="form-check">
+			  <input class="form-check-input" type="radio" name="exampleRadio" value="">
+			  <span class="form-check-label">
+			    First hand items
+			  </span>
+			</label>
+			<label class="form-check">
+			  <input class="form-check-input" type="radio" name="exampleRadio" value="">
+			  <span class="form-check-label">
+			    Brand new items
+			  </span>
+			</label>
+			<label class="form-check">
+			  <input class="form-check-input" type="radio" name="exampleRadio" value="">
+			  <span class="form-check-label">
+			    Some other option
+			  </span>
+			</label>
+			</div> <!-- card-body.// -->
+		</div>
+	</article> <!-- card-group-item.// -->
+</div> <!-- card.// -->
+
+
+
+
+	</aside> <!-- col.// -->
+	<aside class="col-sm-4">
+<p>Filter 2</p>
+
+
+<div class="card">
+	<article class="card-group-item">
+		<header class="card-header"><h6 class="title">Similar category </h6></header>
+		<div class="filter-content">
+			<div class="list-group list-group-flush">
+			  <a href="#" class="list-group-item">Cras justo odio <span class="float-right badge badge-light round">142</span> </a>
+			  <a href="#" class="list-group-item">Dapibus ac facilisis  <span class="float-right badge badge-light round">3</span>  </a>
+			  <a href="#" class="list-group-item">Morbi leo risus <span class="float-right badge badge-light round">32</span>  </a>
+			  <a href="#" class="list-group-item">Another item <span class="float-right badge badge-light round">12</span>  </a>
+			</div>  <!-- list-group .// -->
+		</div>
+	</article> <!-- card-group-item.// -->
+	<article class="card-group-item">
+		<header class="card-header"><h6 class="title">Color check</h6></header>
+		<div class="filter-content">
+			<div class="card-body">
+				<label class="btn btn-danger">
+				  <input class="" type="checkbox" name="myradio" value="">
+				  <span class="form-check-label">Red</span>
+				</label>
+				<label class="btn btn-success">
+				  <input class="" type="checkbox" name="myradio" value="">
+				  <span class="form-check-label">Green</span>
+				</label>
+				<label class="btn btn-primary">
+				  <input class="" type="checkbox" name="myradio" value="">
+				  <span class="form-check-label">Blue</span>
+				</label>
+			</div> <!-- card-body.// -->
+		</div>
+	</article> <!-- card-group-item.// -->
+</div> <!-- card.// -->
+
+
+
+	</aside> <!-- col.// -->
+	<aside class="col-sm-4">
+<p>Filter  3</p>
+
+
+
+<div class="card">
+	<article class="card-group-item">
+		<header class="card-header">
+			<h6 class="title">Range input </h6>
+		</header>
+		<div class="filter-content">
+			<div class="card-body">
+			<div class="form-row">
+			<div class="form-group col-md-6">
+			  <label>Min</label>
+			  <input type="number" class="form-control" id="inputEmail4" placeholder="$0">
+			</div>
+			<div class="form-group col-md-6 text-right">
+			  <label>Max</label>
+			  <input type="number" class="form-control" placeholder="$1,0000">
+			</div>
+			</div>
+			</div> <!-- card-body.// -->
+		</div>
+	</article> <!-- card-group-item.// -->
+	<article class="card-group-item">
+		<header class="card-header">
+			<h6 class="title">Selection </h6>
+		</header>
+		<div class="filter-content">
+			<div class="card-body">
+				<div class="custom-control custom-checkbox">
+					<span class="float-right badge badge-light round">52</span>
+				  	<input type="checkbox" class="custom-control-input" id="Check1">
+				  	<label class="custom-control-label" for="Check1">Samsung</label>
+				</div> <!-- form-check.// -->
+
+				<div class="custom-control custom-checkbox">
+					<span class="float-right badge badge-light round">132</span>
+				  	<input type="checkbox" class="custom-control-input" id="Check2">
+				 	<label class="custom-control-label" for="Check2">Black berry</label>
+				</div> <!-- form-check.// -->
+
+				<div class="custom-control custom-checkbox">
+					<span class="float-right badge badge-light round">17</span>
+				  	<input type="checkbox" class="custom-control-input" id="Check3">
+				  	<label class="custom-control-label" for="Check3">Samsung</label>
+				</div> <!-- form-check.// -->
+
+				<div class="custom-control custom-checkbox">
+					<span class="float-right badge badge-light round">7</span>
+				  	<input type="checkbox" class="custom-control-input" id="Check4">
+				  	<label class="custom-control-label" for="Check4">Other Brand</label>
+				</div> <!-- form-check.// -->
+			</div> <!-- card-body.// -->
+		</div>
+	</article> <!-- card-group-item.// -->
+</div> <!-- card.// -->
+
+
+
+	</aside> <!-- col.// -->
+</div> <!-- row.// -->
+
+</div> 
+<!--container end.//-->
+
+<br><br>
+{{!-- <article class="bg-secondary mb-3">  
+<div class="card-body text-center">
+    <h4 class="text-white">HTML UI KIT <br> Ready to use Bootstrap 4 components and templates </h4>
+<p class="h5 text-white"> for Ecommerce, marketplace, booking websites 
+and product landing pages</p>   <br>
+<p><a class="btn btn-warning" target="_blank" href="http://bootstrap-ecommerce.com/"> Bootstrap-ecommerce.com  
+ <i class="fa fa-window-restore "></i></a></p>
+</div>
+<br><br>
+</article> --}}
+ {{!-- filter-end   --}}
+ {{!-- ---------------------- --}}
+ </div>
+
+ 
+ <style>
+  .wrapper {
+    margin-left: 400px;
+    width: 60%;
+    box-sizing: border-box;
+    padding: 15px; /* Adjust as needed */
+  }
+
+  .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px; /* Adjust as needed */
+    margin-top: -1200px;
+    margin-left: 100px;
+  }
+
+  .single-product-item {
+    width: calc(25% - 30px); /* 25% to create 4 items in a row, subtract margin */
+    margin: 15px; /* Adjust as needed to create space between items */
+    box-sizing: border-box;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px; /* Adjust as needed */
+    box-shadow: 0;
+    transition: box-shadow 0.5s, transform 0.5s;
+  }
+
+  .single-product-item:hover {
+    transform: scale(1.05);
+    box-shadow: 5px 20px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .container {
+    width: 100%;
+    height: 0%;
+  }
+
+  .top {
+    height: 100%;
+    width: 100%;
+    background-size: 100%;
+  }
+
+  .bottom {
+    width: 200%;
+    height: 10%;
+    transition: transform 0.5s;
+    &.clicked {
+      transform: translateX(-50%);
+    }
+    h1,
+    p {
+      margin: 0;
+      padding: 0;
+      font-size: 20px; /* Adjust the font size as needed */
+    }
+    .left {
+      height: 100%;
+      width: 50%;
+      background: #f4f4f4;
+      position: relative;
+      float: left;
+      .details {
+        padding: 20px;
+        float: left;
+        width: calc(70% - 40px);
+      }
+      .buy {
+        float: right;
+        width: calc(30% - 2px);
+        height: 100%;
+        background: #f1f1f1;
+        transition: background 0.5s;
+        border-left: solid thin rgba(0, 0, 0, 0.1);
+        i {
+          font-size: 30px;
+          padding: 30px;
+          color: #254053;
+          transition: transform 0.5s;
+        }
+        &:hover {
+          background: #a6cdde;
+        }
+        &:hover i {
+          transform: translateY(5px);
+          color: #00394b;
+        }
+      }
+    }
+    .right {
+      width: 8%;
+      background: #a6cdde;
+      color: white;
+      float: right;
+      height: 200%;
+      overflow: hidden;
+      .details {
+        padding: 20px;
+        float: right;
+        width: calc(70% - 40px);
+      }
+      .done {
+        width: calc(30% - 2px);
+        float: left;
+        transition: transform 0.5s;
+        border-right: solid thin rgba(255, 255, 255, 0.3);
+        height: 50%;
+        i {
+          font-size: 30px;
+          padding: 30px;
+          color: white;
+        }
+      }
+      .remove {
+        width: calc(30% - 1px);
+        clear: both;
+        border-right: solid thin rgba(255, 255, 255, 0.3);
+        height: 50%;
+        background: #bc3b59;
+        transition: transform 0.5s, background 0.5s;
+        &:hover {
+          background: #9b2847;
+        }
+        &:hover i {
+          transform: translateY(5px);
+        }
+        i {
+          transition: transform 0.5s;
+          font-size: 30px;
+          padding: 30px;
+          color: white;
+        }
+      }
+      &:hover {
+        .remove,
+        .done {
+          transform: translateY(-100%);
+        }
+      }
+    }
+  }
+
+  .inside {
+    z-index: 9;
+    background: #92879b;
+    width: 140px;
+    height: 140
+  }
+ </style>
+
+
+<!-- user/product.hbs -->
+<div class="wrapper">
+  <div class="product-list">
+    {{#each products}}
+
+      <div class="single-product-item">
+        <div class="container">
+                    <img src="{{this.image.url}}" alt="{{this.productname}}">
+<a href="/user/productpage?name={{this._id}}">View Details</a>
+
+          <div class="top"></div>
+          <div class="bottom">
+            <div class="left">
+              <div class="details">
+                <h1>{{this.productname}}</h1>
+                <p>{{this.price}}</p>
+              </div>
+              <div class="buy"><i class="material-icons">add_shopping_cart</i></div>
+            </div>
+            <div class="right">
+              <div class="done"><i class="material-icons">done</i></div>
+              <div class="details">
+                <h1></h1>
+                {{!-- <p>Added to your cart</p> --}}
+              </div>
+              <div class="remove"><i class="material-icons">clear</i></div>
+            </div>
+          </div>
+          <div class="inside">
+            <div class="icon"><i class="material-icons">info_outline</i></div>
+            <div class="contents">
+              <!-- Your additional product details can be added here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
 </div>
 
 
-    <!-- Footer Section Begin -->
-    <div class="footed">
+{{!-- ------------------------------------------------------------------------------------------------- --}}
+    <!-- Footer Section Begin -->  
     <footer class="footer-section spad">
         <div class="container">
             <div class="newslatter-form">
@@ -280,7 +632,7 @@
     <script src="/user/main.js"></script>
 
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</div>
+
 </body>
 
 </html>
