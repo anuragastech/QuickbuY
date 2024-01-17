@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="/vender/login.css">
+    {{!-- <script src="/login.js" ></script> --}}
+    <title>Login</title>
+</head>
+<body>
+<div class="login-container">
+    <h1>Login</h1>
+    <form id="form" action="/vender/login" method="POST" onsubmit="return validateLoginForm()">
+        <label for="username">Username</label>
+        <input type="email" name="email" id="username" required/>
+        <span id="message" class="text-danger" style="font-size: 16px;"></span>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" required/>
+        <span id="messagePassword" class="text-danger" style="font-size: 16px;"></span>
+
+        <a href="/vender/signup">Signup</a>
+        <input type="submit">
+    </form>
+</div>
+
+ 
+<script>
+  function validateLoginForm() {
+    var email = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    var emailValidationMessage = document.getElementById("message");
+    var passwordValidationMessage = document.getElementById("messagePassword");
+    var valid = true;
+
+    if (!email) {
+      emailValidationMessage.innerHTML = "Email is required.";
+      valid = false;
+    } else {
+      emailValidationMessage.innerHTML = "";
+    }
+
+    if (!password) {
+      passwordValidationMessage.innerHTML = "Password is required.";
+      valid = false;
+    } else if (password.length < 8) {
+      passwordValidationMessage.innerHTML = "Password must be at least 8 characters.";
+      valid = false;
+    } else {
+      passwordValidationMessage.innerHTML = "";
+    }
+
+    return valid;
+  }
+</script>
+</body>
+</html>

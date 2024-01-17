@@ -1,6 +1,6 @@
 
 
-postSize=async (req, res) => {
+let  postSize =async (req, res) => {
     try {
         const { title, description } = req.body;
 
@@ -35,7 +35,7 @@ postSize=async (req, res) => {
     }
 };
 
-postcolor= async (req, res) => {
+let  postcolor = async (req, res) => {
     try {
         const { title, description } = req.body;
 
@@ -70,7 +70,7 @@ postcolor= async (req, res) => {
     }
 };
 
-getcolor=async (req, res) => {
+let  getcolor=async (req, res) => {
     try {
       const newColor = await color.find();
       res.json({ newColor });
@@ -79,7 +79,7 @@ getcolor=async (req, res) => {
       res.status(500).json({ error: "Internal Server Error" });
     }
   };
-  getsize=async (req, res) => {
+  let  getsize=async (req, res) => {
     try {
       const newSize = await size.find();
       res.json({ newSize });
@@ -88,17 +88,21 @@ getcolor=async (req, res) => {
       res.status(500).json({ error: "Internal Server Error" });
     }
   };
-  getAddproduct= (req, res) => {
+  let   getAddproduct= (req, res) => {
     res.render("admin/Addcolor");
   };
 
-  getAddsize=(req, res) => {
+  let   getAddsize=(req, res) => {
     res.render("admin/Addsize");
   };
-  getHome=(req, res) => {
+  let    getHome=(req, res) => {
     res.render("admin/signup");
   };
 
+  let   getmain=(req, res) => {
+    res.render('admin/main');
+};
+
   
 
-  module.exports={getHome,getAddsize,getAddproduct,getsize,getcolor,postcolor,postSize};
+  module.exports={getmain,getHome,getAddsize,getAddproduct,getsize,getcolor,postcolor,postSize};

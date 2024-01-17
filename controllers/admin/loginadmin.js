@@ -1,4 +1,4 @@
-const resgister=require('../../../models/admin/mongodb')
+const Saved =require('../../models/admin/saved')
 
 const secretKey = "mynameissomethinglikestartwithathatsit";
 const bcrypt = require("bcryptjs");
@@ -7,10 +7,10 @@ require("dotenv").config();
 // const secretKey = process.env.JWT_SECRET || 'defaultFallbackSecret';
 
 
-loginAdmin = async (req, res) => {
+let  loginPost=async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = await resgister.findOne({ email });
+        const user = await Saved.findOne({ email });
 
         if (user && (await bcrypt.compare(password, user.password))) {
             console.log('Authentication successful');
@@ -28,9 +28,9 @@ loginAdmin = async (req, res) => {
             res.cookie('token', token, options);
 
             return res.redirect('/admin/main');
+            
         } else {
             return res.status(401).json({ message: 'Invalid email or password' });
-            res.redirect('/admin/login')
         }
     } catch (error) {
         console.error(error);
@@ -38,51 +38,18 @@ loginAdmin = async (req, res) => {
     }
 };
 
-
-signAdmin = async(req,res)=>{
-    try {
-        const { name, email, password } = req.body;
-        const myEncryptedPassword = await bcrypt.hash(password, 10);
-
-        const newUser = new resgister({
-            name,
-            password: myEncryptedPassword,
-            email,
-            role: 'admin', 
-        });
-
-        await newUser.save();
-
-        const token = jwt.sign({ id: newUser._id, role: newUser.role }, secretKey, { expiresIn: '2h' });
-
-        newUser.token = token;
-        await newUser.save();
-
-        const options = {
-          expires: new Date(Date.now() + 2 * 60 * 60 * 1000),  
-            httpOnly: true,
-        };
-
-        res.cookie('token', token, options);
-
-        res.redirect('/admin/login');
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
-};
-
-getlogin = (req, res) => {
+let  getlogin = (req, res) => {
     return res.render("admin/login");
 };
 
- getsignup=(req, res) => {
+let  getsignup=(req, res) => {
     res.render("admin/signup");
   };
-  logout=(req, res) => {
+
+  let   logout=(req, res) => {
     res.clearCookie("token");
   
     res.redirect("/admin/login");
   };
 
-module.exports={loginAdmin,getlogin,signAdmin,getsignup ,logout};
+module.exports={loginPost,getlogin,getsignup ,logout};

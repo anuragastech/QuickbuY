@@ -1,21 +1,21 @@
-getcontact=(req,res)=>{
+let getcontact=(req,res)=>{
     res.render('user/contact')
     };
-getcheckout=(req,res)=>{
+    let getcheckout=(req,res)=>{
     res.render('user/check-out')
     };
     getlogin=(req, res) => {
   
-        return res.redirect('/admin/home');
+        return res.redirect('/vender/home');
 
 };
-getindex=(req,res)=>{
+let getindex=(req,res)=>{
 
 
     res.render('user/index')
 
 };
-getuser=(req,res)=>{
+let getuser=(req,res)=>{
     res.render('user/user')
     };
 

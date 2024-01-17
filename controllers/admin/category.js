@@ -1,8 +1,8 @@
-const cloudinary = require("../../../models/admin/cloudinary");
-const category = require('../../../models/admin/category');
+const cloudinary = require("../../models/common/cloudinary");
+const category = require('../../models/admin/category');
 
 
-postCategory= async(req,res)=>{
+let postCategory= async(req,res)=>{
     try {
         const { title, description } = req.body;
 
@@ -36,7 +36,7 @@ postCategory= async(req,res)=>{
     }
 };
 
-getCategorylist= async (req, res) => {
+let getCategorylist= async (req, res) => {
     try {
         const { id ,title, description, image } = req.query;
        
@@ -54,23 +54,25 @@ getCategorylist= async (req, res) => {
     }
 };
 
-editGetCategory=async (req, res) => {
-    try {
-        const categoryId = req.params.id;
-        const category = await category.findOne({ _id: ObjectId(categoryId) });
+let editGetCategory= async (req, res) => {
+  try {
+      const categoryId = req.query.name;
+      const categorys = await category.findOne({ _id: categoryId });
+      console.log(categoryId);
 
-        if (!category) {
-            return res.status(404).json({ success: false, message: 'Category not found' });
-        }
+      if (!categorys) {
+          return res.status(404).json({ success: false, message: 'Category not found' });
+      }
 
-        res.render('admin/edit', { category });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false });
-    }
+      res.render('admin/edit', { cata: categorys });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false });
+  }
 };
 
-deleteCategory= async (req, res) => {
+
+let deleteCategory= async (req, res) => {
     try {
       const categoryId = req.params.id;
       const deleteCategory = await category.findOneAndDelete({ title: categoryId });
@@ -86,7 +88,8 @@ deleteCategory= async (req, res) => {
     }
   };
 
-getcategories=async (req, res) => {
+let  getcategories=async (req, res) => {
+  
     try {
       const categories = await category.find();
       res.json({ categories });
@@ -96,11 +99,11 @@ getcategories=async (req, res) => {
     }
   };
 
-getcategoryDelete=(req, res) => {
+  let  getcategoryDelete=(req, res) => {
     res.redirect("/admin/categorylist");
   };
 
-  putCategory=async (req, res) => {
+  let  putCategory=async (req, res) => {
     try {
       const categoryId = req.params.categoryId;
       const { title, description } = req.body;
@@ -137,4 +140,31 @@ getcategoryDelete=(req, res) => {
       res.status(500).json({ success: false });
     }
   };
-module.exports={putCategory,getcategoryDelete,getcategories,deleteCategory,editGetCategory,postCategory,getCategorylist};
+ let editpost = async (req, res) => {
+    try {
+        const categoryId = req.params.id;  // Use req.params to get the category ID from the route
+        const { title, description } = req.body;
+
+        if (!title || !description) {
+            return res.status(400).json({ success: false, message: 'Incomplete data for category update' });
+        }
+
+        const updatedCategory = await category.findOneAndUpdate(
+            { _id: categoryId },
+            {
+                $set: {
+                    title: title,
+                    description: description,
+                },
+            },
+            { new: true } 
+        );
+
+        res.status(200).json({ success: true, message: 'Category updated successfully', updatedCategory });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false });
+    }
+};
+  
+module.exports={editpost,putCategory,getcategoryDelete,getcategories,deleteCategory,editGetCategory,postCategory,getCategorylist};

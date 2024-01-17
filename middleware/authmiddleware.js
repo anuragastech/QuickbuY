@@ -24,11 +24,11 @@ function authenticateJWT(req, res, next) {
             console.error('Role not found in token payload');
             return res.status(403).json({ message: 'Forbidden - Role not found' });
         }
-
-        if (user.role === 'admin') {
+        if (user.role === 'vender') {
         } else if (user.role === 'user') {
+        } else if (user.role === 'admin') {
+        } else {
         }
-
         req.user = user;
         next();
     });

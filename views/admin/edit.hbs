@@ -15,18 +15,18 @@
 
 
 
+   {{#if cata }}
 
-
-<form action="/admin/edit-category/{{category._id}}" method="PUT">
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title" value="{{category.title}}" required><br>
+<form action="/admin/edit-category/{{cata._id}}" method="POST">  
+  <label for="title">Title:</label>
+    <input type="text" id="title" name="title" value="{{cata.title}}" required><br>
 
     <label for="description">Description:</label>
-    <input type="text" id="description" name="description" value="{{category.description}}" required><br>
+    <input type="text" id="description" name="description" value="{{cata.description}}" required><br>
 
     <button type="submit">Submit</button>
 </form>
-
+{{/if}}
 
 
 

@@ -1,24 +1,48 @@
-const product=require('../../models/admin/productAdd')
+const product =require('../../models/vender/productAdd')
 
 
-getproductpage=async (req, res) => {
+let getproductpage =async (req, res) => {
     try {
         const products = await product.find().populate('category').populate('subcategory');
-        console.log(products); // Add this line
-        res.render('user/productpage', { products });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, message: 'Internal Server Error' });
-    }
-};
-getproductdetails= async (req, res) => {
-    try {
-        const products = await product.find().populate('category').populate('subcategory');
-        res.render('user/productdetails', { products });
+        // console.log(products); // Add this line
+        res.render('user/productpage', { data });
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
 
-module.exports={getproductpage,getproductdetails}
+let getproductData= async (req, res) => {
+    try {
+        const products = await product.find().populate('category').populate('subcategory');
+        res.render('user/product', { products });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+};
+
+let productpass =  async (req, res) => {
+    try {
+        console.log("PRODUCT PAGE \n");
+        const productId=req.query.name
+        console.log(productId);
+         const productData = await product.findById({ _id: (productId) });
+         console.log("DATAS ARE",productData);
+
+        if (productData) {
+         //  console.log(productData);
+            res.status(200).render('user/productpage', { data: productData });
+        } else {
+            res.status(404).json({ success: false, message: 'Product not found' });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+};
+let productpage =(req,res)=>{
+    res.render('user/productpage')};
+
+
+module.exports= {getproductpage,getproductData,productpass,productpage}

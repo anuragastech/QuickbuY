@@ -1,13 +1,13 @@
 
 const category=require('../../models/admin/category')
 
-getcategory=(req,res)=>{
+let getcategory=(req,res)=>{
 
 
     res.render('user/categories')
 
 };
-getcategorys= async (req, res) => {
+let getcategorys= async (req, res) => {
     try {
         const categories = await category.find({}, 'id title description image');
         console.log(categories); // Add this line
