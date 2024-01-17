@@ -39,7 +39,7 @@ const subcategory=require('../../models/admin/subcategory')
 //         res.status(500).json({ success: false, message: 'Internal Server Error' });
 //     }
 // };
-getcartpage=async (req, res) => {
+let  getcartpage=async (req, res) => {
     try {
         const products = await product.find().populate('category').populate('subcategory');
         
@@ -49,7 +49,7 @@ getcartpage=async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
-postcart= async (req, res) => {
+let  postcart= async (req, res) => {
     try {
         const productId = req.params.id;
         const userId = req.user.id;
@@ -86,7 +86,7 @@ postcart= async (req, res) => {
     }
 };
 
-getshoppingcart = async (req, res) => {
+let  getshoppingcart = async (req, res) => {
     try {
         // console.log("rinn");
         const userId = req.user.id;

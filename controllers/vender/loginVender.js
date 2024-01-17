@@ -7,7 +7,7 @@ require("dotenv").config();
 // const secretKey = process.env.JWT_SECRET || 'defaultFallbackSecret';
 
 
-loginvender = async (req, res) => {
+let loginvender = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await register.findOne({ email });
@@ -39,7 +39,7 @@ loginvender = async (req, res) => {
 };
 
 
-signvender = async(req,res)=>{
+let signvender = async(req,res)=>{
     try {
         const { name, email, password } = req.body;
         const myEncryptedPassword = await bcrypt.hash(password, 10);
@@ -72,14 +72,14 @@ signvender = async(req,res)=>{
     }
 };
 
-getlogin = (req, res) => {
+ let getlogin = (req, res) => {
     return res.render("vender/login");
 };
 
- getsignup=(req, res) => {
+ let getsignup=(req, res) => {
     res.render("vender/signup");
   };
-  logout=(req, res) => {
+ let  logout=(req, res) => {
     res.clearCookie("token");
   
     res.redirect("/vender/login");

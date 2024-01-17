@@ -5,7 +5,7 @@ const jwt= require('jsonwebtoken');
 const create=require('../../models/user/mongodb')
  
  
- Addsign=async (req, res) => {
+let Addsign=async (req, res) => {
     try {
         const { username, email, password } = req.body;
 
@@ -45,7 +45,7 @@ const create=require('../../models/user/mongodb')
         res.status(500).json({ message: 'Internal server error' });
     }
 };
- Addlogin  = async (req, res) => {
+let Addlogin  = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await create.findOne({ email });
@@ -74,14 +74,14 @@ const create=require('../../models/user/mongodb')
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-getsign=(req,res)=>{
+let getsign=(req,res)=>{
 
  res.render('user/sign');
     };
- getlogin=(req,res)=>{
+    let getlogin=(req,res)=>{
         res.render('user/login')
         };
-getlogout= (req, res) => {
+        let getlogout= (req, res) => {
             res.clearCookie("token");
         
             res.redirect("/user/login");

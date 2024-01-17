@@ -1,6 +1,6 @@
 const { subcategory } = require("../../models/admin/subcategory");
 
-getsubcategories = async (req, res) => {
+let getsubcategories = async (req, res) => {
     try {
         const subcategories = await subcategory.find({}, 'id title description image');
         console.log(subcategories); // Add this line

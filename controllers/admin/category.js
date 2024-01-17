@@ -2,7 +2,7 @@ const cloudinary = require("../../models/common/cloudinary");
 const category = require('../../models/admin/category');
 
 
-postCategory= async(req,res)=>{
+let postCategory= async(req,res)=>{
     try {
         const { title, description } = req.body;
 
@@ -36,7 +36,7 @@ postCategory= async(req,res)=>{
     }
 };
 
-getCategorylist= async (req, res) => {
+let getCategorylist= async (req, res) => {
     try {
         const { id ,title, description, image } = req.query;
        
@@ -54,7 +54,7 @@ getCategorylist= async (req, res) => {
     }
 };
 
-editGetCategory= async (req, res) => {
+let editGetCategory= async (req, res) => {
   try {
       const categoryId = req.query.name;
       const categorys = await category.findOne({ _id: categoryId });
@@ -72,7 +72,7 @@ editGetCategory= async (req, res) => {
 };
 
 
-deleteCategory= async (req, res) => {
+let deleteCategory= async (req, res) => {
     try {
       const categoryId = req.params.id;
       const deleteCategory = await category.findOneAndDelete({ title: categoryId });
@@ -88,7 +88,8 @@ deleteCategory= async (req, res) => {
     }
   };
 
-getcategories=async (req, res) => {
+let  getcategories=async (req, res) => {
+  
     try {
       const categories = await category.find();
       res.json({ categories });
@@ -98,11 +99,11 @@ getcategories=async (req, res) => {
     }
   };
 
-getcategoryDelete=(req, res) => {
+  let  getcategoryDelete=(req, res) => {
     res.redirect("/admin/categorylist");
   };
 
-  putCategory=async (req, res) => {
+  let  putCategory=async (req, res) => {
     try {
       const categoryId = req.params.categoryId;
       const { title, description } = req.body;

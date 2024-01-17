@@ -7,7 +7,7 @@ require("dotenv").config();
 // const secretKey = process.env.JWT_SECRET || 'defaultFallbackSecret';
 
 
-loginPost=async (req, res) => {
+let  loginPost=async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await Saved.findOne({ email });
@@ -38,15 +38,15 @@ loginPost=async (req, res) => {
     }
 };
 
-getlogin = (req, res) => {
+let  getlogin = (req, res) => {
     return res.render("admin/login");
 };
 
- getsignup=(req, res) => {
+let  getsignup=(req, res) => {
     res.render("admin/signup");
   };
 
-  logout=(req, res) => {
+  let   logout=(req, res) => {
     res.clearCookie("token");
   
     res.redirect("/admin/login");

@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("../models/common/multerconfig");
-const color = require("../models/vender/color");
-const size = require("../models/vender/size");
 
+const getcatasubController=require('../controllers/vender/getcategorysub')
 const bcrypt = require("bcryptjs");
 // const { isValidObjectId } = require('mongoose');
 // const cart =require('../models/vender/cart');
@@ -33,7 +32,8 @@ router.get("/productAdd", authenticateJWT,productControllers.getproductAdd);
 router.post("/productAdd", upload, authenticateJWT,productControllers.getpostProductAdd);
 router.delete("/delete/product/:id",productControllers.productDelete);
 router.get("/productdetails",productControllers.getproductDetails);
-
+router.get('/edit-product', productControllers.geteditProduct)
+router.post('/edit-product/:id',authenticateJWT,productControllers.postedit)
 
 // router.get("/delete", getDelete);
 
@@ -66,7 +66,16 @@ router.get("/logout",venderControllers.logout )
 
 // router.get("/home", authenticateJWT, getHome)
 
-router.get('/edit-product', productControllers.geteditProduct)
-router.post('/edit-product/:id',authenticateJWT,productControllers.postedit)
+
+
+
+router.get('/admin/categories', getcatasubController.getcategory)
+  
+  router.get('/admin/subcategory',getcatasubController.getsubcategory)
+
+  router.get('/admin/color',getcatasubController.getcolor)
+  router.get('/admin/size', getcatasubController.getsize)
+  
+
 
 module.exports = router;
