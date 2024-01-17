@@ -30,11 +30,11 @@ body {
 /* =============== Navigation ================ */
 .navigation {
   position: fixed;
-  width: 300px;
+  width: 700px;
   height: 100%;
   /* background: var(--blue); */
-  background-color: #010101;
-  border-left: 10px solid var(--blue);
+  background-color: #0d00fdfc;
+  border-left: 20px solid wheat;
   transition: 0.5s;
   overflow: hidden;
 }

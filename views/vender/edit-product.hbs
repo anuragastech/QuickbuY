@@ -216,7 +216,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
     try {
-      const response = await axios.get('admin/categories');
+      const response = await axios.get('vender/categories');
       const categories = response.data.categories;
 
       if (categories.length) {
@@ -242,7 +242,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
     try {
-      const responsed = await axios.get('admin/subcategory');
+      const responsed = await axios.get('vender/subcategory');
       const subcategories = responsed.data.subcategories;
 
       if (subcategories.length) {
@@ -267,7 +267,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
     try {
-      const response = await axios.get('admin/color');
+      const response = await axios.get('vender/color');
       const colors = response.data.newColor;
 
       if (colors.length) {
@@ -291,7 +291,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
     try {
-      const responsed = await axios.get('admin/size');
+      const responsed = await axios.get('vender/size');
       const sizes = responsed.data.newSize;
 
       if (sizes.length) {

@@ -1,4 +1,8 @@
 
+const color =require('../../models/admin/color')
+const size =require('../../models/admin/size')
+const category =require('../../models/admin/category')
+const subcategory =require('../../models/admin/subcategory')
 
 let getcolor= async (req, res) => {
     try {

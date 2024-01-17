@@ -3,9 +3,7 @@ const router = express.Router();
 const multer = require("../models/common/multerconfig");
 
 const getcatasubController=require('../controllers/vender/getcategorysub')
-const bcrypt = require("bcryptjs");
-// const { isValidObjectId } = require('mongoose');
-// const cart =require('../models/vender/cart');
+// const bcrypt = require("bcryptjs");
 
 const upload = multer.single("image");
 
@@ -13,7 +11,7 @@ const venderControllers = require('../controllers/vender/loginVender');
 const { authenticateJWT } = require("../middleware/authmiddleware");
 const productControllers = require('../controllers/vender/AddProductpage');
 
-const otherControllers = require('../controllers/vender/Others');
+// const otherControllers = require('../controllers/vender/Others');
 
 
 
@@ -35,7 +33,6 @@ router.get("/productdetails",productControllers.getproductDetails);
 router.get('/edit-product', productControllers.geteditProduct)
 router.post('/edit-product/:id',authenticateJWT,productControllers.postedit)
 
-// router.get("/delete", getDelete);
 
 router.get('/main', (req, res) => {
     return res.render('vender/main');
@@ -48,33 +45,18 @@ router.get("/logout",venderControllers.logout )
 
 
 
-// router.get("/category", authenticateJWT, (req, res) => {
-//     res.render("vender/category");
-//   });
-  
-//   router.get("/edit", (req, res) => {
-//     res.render("vender/edit");
-//   });
-//   router.get("/subcategory", authenticateJWT, (req, res) => {
-//     res.render("vender/category");
-//   });
-
-
-// router.put("/edit-category/:categoryId", putCategory)
-
-
 
 // router.get("/home", authenticateJWT, getHome)
 
 
 
 
-router.get('/admin/categories', getcatasubController.getcategory)
+router.get('/categories', getcatasubController.getcategory)
   
-  router.get('/admin/subcategory',getcatasubController.getsubcategory)
+  router.get('/subcategory',getcatasubController.getsubcategory)
 
-  router.get('/admin/color',getcatasubController.getcolor)
-  router.get('/admin/size', getcatasubController.getsize)
+  router.get('/color',getcatasubController.getcolor)
+  router.get('/size', getcatasubController.getsize)
   
 
 
