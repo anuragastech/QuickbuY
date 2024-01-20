@@ -49,7 +49,7 @@ let  getcartpage=async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
-let  postcart= async (req, res) => {
+let  postcart=  async (req, res) => {
     try {
         const productId = req.params.id;
         const userId = req.user.id;
@@ -76,7 +76,7 @@ let  postcart= async (req, res) => {
 
         await newCartItem.save();
         
-        res.render('user/cart');
+        res.render('user/shopping-cart');
 
         return res.status(200).json({ message: 'Product added to the cart successfully' });
 
@@ -86,9 +86,9 @@ let  postcart= async (req, res) => {
     }
 };
 
-let  getshoppingcart = async (req, res) => {
+
+let  getshoppingcart =  async (req, res) => {
     try {
-        // console.log("rinn");
         const userId = req.user.id;
 
         const cart = await Cart.find({ userId: userId })
@@ -105,5 +105,6 @@ let  getshoppingcart = async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
+
 
 module.exports={getcartpage,postcart,getshoppingcart}

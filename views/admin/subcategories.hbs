@@ -1,13 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Responsive vender Dashboard</title>
+    <title>Responsive Admin Dashboard</title>
     <!-- ======= Styles ====== -->
-    <link rel="stylesheet" href="dashboard.css" />
+    <link rel="stylesheet" href="adminDashboard.css" />
     <lin
       rel="shortcut icon"
       type="image/png"
@@ -30,7 +29,7 @@
           </li>
 
           <li>
-            <a href="/vender/main">
+            <a href="/admin/main">
               <span class="icon">
                 <ion-icon name="home-outline"></ion-icon>
               </span>
@@ -39,68 +38,231 @@
           </li>
 
           <li>
-            <a href="/vender/productdetails">
+            <a href="/admin/category">
               <span class="icon">
                 <ion-icon name="people-outline"></ion-icon>
-              </span>
-              <span class="title">ProductDeatails</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="/vender/productAdd">
-              <span class="icon">
-                <ion-icon name="chatbubble-outline"></ion-icon>
-              </span>
-              <span class="title">ProductAdd</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="/vender/categorylist">
-              <span class="icon">
-                <ion-icon name="help-outline"></ion-icon>
-              </span>
-              <span class="title">Categorylist</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="/vender/category">
-              <span class="icon">
-                <ion-icon name="settings-outline"></ion-icon>
               </span>
               <span class="title">Category</span>
             </a>
           </li>
 
           <li>
-            <a href="/vender/subcategories">
+            <a href="/admin/categorylist">
               <span class="icon">
-                <ion-icon name="lock-closed-outline"></ion-icon>
+                <ion-icon name="chatbubble-outline"></ion-icon>
               </span>
-              <span class="title">Subcategorylist</span>
+              <span class="title">CategoryList</span>
             </a>
           </li>
 
           <li>
-            <a href="/vender/logout">
+            <a href="/admin/subcategories">
+              <span class="icon">
+                <ion-icon name="help-outline"></ion-icon>
+              </span>
+              <span class="title">SubCategory</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/admin/">
+              <span class="icon">
+                <ion-icon name="settings-outline"></ion-icon>
+              </span>
+              <span class="title"></span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/admin/">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title"></span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/admin/logout">
               <span class="icon">
                 <ion-icon name="log-out-outline"></ion-icon>
               </span>
               <span class="title">Sign Out</span>
             </a>
           </li>
+          <li>
+            <a href="/admin/subcategories">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title">Subcategorylist</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/subcategories">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title">Subcategorylist</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/subcategories">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title">Subcategorylist</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/subcategories">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title">Subcategorylist</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/subcategories">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title">Subcategorylist</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/subcategories">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title">Subcategorylist</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/subcategories">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title">Subcategorylist</span>
+            </a>
+          </li>
         </ul>
       </div>
 
       <!-- ========================= Main ==================== -->
-    
+      
+    <style>
+.xlm{
+  height: 350px;
+  width: 800px;
+  margin-left: 750px;
+
+  background-color: rgba(255, 255, 255, 0.372);
+  border-radius: 30px;
+  border: 10px solid rgb(237, 236, 236);
+
+}
+.full{
+padding-top: 30px;
+}
+label{
+ 
+ font-size: 30px;
 
 
-<h2>Add Subcategory</h2>
+}
+.btn{
+  height: 40px;
+  width: 400px;
+  background-color: black;
 
-<form action="/vender/subcategories" method="POST" enctype="multipart/form-data">
+  border-radius: 30px;
+  color: wheat;
+  margin-left: 200px;
+  margin-top: 70px;
+  font-size: 18px;
+  border: 2px solid white;
+
+}
+.btn:hover{
+  border: solid black;
+
+background-color: white;
+color: black;
+font-weight: bolder;
+}
+input{
+  margin-top: 40px;
+   font-size: 30px;
+  height: 50px;
+ margin-left: 20px;
+  height: 50px;
+  text-align: center;
+    color: rgb(0, 0, 0);
+    border-radius: 40px;
+    font-size: larger;
+
+}
+.showsubcategory{
+  margin-left: 600px;
+  padding-top: 100px;
+}
+
+table{
+width: 1100px;
+text-align: center;
+border: 10px solid black;
+border-radius: 15px;
+}
+th{
+  height: 40px;
+  border: 2px solid black;
+  
+
+}
+td{
+  height: 120px;
+  width: 200px;
+   background-color: rgb(7, 7, 7);
+   color: white;
+  font-weight: bold;
+}
+.h{
+  margin-left: 1000px;
+  font-size: 30px;
+  margin-bottom: 10px;
+
+}
+.pic{
+  height: 150px;
+  width:150px;
+  overflow: hidden;
+  border: 2px solid green;
+
+      background-size: 0% ; /* Cover the entire container without black borders */
+      background-position: center; /* Center the image within the container */
+      background-repeat: no-repeat; /* Do not repeat the background */
+    }
+
+ .btn5{
+    height: 50px;
+    font-size: 18px;
+    width:80px;
+    background-color: rgb(245, 245, 245);
+    color: rgb(5, 5, 5);
+border-radius: 20px;
+  }
+  .btn5:hover{
+    background-color: black;
+    color: white;
+  }
+
+    </style>
+
+<div class="full" style="background-color: rgba(249, 249, 249, 0.982);">
+<h2 class="h">Add Subcategory</h2>
+
+<form class="xlm" action="/admin/subcategories" method="POST" enctype="multipart/form-data">
   <label for="title">Title:</label>
   <input type="text" id="title" name="title" required>
 
@@ -124,24 +286,54 @@
     <!-- Populate this dropdown with existing categories from your database -->
     <!-- For each category, create an <option> tag -->
     <!-- Example: <option value="{{categoryId}}">{{categoryTitle}}</option> -->
+
+
   </select>
 
-  <button type="submit">Add Subcategory</button>
+  <button class="btn" type="submit">Add Subcategory</button>
 </form>
 
 
 
-{{#each subcategories}}
-    <div>
-        <h3>{{title}}</h3>
-        <p>{{description}}</p>
-        <img src="{{image.url}}" alt="{{title}} Image">
-    </div>
-{{else}}
-    <p>No subcategories found.</p>
-{{/each}}
+<div class="showsubcategory">
+<table>
+    {{#if subcategories.length}}
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Image</th>
+          <th>Delete</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each subcategories}}
+          <tr>
+            <td>{{title}}</td>
+            <td>{{description}}</td>
+            <td   ><img  class="pic" src="{{image.url}}" alt="{{title}} Image" style="max-width: 100px;"></td>
+            <td>
+                    <button class="btn5" onclick="deleteSubCategory('{{this._id}}')">Delete</button>
+                </td>
+                <td>
+                  
+                   <button class="btn5"> <a href="/admin/edit-subcategory?name={{this._id}}">Edit</a> </button> 
 
+                </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    {{else}}
+      <tr>
+        <td colspan="3">No subcategories found.</td>
+      </tr>
+    {{/if}}
+  </table>
 
+</div>
+
+</div>
 
 {{!-- -------------------------------------------------------------- --}}
 
@@ -160,7 +352,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
     try {
-      const response = await axios.get('/vender/categories');
+      const response = await axios.get('/admin/categories');
       const categories = response.data.categories;
 
       if (categories.length) {
@@ -180,6 +372,24 @@
     }
   });
 </script>
+
+{{!-- delete--}}
+<script>
+  function deleteSubCategory(subcategoryId) {
+    axios.delete(`/admin/delete-subcategory/${subcategoryId}`)
+      .then((response) => {
+        if (response.status !== 200) {
+          throw new Error('Delete request failed');
+        } else {
+          window.location.href = "/admin/subcategories";
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+</script>
+
 
 
 </body>

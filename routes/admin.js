@@ -23,10 +23,16 @@ router.get("/categorylist",categoryControllers.getCategorylist);
 router.get("/edit",categoryControllers.editGetCategory);
 router.post('/edit-category/:id',categoryControllers.editpost)
 
+router.get("/edit-subcategory",subCategoryControllers.editGetsubCategory);
+router.post('/edit-subcategory/:id',subCategoryControllers.editsubcategorypost)
+
+
+
 router.delete("/delete/:id",categoryControllers.deleteCategory);
+router.delete("/delete-subcategory/:id",subCategoryControllers.deleteSubCategory);
 
 router.get("/delete",categoryControllers.getcategoryDelete);
-router.get("/admin/categories",categoryControllers.getcategories);
+router.get("/categories",categoryControllers.getcategories);
 
 
 router.post("/subcategories", upload,subCategoryControllers.postSubcategory);
@@ -54,7 +60,15 @@ router.post("/size", upload,otherControllers.postSize);
 // Logout route
 router.get("/logout",adminControllers.logout )
 
-
+router.get("/home",(req,res)=>{
+    res.render('admin/home')
+})
+router.get("/category",(req,res)=>{
+    res.render('admin/category')
+})
+router.get("/edit-subcategory",(req,res)=>{
+    res.render('admin/edit-subcategory')
+})
 
 
 
