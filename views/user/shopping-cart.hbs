@@ -130,9 +130,57 @@
         </div>
     </section>
     <!-- Page Add Section End -->
-
+{{!-- {{#each cart}}
+  <tr class="product">
+    <td>{{product.productname}}</td>
+    <td>{{product.manufacturename}}</td>
+    <td>{{product.brand}}</td>
+    <td>{{product.price}}</td>
+    <td>{{product.description}}</td>
+    <td>{{product.category.categoryName}}</td>
+    <td>{{product.subcategory.subcategoryName}}</td>
+  </tr>
+{{/each}} --}}
     <!-- Cart Page Section Begin -->
+    {{!-- ****************************************************************3 --}}
+{{!-- {{#each cart}}
     <div class="cart-page">
+        <div class="cart-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th class="product-h">Product</th>
+                        <th>Price</th>
+                        <th class="quan">Quantity</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="product-col">
+                            <img src="{{this.product.image.url}}" alt="{{this.product.productname}}">
+                            <div class="p-title">
+                                <h5>{{this.product.productname}}</h5>
+                            </div>
+                        </td>
+                        <td class="price-col">${{this.product.price}}</td>
+                        <td class="quantity-col">
+                            <div class="pro-qty">
+                                <input type="text" value="1">
+                            </div>
+                        </td>
+                        <td class="total">${{this.product.price}}</td>
+                        <td class="product-close">x</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{{/each}} --}}
+{{!-- {{#each cart}}
+
+ <div class="cart-page">
         <div class="container">
             <div class="cart-table">
                 <table>
@@ -148,18 +196,18 @@
                     <tbody>
                         <tr>
                             <td class="product-col">
-                                <img src="/product/product-1.jpg" alt="">
+                            <img src="{{this.product.image.url}}" alt="{{this.product.productname}}">
                                 <div class="p-title">
-                                    <h5>Blue Dotted Shirt</h5>
+                                    <h5>{{this.product.productname}}</h5>
                                 </div>
                             </td>
-                            <td class="price-col">$29</td>
+                            <td class="price-col">{{this.product.price}}</td>
                             <td class="quantity-col">
                                 <div class="pro-qty">
                                     <input type="text" value="1">
                                 </div>
                             </td>
-                            <td class="total">$29</td>
+                            <td class="total">{{this.product.price}}</td>
                             <td class="product-close">x</td>
                         </tr>
                     </tbody>
@@ -239,6 +287,121 @@
             </div>
         </div>
     </div>
+{{/each}} --}}
+{{!--  --}}
+<style>
+  .gradient-custom {
+    background: #d0c7da;
+    background: -webkit-linear-gradient(to right, rgb(223, 217, 230), rgb(253, 254, 255));
+    background: linear-gradient(to right, rgb(209, 202, 217), rgb(233, 235, 240))
+  }
+    /* Adjust the container width */
+  .custom-container {
+    max-width: 1500px;
+    {{!-- width: 1000px; /* Increase or decrease as needed */ --}}
+    margin: 0 auto;
+  }
+  .container{
+    width: 2500px;
+    
+  }
+  .gradient-custom {
+      background: #fcfbfd;
+      background: -webkit-linear-gradient(to right, rgb(246, 245, 248), rgb(255, 255, 255));
+      background: linear-gradient(to right, rgb(252, 251, 252), rgb(246, 247, 250));
+      min-height: 100vh; /* Ensure the gradient covers the entire viewport */
+      margin-bottom: 50px; /* Adjust as needed to avoid overlapping with the footer */
+    }
+</style>
+
+<section class="h-450 gradient-custom">
+  <div class="container py-5 custom-container">
+    <div class="row d-flex justify-content-center my-4">
+      <div class="col-md-12">
+        <div class="card mb-2">
+          <div class="card-header py-4">
+            <h5 class="mb-0">Cart - {{cart.length}} items</h5>
+          </div>
+          <div class="card-body">
+            <!-- Cart items -->
+            <div class="row">
+              {{#each cart}}
+              <div class="col-md-12 mb-4">
+                <!-- Single item -->
+                <div class="row">
+                  <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                    <!-- Image -->
+                    <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                      <img src="{{this.product.image.url}}" alt="{{this.product.productname}}" class="w-100" />
+                      <a href="#!">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                      </a>
+                    </div>
+                    <!-- Image -->
+                  </div>
+
+                  <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                    <!-- Data -->
+                    <p><strong>{{this.product.productname}}</strong></p>
+                    <p>Color: {{this.product.color}}</p>
+                    <p>Size: {{this.product.size}}</p>
+                    <button type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip" title="Remove item">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm mb-2" data-mdb-toggle="tooltip" title="Move to the wish list">
+                      <i class="fas fa-heart"></i>
+                    </button>
+                    <!-- Data -->
+                  </div>
+
+                  <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                    <!-- Quantity -->
+                    <div class="d-flex mb-4" style="max-width: 300px">
+                      <button class="btn btn-primary px-3 me-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                        <i class="fas fa-minus"></i>
+                      </button>
+
+                      <div class="form-outline">
+                        <input id="form1" min="0" name="quantity" value="{{this.quantity}}" type="number" class="form-control" />
+                        <label class="form-label" for="form1">Quantity</label>
+                      </div>
+
+                      <button class="btn btn-primary px-3 ms-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                        <i class="fas fa-plus"></i>
+                      </button>
+                    </div>
+                    <!-- Quantity -->
+
+                    <!-- Price -->
+                    <p class="text-start text-md-center">
+                      <strong>${{this.product.price}}</strong>
+                    </p>
+                    <!-- Price -->
+                  </div>
+                </div>
+                <!-- Single item -->
+              </div>
+              {{/each}}
+            </div>
+            <!-- End of cart items -->
+
+            <!-- Total and Checkout button -->
+            <div class="row">
+              <div class="col-md-12">
+                <p class="text-end">
+                  <strong>Total: ${{totalPrice}}</strong>
+                </p>
+                <button type="button" style="width: 1420px;height:50px" class="btn btn-success">Proceed to Checkout</button>
+              </div>
+            </div>
+            <!-- End of Total and Checkout button -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
     <!-- Cart Page Section End -->
 
     <!-- Footer Section Begin -->

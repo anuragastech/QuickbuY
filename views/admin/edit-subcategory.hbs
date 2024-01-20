@@ -148,121 +148,72 @@
           </li>
         </ul>
       </div>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
       <!-- ========================= Main ==================== -->
-<body >
-  
+
+
+
 <style>
-  .x{
-background-color: rgba(12, 12, 12, 0.041);
+  body{
+    background-color: rgba(7, 7, 7, 0.829);
   }
- 
-  table{
-    margin-left: 500px;
-    border: 12px solid rgb(2, 2, 2) ;
-       background-color: rgb(156, 21, 21);
-       {{!-- border-radius: 30px; --}}
-align-items: center;
-  }
-  th{
-    border: 2px solid rgb(12, 11, 11);
-    background-color: rgb(0, 0, 0);
-    color: rgb(247, 243, 243);
-    height: 50px;
-  }
-  td{
-  
-        border: 5px solid rgb(25, 13, 13);
-        background-color: rgb(0, 0, 0);
-        font-weight: bold;
-    color: rgb(255, 255, 255);
-height: 250px;
-width: 250px;
-text-align: center;
-border-radius: 2px;
+.slm{
+  margin-left: 920px;
+background-color: rgba(27, 23, 18, 0.08);
+border-radius: 40px;
+width: 460px;
+height: 270px;
 
+}
+.full{
+  padding-top: 320px;
+}
+input{
+  font-size: 30px;
+  height: 60px;
+  text-align: center;
+  border-radius: 30px;
+  background-color: black;
+  color: wheat;
 
-  }
-  .btn5{
-    height: 50px;
-    font-size: 18px;
-    width:80px;
-    background-color: rgb(245, 245, 245);
-    color: rgb(5, 5, 5);
-border-radius: 20px;
-  }
-  .x{
-    padding-top: 180px;
-  }
-  .h{
-    margin-left: 1020px;
-    margin-bottom: 30px;
-    font-size: 42px;
-    
-  }
-  
+}
+label{
+  font-size: 32px;
+  font-weight: bolder;
+
+}
+
+.btn{
+  height: 40px;
+  width: 80px;
+  margin-left: 150px;
+  margin-top: 30px;
+  border-radius: 30px;
+  background-color: rgb(36, 20, 20);
+  color: wheat;
+}
+
 </style>
-<div class="x">
 
-<h1 class="h"> Category List </h1>
-<table>
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Image</th>
-            <th>Delete</th>
-            <th>Edit</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each categories}}
-            <tr>
-                <td>{{title}}</td>
-                <td>{{description}}</td>
-                <td><img src="{{image.url}}" alt="{{title}} Image"></td>
-                <td>
-                    <button class="btn5" onclick="deleteCategory('{{this.title}}')">Delete</button>
-                </td>
-                <td>
-                  
-                   <button class="btn5"> <a href="/admin/edit?name={{this._id}}">Edit</a> </button> 
 
-                </td>
-            </tr>
-        {{else}}
-            <tr>
-                <td colspan="4">No categories found.</td>
-            </tr>
-        {{/each}}
-    </tbody>
-</table>
+<h1>hcvueh</h1>
+<div class="full">
+
+
+   {{#if subta }}
+
+<form class="slm" action="/admin/edit-subcategory/{{subta._id}}" method="POST">  
+  <label for="title">Title:</label>
+    <input type="text" id="title" name="title" value="{{subta.title}}" required><br>
+
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" value="{{subta.description}}" required><br>
+
+    <button class="btn" type="submit">Submit</button>
+</form>
+{{/if}}
 
 </div>
 
-
-
-{{!-- delete--}}
-<script>
-  function deleteCategory(categoryId) {
-    axios.delete(`/admin/delete/${categoryId}`)
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error('Delete request failed');
-        } else {
-          window.location.href = "/admin/categorylist";
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-</script>
-
-
-
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js"></script>
-    </body>
-   </html>
+</body>
+</html>

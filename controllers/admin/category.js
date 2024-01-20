@@ -159,9 +159,12 @@ let  getcategories=async (req, res) => {
             },
             { new: true } 
         );
+        
+        res.render('admin/categorylist')
 
+       
         res.status(200).json({ success: true, message: 'Category updated successfully', updatedCategory });
-    } catch (error) {
+      } catch (error) {
         console.error(error);
         res.status(500).json({ success: false });
     }

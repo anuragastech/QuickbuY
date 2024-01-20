@@ -3,7 +3,7 @@ const subcategory = require("../../models/admin/subcategory");
 
 let postSubcategory = async (req, res) => {
   try {
-    const { title, description, category } = req.body;
+    const { title, description,category } = req.body;
 
     if (!req.file) {
       return res
@@ -58,4 +58,66 @@ let getsubcategories = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
-module.exports = { getsubcategories, getsubcategory, postSubcategory };
+
+let deleteSubCategory= async (req, res) => {
+  try {
+    const subcategoryId = req.params.id;
+    const deleteSubCategorys = await subcategory.findOneAndDelete({ _id: subcategoryId });
+
+    if (!deleteSubCategorys) {
+      return res.status(404).json({ message: "Category not found" });
+    }
+    return res.status(200).json({success:true});
+  //   return res.redirect("/admin/categorylist");
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error deleting category data", error: error.message });
+  }
+};
+let editGetsubCategory= async (req, res) => {
+  try {
+      const subcategoryId = req.query.name;
+      const subcategorys = await subcategory.findOne({ _id: subcategoryId });
+      // console.log(subcategoryId);
+
+      if (!subcategorys) {
+          return res.status(404).json({ success: false, message: 'subCategory not found' });
+      }
+
+      res.render('admin/edit-subcategory', { subta: subcategorys });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false });
+  }
+};
+
+let editsubcategorypost = async (req, res) => {
+  try {
+      const subcategoryId = req.params.id;  
+      const { title, description } = req.body;
+
+      if (!title || !description) {
+          return res.status(400).json({ success: false, message: 'Incomplete data for category update' });
+      }
+
+      const updatedsubCategory = await subcategory.findOneAndUpdate(
+          { _id: subcategoryId },
+          {
+              $set: {
+                  title: title,
+                  description: description,
+              },
+          },
+          { new: true } 
+      );
+      
+      res.render('admin/subcategorylist')
+
+     
+      res.status(200).json({ success: true, message: 'subCategory updated successfully', updatedsubCategory });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false });
+    }
+  };
+module.exports = {editsubcategorypost, getsubcategories, getsubcategory,deleteSubCategory, editGetsubCategory,postSubcategory };
