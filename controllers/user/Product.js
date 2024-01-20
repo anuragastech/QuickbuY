@@ -30,16 +30,8 @@ let getproductData= async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
-let getproductDataIn= async (req, res) => {
-    try {
-        const prdct = await product.find().populate('category').populate('subcategory');
-        res.render('user/index', { prdct });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, message: 'Internal Server Error' });
-    }
-};
 
 
 
-module.exports= {getproductpage,getproductData,getproductDataIn}
+
+module.exports= {getproductpage,getproductData}
