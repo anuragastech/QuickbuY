@@ -7,9 +7,14 @@ const otherControllers = require('../controllers/admin/Others');
 const adminControllers=require('../controllers/admin/loginadmin')
 const multer = require("../models/common/multerconfig");
 const upload = multer.single("image");
+const HomepageController= require('../controllers/admin/Homepage');
 
 
-router.get('/main', otherControllers.getmain)
+
+
+router.post('/HomepageController', upload,HomepageController.HomepagepicPost );
+router.get('/HomepageControl',HomepageController.HomepagepicGet)
+router.get('/main', otherControllers.getmain);
 
 router.post("/login",adminControllers.loginPost);
 

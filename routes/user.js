@@ -10,7 +10,7 @@ const getCartControllers = require('../controllers/user/cart');
 const getSubcategoryControllers = require('../controllers/user/subcategory');
 const getProductControllers = require('../controllers/user/Product');
 const getAllControllers = require('../controllers/user/getAll');
-
+const getControllerHome=require('../controllers/user/home')
 
 router.post('/sign',userControllers.Addsign)
 
@@ -23,7 +23,7 @@ router.get('/login',userControllers.getlogin)
 // Logout route
 router.get("/logout",userControllers.getlogout)
 
-router.get('/index' ,getAllControllers.getindex);
+// router.get('/index' ,getAllControllers.getindex);
 router.get('/login',getAllControllers.getlogin)
 router.get('/categories',getCategoryControllers.getcategory)
 router.get('/check-out',getAllControllers.getcheckout)
@@ -42,7 +42,11 @@ router.get('/productpage', getProductControllers.getproductpage)
 
 
 router.get('/product',getProductControllers.getproductData)
-router.get('/index',getProductControllers.getproductDataIn)
+router.get('/index',getControllerHome.getproductDataIn)
+
+
+
+
 
 router.get('/cart',authenticateJWT, getCartControllers.getcartpage)
 
