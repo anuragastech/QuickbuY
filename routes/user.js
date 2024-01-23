@@ -12,6 +12,10 @@ const getProductControllers = require('../controllers/user/Product');
 const getAllControllers = require('../controllers/user/getAll');
 const getControllerHome=require('../controllers/user/home')
 
+
+
+
+
 router.post('/sign',userControllers.Addsign)
 
 router.post('/login',userControllers.Addlogin)

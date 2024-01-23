@@ -9,11 +9,12 @@ let getpostProductAdd = async (req, res) => {
       brand,
       price,
       description,
+      color,
       category,
+  
       subcategory,
       size,
-      color,
-      count,
+      quantity,
     } = req.body;
     const userId = req.user._id;
 
@@ -43,7 +44,7 @@ let getpostProductAdd = async (req, res) => {
       subcategory: subcategory,
       size: size,
       color: color,
-      Quantity: count,
+      Quantity:quantity,
 
       image: {
         public_id: photo.public_id,
@@ -110,11 +111,11 @@ let postedit = async (req, res) => {
       brand,
       price,
       description,
+      color,
       category,
       subcategory,
       size,
-      color,
-      count,
+      quantity,
     } = req.body;
     const userId = req.user._id;
 
@@ -149,7 +150,7 @@ let postedit = async (req, res) => {
           subcategory: subcategory,
           size: size,
           color: color,
-          Quantity: count,
+          Quantity:quantity,
 
           // image: {
           //     public_id: photo.public_id,

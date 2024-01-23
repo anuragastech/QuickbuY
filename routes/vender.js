@@ -34,10 +34,6 @@ router.get('/edit-product', productControllers.geteditProduct)
 router.post('/edit-product/:id',authenticateJWT,productControllers.postedit)
 
 
-router.get('/main', (req, res) => {
-    return res.render('vender/main');
-});
-
 // Logout route
 router.get("/logout",venderControllers.logout )
 
@@ -50,6 +46,14 @@ router.get("/logout",venderControllers.logout )
 
 
 
+router.get('/main', (req, res) => {
+  return res.render('vender/main');
+});
+router.get('/home', (req, res) => {
+  return res.render('vender/home');
+});
+
+
 
 router.get('/categories', getcatasubController.getcategory)
   
@@ -57,6 +61,12 @@ router.get('/categories', getcatasubController.getcategory)
 
   router.get('/color',getcatasubController.getcolor)
   router.get('/size', getcatasubController.getsize)
+  
+
+  // router('/home',(req,res)=>{
+  //   res.render('vender/home')
+  // })
+
   
 
 

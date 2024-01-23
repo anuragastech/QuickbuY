@@ -76,7 +76,7 @@ let  postcart=  async (req, res) => {
 
         await newCartItem.save();
         
-        res.render('user/shopping-cart');
+        res.rendirect('user/shopping-cart');
 
         return res.status(200).json({ message: 'Product added to the cart successfully' });
 

@@ -6,7 +6,7 @@ const upload = multer.single("image");
 
 let HomepagepicPost = async (req, res) => {
     try {
-      const { h1, h2 } = req.body;
+      const { h1, h2  } = req.body;
   
       if (!req.file) {
         return res.status(400).json({ success: false, message: 'No file uploaded' });
@@ -28,10 +28,11 @@ let HomepagepicPost = async (req, res) => {
             public_id: result.public_id,
             url: result.secure_url
         },
-        image: {
-            public_id: result.public_id,
-            url: result.secure_url
-        },
+      //   image1: {
+      //     public_id: result.public_id,
+      //     url: result.secure_url
+      // },
+  
       });
   
       const savedHomepagepic = await newHomepagepic.save();
