@@ -12,10 +12,10 @@
       rel="shortcut icon"
       type="image/png"
       href="./assets/imgs/favicon.ico"
-    />
+    >
   </head>
 
-  <body>
+  <body  style="background-color: #8e8eec;">
     <!-- =============== Navigation ================ -->
     <div class="container">
       <div class="navigation">
@@ -98,52 +98,53 @@
 
 <style>
   .bodysec{
-    margin-left: 400px;
-    {{!-- padding-top: 10px --}}
+    margin-left: 500px;
+    
+    
     
   }
-  th{
-    background-color:rgb(43, 36, 36);
-    height: 50px;
+  th{border-collapse:collapse;
+    background-color:transparent;
+    height: 60px;
     color: azure;
-    border: 2px solid rgb(58, 164, 46);
+    border: 1px solid rgb(255, 255, 255);
   }
   tr{
-
-    border: 8px solid rgb(208, 14, 95);
-    background-color: rgb(105, 92, 92);
+border-collapse:collapse;
+    border: 1px solid rgb(249, 249, 249);
+    background-color:transparent;
     
       }
 
     
-  td{
-        border: 2px solid rgb(255, 255, 255);
+  td{border-collapse:collapse;
+        border: 1px solid rgb(245, 245, 245);
         text-align: center;
-    {{!-- background-color: rgb(245, 2, 2); --}}
+    background-color: transparent;
     
 
   }
-  table{
+  table{border-collapse:collapse;
     border-radius: 30px;
-            border: 20px solid rgb(216, 216, 219);
-                background-color: rgb(105, 92, 92);
+            border: 1px solid rgb(255, 255, 255);
+                background-color: transparent;
 color: aliceblue;
 align-items: center;
 
 
   }
   thead{
-               border: 20px solid rgb(45, 173, 19);
+             
 
 
   }
   .button1{
     height: 34px;
     width: 65px;
-    background-color: rgb(245, 2, 2);
+    background-color: rgb(254, 254, 254);
   }
   .heading{
-    color: black;
+    color: rgb(255, 255, 255);
     font-size: 36px;
     padding-bottom: 10px;
     
@@ -151,7 +152,7 @@ align-items: center;
   .button2{
        height: 34px;
     width: 65px;
-    background-color: rgb(245, 2, 2);
+    background-color: rgb(252, 252, 252);
   }
 </style>
 
@@ -165,7 +166,7 @@ align-items: center;
 {{!-- ------------------------------------------------------------------------------------------------------- --}}
 <h1 class="heading">Product Details</h1>
 
-<div class="container table-responsive py-5"> 
+<div class="container table-responsive py-5" > 
 <table class="table table-bordered table-hover">
   <thead class="thead-dark">
     <tr>
@@ -199,7 +200,7 @@ align-items: center;
         <td>{{this.category.title}}</td>
         <td>{{this.subcategory.title}}</td>
         <td>
-          <img src="{{this.image.url}}" alt="{{this.productname}} Image" style="max-width: 100px; height: auto;">
+          <img src="{{this.image.url}}" alt="{{this.productname}} Image" style="max-width: 140px; height: auto;">
         </td>
         <td>
     <div class="product">
@@ -220,8 +221,14 @@ align-items: center;
   </tbody>
 </table>
 </div>
-
-
+{{!-- ----------------------------------  --}}
+ {{#if successMessage}}
+        <script>
+            window.onload = function() {
+                alert('{{successMessage}}');
+            };
+        </script>
+    {{/if}}
 {{!-- --------------------------------------------------------------------------------------------- --}}
 
 <script>

@@ -15,9 +15,9 @@
     />
   </head>
 
-  <body>
+  <body >
     <!-- =============== Navigation ================ -->
-    <div class="container">
+    <div class="container" >
       <div class="navigation">
         <ul>
           <li>
@@ -98,17 +98,20 @@
 </head>
 
 <style>
-  .main{
+  {
+    .clr{
+      background-color: transparent !important;
+    }
     
   }
 </style>
-<div class="main">
+<div class="main" style="background-color:#8e8eec;">
 
 <body>
   
 <link rel="stylesheet" href="/vender/productAdd.css">
 
-    <form action="/vender/productAdd" method="POST" enctype="multipart/form-data" >
+    <form style="background-color: transparent !important;border:white" class="clr" action="/vender/productAdd" method="POST" enctype="multipart/form-data" >
 
   <label for="productName">Product Name:</label>
   <input type="text" id="productName" name="productname" required>
@@ -133,16 +136,133 @@
   <label for="productDescription">Product Description:</label>
   <textarea id="productDescription" name="description" required></textarea>
 
-{{!-- 
-  <label for="productDescription">Product Description:</label>
+  {{!-- <label for="productDescription"> size  :</label>
   <textarea id="productDescription" name="description" required></textarea> --}}
 
 
 
+<label for="productColor">Product Color:</label>
+<div id="colorOptions">
+  <input type="checkbox" id="red" name="color" value="red">
+  <label for="red" class="color-dot red-dot"></label>
+
+  <input type="checkbox" id="blue" name="color" value="blue">
+  <label for="blue" class="color-dot blue-dot"></label>
+
+  <input type="checkbox" id="green" name="color" value="green">
+  <label for="green" class="color-dot green-dot"></label>
+
+  <input type="checkbox" id="yellow" name="color" value="yellow">
+  <label for="yellow" class="color-dot yellow-dot"></label>
+
+  <input type="checkbox" id="pink" name="color" value="pink">
+  <label for="pink" class="color-dot pink-dot"></label>
+
+  <input type="checkbox" id="rose" name="color" value="rose">
+  <label for="rose" class="color-dot rose-dot"></label>
+
+  <input type="checkbox" id="black" name="color" value="black">
+  <label for="black" class="color-dot black-dot"></label>
+
+  <input type="checkbox" id="white" name="color" value="white">
+  <label for="white" class="color-dot white-dot"></label>
+</div>
+
+<style>
+  .color-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    border: 1px solid #000;
+    cursor: pointer;
+  }
+
+  .red-dot { background-color: red; }
+  .blue-dot { background-color: blue; }
+  .green-dot { background-color: green; }
+  .yellow-dot { background-color: yellow; }
+  .pink-dot { background-color: pink; }
+  .rose-dot { background-color: #ff66b2; }
+  .black-dot { background-color: black; color: white; }
+  .white-dot { background-color: white; border: 1px solid #000; }
+</style>
+
+<script>
+  // Optional: You can add JavaScript logic to handle color selection events
+  document.getElementById('colorOptions').addEventListener('change', function(event) {
+    if (event.target.type === 'checkbox') {
+      // Handle color selection logic here
+      console.log('Selected color:', event.target.value);
+    }
+  });
+</script>
+
+  {{!-- <label for="productCount">Product Count:</label>
+  <input type="number" id="productCount" name="count" value="0" required> --}}
+
+
+  <label for="productDetails">Product Details:</label>
+
+<div id="productDetailsContainer">
+  <!-- Initially, there is one set of size and quantity inputs -->
+  <div class="product-inputs">
+    <select name="size[]" class="size-select" required>
+      <option value="xl">XL</option>
+      <option value="l">L</option>
+      <option value="xxl">XXL</option>
+      <option value="m">M</option>
+      <!-- Add more size options as needed -->
+    </select>
+
+    <input type="number"  id="productCount" name="quantity[]" class="quantity-input" required>
+  </div>
+</div>
+
+<button type="button" onclick="addInputBoxes()">Add More</button>
+
+
+
+<script>
+function addInputBoxes() {
+  var container = document.getElementById("productDetailsContainer");
+
+  // Create a new set of size and quantity inputs
+  var newInputs = document.createElement("div");
+  newInputs.className = "product-inputs";
+
+  var sizeSelect = document.createElement("select");
+  sizeSelect.name = "size[]";
+  sizeSelect.className = "size-select";
+  sizeSelect.required = true;
+  var sizeOptions = ["XL", "L", "XXL", "M" ]; // Add more size options as needed
+  for (var i = 0; i < sizeOptions.length; i++) {
+    var option = document.createElement("option");
+    option.value = sizeOptions[i].toLowerCase();
+    option.text = sizeOptions[i];
+    sizeSelect.add(option);
+  }
+
+  var quantityInput = document.createElement("input");
+  quantityInput.type = "number";
+  quantityInput.name = "quantity[]";
+  quantityInput.className = "quantity-input";
+  quantityInput.required = true;
+
+  // Append size and quantity inputs to the new set
+  newInputs.appendChild(sizeSelect);
+  newInputs.appendChild(quantityInput);
+
+  // Append the new set to the container
+  container.appendChild(newInputs);
+}
+</script>
+
 
 
       {{!-- ***************************************************** --}}
-
+{{!-- 
   <label for="size">size:</label>
   <select id="size" name="size" required>
     {{#each newSize}}
@@ -154,7 +274,7 @@
     {{#each newColor}}
       <option value="{{_id}}">{{title}}</option>
     {{/each}}
-</select>
+</select> --}}
 
 
  
@@ -177,8 +297,7 @@
 
 
   </select>
-  <label for="productCount">Product Count:</label>
-  <input type="number" id="productCount" name="count" value="0" required>
+
 
 
  <label for="image">Image:</label>
@@ -196,7 +315,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
     try {
-      const response = await axios.get('vender/categories');
+      const response = await axios.get('/vender/categories');
       const categories = response.data.categories;
 
       if (categories.length) {
@@ -222,7 +341,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
     try {
-      const responsed = await axios.get('vender/subcategory');
+      const responsed = await axios.get('/vender/subcategory');
       const subcategories = responsed.data.subcategories;
 
       if (subcategories.length) {
