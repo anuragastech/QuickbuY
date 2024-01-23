@@ -86,7 +86,7 @@
                         <li><a class="active" href="/user/index">Home</a></li>
                         <li><a href="/user/categories">Shop</a>
                             <ul class="sub-menu">
-                                <li><a href="/user/product">Product Page</a></li>
+                                <li><a href="/user/products">Product Page</a></li>
                                 <li><a href="/user/shopping-cart">Shopping Card</a></li>
                                 <li><a href="/user/check-out">Check out</a></li>
                             </ul>
@@ -249,9 +249,9 @@
                                 <div class="single-box-item first-box">
                                     <img src="{{image.url}}" alt="">
                                     <div class="box-text">
-                                        <span class="trend-year">2024 Party</span>
+                                        <span style="color: white;" class="trend-year">{{title}} </span>
                                         <h2></h2>
-                                        <span class="trend-alert">Trend Alert</span>
+                                        <span  style="color: white;" class="trend-alert">{{ description}}</span>
                                         <a href="#" class="primary-btn">See More</a>
                                     </div>
                                 </div>
@@ -263,9 +263,9 @@
                                 <div class="single-box-item second-box">
                                     <img src="{{image.url}}" alt="">
                                     <div class="box-text">
-                                        <span class="trend-year">2024 Trend</span>
-                                        <h2>Footwear</h2>
-                                        <span class="trend-alert">Bold & Black</span>
+                                        <span style="color: rgb(0, 0, 0);" class="trend-year">{{title}}</span>
+                                        <h2>BUy</h2>
+                                        <span style="color: white;" class="trend-alert">{{ description}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -278,9 +278,9 @@
                         <div class="single-box-item large-box">
                             <img src="{{image.url}}" alt="">
                             <div class="box-text">
-                                <span class="trend-year">2019 Party</span>
+                                <span style="color: rgb(0, 0, 0);" class="trend-year">{{title}}</span>
                                 <h2>Collection</h2>
-                                <div class="trend-alert">Trend Allert</div>
+                                <div style="color: rgb(1, 1, 1);" class="trend-alert">{{ description}}   </div>
                             </div>
                         </div>
                     </div>
@@ -325,7 +325,7 @@
                             <div class="p-status">new</div>
                         </figure>
                         <div class="product-text">
-                            <h6>{{this.description}}</h6>
+                            <h6>{{this.productname}}</h6>
                             <p>${{this.price}}</p>
                         </div>
                     </div>

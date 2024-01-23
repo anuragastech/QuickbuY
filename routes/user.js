@@ -45,7 +45,7 @@ router.get('/user',getAllControllers.getuser)
 router.get('/productpage', getProductControllers.getproductpage)
 
 
-router.get('/product',getProductControllers.getproductData)
+router.get('/products',getProductControllers.getproductData)
 router.get('/index',getControllerHome.getproductDataIn)
 
 
@@ -68,6 +68,10 @@ router.get('/cart',(req,res)=>{
     res.render('user/cart')
     });
 
+
+    // router.get('/products',(req,res)=>{
+    //   res.render('user/products')
+    //   });
 // router.get('/productpage',getProductControllers.productpage)
 
   // router.get('/productpage',getProductControllers.productpass)
