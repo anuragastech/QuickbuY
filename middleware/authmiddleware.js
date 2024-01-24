@@ -9,6 +9,15 @@ function authenticateJWT(req, res, next) {
     const token = req.cookies.token;
 
     if (!token) {
+        if (req.originalUrl.includes('/vender')) {
+            return res.redirect('/vender/login');
+        } else if (req.originalUrl.includes('/user')) {
+            return res.redirect('/user/login');
+        } else {
+            return res.redirect('/login'); // Default login page
+        }
+
+        
         return res.status(401).json({ message: 'Unauthorized' });
     }
 

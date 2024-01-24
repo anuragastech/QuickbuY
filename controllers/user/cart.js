@@ -38,7 +38,10 @@ const subcategory=require('../../models/admin/subcategory')
 //         console.error(error);
 //         res.status(500).json({ success: false, message: 'Internal Server Error' });
 //     }
+
 // };
+
+
 let  getcartpage=async (req, res) => {
     try {
         const products = await product.find().populate('category').populate('subcategory');
