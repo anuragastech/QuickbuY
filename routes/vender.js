@@ -19,7 +19,7 @@ router.post("/login",venderControllers.loginvender);
 
 router.get("/login",venderControllers.getlogin);
 
-router.get("/signup",venderControllers.getsignup);
+router.get("/signup",authenticateJWT,venderControllers.getsignup);
 
 router.post("/signup",authenticateJWT,venderControllers.signvender);
 
@@ -28,14 +28,14 @@ router.post("/signup",authenticateJWT,venderControllers.signvender);
 router.get("/productAdd", authenticateJWT,productControllers.getproductAdd);
 
 router.post("/productAdd", upload, authenticateJWT,productControllers.getpostProductAdd);
-router.delete("/delete/product/:id",productControllers.productDelete);
-router.get("/productdetails",productControllers.getproductDetails);
-router.get('/edit-product', productControllers.geteditProduct)
+router.delete("/delete/product/:id",authenticateJWT,productControllers.productDelete);
+router.get("/productdetails",authenticateJWT,productControllers.getproductDetails);
+router.get('/edit-product',authenticateJWT, productControllers.geteditProduct)
 router.post('/edit-product/:id',authenticateJWT,productControllers.postedit)
 
 
 // Logout route
-router.get("/logout",venderControllers.logout )
+router.get("/logout",authenticateJWT,venderControllers.logout )
 
 
 
@@ -46,7 +46,7 @@ router.get("/logout",venderControllers.logout )
 
 
 
-router.get('/main', (req, res) => {
+router.get('/main', authenticateJWT,(req, res) => {
   return res.render('vender/main');
 });
 router.get('/home', (req, res) => {
@@ -55,12 +55,12 @@ router.get('/home', (req, res) => {
 
 
 
-router.get('/categories', getcatasubController.getcategory)
+router.get('/categories',authenticateJWT, getcatasubController.getcategory)
   
-  router.get('/subcategory',getcatasubController.getsubcategory)
+  router.get('/subcategory',authenticateJWT,getcatasubController.getsubcategory)
 
-  router.get('/color',getcatasubController.getcolor)
-  router.get('/size', getcatasubController.getsize)
+  router.get('/color',authenticateJWT,getcatasubController.getcolor)
+  router.get('/size', authenticateJWT,getcatasubController.getsize)
   
 
   // router('/home',(req,res)=>{
@@ -70,4 +70,4 @@ router.get('/categories', getcatasubController.getcategory)
   
 
 
-module.exports = router;
+module.exports = router ;

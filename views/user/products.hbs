@@ -59,10 +59,10 @@
                     <a href="/index"><img src="/logo.png" alt=""></a>
                 </div>
                 <div class="header-right">
-                    <img src="/icons/search.png" alt="" class="search-trigger">
-                    <img src="/icons/man.png" alt="">
+                    <img src="/search.png" alt="" class="search-trigger">
+                    <img src="/man.png" alt="">
                     <a href="#">
-                        <img src="/icons/bag.png" alt="">
+                        <img src="/bag.png" alt="">
                         <span>2</span>
                     </a>
                 </div>
@@ -83,103 +83,46 @@
                         <li><a href="/user/product-page">About</a></li>
                         <li><a href="/user/check-out">Blog</a></li>
                         <li><a href="/user/contact">Contact</a></li>
-                    </ul>
+                    </ul> 
                 </nav>
             </div>
         </div>
     </header>
+    {{!-- ----------------------------------------------------------------------------- --}}
 
-    <!-- Page Add Section Begin -->
-    {{!-- <section class="page-add">
+    <!-- Related Product Section Begin -->
+    <section class="related-product spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4">
-                    <div class="page-breadcrumb">
-                        <h2>Dresses<span>.</span></h2>
-                        <a href="#">Home</a>
-                        <a href="#">Dresses</a>
-                        <a class="active" href="#">Night Dresses</a>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <img src="/add.jpg" alt="">
-                </div>
-            </div>
-        </div>
-    </section> --}}
-    <!-- Page Add Section End -->
-
-    <!-- Categories Page Section Begin -->
-    <section class="categories-page spad">
-        <div class="container">
-            <div class="categories-controls">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="categories-filter">
-                            <div class="cf-left">
-                                <form action="#">
-                                    <select class="sort">
-                                        <option value="">Sort by</option>
-                                        <option value="">Orders</option>
-                                        <option value="">Newest</option>
-                                        <option value="">Price</option>
-                                    </select>
-                                </form>
-                            </div>
-                            <div class="cf-right">
-                                <span>20 Products</span>
-                                <a href="#">2</a>
-                                <a href="#" class="active">4</a>
-                                <a href="#">6</a>
-                            </div>
-                        </div>
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <h2>Products Page </h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-               
-                <div class="col-md-12 col-md-6">
-                    <div class="row">
-                        {{#each subcategor}}
-                        <div class="col-lg-3 col-md-6 col-sm-9">
-                            <div class="single-product-item">
-                                <figure>
-                                    <img src="{{this.image.url}}" alt="">
-                                    <div class="p-status sale">sale</div>
-                                </figure>
-                                <div class="product-text">
-                                    <a href="#">
-                                        <h6>{{this.title}}</h6>
-                                    </a>
-                                    <p></p>
-                                </div>
-                            </div>
+                    {{#each products}}
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="single-product-item">
+                        <figure>
+                            <a href="/user/productpage?name={{this._id}}"><img src="{{this.image.url}}" alt=""></a>
+                            <div class="p-status">new</div>
+                        </figure>
+                        <div class="product-text">
+                            <h6>{{this.productname}}</h6>
+                            <p>${{this.price}}</p>
                         </div>
-                      {{/each}}
-                      
-                      
                     </div>
                 </div>
-              
+             {{/each}}
                
-                
-                
-               
-              
-            </div>
-            <div class="more-product">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <a href="#" class="primary-btn">Load More</a>
-                    </div>
-                </div>
+             
             </div>
         </div>
     </section>
-    <!-- Categories Page Section End -->
+    <!-- Related Product Section End -->
 
-    <!-- Footer Section Begin -->
- 
 
     <!-- Footer Section Begin -->
     <footer class="footer-section spad">

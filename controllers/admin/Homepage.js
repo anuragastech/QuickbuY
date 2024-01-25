@@ -12,8 +12,8 @@ let HomepagepicPost = async (req, res) => {
         return res.status(400).json({ success: false, message: 'No file uploaded' });
       }
   
-      const desiredWidth = 300;
-      const desiredHeight = 200;
+      const desiredWidth = 1080;
+      const desiredHeight = 1920;
   
       const result = await cloudinary.uploader.upload(req.file.path, {
         width: desiredWidth,

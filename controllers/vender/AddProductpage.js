@@ -24,8 +24,8 @@ let getpostProductAdd = async (req, res) => {
         .json({ success: false, message: "File not provided" });
     }
 
-    const desiredWidth = 300;
-    const desiredHeight = 200;
+    const desiredWidth = 640;
+    const desiredHeight = 640;
 
     const photo = await cloudinary.uploader.upload(req.file.path, {
       width: desiredWidth,

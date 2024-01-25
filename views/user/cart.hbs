@@ -21,85 +21,45 @@
 
 
 
+<!-- product.hbs -->
 
-{{!-- <form action="/api/cart/add-to-cart" method="POST">
-        <input type="hidden" name="productId" value="{{productId}}">
-        <button type="submit">Add to Cart</button>
-    </form> --}}
-
-<section class="product-page">
-    <div class="container">
-        <div class="product-list">
-            {{#each products}}
-                <div class="product-item">
-                    <div class="product-img">
-                        <figure>
-                            <img src="{{this.image.url}}" alt="{{this.productname}}">
-                            {{#if this.new}}
-                                <div class="p-status">new</div>
-                            {{/if}}
-                        </figure>
-                    </div>
-                    <div class="product-content">
-                        <h2>{{this.productname}}</h2>
-                        <div class="pc-meta">
-                            <h5>${{this.price}}</h5>
-                        </div>
-                        <p>{{this.description}}</p>
-{{!--                         
-                        <div class="product-variants">
-                            <!-- Product Size Dropdown -->
-                            <label for="size">Size:</label>
-                            <select id="size" name="size">
-                                <option value="small">Small</option>
-                                <option value="medium">Medium</option>
-                                <option value="large">Large</option>
-                                <!-- Add more size options as needed -->
-                            </select>
-                            
-                            <!-- Product Color Dropdown -->
-                            <label for="color">Color:</label>
-                            <select id="color" name="color">
-                                <option value="red">Red</option>
-                                <option value="blue">Blue</option>
-                                <option value="green">Green</option>
-                                <!-- Add more color options as needed -->
-                            </select>
-                        </div>
-                         --}}
-                        {{!-- <div class="product-quantity">
-                            <div class="pro-qty">
-                                <input type="text" value="1">
-                            </div>
-                        </div> --}}
-                        
-<button onclick="cartProduct('{{this._id}}')">Add to Cart</button>            
-                <li>Product Information</li>
-                            <li>Reviews</li>
-                            <li>Product Care</li>
-                        </ul>
-                    </div>
-                </div>
-            {{/each}}
-            <!-- End of product loop -->
-        </div>
-    </div>
-</section>
-<script>
-  function cartProduct(productId) {
-    axios.post(`/user/cart/product/${productId}`)
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error('Cart request failed');
-        } else {
-          document.location.href = "/";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <style>
+        /* Add your styling here */
+        .size-button {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-</script>
+    </style>
+</head>
+<body>
+    <h1>{{ product.name }}</h1>
+    <p><span>Tags :</span> {{ product.tags.join(', ') }}</p>
+
+    <form action="/add-to-cart" method="post">
+        <label>Select Size:</label>
+        {{#each product.sizes}}
+            <button type="button" class="size-button" value="{{this}}" onclick="selectSize(this)">{{this}}</button>
+        {{/each}}
+        <input type="hidden" name="size" id="selectedSize" required>
+        <button type="submit">Add to Cart</button>
+    </form>
+
+    <script>
+        function selectSize(size) {
+            document.getElementById('selectedSize').value = size;
+        }
+    </script>
+</body>
+</html>
 
 
 

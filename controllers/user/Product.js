@@ -24,7 +24,7 @@ let getproductpage =async (req, res) => {
 let getproductData= async (req, res) => {
     try {
         const products = await product.find().populate('category').populate('subcategory');
-        res.render('user/product', { products });
+        res.render('user/products', { products });
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });

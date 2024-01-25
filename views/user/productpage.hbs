@@ -127,7 +127,7 @@
     </div>
     <!-- Header Info End -->
     <!-- Page Add Section Begin -->
-    <section class="page-add">
+    {{!-- <section class="page-add">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4">
@@ -143,7 +143,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Page Add Section End -->
 
     <!-- Product Page Section Beign -->
@@ -176,7 +176,7 @@
                     <div class="product-content">
                         <h2>Dotted Blue Shirt</h2>
                         <div class="pc-meta">
-                            <h5${{data.productname}}</h5>
+                            <h5$5500</h5>
                             <div class="rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -187,12 +187,76 @@
                         </div>
                         <p>{{data.discription}}</p>
                         <ul class="tags">
-                            <li><span>Category :</span> Men’s Wear</li>
+                            <li><span>Category :</span> {{data.catagory.title}}</li>
                             <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
-                        </ul>
+                                                        <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
+                                                        
+
+ <li style="margin-bottom: 20px;">
+    <span>Size :</span>
+    <div class="btn-group" role="group" aria-label="Size Options">
+        {{#each data.size}}
+            <button type="button" class="btn btn-outline-dark "  onclick="selectSize('{{this}}')">
+                {{this}}
+            </button>
+        {{/each}}
+    </div>
+</li>
+
+<style>
+    .selected-outline {
+        outline: 3px solid black; /* Adjust the outline styles as needed */
+    }
+</style>
+
+<script>
+    document.addEventListener('click', function(event) {
+        const selectedBtn = document.querySelector('.btn.active');
+
+        if (selectedBtn && !selectedBtn.contains(event.target)) {
+            const currentTime = new Date().getTime();
+            const lastClickTime = parseInt(selectedBtn.getAttribute('data-last-click-time')) || 0;
+
+            if (currentTime - lastClickTime > 300) {
+                // Single click, remove outline
+                selectedBtn.classList.remove('selected-outline');
+            } else {
+                // Double click, remove the selection
+                selectedBtn.classList.remove('active', 'selected-outline');
+                document.getElementById('selectedSize').value = '';
+            }
+        }
+    });
+
+    function selectSize(size) {
+        // Your logic to handle the selection
+        const selectedBtn = document.querySelector(`.btn:contains('${size}')`);
+
+        if (selectedBtn && selectedBtn.classList.contains('active')) {
+            // If the button is already active, do nothing on single click
+        } else {
+            // Remove 'active' class and outline from all buttons
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.classList.remove('active', 'selected-outline');
+            });
+
+            // Add 'active' class and outline to the clicked button
+            if (selectedBtn) {
+                selectedBtn.classList.add('active', 'selected-outline');
+                selectedBtn.setAttribute('data-last-click-time', new Date().getTime());
+                // Additional logic like storing the selected size in a hidden input
+                document.getElementById('selectedSize').value = size;
+            }
+        }
+    }
+</script>
+
+
+
+
                         <div class="product-quantity">
                             <div class="pro-qty">
-                                <input type="text" value="1">
+                                <input type="text" value="1">  
                             </div>
                         </div>
                         {{!-- <a href="#" class="primary-btn pc-btn">Add to cart</a> --}}
@@ -201,6 +265,7 @@
                             <li>Product Information</li>
                             <li>Reviews</li>
                             <li>Product Care</li>
+
                         </ul>
                     </div>
                 </div>
