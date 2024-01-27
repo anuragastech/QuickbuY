@@ -203,54 +203,23 @@
     </div>
 </li>
 
-<style>
-    .selected-outline {
-        outline: 3px solid black; /* Adjust the outline styles as needed */
-    }
-</style>
-
 <script>
-    document.addEventListener('click', function(event) {
-        const selectedBtn = document.querySelector('.btn.active');
-
-        if (selectedBtn && !selectedBtn.contains(event.target)) {
-            const currentTime = new Date().getTime();
-            const lastClickTime = parseInt(selectedBtn.getAttribute('data-last-click-time')) || 0;
-
-            if (currentTime - lastClickTime > 300) {
-                // Single click, remove outline
-                selectedBtn.classList.remove('selected-outline');
-            } else {
-                // Double click, remove the selection
-                selectedBtn.classList.remove('active', 'selected-outline');
-                document.getElementById('selectedSize').value = '';
-            }
-        }
-    });
-
     function selectSize(size) {
         // Your logic to handle the selection
+        // For example, you can highlight the selected size
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+
         const selectedBtn = document.querySelector(`.btn:contains('${size}')`);
-
-        if (selectedBtn && selectedBtn.classList.contains('active')) {
-            // If the button is already active, do nothing on single click
-        } else {
-            // Remove 'active' class and outline from all buttons
-            document.querySelectorAll('.btn').forEach(btn => {
-                btn.classList.remove('active', 'selected-outline');
-            });
-
-            // Add 'active' class and outline to the clicked button
-            if (selectedBtn) {
-                selectedBtn.classList.add('active', 'selected-outline');
-                selectedBtn.setAttribute('data-last-click-time', new Date().getTime());
-                // Additional logic like storing the selected size in a hidden input
-                document.getElementById('selectedSize').value = size;
-            }
+        if (selectedBtn) {
+            selectedBtn.classList.add('active');
         }
+
+        // Additional logic like storing the selected size in a hidden input
+        document.getElementById('selectedSize').value = size;
     }
 </script>
-
 
 
 

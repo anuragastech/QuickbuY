@@ -9,9 +9,11 @@ let getproductpage =async (req, res) => {
          const productData = await product.findById({ _id: (productId) });
          console.log("DATAS ARE",productData);
 
+
+         const colorMatch= await  product.agg
         if (productData) {
          //  console.log(productData);
-            res.status(200).render('user/productpage', { data: productData });
+            res.status(200).render('user/productpage', { data: productData  });
         } else {
             res.status(404).json({ success: false, message: 'Product not found' });
         }
