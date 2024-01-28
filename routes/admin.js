@@ -12,6 +12,55 @@ const HomepageController= require('../controllers/admin/Homepage');
 
 
 
+
+router.get('/index',(req,res)=>{
+    res.render('admin/index')
+})
+router.get('/alert',(req,res)=>{
+    res.render('admin/alert')
+})
+
+router.get('/badge', (req,res)=>{
+    res.render('admin/badge')
+})
+
+router.get('/login', (req,res)=>{
+    res.render('admin/login')
+})
+
+router.get('/accordion',(req,res)=>{
+    res.render('admin/accordion')
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ---------------------------------------------------------------------------------------------------------------
+
 router.post('/HomepageController', upload,HomepageController.HomepagepicPost );
 router.get('/HomepageControl',HomepageController.HomepagepicGet)
 router.get('/main', otherControllers.getmain);
@@ -20,13 +69,13 @@ router.post("/login",adminControllers.loginPost);
 
 router.get("/login",adminControllers.getlogin);
 
-router.post("/category", upload,categoryControllers.postCategory);
+router.post("/categorylist", upload,categoryControllers.postCategory);
 
 
 router.get("/categorylist",categoryControllers.getCategorylist);
 
-router.get("/edit",categoryControllers.editGetCategory);
-router.post('/edit-category/:id',categoryControllers.editpost)
+router.get("/edit-categorylist",categoryControllers.getCategorylist);
+router.post('/edit-categorylist/:id',categoryControllers.editpost)
 
 router.get("/edit-subcategory",subCategoryControllers.editGetsubCategory);
 router.post('/edit-subcategory/:id',subCategoryControllers.editsubcategorypost)

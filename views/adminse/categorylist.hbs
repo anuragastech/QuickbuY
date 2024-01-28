@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Admin Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="adminDashboard.css" />
+    <lin
+      rel="shortcut icon"
+      type="image/png"
+      href="./assets/imgs/favicon.ico"
+    />
+  </head>
+
+  <body style="background-color: rgba(9, 8, 8, 0.916);">
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+      <div class="navigation">
+        <ul>
+          <li>
+            <a href="#">
+              <span class="icon">
+                <img src="./assets/imgs/favicon.ico" alt="" />
+              </span>
+              <span class="title">Dunprel Store</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/admin/main">
+              <span class="icon">
+                <ion-icon name="home-outline"></ion-icon>
+              </span>
+              <span class="title">Dashboard</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/admin/category">
+              <span class="icon">
+                <ion-icon name="people-outline"></ion-icon>
+              </span>
+              <span class="title">Category</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/admin/categorylist">
+              <span class="icon">
+                <ion-icon name="chatbubble-outline"></ion-icon>
+              </span>
+              <span class="title">CategoryList</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/admin/subcategories">
+              <span class="icon">
+                <ion-icon name="help-outline"></ion-icon>
+              </span>
+              <span class="title">SubCategory</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/admin/">
+              <span class="icon">
+                <ion-icon name="settings-outline"></ion-icon>
+              </span>
+              <span class="title"></span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/admin/">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title"></span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/admin/logout">
+              <span class="icon">
+                <ion-icon name="log-out-outline"></ion-icon>
+              </span>
+              <span class="title">Sign Out</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/subcategories">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title">Subcategorylist</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/subcategories">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title">Subcategorylist</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/subcategories">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title">Subcategorylist</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/subcategories">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title">Subcategorylist</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/subcategories">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title">Subcategorylist</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/subcategories">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title">Subcategorylist</span>
+            </a>
+          </li>
+          <li>
+            <a href="/admin/subcategories">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title">Subcategorylist</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+      <!-- ========================= Main ==================== -->
+<body >
+  
+<style>
+  .x{
+background-color: rgba(12, 12, 12, 0.041);
+  }
+ 
+  table{border-collapse:collapse;
+    margin-left: 500px;
+    border: 10px solid rgb(2, 2, 2) ;
+       background-color: rgb(156, 21, 21);
+align-items: center;
+  }
+  th{border-collapse:collapse;
+    background-color: rgb(0, 0, 0);
+    color: rgb(247, 243, 243);
+    height: 50px;
+  }
+  td{border-collapse:collapse;
+  
+        border: 1px solid rgb(25, 13, 13);
+        background-color: rgb(0, 0, 0);
+        font-weight: bold;
+    color: rgb(255, 255, 255);
+height: 50px;
+width: 250px;
+text-align: center;
+border-radius: 2px;
+
+
+  }
+  .btn5{
+    height: 50px;
+    font-size: 18px;
+    width:80px;
+    background-color: rgb(245, 245, 245);
+    color: rgb(5, 5, 5);
+border-radius: 20px;
+  }
+  .x{
+    padding-top: 180px;
+  }
+  .h{ color: white;
+    margin-left: 1020px;
+    margin-bottom: 30px;
+    font-size: 42px;
+    
+  }
+  
+</style>
+<div class="x">
+
+<h1 class="h"> Category List </h1>
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Delete</th>
+            <th>Edit</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each categories}}
+            <tr>
+                <td>{{title}}</td>
+                <td>{{description}}</td>
+                <td><img src="{{image.url}}" alt="{{title}} Image"></td>
+                <td>
+                    <button class="btn5" onclick="deleteCategory('{{this.title}}')">Delete</button>
+                </td>
+                <td>
+                  
+                   <button class="btn5"> <a href="/admin/edit?name={{this._id}}">Edit</a> </button> 
+
+                </td>
+            </tr>
+        {{else}}
+            <tr>
+                <td colspan="4">No categories found.</td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+</div>
+
+
+
+{{!-- delete--}}
+<script>
+  function deleteCategory(categoryId) {
+    axios.delete(`/admin/delete/${categoryId}`)
+      .then((response) => {
+        if (response.status !== 200) {
+          throw new Error('Delete request failed');
+        } else {
+          window.location.href = "/admin/categorylist";
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+</script>
+
+
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js"></script>
+    </body>
+   </html>

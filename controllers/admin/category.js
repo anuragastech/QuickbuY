@@ -36,40 +36,53 @@ let postCategory= async(req,res)=>{
     }
 };
 
-let getCategorylist= async (req, res) => {
-    try {
-        const { id ,title, description, image } = req.query;
-       
-        const categoryList = await category.find({}, ' id title description image');
-
-
-        if (!categoryList) {
-            return res.status(500).json({ success: false });
-        }
-
-        res.render('admin/categorylist', { categories: categoryList });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false });
-    }
-};
-
-let editGetCategory= async (req, res) => {
+let getCategorylist = async (req, res) => {
   try {
-      const categoryId = req.query.name;
-      const categorys = await category.findOne({ _id: categoryId });
-      console.log(categoryId);
+      // Extracting query parameters for filtering and specific category ID
+      const { id, title, description, image } = req.query;
 
-      if (!categorys) {
-          return res.status(404).json({ success: false, message: 'Category not found' });
+      // Query to fetch all categories
+      const categoryList = await category.find({}, 'id title description image');
+
+      // Extracting category ID from query parameters (assuming it's passed as 'name')
+      const categoryId = req.query.id;
+
+      // Query to find a single category by its ID
+      const categorys = await category.findOne({ _id: categoryId });
+
+      console.log(categorys); // Logging the fetched category
+
+      // Check if category list is empty (null or empty array)
+      if (!categoryList || categoryList.length === 0) {
+          return res.status(500).json({ success: false, message: 'No categories found' });
       }
 
-      res.render('admin/edit', { cata: categorys });
+      // Render the 'admin/categorylist' view, passing both category list and single category data
+      res.render('admin/categorylist', { categories: categoryList, cata: categorys });
+
   } catch (error) {
       console.error(error);
-      res.status(500).json({ success: false });
+      res.status(500).json({ success: false, message: 'Internal server error' });
   }
 };
+
+
+// let editGetCategory= async (req, res) => {
+//   try {
+//       const categoryId = req.query.name;
+//       const categorys = await category.findOne({ _id: categoryId });
+//       console.log(categoryId);
+
+//       if (!categorys) {
+//           return res.status(404).json({ success: false, message: 'Category not found' });
+//       }
+
+//       res.render('admin/categorylist', { cata: categorys });
+//   } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ success: false });
+//   }
+// };
 
 
 let deleteCategory= async (req, res) => {
@@ -170,4 +183,4 @@ let  getcategories=async (req, res) => {
     }
 };
   
-module.exports={editpost,putCategory,getcategoryDelete,getcategories,deleteCategory,editGetCategory,postCategory,getCategorylist};
+module.exports={editpost,putCategory,getcategoryDelete,getcategories,deleteCategory,postCategory,getCategorylist};
