@@ -43,101 +43,101 @@
     </noscript>
 
     <!-- Page Title -->
-    <title></title>
+    <title>Kavlan | Bootstrap 5 HTML Admin Dashboard</title>
     
 </head>
 <body class="">
 
+    <!-- Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top bg-dark-800">
+      <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
+    
+          <!-- Menu Toggle-->
+          <div class="menu-toggle cursor-pointer me-4 text-primary-hover transition-color disable-child-pointer">
+            <i class="ri-menu-fold-line ri-lg fold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Close menu"></i>
+            <i class="ri-menu-unfold-line ri-lg unfold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Open Menu"></i>
+          </div>
+          <!-- / Menu Toggle-->
+    
+          <!-- Navbar Actions-->
+          <div class="d-flex align-items-center">
+    
+            <!-- Search-->
+            <button class="btn-icon btn-hover-dark btn-search me-2">
+              <i class="ri-search-2-line align-bottom lh-1 text-body"></i>
+            </button>
+    
+            <!-- Search navbar overlay-->
+            <div class="navbar-search d-none">
+              <div class="input-group mb-3 h-100">
+                <span class="input-group-text px-4 bg-transparent"><i class="ri-search-line ri-lg"></i></span>
+                <input type="text" class="form-control text-body bg-transparent border-0" placeholder="Enter your search terms...">
+                <span class="input-group-text px-4 cursor-pointer disable-child-pointer close-search bg-transparent"><i class="ri-close-circle-line ri-lg text-primary"></i></span>
+              </div>
+            </div>
+            <!-- / Search navbar overlay-->
+    
+            <!-- / Search-->
+    
+            <!-- Region -->
+            <div class="dropdown me-2">
+              <button class="btn-icon btn-hover-dark" type="button" id="regionDropdown"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="flag-icon flag-icon-gb"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="regionDropdown">
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United Kingdom <span class="text-muted ms-5"><span class="flag-icon flag-icon-gb"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United States<span class="text-muted ms-5"><span class="flag-icon flag-icon-us"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Australia<span class="text-muted ms-5"><span class="flag-icon flag-icon-au"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Belgium<span class="text-muted ms-5"><span class="flag-icon flag-icon-be"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Canada<span class="text-muted ms-5"><span class="flag-icon flag-icon-ca"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">China <span class="text-muted ms-5"><span class="flag-icon flag-icon-cn"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Denmark <span class="text-muted ms-5"><span class="flag-icon flag-icon-dk"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">France<span class="text-muted ms-5"><span class="flag-icon flag-icon-fr"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Netherlands<span class="text-muted ms-5"><span class="flag-icon flag-icon-nl"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russia<span class="text-muted ms-5"><span class="flag-icon flag-icon-ru"></span></span></a></li>
+              </ul>
+            </div>
+            <!-- /Region -->
+    
+            <!-- Language-->
+            <div class="dropdown me-2">
+              <button class="btn-icon btn-hover-dark" type="button" id="language"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="ri-global-line align-bottom text-body lh-1"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language">
+                <li>
+                  <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">English 
+                    <span class="text-muted ms-5">EN</span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">French<span class="text-muted ms-5">FR</span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Espanol<span class="text-muted ms-5">ES</span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Turkish<span class="text-muted ms-5">TR</span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russian<span class="text-muted ms-5">RU</span></a></li>
+              </ul>
+            </div>
+            <!-- / Language-->
+    
+            <!-- Notifications-->
+            <a class="btn-icon btn-hover-dark position-relative p-2 disable-child-pointer" data-bs-toggle="offcanvas" href="#offcanvasNotifications" role="button"
+            aria-controls="offcanvasNotifications">
+              <i class="ri-notification-fill align-bottom text-body lh-1"></i>
+              <span class="badge bg-primary text-white position-absolute top-0 end-0">3</span>
+            </a>
+            <!-- / Notifications-->
+    
+          </div>
+          <!-- / Navbar Actions-->
+        
+        </div>
+      </div>
+    </nav>    <!-- / Navbar-->
+
     <!-- Page Content -->
     <main id="main">
-
-        <!-- Navbar-->
-        <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top bg-dark-800">
-          <div class="container-fluid">
-            <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
-        
-              <!-- Menu Toggle-->
-              <div class="menu-toggle cursor-pointer me-4 text-primary-hover transition-color disable-child-pointer">
-                <i class="ri-menu-fold-line ri-lg fold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
-                  title="Close menu"></i>
-                <i class="ri-menu-unfold-line ri-lg unfold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
-                  title="Open Menu"></i>
-              </div>
-              <!-- / Menu Toggle-->
-        
-              <!-- Navbar Actions-->
-              <div class="d-flex align-items-center">
-        
-                <!-- Search-->
-                <button class="btn-icon btn-hover-dark btn-search me-2">
-                  <i class="ri-search-2-line align-bottom lh-1 text-body"></i>
-                </button>
-        
-                <!-- Search navbar overlay-->
-                <div class="navbar-search d-none">
-                  <div class="input-group mb-3 h-100">
-                    <span class="input-group-text px-4 bg-transparent"><i class="ri-search-line ri-lg"></i></span>
-                    <input type="text" class="form-control text-body bg-transparent border-0" placeholder="Enter your search terms...">
-                    <span class="input-group-text px-4 cursor-pointer disable-child-pointer close-search bg-transparent"><i class="ri-close-circle-line ri-lg text-primary"></i></span>
-                  </div>
-                </div>
-                <!-- / Search navbar overlay-->
-        
-                <!-- / Search-->
-        
-                <!-- Region -->
-                <div class="dropdown me-2">
-                  <button class="btn-icon btn-hover-dark" type="button" id="regionDropdown"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="flag-icon flag-icon-gb"></span>
-                  </button>
-                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="regionDropdown">
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United Kingdom <span class="text-muted ms-5"><span class="flag-icon flag-icon-gb"></span></span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United States<span class="text-muted ms-5"><span class="flag-icon flag-icon-us"></span></span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Australia<span class="text-muted ms-5"><span class="flag-icon flag-icon-au"></span></span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Belgium<span class="text-muted ms-5"><span class="flag-icon flag-icon-be"></span></span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Canada<span class="text-muted ms-5"><span class="flag-icon flag-icon-ca"></span></span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">China <span class="text-muted ms-5"><span class="flag-icon flag-icon-cn"></span></span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Denmark <span class="text-muted ms-5"><span class="flag-icon flag-icon-dk"></span></span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">France<span class="text-muted ms-5"><span class="flag-icon flag-icon-fr"></span></span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Netherlands<span class="text-muted ms-5"><span class="flag-icon flag-icon-nl"></span></span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russia<span class="text-muted ms-5"><span class="flag-icon flag-icon-ru"></span></span></a></li>
-                  </ul>
-                </div>
-                <!-- /Region -->
-        
-                <!-- Language-->
-                <div class="dropdown me-2">
-                  <button class="btn-icon btn-hover-dark" type="button" id="language"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="ri-global-line align-bottom text-body lh-1"></i>
-                  </button>
-                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language">
-                    <li>
-                      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">English 
-                        <span class="text-muted ms-5">EN</span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">French<span class="text-muted ms-5">FR</span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Espanol<span class="text-muted ms-5">ES</span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Turkish<span class="text-muted ms-5">TR</span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russian<span class="text-muted ms-5">RU</span></a></li>
-                  </ul>
-                </div>
-                <!-- / Language-->
-        
-                <!-- Notifications-->
-                <a class="btn-icon btn-hover-dark position-relative p-2 disable-child-pointer" data-bs-toggle="offcanvas" href="#offcanvasNotifications" role="button"
-                aria-controls="offcanvasNotifications">
-                  <i class="ri-notification-fill align-bottom text-body lh-1"></i>
-                  <span class="badge bg-primary text-white position-absolute top-0 end-0">3</span>
-                </a>
-                <!-- / Notifications-->
-        
-              </div>
-              <!-- / Navbar Actions-->
-            
-            </div>
-          </div>
-        </nav>        <!-- / Navbar-->
 
         <!-- Content-->
         <section class="container-fluid">
@@ -145,248 +145,187 @@
             <!-- Breadcrumbs-->
             <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Dashboard</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Blank Page</li>
+                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Subcategory List</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Subcategory</li>
                 </ol>
             </nav>            <!-- / Breadcrumbs-->
 
             <!-- Page Title-->
-          
+           
             <!-- / Page Title-->
 
+            <div class="row g-4">
+                <div class="col-12 col-md-6">
 
-            <div class="card mb-4">
-            
-
-
-<style>
-  .clr{
-    background-color: rgb(198, 157, 231);
-  }
-  .edit{
-    background-color: rgba(140, 142, 184, 0.921);
-    margin-left: 650px;
-    margin-top: -10px;
-    border: rgb(221, 222, 221);
-    
-  }
-</style>
-<body class="clr">
-    <title>Add Product</title>
-        <link rel="stylesheet" href="productAdd.css">
-
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+                    
+    <style>
+.xlm{
+  height: 350px;
+  width: 800px;
 
 
+  background-color: rgba(255, 255, 255, 0.372);
+  border-radius: 30px;
+  border: 10px solid rgb(237, 236, 236);
 
-
-
-
-
-   {{#if prod }}
-
-<form class="edit" action="/vender/edit-product/{{prod._id}}" method="POST">  
-
-  <label for="productName">Product Name:</label>
-  <input type="text" id="productName" name="productname" value="{{prod.productname}}" required>
-
-
-
-  <label for="manufactureName">Manufacture Name:</label>
-  <input type="text" id="manufactureName" name="manufacturename"  value="{{prod.manufacturename}}" required>
-  <br>
-
-    <br>
-   
-
-
-  <label for="manufactureBrand">Manufacture Brand:</label>
-  <input type="text" id="manufactureBrand" name="brand"   value="{{prod.brand}}" required>
-
-
-  <label for="productPrice">Product Price:</label>
-  <input type="number" id="productPrice" name="price" required>
-
-  <label for="productDescription">Product Description:</label>
-  <textarea id="productDescription" name="description" required></textarea>
-
-  {{!-- <label for="productDescription"> size  :</label>
-  <textarea id="productDescription" name="description" required></textarea> --}}
-
-
-
-<label for="productColor">Product Color:</label>
-<div id="colorOptions">
-  <input type="checkbox" id="red" name="color" value="red">
-  <label for="red" class="color-dot red-dot"></label>
-
-  <input type="checkbox" id="blue" name="color" value="blue">
-  <label for="blue" class="color-dot blue-dot"></label>
-
-  <input type="checkbox" id="green" name="color" value="green">
-  <label for="green" class="color-dot green-dot"></label>
-
-  <input type="checkbox" id="yellow" name="color" value="yellow">
-  <label for="yellow" class="color-dot yellow-dot"></label>
-
-  <input type="checkbox" id="pink" name="color" value="pink">
-  <label for="pink" class="color-dot pink-dot"></label>
-
-  <input type="checkbox" id="rose" name="color" value="rose">
-  <label for="rose" class="color-dot rose-dot"></label>
-
-  <input type="checkbox" id="black" name="color" value="black">
-  <label for="black" class="color-dot black-dot"></label>
-
-  <input type="checkbox" id="white" name="color" value="white">
-  <label for="white" class="color-dot white-dot"></label>
-</div>
-
-<style>
-  .color-dot {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 5px;
-    border: 1px solid #000;
-    cursor: pointer;
-  }
-
-  .red-dot { background-color: red; }
-  .blue-dot { background-color: blue; }
-  .green-dot { background-color: green; }
-  .yellow-dot { background-color: yellow; }
-  .pink-dot { background-color: pink; }
-  .rose-dot { background-color: #ff66b2; }
-  .black-dot { background-color: black; color: white; }
-  .white-dot { background-color: white; border: 1px solid #000; }
-</style>
-
-<script>
-  // Optional: You can add JavaScript logic to handle color selection events
-  document.getElementById('colorOptions').addEventListener('change', function(event) {
-    if (event.target.type === 'checkbox') {
-      // Handle color selection logic here
-      console.log('Selected color:', event.target.value);
-    }
-  });
-</script>
-
-  {{!-- <label for="productCount">Product Count:</label>
-  <input type="number" id="productCount" name="count" value="0" required> --}}
-
-
-  <label for="productDetails">Product Details:</label>
-
-<div id="productDetailsContainer">
-  <!-- Initially, there is one set of size and quantity inputs -->
-  <div class="product-inputs">
-    <select name="size[]" class="size-select" required>
-      <option value="xl">XL</option>
-      <option value="l">L</option>
-      <option value="xxl">XXL</option>
-      <option value="m">M</option>
-      <!-- Add more size options as needed -->
-    </select>
-
-    <input type="number"  id="productCount" name="quantity[]" class="quantity-input" required>
-  </div>
-</div>
-
-<button type="button" onclick="addInputBoxes()">Add More</button>
-
-
-
-<script>
-function addInputBoxes() {
-  var container = document.getElementById("productDetailsContainer");
-
-  // Create a new set of size and quantity inputs
-  var newInputs = document.createElement("div");
-  newInputs.className = "product-inputs";
-
-  var sizeSelect = document.createElement("select");
-  sizeSelect.name = "size[]";
-  sizeSelect.className = "size-select";
-  sizeSelect.required = true;
-  var sizeOptions = ["XL", "L", "XXL", "M" ]; // Add more size options as needed
-  for (var i = 0; i < sizeOptions.length; i++) {
-    var option = document.createElement("option");
-    option.value = sizeOptions[i].toLowerCase();
-    option.text = sizeOptions[i];
-    sizeSelect.add(option);
-  }
-
-  var quantityInput = document.createElement("input");
-  quantityInput.type = "number";
-  quantityInput.name = "quantity[]";
-  quantityInput.className = "quantity-input";
-  quantityInput.required = true;
-
-  // Append size and quantity inputs to the new set
-  newInputs.appendChild(sizeSelect);
-  newInputs.appendChild(quantityInput);
-
-  // Append the new set to the container
-  container.appendChild(newInputs);
 }
-</script>
+.full{
 
-
-
-      {{!-- ***************************************************** --}}
-  {{!-- <select id="size" name="size" required>
-    {{#each newSize}}
-      <option value="{{_id}}">{{title}}</option>
-    {{/each}}
-</select>
-    <label for="color">color:</label>
-  <select id="color" name="color" required>
-    {{#each newColor}}
-      <option value="{{_id}}">{{title}}</option>
-    {{/each}}
-</select> --}}
-
-
+}
+label{
  
+ font-size: 30px;
 
-  <label for="category">Category:</label>
-  <select id="category" name="category" required>
+
+}
+.btn{
+  height: 40px;
+  width: 400px;
+  background-color: black;
+
+  border-radius: 30px;
+  color: wheat;
+  margin-left: 200px;
+  margin-top: 70px;
+  font-size: 18px;
+  border: 2px solid white;
+
+}
+.btn:hover{
+  border: solid black;
+
+background-color: white;
+color: black;
+font-weight: bolder;
+}
+input{
+  margin-top: 40px;
+   font-size: 30px;
+  height: 50px;
+ margin-left: 20px;
+  height: 50px;
+  text-align: center;
+    color: rgb(0, 0, 0);
+    border-radius: 40px;
+    font-size: larger;
+
+}
+.showsubcategory{
+  margin-left: 180px;
+  padding-top: 100px;
+}
+
+table{
+width: 1100px;
+text-align: center;
+border: 10px solid black;
+border-radius: 15px;
+}
+th{
+  height: 40px;
+  border: 2px solid black;
+  
+
+}
+td{
+  height: 120px;
+  width: 200px;
+   background-color: rgb(7, 7, 7);
+   color: white;
+  font-weight: bold;
+}
+.h{
+  margin-left: 1000px;
+  font-size: 30px;
+  margin-bottom: 10px;
+
+}
+.pic{
+  height: 150px;
+  width:150px;
+  overflow: hidden;
+  border: 2px solid green;
+
+      background-size: 0% ; /* Cover the entire container without black borders */
+      background-position: center; /* Center the image within the container */
+      background-repeat: no-repeat; /* Do not repeat the background */
+    }
+
+ .btn5{
+    height: 50px;
+    font-size: 18px;
+    width:80px;
+    background-color: rgb(245, 245, 245);
+    color: rgb(5, 5, 5);
+border-radius: 20px;
+  }
+  .btn5:hover{
+    background-color: black;
+    color: white;
+  }
+
+    </style>
+
+
+
+<div class="showsubcategory">
+<table>
+    {{#if subcategories.length}}
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Image</th>
+          <th>Delete</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each subcategories}}
+          <tr>
+            <td>{{title}}</td>
+            <td>{{description}}</td>
+            <td   ><img  class="pic" src="{{image.url}}" alt="{{title}} Image" style="max-width: 100px;"></td>
+            <td>
+                    <button class="btn5" onclick="deleteSubCategory('{{this._id}}')">Delete</button>
+                </td>
+                <td>
+                  
+                   <button class="btn5"> <a href="/admin/edit-subcategory?name={{this._id}}">Edit</a> </button> 
+
+                </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    {{else}}
+      <tr>
+        <td colspan="3">No subcategories found.</td>
+      </tr>
+    {{/if}}
+  </table>
+
+</div>
+
+</div>
+
+{{!-- -------------------------------------------------------------- --}}
+
+{{!-- {{#if categories.length}}
+  <ul>
     {{#each categories}}
-      <option value="{{_id}}">{{title}}</option>
+      <li>{{title}}</li>
+      <!-- Add other category details as needed -->
     {{/each}}
-  </select>
-
-
-
-     <label for="subcategory">SubCategory:</label>
-  <select id="subcategory" name="subcategory" required>
-    {{#each subcategories}}
-      <option value="{{_id}}">{{title}}</option>
-    {{/each}}
-
-
-
-  </select>
- 
- {{!-- <label for="image">Image:</label>
-  <input type="file" id="image" name="image" accept="image/*" required>
-
- <button type="button" id="uploadButton">Upload</button> --}}
-  <button type="submit">Add Product</button> 
-
-
-</form>
-
-{{/if}}
-
+  </ul>
+{{else}}
+  <p>No categories found.</p>
+{{/if}} --}}
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
     try {
-      const response = await axios.get('/vender/categories');
+      const response = await axios.get('/admin/categories');
       const categories = response.data.categories;
 
       if (categories.length) {
@@ -407,88 +346,39 @@ function addInputBoxes() {
   });
 </script>
 
-
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+{{!-- delete--}}
 <script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const responsed = await axios.get('/vender/subcategory');
-      const subcategories = responsed.data.subcategories;
-
-      if (subcategories.length) {
-        const subcategorySelect = document.getElementById('subcategory');
-
-        subcategories.forEach(subcategory => {
-          const option = document.createElement('option');
-          option.value = subcategory._id;
-          option.textContent = subcategory.title;
-          
-          subcategorySelect.appendChild(option);
-        });
-      } else {
-        console.error('No subcategories found.');
-      }
-    } catch (error) {
-      console.error('Error fetching subcategories:', error.message);
-    }
-  });
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const response = await axios.get('/vender/color');
-      const colors = response.data.newColor;
-
-      if (colors.length) {
-        const colorSelect = document.getElementById('color');
-
-        colors.forEach(color => {
-          const option = document.createElement('option');
-          option.value = color._id;
-          option.textContent = color.title;
-          colorSelect.appendChild(option);
-        });
-      } else {
-        console.error('No color found.');
-      }
-    } catch (error) {
-      console.error('Error fetching color:', error.message);
-    }
-  });
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const responsed = await axios.get('/vender/size');
-      const sizes = responsed.data.newSize;
-
-      if (sizes.length) {
-        const sizeSelect = document.getElementById('size');
-
-        sizes.forEach(size => {
-          const option = document.createElement('option');
-          option.value = size._id;
-          option.textContent = size.title;  
-          sizeSelect.appendChild(option);
-        });
-      } else {
-        console.error('No size found.');
-      }
-    } catch (error) {
-      console.error('Error fetching size:', error.message);
-    }
-  });
+  function deleteSubCategory(subcategoryId) {
+    axios.delete(`/admin/delete-subcategory/${subcategoryId}`)
+      .then((response) => {
+        if (response.status !== 200) {
+          throw new Error('Delete request failed');
+        } else {
+          window.location.href = "/admin/subcategories";
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 </script>
 
 
+                </div>
 
+                <div class="col-12 col-md-6">
+
+                   
+                    </div>
+                    <!-- / Icon Example-->
+
+                </div>
+            </div>
 
             <!-- Footer -->
             <footer class="  footer">
-                <p class="small text-muted m-0">  |  </p>
-                <p class="small text-muted m-0"> <a href="https://www.pixelrocket.store/"></a></p>
+                <p class="small text-muted m-0">All rights reserved | © 2021</p>
+                <p class="small text-muted m-0">Template created by <a href="https://www.pixelrocket.store/">PixelRocket</a></p>
             </footer>
             
             
@@ -754,10 +644,10 @@ function addInputBoxes() {
 
     <!-- Theme JS -->
     <!-- Vendor JS -->
-    <script src="/admin/vendor.bundle.js"></script>
+    <script src="/admin/js/vendor.bundle.js"></script>
     
     <!-- Theme JS -->
-    <script src="/admin/theme.bundle.js"></script>
+    <script src="/admin/assets/js/theme.bundle.js"></script>
 </body>
 
 </html>

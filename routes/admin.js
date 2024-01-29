@@ -10,7 +10,9 @@ const upload = multer.single("image");
 const HomepageController= require('../controllers/admin/Homepage');
 
 
-
+router.get('/blank',(req,res)=>{
+    res.render('admin/blank')
+})
 
 
 router.get('/index',(req,res)=>{

@@ -12,10 +12,18 @@
     <meta name="keywords" content="">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png">
-    <link rel="mask-icon" href="./assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
@@ -48,96 +56,87 @@
 </head>
 <body class="">
 
+    <!-- Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top bg-dark-800">
+      <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
+    
+          <!-- Menu Toggle-->
+          <div class="menu-toggle cursor-pointer me-4 text-primary-hover transition-color disable-child-pointer">
+            <i class="ri-menu-fold-line ri-lg fold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Close menu"></i>
+            <i class="ri-menu-unfold-line ri-lg unfold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
+              title="Open Menu"></i>
+          </div>
+          <!-- / Menu Toggle-->
+    
+          <!-- Navbar Actions-->
+          <div class="d-flex align-items-center">
+    
+            <!-- Search-->
+            <button class="btn-icon btn-hover-dark btn-search me-2">
+              <i class="ri-search-2-line align-bottom lh-1 text-body"></i>
+            </button>
+    
+            <!-- Search navbar overlay-->
+            <div class="navbar-search d-none">
+              <div class="input-group mb-3 h-100">
+                <span class="input-group-text px-4 bg-transparent"><i class="ri-search-line ri-lg"></i></span>
+                <input type="text" class="form-control text-body bg-transparent border-0" placeholder="Enter your search terms...">
+                <span class="input-group-text px-4 cursor-pointer disable-child-pointer close-search bg-transparent"><i class="ri-close-circle-line ri-lg text-primary"></i></span>
+              </div>
+            </div>
+            <!-- / Search navbar overlay-->
+    
+            <!-- / Search-->
+    
+            <!-- Region -->
+            <div class="dropdown me-2">
+              <button class="btn-icon btn-hover-dark" type="button" id="regionDropdown"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="flag-icon flag-icon-gb"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="regionDropdown">
+                
+              </ul>
+            </div>
+            <!-- /Region -->
+    
+            <!-- Language-->
+            <div class="dropdown me-2">
+              <button class="btn-icon btn-hover-dark" type="button" id="language"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="ri-global-line align-bottom text-body lh-1"></i>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language">
+                <li>
+                  <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">English 
+                    <span class="text-muted ms-5">EN</span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">French<span class="text-muted ms-5">FR</span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Espanol<span class="text-muted ms-5">ES</span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Turkish<span class="text-muted ms-5">TR</span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russian<span class="text-muted ms-5">RU</span></a></li>
+              </ul>
+            </div>
+            <!-- / Language-->
+    
+            <!-- Notifications-->
+            <a class="btn-icon btn-hover-dark position-relative p-2 disable-child-pointer" data-bs-toggle="offcanvas" href="#offcanvasNotifications" role="button"
+            aria-controls="offcanvasNotifications">
+              <i class="ri-notification-fill align-bottom text-body lh-1"></i>
+              <span class="badge bg-primary text-white position-absolute top-0 end-0">3</span>
+            </a>
+            <!-- / Notifications-->
+    
+          </div>
+          <!-- / Navbar Actions-->
+        
+        </div>
+      </div>
+    </nav>    <!-- / Navbar-->
+
     <!-- Page Content -->
     <main id="main">
-
-        <!-- Navbar-->
-        <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top bg-dark-800">
-          <div class="container-fluid">
-            <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
-        
-              <!-- Menu Toggle-->
-              <div class="menu-toggle cursor-pointer me-4 text-primary-hover transition-color disable-child-pointer">
-                <i class="ri-menu-fold-line ri-lg fold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
-                  title="Close menu"></i>
-                <i class="ri-menu-unfold-line ri-lg unfold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
-                  title="Open Menu"></i>
-              </div>
-              <!-- / Menu Toggle-->
-        
-              <!-- Navbar Actions-->
-              <div class="d-flex align-items-center">
-        
-                <!-- Search-->
-                <button class="btn-icon btn-hover-dark btn-search me-2">
-                  <i class="ri-search-2-line align-bottom lh-1 text-body"></i>
-                </button>
-        
-                <!-- Search navbar overlay-->
-                <div class="navbar-search d-none">
-                  <div class="input-group mb-3 h-100">
-                    <span class="input-group-text px-4 bg-transparent"><i class="ri-search-line ri-lg"></i></span>
-                    <input type="text" class="form-control text-body bg-transparent border-0" placeholder="Enter your search terms...">
-                    <span class="input-group-text px-4 cursor-pointer disable-child-pointer close-search bg-transparent"><i class="ri-close-circle-line ri-lg text-primary"></i></span>
-                  </div>
-                </div>
-                <!-- / Search navbar overlay-->
-        
-                <!-- / Search-->
-        
-                <!-- Region -->
-                <div class="dropdown me-2">
-                  <button class="btn-icon btn-hover-dark" type="button" id="regionDropdown"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="flag-icon flag-icon-gb"></span>
-                  </button>
-                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="regionDropdown">
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United Kingdom <span class="text-muted ms-5"><span class="flag-icon flag-icon-gb"></span></span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United States<span class="text-muted ms-5"><span class="flag-icon flag-icon-us"></span></span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Australia<span class="text-muted ms-5"><span class="flag-icon flag-icon-au"></span></span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Belgium<span class="text-muted ms-5"><span class="flag-icon flag-icon-be"></span></span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Canada<span class="text-muted ms-5"><span class="flag-icon flag-icon-ca"></span></span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">China <span class="text-muted ms-5"><span class="flag-icon flag-icon-cn"></span></span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Denmark <span class="text-muted ms-5"><span class="flag-icon flag-icon-dk"></span></span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">France<span class="text-muted ms-5"><span class="flag-icon flag-icon-fr"></span></span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Netherlands<span class="text-muted ms-5"><span class="flag-icon flag-icon-nl"></span></span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russia<span class="text-muted ms-5"><span class="flag-icon flag-icon-ru"></span></span></a></li>
-                  </ul>
-                </div>
-                <!-- /Region -->
-        
-                <!-- Language-->
-                <div class="dropdown me-2">
-                  <button class="btn-icon btn-hover-dark" type="button" id="language"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="ri-global-line align-bottom text-body lh-1"></i>
-                  </button>
-                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language">
-                    <li>
-                      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">English 
-                        <span class="text-muted ms-5">EN</span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">French<span class="text-muted ms-5">FR</span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Espanol<span class="text-muted ms-5">ES</span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Turkish<span class="text-muted ms-5">TR</span></a></li>
-                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russian<span class="text-muted ms-5">RU</span></a></li>
-                  </ul>
-                </div>
-                <!-- / Language-->
-        
-                <!-- Notifications-->
-                <a class="btn-icon btn-hover-dark position-relative p-2 disable-child-pointer" data-bs-toggle="offcanvas" href="#offcanvasNotifications" role="button"
-                aria-controls="offcanvasNotifications">
-                  <i class="ri-notification-fill align-bottom text-body lh-1"></i>
-                  <span class="badge bg-primary text-white position-absolute top-0 end-0">3</span>
-                </a>
-                <!-- / Notifications-->
-        
-              </div>
-              <!-- / Navbar Actions-->
-            
-            </div>
-          </div>
-        </nav>        <!-- / Navbar-->
 
         <!-- Content-->
         <section class="container-fluid">
@@ -145,63 +144,101 @@
             <!-- Breadcrumbs-->
             <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Dashboard</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Blank Page</li>
+                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> catagoryList</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Category Details</li>
                 </ol>
             </nav>            <!-- / Breadcrumbs-->
 
-            <!-- Page Title-->
-          
-            <!-- / Page Title-->
+        
 
-
-            <div class="card mb-4">
-            
-
-
+           
+ 
 <style>
-  .clr{
-    background-color: rgb(198, 157, 231);
+  .x{
+background-color: rgba(12, 12, 12, 0.041);
   }
-  .edit{
-    background-color: rgba(140, 142, 184, 0.921);
-    margin-left: 650px;
-    margin-top: -10px;
-    border: rgb(221, 222, 221);
+ 
+  table{border-collapse:collapse;
+    margin-left: 500px;
+    border: 10px solid rgb(2, 2, 2) ;
+       background-color: rgb(156, 21, 21);
+align-items: center;
+  }
+  th{border-collapse:collapse;
+    background-color: rgb(0, 0, 0);
+    color: rgb(247, 243, 243);
+    height: 50px;
+  }
+  td{border-collapse:collapse;
+  
+        border: 1px solid rgb(25, 13, 13);
+        background-color: rgb(0, 0, 0);
+        font-weight: bold;
+    color: rgb(255, 255, 255);
+height: 50px;
+width: 250px;
+text-align: center;
+border-radius: 2px;
+
+
+  }
+  .btn5{
+    height: 50px;
+    font-size: 18px;
+    width:80px;
+    background-color: rgb(245, 245, 245);
+    color: rgb(5, 5, 5);
+border-radius: 20px;
+  }
+  .x{
+    padding-top: 180px;
+  }
+  .h{ color: white;
+    margin-left: 1020px;
+    margin-bottom: 30px;
+    font-size: 42px;
     
   }
+  
 </style>
-<body class="clr">
-    <title>Add Product</title>
-        <link rel="stylesheet" href="productAdd.css">
+{{!-- ----------------------------------------------------------   --}}
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <!-- Button trigger modal -->
+<button type="button" style="background-color: white;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Add Product
+</button>
 
+<!-- Modal -->
+       <form style="background-color: transparent !important;border:white" class="clr" action="/vender/productAdd" method="POST" enctype="multipart/form-data" >
 
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
 
-
-
-
-
-   {{#if prod }}
-
-<form class="edit" action="/vender/edit-product/{{prod._id}}" method="POST">  
+        {{!-- ----------------------------------------   --}}
 
   <label for="productName">Product Name:</label>
-  <input type="text" id="productName" name="productname" value="{{prod.productname}}" required>
+  <input type="text" id="productName" name="productname" required>
 
 
 
   <label for="manufactureName">Manufacture Name:</label>
-  <input type="text" id="manufactureName" name="manufacturename"  value="{{prod.manufacturename}}" required>
+  <input type="text" id="manufactureName" name="manufacturename" required>
   <br>
 
     <br>
    
 
-
   <label for="manufactureBrand">Manufacture Brand:</label>
-  <input type="text" id="manufactureBrand" name="brand"   value="{{prod.brand}}" required>
+  <input type="text" id="manufactureBrand" name="brand" required>
+
 
 
   <label for="productPrice">Product Price:</label>
@@ -336,7 +373,9 @@ function addInputBoxes() {
 
 
       {{!-- ***************************************************** --}}
-  {{!-- <select id="size" name="size" required>
+{{!-- 
+  <label for="size">size:</label>
+  <select id="size" name="size" required>
     {{#each newSize}}
       <option value="{{_id}}">{{title}}</option>
     {{/each}}
@@ -369,17 +408,30 @@ function addInputBoxes() {
 
 
   </select>
- 
- {{!-- <label for="image">Image:</label>
+
+
+
+ <label for="image">Image:</label>
   <input type="file" id="image" name="image" accept="image/*" required>
 
- <button type="button" id="uploadButton">Upload</button> --}}
-  <button type="submit">Add Product</button> 
+  {{!-- <button type="button" id="uploadButton">Upload</button> --}}
+  <button type="submit">Add Product</button>
 
 
-</form>
+{{!-- ----------------------  --}}
+    
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+            
+  
+  </div>
+</div>
+  </form>
 
-{{/if}}
 
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -433,74 +485,172 @@ function addInputBoxes() {
     }
   });
 </script>
+{{!-- -----------------------------------------------------------------------------------------   --}}
+   
+    <div class="row ">
+                <div class="col-6 col-md-6">
+<style>
+  
+  th{border-collapse:collapse;
+    background-color:transparent;
+    height: 60px;
+    color: azure;
+    border: 1px solid rgb(255, 255, 255);
+  }
+  tr{
+border-collapse:collapse;
+    border: 1px solid rgb(249, 249, 249);
+    background-color:transparent;
+    
+      }
+
+    
+  td{border-collapse:collapse;
+        border: 1px solid rgb(245, 245, 245);
+        text-align: center;
+    background-color: transparent;
+    
+
+  }
+  table{border-collapse:collapse;
+    border-radius: 30px;
+            border: 1px solid rgb(255, 255, 255);
+                background-color: transparent;
+color: aliceblue;
+align-items: center;
+
+
+  }
+  thead{
+             
+
+
+  }
+  .button1{
+    height: 34px;
+    width: 65px;
+    background-color: rgb(254, 254, 254);
+  }
+  .heading{
+    color: rgb(255, 255, 255);
+    font-size: 36px;
+    padding-bottom: 10px;
+    
+  }
+  .button2{
+       height: 34px;
+    width: 65px;
+    background-color: rgb(252, 252, 252);
+  }
+</style>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+{{!-- ------------------------------------------------------------------------------------------------------- --}}
+<h1 class="heading">Product Details</h1>
+
+<div class="container table-responsive py-5" > 
+<table class="table  table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+        {{!-- <th scope="col">#</th> --}}
+
+      <th scope="col">Product Name</th>
+      <th scope="col">Manufacture Name</th>
+      <th scope="col">Brand</th>
+      {{!-- <th scope="col">Handle</th> --}}
+       <th scope="col">Price</th>
+      <th scope="col">Description</th>
+      <th scope="col">Category</th>
+      <th scope="col">Subcategory</th>
+      <th scope="col">Image</th>
+      <th scope="col">Delete</th>
+     <th scope="col">Edit</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+        {{#each products}}
+
+    <tr>
+            {{!-- <th scope="row">1</th> --}}
+         <td>{{this.productname}}</td>
+        <td>{{this.manufacturename}}</td>
+        <td>{{this.brand}}</td>
+        <td>{{this.price}}</td>
+        <td>{{this.description}}</td>
+        <td>{{this.category.title}}</td>
+        <td>{{this.subcategory.title}}</td>
+        <td>
+          <img src="{{this.image.url}}" alt="{{this.productname}} Image" style="max-width: 140px; height: auto;">
+        </td>
+        <td>
+    <div class="product">
+      {{!-- <p>{{this.productname}}</p> --}}
+      <button class="button1" onclick="deleteProduct( '{{this.productname}}')">Delete</button>
+    </div>
+             <td>   <button class="button2">
+          <a href="/vender/edit-product?name={{this._id}}">Edit</a>
+
+          </button></td>
+
+
+     
+
+    </tr>
+        {{/each}}
+
+  </tbody>
+</table>
+
+{{!-- ----------------------------------  --}}
+ {{#if successMessage}}
+        <script>
+            window.onload = function() {
+                alert('{{successMessage}}');
+            };
+        </script>
+    {{/if}}
+{{!-- --------------------------------------------------------------------------------------------- --}}
 
 <script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const response = await axios.get('/vender/color');
-      const colors = response.data.newColor;
-
-      if (colors.length) {
-        const colorSelect = document.getElementById('color');
-
-        colors.forEach(color => {
-          const option = document.createElement('option');
-          option.value = color._id;
-          option.textContent = color.title;
-          colorSelect.appendChild(option);
-        });
-      } else {
-        console.error('No color found.');
-      }
-    } catch (error) {
-      console.error('Error fetching color:', error.message);
-    }
-  });
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const responsed = await axios.get('/vender/size');
-      const sizes = responsed.data.newSize;
-
-      if (sizes.length) {
-        const sizeSelect = document.getElementById('size');
-
-        sizes.forEach(size => {
-          const option = document.createElement('option');
-          option.value = size._id;
-          option.textContent = size.title;  
-          sizeSelect.appendChild(option);
-        });
-      } else {
-        console.error('No size found.');
-      }
-    } catch (error) {
-      console.error('Error fetching size:', error.message);
-    }
-  });
+  function deleteProduct(productId) {
+    axios.delete(`/vender/delete/product/${productId}`)
+      .then((response) => {
+        if (response.status !== 200) {
+          throw new Error('Delete request failed');
+        } else {
+          window.location.href = "/vender/productdetails";
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 </script>
 
 
+{{!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  --}}
 
+
+
+
+{{!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
 
             <!-- Footer -->
             <footer class="  footer">
-                <p class="small text-muted m-0">  |  </p>
-                <p class="small text-muted m-0"> <a href="https://www.pixelrocket.store/"></a></p>
+                <p class="small text-muted m-0"></p>
+                <p class="small text-muted m-0"><a href="https://www.pixelrocket.store/"></a></p>
             </footer>
             
             
             <!-- Sidebar Menu Overlay-->
             <div class="menu-overlay-bg"></div>
-            <!-- / Sidebar Menu Overlay-->
-            
-            <!-- Modal Imports-->
-            <!-- Place your modal imports here-->
-            
-            <!-- Default Example Modal Import-->
-            <!-- Modal -->
+          
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -556,7 +706,7 @@ function addInputBoxes() {
                 <div class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3">
                   <div class="position-relative mt-1 ">
                     <picture class="avatar avatar-sm">
-                      <img src="./assets/images/profile-small-2.jpeg"
+                      <img src="/profile-small-2.jpeg"
                         alt="HTML Bootstrap Admin Template by Pixel Rocket">
                     </picture>
                     <span
@@ -574,7 +724,7 @@ function addInputBoxes() {
                 <div class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3">
                   <div class="position-relative mt-1 ">
                     <picture class="avatar avatar-sm">
-                      <img src="./assets/images/profile-small-3.jpeg"
+                      <img src="/profile-small-3.jpeg"
                         alt="HTML Bootstrap Admin Template by Pixel Rocket">
                     </picture>
                     <span
@@ -592,7 +742,7 @@ function addInputBoxes() {
                 <div class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3">
                   <div class="position-relative mt-1 ">
                     <picture class="avatar avatar-sm">
-                      <img src="./assets/images/profile-small-4.jpeg"
+                      <img src="/profile-small-4.jpeg"
                         alt="HTML Bootstrap Admin Template by Pixel Rocket">
                     </picture>
                     <span
@@ -646,7 +796,7 @@ function addInputBoxes() {
                     <div class="border-bottom pt-3 pb-5 mb-6 d-flex flex-column align-items-center">
                         <div class="position-relative">
                             <picture class="avatar avatar-profile">
-                                <img class="avatar-profile-img" src="./assets/images/profile-small.jpeg"
+                                <img class="avatar-profile-img" src="/profile-small.jpeg"
                                   alt="HTML Bootstrap Admin Template by Pixel Rocket">
                             </picture>
                             <span class="dot bg-success avatar-dot"></span>

@@ -27,7 +27,7 @@ let loginvender = async (req, res) => {
 
             res.cookie('token', token, options);
 
-            return res.redirect('/vender/main');
+            return res.redirect('/vender/productlist');
         } else {
             return res.status(401).json({ message: 'Invalid email or password' });
             // res.redirect('/vender/login')

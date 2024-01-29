@@ -25,10 +25,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS -->
-    <link rel="stylesheet" href="./assets/css/libs.bundle.css" />
+    <link rel="stylesheet" href="/admin/libs.bundle.css" />
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="./assets/css/theme.bundle.css" />
+    <link rel="stylesheet" href="/admin/theme.bundle.css" />
 
     <!-- Fix for custom scrollbar if JS is disabled-->
     <noscript>
@@ -43,7 +43,7 @@
     </noscript>
 
     <!-- Page Title -->
-    <title>Kavlan | Bootstrap 5 HTML Admin Dashboard</title>
+    <title></title>
     
 </head>
 <body class="">
@@ -151,31 +151,161 @@
             </nav>            <!-- / Breadcrumbs-->
 
             <!-- Page Title-->
-            <h2 class="fs-4 mb-2">Blank page</h2>
-            <p class="mb-4">Use this page as your starting point for your own custom pages.</p>
+          
             <!-- / Page Title-->
 
 
             <div class="card mb-4">
-                <div class="card-header justify-content-between align-items-center d-flex">
-                    <h6 class="card-title m-0">Section title</h6>
-                    <div class="dropdown">
-                        <button class="btn btn-link dropdown-toggle dropdown-toggle-icon fw-bold p-0" type="button"
-                            id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="ri-more-2-line"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown" aria-labelledby="dropdownMenuButton1">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p>Click on the ellipse icon in the top right corner of this card to see a dropdown example
-                        integrated with the card header title.</p>
-                </div>
-            </div>
+            
+<style>
+ 
+  th{border-collapse:collapse;
+    background-color:transparent;
+    height: 60px;
+    color: azure;
+    border: 1px solid rgb(255, 255, 255);
+  }
+  tr{
+border-collapse:collapse;
+    border: 1px solid rgb(249, 249, 249);
+    background-color:transparent;
+    
+      }
+
+    
+  td{border-collapse:collapse;
+        border: 1px solid rgb(245, 245, 245);
+        text-align: center;
+    background-color: transparent;
+    
+
+  }
+  table{border-collapse:collapse;
+    border-radius: 30px;
+            border: 1px solid rgb(255, 255, 255);
+                background-color: transparent;
+color: aliceblue;
+align-items: center;
+height: 500px;
+
+  }
+  thead{
+             
+
+
+  }
+  .button1{
+    height: 34px;
+    width: 65px;
+    background-color: rgb(254, 254, 254);
+  }
+  .heading{
+    color: rgb(255, 255, 255);
+    font-size: 36px;
+    padding-bottom: 10px;
+    
+  }
+  .button2{
+       height: 34px;
+    width: 65px;
+    background-color: rgb(252, 252, 252);
+  }
+</style>
+
+
+
+<div class="bodysec">
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+{{!-- ------------------------------------------------------------------------------------------------------- --}}
+<h1 class="heading">Product Details</h1>
+
+<div class="container table-responsive py-5" > 
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+        {{!-- <th scope="col">#</th> --}}
+
+      <th scope="col">Product Name</th>
+      <th scope="col">Manufacture Name</th>
+      <th scope="col">Brand</th>
+      {{!-- <th scope="col">Handle</th> --}}
+       <th scope="col">Price</th>
+      <th scope="col">Description</th>
+      <th scope="col">Category</th>
+      <th scope="col">Subcategory</th>
+      <th scope="col">Image</th>
+      <th scope="col">Delete</th>
+     <th scope="col">Edit</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+        {{#each products}}
+
+    <tr>
+            {{!-- <th scope="row">1</th> --}}
+         <td>{{this.productname}}</td>
+        <td>{{this.manufacturename}}</td>
+        <td>{{this.brand}}</td>
+        <td>{{this.price}}</td>
+        <td>{{this.description}}</td>
+        <td>{{this.category.title}}</td>
+        <td>{{this.subcategory.title}}</td>
+        <td>
+          <img src="{{this.image.url}}" alt="{{this.productname}} Image" style="max-width: 140px; height: auto;">
+        </td>
+        <td>
+    <div class="product">
+      {{!-- <p>{{this.productname}}</p> --}}
+      <button class="button1" onclick="deleteProduct( '{{this.productname}}')">Delete</button>
+    </div>
+             <td>   <button class="button2">
+          <a href="/vender/edit-product?name={{this._id}}">Edit</a>
+
+          </button></td>
+
+
+     
+
+    </tr>
+        {{/each}}
+
+  </tbody>
+</table>
+</div>
+{{!-- ----------------------------------  --}}
+ {{#if successMessage}}
+        <script>
+            window.onload = function() {
+                alert('{{successMessage}}');
+            };
+        </script>
+    {{/if}}
+{{!-- --------------------------------------------------------------------------------------------- --}}
+
+<script>
+  function deleteProduct(productId) {
+    axios.delete(`/vender/delete/product/${productId}`)
+      .then((response) => {
+        if (response.status !== 200) {
+          throw new Error('Delete request failed');
+        } else {
+          window.location.href = "/vender/productdetails";
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+</script>
+
+
+
+
+
 
             <!-- Footer -->
             <footer class="  footer">
@@ -446,10 +576,10 @@
 
     <!-- Theme JS -->
     <!-- Vendor JS -->
-    <script src="./assets/js/vendor.bundle.js"></script>
+    <script src="/admin/vendor.bundle.js"></script>
     
     <!-- Theme JS -->
-    <script src="./assets/js/theme.bundle.js"></script>
+    <script src="/admin/theme.bundle.js"></script>
 </body>
 
 </html>
