@@ -51,13 +51,17 @@ button {
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
+    border: 2px solid white;
+    font-weight: bolder;
     cursor: pointer;
-    border-radius: 40%;
-    width: 10%;
+    font-size: 20px;
+    border-radius: 25px;
+    width: 160px;
+    height: 40%;
     display: inline-block;
 }
 
-button:hover {
+button:hover     {
     background-color: #070907;
 }
 
@@ -110,4 +114,8 @@ button:hover {
 .upload-btn-wrapper:hover .btn {
     border-color: #45a049;
     color: #45a049;
+}
+.colors{
+    display: flex;
+    flex-direction: row;
 }

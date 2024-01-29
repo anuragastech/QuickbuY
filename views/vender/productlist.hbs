@@ -222,7 +222,7 @@ border-radius: 20px;
 {{!-- ----------------------------------------------------------   --}}
 
         <!-- Button trigger modal -->
-<button type="button" style="background-color: rgb(252, 252, 252); width: 300px;margin-left: 900px;"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+<button type="button" style="background-color: rgb(252, 252, 252);font-size: 25px; width: 300px;margin-left: 900px;"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
   Add Product
 </button>
 
@@ -233,7 +233,7 @@ border-radius: 20px;
   <div class="modal-dialog modal-dialog-centered bg-dark modal-xl  " role="document">
     <div class="modal-content">
       <div class="modal-header bg-dark text-white">
-        <h5 class="modal-title "  id="exampleModalLongTitle">Add Product</h5>
+        <h5 class="modal-title  text-5"  id="exampleModalLongTitle">Add Product</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -270,53 +270,20 @@ border-radius: 20px;
 
 
 
+
 <label for="productColor">Product Color:</label>
-<div id="colorOptions">
-  <input type="checkbox" id="red" name="color" value="red">
-  <label for="red" class="color-dot red-dot"></label>
 
-  <input type="checkbox" id="blue" name="color" value="blue">
-  <label for="blue" class="color-dot blue-dot"></label>
+<select name="color"  id="productColor">
+  <option  value="red"><span class="color-dot red-dot"></span>Red</option>
+  <option value="blue"><span class="color-dot blue-dot"></span>Blue</option>
+  <option value="green"><span class="color-dot green-dot"></span>Green</option>
+  <option value="yellow"><span class="color-dot yellow-dot"></span>Yellow</option>
+  <option value="pink"><span class="color-dot pink-dot"></span>Pink</option>
+  <option value="rose"><span class="color-dot rose-dot"></span>Rose</option>
+  <option value="black"><span class="color-dot black-dot"></span>Black</option>
+  <option value="white"><span class="color-dot white-dot"></span>White</option>
+</select>
 
-  <input type="checkbox" id="green" name="color" value="green">
-  <label for="green" class="color-dot green-dot"></label>
-
-  <input type="checkbox" id="yellow" name="color" value="yellow">
-  <label for="yellow" class="color-dot yellow-dot"></label>
-
-  <input type="checkbox" id="pink" name="color" value="pink">
-  <label for="pink" class="color-dot pink-dot"></label>
-
-  <input type="checkbox" id="rose" name="color" value="rose">
-  <label for="rose" class="color-dot rose-dot"></label>
-
-  <input type="checkbox" id="black" name="color" value="black">
-  <label for="black" class="color-dot black-dot"></label>
-
-  <input type="checkbox" id="white" name="color" value="white">
-  <label for="white" class="color-dot white-dot"></label>
-</div>
-
-<style>
-  .color-dot {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 5px;
-    border: 1px solid #000;
-    cursor: pointer;
-  }
-
-  .red-dot { background-color: red; }
-  .blue-dot { background-color: blue; }
-  .green-dot { background-color: green; }
-  .yellow-dot { background-color: yellow; }
-  .pink-dot { background-color: pink; }
-  .rose-dot { background-color: #ff66b2; }
-  .black-dot { background-color: black; color: white; }
-  .white-dot { background-color: white; border: 1px solid #000; }
-</style>
 
 <script>
   // Optional: You can add JavaScript logic to handle color selection events
@@ -336,20 +303,26 @@ border-radius: 20px;
 
 <div id="productDetailsContainer">
   <!-- Initially, there is one set of size and quantity inputs -->
-  <div class="product-inputs">
-    <select name="size[]" class="size-select" required>
+  <div class="product-inputs " style="display: flex;flex-direction: row;" >
+
+  
+    <select  name="size"  style="width: 320px;" class="size-select" required>
       <option value="xl">XL</option>
       <option value="l">L</option>
       <option value="xxl">XXL</option>
       <option value="m">M</option>
       <!-- Add more size options as needed -->
     </select>
+    <br>
 
-    <input type="number"  id="productCount" name="quantity[]" class="quantity-input" required>
+    <input  style="margin-top: 5px;margin-left: 320px ;width: 320px;" type="number"  id="productCount" name="quantity[]" class="quantity-input" required>
+    <br>
   </div>
 </div>
-
-<button type="button" onclick="addInputBoxes()">Add More</button>
+<br>
+<button  type="button" onclick="addInputBoxes()">Add More</button>
+<br>
+<br>
 
 
 
@@ -362,6 +335,10 @@ function addInputBoxes() {
   newInputs.className = "product-inputs";
 
   var sizeSelect = document.createElement("select");
+
+  sizeSelect.style.width = "320px"; 
+        sizeSelect.style.marginTop = "5px"; 
+
   sizeSelect.name = "size[]";
   sizeSelect.className = "size-select";
   sizeSelect.required = true;
@@ -374,6 +351,13 @@ function addInputBoxes() {
   }
 
   var quantityInput = document.createElement("input");
+
+   quantityInput.style.width = "320px"; 
+   quantityInput.style.marginLeft = "320px"; 
+      quantityInput.style.marginTop = "5px"; 
+
+
+
   quantityInput.type = "number";
   quantityInput.name = "quantity[]";
   quantityInput.className = "quantity-input";
