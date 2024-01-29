@@ -11,7 +11,7 @@ const venderControllers = require('../controllers/vender/loginVender');
 const { authenticateJWT } = require("../middleware/authmiddleware");
 const productControllers = require('../controllers/vender/AddProductpage');
 
-// const otherControllers = require('../controllers/vender/Others');
+const otherControllers = require('../controllers/vender/Others');
 
 
 
@@ -40,7 +40,13 @@ router.get("/logout",authenticateJWT,venderControllers.logout )
 
 
 
+router.get('/index', (req, res) => {
+  return res.render('vender/index');
+});
 
+router.get('/vender-profile', (req, res) => {
+  return res.render('vender/vender-profile');
+});
 
 
 
@@ -64,7 +70,7 @@ router.get('/home', (req, res) => {
   return res.render('vender/home');
 });
 
-
+router.post('/vender-profile',otherControllers.userprofile)
 
 router.get('/categories',authenticateJWT, getcatasubController.getcategory)
   

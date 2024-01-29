@@ -18,7 +18,6 @@
     <link rel="mask-icon" href="./assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-<link rel="stylesheet" href="/vender/productAdd.css">
 
     <!-- Google Font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -146,8 +145,8 @@
             <!-- Breadcrumbs-->
             <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Edit Page</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Edit Product</li>
+                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Blank Page</li>
                 </ol>
             </nav>            <!-- / Breadcrumbs-->
 
@@ -158,282 +157,103 @@
 
             <div class="card mb-4">
             
-
-
-<style>
-  .clr{
-    background-color: rgb(198, 157, 231);
-  }
-  .edit{
-    background-color: rgba(140, 142, 184, 0.921);
-    margin-left: 650px;
-    margin-top: -10px;
-    border: rgb(221, 222, 221);
-    
-  }
-</style>
-<body class="clr">
-    <title>Add Product</title>
-        <link rel="stylesheet" href="productAdd.css">
-
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-
-
-
-
-
-
-   {{#if prod }}
-
- <form style="background-color: transparent !important;border:rgb(0, 0, 0)" class="clr" action="/vender/productAdd" method="POST" enctype="multipart/form-data" >
-
-  <label for="productName">Product Name:</label>
-  <input type="text" id="productName" name="productname"   value="{{prod.productname}}" required>
-
-
-
-  <label for="manufactureName">Manufacture Name:</label>
-  <input type="text" id="manufactureName" name="manufacturename" value="{{prod.manufacturename}}" required>
-  <br>
-
-    <br>
-   
-
-  <label for="manufactureBrand">Manufacture Brand:</label>
-  <input type="text" id="manufactureBrand" name="brand"  value="{{prod.brand}}"  required>
-
-
-
-  <label for="productPrice">Product Price:</label>
-  <input type="number" id="productPrice" name="price"  value="{{prod.price}}" required>
-
-  <label for="productDescription">Product Description:</label>
-  <textarea id="productDescription" name="description" value="{{prod.description}}"  required></textarea>
-
-  {{!-- <label for="productDescription"> size  :</label>
-  <textarea id="productDescription" name="description" required></textarea> --}}
-
-
-
-
-<label for="productColor">Product Color:</label>
-
-<select name="color"   id="productColor">
-  <option  value="red"><span class="color-dot red-dot"></span>Red</option>
-  <option value="blue"><span class="color-dot blue-dot"></span>Blue</option>
-  <option value="green"><span class="color-dot green-dot"></span>Green</option>
-  <option value="yellow"><span class="color-dot yellow-dot"></span>Yellow</option>
-  <option value="pink"><span class="color-dot pink-dot"></span>Pink</option>
-  <option value="rose"><span class="color-dot rose-dot"></span>Rose</option>
-  <option value="black"><span class="color-dot black-dot"></span>Black</option>
-  <option value="white"><span class="color-dot white-dot"></span>White</option>
-</select>
-
-
-<script>
-  // Optional: You can add JavaScript logic to handle color selection events
-  document.getElementById('colorOptions').addEventListener('change', function(event) {
-    if (event.target.type === 'checkbox') {
-      // Handle color selection logic here
-      console.log('Selected color:', event.target.value);
-    }
-  });
-</script>
-
-  {{!-- <label for="productCount">Product Count:</label>
-  <input type="number" id="productCount" name="count" value="0" required> --}}
-
-
-  <label for="productDetails">Product Details:</label>
-
-<div id="productDetailsContainer">
-  <!-- Initially, there is one set of size and quantity inputs -->
-  <div class="product-inputs " style="display: flex;flex-direction: row;" >
-
-  
-    <select  name="size"  style="width: 320px;" class="size-select" required>
-      <option value="xl">XL</option>
-      <option value="l">L</option>
-      <option value="xxl">XXL</option>
-      <option value="m">M</option>
-      <!-- Add more size options as needed -->
-    </select>
-    <br>
-
-    <input  value="{{prod.quantity}}" style="margin-left: 50px ;width: 320px;" type="number"  id="productCount" name="quantity[]" class="quantity-input" required>
-    <br>
-  </div>
-</div>
-<br>
-<button  type="button" onclick="addInputBoxes()">Add More</button>
-<br>
-<br>
-
-
-
-<script>
-function addInputBoxes() {
-  var container = document.getElementById("productDetailsContainer");
-
-  // Create a new set of size and quantity inputs
-  var newInputs = document.createElement("div");
-  newInputs.className = "product-inputs";
-
-  var sizeSelect = document.createElement("select");
-
-  sizeSelect.style.width = "320px"; 
-        sizeSelect.style.marginTop = "5px"; 
-
-  sizeSelect.name = "size[]";
-  sizeSelect.className = "size-select";
-  sizeSelect.required = true;
-  var sizeOptions = ["XL", "L", "XXL", "M" ]; // Add more size options as needed
-  for (var i = 0; i < sizeOptions.length; i++) {
-    var option = document.createElement("option");
-    option.value = sizeOptions[i].toLowerCase();
-    option.text = sizeOptions[i];
-    sizeSelect.add(option);
-  }
-
-  var quantityInput = document.createElement("input");
-
-   quantityInput.style.width = "320px"; 
-   quantityInput.style.marginLeft = "50px"; 
-      quantityInput.style.marginTop = "5px"; 
-
-
-
-  quantityInput.type = "number";
-  quantityInput.name = "quantity[]";
-  quantityInput.className = "quantity-input";
-  quantityInput.required = true;
-
-  // Append size and quantity inputs to the new set
-  newInputs.appendChild(sizeSelect);
-  newInputs.appendChild(quantityInput);
-
-  // Append the new set to the container
-  container.appendChild(newInputs);
+  <style>
+.full{
+  padding-top: 200px;
+  margin-left: 150px;
 }
-</script>
 
-
-
-      {{!-- ***************************************************** --}}
-{{!-- 
-  <label for="size">size:</label>
-  <select id="size" name="size" required>
-    {{#each newSize}}
-      <option value="{{_id}}">{{title}}</option>
-    {{/each}}
-</select>
-    <label for="color">color:</label>
-  <select id="color" name="color" required>
-    {{#each newColor}}
-      <option value="{{_id}}">{{title}}</option>
-    {{/each}}
-</select> --}}
-
-
+    .x{
+      padding-top: 60px;
+    
+      margin-left: 550px;
+      background-color: rgb(14, 14, 14);
+      width: 800px;
+      height: 500px;
+      border-radius: 40px;
+      border: 15px solid rgb(228, 224, 224);
+    }
+    label{
  
-
-  <label for="category">Category:</label>
-  <select id="category" name="category" required>
-    {{#each categories}}
-      <option value="{{_id}}">{{title}}</option>
-    {{/each}}
-  </select>
+ font-size: 30px;
 
 
+}
+.btn{
 
-     <label for="subcategory">SubCategory:</label>
-  <select id="subcategory" name="subcategory" required>
-    {{#each subcategories}}
-      <option value="{{_id}}">{{title}}</option>
-    {{/each}}
+  height: 40px;
+  width: 400px;
+  background-color: black; 
+
+  border-radius: 30px;
+  color: wheat;
+  margin-left: 200px;
+  margin-top: 70px;
+  font-size: 18px;
+  border: 2px solid white;
+
+}
+.btn:hover{
+  border: solid black;
+
+background-color: white;
+color: black;
+font-weight: bolder;
+}
+input{
+  margin-top: 40px;
+   font-size: 30px;
+  height: 50px;
+ margin-left: 20px;
+  height: 50px;
+  text-align: center;
+    color: rgb(0, 0, 0);
+    border-radius: 40px;
+    font-size: larger;
+
+}
+.frml{
+  {
+    border: 12px solid rgb(2, 2, 2) ;
+       background-color: rgb(156, 21, 21);
+   
+align-items: center;
+  }
+}
+  </style>
 
 
-
-  </select>
-
-
-
- <label for="image">Image:</label>
-  <input type="file" id="image" name="image" accept="image/*" required>
-
-  {{!-- <button type="button" id="uploadButton">Upload</button>  --}}
-   <button  style="margin-left: 700px; border: 4px solid white;" type="submit">Add Product</button>
-
-
-{{!-- ----------------------  --}}
+<div class="x">
     
-    
-  </form>
 
 
-{{/if}}
 
+   
+       <form class="frml" action="/admin/HomepageController" method="POST"  enctype="multipart/form-data">
+        <label for="h1">Title:</label>
+        <input type="text" id="title" name="h1" required> 
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const response = await axios.get('/vender/categories');
-      const categories = response.data.categories;
+          <label for="h2">Title:</label>
+        <input type="text" id="title" name="h2" required> 
 
-      if (categories.length) {
-        const categorySelect = document.getElementById('category');
+      
+<label for="image">Choose an image:</label>
+   <input type="file" name="image">  
 
-        categories.forEach(category => {
-          const option = document.createElement('option');
-          option.value = category._id;
-          option.textContent = category.title;
-          categorySelect.appendChild(option);
-        });
-      } else {
-        console.error('No categories found.');
-      }
-    } catch (error) {
-      console.error('Error fetching categories:', error.message);
-    }
-  });
-</script>
+{{!-- <label for="image">Choose an image:</label>
+   <input type="file" name="image1">   --}}
 
+    <button class="btn" type="submit">submit</button>
+        
+    </form>
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const responsed = await axios.get('/vender/subcategory');
-      const subcategories = responsed.data.subcategories;
-
-      if (subcategories.length) {
-        const subcategorySelect = document.getElementById('subcategory');
-
-        subcategories.forEach(subcategory => {
-          const option = document.createElement('option');
-          option.value = subcategory._id;
-          option.textContent = subcategory.title;
-          
-          subcategorySelect.appendChild(option);
-        });
-      } else {
-        console.error('No subcategories found.');
-      }
-    } catch (error) {
-      console.error('Error fetching subcategories:', error.message);
-    }
-  });
-</script>
-
-
+</div>
 
 
 
             <!-- Footer -->
             <footer class="  footer">
-                <p class="small text-muted m-0">  |  </p>
+                <p class="small text-muted m-0"> | </p>
                 <p class="small text-muted m-0"> <a href="https://www.pixelrocket.store/"></a></p>
             </footer>
             
@@ -633,7 +453,7 @@ function addInputBoxes() {
     
                         <!-- Dashboard Menu Section-->
                         <li class="menu-section">Menu</li>
-                        <li class="menu-item"><a class="d-flex align-items-center menu-link" href="index"><i
+                        <li class="menu-item"><a class="d-flex align-items-center menu-link" href="./index.html"><i
                                     class="ri-home-4-line me-3"></i> <span>Dashboard</span></a></li>
                         <!-- / Dashboard Menu Section-->
     
@@ -645,19 +465,19 @@ function addInputBoxes() {
                                 <span>Components</span></a>
                             <div class="collapse" id="collapseMenuItemUI">
                                 <ul class="submenu">
-                                    <li><a class="submenu-link" href="productlist">Productlist</a></li>
-                                    <li><a class="submenu-link" href="vender-profile">Vender-Profile</a></li>
-                                    <li><a class="submenu-link" href=""></a></li>
-                                    {{!-- <li><a class="submenu-link" href="">Button</a></li>
-                                    <li><a class="submenu-link" href="">Card</a></li>
-                                    <li><a class="submenu-link" href="">Collapse</a></li>
-                                    <li><a class="submenu-link" href="">Dropdown</a></li>
-                                    <li><a class="submenu-link" href="">Modal</a></li>
-                                    <li><a class="submenu-link" href="">Offcanvas</a></li>
-                                    <li><a class="submenu-link" href="">Pagination</a></li>
-                                    <li><a class="submenu-link" href="">Popovers</a></li>
-                                    <li><a class="submenu-link" href="">Progress</a></li>
-                                    <li><a class="submenu-link" href="">Tooltips</a></li> --}}
+                                    <li><a class="submenu-link" href="./accordion.html">Accordion</a></li>
+                                    <li><a class="submenu-link" href="./alert.html">Alert</a></li>
+                                    <li><a class="submenu-link" href="./badge.html">Badge</a></li>
+                                    <li><a class="submenu-link" href="./button.html">Button</a></li>
+                                    <li><a class="submenu-link" href="./card.html">Card</a></li>
+                                    <li><a class="submenu-link" href="./collapse.html">Collapse</a></li>
+                                    <li><a class="submenu-link" href="./dropdown.html">Dropdown</a></li>
+                                    <li><a class="submenu-link" href="./modal.html">Modal</a></li>
+                                    <li><a class="submenu-link" href="./offcanvas.html">Offcanvas</a></li>
+                                    <li><a class="submenu-link" href="./pagination.html">Pagination</a></li>
+                                    <li><a class="submenu-link" href="./popover.html">Popovers</a></li>
+                                    <li><a class="submenu-link" href="./progress.html">Progress</a></li>
+                                    <li><a class="submenu-link" href="./tooltip.html">Tooltips</a></li>
                                 </ul>
                             </div>
                         </li>

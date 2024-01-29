@@ -25,10 +25,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS -->
-    <link rel="stylesheet" href="/admin/libs.bundle.css" />
+    <link rel="stylesheet" href="/vender/libs.bundle.css" />
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="/admin/theme.bundle.css" />
+    <link rel="stylesheet" href="/vender/theme.bundle.css" />
 
     <!-- Fix for custom scrollbar if JS is disabled-->
     <noscript>
@@ -157,155 +157,94 @@
 
             <div class="card mb-4">
             
-<style>
+  <style>
+
+
+    .x{
+      padding-top: 60px;
+    
+      margin-left: 550px;
+      background-color: rgb(23, 20, 20);
+      width: 800px;
+      height: 500px;
+      border-radius: 40px;
+      border: 15px solid rgb(228, 224, 224);
+    }
+    label{
  
-  th{border-collapse:collapse;
-    background-color:transparent;
-    height: 60px;
-    color: azure;
-    border: 1px solid rgb(255, 255, 255);
-  }
-  tr{
-border-collapse:collapse;
-    border: 1px solid rgb(249, 249, 249);
-    background-color:transparent;
-    
-      }
+ font-size: 30px;
 
-    
-  td{border-collapse:collapse;
-        border: 1px solid rgb(245, 245, 245);
-        text-align: center;
-    background-color: transparent;
-    
 
-  }
-  table{border-collapse:collapse;
-    border-radius: 30px;
-            border: 1px solid rgb(255, 255, 255);
-                background-color: transparent;
-color: aliceblue;
+}
+.btn{
+
+  height: 40px;
+  width: 400px;
+  background-color: black; 
+
+  border-radius: 30px;
+  color: wheat;
+  margin-left: 200px;
+  margin-top: 70px;
+  font-size: 18px;
+  border: 2px solid white;
+
+}
+.btn:hover{
+  border: solid black;
+
+background-color: white;
+color: black;
+font-weight: bolder;
+}
+input{
+  margin-top: 40px;
+   font-size: 30px;
+  height: 50px;
+ margin-left: 20px;
+  height: 50px;
+  text-align: center;
+    color: rgb(0, 0, 0);
+    border-radius: 40px;
+    font-size: larger;
+
+}
+.frml{
+  {
+    border: 12px solid rgb(2, 2, 2) ;
+       background-color: rgb(156, 21, 21);
+   
 align-items: center;
-height: 500px;
-
   }
-  thead{
-             
+}
+  </style>
 
 
-  }
-  .button1{
-    height: 34px;
-    width: 65px;
-    background-color: rgb(254, 254, 254);
-  }
-  .heading{
-    color: rgb(255, 255, 255);
-    font-size: 36px;
-    padding-bottom: 10px;
+<div class="x">
     
-  }
-  .button2{
-       height: 34px;
-    width: 65px;
-    background-color: rgb(252, 252, 252);
-  }
-</style>
 
 
 
-<div class="bodysec">
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+   
+       <form class="frml" action="/vender/vender-profile" method="POST"  enctype="multipart/form-data">
+        {{!-- <label for="h1">Title:</label>
+        <input type="text" id="title" name="h1" required> 
+
+          <label for="h2">Title:</label>
+        <input type="text" id="title" name="h2" required>  --}}
+
+      
+<label for="image">Choose an image:</label>
+   <input type="file" name="image">  
 
 
-{{!-- ------------------------------------------------------------------------------------------------------- --}}
-<h1 class="heading">Product Details</h1>
 
-<div class="container table-responsive py-5" > 
-<table class="table table-bordered table-hover">
-  <thead class="thead-dark">
-    <tr>
-        {{!-- <th scope="col">#</th> --}}
+    <button class="btn" type="submit">submit</button>
+        
+    </form>
 
-      <th scope="col">Product Name</th>
-      <th scope="col">Manufacture Name</th>
-      <th scope="col">Brand</th>
-      {{!-- <th scope="col">Handle</th> --}}
-       <th scope="col">Price</th>
-      <th scope="col">Description</th>
-      <th scope="col">Category</th>
-      <th scope="col">Subcategory</th>
-      <th scope="col">Image</th>
-      <th scope="col">Delete</th>
-     <th scope="col">Edit</th>
-
-
-    </tr>
-  </thead>
-  <tbody>
-        {{#each products}}
-
-    <tr>
-            {{!-- <th scope="row">1</th> --}}
-         <td>{{this.productname}}</td>
-        <td>{{this.manufacturename}}</td>
-        <td>{{this.brand}}</td>
-        <td>{{this.price}}</td>
-        <td>{{this.description}}</td>
-        <td>{{this.category.title}}</td>
-        <td>{{this.subcategory.title}}</td>
-        <td>
-          <img src="{{this.image.url}}" alt="{{this.productname}} Image" style="max-width: 140px; height: auto;">
-        </td>
-        <td>
-    <div class="product">
-      {{!-- <p>{{this.productname}}</p> --}}
-      <button class="button1" onclick="deleteProduct( '{{this.productname}}')">Delete</button>
-    </div>
-             <td>   <button class="button2">
-          <a href="/vender/edit-product?name={{this._id}}">Edit</a>
-
-          </button></td>
-
-
-     
-
-    </tr>
-        {{/each}}
-
-  </tbody>
-</table>
 </div>
-{{!-- ----------------------------------  --}}
- {{#if successMessage}}
-        <script>
-            window.onload = function() {
-                alert('{{successMessage}}');
-            };
-        </script>
-    {{/if}}
-{{!-- --------------------------------------------------------------------------------------------- --}}
-
-<script>
-  function deleteProduct(productId) {
-    axios.delete(`/vender/delete/product/${productId}`)
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error('Delete request failed');
-        } else {
-          window.location.href = "/vender/productdetails";
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-</script>
-
-
-
-
-
+            
 
             <!-- Footer -->
             <footer class="  footer">
@@ -509,7 +448,7 @@ height: 500px;
     
                         <!-- Dashboard Menu Section-->
                         <li class="menu-section">Menu</li>
-                        <li class="menu-item"><a class="d-flex align-items-center menu-link" href="./index.html"><i
+                        <li class="menu-item"><a class="d-flex align-items-center menu-link" href="index"><i
                                     class="ri-home-4-line me-3"></i> <span>Dashboard</span></a></li>
                         <!-- / Dashboard Menu Section-->
     
@@ -521,19 +460,19 @@ height: 500px;
                                 <span>Components</span></a>
                             <div class="collapse" id="collapseMenuItemUI">
                                 <ul class="submenu">
-                                    <li><a class="submenu-link" href="./accordion.html">Accordion</a></li>
-                                    <li><a class="submenu-link" href="./alert.html">Alert</a></li>
-                                    <li><a class="submenu-link" href="./badge.html">Badge</a></li>
-                                    <li><a class="submenu-link" href="./button.html">Button</a></li>
-                                    <li><a class="submenu-link" href="./card.html">Card</a></li>
-                                    <li><a class="submenu-link" href="./collapse.html">Collapse</a></li>
-                                    <li><a class="submenu-link" href="./dropdown.html">Dropdown</a></li>
-                                    <li><a class="submenu-link" href="./modal.html">Modal</a></li>
-                                    <li><a class="submenu-link" href="./offcanvas.html">Offcanvas</a></li>
-                                    <li><a class="submenu-link" href="./pagination.html">Pagination</a></li>
-                                    <li><a class="submenu-link" href="./popover.html">Popovers</a></li>
-                                    <li><a class="submenu-link" href="./progress.html">Progress</a></li>
-                                    <li><a class="submenu-link" href="./tooltip.html">Tooltips</a></li>
+                                    <li><a class="submenu-link" href="productlist">Productlist</a></li>
+                                    <li><a class="submenu-link" href="vender-profile">Vender-Profile</a></li>
+                                    <li><a class="submenu-link" href=""></a></li>
+                                    {{!-- <li><a class="submenu-link" href="">Button</a></li>
+                                    <li><a class="submenu-link" href="">Card</a></li>
+                                    <li><a class="submenu-link" href="">Collapse</a></li>
+                                    <li><a class="submenu-link" href="">Dropdown</a></li>
+                                    <li><a class="submenu-link" href="">Modal</a></li>
+                                    <li><a class="submenu-link" href="">Offcanvas</a></li>
+                                    <li><a class="submenu-link" href="">Pagination</a></li>
+                                    <li><a class="submenu-link" href="">Popovers</a></li>
+                                    <li><a class="submenu-link" href="">Progress</a></li>
+                                    <li><a class="submenu-link" href="">Tooltips</a></li> --}}
                                 </ul>
                             </div>
                         </li>

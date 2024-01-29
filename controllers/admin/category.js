@@ -36,34 +36,28 @@ let postCategory= async(req,res)=>{
     }
 };
 
-let getCategorylist = async (req, res) => {
-  try {
-      // Extracting query parameters for filtering and specific category ID
-      const { id, title, description, image } = req.query;
+let getCategorylist= async (req, res) => {
+    try {
+        const { id ,title, description, image } = req.query;
+       
+        const categoryList = await category.find({}, ' id title description image');
 
-      // Query to fetch all categories
-      const categoryList = await category.find({}, 'id title description image');
-
-      // Extracting category ID from query parameters (assuming it's passed as 'name')
-      const categoryId = req.query.id;
-
-      // Query to find a single category by its ID
+         const categoryId = req.query.name;
       const categorys = await category.findOne({ _id: categoryId });
+      console.log(categorys);
+      console.log(categoryList);
 
-      console.log(categorys); // Logging the fetched category
 
-      // Check if category list is empty (null or empty array)
-      if (!categoryList || categoryList.length === 0) {
-          return res.status(500).json({ success: false, message: 'No categories found' });
-      }
+        if (!categoryList) {
+            return res.status(500).json({ success: false });
+        }
 
-      // Render the 'admin/categorylist' view, passing both category list and single category data
-      res.render('admin/categorylist', { categories: categoryList, cata: categorys });
-
-  } catch (error) {
-      console.error(error);
-      res.status(500).json({ success: false, message: 'Internal server error' });
-  }
+        res.render('admin/categorylist', { categories: categoryList, cata: categorys });
+          } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false });
+    }
+    
 };
 
 

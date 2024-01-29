@@ -13,10 +13,10 @@ body {
     align-items: center;
     background-color: #fff;
     width: 550px;
-    margin-top: 8%;
+    margin-top: 12%;
     padding: 20px;
     border-radius: 10px;
-    height: auto;
+    height: 500px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
