@@ -10,6 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keywords" content="">
+<link rel="stylesheet" href="/vender/productAdd.css">
 
     <!-- Favicon -->
 {{!-- bootstrap --}}
@@ -181,6 +182,7 @@ background-color: rgba(12, 12, 12, 0.041);
 align-items: center;
   }
   th{border-collapse:collapse;
+  text-align: center;
     background-color: rgb(0, 0, 0);
     color: rgb(247, 243, 243);
     height: 50px;
@@ -220,23 +222,23 @@ border-radius: 20px;
 {{!-- ----------------------------------------------------------   --}}
 
         <!-- Button trigger modal -->
-<button type="button" style="background-color: white; width: 300px;margin-left: 900px;"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+<button type="button" style="background-color: rgb(252, 252, 252); width: 300px;margin-left: 900px;"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
   Add Product
 </button>
 
 <!-- Modal -->
-       <form style="background-color: transparent !important;border:white" class="clr" action="/vender/productAdd" method="POST" enctype="multipart/form-data" >
+       <form style="background-color: transparent !important;border:rgb(0, 0, 0)" class="clr" action="/vender/productAdd" method="POST" enctype="multipart/form-data" >
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal fade bg-secondary  " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered bg-dark modal-xl  " role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title "  id="exampleModalLongTitle">Add Product</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-white bg-dark">
 
         {{!-- ----------------------------------------   --}}
 
@@ -431,13 +433,13 @@ function addInputBoxes() {
   <input type="file" id="image" name="image" accept="image/*" required>
 
   {{!-- <button type="button" id="uploadButton">Upload</button> --}}
-  <button type="submit">Add Product</button>
+  {{!-- <button type="submit">Add Product</button> --}}
 
 
 {{!-- ----------------------  --}}
     
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer bg-dark text-white">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>
@@ -612,12 +614,11 @@ height: 500px;
       {{!-- <p>{{this.productname}}</p> --}}
       <button class="button1" onclick="deleteProduct( '{{this.productname}}')" > <i class="bi bi-trash-fill"></i></button>
     </div>
-            <td>
-  <button class="button2">
-    <i class="bi bi-pencil-square text-success"></i>
-    <a href="/vender/edit-product?name={{this._id}}"></a>
-  </button>
-</td>
+   <td>   <button class="button2">
+             
+          <a href="/vender/edit-product?name={{this._id}}">  <i class="bi bi-pencil-square text-success "></i></a>
+
+          </button></td>
 
 
 
@@ -661,7 +662,7 @@ height: 500px;
 
 
             <!-- Footer -->
-            <footer class="  footer">
+            <footer class="  footer  ">
                 <p class="small text-muted m-0"></p>
                 <p class="small text-muted m-0"> <a href="https://www.pixelrocket.store/"></a></p>
             </footer>

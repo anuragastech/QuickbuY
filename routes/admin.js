@@ -15,6 +15,9 @@ router.get('/blank',(req,res)=>{
 })
 
 
+router.get('/vender-product-list',otherControllers.venderlist)
+
+
 router.get('/index',(req,res)=>{
     res.render('admin/index')
 })

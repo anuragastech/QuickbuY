@@ -144,354 +144,22 @@
             <!-- Breadcrumbs-->
             <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> catagoryList</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Category Details</li>
+                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> VendersProduct Details</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> VendersProduct Details</li>
                 </ol>
             </nav>            <!-- / Breadcrumbs-->
 
         
 
-           
- 
-<style>
-  .x{
-background-color: rgba(12, 12, 12, 0.041);
-  }
- 
-  table{border-collapse:collapse;
-    margin-left: 500px;
-    border: 10px solid rgb(2, 2, 2) ;
-       background-color: rgb(156, 21, 21);
-align-items: center;
-  }
-  th{border-collapse:collapse;
-    background-color: rgb(0, 0, 0);
-    color: rgb(247, 243, 243);
-    height: 50px;
-  }
-  td{border-collapse:collapse;
-  
-        border: 1px solid rgb(25, 13, 13);
-        background-color: rgb(0, 0, 0);
-        font-weight: bold;
-    color: rgb(255, 255, 255);
-height: 50px;
-width: 250px;
-text-align: center;
-border-radius: 2px;
 
-
-  }
-  .btn5{
-    height: 50px;
-    font-size: 18px;
-    width:80px;
-    background-color: rgb(245, 245, 245);
-    color: rgb(5, 5, 5);
-border-radius: 20px;
-  }
-  .x{
-    padding-top: 180px;
-  }
-  .h{ color: white;
-    margin-left: 1020px;
-    margin-bottom: 30px;
-    font-size: 42px;
-    
-  }
-  
-</style>
-{{!-- ----------------------------------------------------------   --}}
-
-        <!-- Button trigger modal -->
-<button type="button" style="background-color: white;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Add Product
-</button>
-
-<!-- Modal -->
-       <form style="background-color: transparent !important;border:white" class="clr" action="/vender/productAdd" method="POST" enctype="multipart/form-data" >
-
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-
-        {{!-- ----------------------------------------   --}}
-
-  <label for="productName">Product Name:</label>
-  <input type="text" id="productName" name="productname" required>
-
-
-
-  <label for="manufactureName">Manufacture Name:</label>
-  <input type="text" id="manufactureName" name="manufacturename" required>
-  <br>
-
-    <br>
-   
-
-  <label for="manufactureBrand">Manufacture Brand:</label>
-  <input type="text" id="manufactureBrand" name="brand" required>
-
-
-
-  <label for="productPrice">Product Price:</label>
-  <input type="number" id="productPrice" name="price" required>
-
-  <label for="productDescription">Product Description:</label>
-  <textarea id="productDescription" name="description" required></textarea>
-
-  {{!-- <label for="productDescription"> size  :</label>
-  <textarea id="productDescription" name="description" required></textarea> --}}
-
-
-
-<label for="productColor">Product Color:</label>
-<div id="colorOptions">
-  <input type="checkbox" id="red" name="color" value="red">
-  <label for="red" class="color-dot red-dot"></label>
-
-  <input type="checkbox" id="blue" name="color" value="blue">
-  <label for="blue" class="color-dot blue-dot"></label>
-
-  <input type="checkbox" id="green" name="color" value="green">
-  <label for="green" class="color-dot green-dot"></label>
-
-  <input type="checkbox" id="yellow" name="color" value="yellow">
-  <label for="yellow" class="color-dot yellow-dot"></label>
-
-  <input type="checkbox" id="pink" name="color" value="pink">
-  <label for="pink" class="color-dot pink-dot"></label>
-
-  <input type="checkbox" id="rose" name="color" value="rose">
-  <label for="rose" class="color-dot rose-dot"></label>
-
-  <input type="checkbox" id="black" name="color" value="black">
-  <label for="black" class="color-dot black-dot"></label>
-
-  <input type="checkbox" id="white" name="color" value="white">
-  <label for="white" class="color-dot white-dot"></label>
-</div>
-
-<style>
-  .color-dot {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 5px;
-    border: 1px solid #000;
-    cursor: pointer;
-  }
-
-  .red-dot { background-color: red; }
-  .blue-dot { background-color: blue; }
-  .green-dot { background-color: green; }
-  .yellow-dot { background-color: yellow; }
-  .pink-dot { background-color: pink; }
-  .rose-dot { background-color: #ff66b2; }
-  .black-dot { background-color: black; color: white; }
-  .white-dot { background-color: white; border: 1px solid #000; }
-</style>
-
-<script>
-  // Optional: You can add JavaScript logic to handle color selection events
-  document.getElementById('colorOptions').addEventListener('change', function(event) {
-    if (event.target.type === 'checkbox') {
-      // Handle color selection logic here
-      console.log('Selected color:', event.target.value);
-    }
-  });
-</script>
-
-  {{!-- <label for="productCount">Product Count:</label>
-  <input type="number" id="productCount" name="count" value="0" required> --}}
-
-
-  <label for="productDetails">Product Details:</label>
-
-<div id="productDetailsContainer">
-  <!-- Initially, there is one set of size and quantity inputs -->
-  <div class="product-inputs">
-    <select name="size[]" class="size-select" required>
-      <option value="xl">XL</option>
-      <option value="l">L</option>
-      <option value="xxl">XXL</option>
-      <option value="m">M</option>
-      <!-- Add more size options as needed -->
-    </select>
-
-    <input type="number"  id="productCount" name="quantity[]" class="quantity-input" required>
-  </div>
-</div>
-
-<button type="button" onclick="addInputBoxes()">Add More</button>
-
-
-
-<script>
-function addInputBoxes() {
-  var container = document.getElementById("productDetailsContainer");
-
-  // Create a new set of size and quantity inputs
-  var newInputs = document.createElement("div");
-  newInputs.className = "product-inputs";
-
-  var sizeSelect = document.createElement("select");
-  sizeSelect.name = "size[]";
-  sizeSelect.className = "size-select";
-  sizeSelect.required = true;
-  var sizeOptions = ["XL", "L", "XXL", "M" ]; // Add more size options as needed
-  for (var i = 0; i < sizeOptions.length; i++) {
-    var option = document.createElement("option");
-    option.value = sizeOptions[i].toLowerCase();
-    option.text = sizeOptions[i];
-    sizeSelect.add(option);
-  }
-
-  var quantityInput = document.createElement("input");
-  quantityInput.type = "number";
-  quantityInput.name = "quantity[]";
-  quantityInput.className = "quantity-input";
-  quantityInput.required = true;
-
-  // Append size and quantity inputs to the new set
-  newInputs.appendChild(sizeSelect);
-  newInputs.appendChild(quantityInput);
-
-  // Append the new set to the container
-  container.appendChild(newInputs);
-}
-</script>
-
-
-
-      {{!-- ***************************************************** --}}
-{{!-- 
-  <label for="size">size:</label>
-  <select id="size" name="size" required>
-    {{#each newSize}}
-      <option value="{{_id}}">{{title}}</option>
-    {{/each}}
-</select>
-    <label for="color">color:</label>
-  <select id="color" name="color" required>
-    {{#each newColor}}
-      <option value="{{_id}}">{{title}}</option>
-    {{/each}}
-</select> --}}
-
-
- 
-
-  <label for="category">Category:</label>
-  <select id="category" name="category" required>
-    {{#each categories}}
-      <option value="{{_id}}">{{title}}</option>
-    {{/each}}
-  </select>
-
-
-
-     <label for="subcategory">SubCategory:</label>
-  <select id="subcategory" name="subcategory" required>
-    {{#each subcategories}}
-      <option value="{{_id}}">{{title}}</option>
-    {{/each}}
-
-
-
-  </select>
-
-
-
- <label for="image">Image:</label>
-  <input type="file" id="image" name="image" accept="image/*" required>
-
-  {{!-- <button type="button" id="uploadButton">Upload</button> --}}
-  <button type="submit">Add Product</button>
-
-
-{{!-- ----------------------  --}}
-    
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </div>
-            
-  
-  </div>
-</div>
-  </form>
-
-
-
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const response = await axios.get('/vender/categories');
-      const categories = response.data.categories;
-
-      if (categories.length) {
-        const categorySelect = document.getElementById('category');
-
-        categories.forEach(category => {
-          const option = document.createElement('option');
-          option.value = category._id;
-          option.textContent = category.title;
-          categorySelect.appendChild(option);
-        });
-      } else {
-        console.error('No categories found.');
-      }
-    } catch (error) {
-      console.error('Error fetching categories:', error.message);
-    }
-  });
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const responsed = await axios.get('/vender/subcategory');
-      const subcategories = responsed.data.subcategories;
-
-      if (subcategories.length) {
-        const subcategorySelect = document.getElementById('subcategory');
-
-        subcategories.forEach(subcategory => {
-          const option = document.createElement('option');
-          option.value = subcategory._id;
-          option.textContent = subcategory.title;
-          
-          subcategorySelect.appendChild(option);
-        });
-      } else {
-        console.error('No subcategories found.');
-      }
-    } catch (error) {
-      console.error('Error fetching subcategories:', error.message);
-    }
-  });
-</script>
 {{!-- -----------------------------------------------------------------------------------------   --}}
    
     <div class="row ">
-                <div class="col-6 col-md-6">
+                <div class="col-lg-12 col-md-6 col-sm-3" >
 <style>
   
   th{border-collapse:collapse;
+  text-align: center;
     background-color:transparent;
     height: 60px;
     color: azure;
@@ -546,7 +214,6 @@ align-items: center;
 
 
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 
 {{!-- ------------------------------------------------------------------------------------------------------- --}}
@@ -561,19 +228,17 @@ align-items: center;
       <th scope="col">Product Name</th>
       <th scope="col">Manufacture Name</th>
       <th scope="col">Brand</th>
-      {{!-- <th scope="col">Handle</th> --}}
        <th scope="col">Price</th>
       <th scope="col">Description</th>
       <th scope="col">Category</th>
       <th scope="col">Subcategory</th>
       <th scope="col">Image</th>
-      <th scope="col">Delete</th>
-     <th scope="col">Edit</th>
+   
 
 
     </tr>
   </thead>
-  <tbody>
+  <tbody class="col-sm-3 col-md-6 col-lg-12">
         {{#each products}}
 
     <tr>
@@ -588,16 +253,8 @@ align-items: center;
         <td>
           <img src="{{this.image.url}}" alt="{{this.productname}} Image" style="max-width: 140px; height: auto;">
         </td>
-        <td>
-    <div class="product">
-      {{!-- <p>{{this.productname}}</p> --}}
-      <button class="button1" onclick="deleteProduct( '{{this.productname}}')">Delete</button>
-    </div>
-             <td>   <button class="button2">
-          <a href="/vender/edit-product?name={{this._id}}">Edit</a>
-
-          </button></td>
-
+      
+  
 
      
 
@@ -617,21 +274,7 @@ align-items: center;
     {{/if}}
 {{!-- --------------------------------------------------------------------------------------------- --}}
 
-<script>
-  function deleteProduct(productId) {
-    axios.delete(`/vender/delete/product/${productId}`)
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error('Delete request failed');
-        } else {
-          window.location.href = "/vender/productdetails";
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-</script>
+
 
 
 {{!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  --}}

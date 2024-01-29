@@ -1,4 +1,4 @@
-
+const productAdd=require('../../models/vender/productAdd')
 
 let  postSize =async (req, res) => {
     try {
@@ -103,6 +103,17 @@ let  getcolor=async (req, res) => {
     res.render('admin/main');
 };
 
-  
+let venderlist = async (req, res) => {
+  try {
 
-  module.exports={getmain,getHome,getAddsize,getAddproduct,getsize,getcolor,postcolor,postSize};
+  const productList = await productAdd.find()
+  .populate("category")
+  .populate("subcategory");
+
+      res.render('admin/vender-product-list', { products: productList }); 
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+};
+  module.exports={venderlist, getmain,getHome,getAddsize,getAddproduct,getsize,getcolor,postcolor,postSize};

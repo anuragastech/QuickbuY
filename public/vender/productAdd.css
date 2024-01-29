@@ -16,20 +16,21 @@ form {
     margin-top: 10px;
     padding: 20px;
     border: 2.5px solid #37c214;
-    border-radius: 8px;
+    border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
 }
 
 h1 {
-    color: #333;
+    color: #fefdfd;
     text-align: start;
 }
 
 label {
     display: block;
     margin-bottom: 8px;
-    color: #333;
+    color: #ffffff;
+    font-size: larger        ;
     font-weight: bold;
 }
 
@@ -39,24 +40,25 @@ select {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #fffcfc;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
 button {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #282727;
+    color: rgb(240, 237, 237);
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    width: 100%;
+    border-radius: 40%;
+    width: 10%;
     display: inline-block;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #070907;
 }
 
 .file-input-container {
