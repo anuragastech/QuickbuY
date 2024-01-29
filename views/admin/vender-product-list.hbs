@@ -12,10 +12,18 @@
     <meta name="keywords" content="">
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png">
-    <link rel="mask-icon" href="./assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
@@ -43,7 +51,7 @@
     </noscript>
 
     <!-- Page Title -->
-    <title>Kavlan | Bootstrap 5 HTML Admin Dashboard</title>
+    <title></title>
     
 </head>
 <body class="">
@@ -89,16 +97,7 @@
                 <span class="flag-icon flag-icon-gb"></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="regionDropdown">
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United Kingdom <span class="text-muted ms-5"><span class="flag-icon flag-icon-gb"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United States<span class="text-muted ms-5"><span class="flag-icon flag-icon-us"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Australia<span class="text-muted ms-5"><span class="flag-icon flag-icon-au"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Belgium<span class="text-muted ms-5"><span class="flag-icon flag-icon-be"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Canada<span class="text-muted ms-5"><span class="flag-icon flag-icon-ca"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">China <span class="text-muted ms-5"><span class="flag-icon flag-icon-cn"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Denmark <span class="text-muted ms-5"><span class="flag-icon flag-icon-dk"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">France<span class="text-muted ms-5"><span class="flag-icon flag-icon-fr"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Netherlands<span class="text-muted ms-5"><span class="flag-icon flag-icon-nl"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russia<span class="text-muted ms-5"><span class="flag-icon flag-icon-ru"></span></span></a></li>
+                
               </ul>
             </div>
             <!-- /Region -->
@@ -145,252 +144,156 @@
             <!-- Breadcrumbs-->
             <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Subcategory List</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Subcategory</li>
+                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> VendersProduct Details</a></li>
+                    <li class="breadcrumb-item active" aria-current="page"> VendersProduct Details</li>
                 </ol>
             </nav>            <!-- / Breadcrumbs-->
 
-            <!-- Page Title-->
-           
-            <!-- / Page Title-->
-
-            <div class="row g-4">
-                <div class="col-12 col-md-6">
-
-                    
-    <style>
-.xlm{
-  height: 350px;
-  width: 800px;
+        
 
 
-  background-color: rgba(255, 255, 255, 0.372);
-  border-radius: 30px;
-  border: 10px solid rgb(237, 236, 236);
-
-}
-.full{
-
-}
-label{
- 
- font-size: 30px;
-
-
-}
-.btn{
-  height: 40px;
-  width: 400px;
-  background-color: black;
-
-  border-radius: 30px;
-  color: wheat;
-  margin-left: 200px;
-  margin-top: 70px;
-  font-size: 18px;
-  border: 2px solid white;
-
-}
-.btn:hover{
-  border: solid black;
-
-background-color: white;
-color: black;
-font-weight: bolder;
-}
-input{
-  margin-top: 40px;
-   font-size: 30px;
-  height: 50px;
- margin-left: 20px;
-  height: 50px;
+{{!-- -----------------------------------------------------------------------------------------   --}}
+   
+    <div class="row ">
+                <div class="col-lg-12 col-md-6 col-sm-3" >
+<style>
+  
+  th{border-collapse:collapse;
   text-align: center;
-    color: rgb(0, 0, 0);
-    border-radius: 40px;
-    font-size: larger;
+    background-color:transparent;
+    height: 60px;
+    color: azure;
+    border: 1px solid rgb(255, 255, 255);
+  }
+  tr{
+border-collapse:collapse;
+    border: 1px solid rgb(249, 249, 249);
+    background-color:transparent;
+    
+      }
 
-}
-.showsubcategory{
-  margin-left: 180px;
-  padding-top: 100px;
-}
+    
+  td{border-collapse:collapse;
+        border: 1px solid rgb(245, 245, 245);
+        text-align: center;
+    background-color: transparent;
+    
 
-table{
-width: 1100px;
-text-align: center;
-border: 10px solid black;
-border-radius: 15px;
-}
-th{
-  height: 40px;
-  border: 2px solid black;
+  }
+  table{border-collapse:collapse;
+    border-radius: 30px;
+            border: 1px solid rgb(255, 255, 255);
+                background-color: transparent;
+color: aliceblue;
+align-items: center;
+
+
+  }
+  thead{
+             
+
+
+  }
+  .button1{
+    height: 34px;
+    width: 65px;
+    background-color: rgb(254, 254, 254);
+  }
+  .heading{
+    color: rgb(255, 255, 255);
+    font-size: 36px;
+    padding-bottom: 10px;
+    
+  }
+  .button2{
+       height: 34px;
+    width: 65px;
+    background-color: rgb(252, 252, 252);
+  }
+</style>
+
+
+
+
+
+{{!-- ------------------------------------------------------------------------------------------------------- --}}
+<h1 class="heading">Product Details</h1>
+
+<div class="container table-responsive py-5" > 
+<table class="table  table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+        {{!-- <th scope="col">#</th> --}}
+
+      <th scope="col">Product Name</th>
+      <th scope="col">Manufacture Name</th>
+      <th scope="col">Brand</th>
+       <th scope="col">Price</th>
+      <th scope="col">Description</th>
+      <th scope="col">Category</th>
+      <th scope="col">Subcategory</th>
+      <th scope="col">Image</th>
+   
+
+
+    </tr>
+  </thead>
+  <tbody class="col-sm-3 col-md-6 col-lg-12">
+        {{#each products}}
+
+    <tr>
+            {{!-- <th scope="row">1</th> --}}
+         <td>{{this.productname}}</td>
+        <td>{{this.manufacturename}}</td>
+        <td>{{this.brand}}</td>
+        <td>{{this.price}}</td>
+        <td>{{this.description}}</td>
+        <td>{{this.category.title}}</td>
+        <td>{{this.subcategory.title}}</td>
+        <td>
+          <img src="{{this.image.url}}" alt="{{this.productname}} Image" style="max-width: 140px; height: auto;">
+        </td>
+      
   
 
-}
-td{
-  height: 120px;
-  width: 200px;
-   background-color: rgb(7, 7, 7);
-   color: white;
-  font-weight: bold;
-}
-.h{
-  margin-left: 1000px;
-  font-size: 30px;
-  margin-bottom: 10px;
+     
 
-}
-.pic{
-  height: 150px;
-  width:150px;
-  overflow: hidden;
-  border: 2px solid green;
-
-      background-size: 0% ; /* Cover the entire container without black borders */
-      background-position: center; /* Center the image within the container */
-      background-repeat: no-repeat; /* Do not repeat the background */
-    }
-
- .btn5{
-    height: 50px;
-    font-size: 18px;
-    width:80px;
-    background-color: rgb(245, 245, 245);
-    color: rgb(5, 5, 5);
-border-radius: 20px;
-  }
-  .btn5:hover{
-    background-color: black;
-    color: white;
-  }
-
-    </style>
-
-
-
-<div class="showsubcategory">
-<table>
-    {{#if subcategories.length}}
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Image</th>
-          <th>Delete</th>
-          <th>Edit</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each subcategories}}
-          <tr>
-            <td>{{title}}</td>
-            <td>{{description}}</td>
-            <td   ><img  class="pic" src="{{image.url}}" alt="{{title}} Image" style="max-width: 100px;"></td>
-            <td>
-                    <button class="btn5" onclick="deleteSubCategory('{{this._id}}')">Delete</button>
-                </td>
-                <td>
-                  
-                   <button class="btn5"> <a href="/admin/edit-subcategory?name={{this._id}}">Edit</a> </button> 
-
-                </td>
-          </tr>
+    </tr>
         {{/each}}
-      </tbody>
-    {{else}}
-      <tr>
-        <td colspan="3">No subcategories found.</td>
-      </tr>
+
+  </tbody>
+</table>
+
+{{!-- ----------------------------------  --}}
+ {{#if successMessage}}
+        <script>
+            window.onload = function() {
+                alert('{{successMessage}}');
+            };
+        </script>
     {{/if}}
-  </table>
-
-</div>
-
-</div>
-
-{{!-- -------------------------------------------------------------- --}}
-
-{{!-- {{#if categories.length}}
-  <ul>
-    {{#each categories}}
-      <li>{{title}}</li>
-      <!-- Add other category details as needed -->
-    {{/each}}
-  </ul>
-{{else}}
-  <p>No categories found.</p>
-{{/if}} --}}
-
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const response = await axios.get('/admin/categories');
-      const categories = response.data.categories;
-
-      if (categories.length) {
-        const categorySelect = document.getElementById('category');
-
-        categories.forEach(category => {
-          const option = document.createElement('option');
-          option.value = category._id;
-          option.textContent = category.title;
-          categorySelect.appendChild(option);
-        });
-      } else {
-        console.error('No categories found.');
-      }
-    } catch (error) {
-      console.error('Error fetching categories:', error.message);
-    }
-  });
-</script>
-
-{{!-- delete--}}
-<script>
-  function deleteSubCategory(subcategoryId) {
-    axios.delete(`/admin/delete-subcategory/${subcategoryId}`)
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error('Delete request failed');
-        } else {
-          window.location.href = "/admin/subcategories";
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-</script>
+{{!-- --------------------------------------------------------------------------------------------- --}}
 
 
-                </div>
 
-                <div class="col-12 col-md-6">
 
-                   
-                    </div>
-                    <!-- / Icon Example-->
+{{!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  --}}
 
-                </div>
-            </div>
+
+
+
+{{!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
 
             <!-- Footer -->
             <footer class="  footer">
-                <p class="small text-muted m-0">All rights reserved | © 2021</p>
-                <p class="small text-muted m-0">Template created by <a href="https://www.pixelrocket.store/">PixelRocket</a></p>
+                <p class="small text-muted m-0"></p>
+                <p class="small text-muted m-0"><a href="https://www.pixelrocket.store/"></a></p>
             </footer>
             
             
             <!-- Sidebar Menu Overlay-->
             <div class="menu-overlay-bg"></div>
-            <!-- / Sidebar Menu Overlay-->
-            
-            <!-- Modal Imports-->
-            <!-- Place your modal imports here-->
-            
-            <!-- Default Example Modal Import-->
-            <!-- Modal -->
+          
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -446,7 +349,7 @@ border-radius: 20px;
                 <div class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3">
                   <div class="position-relative mt-1 ">
                     <picture class="avatar avatar-sm">
-                      <img src="./assets/images/profile-small-2.jpeg"
+                      <img src="/profile-small-2.jpeg"
                         alt="HTML Bootstrap Admin Template by Pixel Rocket">
                     </picture>
                     <span
@@ -464,7 +367,7 @@ border-radius: 20px;
                 <div class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3">
                   <div class="position-relative mt-1 ">
                     <picture class="avatar avatar-sm">
-                      <img src="./assets/images/profile-small-3.jpeg"
+                      <img src="/profile-small-3.jpeg"
                         alt="HTML Bootstrap Admin Template by Pixel Rocket">
                     </picture>
                     <span
@@ -482,7 +385,7 @@ border-radius: 20px;
                 <div class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3">
                   <div class="position-relative mt-1 ">
                     <picture class="avatar avatar-sm">
-                      <img src="./assets/images/profile-small-4.jpeg"
+                      <img src="/profile-small-4.jpeg"
                         alt="HTML Bootstrap Admin Template by Pixel Rocket">
                     </picture>
                     <span
@@ -536,7 +439,7 @@ border-radius: 20px;
                     <div class="border-bottom pt-3 pb-5 mb-6 d-flex flex-column align-items-center">
                         <div class="position-relative">
                             <picture class="avatar avatar-profile">
-                                <img class="avatar-profile-img" src="./assets/images/profile-small.jpeg"
+                                <img class="avatar-profile-img" src="/profile-small.jpeg"
                                   alt="HTML Bootstrap Admin Template by Pixel Rocket">
                             </picture>
                             <span class="dot bg-success avatar-dot"></span>
@@ -644,10 +547,10 @@ border-radius: 20px;
 
     <!-- Theme JS -->
     <!-- Vendor JS -->
-    <script src="/admin/js/vendor.bundle.js"></script>
+    <script src="/admin/vendor.bundle.js"></script>
     
     <!-- Theme JS -->
-    <script src="/admin/assets/js/theme.bundle.js"></script>
+    <script src="/admin/theme.bundle.js"></script>
 </body>
 
 </html>

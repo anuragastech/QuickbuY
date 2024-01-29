@@ -15,6 +15,7 @@ let getpostProductAdd = async (req, res) => {
       subcategory,
       size,
       quantity,
+      
     } = req.body;
     const userId = req.user._id;
 

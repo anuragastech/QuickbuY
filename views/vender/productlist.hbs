@@ -10,9 +10,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keywords" content="">
+<link rel="stylesheet" href="/vender/productAdd.css">
 
     <!-- Favicon -->
 {{!-- bootstrap --}}
+<!-- Option 1: Include in HTML -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+{{!-- icon  --}}
+
  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -176,6 +182,7 @@ background-color: rgba(12, 12, 12, 0.041);
 align-items: center;
   }
   th{border-collapse:collapse;
+  text-align: center;
     background-color: rgb(0, 0, 0);
     color: rgb(247, 243, 243);
     height: 50px;
@@ -215,23 +222,23 @@ border-radius: 20px;
 {{!-- ----------------------------------------------------------   --}}
 
         <!-- Button trigger modal -->
-<button type="button" style="background-color: white; width: 300px;margin-left: 900px;"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+<button type="button" style="background-color: rgb(252, 252, 252);font-size: 25px; width: 300px;margin-left: 900px;"  class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
   Add Product
 </button>
 
 <!-- Modal -->
-       <form style="background-color: transparent !important;border:white" class="clr" action="/vender/productAdd" method="POST" enctype="multipart/form-data" >
+       <form style="background-color: transparent !important;border:rgb(0, 0, 0)" class="clr" action="/vender/productAdd" method="POST" enctype="multipart/form-data" >
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal fade bg-secondary  " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered bg-dark modal-xl  " role="document">
     <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+      <div class="modal-header bg-dark text-white">
+        <h5 class="modal-title  text-5"  id="exampleModalLongTitle">Add Product</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body text-white bg-dark">
 
         {{!-- ----------------------------------------   --}}
 
@@ -263,53 +270,20 @@ border-radius: 20px;
 
 
 
+
 <label for="productColor">Product Color:</label>
-<div id="colorOptions">
-  <input type="checkbox" id="red" name="color" value="red">
-  <label for="red" class="color-dot red-dot"></label>
 
-  <input type="checkbox" id="blue" name="color" value="blue">
-  <label for="blue" class="color-dot blue-dot"></label>
+<select name="color"  id="productColor">
+  <option  value="red"><span class="color-dot red-dot"></span>Red</option>
+  <option value="blue"><span class="color-dot blue-dot"></span>Blue</option>
+  <option value="green"><span class="color-dot green-dot"></span>Green</option>
+  <option value="yellow"><span class="color-dot yellow-dot"></span>Yellow</option>
+  <option value="pink"><span class="color-dot pink-dot"></span>Pink</option>
+  <option value="rose"><span class="color-dot rose-dot"></span>Rose</option>
+  <option value="black"><span class="color-dot black-dot"></span>Black</option>
+  <option value="white"><span class="color-dot white-dot"></span>White</option>
+</select>
 
-  <input type="checkbox" id="green" name="color" value="green">
-  <label for="green" class="color-dot green-dot"></label>
-
-  <input type="checkbox" id="yellow" name="color" value="yellow">
-  <label for="yellow" class="color-dot yellow-dot"></label>
-
-  <input type="checkbox" id="pink" name="color" value="pink">
-  <label for="pink" class="color-dot pink-dot"></label>
-
-  <input type="checkbox" id="rose" name="color" value="rose">
-  <label for="rose" class="color-dot rose-dot"></label>
-
-  <input type="checkbox" id="black" name="color" value="black">
-  <label for="black" class="color-dot black-dot"></label>
-
-  <input type="checkbox" id="white" name="color" value="white">
-  <label for="white" class="color-dot white-dot"></label>
-</div>
-
-<style>
-  .color-dot {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 5px;
-    border: 1px solid #000;
-    cursor: pointer;
-  }
-
-  .red-dot { background-color: red; }
-  .blue-dot { background-color: blue; }
-  .green-dot { background-color: green; }
-  .yellow-dot { background-color: yellow; }
-  .pink-dot { background-color: pink; }
-  .rose-dot { background-color: #ff66b2; }
-  .black-dot { background-color: black; color: white; }
-  .white-dot { background-color: white; border: 1px solid #000; }
-</style>
 
 <script>
   // Optional: You can add JavaScript logic to handle color selection events
@@ -329,20 +303,26 @@ border-radius: 20px;
 
 <div id="productDetailsContainer">
   <!-- Initially, there is one set of size and quantity inputs -->
-  <div class="product-inputs">
-    <select name="size[]" class="size-select" required>
+  <div class="product-inputs " style="display: flex;flex-direction: row;" >
+
+  
+    <select  name="size"  style="width: 320px;" class="size-select" required>
       <option value="xl">XL</option>
       <option value="l">L</option>
       <option value="xxl">XXL</option>
       <option value="m">M</option>
       <!-- Add more size options as needed -->
     </select>
+    <br>
 
-    <input type="number"  id="productCount" name="quantity[]" class="quantity-input" required>
+    <input  style="margin-top: 5px;margin-left: 320px ;width: 320px;" type="number"  id="productCount" name="quantity[]" class="quantity-input" required>
+    <br>
   </div>
 </div>
-
-<button type="button" onclick="addInputBoxes()">Add More</button>
+<br>
+<button  type="button" onclick="addInputBoxes()">Add More</button>
+<br>
+<br>
 
 
 
@@ -355,6 +335,10 @@ function addInputBoxes() {
   newInputs.className = "product-inputs";
 
   var sizeSelect = document.createElement("select");
+
+  sizeSelect.style.width = "320px"; 
+        sizeSelect.style.marginTop = "5px"; 
+
   sizeSelect.name = "size[]";
   sizeSelect.className = "size-select";
   sizeSelect.required = true;
@@ -367,6 +351,13 @@ function addInputBoxes() {
   }
 
   var quantityInput = document.createElement("input");
+
+   quantityInput.style.width = "320px"; 
+   quantityInput.style.marginLeft = "320px"; 
+      quantityInput.style.marginTop = "5px"; 
+
+
+
   quantityInput.type = "number";
   quantityInput.name = "quantity[]";
   quantityInput.className = "quantity-input";
@@ -426,13 +417,13 @@ function addInputBoxes() {
   <input type="file" id="image" name="image" accept="image/*" required>
 
   {{!-- <button type="button" id="uploadButton">Upload</button> --}}
-  <button type="submit">Add Product</button>
+  {{!-- <button type="submit">Add Product</button> --}}
 
 
 {{!-- ----------------------  --}}
     
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer bg-dark text-white">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>
@@ -542,7 +533,7 @@ height: 500px;
   .button1{
     height: 34px;
     width: 65px;
-    background-color: rgb(254, 254, 254);
+    background-color:transparent;
   }
   .heading{
     color: rgb(255, 255, 255);
@@ -553,7 +544,7 @@ height: 500px;
   .button2{
        height: 34px;
     width: 65px;
-    background-color: rgb(252, 252, 252);
+    background-color: transparent;
   }
 </style>
 
@@ -605,12 +596,14 @@ height: 500px;
         <td>
     <div class="product">
       {{!-- <p>{{this.productname}}</p> --}}
-      <button class="button1" onclick="deleteProduct( '{{this.productname}}')">Delete</button>
+      <button class="button1" onclick="deleteProduct( '{{this.productname}}')" > <i class="bi bi-trash-fill"></i></button>
     </div>
-             <td>   <button class="button2">
-          <a href="/vender/edit-product?name={{this._id}}">Edit</a>
+   <td>   <button class="button2">
+             
+          <a href="/vender/edit-product?name={{this._id}}">  <i class="bi bi-pencil-square text-success "></i></a>
 
           </button></td>
+
 
 
      
@@ -653,7 +646,7 @@ height: 500px;
 
 
             <!-- Footer -->
-            <footer class="  footer">
+            <footer class="  footer  ">
                 <p class="small text-muted m-0"></p>
                 <p class="small text-muted m-0"> <a href="https://www.pixelrocket.store/"></a></p>
             </footer>

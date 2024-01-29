@@ -18,6 +18,7 @@
     <link rel="mask-icon" href="./assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+<link rel="stylesheet" href="/vender/productAdd.css">
 
     <!-- Google Font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -145,8 +146,8 @@
             <!-- Breadcrumbs-->
             <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Dashboard</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Blank Page</li>
+                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Edit Page</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Edit Product</li>
                 </ol>
             </nav>            <!-- / Breadcrumbs-->
 
@@ -185,23 +186,23 @@
 
    {{#if prod }}
 
-<form class="edit" action="/vender/edit-product/{{prod._id}}" method="POST">  
+ <form style="background-color: transparent !important;border:rgb(0, 0, 0)" class="clr" action="/vender/productAdd" method="POST" enctype="multipart/form-data" >
 
   <label for="productName">Product Name:</label>
-  <input type="text" id="productName" name="productname" value="{{prod.productname}}" required>
+  <input type="text" id="productName" name="productname" required>
 
 
 
   <label for="manufactureName">Manufacture Name:</label>
-  <input type="text" id="manufactureName" name="manufacturename"  value="{{prod.manufacturename}}" required>
+  <input type="text" id="manufactureName" name="manufacturename" required>
   <br>
 
     <br>
    
 
-
   <label for="manufactureBrand">Manufacture Brand:</label>
-  <input type="text" id="manufactureBrand" name="brand"   value="{{prod.brand}}" required>
+  <input type="text" id="manufactureBrand" name="brand" required>
+
 
 
   <label for="productPrice">Product Price:</label>
@@ -215,53 +216,20 @@
 
 
 
+
 <label for="productColor">Product Color:</label>
-<div id="colorOptions">
-  <input type="checkbox" id="red" name="color" value="red">
-  <label for="red" class="color-dot red-dot"></label>
 
-  <input type="checkbox" id="blue" name="color" value="blue">
-  <label for="blue" class="color-dot blue-dot"></label>
+<select name="color"  id="productColor">
+  <option  value="red"><span class="color-dot red-dot"></span>Red</option>
+  <option value="blue"><span class="color-dot blue-dot"></span>Blue</option>
+  <option value="green"><span class="color-dot green-dot"></span>Green</option>
+  <option value="yellow"><span class="color-dot yellow-dot"></span>Yellow</option>
+  <option value="pink"><span class="color-dot pink-dot"></span>Pink</option>
+  <option value="rose"><span class="color-dot rose-dot"></span>Rose</option>
+  <option value="black"><span class="color-dot black-dot"></span>Black</option>
+  <option value="white"><span class="color-dot white-dot"></span>White</option>
+</select>
 
-  <input type="checkbox" id="green" name="color" value="green">
-  <label for="green" class="color-dot green-dot"></label>
-
-  <input type="checkbox" id="yellow" name="color" value="yellow">
-  <label for="yellow" class="color-dot yellow-dot"></label>
-
-  <input type="checkbox" id="pink" name="color" value="pink">
-  <label for="pink" class="color-dot pink-dot"></label>
-
-  <input type="checkbox" id="rose" name="color" value="rose">
-  <label for="rose" class="color-dot rose-dot"></label>
-
-  <input type="checkbox" id="black" name="color" value="black">
-  <label for="black" class="color-dot black-dot"></label>
-
-  <input type="checkbox" id="white" name="color" value="white">
-  <label for="white" class="color-dot white-dot"></label>
-</div>
-
-<style>
-  .color-dot {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    display: inline-block;
-    margin-right: 5px;
-    border: 1px solid #000;
-    cursor: pointer;
-  }
-
-  .red-dot { background-color: red; }
-  .blue-dot { background-color: blue; }
-  .green-dot { background-color: green; }
-  .yellow-dot { background-color: yellow; }
-  .pink-dot { background-color: pink; }
-  .rose-dot { background-color: #ff66b2; }
-  .black-dot { background-color: black; color: white; }
-  .white-dot { background-color: white; border: 1px solid #000; }
-</style>
 
 <script>
   // Optional: You can add JavaScript logic to handle color selection events
@@ -281,20 +249,26 @@
 
 <div id="productDetailsContainer">
   <!-- Initially, there is one set of size and quantity inputs -->
-  <div class="product-inputs">
-    <select name="size[]" class="size-select" required>
+  <div class="product-inputs " style="display: flex;flex-direction: row;" >
+
+  
+    <select  name="size"  style="width: 320px;" class="size-select" required>
       <option value="xl">XL</option>
       <option value="l">L</option>
       <option value="xxl">XXL</option>
       <option value="m">M</option>
       <!-- Add more size options as needed -->
     </select>
+    <br>
 
-    <input type="number"  id="productCount" name="quantity[]" class="quantity-input" required>
+    <input  style="margin-left: 50px ;width: 320px;" type="number"  id="productCount" name="quantity[]" class="quantity-input" required>
+    <br>
   </div>
 </div>
-
-<button type="button" onclick="addInputBoxes()">Add More</button>
+<br>
+<button  type="button" onclick="addInputBoxes()">Add More</button>
+<br>
+<br>
 
 
 
@@ -307,6 +281,10 @@ function addInputBoxes() {
   newInputs.className = "product-inputs";
 
   var sizeSelect = document.createElement("select");
+
+  sizeSelect.style.width = "320px"; 
+        sizeSelect.style.marginTop = "5px"; 
+
   sizeSelect.name = "size[]";
   sizeSelect.className = "size-select";
   sizeSelect.required = true;
@@ -319,6 +297,13 @@ function addInputBoxes() {
   }
 
   var quantityInput = document.createElement("input");
+
+   quantityInput.style.width = "320px"; 
+   quantityInput.style.marginLeft = "50px"; 
+      quantityInput.style.marginTop = "5px"; 
+
+
+
   quantityInput.type = "number";
   quantityInput.name = "quantity[]";
   quantityInput.className = "quantity-input";
@@ -336,7 +321,9 @@ function addInputBoxes() {
 
 
       {{!-- ***************************************************** --}}
-  {{!-- <select id="size" name="size" required>
+{{!-- 
+  <label for="size">size:</label>
+  <select id="size" name="size" required>
     {{#each newSize}}
       <option value="{{_id}}">{{title}}</option>
     {{/each}}
@@ -369,15 +356,21 @@ function addInputBoxes() {
 
 
   </select>
- 
- {{!-- <label for="image">Image:</label>
+
+
+
+ <label for="image">Image:</label>
   <input type="file" id="image" name="image" accept="image/*" required>
 
- <button type="button" id="uploadButton">Upload</button> --}}
-  <button type="submit">Add Product</button> 
+  {{!-- <button type="button" id="uploadButton">Upload</button>  --}}
+   <button  style="margin-left: 700px; border: 4px solid white;" type="submit">Add Product</button>
 
 
-</form>
+{{!-- ----------------------  --}}
+    
+    
+  </form>
+
 
 {{/if}}
 
@@ -434,53 +427,6 @@ function addInputBoxes() {
   });
 </script>
 
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const response = await axios.get('/vender/color');
-      const colors = response.data.newColor;
-
-      if (colors.length) {
-        const colorSelect = document.getElementById('color');
-
-        colors.forEach(color => {
-          const option = document.createElement('option');
-          option.value = color._id;
-          option.textContent = color.title;
-          colorSelect.appendChild(option);
-        });
-      } else {
-        console.error('No color found.');
-      }
-    } catch (error) {
-      console.error('Error fetching color:', error.message);
-    }
-  });
-</script>
-
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const responsed = await axios.get('/vender/size');
-      const sizes = responsed.data.newSize;
-
-      if (sizes.length) {
-        const sizeSelect = document.getElementById('size');
-
-        sizes.forEach(size => {
-          const option = document.createElement('option');
-          option.value = size._id;
-          option.textContent = size.title;  
-          sizeSelect.appendChild(option);
-        });
-      } else {
-        console.error('No size found.');
-      }
-    } catch (error) {
-      console.error('Error fetching size:', error.message);
-    }
-  });
-</script>
 
 
 
