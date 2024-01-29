@@ -1,0 +1,424 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive vender Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="dashboard.css" />
+    <lin
+      rel="shortcut icon"
+      type="image/png"
+      href="./assets/imgs/favicon.ico"
+    />
+  </head>
+
+  <body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+      <div class="navigation">
+        <ul>
+          <li>
+            <a href="#">
+              <span class="icon">
+                <img src="./assets/imgs/favicon.ico" alt="" />
+              </span>
+              <span class="title">Dunprel Store</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/vender/main">
+              <span class="icon">
+                <ion-icon name="home-outline"></ion-icon>
+              </span>
+              <span class="title">Dashboard</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/vender/productdetails">
+              <span class="icon">
+                <ion-icon name="people-outline"></ion-icon>
+              </span>
+              <span class="title">ProductDeatails</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/vender/productAdd">
+              <span class="icon">
+                <ion-icon name="chatbubble-outline"></ion-icon>
+              </span>
+              <span class="title">ProductAdd</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/vender/categorylist">
+              <span class="icon">
+                <ion-icon name="help-outline"></ion-icon>
+              </span>
+              <span class="title">Categorylist</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/vender/category">
+              <span class="icon">
+                <ion-icon name="settings-outline"></ion-icon>
+              </span>
+              <span class="title">Category</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/vender/subcategories">
+              <span class="icon">
+                <ion-icon name="lock-closed-outline"></ion-icon>
+              </span>
+              <span class="title">Subcategorylist</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="/vender/logout">
+              <span class="icon">
+                <ion-icon name="log-out-outline"></ion-icon>
+              </span>
+              <span class="title">Sign Out</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ========================= Main ==================== -->
+
+
+<style>
+  .clr{
+    background-color: rgb(198, 157, 231);
+  }
+  .edit{
+    background-color: rgba(140, 142, 184, 0.921);
+    margin-left: 650px;
+    margin-top: -10px;
+    border: rgb(221, 222, 221);
+    
+  }
+</style>
+<body class="clr">
+    <title>Add Product</title>
+        <link rel="stylesheet" href="productAdd.css">
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+
+
+
+
+
+   {{#if prod }}
+
+<form class="edit" action="/vender/edit-product/{{prod._id}}" method="POST">  
+
+  <label for="productName">Product Name:</label>
+  <input type="text" id="productName" name="productname" value="{{prod.productname}}" required>
+
+
+
+  <label for="manufactureName">Manufacture Name:</label>
+  <input type="text" id="manufactureName" name="manufacturename"  value="{{prod.manufacturename}}" required>
+  <br>
+
+    <br>
+   
+
+
+  <label for="manufactureBrand">Manufacture Brand:</label>
+  <input type="text" id="manufactureBrand" name="brand"   value="{{prod.brand}}" required>
+
+
+  <label for="productPrice">Product Price:</label>
+  <input type="number" id="productPrice" name="price" required>
+
+  <label for="productDescription">Product Description:</label>
+  <textarea id="productDescription" name="description" required></textarea>
+
+  {{!-- <label for="productDescription"> size  :</label>
+  <textarea id="productDescription" name="description" required></textarea> --}}
+
+
+
+<label for="productColor">Product Color:</label>
+<div id="colorOptions">
+  <input type="checkbox" id="red" name="color" value="red">
+  <label for="red" class="color-dot red-dot"></label>
+
+  <input type="checkbox" id="blue" name="color" value="blue">
+  <label for="blue" class="color-dot blue-dot"></label>
+
+  <input type="checkbox" id="green" name="color" value="green">
+  <label for="green" class="color-dot green-dot"></label>
+
+  <input type="checkbox" id="yellow" name="color" value="yellow">
+  <label for="yellow" class="color-dot yellow-dot"></label>
+
+  <input type="checkbox" id="pink" name="color" value="pink">
+  <label for="pink" class="color-dot pink-dot"></label>
+
+  <input type="checkbox" id="rose" name="color" value="rose">
+  <label for="rose" class="color-dot rose-dot"></label>
+
+  <input type="checkbox" id="black" name="color" value="black">
+  <label for="black" class="color-dot black-dot"></label>
+
+  <input type="checkbox" id="white" name="color" value="white">
+  <label for="white" class="color-dot white-dot"></label>
+</div>
+
+<style>
+  .color-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    border: 1px solid #000;
+    cursor: pointer;
+  }
+
+  .red-dot { background-color: red; }
+  .blue-dot { background-color: blue; }
+  .green-dot { background-color: green; }
+  .yellow-dot { background-color: yellow; }
+  .pink-dot { background-color: pink; }
+  .rose-dot { background-color: #ff66b2; }
+  .black-dot { background-color: black; color: white; }
+  .white-dot { background-color: white; border: 1px solid #000; }
+</style>
+
+<script>
+  // Optional: You can add JavaScript logic to handle color selection events
+  document.getElementById('colorOptions').addEventListener('change', function(event) {
+    if (event.target.type === 'checkbox') {
+      // Handle color selection logic here
+      console.log('Selected color:', event.target.value);
+    }
+  });
+</script>
+
+  {{!-- <label for="productCount">Product Count:</label>
+  <input type="number" id="productCount" name="count" value="0" required> --}}
+
+
+  <label for="productDetails">Product Details:</label>
+
+<div id="productDetailsContainer">
+  <!-- Initially, there is one set of size and quantity inputs -->
+  <div class="product-inputs">
+    <select name="size[]" class="size-select" required>
+      <option value="xl">XL</option>
+      <option value="l">L</option>
+      <option value="xxl">XXL</option>
+      <option value="m">M</option>
+      <!-- Add more size options as needed -->
+    </select>
+
+    <input type="number"  id="productCount" name="quantity[]" class="quantity-input" required>
+  </div>
+</div>
+
+<button type="button" onclick="addInputBoxes()">Add More</button>
+
+
+
+<script>
+function addInputBoxes() {
+  var container = document.getElementById("productDetailsContainer");
+
+  // Create a new set of size and quantity inputs
+  var newInputs = document.createElement("div");
+  newInputs.className = "product-inputs";
+
+  var sizeSelect = document.createElement("select");
+  sizeSelect.name = "size[]";
+  sizeSelect.className = "size-select";
+  sizeSelect.required = true;
+  var sizeOptions = ["XL", "L", "XXL", "M" ]; // Add more size options as needed
+  for (var i = 0; i < sizeOptions.length; i++) {
+    var option = document.createElement("option");
+    option.value = sizeOptions[i].toLowerCase();
+    option.text = sizeOptions[i];
+    sizeSelect.add(option);
+  }
+
+  var quantityInput = document.createElement("input");
+  quantityInput.type = "number";
+  quantityInput.name = "quantity[]";
+  quantityInput.className = "quantity-input";
+  quantityInput.required = true;
+
+  // Append size and quantity inputs to the new set
+  newInputs.appendChild(sizeSelect);
+  newInputs.appendChild(quantityInput);
+
+  // Append the new set to the container
+  container.appendChild(newInputs);
+}
+</script>
+
+
+
+      {{!-- ***************************************************** --}}
+  {{!-- <select id="size" name="size" required>
+    {{#each newSize}}
+      <option value="{{_id}}">{{title}}</option>
+    {{/each}}
+</select>
+    <label for="color">color:</label>
+  <select id="color" name="color" required>
+    {{#each newColor}}
+      <option value="{{_id}}">{{title}}</option>
+    {{/each}}
+</select> --}}
+
+
+ 
+
+  <label for="category">Category:</label>
+  <select id="category" name="category" required>
+    {{#each categories}}
+      <option value="{{_id}}">{{title}}</option>
+    {{/each}}
+  </select>
+
+
+
+     <label for="subcategory">SubCategory:</label>
+  <select id="subcategory" name="subcategory" required>
+    {{#each subcategories}}
+      <option value="{{_id}}">{{title}}</option>
+    {{/each}}
+
+
+
+  </select>
+ 
+ {{!-- <label for="image">Image:</label>
+  <input type="file" id="image" name="image" accept="image/*" required>
+
+ <button type="button" id="uploadButton">Upload</button> --}}
+  <button type="submit">Add Product</button> 
+
+
+</form>
+
+{{/if}}
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const response = await axios.get('/vender/categories');
+      const categories = response.data.categories;
+
+      if (categories.length) {
+        const categorySelect = document.getElementById('category');
+
+        categories.forEach(category => {
+          const option = document.createElement('option');
+          option.value = category._id;
+          option.textContent = category.title;
+          categorySelect.appendChild(option);
+        });
+      } else {
+        console.error('No categories found.');
+      }
+    } catch (error) {
+      console.error('Error fetching categories:', error.message);
+    }
+  });
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const responsed = await axios.get('/vender/subcategory');
+      const subcategories = responsed.data.subcategories;
+
+      if (subcategories.length) {
+        const subcategorySelect = document.getElementById('subcategory');
+
+        subcategories.forEach(subcategory => {
+          const option = document.createElement('option');
+          option.value = subcategory._id;
+          option.textContent = subcategory.title;
+          
+          subcategorySelect.appendChild(option);
+        });
+      } else {
+        console.error('No subcategories found.');
+      }
+    } catch (error) {
+      console.error('Error fetching subcategories:', error.message);
+    }
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const response = await axios.get('/vender/color');
+      const colors = response.data.newColor;
+
+      if (colors.length) {
+        const colorSelect = document.getElementById('color');
+
+        colors.forEach(color => {
+          const option = document.createElement('option');
+          option.value = color._id;
+          option.textContent = color.title;
+          colorSelect.appendChild(option);
+        });
+      } else {
+        console.error('No color found.');
+      }
+    } catch (error) {
+      console.error('Error fetching color:', error.message);
+    }
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const responsed = await axios.get('/vender/size');
+      const sizes = responsed.data.newSize;
+
+      if (sizes.length) {
+        const sizeSelect = document.getElementById('size');
+
+        sizes.forEach(size => {
+          const option = document.createElement('option');
+          option.value = size._id;
+          option.textContent = size.title;  
+          sizeSelect.appendChild(option);
+        });
+      } else {
+        console.error('No size found.');
+      }
+    } catch (error) {
+      console.error('Error fetching size:', error.message);
+    }
+  });
+</script>
+
+</body>
+</html>

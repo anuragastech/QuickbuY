@@ -25,10 +25,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS -->
-    <link rel="stylesheet" href="/admin/libs.bundle.css" />
+    <link rel="stylesheet" href="./assets/css/libs.bundle.css" />
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="/admin/theme.bundle.css" />
+    <link rel="stylesheet" href="./assets/css/theme.bundle.css" />
 
     <!-- Fix for custom scrollbar if JS is disabled-->
     <noscript>
@@ -145,232 +145,69 @@
             <!-- Breadcrumbs-->
             <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Subcategory List</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Subcategory</li>
+                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Pagination</li>
                 </ol>
             </nav>            <!-- / Breadcrumbs-->
 
             <!-- Page Title-->
-           
+            <h2 class="fs-4 mb-2">Pagination</h2>
+            <p class=" mb-4">Documentation and examples for showing pagination to indicate a series of related
+                content exists across multiple pages.</p>
             <!-- / Page Title-->
 
             <div class="row g-4">
                 <div class="col-12 col-md-6">
 
-                    
-    <style>
-.xlm{
-  height: 350px;
-  width: 800px;
+                    <!-- Example-->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6 class="card-title">Default example</h6>
 
-
-  background-color: rgba(255, 255, 255, 0.372);
-  border-radius: 30px;
-  border: 10px solid rgb(237, 236, 236);
-
-}
-.full{
-
-}
-label{
- 
- font-size: 30px;
-
-
-}
-.btn{
-  height: 40px;
-  width: 400px;
-  background-color: black;
-
-  border-radius: 30px;
-  color: wheat;
-  margin-left: 200px;
-  margin-top: 70px;
-  font-size: 18px;
-  border: 2px solid white;
-
-}
-.btn:hover{
-  border: solid black;
-
-background-color: white;
-color: black;
-font-weight: bolder;
-}
-input{
-  margin-top: 40px;
-   font-size: 30px;
-  height: 50px;
- margin-left: 20px;
-  height: 50px;
-  text-align: center;
-    color: rgb(0, 0, 0);
-    border-radius: 40px;
-    font-size: larger;
-
-}
-.showsubcategory{
-  margin-left: 180px;
-  padding-top: 100px;
-}
-
-table{
-width: 1100px;
-text-align: center;
-border: 10px solid black;
-border-radius: 15px;
-}
-th{
-  height: 40px;
-  border: 2px solid black;
-  
-
-}
-td{
-  height: 120px;
-  width: 200px;
-   background-color: rgb(7, 7, 7);
-   color: white;
-  font-weight: bold;
-}
-.h{
-  margin-left: 1000px;
-  font-size: 30px;
-  margin-bottom: 10px;
-
-}
-.pic{
-  height: 150px;
-  width:150px;
-  overflow: hidden;
-  border: 2px solid green;
-
-      background-size: 0% ; /* Cover the entire container without black borders */
-      background-position: center; /* Center the image within the container */
-      background-repeat: no-repeat; /* Do not repeat the background */
-    }
-
- .btn5{
-    height: 50px;
-    font-size: 18px;
-    width:80px;
-    background-color: rgb(245, 245, 245);
-    color: rgb(5, 5, 5);
-border-radius: 20px;
-  }
-  .btn5:hover{
-    background-color: black;
-    color: white;
-  }
-
-    </style>
-
-
-
-<div class="showsubcategory">
-<table>
-    {{#if subcategories.length}}
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Image</th>
-          <th>Delete</th>
-          <th>Edit</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each subcategories}}
-          <tr>
-            <td>{{title}}</td>
-            <td>{{description}}</td>
-            <td   ><img  class="pic" src="{{image.url}}" alt="{{title}} Image" style="max-width: 100px;"></td>
-            <td>
-                    <button class="btn5" onclick="deleteSubCategory('{{this._id}}')">Delete</button>
-                </td>
-                <td>
-                  
-                   <button class="btn5"> <a href="/admin/edit-subcategory?name={{this._id}}">Edit</a> </button> 
-
-                </td>
-          </tr>
-        {{/each}}
-      </tbody>
-    {{else}}
-      <tr>
-        <td colspan="3">No subcategories found.</td>
-      </tr>
-    {{/if}}
-  </table>
-
-</div>
-
-</div>
-
-{{!-- -------------------------------------------------------------- --}}
-
-{{!-- {{#if categories.length}}
-  <ul>
-    {{#each categories}}
-      <li>{{title}}</li>
-      <!-- Add other category details as needed -->
-    {{/each}}
-  </ul>
-{{else}}
-  <p>No categories found.</p>
-{{/if}} --}}
-
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const response = await axios.get('/admin/categories');
-      const categories = response.data.categories;
-
-      if (categories.length) {
-        const categorySelect = document.getElementById('category');
-
-        categories.forEach(category => {
-          const option = document.createElement('option');
-          option.value = category._id;
-          option.textContent = category.title;
-          categorySelect.appendChild(option);
-        });
-      } else {
-        console.error('No categories found.');
-      }
-    } catch (error) {
-      console.error('Error fetching categories:', error.message);
-    }
-  });
-</script>
-
-{{!-- delete--}}
-<script>
-  function deleteSubCategory(subcategoryId) {
-    axios.delete(`/admin/delete-subcategory/${subcategoryId}`)
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error('Delete request failed');
-        } else {
-          window.location.href = "/admin/subcategories";
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-</script>
-
+                        </div>
+                        <div class="card-body">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- /Example-->
 
                 </div>
 
                 <div class="col-12 col-md-6">
 
-                   
+                    <!--  Example-->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6 class="card-title">Disabled and active state example</h6>
+                        </div>
+                        <div class="card-body">
+                            <nav aria-label="...">
+                                <ul class="pagination">
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link" href="#">2</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
-                    <!-- / Icon Example-->
+                    <!-- / Example-->
+
 
                 </div>
             </div>
@@ -644,10 +481,10 @@ border-radius: 20px;
 
     <!-- Theme JS -->
     <!-- Vendor JS -->
-    <script src="/admin/js/vendor.bundle.js"></script>
+    <script src="./assets/js/vendor.bundle.js"></script>
     
     <!-- Theme JS -->
-    <script src="/admin/assets/js/theme.bundle.js"></script>
+    <script src="./assets/js/theme.bundle.js"></script>
 </body>
 
 </html>

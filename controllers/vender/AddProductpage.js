@@ -91,7 +91,7 @@ let getproductDetails = async (req, res) => {
       .find()
       .populate("category")
       .populate("subcategory");
-    res.render("vender/productdetails", { products });
+    res.render("vender/productlist", { products });
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Internal Server Error" });

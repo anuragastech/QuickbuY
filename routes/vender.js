@@ -19,7 +19,7 @@ router.post("/login",venderControllers.loginvender);
 
 router.get("/login",venderControllers.getlogin);
 
-router.get("/signup",authenticateJWT,venderControllers.getsignup);
+router.get("/signup",venderControllers.getsignup);
 
 router.post("/signup",authenticateJWT,venderControllers.signvender);
 
@@ -29,13 +29,24 @@ router.get("/productAdd", authenticateJWT,productControllers.getproductAdd);
 
 router.post("/productAdd", upload, authenticateJWT,productControllers.getpostProductAdd);
 router.delete("/delete/product/:id",authenticateJWT,productControllers.productDelete);
-router.get("/productdetails",authenticateJWT,productControllers.getproductDetails);
+router.get("/productlist",authenticateJWT,productControllers.getproductDetails);
 router.get('/edit-product',authenticateJWT, productControllers.geteditProduct)
 router.post('/edit-product/:id',authenticateJWT,productControllers.postedit)
 
 
 // Logout route
 router.get("/logout",authenticateJWT,venderControllers.logout )
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -61,13 +72,6 @@ router.get('/categories',authenticateJWT, getcatasubController.getcategory)
 
   router.get('/color',authenticateJWT,getcatasubController.getcolor)
   router.get('/size', authenticateJWT,getcatasubController.getsize)
-  
-
-  // router('/home',(req,res)=>{
-  //   res.render('vender/home')
-  // })
-
-  
 
 
 module.exports = router ;
