@@ -30,7 +30,8 @@ let createUserProfile = async (req, res) => {
             }
         });
 console.log(userProfilePic);
-        await userProfilePic.save();
+
+const userProfilePicsave =  await userProfilePic.save();
 
         return res.status(200).json({ success: true, message: 'User profile updated successfully' });
     } catch (error) {
