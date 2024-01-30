@@ -11,6 +11,11 @@
     <meta name="author" content="">
     <meta name="keywords" content="">
 
+
+{{!-- modal CDN   --}}
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
@@ -18,7 +23,9 @@
     <link rel="mask-icon" href="./assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+{{!-- modal  --}}
 
+{{!--  --}}
     <!-- Google Font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -156,118 +163,135 @@
 
             <div class="row g-4">
                 <div class="col-12 col-md-6">
+{{!-- -----------------------------------------   --}}
 
-                    
-    <style>
-.xlm{
-  height: 350px;
-  width: 800px;
-
-
-  background-color: rgba(255, 255, 255, 0.372);
-  border-radius: 30px;
-  border: 10px solid rgb(237, 236, 236);
-
-}
-.full{
-
-}
+<style>
 label{
- 
- font-size: 30px;
-
-
-}
-.btn{
-  height: 40px;
-  width: 400px;
-  background-color: black;
-
-  border-radius: 30px;
-  color: wheat;
-  margin-left: 200px;
-  margin-top: 70px;
-  font-size: 18px;
-  border: 2px solid white;
-
-}
-.btn:hover{
-  border: solid black;
-
-background-color: white;
-color: black;
-font-weight: bolder;
+  font-size: 30px;
 }
 input{
-  margin-top: 40px;
-   font-size: 30px;
-  height: 50px;
- margin-left: 20px;
-  height: 50px;
-  text-align: center;
-    color: rgb(0, 0, 0);
-    border-radius: 40px;
-    font-size: larger;
-
-}
-.showsubcategory{
-  margin-left: 180px;
-  padding-top: 100px;
+  height: 30px;
 }
 
-table{
-width: 1100px;
-text-align: center;
-border: 10px solid black;
-border-radius: 15px;
-}
-th{
-  height: 40px;
-  border: 2px solid black;
-  
+</style>
 
-}
-td{
-  height: 120px;
-  width: 200px;
-   background-color: rgb(7, 7, 7);
-   color: white;
-  font-weight: bold;
-}
-.h{
-  margin-left: 1000px;
-  font-size: 30px;
-  margin-bottom: 10px;
+{{!-- -------------------------------------------------------   --}}
+  <!-- Button trigger modal -->
+            <h1 class="h10" >Category-List</h1>
+            <button
+              type="button"
+              style="background-color: white;margin-bottom: 10px; margin-top: -20px; font-size: 20px;font-weight: bolder; height: 55px; margin-left: 1100px; width: 400px;"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+            >
+              Add Sub-Category
+            </button>
 
-}
-.pic{
-  height: 150px;
-  width:150px;
-  overflow: hidden;
-  border: 2px solid green;
 
-      background-size: 0% ; /* Cover the entire container without black borders */
-      background-position: center; /* Center the image within the container */
-      background-repeat: no-repeat; /* Do not repeat the background */
-    }
+            <!-- Modal -->
+                      <form
+                                      action="/admin/subcategories"
+                                      class="frml"
+                                      method="POST"
+                                      enctype="multipart/form-data"
+                                    >
 
- .btn5{
-    height: 50px;
-    font-size: 18px;
-    width:80px;
-    background-color: rgb(245, 245, 245);
-    color: rgb(5, 5, 5);
-border-radius: 20px;
+                               <div 
+                                        class="modal fade  " style="  background-color: rgba(0, 0, 0, 0.761);"
+                                        id="exampleModalCenter"
+                                        tabindex="-1"
+                                        role="dialog"
+                                        aria-labelledby="exampleModalCenterTitle"
+                                        aria-hidden="true"
+                                      >
+                             <div class="modal-dialog modal-dialog-centered" role="document">
+                                      <div class="modal-content " >
+                                        <div class="modal-header bg-dark text-light">
+                                              <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bolder;">Add Sub-Category</h5>
+                                              <button
+                                                type="button"
+                                                class="close"
+                                                data-dismiss="modal"
+                                                aria-label="Close"
+                                              >
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body bg-dark text-light">
+                               
+
+
+                                              <label for="title">Title:</label>
+                                              <input type="text" id="title" name="title" required>
+                                              <br>
+
+                                              <label for="description">Description:</label>
+                                              <textarea  style="height: 30px;" id="description" name="description" required></textarea>
+
+                                              <label for="image">Image:</label>
+                                              <input type="file" id="image" name="image" accept="image/*" required>
+                                              {{!-- <button type="submit">Upload</button> --}}
+
+
+
+
+
+                        
+
+                                           {{!-- <button class="btn" type="submit">Add Subcategory</button>  --}}
+                                              {{! <button class="btn" type="submit">submit</button> }}
+
+                                            </div>
+                                            <div class="modal-footer bg-dark text-light">
+                                              <button
+                                                type="button"
+                                                class="btn btn-secondary"
+                                                data-dismiss="modal"
+                                              >Close</button>
+                                              <button
+                                                type="submit"
+                                                class="btn btn-primary"
+                                              >Submit</button>
+                                </div>
+                             </div>
+
+                          </div>
+                        </div>
+                     </form>
+
+</div>
+      {{!-- -------------------------------------------------------                 --}}
+
+
+<style>
+  table{
+    margin-left: 200px;
+    width: 1200px;
+    border: 5px solid rgb(249, 249, 249);
+
   }
-  .btn5:hover{
-    background-color: black;
+  th{
+    border: 1px solid white;
     color: white;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bolder;
   }
+ 
+  td{
+      border: 1px solid rgb(98, 83, 83);
+    text-align: center;
+    font-size: 16px;
+    font-weight: bolder;
+    color: white;
+    height: 100px;
+    width: 100px;
+  }
+  
+</style>
 
-    </style>
-
-
-
+   
 <div class="showsubcategory">
 <table>
     {{#if subcategories.length}}
@@ -310,41 +334,7 @@ border-radius: 20px;
 
 {{!-- -------------------------------------------------------------- --}}
 
-{{!-- {{#if categories.length}}
-  <ul>
-    {{#each categories}}
-      <li>{{title}}</li>
-      <!-- Add other category details as needed -->
-    {{/each}}
-  </ul>
-{{else}}
-  <p>No categories found.</p>
-{{/if}} --}}
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const response = await axios.get('/admin/categories');
-      const categories = response.data.categories;
-
-      if (categories.length) {
-        const categorySelect = document.getElementById('category');
-
-        categories.forEach(category => {
-          const option = document.createElement('option');
-          option.value = category._id;
-          option.textContent = category.title;
-          categorySelect.appendChild(option);
-        });
-      } else {
-        console.error('No categories found.');
-      }
-    } catch (error) {
-      console.error('Error fetching categories:', error.message);
-    }
-  });
-</script>
 
 {{!-- delete--}}
 <script>
@@ -366,10 +356,12 @@ border-radius: 20px;
 
                 </div>
 
-                <div class="col-12 col-md-6">
+                {{!-- <div class="col-12 col-md-6">
 
                    
-                    </div>
+                    </div> --}}
+
+
                     <!-- / Icon Example-->
 
                 </div>
