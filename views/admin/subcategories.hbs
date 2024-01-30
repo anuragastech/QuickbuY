@@ -10,6 +10,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keywords" content="">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 
 
 {{!-- modal CDN   --}}
@@ -229,8 +232,8 @@ input{
                                               <label for="description">Description:</label>
                                               <textarea  style="height: 30px;" id="description" name="description" required></textarea>
 
-                                              <label for="image">Image:</label>
-                                              <input type="file" id="image" name="image" accept="image/*" required>
+                                              <label  for="image">Image:</label>
+                                              <input  type="file" id="image" name="image" accept="image/*" required>
                                               {{!-- <button type="submit">Upload</button> --}}
 
 
@@ -266,12 +269,13 @@ input{
 
 <style>
   table{
-    margin-left: 200px;
-    width: 1200px;
+    margin-left: 115px;
+    width: 1400px;
     border: 5px solid rgb(249, 249, 249);
 
   }
   th{
+    height: 45px;
     border: 1px solid white;
     color: white;
     text-align: center;
@@ -285,7 +289,7 @@ input{
     font-size: 16px;
     font-weight: bolder;
     color: white;
-    height: 100px;
+    height: 120px;
     width: 100px;
   }
   
@@ -309,13 +313,13 @@ input{
           <tr>
             <td>{{title}}</td>
             <td>{{description}}</td>
-            <td   ><img  class="pic" src="{{image.url}}" alt="{{title}} Image" style="max-width: 100px;"></td>
+            <td   ><img  class="pic" src="{{image.url}}" alt="{{title}} Image" style="max-width: 140px; height: auto;"></td>
             <td>
-                    <button class="btn5" onclick="deleteSubCategory('{{this._id}}')">Delete</button>
+                    <button  style="background-color: transparent; " class="btn5" class="btn5" onclick="deleteSubCategory('{{this._id}}')"><i style="font-size: 24px; color: rgb(255, 234, 234);" class="bi bi-trash-fill"></i></button>
                 </td>
                 <td>
                   
-                   <button class="btn5"> <a href="/admin/edit-subcategory?name={{this._id}}">Edit</a> </button> 
+                   <button style="background-color: transparent;" class="btn5"> <a href="/admin/edit-subcategory?name={{this._id}}"><i class="bi bi-pencil-square text-success bg-transparent "  style="font-size: 24px;"  ></i></a> </button> 
 
                 </td>
           </tr>

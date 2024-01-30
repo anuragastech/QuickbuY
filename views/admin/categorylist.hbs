@@ -351,21 +351,26 @@
 table {
   
     border-collapse: collapse;
-    margin-left: 100px;
+    margin-left: 55px;
     border: 10px solid rgb(2, 2, 2);
     background-color: rgb(156, 21, 21);
     align-items: center;
 }
 
 th {
+  text-align: center;
     border-collapse: collapse;
     background-color: rgb(0, 0, 0);
     color: rgb(247, 243, 243);
     height: 50px;
+    font-size: 25px;
+    font-weight: bolder;
 }
 
 td {
+  font-size: 20px;
     border-collapse: collapse;
+
     border: 1px solid rgb(25, 13, 13);
     background-color: rgb(0, 0, 0);
     font-weight: bold;
@@ -374,6 +379,7 @@ td {
     width: 250px;
     text-align: center;
     border-radius: 2px;
+    
 }
 
 .btn5 {
@@ -401,7 +407,7 @@ td {
             </style>
 
 
-            <table class="col-lg-12" style="width: 1400px;" >
+            <table class="col-lg-12" style="width: 1500px;" >
               <thead>
                 <tr>
                   <th>Title</th>
@@ -421,11 +427,11 @@ td {
                       <button
                         class="btn btn-outline-danger p-0 border-0"
                         onclick="deleteCategory('{{this.title}}')"
-                      ><i class="bi bi-trash-fill"></i></button>
+                      ><i class="bi bi-trash-fill" style="font-size: 24px; color: white;" ></i></button>
                     </td>
                     <td>
 
-                      <button class="btn5"> <a href="/admin/edit?name={{this._id}}">Edit</a> </button> 
+                      <button style="background-color: transparent;" > <a href="/admin/edit?name={{this._id}}"><i style="font-size: 24px;background-color: transparent;" class="bi bi-pencil-square text-success "></i></a> </button> 
 
                       {{! ---------------------------------------------------------- }}
                       {{!-- <a type="button" class="btn btn-outline-dark btn-lg p-0 border-0" href="/admin/edit-categorylist?name={{this._id}}" data-toggle="modal" data-target="#example">
@@ -801,7 +807,7 @@ td {
 
                 <!-- User profile dropdown-->
                 <div class="dropdown m-0">
-                  <button
+                  {{!-- <button
                     class="border-0 rounded px-2 f-h-9 bg-dark-opacity p-0 text-body"
                     type="button"
                     id="profileDropdown"
@@ -809,7 +815,7 @@ td {
                     aria-expanded="false"
                   >
                     <i class="ri-settings-2-line"></i>
-                  </button>
+                  </button> --}}
                   <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                     <li><a
                         class="dropdown-item d-flex align-items-center"

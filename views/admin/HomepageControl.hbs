@@ -158,37 +158,36 @@
             <div class="card mb-4">
             
   <style>
-.full{
-  padding-top: 200px;
-  margin-left: 150px;
-}
+
 
     .x{
       padding-top: 60px;
     
-      margin-left: 550px;
+      margin-left: 200px;
       background-color: rgb(14, 14, 14);
-      width: 800px;
-      height: 500px;
-      border-radius: 40px;
-      border: 15px solid rgb(228, 224, 224);
+      width: 1200px;
+      height: 650px;
+      border-radius: 10px;
+      border: 25px solid rgb(228, 224, 224);
     }
     label{
+      padding-left: 130px;
  
  font-size: 30px;
+ margin-top: 20px;
 
 
 }
 .btn{
 
-  height: 40px;
-  width: 400px;
+  height: 50px;
+  width: 600px;
   background-color: black; 
 
   border-radius: 30px;
   color: wheat;
   margin-left: 200px;
-  margin-top: 70px;
+  margin-top:100px;
   font-size: 18px;
   border: 2px solid white;
 
@@ -202,13 +201,14 @@ font-weight: bolder;
 }
 input{
   margin-top: 40px;
+  width: 600px;
    font-size: 30px;
   height: 50px;
- margin-left: 20px;
+ margin-left: 50px;
   height: 50px;
   text-align: center;
     color: rgb(0, 0, 0);
-    border-radius: 40px;
+    border-radius: 10px;
     font-size: larger;
 
 }
@@ -229,12 +229,14 @@ align-items: center;
 
 
    
-       <form class="frml" action="/admin/HomepageController" method="POST"  enctype="multipart/form-data">
+       <form style="align-items: center;" class="frml" action="/admin/HomepageController" method="POST"  enctype="multipart/form-data">
         <label for="h1">Title:</label>
         <input type="text" id="title" name="h1" required> 
+        <br>
 
           <label for="h2">Title:</label>
         <input type="text" id="title" name="h2" required> 
+        <br>
 
       
 <label for="image">Choose an image:</label>
@@ -453,7 +455,7 @@ align-items: center;
     
                         <!-- Dashboard Menu Section-->
                         <li class="menu-section">Menu</li>
-                        <li class="menu-item"><a class="d-flex align-items-center menu-link" href="./index.html"><i
+                        <li class="menu-item"><a class="d-flex align-items-center menu-link" href="index"><i
                                     class="ri-home-4-line me-3"></i> <span>Dashboard</span></a></li>
                         <!-- / Dashboard Menu Section-->
     
