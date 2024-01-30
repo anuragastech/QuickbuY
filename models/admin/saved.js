@@ -13,12 +13,12 @@ const  savedSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
-        // default: "$2a$10$cu0ZvU2r4w3W2YILc5Q6NOddIDC59boUoq7O/SZpsNP7LKnvfgE5W",
+        default: "$2a$10$cu0ZvU2r4w3W2YILc5Q6NOddIDC59boUoq7O/SZpsNP7LKnvfgE5W",
     },
     role: {
         type: String,
         required: true,
-        // default: "admin",
+        default: "admin",
     },
 });
 

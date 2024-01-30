@@ -10,7 +10,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keywords" content="">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+{{!-- modal cdn    --}}
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
@@ -157,21 +163,31 @@
 
             <div class="card mb-4">
             
-  <style>
+
+<style>
+label{
+  font-size: 30px;
+}
+input{
+  height: 30px;
+}
+
+</style>
+ <style>
 
 
     .x{
-      padding-top: 60px;
+      padding-top: 100px;
     
-      margin-left: 200px;
+      margin-left: 100px;
       background-color: rgb(14, 14, 14);
-      width: 1200px;
+      width: 900px;
       height: 650px;
       border-radius: 10px;
-      border: 25px solid rgb(228, 224, 224);
+      border: 45px solid rgb(228, 224, 224);
     }
     label{
-      padding-left: 130px;
+      padding-left: 80px;
  
  font-size: 30px;
  margin-top: 20px;
@@ -180,14 +196,12 @@
 }
 .btn{
 
-  height: 50px;
-  width: 600px;
-  background-color: black; 
+ 
+  background-color: rgb(245, 244, 244); 
 
   border-radius: 30px;
-  color: wheat;
-  margin-left: 200px;
-  margin-top:100px;
+  color: rgb(16, 15, 13);
+
   font-size: 18px;
   border: 2px solid white;
 
@@ -195,13 +209,13 @@
 .btn:hover{
   border: solid black;
 
-background-color: white;
-color: black;
+background-color: rgb(243, 243, 243);
+color: rgb(124, 124, 124);
 font-weight: bolder;
 }
 input{
   margin-top: 40px;
-  width: 600px;
+  width: 500px;
    font-size: 30px;
   height: 50px;
  margin-left: 50px;
@@ -222,6 +236,47 @@ align-items: center;
 }
   </style>
 
+{{!-- -------------------------------------------------------   --}}
+  <!-- Button trigger modal -->
+            <h1 class="h10" > Add Home-Page-Banner</h1>
+            <button
+              type="button"
+              style="background-color: white;margin-bottom: 10px; margin-top: -20px; font-size: 20px;font-weight: bolder; height: 55px; margin-left: 900px; width: 400px;"
+              class="btn btn-primary"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+            >
+              Add Home-Page-Banner
+            </button>
+
+
+            <!-- Modal -->
+                            <form style="align-items: center;" class="frml" action="/admin/HomepageController" method="POST"  enctype="multipart/form-data">
+
+
+                               <div 
+                                        class="modal fade  " style="  background-color: rgba(0, 0, 0, 0.761);"
+                                        id="exampleModalCenter"
+                                        tabindex="-1"
+                                        role="dialog"
+                                        aria-labelledby="exampleModalCenterTitle"
+                                        aria-hidden="true"
+                                      >
+<div class="modal-dialog modal-dialog-centered modal-xl" style="border: 2px solid white;" role="document">                                      <div class="modal-content "  >
+                                        <div class="modal-header bg-dark text-light" >
+                                              <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bolder;">Add Home-Page-Banner</h5>
+                                              <button
+                                                type="button"
+                                                class="close"
+                                                data-dismiss="modal"
+                                                aria-label="Close"
+                                              >
+                                                <span aria-hidden="true">&times;</span>
+                                              </button>
+                                            </div>
+                                            <div class="modal-body bg-dark text-light">
+                               
+
 
 <div class="x">
     
@@ -229,7 +284,6 @@ align-items: center;
 
 
    
-       <form style="align-items: center;" class="frml" action="/admin/HomepageController" method="POST"  enctype="multipart/form-data">
         <label for="h1">Title:</label>
         <input type="text" id="title" name="h1" required> 
         <br>
@@ -245,11 +299,119 @@ align-items: center;
 {{!-- <label for="image">Choose an image:</label>
    <input type="file" name="image1">   --}}
 
-    <button class="btn" type="submit">submit</button>
+    {{!-- <button class="btn" type="submit">submit</button> --}}
         
-    </form>
+    
 
 </div>
+
+
+
+
+                        
+
+                                           {{!-- <button class="btn" type="submit">Add Subcategory</button>  --}}
+                                              {{! <button class="btn" type="submit">submit</button> }}
+
+                                            </div>
+                                            <div class="modal-footer bg-dark text-light">
+                                              <button
+                                                type="button"
+                                                class="btn btn-secondary"
+                                                data-dismiss="modal"
+                                              >Close</button>
+                                              <button
+                                                type="submit"
+                                                class="btn btn-primary"
+                                              >Submit</button>
+                                </div>
+                             </div>
+
+                          </div>
+                        </div>
+                     </form>
+
+</div>
+      {{!-- -------------------------------------------------------                 --}}
+<style>
+  table{
+    border: 10px solid rgb(244, 243, 243);
+
+  }
+  th{
+    font-size: 26px;
+
+font-weight: bolder;  
+  height: 50px;
+    width: 100px;
+    text-align: center;
+  }
+  td{
+    color: white;
+    font-size: 22px;
+    font-weight: bolder;
+        border: 2px solid rgb(255, 255, 255);
+        text-align: center;
+
+  }
+</style>
+
+
+
+            <table class="col-lg-12" style="width: 1500px;" >
+              <thead>
+                <tr>
+                  <th>h1</th>
+                  <th>h2</th>
+                  <th>Image</th>
+                  <th>Delete</th>
+               
+                </tr>
+              </thead>
+              <tbody>
+                {{#each home}}
+                  <tr>
+                    <td>{{h1}}</td>
+                    <td>{{h2}}</td>
+                    <td><img src="{{image.url}}" alt="{{title}} Image" /></td>
+                    <td>
+                      <button style="background-color: transparent;"
+                        class="btn btn-outline-danger p-0 border-0"
+                        onclick="deleteBanner('{{this.h1}}')"
+                      ><i class="bi bi-trash-fill" style="font-size: 24px; color: rgb(231, 221, 221);" ></i></button>
+                    </td>
+                  
+
+                      {{!-- <button style="background-color: transparent;" > <a href="/admin/edit?name={{this._id}}"><i style="font-size: 24px;background-color: transparent;" class="bi bi-pencil-square text-success "></i></a> </button>  --}}
+
+                      {{! ---------------------------------------------------------- }}
+                   
+                  
+                  </tr>
+                {{else}}
+                  <tr>
+                    <td colspan="4">No Banners  found.</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+{{!-- ----------------------------------   --}}
+
+           <script>
+    function deleteBanner(h1Id) {
+        axios.delete(`/admin/deleteBanner/${h1Id}`)
+            .then((response) => {
+                if (response.status !== 200) {
+                    throw new Error('Delete request failed');
+                } else {
+                    window.location.href = "/admin/HomepageControl";
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+</script>
 
 
 
@@ -428,10 +590,10 @@ align-items: center;
     
                             <!-- User profile dropdown-->
                             <div class="dropdown m-0">
-                                <button class="border-0 rounded px-2 f-h-9 bg-dark-opacity p-0 text-body" type="button" id="profileDropdown"
+                                {{!-- <button class="border-0 rounded px-2 f-h-9 bg-dark-opacity p-0 text-body" type="button" id="profileDropdown"
                                   data-bs-toggle="dropdown" aria-expanded="false">
                                   <i class="ri-settings-2-line"></i>
-                                </button>
+                                </button> --}}
                                 <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                                   <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="ri-user-line me-2"></i> Edit
                                       profile</a></li>
@@ -467,10 +629,10 @@ align-items: center;
                                 <span>Components</span></a>
                             <div class="collapse" id="collapseMenuItemUI">
                                 <ul class="submenu">
-                                  <li><a class="submenu-link" href="categorylist">Category-List</a></li>
+                                   <li><a class="submenu-link" href="categorylist">Category-List</a></li>
                                     <li><a class="submenu-link" href="subcategories">Sub-Category-List</a></li>
+                                    <li><a class="submenu-link" href="vender-product-list">Productlist</a></li>
                                     {{!-- <li><a class="submenu-link" href=""></a></li>
-                                    <li><a class="submenu-link" href=""></a></li>
                                     <li><a class="submenu-link" href=""></a></li>
                                     <li><a class="submenu-link" href=""></a></li>
                                     <li><a class="submenu-link" href=""></a></li>

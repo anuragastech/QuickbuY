@@ -11,8 +11,8 @@ let  loginPost=async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await Saved.findOne({ email });
-
         if (user && (await bcrypt.compare(password, user.password))) {
+
             console.log('Authentication successful');
 
             const token = jwt.sign({ id: user._id, role: user.role }, secretKey, { expiresIn: '2h' });

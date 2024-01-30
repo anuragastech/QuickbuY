@@ -45,14 +45,29 @@ let HomepagepicPost = async (req, res) => {
   };
 
 
-   let HomepagepicGet=async (req, res) => {
-  
+  let HomepagepicGet = async (req, res) => {
     try {
-    //   const Homepagepic = await Homepagepic.find();
-      res.render(  'admin/HomepageControl');
+        const Homepagepics = await Homepagepic.find();
+        res.render('admin/HomepageControl', { home: Homepagepics });
     } catch (error) {
-      console.error("Error fetching Homepagepic:", error.message);
-      res.status(500).json({ error: "Internal Server Error" });
+        console.error("Error fetching Homepagepic:", error.message);
+        res.status(500).json({ error: "Internal Server Error" });
     }
-  };
-  module.exports={ HomepagepicPost ,HomepagepicGet} ;
+};
+let deleteBanner=async (req, res) => {
+  try {
+    const h1Id = req.params.id;
+    const deleteBanners = await Homepagepic.findOneAndDelete({h1: h1Id });
+
+    if (!deleteBanners) {
+      return res.status(404).json({ message: "Category not found" });
+    }
+    return res.status(200).json({success:true});
+  //   return res.redirect("/admin/HomepageControl");
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error deleting category data", error: error.message });
+  }
+};
+
+  module.exports={ HomepagepicPost ,deleteBanner ,HomepagepicGet} ;

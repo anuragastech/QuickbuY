@@ -85,6 +85,7 @@ router.post('/edit-categorylist/:id',categoryControllers.editpost)
 router.get("/edit-subcategory",subCategoryControllers.editGetsubCategory);
 router.post('/edit-subcategory/:id',subCategoryControllers.editsubcategorypost)
 
+router.delete("/deleteBanner/:id",HomepageController.deleteBanner);
 
 
 router.delete("/delete/:id",categoryControllers.deleteCategory);
@@ -106,6 +107,8 @@ router.get("/admin/subcategory",subCategoryControllers.getsubcategory);
 
 router.get("/admin/color",otherControllers.getcolor);
 router.get("/admin/size",otherControllers.getsize);
+
+
 
 
 // router.get("/Addcolor",otherControllers.getcolor)
