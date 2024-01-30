@@ -11,6 +11,9 @@
     <meta name="author" content="">
     <meta name="keywords" content="">
 
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
@@ -25,10 +28,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS -->
-    <link rel="stylesheet" href="./assets/css/libs.bundle.css" />
+    <link rel="stylesheet" href="/admin/libs.bundle.css" />
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="./assets/css/theme.bundle.css" />
+    <link rel="stylesheet" href="/admin/theme.bundle.css" />
 
     <!-- Fix for custom scrollbar if JS is disabled-->
     <noscript>
@@ -145,90 +148,92 @@
             <!-- Breadcrumbs-->
             <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Dashboard</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Card</li>
+                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Subcategory List</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Subcategory</li>
                 </ol>
             </nav>            <!-- / Breadcrumbs-->
 
             <!-- Page Title-->
-            <h2 class="fs-4 mb-2">Card</h2>
-            <p class="mb-4">Bootstrap’s cards provide a flexible and extensible content container with
-                multiple variants and options.</p>
+           
             <!-- / Page Title-->
 
             <div class="row g-4">
                 <div class="col-12 col-md-6">
+{{!-- ------------------------------------------------------------------ --}}
 
-                    <!-- Example-->
-                    <div class="card mb-4">
-                        <div class="card-header">
-                            <h6 class="card-title">Default example</h6>
-                            <p class="m-0 small">Cards are built with as little markup and styles
-                                as possible, but still manage to deliver a ton of control.</p>
-                        </div>
-                        <div class="card-body">
-                            <p>Some quick example text to build on the card title and make up the bulk of the card's
-                                content.</p>
-                        </div>
-                    </div>
-                    <!-- /Example-->
 
-                    <!-- Image Example-->
-                    <div class="card">
-                        <img src="https://images.unsplash.com/photo-1533630217389-3a5e4dff5683?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&h=500&q=80"
-                            class="card-img-top" alt="HTML Bootstrap Admin Template by Pixel Rocket">
-                        <div class="card-body">
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                            </p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                    <!-- / Image Example-->
+
+<style>
+
+.slm{
+  padding-left: 30px;
+  margin-left: 550px;
+background-color: rgba(254, 253, 252, 0.08);
+border-radius: 40px;
+width: 480px;
+height: 300px;
+padding-top: 10px;
+
+}
+.full{
+  padding-top: 150px;
+}
+input{
+  font-size: 30px;
+  height: 60px;
+  text-align: center;
+  border-radius: 30px;
+  background-color: black;
+  color: wheat;
+
+}
+label{
+  font-size: 32px;
+  font-weight: bolder;
+
+}
+
+.btn{
+  height: 40px;
+  width: 80px;
+  margin-left: 150px;
+  margin-top: 30px;
+  border-radius: 30px;
+  background-color: rgb(36, 20, 20);
+  color: wheat;
+}
+
+</style>
+
+
+
+<div class="full">
+
+
+   {{#if cata }}
+
+<form class="slm" action="/admin/edit-categorylist/{{cata._id}}" method="POST">  
+  <label for="title">Title:</label>
+    <input type="text" id="title" name="title" value="{{cata.title}}" required><br>
+
+    <label for="description">Description:</label>
+    <input type="text" id="description" name="description" value="{{cata.description}}" required><br>
+
+    <button class="btn" type="submit">Submit</button>
+</form>
+{{/if}}
+
+</div>
+
+{{!-- ---------------------------------------------------------------------------------------------------------------  --}}
 
                 </div>
 
                 <div class="col-12 col-md-6">
 
-                    <!--  Example-->
-                    <div class="card mb-4">
-                        <div class="card-header justify-content-between align-items-center d-flex">
-                            <h6 class="card-title m-0">Dropdown menu example</h6>
-                            <div class="dropdown">
-                                <button class="btn btn-link dropdown-toggle dropdown-toggle-icon fw-bold p-0"
-                                    type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                    <i class="ri-more-2-line"></i>
-                                </button>
-                                <ul class="dropdown-menu dropdown" aria-labelledby="dropdownMenuButton1">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <p>Click on the ellipse icon in the top right corner of this card to see a dropdown example
-                                integrated with the card header title.</p>
-                        </div>
+                   
                     </div>
-                    <!-- / Example-->
-
-                    <!-- Collapse Example-->
-                    <div class="card">
-                        <a class="card-header text-decoration-none text-body" data-bs-toggle="collapse"
-                            href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample">
-                            <h6 class="card-title m-0">Dropdown card example</h6>
-                        </a>
-                        <div class="collapse show" id="collapseExample">
-                            <div class="card-body">
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                                <a href="#" class="card-link">Card link</a>
-                                <a href="#" class="card-link">Another link</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- / Collapse Example-->
+                    <!-- / Icon Example-->
 
                 </div>
             </div>
@@ -502,10 +507,10 @@
 
     <!-- Theme JS -->
     <!-- Vendor JS -->
-    <script src="./assets/js/vendor.bundle.js"></script>
+    <script src="/admin/js/vendor.bundle.js"></script>
     
     <!-- Theme JS -->
-    <script src="./assets/js/theme.bundle.js"></script>
+    <script src="/admin/assets/js/theme.bundle.js"></script>
 </body>
 
 </html>

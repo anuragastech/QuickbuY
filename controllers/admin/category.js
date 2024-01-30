@@ -42,17 +42,14 @@ let getCategorylist= async (req, res) => {
        
         const categoryList = await category.find({}, ' id title description image');
 
-         const categoryId = req.query.name;
-      const categorys = await category.findOne({ _id: categoryId });
-      console.log(categorys);
-      console.log(categoryList);
+       
 
 
         if (!categoryList) {
             return res.status(500).json({ success: false });
         }
 
-        res.render('admin/categorylist', { categories: categoryList, cata: categorys });
+        res.render('admin/categorylist', { categories: categoryList});
           } catch (error) {
         console.error(error);
         res.status(500).json({ success: false });
@@ -61,22 +58,22 @@ let getCategorylist= async (req, res) => {
 };
 
 
-// let editGetCategory= async (req, res) => {
-//   try {
-//       const categoryId = req.query.name;
-//       const categorys = await category.findOne({ _id: categoryId });
-//       console.log(categoryId);
+let editGetCategory= async (req, res) => {
+  try {
+      const categoryId = req.query.name;
+      const categorys = await category.findOne({ _id: categoryId });
+      console.log(categoryId);
 
-//       if (!categorys) {
-//           return res.status(404).json({ success: false, message: 'Category not found' });
-//       }
+      if (!categorys) {
+          return res.status(404).json({ success: false, message: 'Category not found' });
+      }
 
-//       res.render('admin/categorylist', { cata: categorys });
-//   } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ success: false });
-//   }
-// };
+      res.render('admin/edit', { cata: categorys });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ success: false });
+  }
+};
 
 
 let deleteCategory= async (req, res) => {
@@ -149,7 +146,7 @@ let  getcategories=async (req, res) => {
   };
  let editpost = async (req, res) => {
     try {
-        const categoryId = req.params.id;  // Use req.params to get the category ID from the route
+        const categoryId = req.params.id;  
         const { title, description } = req.body;
 
         if (!title || !description) {
@@ -177,4 +174,4 @@ let  getcategories=async (req, res) => {
     }
 };
   
-module.exports={editpost,putCategory,getcategoryDelete,getcategories,deleteCategory,postCategory,getCategorylist};
+module.exports={editpost,putCategory,getcategoryDelete,getcategories, editGetCategory,deleteCategory,postCategory,getCategorylist};

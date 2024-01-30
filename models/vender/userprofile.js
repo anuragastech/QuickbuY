@@ -1,7 +1,18 @@
 const mongoose = require("mongoose");
 
 const userprofileSchema = mongoose.Schema({
-
+  username: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'registers',
+  },
   image:{
     public_id:{
      type:String,
@@ -15,4 +26,4 @@ const userprofileSchema = mongoose.Schema({
 
 });
 
-module.exports = mongoose.model("userprofilepic", userprofileSchema);
+module.exports = mongoose.model("userprofile", userprofileSchema);

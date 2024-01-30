@@ -74,12 +74,12 @@ router.post("/login",adminControllers.loginPost);
 
 router.get("/login",adminControllers.getlogin);
 
-router.post("/categorylist", upload,categoryControllers.postCategory);
+router.post("/categorylist/:id", upload,categoryControllers.postCategory);
 
 
 router.get("/categorylist",categoryControllers.getCategorylist);
 
-router.get("/edit-categorylist",categoryControllers.getCategorylist);
+router.get("/edit",categoryControllers.editGetCategory);
 router.post('/edit-categorylist/:id',categoryControllers.editpost)
 
 router.get("/edit-subcategory",subCategoryControllers.editGetsubCategory);

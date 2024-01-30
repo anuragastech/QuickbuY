@@ -25,10 +25,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS -->
-    <link rel="stylesheet" href="/admin/libs.bundle.css" />
+    <link rel="stylesheet" href="/vender/libs.bundle.css" />
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="/admin/theme.bundle.css" />
+    <link rel="stylesheet" href="/vender/theme.bundle.css" />
 
     <!-- Fix for custom scrollbar if JS is disabled-->
     <noscript>
@@ -43,101 +43,101 @@
     </noscript>
 
     <!-- Page Title -->
-    <title>Kavlan | Bootstrap 5 HTML Admin Dashboard</title>
+    <title></title>
     
 </head>
 <body class="">
 
-    <!-- Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top bg-dark-800">
-      <div class="container-fluid">
-        <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
-    
-          <!-- Menu Toggle-->
-          <div class="menu-toggle cursor-pointer me-4 text-primary-hover transition-color disable-child-pointer">
-            <i class="ri-menu-fold-line ri-lg fold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
-              title="Close menu"></i>
-            <i class="ri-menu-unfold-line ri-lg unfold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
-              title="Open Menu"></i>
-          </div>
-          <!-- / Menu Toggle-->
-    
-          <!-- Navbar Actions-->
-          <div class="d-flex align-items-center">
-    
-            <!-- Search-->
-            <button class="btn-icon btn-hover-dark btn-search me-2">
-              <i class="ri-search-2-line align-bottom lh-1 text-body"></i>
-            </button>
-    
-            <!-- Search navbar overlay-->
-            <div class="navbar-search d-none">
-              <div class="input-group mb-3 h-100">
-                <span class="input-group-text px-4 bg-transparent"><i class="ri-search-line ri-lg"></i></span>
-                <input type="text" class="form-control text-body bg-transparent border-0" placeholder="Enter your search terms...">
-                <span class="input-group-text px-4 cursor-pointer disable-child-pointer close-search bg-transparent"><i class="ri-close-circle-line ri-lg text-primary"></i></span>
-              </div>
-            </div>
-            <!-- / Search navbar overlay-->
-    
-            <!-- / Search-->
-    
-            <!-- Region -->
-            <div class="dropdown me-2">
-              <button class="btn-icon btn-hover-dark" type="button" id="regionDropdown"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="flag-icon flag-icon-gb"></span>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="regionDropdown">
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United Kingdom <span class="text-muted ms-5"><span class="flag-icon flag-icon-gb"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United States<span class="text-muted ms-5"><span class="flag-icon flag-icon-us"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Australia<span class="text-muted ms-5"><span class="flag-icon flag-icon-au"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Belgium<span class="text-muted ms-5"><span class="flag-icon flag-icon-be"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Canada<span class="text-muted ms-5"><span class="flag-icon flag-icon-ca"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">China <span class="text-muted ms-5"><span class="flag-icon flag-icon-cn"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Denmark <span class="text-muted ms-5"><span class="flag-icon flag-icon-dk"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">France<span class="text-muted ms-5"><span class="flag-icon flag-icon-fr"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Netherlands<span class="text-muted ms-5"><span class="flag-icon flag-icon-nl"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russia<span class="text-muted ms-5"><span class="flag-icon flag-icon-ru"></span></span></a></li>
-              </ul>
-            </div>
-            <!-- /Region -->
-    
-            <!-- Language-->
-            <div class="dropdown me-2">
-              <button class="btn-icon btn-hover-dark" type="button" id="language"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="ri-global-line align-bottom text-body lh-1"></i>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language">
-                <li>
-                  <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">English 
-                    <span class="text-muted ms-5">EN</span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">French<span class="text-muted ms-5">FR</span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Espanol<span class="text-muted ms-5">ES</span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Turkish<span class="text-muted ms-5">TR</span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russian<span class="text-muted ms-5">RU</span></a></li>
-              </ul>
-            </div>
-            <!-- / Language-->
-    
-            <!-- Notifications-->
-            <a class="btn-icon btn-hover-dark position-relative p-2 disable-child-pointer" data-bs-toggle="offcanvas" href="#offcanvasNotifications" role="button"
-            aria-controls="offcanvasNotifications">
-              <i class="ri-notification-fill align-bottom text-body lh-1"></i>
-              <span class="badge bg-primary text-white position-absolute top-0 end-0">3</span>
-            </a>
-            <!-- / Notifications-->
-    
-          </div>
-          <!-- / Navbar Actions-->
-        
-        </div>
-      </div>
-    </nav>    <!-- / Navbar-->
-
     <!-- Page Content -->
     <main id="main">
+
+        <!-- Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top bg-dark-800">
+          <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
+        
+              <!-- Menu Toggle-->
+              <div class="menu-toggle cursor-pointer me-4 text-primary-hover transition-color disable-child-pointer">
+                <i class="ri-menu-fold-line ri-lg fold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
+                  title="Close menu"></i>
+                <i class="ri-menu-unfold-line ri-lg unfold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
+                  title="Open Menu"></i>
+              </div>
+              <!-- / Menu Toggle-->
+        
+              <!-- Navbar Actions-->
+              <div class="d-flex align-items-center">
+        
+                <!-- Search-->
+                <button class="btn-icon btn-hover-dark btn-search me-2">
+                  <i class="ri-search-2-line align-bottom lh-1 text-body"></i>
+                </button>
+        
+                <!-- Search navbar overlay-->
+                <div class="navbar-search d-none">
+                  <div class="input-group mb-3 h-100">
+                    <span class="input-group-text px-4 bg-transparent"><i class="ri-search-line ri-lg"></i></span>
+                    <input type="text" class="form-control text-body bg-transparent border-0" placeholder="Enter your search terms...">
+                    <span class="input-group-text px-4 cursor-pointer disable-child-pointer close-search bg-transparent"><i class="ri-close-circle-line ri-lg text-primary"></i></span>
+                  </div>
+                </div>
+                <!-- / Search navbar overlay-->
+        
+                <!-- / Search-->
+        
+                <!-- Region -->
+                <div class="dropdown me-2">
+                  <button class="btn-icon btn-hover-dark" type="button" id="regionDropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="flag-icon flag-icon-gb"></span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="regionDropdown">
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United Kingdom <span class="text-muted ms-5"><span class="flag-icon flag-icon-gb"></span></span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United States<span class="text-muted ms-5"><span class="flag-icon flag-icon-us"></span></span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Australia<span class="text-muted ms-5"><span class="flag-icon flag-icon-au"></span></span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Belgium<span class="text-muted ms-5"><span class="flag-icon flag-icon-be"></span></span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Canada<span class="text-muted ms-5"><span class="flag-icon flag-icon-ca"></span></span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">China <span class="text-muted ms-5"><span class="flag-icon flag-icon-cn"></span></span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Denmark <span class="text-muted ms-5"><span class="flag-icon flag-icon-dk"></span></span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">France<span class="text-muted ms-5"><span class="flag-icon flag-icon-fr"></span></span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Netherlands<span class="text-muted ms-5"><span class="flag-icon flag-icon-nl"></span></span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russia<span class="text-muted ms-5"><span class="flag-icon flag-icon-ru"></span></span></a></li>
+                  </ul>
+                </div>
+                <!-- /Region -->
+        
+                <!-- Language-->
+                <div class="dropdown me-2">
+                  <button class="btn-icon btn-hover-dark" type="button" id="language"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="ri-global-line align-bottom text-body lh-1"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language">
+                    <li>
+                      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">English 
+                        <span class="text-muted ms-5">EN</span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">French<span class="text-muted ms-5">FR</span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Espanol<span class="text-muted ms-5">ES</span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Turkish<span class="text-muted ms-5">TR</span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russian<span class="text-muted ms-5">RU</span></a></li>
+                  </ul>
+                </div>
+                <!-- / Language-->
+        
+                <!-- Notifications-->
+                <a class="btn-icon btn-hover-dark position-relative p-2 disable-child-pointer" data-bs-toggle="offcanvas" href="#offcanvasNotifications" role="button"
+                aria-controls="offcanvasNotifications">
+                  <i class="ri-notification-fill align-bottom text-body lh-1"></i>
+                  <span class="badge bg-primary text-white position-absolute top-0 end-0">3</span>
+                </a>
+                <!-- / Notifications-->
+        
+              </div>
+              <!-- / Navbar Actions-->
+            
+            </div>
+          </div>
+        </nav>        <!-- / Navbar-->
 
         <!-- Content-->
         <section class="container-fluid">
@@ -145,43 +145,42 @@
             <!-- Breadcrumbs-->
             <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Subcategory List</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Subcategory</li>
+                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Blank Page</li>
                 </ol>
             </nav>            <!-- / Breadcrumbs-->
 
             <!-- Page Title-->
-           
+          
             <!-- / Page Title-->
 
-            <div class="row g-4">
-                <div class="col-12 col-md-6">
 
-                    
-    <style>
-.xlm{
-  height: 350px;
-  width: 800px;
+            <div class="card mb-4">
+            
+  <style>
 
 
-  background-color: rgba(255, 255, 255, 0.372);
-  border-radius: 30px;
-  border: 10px solid rgb(237, 236, 236);
-
-}
-.full{
-
-}
-label{
+    .x{
+      padding-top: 60px;
+    
+      margin-left: 550px;
+      background-color: rgb(23, 20, 20);
+      width: 800px;
+      height: 500px;
+      border-radius: 40px;
+      border: 15px solid rgb(228, 224, 224);
+    }
+    label{
  
  font-size: 30px;
 
 
 }
 .btn{
+
   height: 40px;
   width: 400px;
-  background-color: black;
+  background-color: black; 
 
   border-radius: 30px;
   color: wheat;
@@ -210,170 +209,40 @@ input{
     font-size: larger;
 
 }
-.showsubcategory{
-  margin-left: 180px;
-  padding-top: 100px;
-}
-
-table{
-width: 1100px;
-text-align: center;
-border: 10px solid black;
-border-radius: 15px;
-}
-th{
-  height: 40px;
-  border: 2px solid black;
-  
-
-}
-td{
-  height: 120px;
-  width: 200px;
-   background-color: rgb(7, 7, 7);
-   color: white;
-  font-weight: bold;
-}
-.h{
-  margin-left: 1000px;
-  font-size: 30px;
-  margin-bottom: 10px;
-
-}
-.pic{
-  height: 150px;
-  width:150px;
-  overflow: hidden;
-  border: 2px solid green;
-
-      background-size: 0% ; /* Cover the entire container without black borders */
-      background-position: center; /* Center the image within the container */
-      background-repeat: no-repeat; /* Do not repeat the background */
-    }
-
- .btn5{
-    height: 50px;
-    font-size: 18px;
-    width:80px;
-    background-color: rgb(245, 245, 245);
-    color: rgb(5, 5, 5);
-border-radius: 20px;
+.frml{
+  {
+    border: 12px solid rgb(2, 2, 2) ;
+       background-color: rgb(156, 21, 21);
+   
+align-items: center;
   }
-  .btn5:hover{
-    background-color: black;
-    color: white;
-  }
-
-    </style>
+}
+  </style>
 
 
+<div class="x">
+    
 
-<div class="showsubcategory">
-<table>
-    {{#if subcategories.length}}
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Image</th>
-          <th>Delete</th>
-          <th>Edit</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each subcategories}}
-          <tr>
-            <td>{{title}}</td>
-            <td>{{description}}</td>
-            <td   ><img  class="pic" src="{{image.url}}" alt="{{title}} Image" style="max-width: 100px;"></td>
-            <td>
-                    <button class="btn5" onclick="deleteSubCategory('{{this._id}}')">Delete</button>
-                </td>
-                <td>
-                  
-                   <button class="btn5"> <a href="/admin/edit-subcategory?name={{this._id}}">Edit</a> </button> 
 
-                </td>
-          </tr>
-        {{/each}}
-      </tbody>
-    {{else}}
-      <tr>
-        <td colspan="3">No subcategories found.</td>
-      </tr>
-    {{/if}}
-  </table>
+
+   
+     <form class="frml" action="/vender/profile" method="POST" enctype="multipart/form-data">
+    <label for="username">Username:</label>
+    <input type="text" id="title" name="username" required> 
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required> 
+
+     
+<label for="image">Choose an image:</label>
+   <input type="file" name="image">  
+
+    <button class="btn" type="submit">Submit</button>
+</form>
+
 
 </div>
-
-</div>
-
-{{!-- -------------------------------------------------------------- --}}
-
-{{!-- {{#if categories.length}}
-  <ul>
-    {{#each categories}}
-      <li>{{title}}</li>
-      <!-- Add other category details as needed -->
-    {{/each}}
-  </ul>
-{{else}}
-  <p>No categories found.</p>
-{{/if}} --}}
-
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', async () => {
-    try {
-      const response = await axios.get('/admin/categories');
-      const categories = response.data.categories;
-
-      if (categories.length) {
-        const categorySelect = document.getElementById('category');
-
-        categories.forEach(category => {
-          const option = document.createElement('option');
-          option.value = category._id;
-          option.textContent = category.title;
-          categorySelect.appendChild(option);
-        });
-      } else {
-        console.error('No categories found.');
-      }
-    } catch (error) {
-      console.error('Error fetching categories:', error.message);
-    }
-  });
-</script>
-
-{{!-- delete--}}
-<script>
-  function deleteSubCategory(subcategoryId) {
-    axios.delete(`/admin/delete-subcategory/${subcategoryId}`)
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error('Delete request failed');
-        } else {
-          window.location.href = "/admin/subcategories";
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-</script>
-
-
-                </div>
-
-                <div class="col-12 col-md-6">
-
-                   
-                    </div>
-                    <!-- / Icon Example-->
-
-                </div>
-            </div>
+            
 
             <!-- Footer -->
             <footer class="  footer">
@@ -447,7 +316,7 @@ border-radius: 20px;
                   <div class="position-relative mt-1 ">
                     <picture class="avatar avatar-sm">
                       <img src="./assets/images/profile-small-2.jpeg"
-                        alt="HTML Bootstrap Admin Template by Pixel Rocket">
+                        alt="">
                     </picture>
                     <span
                     class="dot bg-success avatar-dot border-light dot-sm"></span>
@@ -465,7 +334,7 @@ border-radius: 20px;
                   <div class="position-relative mt-1 ">
                     <picture class="avatar avatar-sm">
                       <img src="./assets/images/profile-small-3.jpeg"
-                        alt="HTML Bootstrap Admin Template by Pixel Rocket">
+                        alt="">
                     </picture>
                     <span
                     class="dot bg-success avatar-dot border-light dot-sm"></span>
@@ -483,7 +352,7 @@ border-radius: 20px;
                   <div class="position-relative mt-1 ">
                     <picture class="avatar avatar-sm">
                       <img src="./assets/images/profile-small-4.jpeg"
-                        alt="HTML Bootstrap Admin Template by Pixel Rocket">
+                        alt="">
                     </picture>
                     <span
                     class="dot bg-danger avatar-dot border-light dot-sm"></span>
@@ -537,7 +406,7 @@ border-radius: 20px;
                         <div class="position-relative">
                             <picture class="avatar avatar-profile">
                                 <img class="avatar-profile-img" src="./assets/images/profile-small.jpeg"
-                                  alt="HTML Bootstrap Admin Template by Pixel Rocket">
+                                  alt="">
                             </picture>
                             <span class="dot bg-success avatar-dot"></span>
                         </div>
@@ -545,15 +414,15 @@ border-radius: 20px;
                         <small>robert.jones@outlook.com</small>
                         <div class="d-flex flex-wrap mt-2 justify-content-between align-items-center">
                             <div class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1">
-                                <i class="ri-map-pin-line me-2"></i> London, UK
+                                <a   style="width: 95px;height: 30px;color: black; background-color: white; border-radius: 25px;text-align: center;"  href="logout" >logout</a>
                             </div>
     
                             <!-- User profile dropdown-->
                             <div class="dropdown m-0">
-                                <button class="border-0 rounded px-2 f-h-9 bg-dark-opacity p-0 text-body" type="button" id="profileDropdown"
+                                {{!-- <button class="border-0 rounded px-2 f-h-9 bg-dark-opacity p-0 text-body" type="button" id="profileDropdown"
                                   data-bs-toggle="dropdown" aria-expanded="false">
                                   <i class="ri-settings-2-line"></i>
-                                </button>
+                                </button> --}}
                                 <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                                   <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="ri-user-line me-2"></i> Edit
                                       profile</a></li>
@@ -577,7 +446,7 @@ border-radius: 20px;
     
                         <!-- Dashboard Menu Section-->
                         <li class="menu-section">Menu</li>
-                        <li class="menu-item"><a class="d-flex align-items-center menu-link" href="./index.html"><i
+                        <li class="menu-item"><a class="d-flex align-items-center menu-link" href="index"><i
                                     class="ri-home-4-line me-3"></i> <span>Dashboard</span></a></li>
                         <!-- / Dashboard Menu Section-->
     
@@ -589,19 +458,19 @@ border-radius: 20px;
                                 <span>Components</span></a>
                             <div class="collapse" id="collapseMenuItemUI">
                                 <ul class="submenu">
-                                    <li><a class="submenu-link" href="./accordion.html">Accordion</a></li>
-                                    <li><a class="submenu-link" href="./alert.html">Alert</a></li>
-                                    <li><a class="submenu-link" href="./badge.html">Badge</a></li>
-                                    <li><a class="submenu-link" href="./button.html">Button</a></li>
-                                    <li><a class="submenu-link" href="./card.html">Card</a></li>
-                                    <li><a class="submenu-link" href="./collapse.html">Collapse</a></li>
-                                    <li><a class="submenu-link" href="./dropdown.html">Dropdown</a></li>
-                                    <li><a class="submenu-link" href="./modal.html">Modal</a></li>
-                                    <li><a class="submenu-link" href="./offcanvas.html">Offcanvas</a></li>
-                                    <li><a class="submenu-link" href="./pagination.html">Pagination</a></li>
-                                    <li><a class="submenu-link" href="./popover.html">Popovers</a></li>
-                                    <li><a class="submenu-link" href="./progress.html">Progress</a></li>
-                                    <li><a class="submenu-link" href="./tooltip.html">Tooltips</a></li>
+                                    <li><a class="submenu-link" href="productlist">Productlist</a></li>
+                                    <li><a class="submenu-link" href="vender-profile">Vender-Profile</a></li>
+                                    <li><a class="submenu-link" href=""></a></li>
+                                    {{!-- <li><a class="submenu-link" href="">Button</a></li>
+                                    <li><a class="submenu-link" href="">Card</a></li>
+                                    <li><a class="submenu-link" href="">Collapse</a></li>
+                                    <li><a class="submenu-link" href="">Dropdown</a></li>
+                                    <li><a class="submenu-link" href="">Modal</a></li>
+                                    <li><a class="submenu-link" href="">Offcanvas</a></li>
+                                    <li><a class="submenu-link" href="">Pagination</a></li>
+                                    <li><a class="submenu-link" href="">Popovers</a></li>
+                                    <li><a class="submenu-link" href="">Progress</a></li>
+                                    <li><a class="submenu-link" href="">Tooltips</a></li> --}}
                                 </ul>
                             </div>
                         </li>
@@ -644,10 +513,10 @@ border-radius: 20px;
 
     <!-- Theme JS -->
     <!-- Vendor JS -->
-    <script src="/admin/js/vendor.bundle.js"></script>
+    <script src="/admin/vendor.bundle.js"></script>
     
     <!-- Theme JS -->
-    <script src="/admin/assets/js/theme.bundle.js"></script>
+    <script src="/admin/theme.bundle.js"></script>
 </body>
 
 </html>
