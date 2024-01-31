@@ -9,10 +9,10 @@ const userprofileSchema = mongoose.Schema({
     type: String,
     required: true,
 },
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'registers',
-  },
+  // userId: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'registers',
+  // },
   image:{
     public_id:{
      type:String,

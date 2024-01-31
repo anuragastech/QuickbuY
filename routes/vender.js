@@ -45,9 +45,7 @@ router.get('/index', (req, res) => {
   return res.render('vender/index');
 });
 
-router.get('/profile', (req, res) => {
-  return res.render('vender/profile');
-});
+router.get('/profile', profileControllers.profileget)
 
 
 

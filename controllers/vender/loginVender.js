@@ -12,6 +12,7 @@ let loginvender = async (req, res) => {
         const { email, password } = req.body;
         const user = await register.findOne({ email });
 
+
         if (user && (await bcrypt.compare(password, user.password))) {
             console.log('Authentication successful');
 
