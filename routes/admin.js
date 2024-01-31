@@ -8,11 +8,9 @@ const adminControllers=require('../controllers/admin/loginadmin')
 const multer = require("../models/common/multerconfig");
 const upload = multer.single("image");
 const HomepageController= require('../controllers/admin/Homepage');
+const userController= require('../controllers/admin/userController');
 
 
-router.get('/blank',(req,res)=>{
-    res.render('admin/blank')
-})
 
 
 router.get('/vender-product-list',otherControllers.venderlist)
@@ -21,54 +19,21 @@ router.get('/vender-product-list',otherControllers.venderlist)
 router.get('/index',(req,res)=>{
     res.render('admin/index')
 })
-router.get('/alert',(req,res)=>{
-    res.render('admin/alert')
-})
 
-router.get('/badge', (req,res)=>{
-    res.render('admin/badge')
-})
 
 router.get('/login', (req,res)=>{
     res.render('admin/login')
 })
 
-router.get('/accordion',(req,res)=>{
-    res.render('admin/accordion')
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 // ---------------------------------------------------------------------------------------------------------------
+router.post('/HomepageFooterImage', upload,HomepageController.HomepageFooterpost );
+router.get('/HomepageFooterImage',HomepageController.HomepageFooterGet)
 
 router.post('/HomepageController', upload,HomepageController.HomepagepicPost );
 router.get('/HomepageControl',HomepageController.HomepagepicGet)
-router.get('/main', otherControllers.getmain);
 
 router.post("/login",adminControllers.loginPost);
 
@@ -88,6 +53,10 @@ router.post('/edit-subcategory/:id',subCategoryControllers.editsubcategorypost)
 router.delete("/deleteBanner/:id",HomepageController.deleteBanner);
 
 
+router.delete("/deleteVender/:id",otherControllers.deletVender);
+
+router.delete("/deleteUser/:id",otherControllers.deleteUser);
+
 router.delete("/delete/:id",categoryControllers.deleteCategory);
 router.delete("/delete-subcategory/:id",subCategoryControllers.deleteSubCategory);
 
@@ -105,17 +74,9 @@ router.get("/subcategories",subCategoryControllers.getsubcategories)
 router.get("/admin/subcategory",subCategoryControllers.getsubcategory);
 
 
-router.get("/admin/color",otherControllers.getcolor);
-router.get("/admin/size",otherControllers.getsize);
 
 
 
-
-// router.get("/Addcolor",otherControllers.getcolor)
-router.get("/Addsize",otherControllers.getAddsize);
-
-// router.post("/color", upload,otherControllers.postcolor);
-router.post("/size", upload,otherControllers.postSize);
 
 
 
@@ -131,6 +92,13 @@ router.get("/category",(req,res)=>{
 router.get("/edit-subcategory",(req,res)=>{
     res.render('admin/edit-subcategory')
 })
+router.get("/User", otherControllers.userlist  )
+router.get("/Vender", otherControllers.venderadmin)
+
+router.post('/block-user/:userId',  userController.blockUser);
+router.post('/unblock-user/:userId',  userController.unblockUser);
+
+
 
 
 

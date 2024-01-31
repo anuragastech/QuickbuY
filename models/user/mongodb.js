@@ -17,6 +17,10 @@ const createSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    blocked: {
+        type: Boolean,
+        default: false // Default value is false, indicating the user is not blocked
+    }
 });
 
 module.exports = mongoose.model('create' , createSchema);

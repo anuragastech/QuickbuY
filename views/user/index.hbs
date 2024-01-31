@@ -342,11 +342,13 @@
     <!-- Lookbok Section Begin -->
     <section class="lookbok-section">
         <div class="container-fluid">
+                            {{#each Homepagepics}}
+
             <div class="row">
                 <div class="col-lg-4 offset-lg-1">
                     <div class="lookbok-left">
                         <div class="section-title">
-                            <h2>2019 <br />#lookbook</h2>
+                            <h2>{{this.h1}} <br />#{{this.h2}}</h2>
                         </div>
                         <p>Fusce urna quam, euismod sit amet mollis quis, vestibulum quis velit. Vestibulum malesuada
                             aliquet libero viverra cursus. Aliquam erat volutpat. Morbi id dictum quam, ut commodo
@@ -360,11 +362,12 @@
                 </div>
                 <div class="col-lg-5 offset-lg-1">
                     <div class="lookbok-pic">
-                        <img src="/lookbok.jpg" alt="">
+                        <img src="{{this.image.url}}" alt="">
                         <div class="pic-text">fashion</div>
                     </div>
                 </div>
             </div>
+            {{/each}}
         </div>
     </section>
     <!-- Lookbok Section End -->

@@ -21,6 +21,7 @@ let Addsign=async (req, res) => {
             email:email,
             password: myEncryptedPassword,
             role: 'user',
+            blocked:'false',
         });
 
         await newCreate.save();
@@ -29,6 +30,7 @@ let Addsign=async (req, res) => {
 
         newCreate.token = token;
         // newUser.password = undefined;
+
 
         await newCreate.save();
 
@@ -50,8 +52,8 @@ let Addlogin  = async (req, res) => {
         const { email, password } = req.body;
         const user = await create.findOne({ email });
 
-        if (user && (await bcrypt.compare(password, user.password))) {
-            console.log('Authentication successful');
+        if (user && !user.blocked && (await bcrypt.compare(password, user.password))) {        
+                console.log('Authentication successful');
 
             const token = jwt.sign({ id: user._id, role: user.role }, secretKey, { expiresIn: '2h' });
 

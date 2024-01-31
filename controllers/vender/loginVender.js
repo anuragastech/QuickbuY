@@ -13,7 +13,7 @@ let loginvender = async (req, res) => {
         const user = await register.findOne({ email });
 
 
-        if (user && (await bcrypt.compare(password, user.password))) {
+        if (user && !user.blocked && (await bcrypt.compare(password, user.password))) {        
             console.log('Authentication successful');
 
             const token = jwt.sign({ id: user._id, role: user.role }, secretKey, { expiresIn: '2h' });
@@ -40,6 +40,7 @@ let loginvender = async (req, res) => {
 };
 
 
+
 let signvender = async(req,res)=>{
     try {
         const { name, email, password } = req.body;
@@ -50,6 +51,7 @@ let signvender = async(req,res)=>{
             password: myEncryptedPassword,
             email,
             role: 'vender', 
+            blocked:'false',
         });
 
         await newUser.save();

@@ -2,7 +2,7 @@
 const product =require('../../models/vender/productAdd')
 const category=require('../../models/admin/category')
 const Homepagepic=require('../../models/admin/Homepagebar')
-
+const HomepageFooter =require ('../../models/admin/HomepagebarFooter')
 
 
 
@@ -15,14 +15,15 @@ let getproductDataIn= async (req, res) => {
         const prdct = await product.find().populate('category').populate('subcategory');
 
         const homebanner=await Homepagepic.find({}, 'h1 h2 image');
+        const Homepagepics = await HomepageFooter.find();
 
-        res.render('user/index', { prdct ,categorys ,homebanner });
+
+        res.render('user/index', { prdct ,categorys ,homebanner , Homepagepics });
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
-
 
 
 module.exports={getproductDataIn};

@@ -2,7 +2,7 @@ const cloudinary = require("../../models/common/cloudinary");
 const Homepagepic=require('../../models/admin/Homepagebar')
 const multer = require("../../models/common/multerconfig");
 const upload = multer.single("image");
-
+const HomepageFooter =require ('../../models/admin/HomepagebarFooter')
 
 let HomepagepicPost = async (req, res) => {
     try {
@@ -45,6 +45,52 @@ let HomepagepicPost = async (req, res) => {
   };
 
 
+
+
+
+
+let HomepageFooterpost = async (req, res) => {
+  try {
+    const { h1, h2 ,description } = req.body;
+
+    if (!req.file) {
+      return res.status(400).json({ success: false, message: 'No file uploaded' });
+    }
+
+    const desiredWidth = 1080;
+    const desiredHeight = 1920;
+
+    const result = await cloudinary.uploader.upload(req.file.path, {
+      width: desiredWidth,
+      height: desiredHeight,
+      crop: 'scale' 
+  });
+
+    const newHomepageFooter = new HomepageFooter({
+      h1: h1,
+      h2: h2,
+      description:description,
+      image: {
+          public_id: result.public_id,
+          url: result.secure_url
+      },
+    //   image1: {
+    //     public_id: result.public_id,
+    //     url: result.secure_url
+    // },
+
+    });
+
+    const savedHomepageFoot = await newHomepageFooter.save();
+
+    res.status(201).json(savedHomepageFoot);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
+
   let HomepagepicGet = async (req, res) => {
     try {
         const Homepagepics = await Homepagepic.find();
@@ -54,6 +100,18 @@ let HomepagepicPost = async (req, res) => {
         res.status(500).json({ error: "Internal Server Error" });
     }
 };
+
+let HomepageFooterGet=async (req, res) => {
+  try {
+      const Homepagepics = await HomepageFooter.find();
+      res.render('admin/HomepageFooterImage', { homeFoot: Homepagepics });
+  } catch (error) {
+      console.error("Error fetching Homepagepic:", error.message);
+      res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+
 let deleteBanner=async (req, res) => {
   try {
     const h1Id = req.params.id;
@@ -70,4 +128,4 @@ let deleteBanner=async (req, res) => {
   }
 };
 
-  module.exports={ HomepagepicPost ,deleteBanner ,HomepagepicGet} ;
+  module.exports={HomepageFooterGet, HomepagepicPost ,HomepageFooterpost ,deleteBanner ,HomepagepicGet} ;
