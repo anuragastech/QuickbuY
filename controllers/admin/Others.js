@@ -1,107 +1,9 @@
 const productAdd=require('../../models/vender/productAdd')
 
-let  postSize =async (req, res) => {
-    try {
-        const { title, description } = req.body;
+const create=require('../../models/user/mongodb')
 
-        // if (!req.file) {
-        //     return res.status(400).json({ success: false, message: 'No file uploaded' });
-        // }
+const register=require('../../models/vender/mongodb')
 
-        // const desiredWidth = 300;
-        // const desiredHeight = 200;
-
-        // const result = await cloudinary.uploader.upload(req.file.path, {
-        //     width: desiredWidth,
-        //     height: desiredHeight,
-        //     crop: 'scale' 
-        // });
-        
-        const newSize = new size({
-            title: title,
-            // description: description,
-            // image: {
-            //     public_id: result.public_id,
-            //     url: result.secure_url
-            // },
-        });
-
-        const savedSize= await newSize.save();
-
-        res.redirect('/admin/Addsize');
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, error: error.message });
-    }
-};
-
-let  postcolor = async (req, res) => {
-    try {
-        const { title, description } = req.body;
-
-        // if (!req.file) {
-        //     return res.status(400).json({ success: false, message: 'No file uploaded' });
-        // }
-
-        // const desiredWidth = 300;
-        // const desiredHeight = 200;
-
-        // const result = await cloudinary.uploader.upload(req.file.path, {
-        //     width: desiredWidth,
-        //     height: desiredHeight,
-        //     crop: 'scale' 
-        // });
-        
-        const newColor = new color({
-            title: title,
-            // description: description,
-            // image: {
-            //     public_id: result.public_id,
-            // //     url: result.secure_url
-            // },
-        });
-
-        const savedColor= await newColor.save();
-
-        res.redirect('/admin/Addcolor');
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, error: error.message });
-    }
-};
-
-let  getcolor=async (req, res) => {
-    try {
-      const newColor = await color.find();
-      res.json({ newColor });
-    } catch (error) {
-      console.error("Error fetching color:", error.message);
-      res.status(500).json({ error: "Internal Server Error" });
-    }
-  };
-  let  getsize=async (req, res) => {
-    try {
-      const newSize = await size.find();
-      res.json({ newSize });
-    } catch (error) {
-      console.error("Error fetching color:", error.message);
-      res.status(500).json({ error: "Internal Server Error" });
-    }
-  };
-  let   getAddproduct= (req, res) => {
-    res.render("admin/Addcolor");
-  };
-
-  let   getAddsize=(req, res) => {
-    res.render("admin/Addsize");
-  };
-  let    getHome=(req, res) => {
-    res.render("admin/signup");
-  };
-
-  let   getmain=(req, res) => {
-    res.render('admin/main');
-};
 
 let venderlist = async (req, res) => {
   try {
@@ -116,4 +18,52 @@ let venderlist = async (req, res) => {
       res.status(500).json({ success: false, message: 'Internal server error' });
   }
 };
-  module.exports={venderlist, getmain,getHome,getAddsize,getAddproduct,getsize,getcolor,postcolor,postSize};
+let venderadmin=async(req,res)=>{
+  try{
+  const venderData=  await register.find();
+  res.render('admin/Vender',{venderData});
+  }catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+}
+}
+
+let userlist=async(req,res)=>{
+  try{
+  const userData=  await create.find();
+  res.render('admin/User',{userData});
+  }catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+}
+}
+
+let deleteUser = async (req, res) => {
+  try {
+    const userId = req.params.Id;
+    const deleteUsers = await create.findOneAndDelete({ id: userId });
+
+    if (!deleteUsers) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    return res.status(200).json({ success: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error deleting User" }); // Close parenthesis
+  }
+};
+let deletVender=async (req, res) => {
+  try {
+    const userId = req.params.Id;
+    const deleteVenders = await register.findOneAndDelete({ id: userId });
+
+    if (!deleteVenders) {
+      return res.status(404).json({ message: "Vender not found" });
+    }
+    return res.status(200).json({ success: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error deleting User" }); // Close parenthesis
+  }
+};
+  module.exports={venderlist,venderadmin, userlist ,deleteUser ,deletVender} ;

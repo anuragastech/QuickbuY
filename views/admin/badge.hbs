@@ -10,11 +10,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keywords" content="">
-    {{!-- modal  --}}
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+{{!-- modal cdn    --}}
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-- Favicon -->
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
@@ -29,10 +31,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS -->
-    <link rel="stylesheet" href="/vender/libs.bundle.css" />
+    <link rel="stylesheet" href="/admin/libs.bundle.css" />
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="/vender/theme.bundle.css" />
+    <link rel="stylesheet" href="/admin/theme.bundle.css" />
 
     <!-- Fix for custom scrollbar if JS is disabled-->
     <noscript>
@@ -160,6 +162,17 @@
 
 
             <div class="card mb-4">
+            
+
+<style>
+label{
+  font-size: 30px;
+}
+input{
+  height: 30px;
+}
+
+</style>
  <style>
 
 
@@ -225,7 +238,7 @@ align-items: center;
 
 {{!-- -------------------------------------------------------   --}}
   <!-- Button trigger modal -->
-            <h1 class="h10" > Profile  </h1>
+            <h1 class="h10" > Add Home-Page-Banner</h1>
             <button
               type="button"
               style="background-color: white;margin-bottom: 10px; margin-top: -20px; font-size: 20px;font-weight: bolder; height: 55px; margin-left: 900px; width: 400px;"
@@ -233,13 +246,12 @@ align-items: center;
               data-toggle="modal"
               data-target="#exampleModalCenter"
             >
-             Add profile data 
+              Add Home-Page-Banner
             </button>
 
 
-
             <!-- Modal -->
-                            <form style="align-items: center;" class="frml" action="/vender/profile" method="POST"  enctype="multipart/form-data">
+                            <form style="align-items: center;" class="frml" action="/admin/HomepageController" method="POST"  enctype="multipart/form-data">
 
 
                                <div 
@@ -252,7 +264,7 @@ align-items: center;
                                       >
 <div class="modal-dialog modal-dialog-centered modal-xl" style="border: 2px solid white;" role="document">                                      <div class="modal-content "  >
                                         <div class="modal-header bg-dark text-light" >
-                                              <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bolder;">Vender profile </h5>
+                                              <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bolder;">Add Home-Page-Banner</h5>
                                               <button
                                                 type="button"
                                                 class="close"
@@ -272,20 +284,20 @@ align-items: center;
 
 
    
-        <label for="username">username:</label>
-        <input type="text" id="title" name="username" required> 
+        <label for="h1">Title:</label>
+        <input type="text" id="title" name="h1" required> 
         <br>
 
-          <label for="email">email:</label>
-        <input type="email" id="title" name="email" required> 
+          <label for="h2">Title:</label>
+        <input type="text" id="title" name="h2" required> 
         <br>
-        
 
       
 <label for="image">Choose an image:</label>
    <input type="file" name="image">  
 
-
+{{!-- <label for="image">Choose an image:</label>
+   <input type="file" name="image1">   --}}
 
     {{!-- <button class="btn" type="submit">submit</button> --}}
         
@@ -320,99 +332,93 @@ align-items: center;
                      </form>
 
 </div>
-          {{!-- -----------------------------------------------------------------   --}}
-{{!-- 
-  <style>
+      {{!-- -------------------------------------------------------                 --}}
+<style>
+  table{
+    border: 10px solid rgb(244, 243, 243);
 
-
-    .x{
-      padding-top: 60px;
-    
-      margin-left: 550px;
-      background-color: rgb(23, 20, 20);
-      width: 800px;
-      height: 500px;
-      border-radius: 40px;
-      border: 15px solid rgb(228, 224, 224);
-    }
-    label{
- 
- font-size: 30px;
-
-
-}
-.btn{
-
-  height: 40px;
-  width: 400px;
-  background-color: black; 
-
-  border-radius: 30px;
-  color: wheat;
-  margin-left: 200px;
-  margin-top: 70px;
-  font-size: 18px;
-  border: 2px solid white;
-
-}
-.btn:hover{
-  border: solid black;
-
-background-color: white;
-color: black;
-font-weight: bolder;
-}
-input{
-  margin-top: 40px;
-   font-size: 30px;
-  height: 50px;
- margin-left: 20px;
-  height: 50px;
-  text-align: center;
-    color: rgb(0, 0, 0);
-    border-radius: 40px;
-    font-size: larger;
-
-}
-.frml{
-  {
-    border: 12px solid rgb(2, 2, 2) ;
-       background-color: rgb(156, 21, 21);
-   
-align-items: center;
   }
-}
-  </style> --}}
+  th{
+    font-size: 26px;
+
+font-weight: bolder;  
+  height: 50px;
+    width: 100px;
+    text-align: center;
+  }
+  td{
+    color: white;
+    font-size: 22px;
+    font-weight: bolder;
+        border: 2px solid rgb(255, 255, 255);
+        text-align: center;
+
+  }
+</style>
 
 
-{{!-- <div class="x">
-    
+
+            <table class="col-lg-12" style="width: 1500px;" >
+              <thead>
+                <tr>
+                  <th>h1</th>
+                  <th>h2</th>
+                  <th>Image</th>
+                  <th>Delete</th>
+               
+                </tr>
+              </thead>
+              <tbody>
+                {{#each home}}
+                  <tr>
+                    <td>{{h1}}</td>
+                    <td>{{h2}}</td>
+                    <td><img src="{{image.url}}" alt="{{title}} Image" /></td>
+                    <td>
+                      <button style="background-color: transparent;"
+                        class="btn btn-outline-danger p-0 border-0"
+                        onclick="deleteBanner('{{this.h1}}')"
+                      ><i class="bi bi-trash-fill" style="font-size: 24px; color: rgb(231, 221, 221);" ></i></button>
+                    </td>
+                  
+
+                      {{!-- <button style="background-color: transparent;" > <a href="/admin/edit?name={{this._id}}"><i style="font-size: 24px;background-color: transparent;" class="bi bi-pencil-square text-success "></i></a> </button>  --}}
+
+                      {{! ---------------------------------------------------------- }}
+                   
+                  
+                  </tr>
+                {{else}}
+                  <tr>
+                    <td colspan="4">No Banners  found.</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+{{!-- ----------------------------------   --}}
+
+           <script>
+    function deleteBanner(h1Id) {
+        axios.delete(`/admin/deleteBanner/${h1Id}`)
+            .then((response) => {
+                if (response.status !== 200) {
+                    throw new Error('Delete request failed');
+                } else {
+                    window.location.href = "/admin/HomepageControl";
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
+</script>
 
 
-
-   
-     <form class="frml" action="/vender/profile" method="POST" enctype="multipart/form-data">
-    <label for="username">Username:</label>
-    <input type="text" id="title" name="username" required> 
-
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required> 
-
-     
-<label for="image">Choose an image:</label>
-   <input type="file" name="image">  
-
-    <button class="btn" type="submit">Submit</button>
-</form>
-
-
-</div> --}}
-            
 
             <!-- Footer -->
             <footer class="  footer">
-                <p class="small text-muted m-0">All rights reserved | © 2021</p>
-                <p class="small text-muted m-0">Template created by <a href="https://www.pixelrocket.store/">PixelRocket</a></p>
+                <p class="small text-muted m-0"> | </p>
+                <p class="small text-muted m-0"> <a href="https://www.pixelrocket.store/"></a></p>
             </footer>
             
             
@@ -561,7 +567,7 @@ align-items: center;
                         <a class="m-0" href="./index.html">
                             <div class="d-flex align-items-center justify-content-center">
                                 <svg class="f-w-6 me-2 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 398.39 353.81"><polygon points="228.38 33.94 0 262.32 0 0 119.61 0 119.61 43.01 101.9 60.73 86.02 76.61 86.02 33.6 33.6 33.6 33.6 181.2 214.46 0.34 390.66 0.34 242.09 148.91 218.73 124.76 309.55 33.94 228.38 33.94" fill="currentColor"/><polygon points="398.39 353.81 217.51 353.81 131.04 261.75 45.09 353.81 0 353.81 0 353.49 131.26 212.91 232.05 320.21 317.27 320.21 170.28 173.21 194.19 149.29 194.19 149.55 254.9 210.51 254.97 210.39 398.39 353.81" fill="currentColor"/></svg>
-                                <span class="fw-bold fs-3 text-white">Kavlan</span>
+                                <span class="fw-bold fs-3 text-white">Admin</span>
                             </div>                    </a>
                     </div>
                     <!-- / Mobile Logo-->
@@ -623,19 +629,19 @@ align-items: center;
                                 <span>Components</span></a>
                             <div class="collapse" id="collapseMenuItemUI">
                                 <ul class="submenu">
-                                    <li><a class="submenu-link" href="productlist">Productlist</a></li>
-                                    <li><a class="submenu-link" href="profile">Profile</a></li>
+                                   <li><a class="submenu-link" href="categorylist">Category-List</a></li>
+                                    <li><a class="submenu-link" href="subcategories">Sub-Category-List</a></li>
+                                    <li><a class="submenu-link" href="vender-product-list">Productlist</a></li>
+                                    {{!-- <li><a class="submenu-link" href=""></a></li>
                                     <li><a class="submenu-link" href=""></a></li>
-                                    {{!-- <li><a class="submenu-link" href="">Button</a></li>
-                                    <li><a class="submenu-link" href="">Card</a></li>
-                                    <li><a class="submenu-link" href="">Collapse</a></li>
-                                    <li><a class="submenu-link" href="">Dropdown</a></li>
-                                    <li><a class="submenu-link" href="">Modal</a></li>
-                                    <li><a class="submenu-link" href="">Offcanvas</a></li>
-                                    <li><a class="submenu-link" href="">Pagination</a></li>
-                                    <li><a class="submenu-link" href="">Popovers</a></li>
-                                    <li><a class="submenu-link" href="">Progress</a></li>
-                                    <li><a class="submenu-link" href="">Tooltips</a></li> --}}
+                                    <li><a class="submenu-link" href=""></a></li>
+                                    <li><a class="submenu-link" href=""></a></li>
+                                    <li><a class="submenu-link" href=""></a></li>
+                                    <li><a class="submenu-link" href=""></a></li>
+                                    <li><a class="submenu-link" href=""></a></li>
+                                    <li><a class="submenu-link" href=""></a></li>
+                                    <li><a class="submenu-link" href=""></a></li>
+                                    <li><a class="submenu-link" href=""></a></li> --}}
                                 </ul>
                             </div>
                         </li>

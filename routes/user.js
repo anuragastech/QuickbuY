@@ -16,11 +16,11 @@ const getControllerHome=require('../controllers/user/home')
 
 
 
-router.post('/sign',authenticateJWT,userControllers.Addsign)
+router.post('/sign',userControllers.Addsign)
 
 router.post('/login',userControllers.Addlogin)
 
-router.get('/sign',authenticateJWT,userControllers.getsign)
+router.get('/sign',userControllers.getsign)
 
 router.get('/login',userControllers.getlogin)
 
@@ -46,6 +46,7 @@ router.get('/productpage',authenticateJWT, getProductControllers.getproductpage)
 
 router.get('/products',authenticateJWT,getProductControllers.getproductData)
 router.get('/index',authenticateJWT,getControllerHome.getproductDataIn)
+
 
 
 

@@ -10,7 +10,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keywords" content="">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+{{!-- modal cdn    --}}
  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -46,101 +49,101 @@
     </noscript>
 
     <!-- Page Title -->
-    <title>Kavlan | Bootstrap 5 HTML Admin Dashboard</title>
+    <title></title>
     
 </head>
 <body class="">
 
-    <!-- Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top bg-dark-800">
-      <div class="container-fluid">
-        <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
-    
-          <!-- Menu Toggle-->
-          <div class="menu-toggle cursor-pointer me-4 text-primary-hover transition-color disable-child-pointer">
-            <i class="ri-menu-fold-line ri-lg fold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
-              title="Close menu"></i>
-            <i class="ri-menu-unfold-line ri-lg unfold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
-              title="Open Menu"></i>
-          </div>
-          <!-- / Menu Toggle-->
-    
-          <!-- Navbar Actions-->
-          <div class="d-flex align-items-center">
-    
-            <!-- Search-->
-            <button class="btn-icon btn-hover-dark btn-search me-2">
-              <i class="ri-search-2-line align-bottom lh-1 text-body"></i>
-            </button>
-    
-            <!-- Search navbar overlay-->
-            <div class="navbar-search d-none">
-              <div class="input-group mb-3 h-100">
-                <span class="input-group-text px-4 bg-transparent"><i class="ri-search-line ri-lg"></i></span>
-                <input type="text" class="form-control text-body bg-transparent border-0" placeholder="Enter your search terms...">
-                <span class="input-group-text px-4 cursor-pointer disable-child-pointer close-search bg-transparent"><i class="ri-close-circle-line ri-lg text-primary"></i></span>
-              </div>
-            </div>
-            <!-- / Search navbar overlay-->
-    
-            <!-- / Search-->
-    
-            <!-- Region -->
-            <div class="dropdown me-2">
-              <button class="btn-icon btn-hover-dark" type="button" id="regionDropdown"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="flag-icon flag-icon-gb"></span>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="regionDropdown">
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United Kingdom <span class="text-muted ms-5"><span class="flag-icon flag-icon-gb"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United States<span class="text-muted ms-5"><span class="flag-icon flag-icon-us"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Australia<span class="text-muted ms-5"><span class="flag-icon flag-icon-au"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Belgium<span class="text-muted ms-5"><span class="flag-icon flag-icon-be"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Canada<span class="text-muted ms-5"><span class="flag-icon flag-icon-ca"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">China <span class="text-muted ms-5"><span class="flag-icon flag-icon-cn"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Denmark <span class="text-muted ms-5"><span class="flag-icon flag-icon-dk"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">France<span class="text-muted ms-5"><span class="flag-icon flag-icon-fr"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Netherlands<span class="text-muted ms-5"><span class="flag-icon flag-icon-nl"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russia<span class="text-muted ms-5"><span class="flag-icon flag-icon-ru"></span></span></a></li>
-              </ul>
-            </div>
-            <!-- /Region -->
-    
-            <!-- Language-->
-            <div class="dropdown me-2">
-              <button class="btn-icon btn-hover-dark" type="button" id="language"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="ri-global-line align-bottom text-body lh-1"></i>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language">
-                <li>
-                  <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">English 
-                    <span class="text-muted ms-5">EN</span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">French<span class="text-muted ms-5">FR</span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Espanol<span class="text-muted ms-5">ES</span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Turkish<span class="text-muted ms-5">TR</span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russian<span class="text-muted ms-5">RU</span></a></li>
-              </ul>
-            </div>
-            <!-- / Language-->
-    
-            <!-- Notifications-->
-            <a class="btn-icon btn-hover-dark position-relative p-2 disable-child-pointer" data-bs-toggle="offcanvas" href="#offcanvasNotifications" role="button"
-            aria-controls="offcanvasNotifications">
-              <i class="ri-notification-fill align-bottom text-body lh-1"></i>
-              <span class="badge bg-primary text-white position-absolute top-0 end-0">3</span>
-            </a>
-            <!-- / Notifications-->
-    
-          </div>
-          <!-- / Navbar Actions-->
-        
-        </div>
-      </div>
-    </nav>    <!-- / Navbar-->
-
     <!-- Page Content -->
     <main id="main">
+
+        <!-- Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top bg-dark-800">
+          <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
+        
+              <!-- Menu Toggle-->
+              <div class="menu-toggle cursor-pointer me-4 text-primary-hover transition-color disable-child-pointer">
+                <i class="ri-menu-fold-line ri-lg fold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
+                  title="Close menu"></i>
+                <i class="ri-menu-unfold-line ri-lg unfold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
+                  title="Open Menu"></i>
+              </div>
+              <!-- / Menu Toggle-->
+        
+              <!-- Navbar Actions-->
+              <div class="d-flex align-items-center">
+        
+                <!-- Search-->
+                <button class="btn-icon btn-hover-dark btn-search me-2">
+                  <i class="ri-search-2-line align-bottom lh-1 text-body"></i>
+                </button>
+        
+                <!-- Search navbar overlay-->
+                <div class="navbar-search d-none">
+                  <div class="input-group mb-3 h-100">
+                    <span class="input-group-text px-4 bg-transparent"><i class="ri-search-line ri-lg"></i></span>
+                    <input type="text" class="form-control text-body bg-transparent border-0" placeholder="Enter your search terms...">
+                    <span class="input-group-text px-4 cursor-pointer disable-child-pointer close-search bg-transparent"><i class="ri-close-circle-line ri-lg text-primary"></i></span>
+                  </div>
+                </div>
+                <!-- / Search navbar overlay-->
+        
+                <!-- / Search-->
+        
+                <!-- Region -->
+                <div class="dropdown me-2">
+                  <button class="btn-icon btn-hover-dark" type="button" id="regionDropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="flag-icon flag-icon-gb"></span>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="regionDropdown">
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United Kingdom <span class="text-muted ms-5"><span class="flag-icon flag-icon-gb"></span></span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United States<span class="text-muted ms-5"><span class="flag-icon flag-icon-us"></span></span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Australia<span class="text-muted ms-5"><span class="flag-icon flag-icon-au"></span></span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Belgium<span class="text-muted ms-5"><span class="flag-icon flag-icon-be"></span></span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Canada<span class="text-muted ms-5"><span class="flag-icon flag-icon-ca"></span></span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">China <span class="text-muted ms-5"><span class="flag-icon flag-icon-cn"></span></span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Denmark <span class="text-muted ms-5"><span class="flag-icon flag-icon-dk"></span></span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">France<span class="text-muted ms-5"><span class="flag-icon flag-icon-fr"></span></span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Netherlands<span class="text-muted ms-5"><span class="flag-icon flag-icon-nl"></span></span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russia<span class="text-muted ms-5"><span class="flag-icon flag-icon-ru"></span></span></a></li>
+                  </ul>
+                </div>
+                <!-- /Region -->
+        
+                <!-- Language-->
+                <div class="dropdown me-2">
+                  <button class="btn-icon btn-hover-dark" type="button" id="language"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="ri-global-line align-bottom text-body lh-1"></i>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language">
+                    <li>
+                      <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">English 
+                        <span class="text-muted ms-5">EN</span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">French<span class="text-muted ms-5">FR</span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Espanol<span class="text-muted ms-5">ES</span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Turkish<span class="text-muted ms-5">TR</span></a></li>
+                    <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russian<span class="text-muted ms-5">RU</span></a></li>
+                  </ul>
+                </div>
+                <!-- / Language-->
+        
+                <!-- Notifications-->
+                <a class="btn-icon btn-hover-dark position-relative p-2 disable-child-pointer" data-bs-toggle="offcanvas" href="#offcanvasNotifications" role="button"
+                aria-controls="offcanvasNotifications">
+                  <i class="ri-notification-fill align-bottom text-body lh-1"></i>
+                  <span class="badge bg-primary text-white position-absolute top-0 end-0">3</span>
+                </a>
+                <!-- / Notifications-->
+        
+              </div>
+              <!-- / Navbar Actions-->
+            
+            </div>
+          </div>
+        </nav>        <!-- / Navbar-->
 
         <!-- Content-->
         <section class="container-fluid">
@@ -148,38 +151,159 @@
             <!-- Breadcrumbs-->
             <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Subcategory List</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Subcategory</li>
+                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> User-management</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">User-management</li>
                 </ol>
             </nav>            <!-- / Breadcrumbs-->
 
             <!-- Page Title-->
-           
+          
             <!-- / Page Title-->
 
-            <div class="row g-4">
-                <div class="col-12 col-md-6">
-{{!-- ------------------------------------------------------------------ --}}
+
+            <div class="card mb-4">
+            
+
+
+      {{!-- -------------------------------------------------------                 --}}
+<style>
+  table{
+    border: 10px solid rgb(244, 243, 243);
+
+  }
+  th{
+    font-size: 26px;
+
+font-weight: bolder;  
+  height: 50px;
+    width: 100px;
+    text-align: center;
+  }
+  td{
+    color: white;
+    font-size: 22px;
+    font-weight: bolder;
+        border: 2px solid rgb(255, 255, 255);
+        text-align: center;
+
+  }
+</style>
 
 
 
-{{!-- ---------------------------------------------------------------------------------------------------------------  --}}
+            <table class="col-lg-12 col-md-6 col-sm-3" style="width: 1500px;" >
+              <thead>
+                <tr>
+                  <th>User-Name</th>
+                  <th>Email</th>
+                  {{!-- <th>Image</th> --}}
+                  {{!-- <th>Remove</th> --}}
+                  <th>Block</th>
+                  <th>Unblock</th>
+               
+                </tr>
+              </thead>
+              <tbody>
+                {{#each venderData }}
+                  <tr>
+                    <td>{{this.name}}</td>
+                    <td>{{this.email}}</td>
+                    {{!-- <td><img src="{{image.url}}" alt="{{title}} Image" /></td> --}}
+                    {{!-- <td>
+                      <button style="background-color: transparent;"
+                        class="btn btn-outline-danger p-0 border-0"
+                        onclick="deleteVender('{{this.email}}')"
+                      ><i class="bi bi-trash-fill" style="font-size: 24px; color: rgb(231, 221, 221);" ></i></button>
+                    </td> --}}
 
-                </div>
+                   <td> 
 
-                <div class="col-12 col-md-6">
+                 <!-- Block User Button -->
+<button onclick="blockVender('{{this._id}}')">Block User</button>
+                     </td>
+<td>
+<!-- Unblock User Button -->
+<button onclick="unblockVender('{{this._id}}')">Unblock User</button>
 
+</td>
+                  
+
+                      {{!-- <button style="background-color: transparent;" > <a href="/admin/edit?name={{this._id}}"><i style="font-size: 24px;background-color: transparent;" class="bi bi-pencil-square text-success "></i></a> </button>  --}}
+
+                      {{! ---------------------------------------------------------- }}
                    
-                    </div>
-                    <!-- / Icon Example-->
+                  
+                  </tr>
+                {{else}}
 
-                </div>
-            </div>
+                  <tr>
+                    <td colspan="4">No Banners  found.</td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+{{!-- ----------------------------------   --}}
+<script>
+function deleteUser(userId) {
+    axios.delete(`/admin/deleteVender/${userId}`)
+        .then((response) => {
+            if (response.status !== 200) {
+                throw new Error('Delete request failed');
+            } else {
+                window.location.href = "/admin/Vender";
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}
+
+
+</script>
+<script>
+
+
+  function blockVender(venderId) {
+    axios.post(`/admin/block-vender/${venderId}`)
+        .then((response) => {
+            if (response.status === 200) {
+                alert('User blocked successfully');
+            } else {
+                alert('Failed to block user');
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            alert('Error blocking user');
+        });
+}
+
+function unblockVender(venderId) {
+    axios.post(`/admin/unblock-vender/${venderId}`)
+        .then((response) => {
+            if (response.status === 200) {
+                alert('User unblocked successfully');
+            } else {
+                alert('Failed to unblock user');
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            alert('Error unblocking user');
+        });
+}
+
+</script>
+
+
+
+
+
 
             <!-- Footer -->
             <footer class="  footer">
-                <p class="small text-muted m-0">All rights reserved | © 2021</p>
-                <p class="small text-muted m-0">Template created by <a href="https://www.pixelrocket.store/">PixelRocket</a></p>
+                <p class="small text-muted m-0"> | </p>
+                <p class="small text-muted m-0"> <a href="https://www.pixelrocket.store/"></a></p>
             </footer>
             
             
@@ -248,7 +372,7 @@
                   <div class="position-relative mt-1 ">
                     <picture class="avatar avatar-sm">
                       <img src="./assets/images/profile-small-2.jpeg"
-                        alt="HTML Bootstrap Admin Template by Pixel Rocket">
+                        alt="">
                     </picture>
                     <span
                     class="dot bg-success avatar-dot border-light dot-sm"></span>
@@ -266,7 +390,7 @@
                   <div class="position-relative mt-1 ">
                     <picture class="avatar avatar-sm">
                       <img src="./assets/images/profile-small-3.jpeg"
-                        alt="HTML Bootstrap Admin Template by Pixel Rocket">
+                        alt="">
                     </picture>
                     <span
                     class="dot bg-success avatar-dot border-light dot-sm"></span>
@@ -284,7 +408,7 @@
                   <div class="position-relative mt-1 ">
                     <picture class="avatar avatar-sm">
                       <img src="./assets/images/profile-small-4.jpeg"
-                        alt="HTML Bootstrap Admin Template by Pixel Rocket">
+                        alt="">
                     </picture>
                     <span
                     class="dot bg-danger avatar-dot border-light dot-sm"></span>
@@ -328,7 +452,7 @@
                         <a class="m-0" href="./index.html">
                             <div class="d-flex align-items-center justify-content-center">
                                 <svg class="f-w-6 me-2 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 398.39 353.81"><polygon points="228.38 33.94 0 262.32 0 0 119.61 0 119.61 43.01 101.9 60.73 86.02 76.61 86.02 33.6 33.6 33.6 33.6 181.2 214.46 0.34 390.66 0.34 242.09 148.91 218.73 124.76 309.55 33.94 228.38 33.94" fill="currentColor"/><polygon points="398.39 353.81 217.51 353.81 131.04 261.75 45.09 353.81 0 353.81 0 353.49 131.26 212.91 232.05 320.21 317.27 320.21 170.28 173.21 194.19 149.29 194.19 149.55 254.9 210.51 254.97 210.39 398.39 353.81" fill="currentColor"/></svg>
-                                <span class="fw-bold fs-3 text-white">Kavlan</span>
+                                <span class="fw-bold fs-3 text-white">Admin</span>
                             </div>                    </a>
                     </div>
                     <!-- / Mobile Logo-->
@@ -338,7 +462,7 @@
                         <div class="position-relative">
                             <picture class="avatar avatar-profile">
                                 <img class="avatar-profile-img" src="./assets/images/profile-small.jpeg"
-                                  alt="HTML Bootstrap Admin Template by Pixel Rocket">
+                                  alt="">
                             </picture>
                             <span class="dot bg-success avatar-dot"></span>
                         </div>
@@ -346,15 +470,15 @@
                         <small>robert.jones@outlook.com</small>
                         <div class="d-flex flex-wrap mt-2 justify-content-between align-items-center">
                             <div class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1">
-                                <i class="ri-map-pin-line me-2"></i> London, UK
+                                <a   style="width: 95px;height: 30px;color: black; background-color: white; border-radius: 25px;text-align: center;"  href="logout" >logout</a>
                             </div>
     
                             <!-- User profile dropdown-->
                             <div class="dropdown m-0">
-                                <button class="border-0 rounded px-2 f-h-9 bg-dark-opacity p-0 text-body" type="button" id="profileDropdown"
+                                {{!-- <button class="border-0 rounded px-2 f-h-9 bg-dark-opacity p-0 text-body" type="button" id="profileDropdown"
                                   data-bs-toggle="dropdown" aria-expanded="false">
                                   <i class="ri-settings-2-line"></i>
-                                </button>
+                                </button> --}}
                                 <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                                   <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="ri-user-line me-2"></i> Edit
                                       profile</a></li>
@@ -378,7 +502,7 @@
     
                         <!-- Dashboard Menu Section-->
                         <li class="menu-section">Menu</li>
-                        <li class="menu-item"><a class="d-flex align-items-center menu-link" href="./index.html"><i
+                        <li class="menu-item"><a class="d-flex align-items-center menu-link" href="index"><i
                                     class="ri-home-4-line me-3"></i> <span>Dashboard</span></a></li>
                         <!-- / Dashboard Menu Section-->
     
@@ -390,19 +514,19 @@
                                 <span>Components</span></a>
                             <div class="collapse" id="collapseMenuItemUI">
                                 <ul class="submenu">
-                                    <li><a class="submenu-link" href="./accordion.html">Accordion</a></li>
-                                    <li><a class="submenu-link" href="./alert.html">Alert</a></li>
-                                    <li><a class="submenu-link" href="./badge.html">Badge</a></li>
-                                    <li><a class="submenu-link" href="./button.html">Button</a></li>
-                                    <li><a class="submenu-link" href="./card.html">Card</a></li>
-                                    <li><a class="submenu-link" href="./collapse.html">Collapse</a></li>
-                                    <li><a class="submenu-link" href="./dropdown.html">Dropdown</a></li>
-                                    <li><a class="submenu-link" href="./modal.html">Modal</a></li>
-                                    <li><a class="submenu-link" href="./offcanvas.html">Offcanvas</a></li>
-                                    <li><a class="submenu-link" href="./pagination.html">Pagination</a></li>
-                                    <li><a class="submenu-link" href="./popover.html">Popovers</a></li>
-                                    <li><a class="submenu-link" href="./progress.html">Progress</a></li>
-                                    <li><a class="submenu-link" href="./tooltip.html">Tooltips</a></li>
+                                <li><a class="submenu-link" href="categorylist">Category-List</a></li>
+                                    <li><a class="submenu-link" href="subcategories">Sub-Category-List</a></li>
+                                    <li><a class="submenu-link" href="vender-product-list">Productlist</a></li>
+                                    <li><a class="submenu-link" href="User">User management</a></li>
+                                    <li><a class="submenu-link" href="Vender">Vender management</a></li>
+                                    {{!-- <li><a class="submenu-link" href=""></a></li> 
+                                    <li><a class="submenu-link" href=""></a></li> 
+                                    <li><a class="submenu-link" href=""></a></li> 
+                                    <li><a class="submenu-link" href=""></a></li> 
+                                    <li><a class="submenu-link" href=""></a></li>
+                                    <li><a class="submenu-link" href=""></a></li>
+                                    <li><a class="submenu-link" href=""></a></li>
+                                    <li><a class="submenu-link" href=""></a></li> --}}
                                 </ul>
                             </div>
                         </li>
@@ -412,8 +536,8 @@
                                 <span>Content</span></a>
                             <div class="collapse" id="collapseMenuItemContent">
                                 <ul class="submenu">
-                                    <li><a class="submenu-link" href="./tables.html">Tables</a></li>
-                                    <li><a class="submenu-link" href="./forms.html">Forms</a></li>
+                                   <li><a class="submenu-link" href="HomepageControl">Home-Page-Control</a></li>
+                                    <li><a class="submenu-link" href="HomepageFooterImage">HomepageFooterImage</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -445,10 +569,10 @@
 
     <!-- Theme JS -->
     <!-- Vendor JS -->
-    <script src="/admin/js/vendor.bundle.js"></script>
+    <script src="/admin/vendor.bundle.js"></script>
     
     <!-- Theme JS -->
-    <script src="/admin/assets/js/theme.bundle.js"></script>
+    <script src="/admin/theme.bundle.js"></script>
 </body>
 
 </html>
