@@ -7,13 +7,15 @@ let getproductpage =async (req, res) => {
         const productId=req.query.name
         // console.log(productId);
          const productData = await product.findById({ _id: (productId) });
-         console.log("DATAS ARE",productData);
+
+         const relatedProducts = await product.find({  productname: productData.productname });
 
 
-         const colorMatch= await  product.agg
+
+        //  console.log(relatedProducts);
         if (productData) {
          //  console.log(productData);
-            res.status(200).render('user/productpage', { data: productData  });
+            res.status(200).render('user/productpage', { data: productData ,relatedProducts });
         } else {
             res.status(404).json({ success: false, message: 'Product not found' });
         }

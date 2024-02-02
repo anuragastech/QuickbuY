@@ -10,6 +10,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Violet | Template</title>
 
+
+
+{{!-- pagination  --}}
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Font -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
@@ -201,7 +205,27 @@
             </button>
         {{/each}}
     </div>
-</li>
+</li   >
+
+
+{{#each relatedProducts }}
+
+
+<nav aria-label="..." style="display: flex; flex-direction: row;">
+  <ul class="pagination pagination-lg">
+    <li class="page-item disabled">
+      <a class="page-link" tabindex="-1">
+        <img src="{{this.image.url}}" alt="Image" width="100" height="100" onclick="redirectToProductPage('{{this._id}}')">
+      </a>
+    </li>
+  </ul>
+</nav>
+
+
+        {{!-- <a href="/user/productpage?name={{this._id}}">-</a> --}}
+
+{{/each}}
+
 
 <script>
     function selectSize(size) {
@@ -222,6 +246,25 @@
 </script>
 
 
+
+
+<script>
+    // Function to redirect to product page with the specified product ID
+    function redirectToProductPage(productId) {
+        var url = `/user/productpage?name=${productId}`;
+        window.location.href = url;
+    }
+
+    // Assuming there's a button with the id "relatedProductsButton" to view related products
+    document.getElementById('relatedProductsButton').addEventListener('click', function() {
+        // Retrieve the data ID of the product image
+        var productId = document.querySelector('.product-image').getAttribute('data-id');
+        // Redirect to the product page with the data ID
+        redirectToProductPage(productId);
+    });
+</script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
                         <div class="product-quantity">
                             <div class="pro-qty">
