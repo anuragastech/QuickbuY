@@ -263,8 +263,8 @@ function deleteUser(userId) {
 <script>
 
 
-  function blockVender(venderId) {
-    axios.post(`/admin/block-vender/${venderId}`)
+  function blockVender(userId) {
+    axios.post(`/admin/block-vender/${userId}`)
         .then((response) => {
             if (response.status === 200) {
                 alert('User blocked successfully');
@@ -278,8 +278,8 @@ function deleteUser(userId) {
         });
 }
 
-function unblockVender(venderId) {
-    axios.post(`/admin/unblock-vender/${venderId}`)
+function unblockVender(userId) {
+    axios.post(`/admin/unblock-vender/${userId}`)
         .then((response) => {
             if (response.status === 200) {
                 alert('User unblocked successfully');

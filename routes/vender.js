@@ -13,7 +13,6 @@ const productControllers = require('../controllers/vender/AddProductpage');
 
 const otherControllers = require('../controllers/vender/Others');
 const profileControllers = require('../controllers/vender/profile');
-const venderBlockController=require('../controllers/admin/venderController')
 
 
 router.post("/login",venderControllers.loginvender);
@@ -79,9 +78,6 @@ router.get('/categories',authenticateJWT, getcatasubController.getcategory)
   router.get('/size', authenticateJWT,getcatasubController.getsize)
 
 
-
-  router.post('/block-user/:userId',  venderBlockController.blockVender);
-router.post('/unblock-user/:userId',  venderBlockController.unblockVender);
 
 
 module.exports = router ;

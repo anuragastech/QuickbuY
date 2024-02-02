@@ -10,6 +10,7 @@ const upload = multer.single("image");
 const HomepageController= require('../controllers/admin/Homepage');
 const userController= require('../controllers/admin/userController');
 
+const venderBlockController=require('../controllers/admin/venderController')
 
 
 
@@ -98,6 +99,9 @@ router.get("/Vender", otherControllers.venderadmin)
 router.post('/block-user/:userId',  userController.blockUser);
 router.post('/unblock-user/:userId',  userController.unblockUser);
 
+
+router.post('/block-vender/:userId',  venderBlockController.blockVender);
+router.post('/unblock-vender/:userId',  venderBlockController.unblockVender);
 
 
 
