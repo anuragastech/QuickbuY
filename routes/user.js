@@ -48,11 +48,12 @@ router.get('/products',authenticateJWT,getProductControllers.getproductData)
 router.get('/index',authenticateJWT,getControllerHome.getproductDataIn)
 
 
+router.delete("/deletecart/:id",getCartControllers.deleteCart);
 
 
 
 
-router.get('/cart',authenticateJWT, getCartControllers.getcartpage)
+// router.get('/cart',authenticateJWT, getCartControllers.getcartpage)
 
 
 
@@ -60,12 +61,12 @@ router.get('/cart',authenticateJWT, getCartControllers.getcartpage)
 
 
 
-router.post('/cart/product/:id',authenticateJWT,getCartControllers.postcart)
+router.post('/cart/product', authenticateJWT, getCartControllers.postcart);
 router.get('/shopping-cart',authenticateJWT,getCartControllers.getshoppingcart)
 
 
-router.get('/cart',(req,res)=>{
-    res.render('user/cart')
+router.get('/payment',(req,res)=>{
+    res.render('user/payment')
     });
 
 

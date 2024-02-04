@@ -12,6 +12,26 @@
 
 
 
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Your custom CSS files -->
+    <link rel="stylesheet" href="path/to/your/custom.css">
+
+    <!-- Your HTML content here -->
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Your custom JavaScript files -->
+    <script src="path/to/your/custom.js"></script>
+
+
+
+
+
 {{!-- pagination  --}}
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Font -->
@@ -154,10 +174,10 @@
     <section class="product-page">
         {{#if data }}
         <div class="container">
-            <div class="product-control">
-                <a href="#">Previous</a>
-                <a href="#">Next</a>
-            </div>
+                            <div class="product-control">
+                                <a href="#">Previous</a>
+                                <a href="#">Next</a>
+                            </div>
             <div class="row">
                 <div class="col-lg-6">
                     <div class="product-slider owl-carousel">
@@ -178,137 +198,238 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="product-content">
-                        <h2>Dotted Blue Shirt</h2>
-                        <div class="pc-meta">
-                            <h5$5500</h5>
-                            <div class="rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                        </div>
-                        <p>{{data.discription}}</p>
+                                 <h2  id="productName" >{{data.productname}}</h2>
+                                        <div class="pc-meta">
+                                            <h5$5500</h5>
+                                            <div class="rating">
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </div>
+                                        </div>
+                                  <p>{{data.discription}}</p>
                         <ul class="tags">
                             <li><span>Category :</span> {{data.catagory.title}}</li>
                             <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
                                                         <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
+                                                                                                                
+
+                                                 <li style="margin-bottom: 20px;">
+                                                    <span>Size :</span>
+                                                    <div class="btn-group" id="sizeDiv" role="group" aria-label="Size Options">
+                                                        {{#each data.size}}
+                                                            <button type="button"  class="btn btn-outline-dark " onclick="selectSize('{{this}}')">
+                                                                {{this}}
+                                                            </button>
+                                                        {{/each}}
+                                                    </div>
+                                                </li>
+                                                <input type="hidden" id="selectedSize" name="selectedSize" value=""> <!-- Add this line -->
+
+
+
+                                                   </ul>
+
+                                                <h5  style="font-size: 15px;margin-left : 5px; font-weight: bolder; color: rgba(19, 19, 20, 0.948);">MORE COLORS</h5>
+                                                <br>
+                                                   <div  style="display: flex ;flex-direction: row;"  >  
+
+   {{#each relatedProducts }}
+
+
+                                                        <div class="col-8 col-md-4 col-lg-3 mb-3"  >
+                                                        <div class="card" style="display: flex; flex-direction: row;">
+                                                            <a  href="/user/productpage?name={{this._id}}"  tabindex="-1">
+                                                       
+                                                                <img  class="card-img"  src="{{this.image.url}}" alt="Image">
+                                                        
+                                                            </a>
+                                                        </div>
+                                                        </div>
+                                                        {{/each}}
+
+                                                   </div>
+                                                     
+
+
+                                                                                                    <script>
+                                                    function selectSize(size) {
+                                                        // Your logic to handle the selection
+                                                        // For example, you can highlight the selected size
+                                                        document.querySelectorAll('.btn').forEach(btn => {
+                                                            btn.classList.remove('active');
+                                                        });
+
+                                                        // Loop through all buttons and find the one with matching size
+                                                        const buttons = document.querySelectorAll('.btn');
+                                                        for (let i = 0; i < buttons.length; i++) {
+                                                            if (buttons[i].textContent.trim() === size) {
+                                                                buttons[i].classList.add('active');
+                                                                break; // Exit the loop after finding the matching button
+                                                            }
+                                                        }
                                                         
 
- <li style="margin-bottom: 20px;">
-    <span>Size :</span>
-    <div class="btn-group" role="group" aria-label="Size Options">
-        {{#each data.size}}
-            <button type="button" class="btn btn-outline-dark "  onclick="selectSize('{{this}}')">
-                {{this}}
-            </button>
-        {{/each}}
-    </div>
-</li   >
+                                                        // Additional logic like storing the selected size in a hidden input
+                                                        const selectedSizeInput = document.getElementById('selectedSize');
+                                                        if (selectedSizeInput) {
+                                                            selectedSizeInput.value = size;
+                                                        } else {
+                                                            console.error("Element with ID 'selectedSize' not found.");
+                                                        }
+                                                    }
 
 
-{{#each relatedProducts }}
+                                                    </script>
 
 
-<nav aria-label="..." style="display: flex; flex-direction: row;">
-  <ul class="pagination pagination-lg">
-    <li class="page-item disabled">
-      <a class="page-link" tabindex="-1">
-        <img src="{{this.image.url}}" alt="Image" width="100" height="100" onclick="redirectToProductPage('{{this._id}}')">
-      </a>
-    </li>
-  </ul>
-</nav>
+                                                        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+                                                                          <div class="product-quantity">
+ <div class="input-group mb-4">
+    <span class="input-group-btn">
+        <button type="button" class="quantity-minus btn btn-outline-secondary" onclick="decrementQuantity()">
+            <i class="icon-minus2"></i>
+        </button>
+    </span>
+    <input type="text"  style="width: 50px;" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" data-qty="{{data.Quantity}}" max="{{data.Quantity}}">
+    <span class="input-group-btn">
+        <button type="button" class="quantity-plus btn btn-outline-secondary" onclick="incrementQuantity()">
+            <i class="icon-plus2"></i>
+        </button>
+    </span>
+</div>
+
+<h1>{{data.Quantity}}</h1>
+<h1 id="productId" style="display: none;">{{data._id}}</h1>
+                                                                                {{!-- <a href="#" class="primary-btn pc-btn">Add to cart</a> --}}
+                                                                                    <button class="primary-btn pc-btn" onclick="addToCart('{{data._id}}')">Add to Cart</button>                                                                                <ul class="p-info">
+                                                                                    <li>Product Information</li>
+                                                                                    <li>Reviews</li>
+                                                                                    <li>Product Care</li>
+
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+         </div>
+                                                                             {{/if}}
+
+       </section>
+                                                            <!-- Product Page Section End -->
+
+                                                            <!-- Related Product Section Begin -->
+      <section class="related-product spad">
+            
+
+      </section>
+                                                            <!-- Related Product Section End -->
 
 
-        {{!-- <a href="/user/productpage?name={{this._id}}">-</a> --}}
+                                                        <script>
+                                                        function cartProduct(productId) {
+                                                            axios.post(`/user/cart/product/${productId}`)
+                                                            .then((response) => {
+                                                                if (response.status !== 200) {
+                                                                throw new Error('Cart request failed');
+                                                                } else {
+                                                                document.location.href = "/user/shopping-cart";
+                                                                }
+                                                            })
+                                                            .catch((error) => {
+                                                                console.error(error);
+                                                            });
+                                                        }
+                                                     </script>
+        <script>
+function addToCart() {
+    var productId = document.getElementById("productId").innerText;
+    var productName = document.getElementById("productName").innerText;
+    var size = document.getElementById("selectedSize").value;
+    var quantity = document.getElementById("quantity").value;
 
-{{/each}}
+    // Constructing the data object
+    var data = {
+        productId: productId,
+        productName: productName,
+        size: size,
+        quantity: quantity
+    };
 
-
-<script>
-    function selectSize(size) {
-        // Your logic to handle the selection
-        // For example, you can highlight the selected size
-        document.querySelectorAll('.btn').forEach(btn => {
-            btn.classList.remove('active');
+    // Using Axios to post data to the server
+    axios.post('/user/cart/product', data)
+        .then(function (response) {
+            // Handle success
+            alert("Item added to cart successfully!");
+        })
+        .catch(function (error) {
+            // Handle error
+            console.error('Error adding item to cart:', error);
         });
+}
 
-        const selectedBtn = document.querySelector(`.btn:contains('${size}')`);
-        if (selectedBtn) {
-            selectedBtn.classList.add('active');
-        }
+        </script>
+    <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                function incrementQuantity() {
+                    let quantityInput = document.getElementById("quantity");
+                    let currentQuantity = parseInt(quantityInput.value);
+                    let maxQuantity = parseInt(quantityInput.getAttribute("max"));
+                    if (currentQuantity < maxQuantity) {
+                        quantityInput.value = currentQuantity + 1;
+                        checkAvailability();
+                    } else {
+                        alert("Maximum quantity reached.");
+                    }
+                }
 
-        // Additional logic like storing the selected size in a hidden input
-        document.getElementById('selectedSize').value = size;
-    }
-</script>
+                function decrementQuantity() {
+                    let quantityInput = document.getElementById("quantity");
+                    let currentQuantity = parseInt(quantityInput.value);
+                    if (currentQuantity > 1) {
+                        quantityInput.value = currentQuantity - 1;
+                        checkAvailability();
+                    }
+                }
 
+                function checkAvailability() {
+                    let quantityInput = document.getElementById("quantity");
+                    let currentQuantity = parseInt(quantityInput.value);
+                    let selectedSize = document.getElementById("selectedSize").value; // Retrieve the selected size
+                    let sizeDivs = document.querySelectorAll(".sizeDiv"); // Get all size divs
 
+                    // Loop through each size div to find the one that matches the selected size
+                    for (let i = 0; i < sizeDivs.length; i++) {
+                        let sizeDiv = sizeDivs[i];
+                        let size = sizeDiv.querySelector('.btn').textContent.trim(); // Get the size text
 
+                        if (size === selectedSize) { // If the size matches the selected size
+                            let maxQuantity = parseInt(sizeDiv.querySelector('.sizeQty').dataset.qty); // Get the maximum quantity for that size
 
-<script>
-    // Function to redirect to product page with the specified product ID
-    function redirectToProductPage(productId) {
-        var url = `/user/productpage?name=${productId}`;
-        window.location.href = url;
-    }
+                            // Check if the selected quantity exceeds the maximum available quantity for the selected size
+                            if (currentQuantity > maxQuantity) {
+                                document.getElementById("availabilityMessage").innerText = "Out of Stock";
+                            } else {
+                                document.getElementById("availabilityMessage").innerText = "";
+                            }
+                            break; // Exit the loop since we found the matching size
+                        }
+                    }
+                }
 
-    // Assuming there's a button with the id "relatedProductsButton" to view related products
-    document.getElementById('relatedProductsButton').addEventListener('click', function() {
-        // Retrieve the data ID of the product image
-        var productId = document.querySelector('.product-image').getAttribute('data-id');
-        // Redirect to the product page with the data ID
-        redirectToProductPage(productId);
-    });
-</script>
-
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-
-                        <div class="product-quantity">
-                            <div class="pro-qty">
-                                <input type="text" value="1">  
-                            </div>
-                        </div>
-                        {{!-- <a href="#" class="primary-btn pc-btn">Add to cart</a> --}}
-                        <button class="primary-btn pc-btn" onclick="cartProduct('{{data._id}}')">Add to Cart</button>
-                        <ul class="p-info">
-                            <li>Product Information</li>
-                            <li>Reviews</li>
-                            <li>Product Care</li>
-
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            {{/if}}
-        </div>
+                // Add event listeners to buttons for incrementing and decrementing quantity
+                document.querySelector('.quantity-minus').addEventListener('click', decrementQuantity);
+                document.querySelector('.quantity-plus').addEventListener('click', incrementQuantity);
+            });
+        </script>
     </section>
-    <!-- Product Page Section End -->
-
-    <!-- Related Product Section Begin -->
-    <section class="related-product spad">
-
-    </section>
-    <!-- Related Product Section End -->
 
 
-<script>
-  function cartProduct(productId) {
-    axios.post(`/user/cart/product/${productId}`)
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error('Cart request failed');
-        } else {
-          document.location.href = "/user/shopping-cart";
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-</script>
+
+
+
     <!-- Footer Section Begin -->
     <footer class="footer-section spad">
         <div class="container">
