@@ -18,6 +18,15 @@ const cartSchema = mongoose.Schema({
     //     ref: 'subcategory',
     //     required: true
     // },
+    size:{
+        type:String,
+        required:true,
+     },
+     quantity:{
+        type:String,
+        required:true,
+     },
+
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'registers',

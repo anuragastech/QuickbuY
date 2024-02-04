@@ -25,7 +25,8 @@
     <link rel="stylesheet" href="/user/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="/user/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="/user/style.css" type="text/css">
-</head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"></head>
 </head>
 
 <body>
@@ -119,8 +120,8 @@
                         <h2>Checkout<span>.</span></h2>
                     </div>
                 </div>
-                <div class="col-lg-8">
-                    <img src="/add.jpg" alt="">
+                {{!-- <div class="col-lg-8">
+                    <img src="/add.jpg" alt=""> --}}
                 </div>
             </div>
         </div>
@@ -128,130 +129,142 @@
     <!-- Page Add Section End -->
 
     <!-- Cart Total Page Begin -->
-    <section class="cart-total-page spad">
-        <div class="container">
-            <form action="#" class="checkout-form">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h3>Your Information</h3>
-                    </div>
-                    <div class="col-lg-9">
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <p class="in-name">Name*</p>
-                            </div>
-                            <div class="col-lg-5">
-                                <input type="text" placeholder="First Name">
-                            </div>
-                            <div class="col-lg-5">
-                                <input type="text" placeholder="Last Name">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <p class="in-name">Street Address*</p>
-                            </div>
-                            <div class="col-lg-10">
-                                <input type="text">
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <p class="in-name">Country*</p>
-                            </div>
-                            <div class="col-lg-10">
-                                <select class="cart-select country-usa">
-                                    <option>USA</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <p class="in-name">City*</p>
-                            </div>
-                            <div class="col-lg-10">
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <p class="in-name">Country</p>
-                            </div>
-                            <div class="col-lg-10">
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <p class="in-name">Post Code/ZIP*</p>
-                            </div>
-                            <div class="col-lg-10">
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <p class="in-name">Phone*</p>
-                            </div>
-                            <div class="col-lg-10">
-                                <input type="text">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-12 text-right">
-                                <div class="diff-addr">
-                                    <input type="radio" id="one">
-                                    <label for="one">Ship to different address</label>
+    <div class="container" style="margin-top: 50px;margin-bottom: 70px;">
+        <div class="row">
+            <div class="col-xl-8">
+                <div class="card">
+                    <div class="card-body">
+                        <ol class="activity-checkout mb-0 px-4 mt-3">
+                            <li class="checkout-item">
+                                <div class="avatar checkout-icon p-1">
+                                    <div class="avatar-title rounded-circle bg-primary">
+                                        <i class="bx bxs-receipt text-white font-size-20"></i>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="order-table">
-                            <div class="cart-item">
-                                <span>Product</span>
-                                <p class="product-name">Blue Dotted Shirt</p>
-                            </div>
-                            <div class="cart-item">
-                                <span>Price</span>
-                                <p>$29</p>
-                            </div>
-                            <div class="cart-item">
-                                <span>Quantity</span>
-                                <p>1</p>
-                            </div>
-                            <div class="cart-item">
-                                <span>Shipping</span>
-                                <p>$10</p>
-                            </div>
+                                <div class="feed-item-list">
+                                    <div>
+                                        <h5 class="font-size-16 mb-1">Billing Info</h5>
+                                        <p class="text-muted text-truncate mb-4">Sed ut perspiciatis unde omnis iste</p>
+                                        <div class="mb-3">
+                                            <form>
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <div class="mb-3">
+                                                                <label class="form-label" for="billing-name">Name</label>
+                                                                <input type="text" class="form-control" id="billing-name" placeholder="Enter name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <div class="mb-3">
+                                                                <label class="form-label" for="billing-email-address">Email Address</label>
+                                                                <input type="email" class="form-control" id="billing-email-address" placeholder="Enter email">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4">
+                                                            <div class="mb-3">
+                                                                <label class="form-label" for="billing-phone">Phone</label>
+                                                                <input type="text" class="form-control" id="billing-phone" placeholder="Enter Phone no.">
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                            <div class="cart-total">
-                                <span>Total</span>
-                                <p>$39</p>
-                            </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label" for="billing-address">Address</label>
+                                                        <textarea class="form-control" id="billing-address" rows="3" placeholder="Enter full address"></textarea>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-lg-4">
+                                                            <div class="mb-4 mb-lg-0">
+                                                                <label class="form-label">Country</label>
+                                                                <select class="form-control form-select" title="Country">
+                                                                    <option value="0">Select Country</option>
+                                                                    <option value="AF">Afghanistan</option>
+                                                                    <option value="AL">Albania</option>
+                                                                    <option value="DZ">Algeria</option>
+                                                                    <option value="AS">American Samoa</option>
+                                                                    <option value="AD">Andorra</option>
+                                                                    <option value="AO">Angola</option>
+                                                                    <option value="AI">Anguilla</option>                                   
+                                                                </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <div class="mb-4 mb-lg-0">
+                                                                <label class="form-label" for="billing-city">City</label>
+                                                                <input type="text" class="form-control" id="billing-city" placeholder="Enter City">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4">
+                                                            <div class="mb-0">
+                                                                <label class="form-label" for="zip-code">Zip / Postal code</label>
+                                                                <input type="text" class="form-control" id="zip-code" placeholder="Enter Postal code">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="checkout-item">
+                                <div class="avatar checkout-icon p-1">
+                                    <div class="avatar-title rounded-circle bg-primary">
+                                        <i class="bx bxs-truck text-white font-size-20"></i>
+                                    </div>
+                                </div>
+                                <div class="feed-item-list">
+                                    <!-- Shipping Info content -->
+                                </div>
+                            </li>
+                            <li class="checkout-item">
+                                <div class="avatar checkout-icon p-1">
+                                    <div class="avatar-title rounded-circle bg-primary">
+                                        <i class="bx bxs-wallet-alt text-white font-size-20"></i>
+                                    </div>
+                                </div>
+                                <div class="feed-item-list">
+                                    <!-- Payment Info content -->
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Continue Shopping and Proceed buttons -->
+                <div class="row my-4">
+                    <div class="col">
+                        <a href="ecommerce-products.html" class="btn btn-link text-muted">
+                            <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping 
+                        </a>
+                    </div>
+                    <div class="col">
+                        <div class="text-end mt-2 mt-sm-0">
+                            <a href="#" class="btn btn-success">
+                                <i class="mdi mdi-cart-outline me-1"></i> Proceed 
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="payment-method">
-                            <h3>Payment</h3>
-                            <ul>
-                                <li>Paypal <img src="/paypal.jpg" alt=""></li>
-                                <li>Credit / Debit card <img src="/mastercard.jpg" alt=""></li>
-                                <li>
-                                    <label for="two">Pay when you get the package</label>
-                                    <input type="radio" id="two">
-                                </li>
-                            </ul>
-                            <button type="submit">Place your order</button>
-                        </div>
+            </div>
+
+            <!-- Order Summary section -->
+            <div class="col-xl-4">
+                <div class="card checkout-order-summary">
+                    <div class="card-body">
+                        <!-- Order summary content -->
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
-    </section>
+    </div>
+
+    <!-- Bootstrap JS (optional, if needed) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <!-- Cart Total Page End -->
 
     <!-- Footer Section Begin -->

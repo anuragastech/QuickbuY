@@ -3,6 +3,25 @@ const product=require('../../models/vender/productAdd')
 const subcategory=require('../../models/admin/subcategory')
 
 
+
+let deleteCart = async (req, res) => {
+    try {
+        const cartId = req.params.id; 
+        const deletedCart = await Cart.findByIdAndDelete(cartId);
+        
+        if (!deletedCart) {
+            return res.status(404).json({ message: "Cart not found" });
+        }
+        
+        return res.status(200).json({ success: true });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ message: "Error deleting cart data", error: error.message });
+    }
+};
+
+
+
 // getcartlist= async (req, res) => {
 //     try {
 //         const userId = req.user.id;
@@ -52,12 +71,15 @@ let  getcartpage=async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
-let  postcart=  async (req, res) => {
-    try {
-        const productId = req.params.id;
-        const userId = req.user.id;
 
-        console.log(productId);
+let postcart = async (req, res) => {
+    try {
+        const { productId, size, quantity } = req.body;
+        const userId = req.user.id;
+        // console.log(yes);
+
+        // console.log(size);
+
         if (!productId) {
             return res.status(400).json({ alert: 'Product ID is required' });
         }
@@ -68,20 +90,17 @@ let  postcart=  async (req, res) => {
             return res.status(400).json({ message: 'Product already in the cart' });
         }
 
-        // const userId = req.cookies.userId;
-
         const newCartItem = new Cart({
             product: productId,
-            userId: userId,  
-            
+            userId: userId,
+            size: size,
+            quantity: quantity,
         });
-       
 
         await newCartItem.save();
         
-        res.rendirect('user/shopping-cart');
-
-        return res.status(200).json({ message: 'Product added to the cart successfully' });
+        // Redirect should be done using res.redirect, not res.rendirect
+        return res.redirect('/user/shopping-cart');
 
     } catch (error) {
         console.error(error);
@@ -99,9 +118,9 @@ let  getshoppingcart =  async (req, res) => {
                 path: 'product',
                 populate: [{ path: 'category' }, { path: 'subcategory' }],
             });
-          console.log("test",cart);
+        //   console.log("test",cart);
         res.render('user/shopping-cart', { cart });
-        console.log('cart');
+        // console.log('cart');
 
     } catch (error) {
         console.error(error);
@@ -110,4 +129,4 @@ let  getshoppingcart =  async (req, res) => {
 };
 
 
-module.exports={getcartpage,postcart,getshoppingcart}
+module.exports={ deleteCart,getcartpage,postcart,getshoppingcart}
