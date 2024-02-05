@@ -99,10 +99,9 @@
                     </a>
                 </div>
                 <div class="user-access">
-                    <a href="/user/sign">Register</a>
-                    <a href="/user/login" class="in">Sign in</a>
-                    <a href="/user/logout">
-    <button class="bttn3" style="width: 120px; height: 50px;">Logout</button>
+                    <a href="/user/sign" style="display: none;" >Register</a>
+                    <a href="/user/login" style="display: none;" class="in">Sign in</a>
+                    <a href="/user/logout" >Logout</a>
 </a>
 
                 </div>
@@ -171,6 +170,13 @@
     <!-- Page Add Section End -->
 
     <!-- Product Page Section Beign -->
+    <style>
+  .size.selected {
+  background-color: black;
+  color: white;
+}
+
+    </style>
     <section class="product-page">
         {{#if data }}
         <div class="container">
@@ -217,16 +223,16 @@
                                                                                                                 
 
                                                  <li style="margin-bottom: 20px;">
-                                                    <span>Size :</span>
-                                                    <div class="btn-group" id="sizeDiv" role="group" aria-label="Size Options">
-                                                        {{#each data.size}}
-                                                            <button type="button"  class="btn btn-outline-dark " onclick="selectSize('{{this}}')">
-                                                                {{this}}
-                                                            </button>
-                                                        {{/each}}
-                                                    </div>
-                                                </li>
-                                                <input type="hidden" id="selectedSize" name="selectedSize" value=""> <!-- Add this line -->
+                                                 <span>Size :</span>
+<div class="btn-group" id="sizeDiv" role="group" aria-label="Size Options">
+    {{#each data.properties}}
+        <button type="button" class="btn btn-outline-dark size" onclick="selectSize('{{this.size}}')">
+            {{this.size}}
+        </button>
+    {{/each}}
+</div>
+<input type="hidden" id="selectedSize" name="selectedSize" value="">
+
 
 
 
@@ -251,35 +257,35 @@
                                                         {{/each}}
 
                                                    </div>
-                                                     
+                                    <script>                
 
 
-                                                                                                    <script>
-                                                    function selectSize(size) {
-                                                        // Your logic to handle the selection
-                                                        // For example, you can highlight the selected size
-                                                        document.querySelectorAll('.btn').forEach(btn => {
-                                                            btn.classList.remove('active');
-                                                        });
+       function selectSize(size) {
+    const selectedSize = document.getElementById('selectedSize');
+    const sizeButtons = document.querySelectorAll('.size');
 
-                                                        // Loop through all buttons and find the one with matching size
-                                                        const buttons = document.querySelectorAll('.btn');
-                                                        for (let i = 0; i < buttons.length; i++) {
-                                                            if (buttons[i].textContent.trim() === size) {
-                                                                buttons[i].classList.add('active');
-                                                                break; // Exit the loop after finding the matching button
-                                                            }
-                                                        }
-                                                        
+    // Set the value of the hidden input field
+    selectedSize.value = size;
 
-                                                        // Additional logic like storing the selected size in a hidden input
-                                                        const selectedSizeInput = document.getElementById('selectedSize');
-                                                        if (selectedSizeInput) {
-                                                            selectedSizeInput.value = size;
-                                                        } else {
-                                                            console.error("Element with ID 'selectedSize' not found.");
-                                                        }
-                                                    }
+    // Remove the 'selected' class from all size buttons
+    sizeButtons.forEach(button => {
+        button.classList.remove('selected');
+    });
+
+    // Add the 'selected' class to the clicked size button
+    event.currentTarget.classList.add('selected');
+}
+
+// Clicking outside the size container will not remove the selection
+document.addEventListener('click', (event) => {
+    const sizeDiv = document.getElementById('sizeDiv');
+
+    // Check if the click target is not inside the size container or its children
+    if (!sizeDiv.contains(event.target)) {
+        // Do nothing if the click is outside the size container
+        return;
+    }
+});
 
 
                                                     </script>

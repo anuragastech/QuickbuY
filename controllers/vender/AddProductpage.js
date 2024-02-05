@@ -30,7 +30,7 @@ const getpostProductAdd = async (req, res) => {
       height: desiredHeight,
       crop: "scale",
     });
-    console.log(sizes);
+    // console.log(sizes);
     const properties = []; // Array to store the objects with size and quantity
 
     // Combine sizes and quantities into an array of objects
