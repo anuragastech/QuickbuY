@@ -45,7 +45,7 @@ router.get('/productpage',authenticateJWT, getProductControllers.getproductpage)
 
 
 router.get('/products',authenticateJWT,getProductControllers.getproductData)
-router.get('/index',authenticateJWT,getControllerHome.getproductDataIn)
+router.get('/index',getControllerHome.getproductDataIn)
 
 
 router.delete("/deletecart/:id",getCartControllers.deleteCart);
