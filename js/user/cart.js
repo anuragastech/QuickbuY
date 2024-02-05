@@ -1,3 +1,6 @@
+
+
+
 /* Set rates + misc */
 var taxRate = 0.05;
 var shippingRate = 15.00; 
@@ -15,53 +18,44 @@ $('.product-removal button').click( function() {
 
 
 /* Recalculate cart */
-function recalculateCart()
-{
+/* Recalculate cart */
+function recalculateCart() {
   var subtotal = 0;
-  
+
   /* Sum up row totals */
   $('.product').each(function () {
-    subtotal += parseFloat($(this).children('.product-line-price').text());
+      var linePrice = parseFloat($(this).find('.product-line-price').text().replace('₹', ''));
+      subtotal += linePrice;
   });
-  
+
   /* Calculate totals */
   var tax = subtotal * taxRate;
   var shipping = (subtotal > 0 ? shippingRate : 0);
   var total = subtotal + tax + shipping;
-  
+
   /* Update totals display */
-  $('.totals-value').fadeOut(fadeTime, function() {
-    $('#cart-subtotal').html(subtotal.toFixed(2));
-    $('#cart-tax').html(tax.toFixed(2));
-    $('#cart-shipping').html(shipping.toFixed(2));
-    $('#cart-total').html(total.toFixed(2));
-    if(total == 0){
+  $('#cart-subtotal').html(subtotal.toFixed(2));
+  $('#cart-tax').html(tax.toFixed(2));
+  $('#cart-shipping').html(shipping.toFixed(2));
+  $('#cart-total').html(total.toFixed(2));
+  if (total == 0) {
       $('.checkout').fadeOut(fadeTime);
-    }else{
+  } else {
       $('.checkout').fadeIn(fadeTime);
-    }
-    $('.totals-value').fadeIn(fadeTime);
-  });
+  }
 }
 
-
 /* Update quantity */
-function updateQuantity(quantityInput)
-{
+function updateQuantity(quantityInput) {
   /* Calculate line price */
-  var productRow = $(quantityInput).parent().parent();
-  var price = parseFloat(productRow.children('.product-price').text());
-  var quantity = $(quantityInput).val();
+  var productRow = $(quantityInput).closest('.product');
+  var price = parseFloat(productRow.find('.product-price').text().replace('₹', ''));
+  var quantity = parseInt($(quantityInput).val());
   var linePrice = price * quantity;
-  
+
   /* Update line price display and recalc cart totals */
-  productRow.children('.product-line-price').each(function () {
-    $(this).fadeOut(fadeTime, function() {
-      $(this).text(linePrice.toFixed(2));
-      recalculateCart();
-      $(this).fadeIn(fadeTime);
-    });
-  });  
+  productRow.find('.product-line-price').html('₹' + linePrice.toFixed(2));
+  recalculateCart();
 }
 
 
