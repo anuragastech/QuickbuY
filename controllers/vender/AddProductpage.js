@@ -1,7 +1,7 @@
 const product = require("../../models/vender/productAdd");
 const cloudinary = require("../../models/common/cloudinary");
 
-let getpostProductAdd = async (req, res) => {
+const getpostProductAdd = async (req, res) => {
   try {
     const {
       productname,
@@ -12,15 +12,14 @@ let getpostProductAdd = async (req, res) => {
       color,
       category,
       subcategory,
-      properties, // This will be an array of objects
+      sizes,      // Change from "products" to "sizes"
+      quantity, // Change from "products" to "quantities"
     } = req.body;
 
     const userId = req.user._id;
 
     if (!req.file) {
-      return res
-        .status(400)
-        .json({ success: false, message: "File not provided" });
+      return res.status(400).json({ success: false, message: "File not provided" });
     }
 
     const desiredWidth = 640;
@@ -31,6 +30,13 @@ let getpostProductAdd = async (req, res) => {
       height: desiredHeight,
       crop: "scale",
     });
+    console.log(sizes);
+    const properties = []; // Array to store the objects with size and quantity
+
+    // Combine sizes and quantities into an array of objects
+    for (let i = 0; i < sizes.length; i++) {
+      properties.push({ size: sizes[i], quantity: quantity[i] });
+    }
 
     const newProduct = new product({
       productname: productname,
@@ -42,7 +48,7 @@ let getpostProductAdd = async (req, res) => {
       category: category,
       subcategory: subcategory,
       color: color,
-      properties: properties, // Assigning the received array directly
+      properties: properties, // Assigning the combined array of objects
       image: {
         public_id: photo.public_id,
         url: photo.secure_url,
