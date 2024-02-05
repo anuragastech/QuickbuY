@@ -300,77 +300,71 @@ border-radius: 20px;
 
 
   <label for="productDetails">Product Details:</label>
-
 <div id="productDetailsContainer">
   <!-- Initially, there is one set of size and quantity inputs -->
-  <div class="product-inputs " style="display: flex;flex-direction: row;" >
-
-  
-    <select  name="size"  style="width: 320px;" class="size-select" required>
-      <option value="xl">XL</option>
-      <option value="l">L</option>
-      <option value="xxl">XXL</option>
-      <option value="m">M</option>
+  <div class="product-inputs" style="display: flex; flex-direction: row;">
+    <select name="properties[size]" style="width: 320px;" class="size-select" required>
+      <option value="XL">XL</option>
+      <option value="L">L</option>
+      <option value="XXL">XXL</option>
+      <option value="M">M</option>
       <!-- Add more size options as needed -->
     </select>
     <br>
-
-    <input  style="margin-top: 5px;margin-left: 320px ;width: 320px;" type="number"  id="productCount" name="quantity[]" class="quantity-input" required>
+    <input style="margin-top: 5px; margin-left: 320px; width: 320px;" type="number" name="properties[quantity]" class="quantity-input" required>
     <br>
   </div>
 </div>
 <br>
-<button  type="button" onclick="addInputBoxes()">Add More</button>
-<br>
-<br>
-
-
+<!-- Button to add more size and quantity fields -->
+<button type="button" onclick="addInputBoxes()">Add More</button>
 
 <script>
 function addInputBoxes() {
-  var container = document.getElementById("productDetailsContainer");
-
   // Create a new set of size and quantity inputs
-  var newInputs = document.createElement("div");
-  newInputs.className = "product-inputs";
+  const newInputSet = document.createElement('div');
+  newInputSet.classList.add('product-inputs');
+  newInputSet.style.display = 'flex';
+  newInputSet.style.flexDirection = 'row';
 
-  var sizeSelect = document.createElement("select");
-
-  sizeSelect.style.width = "320px"; 
-        sizeSelect.style.marginTop = "5px"; 
-
-  sizeSelect.name = "size[]";
-  sizeSelect.className = "size-select";
+  // Size select element
+  const sizeSelect = document.createElement('select');
+  sizeSelect.name = 'properties[size]';
+  sizeSelect.style.width = '320px';
+  sizeSelect.classList.add('size-select');
   sizeSelect.required = true;
-  var sizeOptions = ["XL", "L", "XXL", "M" ]; // Add more size options as needed
-  for (var i = 0; i < sizeOptions.length; i++) {
-    var option = document.createElement("option");
-    option.value = sizeOptions[i].toLowerCase();
-    option.text = sizeOptions[i];
-    sizeSelect.add(option);
-  }
+  // Add options to the size select element
+  ['XL', 'L', 'XXL', 'M'].forEach(size => {
+    const option = document.createElement('option');
+    option.value = size;
+    option.textContent = size;
+    sizeSelect.appendChild(option);
+  });
 
-  var quantityInput = document.createElement("input");
-
-   quantityInput.style.width = "320px"; 
-   quantityInput.style.marginLeft = "320px"; 
-      quantityInput.style.marginTop = "5px"; 
-
-
-
-  quantityInput.type = "number";
-  quantityInput.name = "quantity[]";
-  quantityInput.className = "quantity-input";
+  // Quantity input element
+  const quantityInput = document.createElement('input');
+  quantityInput.type = 'number';
+  quantityInput.name = 'properties[quantity]';
+  quantityInput.classList.add('quantity-input');
+  quantityInput.style.marginTop = '5px';
+  quantityInput.style.marginLeft = '320px';
+  quantityInput.style.width = '320px';
   quantityInput.required = true;
 
-  // Append size and quantity inputs to the new set
-  newInputs.appendChild(sizeSelect);
-  newInputs.appendChild(quantityInput);
+  // Add the size select and quantity input to the new input set
+  newInputSet.appendChild(sizeSelect);
+  newInputSet.appendChild(document.createElement('br'));
+  newInputSet.appendChild(quantityInput);
+  newInputSet.appendChild(document.createElement('br'));
 
-  // Append the new set to the container
-  container.appendChild(newInputs);
+  // Append the new input set to the container
+  document.getElementById('productDetailsContainer').appendChild(newInputSet);
 }
+
+// Add event listener to the "Add More" button
+document.querySelector('button[type="button"]').addEventListener('click', addInputBoxes);
 </script>
+
 
 
 

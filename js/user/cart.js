@@ -1,14 +1,10 @@
-
-
-
 /* Set rates + misc */
 var taxRate = 0.05;
 var shippingRate = 15.00; 
 var fadeTime = 300;
 
-
 /* Assign actions */
-$('.product-quantity input').change( function() {
+$('.product-quantity input').on('input', function() { // Listen for input event
   updateQuantity(this);
 });
 
@@ -16,8 +12,6 @@ $('.product-removal button').click( function() {
   removeItem(this);
 });
 
-
-/* Recalculate cart */
 /* Recalculate cart */
 function recalculateCart() {
   var subtotal = 0;
@@ -58,10 +52,8 @@ function updateQuantity(quantityInput) {
   recalculateCart();
 }
 
-
 /* Remove item from cart */
-function removeItem(removeButton)
-{
+function removeItem(removeButton) {
   /* Remove row from DOM and recalc cart total */
   var productRow = $(removeButton).parent().parent();
   productRow.slideUp(fadeTime, function() {

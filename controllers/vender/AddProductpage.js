@@ -11,12 +11,10 @@ let getpostProductAdd = async (req, res) => {
       description,
       color,
       category,
-  
       subcategory,
-      size,
-      quantity,
-      
+      properties, // This will be an array of objects
     } = req.body;
+
     const userId = req.user._id;
 
     if (!req.file) {
@@ -43,10 +41,8 @@ let getpostProductAdd = async (req, res) => {
       userId: userId,
       category: category,
       subcategory: subcategory,
-      size: size,
       color: color,
-      Quantity:quantity,
-
+      properties: properties, // Assigning the received array directly
       image: {
         public_id: photo.public_id,
         url: photo.secure_url,
@@ -61,6 +57,7 @@ let getpostProductAdd = async (req, res) => {
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+
 
 let productDelete = async (req, res) => {
   try {

@@ -144,8 +144,9 @@
     </div>
     <div class="product-price col"> ₹{{this.product.price}}</div>
     <div class="product-quantity col">
-      <input type="number" value="2" min="1" class="form-control">
-    </div>
+    <input type="number" value="{{this.quantity}}" min="1" class="form-control">
+</div>
+
     <div class="product-removal col">
 <button class="btn btn-danger" onclick="deleteCart('{{this._id}}')">Remove</button>  
   </div>
@@ -184,7 +185,7 @@
 
 <script>
     function deleteCart(cartId) {
-        axios.delete(`/user/deletecart/₹{cartId}`)
+        axios.delete(`/user/deletecart/${cartId}`)
             .then((response) => {
                 if (response.status === 200) {
                     window.location.href = "/user/shopping-cart";

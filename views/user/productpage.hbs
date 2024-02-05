@@ -111,7 +111,7 @@
                         <li><a class="active" href="/user/index">Home</a></li>
                         <li><a href="/user/categories">Shop</a>
                             <ul class="sub-menu">
-                                <li><a href="/user/productdetails">Product Page</a></li>
+                                <li><a href="/user/products">Product Page</a></li>
                                 <li><a href="/user/shopping-cart">Shopping Card</a></li>
                                 <li><a href="/user/check-out">Check out</a></li>
                             </ul>
@@ -288,15 +288,15 @@
                                                         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
                                                                           <div class="product-quantity">
- <div class="input-group mb-4">
-    <span class="input-group-btn">
-        <button type="button" class="quantity-minus btn btn-outline-secondary" onclick="decrementQuantity()">
+ <div class="input-group mb-4" style="width: 150px;">
+    <span class="input-group-btn" style="margin-right: 5px;">
+        <button type="button"  style="background-color: rgb(243, 241, 241);" class="quantity-minus btn btn-outline-secondary" onclick="decrementQuantity()">
             <i class="icon-minus2"></i>
         </button>
     </span>
-    <input type="text"  style="width: 50px;" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" data-qty="{{data.Quantity}}" max="{{data.Quantity}}">
+    <input type="text" style="width: 40px; margin-right: 5px;height: 30px; background-color: white; border: 1px solid rgb(144, 139, 139); border-radius: px;"  id="quantity" name="quantity" class="form-control input-number" value="1" min="1" data-qty="{{data.Quantity}}" max="{{data.Quantity}}">
     <span class="input-group-btn">
-        <button type="button" class="quantity-plus btn btn-outline-secondary" onclick="incrementQuantity()">
+        <button type="button" style="height: 2px; background-color: rgb(243, 231, 231);" class="quantity-plus btn btn-outline-secondary" onclick="incrementQuantity()">
             <i class="icon-plus2"></i>
         </button>
     </span>
@@ -343,26 +343,34 @@
                                                             });
                                                         }
                                                      </script>
+                                                     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script>
 function addToCart() {
     var productId = document.getElementById("productId").innerText;
     var productName = document.getElementById("productName").innerText;
     var size = document.getElementById("selectedSize").value;
-    var quantity = document.getElementById("quantity").value;
+    var quantitys = document.getElementById("quantity").value;
 
     // Constructing the data object
     var data = {
         productId: productId,
         productName: productName,
         size: size,
-        quantity: quantity
+        quantity: quantitys
     };
 
     // Using Axios to post data to the server
     axios.post('/user/cart/product', data)
-        .then(function (response) {
+       .then(function (response) {
             // Handle success
-            alert("Item added to cart successfully!");
+          ;  Toastify({
+                text: "Item added to cart successfully!",
+                duration: 3000, // 3 seconds
+                gravity: "bottom", // Display position
+                style: {
+                    background: "linear-gradient(to right, #00b09b, #96c93d)" // Background color
+                }
+            }).showToast()
         })
         .catch(function (error) {
             // Handle error
