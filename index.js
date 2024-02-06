@@ -37,6 +37,17 @@ mongoose
     });
 
 
+// Connection URI with database name
+// const uri = 'mongodb+srv://anurag:uZ3b7uWu5E5C1Rk8@cluster0.9mscwvc.mongodb.net/data';
+
+// mongoose.connect(uri, {  })
+//   .then(() => {
+//     console.log("MongoDB connected");
+//   })
+//   .catch((error) => {
+//     console.error("Failed to connect to MongoDB:", error);
+//   });
+
 app.use(express.static(path.join(__dirname, 'views')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'img')));

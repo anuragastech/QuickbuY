@@ -27,7 +27,7 @@ let postSubcategory = async (req, res) => {
         public_id: photo.public_id,
         url: photo.secure_url,
       },
-      category: category,
+      // category: category,
     });
 
     const savedCategory = await newsubCategory.save();

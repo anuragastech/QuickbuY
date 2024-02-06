@@ -40,7 +40,7 @@ router.post("/login",adminControllers.loginPost);
 
 router.get("/login",adminControllers.getlogin);
 
-router.post("/categorylist/:id", upload,categoryControllers.postCategory);
+router.post("/categorylist", upload,categoryControllers.postCategory);
 
 
 router.get("/categorylist",categoryControllers.getCategorylist);
