@@ -358,7 +358,31 @@ document.addEventListener('click', (event) => {
                                                             });
                                                         }
                                                      </script>
-                                                     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+          
+            <style>
+        /* Custom styles for Toastify notification */
+        /* Custom styles for Toastify notification */
+        .custom-toastify {
+            width: 450px;
+            height: 52px;
+            padding: 8px 16px;
+            font-size: 14px;
+            line-height: 1.5;
+            background: linear-gradient(to right, #00b09b, #96c93d);
+            color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            left: 35%;
+            transform: translateX(-10%);
+            text-align: center;
+        }
+        /* Vertically center the notification */
+        .toastify-toast.top-center {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>                                           <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script>
 function addToCart() {
     var productId = document.getElementById("productId").innerText;
@@ -378,14 +402,14 @@ function addToCart() {
     axios.post('/user/cart/product', data)
        .then(function (response) {
             // Handle success
-          ;  Toastify({
-                text: "Item added to cart successfully!",
-                duration: 3000, // 3 seconds
-                gravity: "bottom", // Display position
-                style: {
-                    background: "linear-gradient(to right, #00b09b, #96c93d)" // Background color
-                }
-            }).showToast()
+       Toastify({
+                  text: "Item added to cart successfully!",
+                  duration: 3000, // 3 seconds
+                  close: true, // Enable close button
+                  gravity: "top", // Display position (top)
+                  position: "center", // Custom position
+                  className: "custom-toastify", // Custom class name
+                }).showToast();
         })
         .catch(function (error) {
             // Handle error
