@@ -51,12 +51,6 @@ router.get('/profile', profileControllers.profileget)
 
 
 
-
-
-
-
-
-
 // router.get("/home", authenticateJWT, getHome)
 
 

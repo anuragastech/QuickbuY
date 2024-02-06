@@ -12,8 +12,8 @@ let HomepagepicPost = async (req, res) => {
         return res.status(400).json({ success: false, message: 'No file uploaded' });
       }
   
-      const desiredWidth = 1080;
-      const desiredHeight = 1920;
+      const desiredWidth = 3600;
+      const desiredHeight = 1500;
   
       const result = await cloudinary.uploader.upload(req.file.path, {
         width: desiredWidth,
@@ -57,8 +57,8 @@ let HomepageFooterpost = async (req, res) => {
       return res.status(400).json({ success: false, message: 'No file uploaded' });
     }
 
-    const desiredWidth = 1080;
-    const desiredHeight = 1920;
+    const desiredWidth = 1000;
+    const desiredHeight = 1520;
 
     const result = await cloudinary.uploader.upload(req.file.path, {
       width: desiredWidth,
@@ -112,6 +112,22 @@ let HomepageFooterGet=async (req, res) => {
 };
 
 
+let deleteBannerfoot=async (req, res) => {
+  try {
+    const h2Id = req.params.id;
+    const deleteBannersfoot = await HomepagepicPost.findOneAndDelete({h2: h2Id });
+
+    if (!deleteBannersfoot) {
+      return res.status(404).json({ message: "Bannerfooter-pic not found" });
+    }
+    return res.status(200).json({success:true});
+  //   return res.redirect("/admin/HomepageControl");
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error deleting Bannerfooter-pic data", error: error.message });
+  }
+};
+
 let deleteBanner=async (req, res) => {
   try {
     const h1Id = req.params.id;
@@ -128,4 +144,4 @@ let deleteBanner=async (req, res) => {
   }
 };
 
-  module.exports={HomepageFooterGet, HomepagepicPost ,HomepageFooterpost ,deleteBanner ,HomepagepicGet} ;
+  module.exports={deleteBannerfoot, HomepageFooterGet, HomepagepicPost ,HomepageFooterpost ,deleteBanner ,HomepagepicGet} ;

@@ -387,7 +387,7 @@ font-weight: bolder;
                     <td>
                       <button style="background-color: transparent;"
                         class="btn btn-outline-danger p-0 border-0"
-                        onclick="deleteBanner('{{this.h1}}')"
+                        onclick="deleteBannerfoot('{{this.h2}}')"
                       ><i class="bi bi-trash-fill" style="font-size: 24px; color: rgb(231, 221, 221);" ></i></button>
                     </td>
                   
@@ -408,8 +408,8 @@ font-weight: bolder;
 {{!-- ----------------------------------   --}}
 
            <script>
-    function deleteBanner(h1Id) {
-        axios.delete(`/admin/deleteBanner/${h1Id}`)
+    function deleteBannerfoot(h2Id) {
+        axios.delete(`/admin/deleteBannerfoot/${h2Id}`)
             .then((response) => {
                 if (response.status !== 200) {
                     throw new Error('Delete request failed');
