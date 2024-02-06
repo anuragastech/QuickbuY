@@ -1,6 +1,7 @@
 const Cart =require('../../models/user/cart')
 const product=require('../../models/vender/productAdd')
-const subcategory=require('../../models/admin/subcategory')
+const subcategory=require('../../models/admin/subcategory');
+const cart = require('../../models/user/cart');
 
 
 
@@ -60,7 +61,20 @@ let deleteCart = async (req, res) => {
 
 // };
 
-
+const updateCart = async (req, res) => {
+    try {
+      const cartId = req.params.cartId;
+      const newQuantity = req.body.quantity;
+  
+      await Cart.findByIdAndUpdate(cartId, { quantity: newQuantity }, { new: true });
+  
+      res.status(200).json({ message: 'Cart updated successfully' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+  
 let  getcartpage=async (req, res) => {
     try {
         const products = await product.find().populate('category').populate('subcategory');
@@ -129,4 +143,4 @@ let  getshoppingcart =  async (req, res) => {
 };
 
 
-module.exports={ deleteCart,getcartpage,postcart,getshoppingcart}
+module.exports={ updateCart, deleteCart,getcartpage,postcart,getshoppingcart}

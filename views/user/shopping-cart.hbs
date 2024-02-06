@@ -129,31 +129,36 @@
     <div class="col">Product</div>
     <div class="col">Price</div>
     <div class="col">Quantity</div>
+        <div class="col">Update</div>
+
     <div class="col">Remove</div>
     <div class="col">Total</div>
   </div>
 
 
-                {{#each cart}}
+      {{#each cart}}
   <div class="product row mb-3">
     <div class="product-image col">
-<img src="{{this.product.image.url}}" class="img-fluid" alt="Product Image">    </div>
+      <img src="{{this.product.image.url}}" class="img-fluid" alt="Product Image">
+    </div>
     <div class="product-details col">
       <div class="product-title">D{{this.product.productname}}</div>
       <p class="product-description">{{this.product.description }}.</p>
     </div>
     <div class="product-price col"> ₹{{this.product.price}}</div>
     <div class="product-quantity col">
-    <input type="number" value="{{this.quantity}}" min="1" class="form-control">
-</div>
-
+      <input type="number" id="quantity-{{this._id}}" value="{{this.quantity}}" min="1" class="form-control">
+    </div>
+    <div class="product-update col">
+      <button onclick="updateQuantity('{{this._id}}')">Update</button>
+    </div>
     <div class="product-removal col">
-<button class="btn btn-light" onclick="deleteCart('{{this._id}}')">❌</button>
-  </div>
+      <button class="btn btn-light" onclick="deleteCart('{{this._id}}')">❌</button>
+    </div>
     <div class="product-line-price col">₹12.99</div>
   </div>
-
 {{/each}}
+
   <!-- More products can be added similarly -->
 
   <div class="totals row mt-5">
@@ -199,6 +204,29 @@
     }
 </script>
 
+<script>
+
+function updateQuantity(cartId) {
+  const newQuantity = document.getElementById(`quantity-${cartId}`).value;
+
+  axios.post(`/user/update-cart/${cartId}`, { quantity: newQuantity })
+    .then((response) => {
+      if (response.status === 200) {
+        alert('Cart updated successfully');
+        // You may want to refresh the page or update the UI here
+      } else {
+        alert('Failed to update cart');
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      alert('Error updating cart');
+    });
+}
+
+
+
+</script>
 <script src="/user/cart.js"></script>
     <!-- Footer Section Begin -->
     <footer class="footer-section spad">

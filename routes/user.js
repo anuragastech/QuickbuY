@@ -52,6 +52,7 @@ router.delete("/deletecart/:id",getCartControllers.deleteCart);
 
 
 
+router.post('/update-cart/:cartId', getCartControllers.updateCart);
 
 // router.get('/cart',authenticateJWT, getCartControllers.getcartpage)
 
