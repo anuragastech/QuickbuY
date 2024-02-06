@@ -9,9 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Violet | Template</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-HnBuu5j4OG3nNmGB9frC2MKzP/2DqGxqmA8dXv4y0cgG1l/65NrVtfn5mcJMOImB" crossorigin="anonymous">
 
-
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
     <!-- Bootstrap CSS -->
@@ -238,6 +238,10 @@
 
                                                    </ul>
 
+                                                   {{!-- {{#each data.properties }}
+                                                   <h1 style="font-size: 10px ;" >{{this.quantity}}</h1>
+                                                   {{/each}} --}}
+
                                                 <h5  style="font-size: 15px;margin-left : 5px; font-weight: bolder; color: rgba(19, 19, 20, 0.948);">MORE COLORS</h5>
                                                 <br>
                                                    <div  style="display: flex ;flex-direction: row;"  >  
@@ -294,17 +298,20 @@ document.addEventListener('click', (event) => {
                                                         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
                                                                           <div class="product-quantity">
- <div class="input-group mb-4" style="width: 150px;">
+ <div class="input-group mb-4" style="width: 100px; margin-top: 10px;" >
     <span class="input-group-btn" style="margin-right: 5px;">
-        <button type="button"  style="background-color: rgb(243, 241, 241);" class="quantity-minus btn btn-outline-secondary" onclick="decrementQuantity()">
-            <i class="icon-minus2"></i>
-        </button>
+ <button type="button" style="background-color: rgb(253, 253, 253); width: 24px; height: 24px; padding: 0;" class="quantity-minus btn btn-outline-secondary" onclick="decrementQuantity()">
+  <i  style="font-weight: bolder; font-size: 16px;" class="bi bi-dash"></i>
+</button>
+
     </span>
-    <input type="text" style="width: 40px; margin-right: 5px;height: 30px; background-color: white; border: 1px solid rgb(144, 139, 139); border-radius: px;"  id="quantity" name="quantity" class="form-control input-number" value="1" min="1" data-qty="{{data.Quantity}}" max="{{data.Quantity}}">
+    <input type="text" style="width: 40px; margin-right: 5px;height: 30px; background-color: rgb(246, 246, 246); border: none; text-align: center; font-size: 20px; font"  id="quantity" name="quantity" class="form-control input-number" value="1" min="1" data-qty="{{data.Quantity}}" max="{{data.Quantity}}">
     <span class="input-group-btn">
-        <button type="button" style="height: 2px; background-color: rgb(243, 231, 231);" class="quantity-plus btn btn-outline-secondary" onclick="incrementQuantity()">
-            <i class="icon-plus2"></i>
-        </button>
+  <button type="button" style="width: 24px; height: 24px; padding: 0; background-color: rgb(243, 231, 231);" class="quantity-plus btn btn-outline-secondary" onclick="incrementQuantity()">
+  <i style="font-size: 16px;" class="bi bi-plus"></i>
+</button>
+
+    
     </span>
 </div>
 
@@ -385,7 +392,38 @@ function addToCart() {
 }
 
         </script>
-    <script>
+
+{{!-- 
+
+        <script>
+            function updateMaxQuantity() {
+    let sizeSelect = document.getElementById("size");
+    let selectedSize = sizeSelect.value;
+    let quantityInput = document.getElementById("quantity");
+
+    
+            // Find the selected size in the properties array
+    
+    if (selectedProperty) {
+        quantityInput.setAttribute("max", selectedProperty.quantity);
+    }
+}
+
+// Function to increment quantity
+function incrementQuantity() {
+    let quantityInput = document.getElementById("quantity");
+    let currentQuantity = parseInt(quantityInput.value);
+    let maxQuantity = parseInt(quantityInput.getAttribute("max"));
+    
+    if (currentQuantity < maxQuantity) {
+        quantityInput.value = currentQuantity + 1;
+        checkAvailability();
+    } else {
+        alert("Maximum quantity reached.");
+    }
+}
+        </script> --}}
+    {{!-- <script>
             document.addEventListener("DOMContentLoaded", function() {
                 function incrementQuantity() {
                     let quantityInput = document.getElementById("quantity");
@@ -437,7 +475,7 @@ function addToCart() {
                 document.querySelector('.quantity-minus').addEventListener('click', decrementQuantity);
                 document.querySelector('.quantity-plus').addEventListener('click', incrementQuantity);
             });
-        </script>
+        </script> --}}
     </section>
 
 
@@ -543,6 +581,8 @@ function addToCart() {
     <script src="/user/mixitup.min.js"></script>
     <script src="/user/main.js"></script>
 
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-p99b4vMMb65ZeAV2rD2mCxPL6VjxhENtdz8oPK72D/7z4C0yK7Uaa9ZCkbQH+2w5" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
