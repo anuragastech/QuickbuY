@@ -6,8 +6,7 @@ let getproductpage =async (req, res) => {
         // console.log("PRODUCT PAGE \n");
         const productId=req.query.name
         // console.log(productId);
-         const productData = await product.findById({ _id: (productId) });
-
+        const productData = await product.findById(productId).populate('category');
          const relatedProducts = await product.find({  productname: productData.productname });
 
 

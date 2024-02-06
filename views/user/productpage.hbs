@@ -206,21 +206,23 @@
                     <div class="product-content">
                                  <h2  id="productName" >{{data.productname}}</h2>
                                         <div class="pc-meta">
-                                            <h5$5500</h5>
-                                            <div class="rating">
+                                            {{!-- <div class="rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                   <p>{{data.discription}}</p>
-                        <ul class="tags">
-                            <li><span>Category :</span> {{data.catagory.title}}</li>
-                            <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
+                        <ul class="tags"> 
+                            <li  ><span style=" font-size: 15px ;margin-bottom: 10px; font-weight: bold;color: rgb(43, 42, 42);" >Category :{{#each data.category }} {{this.title}} {{/each}} </span>  </li>
+                            
+                                                                        <h1 style="margin-bottom: 15px; font-size: 18px;font-weight: bold;color: rgb(35, 35, 35);" >Price:₹{{data.price}}</h1>
+
+                            {{!-- <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
                                                         <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
-                                                                                                                
+                                                                                                                 --}}
 
                                                  <li style="margin-bottom: 20px;">
                                                  <span>Size :</span>
@@ -237,8 +239,8 @@
 
 
                                                    </ul>
-
-                                                   {{!-- {{#each data.properties }}
+{{!-- 
+                                                   {{#each data.properties }}
                                                    <h1 style="font-size: 10px ;" >{{this.quantity}}</h1>
                                                    {{/each}} --}}
 
@@ -369,7 +371,7 @@ function addToCart() {
         productId: productId,
         productName: productName,
         size: size,
-        quantity: quantitys
+        quantity: quantitys,
     };
 
     // Using Axios to post data to the server
