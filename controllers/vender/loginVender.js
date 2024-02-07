@@ -6,12 +6,10 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 // const secretKey = process.env.JWT_SECRET || 'defaultFallbackSecret';
 
-
 let loginvender = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await register.findOne({ email });
-
 
         if (user && !user.blocked && (await bcrypt.compare(password, user.password))) {        
             console.log('Authentication successful');
@@ -30,8 +28,8 @@ let loginvender = async (req, res) => {
 
             return res.redirect('/vender/productlist');
         } else {
-            return res.status(401).json({ message: 'Invalid email or password' });
-            // res.redirect('/vender/login')
+            return res.redirect('/vender/login');    
+                    return; 
         }
     } catch (error) {
         console.error(error);

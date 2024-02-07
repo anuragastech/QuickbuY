@@ -19,17 +19,18 @@
     width: 650px;
     height: 500px;
    background: transparent;
-   background-color: rgb(65, 41, 250);
+   background-color: rgb(185, 185, 185);
     padding: 10px 15px;
     margin: 10px 0;
     position: relative;
-    border: 1px solid rgba(255, 255, 255, .2);
+    border: 1px solid rgba(97, 93, 93, 0.2);
     backdrop-filter: blur(8px);
     border-radius: 20px;
 }
 .wrapper h1{
-    font-size: 25px;
-    color: #FFF;
+    font-size: 28px;
+    font-weight: bolder;
+    color: #000000;
     text-align: center;
 }
 .wrapper .input-box{
@@ -39,7 +40,7 @@
     position: relative;
 }
 .wrapper .input-box input{
-    color: #f8f4f4;
+    color: #030303;
     width: 100%;
     padding: 10px 12px;
     border-radius: 20px;

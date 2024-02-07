@@ -57,7 +57,7 @@ const getpostProductAdd = async (req, res) => {
 
     const savedProduct = await newProduct.save();
 
-    res.redirect(`/vender/productdetails`);
+    res.redirect(`/vender/productlist`);
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Internal Server Error" });
