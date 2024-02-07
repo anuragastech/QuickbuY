@@ -546,9 +546,30 @@ td {
           </div>
         </form>
         {{/if}} --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.0/toastify.min.css">   
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.0/toastify.min.js"></script>
+         {{! ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// }}
+ <script>
+        function getCookie(name) {
+            const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            if (match) return match[2];
+        }
 
-        {{! ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// }}
+        const alertMessage = getCookie('alert');
 
+if (alertMessage) {
+            Toastify({
+                text: alertMessage,
+                duration: 3000, // 3 seconds
+                close: true,
+                gravity: 'top', 
+                position: 'center', 
+                backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)', 
+            }).showToast();
+            // Remove the alert cookie
+            document.cookie = 'alert=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        }
+    </script>
         <!-- Footer -->
         <footer class="footer">
           <p class="small text-muted m-0"></p>
@@ -556,8 +577,7 @@ td {
               href="https://www.pixelrocket.store/"
             ></a></p>
         </footer>
-
-        <!-- Sidebar Menu Overlay-->
+        
         <div class="menu-overlay-bg"></div>
 
         <div
