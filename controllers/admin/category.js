@@ -35,9 +35,10 @@ let postCategory = async (req, res) => {
 
       res.redirect('/admin/categorylist');
       
-  } catch (error) {
+    } catch (error) {
       console.error(error);
-      res.status(500).json({ success: false, error: error.message });
+      // Redirect to the 404 page
+      res.redirect('/admin/404');
   }
 };
 

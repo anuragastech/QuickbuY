@@ -608,21 +608,67 @@ height: 500px;
     {{/if}}
 {{!-- --------------------------------------------------------------------------------------------- --}}
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
   function deleteProduct(productId) {
-    axios.delete(`/vender/delete/product/${productId}`)
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error('Delete request failed');
-        } else {
-          window.location.href = "/vender/productdetails";
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    // Show confirmation dialog using SweetAlert2
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You are about to delete this product. This action cannot be undone.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      // If user confirms, proceed with deletion
+      if (result.isConfirmed) {
+        axios.delete(`/vender/delete/product/${productId}`)
+          .then((response) => {
+            if (response.status !== 200) {
+              throw new Error('Delete request failed');
+            } else {
+              // Redirect to the product details page after successful deletion
+              window.location.href = "/vender/productlist";
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+            // Handle error if delete request fails
+          });
+      }
+    });
   }
 </script>
+
+  <style>
+    
+  </style>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    if (match) return match[2];
+  }
+
+  const alertMessage = getCookie('alert');
+
+  if (alertMessage) {
+    Swal.fire({
+      title: 'Success!',
+      text: alertMessage,
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 3000,
+      customClass: {
+        container: 'my-swal-container', // Define the custom class name
+      }
+    });
+    // Remove the alert cookie
+    document.cookie = 'alert=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+  }
+</script>
+
 
 
 

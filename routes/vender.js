@@ -53,6 +53,9 @@ router.get('/profile', profileControllers.profileget)
 
 
 // router.get("/home", authenticateJWT, getHome)
+router.get('/forgot-password', (req, res) => {
+  return res.render('vender/forgot-password');
+});
 
 
 
