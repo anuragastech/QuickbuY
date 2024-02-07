@@ -34,6 +34,7 @@ router.get('/edit-product',authenticateJWT, productControllers.geteditProduct)
 router.post('/edit-product/:id',authenticateJWT,productControllers.postedit)
 
 
+
 // Logout route
 router.get("/logout",authenticateJWT,venderControllers.logout )
 
@@ -45,12 +46,6 @@ router.get('/index', (req, res) => {
 });
 
 router.get('/profile', profileControllers.profileget)
-
-
-
-
-
-
 
 
 

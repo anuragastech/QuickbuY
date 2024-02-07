@@ -13,7 +13,7 @@ const adminRouter=require('./routes/admin')
 
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 
 app.set('view engine', 'hbs');
@@ -27,15 +27,29 @@ app.use('/user',userRouter);
 app.use('/vender',venderRouter)
 app.use('/admin', adminRouter);
 
-mongoose
-    .connect("mongodb://localhost:27017/data")
-    .then(() => {
-        console.log("MongoDB connected");
-    })
-    .catch((error) => {
-        console.error("Failed to connect to MongoDB:", error);
-    });
+// mongoose
+//     .connect("mongodb://localhost:27017/data")
+//     .then(() => {
+//         console.log("MongoDB connected");
+//     })
+//     .catch((error) => {
+//         console.error("Failed to connect to MongoDB:", error);
+//     });
 
+
+// Connection URI with database name
+
+const uri = 'mongodb+srv://anurag:uZ3b7uWu5E5C1Rk8@cluster0.9mscwvc.mongodb.net/data';
+mongoose.connect(uri, {
+   
+    socketTimeoutMS: 30000, // Set the timeout to 30 seconds
+  })
+  .then(() => {
+    console.log("MongoDB connected");
+  })
+  .catch((error) => {
+    console.error("Failed to connect to MongoDB:", error);
+  });
 
 app.use(express.static(path.join(__dirname, 'views')));
 app.use(express.static(path.join(__dirname, 'public')));

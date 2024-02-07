@@ -26,11 +26,11 @@ const subcategorySchema = new mongoose.Schema({
     ref:'registers'
  },
 
-  category: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'category',
-    required: true,
-  },
+  // category: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'category',
+  //   required: true,
+  // },
 });
 
 const subcategory = mongoose.model('subcategory', subcategorySchema);

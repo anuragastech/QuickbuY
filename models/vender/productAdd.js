@@ -49,14 +49,18 @@ const createSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  size: {
-    type: [String],
-    required: true,
-  },
-  Quantity: {
-    type: [Number],
-    required: true,
-  },
+  properties: [
+    {
+      size:{
+        type:String,
+      },
+      quantity:{
+        type:Number
+      }
+    }
+  ]
+
+  
 });
 
 module.exports = mongoose.model('product', createSchema);

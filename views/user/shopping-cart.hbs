@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
 <link rel="stylesheet" href="/user/cart.js">
     <!-- Css Styles -->
@@ -76,9 +76,9 @@
                         <li><a class="active" href="/user/index">Home</a></li>
                         <li><a href="/user/categories">Shop</a>
                             <ul class="sub-menu">
-                                <li><a href="/user/productdetails">Product Page</a></li>
+                                <li><a href="/user/products">Product Page</a></li>
                                 <li><a href="/user/shopping-cart">Shopping Card</a></li>
-                                <li><a href="/user/check-out">Check out</a></li>
+                                {{!-- <li><a href="/user/check-out">Check out</a></li> --}}
                             </ul>
                         </li>
                         <li><a href="/user/product-page">About</a></li>
@@ -96,7 +96,7 @@
                 <div class="col-md-4">
                     <div class="header-item">
                         <img src="/icons/delivery.png" alt="">
-                        <p>Free shipping on orders over $30 in USA</p>
+                        <p>Free shipping on orders over ₹30 in USA</p>
                     </div>
                 </div>
                 <div class="col-md-4 text-left text-lg-center">
@@ -129,59 +129,81 @@
     <div class="col">Product</div>
     <div class="col">Price</div>
     <div class="col">Quantity</div>
+        <div class="col">Update</div>
+
     <div class="col">Remove</div>
     <div class="col">Total</div>
   </div>
 
 
-                {{#each cart}}
+      {{#each cart}}
   <div class="product row mb-3">
     <div class="product-image col">
-<img src="{{this.product.image.url}}" class="img-fluid" alt="Product Image">    </div>
+      <img src="{{this.product.image.url}}" class="img-fluid" alt="Product Image">
+    </div>
     <div class="product-details col">
-      <div class="product-title">D{{this.product.productname}}</div>
+      <div class="product-title">{{this.product.productname}}</div>
       <p class="product-description">{{this.product.description }}.</p>
     </div>
-    <div class="product-price col">${{this.product.price}}</div>
+    <div class="product-price col"> ₹{{this.product.price}}</div>
     <div class="product-quantity col">
-      <input type="number" value="2" min="1" class="form-control">
+      <input type="number" id="quantity-{{this._id}}" value="{{this.quantity}}" min="1" class="form-control">
+    </div>
+    <div class="product-update col">
+      <button onclick="updateQuantity('{{this._id}}')">Update</button>
     </div>
     <div class="product-removal col">
-<button class="btn btn-danger" onclick="deleteCart('{{this._id}}')">Remove</button>  
+      <button class="btn btn-light" onclick="deleteCart('{{this._id}}')">❌</button>
+    </div>
+    <div class="product-line-price col">₹12.99</div>
   </div>
-    <div class="product-line-price col">$12.99</div>
-  </div>
-
 {{/each}}
+
   <!-- More products can be added similarly -->
 
   <div class="totals row mt-5">
     <div class="totals-item col">
       <label>Subtotal</label>
-      <div class="totals-value" id="cart-subtotal">$71.97</div>
+      <div class="totals-value" id="cart-subtotal">₹0</div>
     </div>
     <div class="totals-item col">
       <label>Tax (5%)</label>
-      <div class="totals-value" id="cart-tax">$3.60</div>
+      <div class="totals-value" id="cart-tax">₹0.0</div>
     </div>
     <div class="totals-item col">
       <label>Shipping</label>
-      <div class="totals-value" id="cart-shipping">$15.00</div>
+      <div class="totals-value" id="cart-shipping">₹0</div>
     </div>
     <div class="totals-item totals-item-total col">
       <label>Grand Total</label>
-      <div class="totals-value" id="cart-total">$90.57</div>
+      <div class="totals-value" id="cart-total">₹0</div>
     </div>
   </div>
 
   <div class="row mt-4" style="margin-bottom: 50px;">
-    <button class="btn btn-primary checkout">Checkout</button>
+    <button class="btn btn-dark checkout">Checkout</button>
   </div>
 </div>
-
+  <style>
+        /* Custom styles for Toastify notification */
+        .custom-toastify {
+            width: 550px;
+            height: 52px;
+            padding: 8px 16px;
+            font-size: 14px;
+            line-height: 1.5;
+            background: linear-gradient(to right, #00b09b, #96c93d);
+            color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
     <!-- Cart Page Section End -->
 
-
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script>
     function deleteCart(cartId) {
         axios.delete(`/user/deletecart/${cartId}`)
@@ -198,6 +220,36 @@
     }
 </script>
 
+<script>
+
+function updateQuantity(cartId) {
+  const newQuantity = document.getElementById(`quantity-${cartId}`).value;
+
+  axios.post(`/user/update-cart/${cartId}`, { quantity: newQuantity })
+    .then((response) => {
+      if (response.status === 200) {
+        // You may want to refresh the page or update the UI here
+        Toastify({
+                  text: "Item updated to cart successfully!",
+                  duration: 3000, // 3 seconds
+                  close: true, // Enable close button
+                  gravity: "top", // Display position
+                  position: "center", // Custom position
+                  className: "custom-toastify", // Custom class name
+                }).showToast();
+      } else {
+        alert('Failed to update cart');
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      alert('Error updating cart');
+    });
+}
+
+
+
+</script>
 <script src="/user/cart.js"></script>
     <!-- Footer Section Begin -->
     <footer class="footer-section spad">

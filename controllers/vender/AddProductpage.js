@@ -1,7 +1,7 @@
 const product = require("../../models/vender/productAdd");
 const cloudinary = require("../../models/common/cloudinary");
 
-let getpostProductAdd = async (req, res) => {
+const getpostProductAdd = async (req, res) => {
   try {
     const {
       productname,
@@ -11,18 +11,15 @@ let getpostProductAdd = async (req, res) => {
       description,
       color,
       category,
-  
       subcategory,
-      size,
-      quantity,
-      
+      sizes,      // Change from "products" to "sizes"
+      quantity, // Change from "products" to "quantities"
     } = req.body;
+
     const userId = req.user._id;
 
     if (!req.file) {
-      return res
-        .status(400)
-        .json({ success: false, message: "File not provided" });
+      return res.status(400).json({ success: false, message: "File not provided" });
     }
 
     const desiredWidth = 640;
@@ -33,6 +30,13 @@ let getpostProductAdd = async (req, res) => {
       height: desiredHeight,
       crop: "scale",
     });
+    // console.log(sizes);
+    const properties = []; // Array to store the objects with size and quantity
+
+    // Combine sizes and quantities into an array of objects
+    for (let i = 0; i < sizes.length; i++) {
+      properties.push({ size: sizes[i], quantity: quantity[i] });
+    }
 
     const newProduct = new product({
       productname: productname,
@@ -43,10 +47,8 @@ let getpostProductAdd = async (req, res) => {
       userId: userId,
       category: category,
       subcategory: subcategory,
-      size: size,
       color: color,
-      Quantity:quantity,
-
+      properties: properties, // Assigning the combined array of objects
       image: {
         public_id: photo.public_id,
         url: photo.secure_url,
@@ -55,12 +57,13 @@ let getpostProductAdd = async (req, res) => {
 
     const savedProduct = await newProduct.save();
 
-    res.redirect(`/vender/productdetails`);
+    res.redirect(`/vender/productlist`);
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
+
 
 let productDelete = async (req, res) => {
   try {

@@ -83,6 +83,8 @@ let getsign=(req,res)=>{
     let getlogin=(req,res)=>{
         res.render('user/login')
         };
+
+        
         let getlogout= (req, res) => {
             res.clearCookie("token");
         

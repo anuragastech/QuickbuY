@@ -1,77 +1,61 @@
-/* Set rates + misc */
-var taxRate = 0.05;
-var shippingRate = 15.00; 
-var fadeTime = 300;
+ // Set rates + misc
+  var taxRate = 0.05;
+  var shippingRate = 15.00;
+  var fadeTime = 300;
 
+  // Function to calculate cart totals based on rendered data
+  function recalculateCart() {
+    var subtotal = 0;
 
-/* Assign actions */
-$('.product-quantity input').change( function() {
-  updateQuantity(this);
-});
+    /* Sum up row totals */
+    $('.product').each(function() {
+      var quantity = parseInt($(this).find('.product-quantity input').val());
+      var price = parseFloat($(this).find('.product-price').text().replace('₹', ''));
+      var linePrice = price * quantity;
+      subtotal += linePrice;
 
-$('.product-removal button').click( function() {
-  removeItem(this);
-});
+      // Update product-line-price with calculated line price
+      $(this).find('.product-line-price').text('₹' + linePrice.toFixed(2));
+    });
 
+    /* Calculate totals */
+    var tax = subtotal * taxRate;
+    var shipping = (subtotal > 0 ? shippingRate : 0);
+    var total = subtotal + tax + shipping;
 
-/* Recalculate cart */
-function recalculateCart()
-{
-  var subtotal = 0;
-  
-  /* Sum up row totals */
-  $('.product').each(function () {
-    subtotal += parseFloat($(this).children('.product-line-price').text());
-  });
-  
-  /* Calculate totals */
-  var tax = subtotal * taxRate;
-  var shipping = (subtotal > 0 ? shippingRate : 0);
-  var total = subtotal + tax + shipping;
-  
-  /* Update totals display */
-  $('.totals-value').fadeOut(fadeTime, function() {
-    $('#cart-subtotal').html(subtotal.toFixed(2));
-    $('#cart-tax').html(tax.toFixed(2));
-    $('#cart-shipping').html(shipping.toFixed(2));
-    $('#cart-total').html(total.toFixed(2));
-    if(total == 0){
+    /* Update totals display */
+    $('#cart-subtotal').text('₹' + subtotal.toFixed(2));
+    $('#cart-tax').text('₹' + tax.toFixed(2));
+    $('#cart-shipping').text('₹' + shipping.toFixed(2));
+    $('#cart-total').text('₹' + total.toFixed(2));
+    if (total == 0) {
       $('.checkout').fadeOut(fadeTime);
-    }else{
+    } else {
       $('.checkout').fadeIn(fadeTime);
     }
-    $('.totals-value').fadeIn(fadeTime);
-  });
-}
+  }
 
-
-/* Update quantity */
-function updateQuantity(quantityInput)
-{
-  /* Calculate line price */
-  var productRow = $(quantityInput).parent().parent();
-  var price = parseFloat(productRow.children('.product-price').text());
-  var quantity = $(quantityInput).val();
-  var linePrice = price * quantity;
-  
-  /* Update line price display and recalc cart totals */
-  productRow.children('.product-line-price').each(function () {
-    $(this).fadeOut(fadeTime, function() {
-      $(this).text(linePrice.toFixed(2));
-      recalculateCart();
-      $(this).fadeIn(fadeTime);
-    });
-  });  
-}
-
-
-/* Remove item from cart */
-function removeItem(removeButton)
-{
-  /* Remove row from DOM and recalc cart total */
-  var productRow = $(removeButton).parent().parent();
-  productRow.slideUp(fadeTime, function() {
-    productRow.remove();
+  // Call recalculateCart() when the page loads
+  $(document).ready(function() {
     recalculateCart();
   });
-}
+
+  // Assign action to input change event
+  $('.product-quantity input').on('input', function() {
+    recalculateCart();
+  });
+
+  // Function to handle checkbox click event
+  $('#update-totals-checkbox').on('change', function() {
+    // Check if the checkbox is checked
+    if ($(this).is(':checked')) {
+      // Call the function to recalculate cart totals
+      recalculateCart();
+    } else {
+      // If the checkbox is unchecked, clear the totals
+      $('#cart-subtotal').text('₹0.00');
+      $('#cart-tax').text('₹0.00');
+      $('#cart-shipping').text('₹0.00');
+      $('#cart-total').text('₹0.00');
+    }
+  });

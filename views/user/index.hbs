@@ -74,11 +74,9 @@
                     </a>
                 </div>
                 <div class="user-access">
-                    <a href="/user/sign"  style="display: none;">Register</a>
-                    <a href="/user/login" style="display: none;" class="in">Sign in</a>
-                    <a href="/user/logout">
-                        <button class="bttn3" style="width: 120px; height: 50px;">Logout</button>
-                    </a>
+                    <a href="/user/sign"  >Register</a>
+                    <a href="/user/login"  class="in">Sign in</a>
+
 
                 </div>
                 <nav class="main-menu mobile-menu">
@@ -88,7 +86,7 @@
                             <ul class="sub-menu">
                                 <li><a href="/user/products">Product Page</a></li>
                                 <li><a href="/user/shopping-cart">Shopping Card</a></li>
-                                <li><a href="/user/check-out">Check out</a></li>
+                                {{!-- <li><a href="/user/check-out">Check out</a></li> --}}
                             </ul>
                         </li>
                         <li><a href="/user/product-page">About</a></li>
@@ -319,7 +317,9 @@
                 <div class="col-lg-3 col-sm-6  mix all dresses bags">
                     <div class="single-product-item">
                         <figure>
-                            <a href="#"><img src="{{this.image.url}}" alt="{{this.productname}}"></a>
+                            <a href="/user/productpage?name={{this._id}}"><img src="{{this.image.url}}" alt="{{this.productname}}"></a>
+                                                        {{!-- <a href="/user/productpage?name={{this._id}}"><img src="{{this.image.url}}" alt=""></a> --}}
+
 
                             {{!-- <img src="" alt=""> --}}
                             <div class="p-status">new</div>

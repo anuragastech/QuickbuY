@@ -11,8 +11,8 @@ let postSubcategory = async (req, res) => {
         .json({ success: false, message: "No file uploaded" });
     }
 
-    const desiredWidth = 300;
-    const desiredHeight = 200;
+    const desiredWidth = 400;
+    const desiredHeight = 400;
 
     const photo = await cloudinary.uploader.upload(req.file.path, {
       width: desiredWidth,
@@ -27,7 +27,7 @@ let postSubcategory = async (req, res) => {
         public_id: photo.public_id,
         url: photo.secure_url,
       },
-      category: category,
+      // category: category,
     });
 
     const savedCategory = await newsubCategory.save();

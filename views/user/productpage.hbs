@@ -9,9 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Violet | Template</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-HnBuu5j4OG3nNmGB9frC2MKzP/2DqGxqmA8dXv4y0cgG1l/65NrVtfn5mcJMOImB" crossorigin="anonymous">
 
-
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
     <!-- Bootstrap CSS -->
@@ -99,10 +99,9 @@
                     </a>
                 </div>
                 <div class="user-access">
-                    <a href="/user/sign">Register</a>
-                    <a href="/user/login" class="in">Sign in</a>
-                    <a href="/user/logout">
-    <button class="bttn3" style="width: 120px; height: 50px;">Logout</button>
+                    <a href="/user/sign" style="display: none;" >Register</a>
+                    <a href="/user/login" style="display: none;" class="in">Sign in</a>
+                    <a href="/user/logout" >Logout</a>
 </a>
 
                 </div>
@@ -111,7 +110,7 @@
                         <li><a class="active" href="/user/index">Home</a></li>
                         <li><a href="/user/categories">Shop</a>
                             <ul class="sub-menu">
-                                <li><a href="/user/productdetails">Product Page</a></li>
+                                <li><a href="/user/products">Product Page</a></li>
                                 <li><a href="/user/shopping-cart">Shopping Card</a></li>
                                 <li><a href="/user/check-out">Check out</a></li>
                             </ul>
@@ -171,6 +170,13 @@
     <!-- Page Add Section End -->
 
     <!-- Product Page Section Beign -->
+    <style>
+  .size.selected {
+  background-color: black;
+  color: white;
+}
+
+    </style>
     <section class="product-page">
         {{#if data }}
         <div class="container">
@@ -184,7 +190,7 @@
                         <div class="product-img">
                             <figure>
                             <img src="{{data.image.url}}" alt="{{this.productname}}">
-                                <div class="p-status">new</div>
+                                {{!-- <div class="p-status">new</div> --}}
                             </figure>
                         </div>
                         <div class="product-img">
@@ -200,37 +206,43 @@
                     <div class="product-content">
                                  <h2  id="productName" >{{data.productname}}</h2>
                                         <div class="pc-meta">
-                                            <h5$5500</h5>
-                                            <div class="rating">
+                                            {{!-- <div class="rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                   <p>{{data.discription}}</p>
-                        <ul class="tags">
-                            <li><span>Category :</span> {{data.catagory.title}}</li>
-                            <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
+                        <ul class="tags"> 
+                            <li  ><span style=" font-size: 15px ;margin-bottom: 10px; font-weight: bold;color: rgb(43, 42, 42);" >Category :{{#each data.category }} {{this.title}} {{/each}} </span>  </li>
+                            
+                                                                        <h1 style="margin-bottom: 15px; font-size: 18px;font-weight: bold;color: rgb(35, 35, 35);" >Price:₹{{data.price}}</h1>
+
+                            {{!-- <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
                                                         <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
-                                                                                                                
+                                                                                                                 --}}
 
                                                  <li style="margin-bottom: 20px;">
-                                                    <span>Size :</span>
-                                                    <div class="btn-group" id="sizeDiv" role="group" aria-label="Size Options">
-                                                        {{#each data.size}}
-                                                            <button type="button"  class="btn btn-outline-dark " onclick="selectSize('{{this}}')">
-                                                                {{this}}
-                                                            </button>
-                                                        {{/each}}
-                                                    </div>
-                                                </li>
-                                                <input type="hidden" id="selectedSize" name="selectedSize" value=""> <!-- Add this line -->
+                                                 <span>Size :</span>
+<div class="btn-group" id="sizeDiv" role="group" aria-label="Size Options">
+    {{#each data.properties}}
+        <button type="button" class="btn btn-outline-dark size" onclick="selectSize('{{this.size}}')">
+            {{this.size}}
+        </button>
+    {{/each}}
+</div>
+<input type="hidden" id="selectedSize" name="selectedSize" value="">
+
 
 
 
                                                    </ul>
+{{!-- 
+                                                   {{#each data.properties }}
+                                                   <h1 style="font-size: 10px ;" >{{this.quantity}}</h1>
+                                                   {{/each}} --}}
 
                                                 <h5  style="font-size: 15px;margin-left : 5px; font-weight: bolder; color: rgba(19, 19, 20, 0.948);">MORE COLORS</h5>
                                                 <br>
@@ -251,35 +263,35 @@
                                                         {{/each}}
 
                                                    </div>
-                                                     
+                                    <script>                
 
 
-                                                                                                    <script>
-                                                    function selectSize(size) {
-                                                        // Your logic to handle the selection
-                                                        // For example, you can highlight the selected size
-                                                        document.querySelectorAll('.btn').forEach(btn => {
-                                                            btn.classList.remove('active');
-                                                        });
+       function selectSize(size) {
+    const selectedSize = document.getElementById('selectedSize');
+    const sizeButtons = document.querySelectorAll('.size');
 
-                                                        // Loop through all buttons and find the one with matching size
-                                                        const buttons = document.querySelectorAll('.btn');
-                                                        for (let i = 0; i < buttons.length; i++) {
-                                                            if (buttons[i].textContent.trim() === size) {
-                                                                buttons[i].classList.add('active');
-                                                                break; // Exit the loop after finding the matching button
-                                                            }
-                                                        }
-                                                        
+    // Set the value of the hidden input field
+    selectedSize.value = size;
 
-                                                        // Additional logic like storing the selected size in a hidden input
-                                                        const selectedSizeInput = document.getElementById('selectedSize');
-                                                        if (selectedSizeInput) {
-                                                            selectedSizeInput.value = size;
-                                                        } else {
-                                                            console.error("Element with ID 'selectedSize' not found.");
-                                                        }
-                                                    }
+    // Remove the 'selected' class from all size buttons
+    sizeButtons.forEach(button => {
+        button.classList.remove('selected');
+    });
+
+    // Add the 'selected' class to the clicked size button
+    event.currentTarget.classList.add('selected');
+}
+
+// Clicking outside the size container will not remove the selection
+document.addEventListener('click', (event) => {
+    const sizeDiv = document.getElementById('sizeDiv');
+
+    // Check if the click target is not inside the size container or its children
+    if (!sizeDiv.contains(event.target)) {
+        // Do nothing if the click is outside the size container
+        return;
+    }
+});
 
 
                                                     </script>
@@ -288,17 +300,20 @@
                                                         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
                                                                           <div class="product-quantity">
- <div class="input-group mb-4">
-    <span class="input-group-btn">
-        <button type="button" class="quantity-minus btn btn-outline-secondary" onclick="decrementQuantity()">
-            <i class="icon-minus2"></i>
-        </button>
+ <div class="input-group mb-4" style="width: 100px; margin-top: 10px;" >
+    <span class="input-group-btn" style="margin-right: 5px;">
+ <button type="button" style="background-color: rgb(253, 253, 253); width: 24px; height: 24px; padding: 0;" class="quantity-minus btn btn-outline-secondary" onclick="decrementQuantity()">
+  <i  style="font-weight: bolder; font-size: 16px;" class="bi bi-dash"></i>
+</button>
+
     </span>
-    <input type="text"  style="width: 50px;" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" data-qty="{{data.Quantity}}" max="{{data.Quantity}}">
+    <input type="text" style="width: 40px; margin-right: 5px;height: 30px; background-color: rgb(246, 246, 246); border: none; text-align: center; font-size: 20px; font"  id="quantity" name="quantity" class="form-control input-number" value="1" min="1" data-qty="{{data.Quantity}}" max="{{data.Quantity}}">
     <span class="input-group-btn">
-        <button type="button" class="quantity-plus btn btn-outline-secondary" onclick="incrementQuantity()">
-            <i class="icon-plus2"></i>
-        </button>
+  <button type="button" style="width: 24px; height: 24px; padding: 0; background-color: rgb(243, 231, 231);" class="quantity-plus btn btn-outline-secondary" onclick="incrementQuantity()">
+  <i style="font-size: 16px;" class="bi bi-plus"></i>
+</button>
+
+    
     </span>
 </div>
 
@@ -343,26 +358,58 @@
                                                             });
                                                         }
                                                      </script>
+          
+            <style>
+        /* Custom styles for Toastify notification */
+        /* Custom styles for Toastify notification */
+        .custom-toastify {
+            width: 450px;
+            height: 52px;
+            padding: 8px 16px;
+            font-size: 14px;
+            line-height: 1.5;
+            background: linear-gradient(to right, #00b09b, #96c93d);
+            color: #fff;
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            left: 35%;
+            transform: translateX(-10%);
+            text-align: center;
+        }
+        /* Vertically center the notification */
+        .toastify-toast.top-center {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>                                           <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script>
 function addToCart() {
     var productId = document.getElementById("productId").innerText;
     var productName = document.getElementById("productName").innerText;
     var size = document.getElementById("selectedSize").value;
-    var quantity = document.getElementById("quantity").value;
+    var quantitys = document.getElementById("quantity").value;
 
     // Constructing the data object
     var data = {
         productId: productId,
         productName: productName,
         size: size,
-        quantity: quantity
+        quantity: quantitys,
     };
 
     // Using Axios to post data to the server
     axios.post('/user/cart/product', data)
-        .then(function (response) {
+       .then(function (response) {
             // Handle success
-            alert("Item added to cart successfully!");
+       Toastify({
+                  text: "Item added to cart successfully!",
+                  duration: 3000, // 3 seconds
+                  close: true, // Enable close button
+                  gravity: "top", // Display position (top)
+                  position: "center", // Custom position
+                  className: "custom-toastify", // Custom class name
+                }).showToast();
         })
         .catch(function (error) {
             // Handle error
@@ -371,7 +418,38 @@ function addToCart() {
 }
 
         </script>
-    <script>
+
+
+
+        <script>
+            function updateMaxQuantity() {
+    let sizeSelect = document.getElementById("size");
+    let selectedSize = sizeSelect.value;
+    let quantityInput = document.getElementById("quantity");
+
+    
+            // Find the selected size in the properties array
+    
+    if (selectedProperty) {
+        quantityInput.setAttribute("max", selectedProperty.quantity);
+    }
+}
+
+// Function to increment quantity
+function incrementQuantity() {
+    let quantityInput = document.getElementById("quantity");
+    let currentQuantity = parseInt(quantityInput.value);
+    let maxQuantity = parseInt(quantityInput.getAttribute("max"));
+    
+    if (currentQuantity < maxQuantity) {
+        quantityInput.value = currentQuantity + 1;
+        checkAvailability();
+    } else {
+        alert("Maximum quantity reached.");
+    }
+}
+        </script>
+    {{!-- <script>
             document.addEventListener("DOMContentLoaded", function() {
                 function incrementQuantity() {
                     let quantityInput = document.getElementById("quantity");
@@ -423,7 +501,7 @@ function addToCart() {
                 document.querySelector('.quantity-minus').addEventListener('click', decrementQuantity);
                 document.querySelector('.quantity-plus').addEventListener('click', incrementQuantity);
             });
-        </script>
+        </script> --}}
     </section>
 
 
@@ -529,6 +607,8 @@ function addToCart() {
     <script src="/user/mixitup.min.js"></script>
     <script src="/user/main.js"></script>
 
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-p99b4vMMb65ZeAV2rD2mCxPL6VjxhENtdz8oPK72D/7z4C0yK7Uaa9ZCkbQH+2w5" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
