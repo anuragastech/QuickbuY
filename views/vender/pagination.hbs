@@ -12,18 +12,10 @@
     <meta name="keywords" content="">
 
     <!-- Favicon -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png">
+    <link rel="mask-icon" href="./assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
@@ -51,7 +43,7 @@
     </noscript>
 
     <!-- Page Title -->
-    <title></title>
+    <title>Kavlan | Bootstrap 5 HTML Admin Dashboard</title>
     
 </head>
 <body class="">
@@ -97,7 +89,16 @@
                 <span class="flag-icon flag-icon-gb"></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="regionDropdown">
-                
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United Kingdom <span class="text-muted ms-5"><span class="flag-icon flag-icon-gb"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United States<span class="text-muted ms-5"><span class="flag-icon flag-icon-us"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Australia<span class="text-muted ms-5"><span class="flag-icon flag-icon-au"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Belgium<span class="text-muted ms-5"><span class="flag-icon flag-icon-be"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Canada<span class="text-muted ms-5"><span class="flag-icon flag-icon-ca"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">China <span class="text-muted ms-5"><span class="flag-icon flag-icon-cn"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Denmark <span class="text-muted ms-5"><span class="flag-icon flag-icon-dk"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">France<span class="text-muted ms-5"><span class="flag-icon flag-icon-fr"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Netherlands<span class="text-muted ms-5"><span class="flag-icon flag-icon-nl"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russia<span class="text-muted ms-5"><span class="flag-icon flag-icon-ru"></span></span></a></li>
               </ul>
             </div>
             <!-- /Region -->
@@ -144,159 +145,88 @@
             <!-- Breadcrumbs-->
             <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> VendersProduct Details</a></li>
-                    <li class="breadcrumb-item active" aria-current="page"> VendersProduct Details</li>
+                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Pagination</li>
                 </ol>
             </nav>            <!-- / Breadcrumbs-->
 
-        
+            <!-- Page Title-->
+            <h2 class="fs-4 mb-2">Pagination</h2>
+            <p class=" mb-4">Documentation and examples for showing pagination to indicate a series of related
+                content exists across multiple pages.</p>
+            <!-- / Page Title-->
 
+            <div class="row g-4">
+                <div class="col-12 col-md-6">
 
-{{!-- -----------------------------------------------------------------------------------------   --}}
-   
-    <div class="row ">
-                <div class="col-lg-12 col-md-6 col-sm-3" >
-<style>
-  
-  th{border-collapse:collapse;
-  text-align: center;
-    background-color:transparent;
-    height: 60px;
-    color: azure;
-    border: 1px solid rgb(255, 255, 255);
-  }
-  tr{
-border-collapse:collapse;
-    border: 1px solid rgb(249, 249, 249);
-    background-color:transparent;
-    
-      }
+                    <!-- Example-->
+                    <div class="card mb-4">
+                        <div class="card-header">
+                            <h6 class="card-title">Default example</h6>
 
-    
-  td{border-collapse:collapse;
-        border: 1px solid rgb(245, 245, 245);
-        text-align: center;
-    background-color: transparent;
-    
+                        </div>
+                        <div class="card-body">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!-- /Example-->
 
-  }
-  table{border-collapse:collapse;
-    border-radius: 30px;
-            border: 1px solid rgb(255, 255, 255);
-                background-color: transparent;
-color: aliceblue;
-align-items: center;
+                </div>
 
+             <div class="row g-4">
+    <div class="col-12 col-md-">
 
-  }
-  thead{
-             
+        <!-- Example-->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h6 class="card-title">Default example</h6>
+            </div>
+            <div class="card-body">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /Example-->
 
-
-  }
-  .button1{
-    height: 34px;
-    width: 65px;
-    background-color: rgb(254, 254, 254);
-  }
-  .heading{
-    color: rgb(255, 255, 255);
-    font-size: 36px;
-    padding-bottom: 10px;
-    
-  }
-  .button2{
-       height: 34px;
-    width: 65px;
-    background-color: rgb(252, 252, 252);
-  }
-</style>
-
-
-
-
-
-{{!-- ------------------------------------------------------------------------------------------------------- --}}
-<h1 class="heading">Product List</h1>
-<div class="container table-responsive py-5">
-    <table id="productTable" class="table table-bordered table-hover" style="background-color: transparent;">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">Product Name</th>
-                <th scope="col">Manufacture Name</th>
-                <th scope="col">Brand</th>
-                <th scope="col">Price</th>
-                <th scope="col">Description</th>
-                <th scope="col">Category</th>
-                <th scope="col">Subcategory</th>
-                <th scope="col">Image</th>
-            </tr>
-        </thead>
-        <tbody style="background-color: red;" >
-            {{#each products}}
-            <tr>
-                <td>{{this.productname}}</td>
-                <td>{{this.manufacturename}}</td>
-                <td>{{this.brand}}</td>
-                <td>{{this.price}}</td>
-                <td>{{this.description}}</td>
-                <td>{{this.category.title}}</td>
-                <td>{{this.subcategory.title}}</td>
-                <td>
-                    <img src="{{this.image.url}}" alt="{{this.productname}} Image" style="max-width: 140px; height: auto;">
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
+    </div>
 </div>
 
-<!-- DataTables CSS -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-
-<!-- DataTables JS -->
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-
-<script>
-    $(document).ready(function () {
-        $('#productTable').DataTable({
-            "paging": true // Enable pagination
-            // Add more options as needed
-        });
-    });
-</script>
 
 
-{{!-- ----------------------------------  --}}
- {{#if successMessage}}
-        <script>
-            window.onload = function() {
-                alert('{{successMessage}}');
-            };
-        </script>
-    {{/if}}
-{{!-- --------------------------------------------------------------------------------------------- --}}
-
-
-
-
-{{!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  --}}
-
-
-
-
-{{!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
+                </div>
+            </div>
 
             <!-- Footer -->
             <footer class="  footer">
-                <p class="small text-muted m-0"></p>
-                <p class="small text-muted m-0"><a href="https://www.pixelrocket.store/"></a></p>
+                <p class="small text-muted m-0">All rights reserved | © 2021</p>
+                <p class="small text-muted m-0">Template created by <a href="https://www.pixelrocket.store/">PixelRocket</a></p>
             </footer>
             
             
             <!-- Sidebar Menu Overlay-->
             <div class="menu-overlay-bg"></div>
-          
+            <!-- / Sidebar Menu Overlay-->
+            
+            <!-- Modal Imports-->
+            <!-- Place your modal imports here-->
+            
+            <!-- Default Example Modal Import-->
+            <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
@@ -352,8 +282,8 @@ align-items: center;
                 <div class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3">
                   <div class="position-relative mt-1 ">
                     <picture class="avatar avatar-sm">
-                      <img src="/profile-small-2.jpeg"
-                        alt="">
+                      <img src="./assets/images/profile-small-2.jpeg"
+                        alt="HTML Bootstrap Admin Template by Pixel Rocket">
                     </picture>
                     <span
                     class="dot bg-success avatar-dot border-light dot-sm"></span>
@@ -370,8 +300,8 @@ align-items: center;
                 <div class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3">
                   <div class="position-relative mt-1 ">
                     <picture class="avatar avatar-sm">
-                      <img src="/profile-small-3.jpeg"
-                        alt="">
+                      <img src="./assets/images/profile-small-3.jpeg"
+                        alt="HTML Bootstrap Admin Template by Pixel Rocket">
                     </picture>
                     <span
                     class="dot bg-success avatar-dot border-light dot-sm"></span>
@@ -388,8 +318,8 @@ align-items: center;
                 <div class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3">
                   <div class="position-relative mt-1 ">
                     <picture class="avatar avatar-sm">
-                      <img src="/profile-small-4.jpeg"
-                        alt="">
+                      <img src="./assets/images/profile-small-4.jpeg"
+                        alt="HTML Bootstrap Admin Template by Pixel Rocket">
                     </picture>
                     <span
                     class="dot bg-danger avatar-dot border-light dot-sm"></span>
@@ -433,7 +363,7 @@ align-items: center;
                         <a class="m-0" href="./index.html">
                             <div class="d-flex align-items-center justify-content-center">
                                 <svg class="f-w-6 me-2 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 398.39 353.81"><polygon points="228.38 33.94 0 262.32 0 0 119.61 0 119.61 43.01 101.9 60.73 86.02 76.61 86.02 33.6 33.6 33.6 33.6 181.2 214.46 0.34 390.66 0.34 242.09 148.91 218.73 124.76 309.55 33.94 228.38 33.94" fill="currentColor"/><polygon points="398.39 353.81 217.51 353.81 131.04 261.75 45.09 353.81 0 353.81 0 353.49 131.26 212.91 232.05 320.21 317.27 320.21 170.28 173.21 194.19 149.29 194.19 149.55 254.9 210.51 254.97 210.39 398.39 353.81" fill="currentColor"/></svg>
-                                <span class="fw-bold fs-3 text-white">Admin</span>
+                                <span class="fw-bold fs-3 text-white">Kavlan</span>
                             </div>                    </a>
                     </div>
                     <!-- / Mobile Logo-->
@@ -442,16 +372,16 @@ align-items: center;
                     <div class="border-bottom pt-3 pb-5 mb-6 d-flex flex-column align-items-center">
                         <div class="position-relative">
                             <picture class="avatar avatar-profile">
-                                <img class="avatar-profile-img" src="/profile-small.jpeg"
-                                  alt="">
+                                <img class="avatar-profile-img" src="./assets/images/profile-small.jpeg"
+                                  alt="HTML Bootstrap Admin Template by Pixel Rocket">
                             </picture>
                             <span class="dot bg-success avatar-dot"></span>
                         </div>
                         <p class="mb-0 mt-3 text-white">Robert Jones</p>
-                        <small></small>
+                        <small>robert.jones@outlook.com</small>
                         <div class="d-flex flex-wrap mt-2 justify-content-between align-items-center">
                             <div class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1">
-                                <a   style="width: 95px;height: 30px;color: black; background-color: white; border-radius: 25px;text-align: center;"  href="logout" >logout</a>
+                                <i class="ri-map-pin-line me-2"></i> London, UK
                             </div>
     
                             <!-- User profile dropdown-->
@@ -483,7 +413,7 @@ align-items: center;
     
                         <!-- Dashboard Menu Section-->
                         <li class="menu-section">Menu</li>
-                        <li class="menu-item"><a class="d-flex align-items-center menu-link" href="index"><i
+                        <li class="menu-item"><a class="d-flex align-items-center menu-link" href="./index.html"><i
                                     class="ri-home-4-line me-3"></i> <span>Dashboard</span></a></li>
                         <!-- / Dashboard Menu Section-->
     
@@ -495,19 +425,19 @@ align-items: center;
                                 <span>Components</span></a>
                             <div class="collapse" id="collapseMenuItemUI">
                                 <ul class="submenu">
-                                               <li><a class="submenu-link" href="categorylist">Category-List</a></li>
-                                    <li><a class="submenu-link" href="subcategories">Sub-Category-List</a></li>
-                                    <li><a class="submenu-link" href="vender-product-list">Productlist</a></li>
-                                    <li><a class="submenu-link" href="User">User management</a></li>
-                                    <li><a class="submenu-link" href="Vender">Vender management</a></li>
-                                    {{!-- <li><a class="submenu-link" href=""></a></li> 
-                                    <li><a class="submenu-link" href=""></a></li> 
-                                    <li><a class="submenu-link" href=""></a></li> 
-                                    <li><a class="submenu-link" href=""></a></li> 
-                                    <li><a class="submenu-link" href=""></a></li>
-                                    <li><a class="submenu-link" href=""></a></li>
-                                    <li><a class="submenu-link" href=""></a></li>
-                                    <li><a class="submenu-link" href=""></a></li> --}}
+                                    <li><a class="submenu-link" href="./accordion.html">Accordion</a></li>
+                                    <li><a class="submenu-link" href="./alert.html">Alert</a></li>
+                                    <li><a class="submenu-link" href="./badge.html">Badge</a></li>
+                                    <li><a class="submenu-link" href="./button.html">Button</a></li>
+                                    <li><a class="submenu-link" href="./card.html">Card</a></li>
+                                    <li><a class="submenu-link" href="./collapse.html">Collapse</a></li>
+                                    <li><a class="submenu-link" href="./dropdown.html">Dropdown</a></li>
+                                    <li><a class="submenu-link" href="./modal.html">Modal</a></li>
+                                    <li><a class="submenu-link" href="./offcanvas.html">Offcanvas</a></li>
+                                    <li><a class="submenu-link" href="./pagination.html">Pagination</a></li>
+                                    <li><a class="submenu-link" href="./popover.html">Popovers</a></li>
+                                    <li><a class="submenu-link" href="./progress.html">Progress</a></li>
+                                    <li><a class="submenu-link" href="./tooltip.html">Tooltips</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -517,8 +447,8 @@ align-items: center;
                                 <span>Content</span></a>
                             <div class="collapse" id="collapseMenuItemContent">
                                 <ul class="submenu">
-                                      <li><a class="submenu-link" href="HomepageControl">Home-Page-Control</a></li>
-                                    <li><a class="submenu-link" href="HomepageFooterImage">HomepageFooterImage</a></li>
+                                    <li><a class="submenu-link" href="./tables.html">Tables</a></li>
+                                    <li><a class="submenu-link" href="./forms.html">Forms</a></li>
                                 </ul>
                             </div>
                         </li>
@@ -550,10 +480,10 @@ align-items: center;
 
     <!-- Theme JS -->
     <!-- Vendor JS -->
-    <script src="/admin/vendor.bundle.js"></script>
+    <script src="./assets/js/vendor.bundle.js"></script>
     
     <!-- Theme JS -->
-    <script src="/admin/theme.bundle.js"></script>
+    <script src="./assets/js/theme.bundle.js"></script>
 </body>
 
 </html>

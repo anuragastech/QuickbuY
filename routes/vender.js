@@ -48,6 +48,9 @@ router.get('/index', (req, res) => {
 router.get('/profile', profileControllers.profileget)
 
 
+router.get('/pagination', (req, res) => {
+  return res.render('vender/pagination');
+});
 
 
 
