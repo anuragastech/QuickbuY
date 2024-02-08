@@ -81,8 +81,8 @@
 
     <!-- Page Title -->
     <title></title>
-
-  </head>
+<link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>  </head>
   <body class="">
 
     <!-- Navbar-->
@@ -304,6 +304,12 @@
    <div class="row g-4">
           <div class="col-12 ">
 
+<style>
+
+  td{
+    text-align: center;
+  }
+</style>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 <script>
@@ -316,7 +322,7 @@ $(document).ready( function () {
     <div class="card-header">
         <h6 class="card-title">Category-List</h6>
     </div>
-    <div class="card-body">
+    <div class="card-body" style="background-color: rgb(12, 12, 12); color: white;">
         <div class="table-responsive"> <!-- Make table responsive -->
             <table id="categoryTable" class="table table-striped w-500"> <!-- Set width to full -->
                 <thead>
@@ -328,7 +334,7 @@ $(document).ready( function () {
                         <th>Edit</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="background-color: black !important;">
                     {{#each categories}}
                     <tr>
                         <td>{{title}}</td>
@@ -663,7 +669,7 @@ if (alertMessage) {
               class="border-bottom pt-3 pb-5 mb-6 d-flex flex-column align-items-center"
             >
               <div class="position-relative">
-                <picture class="avatar avatar-profile">
+                {{!-- <picture class="avatar avatar-profile">
                   <img
                     class="avatar-profile-img"
                     src="/profile-small.jpeg"
@@ -676,7 +682,7 @@ if (alertMessage) {
               <small>robert.jones@outlook.com</small>
               <div
                 class="d-flex flex-wrap mt-2 justify-content-between align-items-center"
-              >
+              > --}}
                 <div
                   class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1"
                 >

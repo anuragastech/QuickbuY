@@ -53,7 +53,7 @@
     </noscript>
 
     <!-- Page Title -->
-    <title>Kavlan | Bootstrap 5 HTML Admin Dashboard</title>
+    <title> </title>
     
 </head>
 <body class="">
@@ -163,99 +163,49 @@
             <!-- Page Title-->
            
             <!-- / Page Title-->
-
-            <div class="row g-4">
-                <div class="col-12 col-md-6">
-{{!-- -----------------------------------------   --}}
-
-
-
-{{!-- -------------------------------------------------------   --}}
-  <!-- Button trigger modal -->
-            <h1 class="h10" >Category-List</h1>
-            <button
-              type="button"
-              style="background-color: rgb(252, 252, 252);margin-bottom: 10px; margin-top: -20px; font-size: 20px;font-weight: bolder; height: 55px; margin-left: 1100px; width: 400px;"
-              class="btn btn-primary"
-              data-toggle="modal"
-              data-target="#exampleModalCenter"
-            >
-              Add Sub-Category
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="h4 mt-3">Category List</h1>
+            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModalCenter">
+                Add Sub-Category
             </button>
-
-
-            <!-- Modal -->
-                      <form
-                                      action="/admin/subcategories"
-                                      class="frml"
-                                      method="POST"
-                                      enctype="multipart/form-data"
-                                    >
-
-                               <div 
-                                        class="modal fade  " style="  background-color: rgba(0, 0, 0, 0.761);"
-                                        id="exampleModalCenter"
-                                        tabindex="-1"
-                                        role="dialog"
-                                        aria-labelledby="exampleModalCenterTitle"
-                                        aria-hidden="true"
-                                      >
-                             <div class="modal-dialog modal-dialog-centered" role="document">
-                                      <div class="modal-content " >
-                                        <div class="modal-header bg-dark text-light">
-                                              <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bolder;">Add Sub-Category</h5>
-                                              <button
-                                                type="button"
-                                                class="close"
-                                                data-dismiss="modal"
-                                                aria-label="Close"
-                                              >
-                                                <span aria-hidden="true">&times;</span>
-                                              </button>
-                                            </div>
-                                            <div class="modal-body bg-dark text-light">
-                               
-
-
-                                              <label for="title">Title:</label>
-                                              <input type="text" id="title" name="title" required>
-                                              <br>
-
-                                              <label for="description">Description:</label>
-                                              <textarea  style="height: 30px;" id="description" name="description" required></textarea>
-
-                                              <label  for="image">Image:</label>
-                                              <input  type="file" id="image" name="image" accept="image/*" required>
-                                              {{!-- <button type="submit">Upload</button> --}}
-
-
-
-
-
-                        
-
-                                           {{!-- <button class="btn" type="submit">Add Subcategory</button>  --}}
-                                              {{! <button class="btn" type="submit">submit</button> }}
-
-                                            </div>
-                                            <div class="modal-footer bg-dark text-light">
-                                              <button
-                                                type="button"
-                                                class="btn btn-secondary"
-                                                data-dismiss="modal"
-                                              >Close</button>
-                                              <button
-                                                type="submit"
-                                                class="btn btn-primary"
-                                              >Submit</button>
-                                </div>
-                             </div>
-
-                          </div>
-                        </div>
-                     </form>
-
+        </div>
+    </div>
 </div>
+
+<!-- Modal -->
+<form action="/admin/subcategories" class="frml" method="POST" enctype="multipart/form-data">
+    <div class="modal fade" style="background-color: rgba(0, 0, 0, 0.761);" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-light">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add Sub-Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body bg-dark text-light">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" class="form-control" required>
+                    <br>
+
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" class="form-control" style="height: 30px;" required></textarea>
+                    <br>
+
+                    <label for="image">Image:</label>
+                    <input type="file" id="image" name="image" class="form-control-file" accept="image/*" required>
+                </div>
+                <div class="modal-footer bg-dark text-light">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
       {{!-- -------------------------------------------------------                 --}}
 
 <style>
@@ -538,40 +488,17 @@
                     <!-- User Details-->
                     <div class="border-bottom pt-3 pb-5 mb-6 d-flex flex-column align-items-center">
                         <div class="position-relative">
-                            <picture class="avatar avatar-profile">
-                                <img class="avatar-profile-img" src="./assets/images/profile-small.jpeg"
-                                  alt="">
-                            </picture>
-                            <span class="dot bg-success avatar-dot"></span>
-                        </div>
-                        <p class="mb-0 mt-3 text-white">Robert Jones</p>
-                        <small></small>
-                        <div class="d-flex flex-wrap mt-2 justify-content-between align-items-center">
-                            <div class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1">
-                                <a   style="width: 95px;height: 30px;color: black; background-color: white; border-radius: 25px;text-align: center;"  href="logout" >logout</a>
-                            </div>
+               
+                   <div
+                  class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1"
+                >
+                  <a
+                    style="width: 95px;height: 30px;color: black; background-color: white; border-radius: 25px;text-align: center;"
+                    href="logout"
+                  >logout</a>
+                </div>
     
-                            <!-- User profile dropdown-->
-                            <div class="dropdown m-0">
-                                {{!-- <button class="border-0 rounded px-2 f-h-9 bg-dark-opacity p-0 text-body" type="button" id="profileDropdown"
-                                  data-bs-toggle="dropdown" aria-expanded="false">
-                                  <i class="ri-settings-2-line"></i>
-                                </button> --}}
-                                <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                                  <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="ri-user-line me-2"></i> Edit
-                                      profile</a></li>
-                                  <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="ri-settings-2-line me-2"></i> Edit
-                                      settings</a></li>
-                                  <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="ri-mail-open-line me-2"></i> View
-                                      messages</a></li>
-                                  <li>
-                                    <hr class="dropdown-divider">
-                                  </li>
-                                  <li><a class="dropdown-item text-danger d-flex align-items-center" href="#"><i
-                                        class="ri-lock-line me-2"></i> Logout</a></li>
-                                </ul>
-                              </div>
-                            <!-- / User profile dropdown-->
+                        
                         </div>
                     </div>
                     <!-- User Details-->

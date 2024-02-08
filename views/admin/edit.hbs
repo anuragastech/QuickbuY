@@ -398,7 +398,7 @@ label{
                     <!-- User Details-->
                     <div class="border-bottom pt-3 pb-5 mb-6 d-flex flex-column align-items-center">
                         <div class="position-relative">
-                            <picture class="avatar avatar-profile">
+                            {{!-- <picture class="avatar avatar-profile">
                                 <img class="avatar-profile-img" src="./assets/images/profile-small.jpeg"
                                   alt="HTML Bootstrap Admin Template by Pixel Rocket">
                             </picture>
@@ -406,13 +406,17 @@ label{
                         </div>
                         <p class="mb-0 mt-3 text-white">Robert Jones</p>
                         <small>robert.jones@outlook.com</small>
-                        <div class="d-flex flex-wrap mt-2 justify-content-between align-items-center">
-                            <div class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1">
-                                <i class="ri-map-pin-line me-2"></i> London, UK
-                            </div>
+                                <div --}}
+                  class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1"
+                >
+                  <a
+                    style="width: 95px;height: 30px;color: black; background-color: white; border-radius: 25px;text-align: center;"
+                    href="logout"
+                  >logout</a>
+                </div>
     
                             <!-- User profile dropdown-->
-                            <div class="dropdown m-0">
+                            {{!-- <div class="dropdown m-0">
                                 <button class="border-0 rounded px-2 f-h-9 bg-dark-opacity p-0 text-body" type="button" id="profileDropdown"
                                   data-bs-toggle="dropdown" aria-expanded="false">
                                   <i class="ri-settings-2-line"></i>
@@ -430,7 +434,7 @@ label{
                                   <li><a class="dropdown-item text-danger d-flex align-items-center" href="#"><i
                                         class="ri-lock-line me-2"></i> Logout</a></li>
                                 </ul>
-                              </div>
+                              </div> --}}
                             <!-- / User profile dropdown-->
                         </div>
                     </div>

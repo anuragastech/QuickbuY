@@ -69,7 +69,7 @@ let editGetCategory= async (req, res) => {
   try {
       const categoryId = req.query.name;
       const categorys = await category.findOne({ _id: categoryId });
-      console.log(categoryId);
+      // console.log(categoryId);
 
       if (!categorys) {
           return res.status(404).json({ success: false, message: 'Category not found' });
