@@ -69,7 +69,10 @@ router.get('/shopping-cart',authenticateJWT,getCartControllers.getshoppingcart)
 router.get('/payment',(req,res)=>{
     res.render('user/payment')
     });
-
+    router.get('/triel',(req,res)=>{
+      res.render('user/triel')
+      });
+  
 
     // router.get('/products',(req,res)=>{
     //   res.render('user/products')

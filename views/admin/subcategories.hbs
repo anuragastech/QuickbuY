@@ -34,6 +34,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600&display=swap" rel="stylesheet">
 
+
+<!-- table cdn  -->
+<link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>  </head>
     <!-- Vendor CSS -->
     <link rel="stylesheet" href="/admin/libs.bundle.css" />
 
@@ -53,7 +57,7 @@
     </noscript>
 
     <!-- Page Title -->
-    <title>Kavlan | Bootstrap 5 HTML Admin Dashboard</title>
+    <title> </title>
     
 </head>
 <body class="">
@@ -163,212 +167,169 @@
             <!-- Page Title-->
            
             <!-- / Page Title-->
-
-            <div class="row g-4">
-                <div class="col-12 col-md-6">
-{{!-- -----------------------------------------   --}}
-
-<style>
-label{
-  font-size: 30px;
-}
-input{
-  height: 30px;
-}
-
-</style>
-
-{{!-- -------------------------------------------------------   --}}
-  <!-- Button trigger modal -->
-            <h1 class="h10" >Category-List</h1>
-            <button
-              type="button"
-              style="background-color: white;margin-bottom: 10px; margin-top: -20px; font-size: 20px;font-weight: bolder; height: 55px; margin-left: 1100px; width: 400px;"
-              class="btn btn-primary"
-              data-toggle="modal"
-              data-target="#exampleModalCenter"
-            >
-              Add Sub-Category
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="h4 mt-3">Category List</h1>
+            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModalCenter">
+                Add Sub-Category
             </button>
-
-
-            <!-- Modal -->
-                      <form
-                                      action="/admin/subcategories"
-                                      class="frml"
-                                      method="POST"
-                                      enctype="multipart/form-data"
-                                    >
-
-                               <div 
-                                        class="modal fade  " style="  background-color: rgba(0, 0, 0, 0.761);"
-                                        id="exampleModalCenter"
-                                        tabindex="-1"
-                                        role="dialog"
-                                        aria-labelledby="exampleModalCenterTitle"
-                                        aria-hidden="true"
-                                      >
-                             <div class="modal-dialog modal-dialog-centered" role="document">
-                                      <div class="modal-content " >
-                                        <div class="modal-header bg-dark text-light">
-                                              <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bolder;">Add Sub-Category</h5>
-                                              <button
-                                                type="button"
-                                                class="close"
-                                                data-dismiss="modal"
-                                                aria-label="Close"
-                                              >
-                                                <span aria-hidden="true">&times;</span>
-                                              </button>
-                                            </div>
-                                            <div class="modal-body bg-dark text-light">
-                               
-
-
-                                              <label for="title">Title:</label>
-                                              <input type="text" id="title" name="title" required>
-                                              <br>
-
-                                              <label for="description">Description:</label>
-                                              <textarea  style="height: 30px;" id="description" name="description" required></textarea>
-
-                                              <label  for="image">Image:</label>
-                                              <input  type="file" id="image" name="image" accept="image/*" required>
-                                              {{!-- <button type="submit">Upload</button> --}}
-
-
-
-
-
-                        
-
-                                           {{!-- <button class="btn" type="submit">Add Subcategory</button>  --}}
-                                              {{! <button class="btn" type="submit">submit</button> }}
-
-                                            </div>
-                                            <div class="modal-footer bg-dark text-light">
-                                              <button
-                                                type="button"
-                                                class="btn btn-secondary"
-                                                data-dismiss="modal"
-                                              >Close</button>
-                                              <button
-                                                type="submit"
-                                                class="btn btn-primary"
-                                              >Submit</button>
-                                </div>
-                             </div>
-
-                          </div>
-                        </div>
-                     </form>
-
+        </div>
+    </div>
 </div>
-      {{!-- -------------------------------------------------------                 --}}
 
+<!-- Modal -->
+<form action="/admin/subcategories" class="frml" method="POST" enctype="multipart/form-data">
+    <div class="modal fade" style="background-color: rgba(0, 0, 0, 0.761);" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-light">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add Sub-Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body bg-dark text-light">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" class="form-control" required>
+                    <br>
+
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" class="form-control" style="height: 30px;" required></textarea>
+                    <br>
+
+                    <label for="image">Image:</label>
+                    <input type="file" id="image" name="image" class="form-control-file" accept="image/*" required>
+                </div>
+                <div class="modal-footer bg-dark text-light">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+      {{!-- -------------------------------------------------------                 --}}
 
 <style>
   table{
-    margin-left: 115px;
-    width: 1400px;
-    border: 5px solid rgb(249, 249, 249);
-
+    background-color: black;
   }
-  th{
-    height: 45px;
-    border: 1px solid white;
-    color: white;
-    text-align: center;
-    font-size: 20px;
-    font-weight: bolder;
-  }
- 
   td{
-      border: 1px solid rgb(98, 83, 83);
-    text-align: center;
-    font-size: 16px;
-    font-weight: bolder;
-    color: white;
-    height: 120px;
-    width: 100px;
+    background-color: rgb(0, 0, 0);
   }
-  
 </style>
 
+            <div class="row g-4">
+                <div class="col-12 col-md-12">
    
 <div class="showsubcategory">
-<table>
-    {{#if subcategories.length}}
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Description</th>
-          <th>Image</th>
-          <th>Delete</th>
-          <th>Edit</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each subcategories}}
-          <tr>
-            <td>{{title}}</td>
-            <td>{{description}}</td>
-            <td   ><img  class="pic" src="{{image.url}}" alt="{{title}} Image" style="max-width: 140px; height: auto;"></td>
-            <td>
-                    <button  style="background-color: transparent; " class="btn5" class="btn5" onclick="deleteSubCategory('{{this._id}}')"><i style="font-size: 24px; color: rgb(255, 234, 234);" class="bi bi-trash-fill"></i></button>
+    <table id="subcategoryTable"  class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Delete</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody >
+            {{#each subcategories}}
+            <tr>
+                <td>{{title}}</td>
+                <td>{{description}}</td>
+                <td><img class="pic" src="{{image.url}}" alt="{{title}} Image" style="max-width: 140px; height: auto;"></td>
+                <td>
+                    <button style="background-color: transparent;" class="btn5" onclick="deleteSubCategory('{{this._id}}')">
+                        <i class="bi bi-trash-fill" style="font-size: 24px; color: rgb(255, 234, 234);"></i>
+                    </button>
                 </td>
                 <td>
-                  
-                   <button style="background-color: transparent;" class="btn5"> <a href="/admin/edit-subcategory?name={{this._id}}"><i class="bi bi-pencil-square text-success bg-transparent "  style="font-size: 24px;"  ></i></a> </button> 
-
+                    <button style="background-color: transparent;" class="btn5">
+                        <a href="/admin/edit-subcategory?name={{this._id}}">
+                            <i class="bi bi-pencil-square text-success bg-transparent" style="font-size: 24px;"></i>
+                        </a>
+                    </button>
                 </td>
-          </tr>
-        {{/each}}
-      </tbody>
-    {{else}}
-      <tr>
-        <td colspan="3">No subcategories found.</td>
-      </tr>
-    {{/if}}
-  </table>
-
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </div>
-
 </div>
+<!-- DataTables CSS -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+
+<!-- DataTables JS -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('#subcategoryTable').DataTable();
+    });
+</script>
+
 
 {{!-- -------------------------------------------------------------- --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script>
+        function getCookie(name) {
+            const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            if (match) return match[2];
+        }
 
+        const alertMessage = getCookie('alert');
 
-
+        if (alertMessage) {
+            Toastify({
+                text: alertMessage,
+                duration: 3000, // 3 seconds
+                close: true,
+                gravity: 'top',
+                position: 'center',
+                backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
+            }).showToast();
+            // Remove the alert cookie
+            document.cookie = 'alert=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        }
+    </script>
 {{!-- delete--}}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
   function deleteSubCategory(subcategoryId) {
-    axios.delete(`/admin/delete-subcategory/${subcategoryId}`)
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error('Delete request failed');
-        } else {
-          window.location.href = "/admin/subcategories";
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You are about to delete this subcategory. This action cannot be undone.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+
+      if (result.isConfirmed) {
+        axios.delete(`/admin/delete-subcategory/${subcategoryId}`)
+          .then((response) => {
+            if (response.status !== 200) {
+              throw new Error('Delete request failed');
+            } else {
+              window.location.href = "/admin/subcategories";
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      }
+    });
   }
 </script>
 
 
-                </div>
 
-                {{!-- <div class="col-12 col-md-6">
-
-                   
-                    </div> --}}
-
-
-                    <!-- / Icon Example-->
-
-                </div>
+              
             </div>
 
             <!-- Footer -->
@@ -531,40 +492,17 @@ input{
                     <!-- User Details-->
                     <div class="border-bottom pt-3 pb-5 mb-6 d-flex flex-column align-items-center">
                         <div class="position-relative">
-                            <picture class="avatar avatar-profile">
-                                <img class="avatar-profile-img" src="./assets/images/profile-small.jpeg"
-                                  alt="">
-                            </picture>
-                            <span class="dot bg-success avatar-dot"></span>
-                        </div>
-                        <p class="mb-0 mt-3 text-white">Robert Jones</p>
-                        <small></small>
-                        <div class="d-flex flex-wrap mt-2 justify-content-between align-items-center">
-                            <div class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1">
-                                <a   style="width: 95px;height: 30px;color: black; background-color: white; border-radius: 25px;text-align: center;"  href="logout" >logout</a>
-                            </div>
+               
+                   <div
+                  class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1"
+                >
+                  <a
+                    style="width: 95px;height: 30px;color: black; background-color: white; border-radius: 25px;text-align: center;"
+                    href="logout"
+                  >logout</a>
+                </div>
     
-                            <!-- User profile dropdown-->
-                            <div class="dropdown m-0">
-                                {{!-- <button class="border-0 rounded px-2 f-h-9 bg-dark-opacity p-0 text-body" type="button" id="profileDropdown"
-                                  data-bs-toggle="dropdown" aria-expanded="false">
-                                  <i class="ri-settings-2-line"></i>
-                                </button> --}}
-                                <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                                  <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="ri-user-line me-2"></i> Edit
-                                      profile</a></li>
-                                  <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="ri-settings-2-line me-2"></i> Edit
-                                      settings</a></li>
-                                  <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="ri-mail-open-line me-2"></i> View
-                                      messages</a></li>
-                                  <li>
-                                    <hr class="dropdown-divider">
-                                  </li>
-                                  <li><a class="dropdown-item text-danger d-flex align-items-center" href="#"><i
-                                        class="ri-lock-line me-2"></i> Logout</a></li>
-                                </ul>
-                              </div>
-                            <!-- / User profile dropdown-->
+                        
                         </div>
                     </div>
                     <!-- User Details-->

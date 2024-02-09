@@ -11,7 +11,7 @@
 
     <!-- Google Font -->
 
-        <link rel="stylesheet" href="/user/login.css">
+        {{!-- <link rel="stylesheet" href="/user/login.css"> --}}
 
                     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
@@ -93,23 +93,151 @@
     {{!-- ----------------------------------------------------------------------------- --}}
 
     <!-- Related Product Section Begin -->
-    <section class="related-product spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <div class="section-title">
-                        <h2>Products Page </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                    {{#each products}}
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        .filter-box {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid black;
+        }
 
-                <div class="col-lg-3 col-sm-6">
+        .filter-box h3 {
+            margin-bottom: 20px;
+        }
+
+        .filter-box .form-check {
+            margin-right: 10px;
+        }
+
+        /* Additional custom styling */
+        @media (min-width: 768px) {
+            .filter-box {
+                max-width: 300px;
+                margin-top: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="filter-box">
+                <h3>Filter & Sort</h3>
+                <form id="filter-form">
+                    <div class="form-group">
+                        <label>Brand:</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="nike" name="brand" value="nike">
+                            <label class="form-check-label" for="nike">Nike</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="adidas" name="brand" value="adidas">
+                            <label class="form-check-label" for="adidas">Adidas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="puma" name="brand" value="puma">
+                            <label class="form-check-label" for="puma">Puma</label>
+                        </div>
+                        <!-- Add more brands as needed -->
+                    </div>
+                    <div class="form-group">
+                        <label>Size:</label><br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="xl" name="size" value="xl">
+                            <label class="form-check-label" for="xl">XL</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="l" name="size" value="l">
+                            <label class="form-check-label" for="l">L</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="xxl" name="size" value="xxl">
+                            <label class="form-check-label" for="xxl">XXL</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="m" name="size" value="m">
+                            <label class="form-check-label" for="m">M</label>
+                        </div>
+                        <!-- Add more sizes as needed -->
+                    </div>
+                    <div class="form-group">
+                        <label>Color:</label><br>
+                        <div class="btn-group-toggle" data-toggle="buttons" id="color-buttons">
+                            <label class="btn btn-secondary">
+                                <input type="checkbox" name="color" value="red"> Red
+                                <br>
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="checkbox" name="color" value="blue"> Blue
+                                <br>
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="checkbox" name="color" value="black"> Black
+                                <br>
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="checkbox" name="color" value="white"> White
+                                <br>
+                            </label>
+                            <!-- Add more colors as needed -->
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="price-range">Price Range:</label><br>
+                        <input type="range" class="form-control-range" style="width: 10rem;" id="price-range"
+                               name="price-range" min="100" max="10000">
+                        <span id="price-range-output">0 - 1000</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Apply Filters</button>
+                </form>
+            </div>
+        </div>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+    // jQuery code to handle form submission and apply filters
+    $(document).ready(function () {
+        $('#filter-form').submit(function (event) {
+            event.preventDefault();
+            // Gather selected filters
+            const filters = {
+                brand: [],
+                size: [],
+                color: [],
+                priceRange: $('#price-range').val()
+            };
+            $('input[name="brand"]:checked').each(function () {
+                filters.brand.push($(this).val());
+            });
+            $('input[name="size"]:checked').each(function () {
+                filters.size.push($(this).val());
+            });
+            $('input[name="color"]:checked').each(function () {
+                filters.color.push($(this).val());
+            });
+
+            // Apply filters (You can replace this with your filtering logic)
+            console.log('Applied filters:', filters);
+            // For demonstration, I'm just showing the filters in the console
+            // You can write your logic to update the product grid based on the filters
+            // For example, you can make an AJAX request to fetch filtered products from the server and then update the product grid
+        });
+    });
+</script>
+
+
+        <div class="col-md-10">
+            <!-- Content for the second column (7 units) -->
+            <div class="row">
+                {{#each products}}
+                <div class="col-lg-3 col-sm-5">
                     <div class="single-product-item">
                         <figure>
                             <a href="/user/productpage?name={{this._id}}"><img src="{{this.image.url}}" alt=""></a>
-                            {{!-- <div class="p-status"></div> --}}
                         </figure>
                         <div class="product-text">
                             <h6>{{this.productname}}</h6>
@@ -117,12 +245,41 @@
                         </div>
                     </div>
                 </div>
-             {{/each}}
-               
-             
+                {{/each}}
             </div>
+
+            <!-- Pagination -->
+            <nav aria-label="Page navigation" class="mt-4">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
-    </section>
+    </div>
+</div>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+
+
     <!-- Related Product Section End -->
 
 

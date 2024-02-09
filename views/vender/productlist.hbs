@@ -10,12 +10,19 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keywords" content="">
-<link rel="stylesheet" href="/vender/productAdd.css">
+{{!-- <link rel="stylesheet" href="/vender/productAdd.css"> --}}
 
     <!-- Favicon -->
 {{!-- bootstrap --}}
 <!-- Option 1: Include in HTML -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+
+{{!-- table cdn   --}}
+ <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+  <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 {{!-- icon  --}}
 
@@ -38,10 +45,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS -->
-    <link rel="stylesheet" href="/admin/libs.bundle.css" />
+    <link rel="stylesheet" href="/vender/libs.bundle.css" />
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="/admin/theme.bundle.css" />
+    <link rel="stylesheet" href="/vender/theme.bundle.css" />
 
     <!-- Fix for custom scrollbar if JS is disabled-->
     <noscript>
@@ -540,89 +547,135 @@ height: 500px;
 
 {{!-- ------------------------------------------------------------------------------------------------------- --}}
 <h1 class="heading">Product Details</h1>
+    <!-- DataTables CSS -->
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<div class="container table-responsive py-5" > 
-<table class="table table-bordered table-hover">
-  <thead class="thead-dark">
-    <tr>
-        {{!-- <th scope="col">#</th> --}}
-
-      <th scope="col">Product Name</th>
-      <th scope="col">Manufacture Name</th>
-      <th scope="col">Brand</th>
-      {{!-- <th scope="col">Handle</th> --}}
-       <th scope="col">Price</th>
-      <th scope="col">Description</th>
-      <th scope="col">Category</th>
-      <th scope="col">Subcategory</th>
-      <th scope="col">Image</th>
-      <th scope="col">Delete</th>
-     <th scope="col">Edit</th>
-
-
-    </tr>
-  </thead>
-  <tbody>
+<div class="container table-responsive py-5">
+    <table id="productTable" class="table table-bordered table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">Product Name</th>
+            <th scope="col">Manufacture Name</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Price</th>
+            <th scope="col">Description</th>
+            <th scope="col">Category</th>
+            <th scope="col">Subcategory</th>
+            <th scope="col">Image</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Edit</th>
+        </tr>
+        </thead>
+        <tbody>
         {{#each products}}
-
-    <tr>
-            {{!-- <th scope="row">1</th> --}}
-         <td>{{this.productname}}</td>
-        <td>{{this.manufacturename}}</td>
-        <td>{{this.brand}}</td>
-        <td>{{this.price}}</td>
-        <td>{{this.description}}</td>
-        <td>{{this.category.title}}</td>
-        <td>{{this.subcategory.title}}</td>
-        <td>
-          <img src="{{this.image.url}}" alt="{{this.productname}} Image" style="max-width: 140px; height: auto;">
-        </td>
-        <td>
-    <div class="product">
-      {{!-- <p>{{this.productname}}</p> --}}
-      <button class="button1" onclick="deleteProduct( '{{this.productname}}')" > <i class="bi bi-trash-fill"></i></button>
-    </div>
-   <td>   <button class="button2">
-             
-          <a href="/vender/edit-product?name={{this._id}}">  <i class="bi bi-pencil-square text-success "></i></a>
-
-          </button></td>
-
-
-
-     
-
-    </tr>
+        <tr>
+            <td>{{this.productname}}</td>
+            <td>{{this.manufacturename}}</td>
+            <td>{{this.brand}}</td>
+            <td>{{this.price}}</td>
+            <td>{{this.description}}</td>
+            <td>{{this.category.title}}</td>
+            <td>{{this.subcategory.title}}</td>
+            <td>
+                <img src="{{this.image.url}}" alt="{{this.productname}} Image" style="max-width: 140px; height: auto;">
+            </td>
+            <td>
+                <div class="product">
+                    <button class="button1" onclick="deleteProduct('{{this.productname}}')"> <i class="bi bi-trash-fill"></i></button>
+                </div>
+            </td>
+            <td>
+                <button class="button2">
+                    <a href="/vender/edit-product?name={{this._id}}">  <i class="bi bi-pencil-square text-success "></i></a>
+                </button>
+            </td>
+        </tr>
         {{/each}}
+        </tbody>
+    </table>
 
-  </tbody>
-</table>
-
-{{!-- ----------------------------------  --}}
- {{#if successMessage}}
-        <script>
-            window.onload = function() {
-                alert('{{successMessage}}');
-            };
-        </script>
+    {{#if successMessage}}
+    <script>
+        window.onload = function() {
+            alert('{{successMessage}}');
+        };
+    </script>
     {{/if}}
+</div>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- DataTables JS -->
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready( function () {
+        $('#productTable').DataTable();
+    } );
+</script>
 {{!-- --------------------------------------------------------------------------------------------- --}}
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
   function deleteProduct(productId) {
-    axios.delete(`/vender/delete/product/${productId}`)
-      .then((response) => {
-        if (response.status !== 200) {
-          throw new Error('Delete request failed');
-        } else {
-          window.location.href = "/vender/productdetails";
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    // Show confirmation dialog using SweetAlert2
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You are about to delete this product. This action cannot be undone.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      // If user confirms, proceed with deletion
+      if (result.isConfirmed) {
+        axios.delete(`/vender/delete/product/${productId}`)
+          .then((response) => {
+            if (response.status !== 200) {
+              throw new Error('Delete request failed');
+            } else {
+              // Redirect to the product details page after successful deletion
+              window.location.href = "/vender/productlist";
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+            // Handle error if delete request fails
+          });
+      }
+    });
   }
 </script>
+
+  <style>
+    
+  </style>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+    if (match) return match[2];
+  }
+
+  const alertMessage = getCookie('alert');
+
+  if (alertMessage) {
+    Swal.fire({
+      title: 'Success!',
+      text: alertMessage,
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 3000,
+      customClass: {
+        container: 'my-swal-container', // Define the custom class name
+      }
+    });
+    // Remove the alert cookie
+    document.cookie = 'alert=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+  }
+</script>
+
 
 
 

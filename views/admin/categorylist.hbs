@@ -81,8 +81,8 @@
 
     <!-- Page Title -->
     <title></title>
-
-  </head>
+<link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+<script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>  </head>
   <body class="">
 
     <!-- Navbar-->
@@ -244,231 +244,162 @@
         </nav>
         <!-- / Breadcrumbs-->
 
-        <div class="row g-4">
-          <div class="col-12 col-md-6">
-
+     
             {{! ----------------------------------------------------------   }}
-<style>
-  label{
-    font-size: 20px;
-  }
-  input{
-    margin-top: 10px;
-  }
-  .h10{
-    margin-left: 100px;
 
-  }
+      <div class="row g-4">
+    <div class="col-12 col-md-6">
+        <!-- Button trigger modal -->
+        <h1 class="h10">Category-List</h1>
+        <button
+            type="button"
+            class="btn btn-light   btn-lg w-50 mb-3"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+        >
+            Add Category
+        </button>
 
-</style>
-            <!-- Button trigger modal -->
-            <h1 class="h10" >Category-List</h1>
-            <button
-              type="button"
-              style="background-color: white;margin-bottom: 10px; margin-top: -20px; font-size: 20px;font-weight: bolder; height: 55px; margin-left: 1100px; width: 400px;"
-              class="btn btn-primary"
-              data-toggle="modal"
-              data-target="#exampleModalCenter"
-            >
-              Add Category
-            </button>
-
-            <!-- Modal -->
-            <form
-              class="frml"
-              action="/admin/categorylist"
-              method="POST"
-              enctype="multipart/form-data"
-            >
-
-              <div
-                class="modal fade " style="background-color: rgba(0, 0, 0, 0.761);"
-                id="exampleModalCenter"
-                tabindex="-1"
-                role="dialog"
-                aria-labelledby="exampleModalCenterTitle"
-                aria-hidden="true"
-              >
+        <!-- Modal -->
+        <form
+            class="frml"
+            action="/admin/categorylist"
+            method="POST"
+            enctype="multipart/form-data"
+        >
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content " >
-                    <div class="modal-header bg-dark text-light">
-                      <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bolder;">Add Category</h5>
-                      <button
-                        type="button"
-                        class="close"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                      >
-                        <span aria-hidden="true">&times;</span>
-                      </button>
+                    <div class="modal-content">
+                        <div class="modal-header bg-dark text-light">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Add Category</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body bg-dark text-light">
+                            <label for="title">Title:</label>
+                            <input type="text" id="title" name="title" class="form-control" required />
+                            <br>
+
+                            <label for="description">Description:</label>
+                            <textarea id="description" name="description" class="form-control" required></textarea>
+                            <br />
+
+                            <label for="image">Choose an image:</label>
+                            <input type="file" name="image" class="form-control-file" />
+                        </div>
+                        <div class="modal-footer bg-dark text-light">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
                     </div>
-                    <div class="modal-body bg-dark text-light">
-                      <label for="title">Title:</label>
-                      
-                      <input type="text" id="title" name="title" required />
-                      <br>
-
-                      <label for="description">Description:</label>
-                      <textarea
-                        style="height: 30px;margin-top: 5px;"
-                        id="description"
-                        name="description"
-                        required
-                      ></textarea>
-                      <br />
-
-                      <label for="image">Choose an image:</label>
-                      <input type="file" name="image" />
-
-                      {{! <button class="btn" type="submit">submit</button> }}
-
-                    </div>
-                    <div class="modal-footer bg-dark text-light">
-                      <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-dismiss="modal"
-                      >Close</button>
-                      <button
-                        type="submit"
-                        class="btn btn-primary"
-                      >Submit</button>
-                    </div>
-                  </div>
-
                 </div>
-              </div>
-            </form>
+            </div>
+        </form>
+    </div>
+</div>
+
 
             {{! -----------------------------------------------------------------------------------------   }}
+   <div class="row g-4">
+          <div class="col-12 ">
 
+<style>
 
-            <style>
-            .x {
-    background-color: rgba(12, 12, 12, 0.041);
-}
-
-table {
-  
-    border-collapse: collapse;
-    margin-left: 55px;
-    border: 10px solid rgb(2, 2, 2);
-    background-color: rgb(156, 21, 21);
-    align-items: center;
-}
-
-th {
-  text-align: center;
-    border-collapse: collapse;
-    background-color: rgb(0, 0, 0);
-    color: rgb(247, 243, 243);
-    height: 50px;
-    font-size: 25px;
-    font-weight: bolder;
-}
-
-td {
-  font-size: 20px;
-    border-collapse: collapse;
-
-    border: 1px solid rgb(25, 13, 13);
-    background-color: rgb(0, 0, 0);
-    font-weight: bold;
-    color: rgb(255, 255, 255);
-    height: 50px;
-    width: 250px;
+  td{
     text-align: center;
-    border-radius: 2px;
-    
-}
+  }
+</style>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+<script>
+$(document).ready( function () {
+    $('#categoryTable').DataTable();
+});
+</script>
 
-.btn5 {
-    height: 50px;
-    font-size: 18px;
-    width: 80px;
-    background-color: rgb(245, 245, 245);
-    color: rgb(5, 5, 5);
-    border-radius: 20px;
-}
-
-.x {
-    padding-top: 180px;
-}
-
-.h {
-    color: white;
-    margin-left: 1020px;
-    margin-bottom: 30px;
-    font-size: 42px;
-
-}
-
-
-            </style>
-
-
-            <table class="col-lg-12" style="width: 1500px;" >
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Description</th>
-                  <th>Image</th>
-                  <th>Delete</th>
-                  <th>Edit</th>
-                </tr>
-              </thead>
-              <tbody>
-                {{#each categories}}
-                  <tr>
-                    <td>{{title}}</td>
-                    <td>{{description}}</td>
-                    <td><img src="{{image.url}}" alt="{{title}} Image" /></td>
-                    <td>
-                      <button
-                        class="btn btn-outline-danger p-0 border-0"
-                        onclick="deleteCategory('{{this.title}}')"
-                      ><i class="bi bi-trash-fill" style="font-size: 24px; color: white;" ></i></button>
-                    </td>
-                    <td>
-
-                      <button style="background-color: transparent;" > <a href="/admin/edit?name={{this._id}}"><i style="font-size: 24px;background-color: transparent;" class="bi bi-pencil-square text-success "></i></a> </button> 
-
-                      {{! ---------------------------------------------------------- }}
-                      {{!-- <a type="button" class="btn btn-outline-dark btn-lg p-0 border-0" href="/admin/edit-categorylist?name={{this._id}}" data-toggle="modal" data-target="#example">
-                              <i class="bi bi-pencil-square text-success "></i> 
-                          </a> --}}
-                      {{! ------------------------------------ }}
-                      {{!-- <button
-                        id="fetchButton"
-                        data-product-id="123"
-                      >Edit</button> --}}
-                    </td>
-                  </tr>
-                {{else}}
-                  <tr>
-                    <td colspan="4">No categories found.</td>
-                  </tr>
-                {{/each}}
-              </tbody>
+<div class="card mb-4">
+    <div class="card-header">
+        <h6 class="card-title">Category-List</h6>
+    </div>
+    <div class="card-body" style="background-color: rgb(12, 12, 12); color: white;">
+        <div class="table-responsive"> <!-- Make table responsive -->
+            <table id="categoryTable" class="table table-striped w-500"> <!-- Set width to full -->
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Image</th>
+                        <th>Delete</th>
+                        <th>Edit</th>
+                    </tr>
+                </thead>
+                <tbody style="background-color: black !important;">
+                    {{#each categories}}
+                    <tr>
+                        <td>{{title}}</td>
+                        <td>{{description}}</td>
+                        <td><img src="{{image.url}}" alt="{{title}} Image" /></td>
+                        <td>
+                            <button class="btn btn-outline-danger p-0 border-0" onclick="deleteCategory('{{this.title}}')">
+                                <i class="bi bi-trash-fill" style="font-size: 24px; color: white;"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <button style="background-color: transparent;">
+                                <a href="/admin/edit?name={{this._id}}">
+                                    <i style="font-size: 24px; background-color: transparent;" class="bi bi-pencil-square text-success "></i>
+                                </a>
+                            </button>
+                        </td>
+                    </tr>
+                    {{else}}
+                    <tr>
+                        <td colspan="5">No categories found.</td>
+                    </tr>
+                    {{/each}}
+                </tbody>
             </table>
+        </div>
+    </div>
+</div>
 
             {{! delete}}
 
-           <script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
     function deleteCategory(categoryId) {
-        axios.delete(`/admin/delete/${categoryId}`)
-            .then((response) => {
-                if (response.status !== 200) {
-                    throw new Error('Delete request failed');
-                } else {
-                    window.location.href = "/admin/categorylist";
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-            });
+        // Show confirmation dialog using SweetAlert2
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You will not be able to recover this category!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // If user confirms, proceed with deletion
+                axios.delete(`/admin/delete/${categoryId}`)
+                    .then((response) => {
+                        if (response.status !== 200) {
+                            throw new Error('Delete request failed');
+                        } else {
+                            // Redirect to the category list page after successful deletion
+                            window.location.href = "/admin/categorylist";
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        // Handle error if delete request fails
+                    });
+            }
+        });
     }
 </script>
+
 
 
           </div>
@@ -481,74 +412,31 @@ td {
         </div>
 
         {{! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  }}
-{{!-- 
-        <!-- Button trigger modal -->
-        {{! <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Launch demo modal
-</button> }}
 
-        <!-- Modal -->
-        {{#if cata }}
-        <form
-          class="slm"
-          action="/admin/edit-categorylist/{{cata._id}}"
-          method="POST"
-        >
-          <div
-            class="modal fade"
-            id="example"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalCenterTitle"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <label for="title">Title:</label>
-                  <input
-                    type="text"
-                    id="title"
-                    name="title"
-                    value="{{cata.title}}"
-                    required
-                  /><br />
-                  <label for="description">Description:</label>
-                  <input
-                    type="text"
-                    id="description"
-                    name="description"
-                    value="{{cata.description}}"
-                    required
-                  /><br />
-                </div>
-                <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-dismiss="modal"
-                  >Close</button>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </form>
-        {{/if}} --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.0/toastify.min.css">   
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.0/toastify.min.js"></script>
+         {{! ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// }}
+ <script>
+        function getCookie(name) {
+            const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            if (match) return match[2];
+        }
 
-        {{! ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// }}
+        const alertMessage = getCookie('alert');
 
+if (alertMessage) {
+            Toastify({
+                text: alertMessage,
+                duration: 3000, // 3 seconds
+                close: true,
+                gravity: 'top', 
+                position: 'center', 
+                backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)', 
+            }).showToast();
+            // Remove the alert cookie
+            document.cookie = 'alert=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        }
+    </script>
         <!-- Footer -->
         <footer class="footer">
           <p class="small text-muted m-0"></p>
@@ -556,8 +444,7 @@ td {
               href="https://www.pixelrocket.store/"
             ></a></p>
         </footer>
-
-        <!-- Sidebar Menu Overlay-->
+        
         <div class="menu-overlay-bg"></div>
 
         <div
@@ -782,7 +669,7 @@ td {
               class="border-bottom pt-3 pb-5 mb-6 d-flex flex-column align-items-center"
             >
               <div class="position-relative">
-                <picture class="avatar avatar-profile">
+                {{!-- <picture class="avatar avatar-profile">
                   <img
                     class="avatar-profile-img"
                     src="/profile-small.jpeg"
@@ -795,7 +682,7 @@ td {
               <small>robert.jones@outlook.com</small>
               <div
                 class="d-flex flex-wrap mt-2 justify-content-between align-items-center"
-              >
+              > --}}
                 <div
                   class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1"
                 >

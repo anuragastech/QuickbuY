@@ -2,39 +2,46 @@ const cloudinary = require("../../models/common/cloudinary");
 const category = require('../../models/admin/category');
 
 
-let postCategory= async(req,res)=>{
-    try {
-        const { title, description } = req.body;
+let postCategory = async (req, res) => {
+  try {
+      const { title, description } = req.body;
 
-        if (!req.file) {
-            return res.status(400).json({ success: false, message: 'No file uploaded' });
-        }
+      if (!req.file) {
+          return res.status(400).json({ success: false, message: 'No file uploaded' });
+      }
 
-        const desiredWidth = 300;
-        const desiredHeight = 200;
+      const desiredWidth = 300;
+      const desiredHeight = 200;
 
-        const result = await cloudinary.uploader.upload(req.file.path, {
-            width: desiredWidth,
-            height: desiredHeight,
-            crop: 'scale' 
-        });
-        
-        const newCategory = new category({
-            title: title,
-            description: description,
-            image: {
-                public_id: result.public_id,
-                url: result.secure_url
-            },
-        });
-        const savedCategory = await newCategory.save();
+      const result = await cloudinary.uploader.upload(req.file.path, {
+          width: desiredWidth,
+          height: desiredHeight,
+          crop: 'scale' 
+      });
+      
+      const newCategory = new category({
+          title: title,
+          description: description,
+          image: {
+              public_id: result.public_id,
+              url: result.secure_url
+          },
+      });
+      
+      const savedCategory = await newCategory.save();
 
-        res.redirect('/admin/categorylist');
+      // Set an alert message in a cookie
+      res.cookie('alert', 'Category added successfully', { maxAge: 3000 });
+
+      res.redirect('/admin/categorylist');
+      
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ success: false, error: error.message });
-    }
+      console.error(error);
+      // Redirect to the 404 page
+      res.redirect('/admin/404');
+  }
 };
+
 
 let getCategorylist= async (req, res) => {
     try {
@@ -62,7 +69,7 @@ let editGetCategory= async (req, res) => {
   try {
       const categoryId = req.query.name;
       const categorys = await category.findOne({ _id: categoryId });
-      console.log(categoryId);
+      // console.log(categoryId);
 
       if (!categorys) {
           return res.status(404).json({ success: false, message: 'Category not found' });

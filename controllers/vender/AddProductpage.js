@@ -12,8 +12,8 @@ const getpostProductAdd = async (req, res) => {
       color,
       category,
       subcategory,
-      sizes,      // Change from "products" to "sizes"
-      quantity, // Change from "products" to "quantities"
+      sizes,
+      quantity,
     } = req.body;
 
     const userId = req.user._id;
@@ -30,10 +30,8 @@ const getpostProductAdd = async (req, res) => {
       height: desiredHeight,
       crop: "scale",
     });
-    // console.log(sizes);
-    const properties = []; // Array to store the objects with size and quantity
 
-    // Combine sizes and quantities into an array of objects
+    const properties = [];
     for (let i = 0; i < sizes.length; i++) {
       properties.push({ size: sizes[i], quantity: quantity[i] });
     }
@@ -48,7 +46,7 @@ const getpostProductAdd = async (req, res) => {
       category: category,
       subcategory: subcategory,
       color: color,
-      properties: properties, // Assigning the combined array of objects
+      properties: properties,
       image: {
         public_id: photo.public_id,
         url: photo.secure_url,
@@ -57,13 +55,17 @@ const getpostProductAdd = async (req, res) => {
 
     const savedProduct = await newProduct.save();
 
+    // Set a cookie with the alert message
+    res.cookie('alert', 'Product added successfully', { maxAge: 3000 });
+
+    // Redirect to the product list page
     res.redirect(`/vender/productlist`);
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, message: "Internal Server Error" });
-  }
+    // Redirect to the 404 page
+    res.redirect('/admin/404');
+}
 };
-
 
 let productDelete = async (req, res) => {
   try {

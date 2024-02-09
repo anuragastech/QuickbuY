@@ -3,7 +3,7 @@ const subcategory = require("../../models/admin/subcategory");
 
 let postSubcategory = async (req, res) => {
   try {
-    const { title, description,category } = req.body;
+    const { title, description, category } = req.body;
 
     if (!req.file) {
       return res
@@ -32,12 +32,16 @@ let postSubcategory = async (req, res) => {
 
     const savedCategory = await newsubCategory.save();
 
-    res.render("admin/subcategories", { subcategory: savedCategory });
+    res.cookie('alert', 'Subcategory added successfully', { maxAge: 3000 });
+
+    res.redirect('/admin/subcategories');
   } catch (error) {
     console.error(error);
-    res.status(500).json({ success: false, error: error.message });
-  }
+    // Redirect to the 404 page
+    res.redirect('/admin/404');
+}
 };
+
 
 let getsubcategory = async (req, res) => {
   try {
