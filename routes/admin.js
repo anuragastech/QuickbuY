@@ -26,13 +26,9 @@ router.get('/login', (req,res)=>{
     res.render('admin/login')
 })
 
-
 router.get('/404', (req,res)=>{
     res.render('admin/404')
 })
-
-
-
 
 // ---------------------------------------------------------------------------------------------------------------
 router.post('/HomepageFooterImage', upload,HomepageController.HomepageFooterpost );
