@@ -3796,7 +3796,7 @@ progress {
   }
 }
 .table {
-  --bs-table-bg: transparent;
+  --bs-table-bg: black;
   --bs-table-striped-color: hsla(0, 0%, 100%, 0.75);
   --bs-table-striped-bg: #202433;
   --bs-table-active-color: hsla(0, 0%, 100%, 0.75);
