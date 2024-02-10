@@ -9,8 +9,10 @@ let getcategory=(req,res)=>{
 };
 let getcategorys= async (req, res) => {
     try {
+        // const {productId}=req.params.id
+       
         const categories = await category.find({}, 'id title description image');
-        console.log(categories); // Add this line
+        // console.log(categories); // Add this line
         res.render('user/category', { categories });
     } catch (error) {
         console.error(error);

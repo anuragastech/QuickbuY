@@ -158,70 +158,11 @@
    
     <div class="row ">
                 <div class="col-lg-12 col-md-6 col-sm-3" >
-<style>
-  
-  th{border-collapse:collapse;
-  text-align: center;
-    background-color:transparent;
-    height: 60px;
-    color: azure;
-    border: 1px solid rgb(255, 255, 255);
-  }
-  tr{
-border-collapse:collapse;
-    border: 1px solid rgb(249, 249, 249);
-    background-color:transparent;
-    
-      }
-
-    
-  td{border-collapse:collapse;
-        border: 1px solid rgb(245, 245, 245);
-        text-align: center;
-    background-color: transparent;
-    
-
-  }
-  table{border-collapse:collapse;
-    border-radius: 30px;
-            border: 1px solid rgb(255, 255, 255);
-                background-color: transparent;
-color: aliceblue;
-align-items: center;
-
-
-  }
-  thead{
-             
-
-
-  }
-  .button1{
-    height: 34px;
-    width: 65px;
-    background-color: rgb(254, 254, 254);
-  }
-  .heading{
-    color: rgb(255, 255, 255);
-    font-size: 36px;
-    padding-bottom: 10px;
-    
-  }
-  .button2{
-       height: 34px;
-    width: 65px;
-    background-color: rgb(252, 252, 252);
-  }
-</style>
-
-
-
-
 
 {{!-- ------------------------------------------------------------------------------------------------------- --}}
 <h1 class="heading">Product List</h1>
 <div class="container table-responsive py-5">
-    <table id="productTable" class="table table-bordered table-hover" style="background-color: transparent;">
+    <table id="productTable" class="table table-bordered " style="background-color: transparent;">
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Product Name</th>
@@ -234,7 +175,7 @@ align-items: center;
                 <th scope="col">Image</th>
             </tr>
         </thead>
-        <tbody style="background-color: red;" >
+        <tbody  >
             {{#each products}}
             <tr>
                 <td>{{this.productname}}</td>

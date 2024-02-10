@@ -37,7 +37,7 @@ router.get('/contact',authenticateJWT,getAllControllers.getcontact)
 router.get('/user',authenticateJWT,getAllControllers.getuser)
 
 
-    router.get('/categories',authenticateJWT,getSubcategoryControllers.getsubcategories)
+    router.get('/categories/:id',authenticateJWT,getSubcategoryControllers.getsubcategories)
 
     
 
@@ -83,7 +83,7 @@ router.get('/payment',(req,res)=>{
 
 
 
-
+  router.post('/filter-products',getProductControllers.filteredProduct)
  
   
 module.exports = router;

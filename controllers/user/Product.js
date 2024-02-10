@@ -37,4 +37,44 @@ let getproductData= async (req, res) => {
 
 
 
-module.exports= {getproductpage,getproductData}
+
+
+// / Endpoint to handle filtering products
+   let filteredProduct = async (req, res) => {
+    const { category, subcategory, size, color, priceRange } = req.body;
+
+    try {
+        let query = {};
+
+        // Construct the query based on filter options
+        if (category.length > 0) {
+            query.category = { $in: category };
+        }
+        if (subcategory.length > 0) {
+            query.subcategory = { $in: subcategory };
+        }
+        if (size.length > 0) {
+            query['properties.size'] = { $in: size };
+        }
+        if (color.length > 0) {
+            query.color = { $in: color };
+        }
+        if (priceRange) {
+            // Assuming price is stored as a number
+            const [minPrice, maxPrice] = priceRange.split('-').map(parseFloat);
+            query.price = { $gte: minPrice, $lte: maxPrice };
+        }
+
+        // Fetch filtered products from the database
+        const filteredProducts = await product.find(query);
+
+        res.json(filteredProducts);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to filter products' });
+    }
+};
+
+
+
+module.exports= {getproductpage,getproductData ,filteredProduct}
