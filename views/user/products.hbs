@@ -221,46 +221,40 @@
 <span id="price-range-output">0 - 1000</span>
 
                     </div>
-                    <button type="submit" class="btn btn-primary">Apply Filters</button>
+                    <button type="submit"  id="apply-filters-btn" class="btn btn-primary">Apply Filters</button>
                 </form>
             </div>
         </div>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+<!-- Your HTML structure remains the same -->
+
+<!-- Include Bootstrap JavaScript -->
+<!-- Your HTML structure remains unchanged -->
+
+<!-- Include Bootstrap JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
-    // Attach event listeners to form elements for instant filtering
-document.querySelectorAll('#filter-form input[type="checkbox"], #filter-form input[type="range"]').forEach(input => {
-    input.addEventListener('change', filterProducts);
+document.addEventListener('DOMContentLoaded', () => {
+    const applyFiltersBtn = document.getElementById('apply-filters-btn');
+    if (applyFiltersBtn) {
+        applyFiltersBtn.addEventListener('click', filterProducts);
+    } else {
+        console.error("Button element with ID 'apply-filters-btn' not found.");
+    }
 });
 
-// Function to filter products
 async function filterProducts() {
-    // Collect selected filter options
     const formData = new FormData(document.getElementById('filter-form'));
-    const category = formData.getAll('category');
-    const subcategory = formData.getAll('subcategory');
-    const size = formData.getAll('size');
-    const color = formData.getAll('color');
-    const priceRange = formData.get('price-range');
-
     try {
-        // Send an asynchronous request to the backend with selected filters
-        const response = await fetch('/filter-products', {
+        const response = await fetch('/products', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ category, subcategory, size, color, priceRange })
+            body: formData
         });
 
         if (response.ok) {
             const filteredProducts = await response.json();
-
-            // Hide the original product container
-            document.getElementById('from-hiding-point').style.display = 'none';
-
-            // Render the filtered products in a new container
             renderFilteredProducts(filteredProducts);
         } else {
             throw new Error('Failed to filter products');
@@ -272,25 +266,37 @@ async function filterProducts() {
 }
 
 function renderFilteredProducts(products) {
-    // Render the filtered products in a new container
     const filteredProductsContainer = document.getElementById('display-filtered');
-    // Clear previous content
     filteredProductsContainer.innerHTML = '';
 
-    // Iterate through filtered products and render each product
     products.forEach(product => {
         const productElement = document.createElement('div');
-        productElement.textContent = product.name; // Render product data as needed
+        productElement.className = 'col-lg-3 col-sm-5 single-product-item';
+        productElement.innerHTML = `
+            <div class="single-product-item">
+                <figure>
+                    <a href="/user/productpage?name=${product._id}"><img src="${product.image.url}" alt=""></a>
+                </figure>
+                <div class="product-text">
+                    <h6>${product.productname}</h6>
+                    <p>$${product.price}</p>
+                </div>
+            </div>`;
         filteredProductsContainer.appendChild(productElement);
     });
 }
-
 </script>
 
-
-
 {{!-- ---------------------------------------------------------------------------------------------------------------- --}}
+<style>
+       .single-product-item {
+    transition: transform 0.3s ease;
+}
 
+.single-product-item:hover {
+    transform: scale(1.08); /* Slightly expand the card on hover */
+}
+</style>
         <div class="col-md-10" id="display-filtered">
             <!-- Content for the second column (7 units) -->
             <div class="row"  id="from-hiding-point" >

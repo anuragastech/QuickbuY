@@ -14,13 +14,15 @@ let getproductDataIn= async (req, res) => {
         const subcategor = await subcategory.find({}, 'id title description image');
 
         const categorys=await category.find({}, 'id title description image');
-        const prdct = await product.find().populate('category').populate('subcategory');
+        const prdcts = await product.find().populate('category').populate('subcategory');
 
         const homebanner=await Homepagepic.find({}, 'h1 h2 image');
         const Homepagepics = await HomepageFooter.find();
 
+const prdctSliced = prdcts.slice(0, 8); //add  how much product want to show 
 
-        res.render('user/index', {subcategor, prdct ,categorys ,homebanner , Homepagepics });
+
+        res.render('user/index', {subcategor, prdct: prdctSliced  ,categorys ,homebanner , Homepagepics });
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });

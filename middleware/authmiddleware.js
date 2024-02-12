@@ -27,7 +27,7 @@ function authenticateJWT(req, res, next) {
             return res.status(403).json({ message: 'Forbidden' });
         }
 
-        console.log('Decoded Token Payload:', user);
+        // console.log('Decoded Token Payload:', user);
 
         if (!user.role) {
             console.error('Role not found in token payload');

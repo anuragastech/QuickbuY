@@ -82,9 +82,9 @@
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li><a class="active" href="/user/index">Home</a></li>
-                        <li><a href="/user/categories">Shop</a>
+                        <li><a href="/user/products">Shop</a>
                             <ul class="sub-menu">
-                                <li><a href="/user/products">Product Page</a></li>
+                                {{!-- <li><a href="/user/products">Product Page</a></li> --}}
                                 <li><a href="/user/shopping-cart">Shopping Card</a></li>
                                 {{!-- <li><a href="/user/check-out">Check out</a></li> --}}
                             </ul>
@@ -437,27 +437,36 @@ div.scrollcards .card {
                     </div>
                 </div>
             </div>
+<style>
+   .single-product-item {
+    transition: transform 0.3s ease;
+}
 
+.single-product-item:hover {
+    transform: scale(1.08); /* Slightly expand the card on hover */
+}
+ 
+</style>
 
-            <div class="row" id="product-list">
-                {{#each prdct}}
-                <div class="col-lg-3 col-sm-6  mix all dresses bags">
-                    <div class="single-product-item">
-                        <figure>
-                            <a href="/user/productpage?name={{this._id}}"><img src="{{this.image.url}}" alt="{{this.productname}}"></a>
-                                                        {{!-- <a href="/user/productpage?name={{this._id}}"><img src="{{this.image.url}}" alt=""></a> --}}
-
-
-                            {{!-- <img src="" alt=""> --}}
-                            <div class="p-status">new</div>
-                        </figure>
-                        <div class="product-text">
-                            <h6>{{this.productname}}</h6>
-                            <p>${{this.price}}</p>
-                        </div>
-                    </div>
+          <div class="row" id="product-list">
+    {{#each prdct}}
+        <div class="col-lg-3 col-sm-6 mix all dresses bags">
+            <div class="single-product-item">
+                <figure>
+                    <a href="/user/productpage?name={{this._id}}">
+                        <img src="{{this.image.url}}" alt="{{this.productname}}">
+                    </a>
+                    <div class="p-status">new</div>
+                </figure>
+                <div class="product-text">
+                    <h6>{{this.productname}}</h6>
+                    <p>${{this.price}}</p>
                 </div>
-                {{/each}}
+            </div>
+        </div>
+    {{/each}}
+</div>
+
 
 
             </div>

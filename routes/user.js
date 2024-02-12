@@ -83,7 +83,7 @@ router.get('/payment',(req,res)=>{
 
 
 
-  router.post('/filter-products',getProductControllers.filteredProduct)
+  router.post('/products',getProductControllers.getproductData)
  
   
 module.exports = router;
