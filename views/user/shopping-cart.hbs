@@ -119,24 +119,59 @@
 
     <!-- Page Shopping Cart Section Begin -->
  
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        .address-box {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: pointer; /* Add cursor pointer to indicate clickability */
+            position: relative;
+        }
 
+        .address-box.selected {
+            background-color: #f0f0f0; /* Change background color when selected */
+        }
 
- <div class="container">
+        .select-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #2d29ec; /* Bootstrap primary color for background */
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: none; /* Initially hide the select indicator */
+        }
+
+        .address-box.selected .select-indicator {
+            display: block; /* Show select indicator when address is selected */
+        }
+
+        .xl {
+            color: black;
+            font-size: 22px;
+            font-weight: bold;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
   <h1 class="mt-5 mb-4">Shopping Cart</h1>
-
   <div class="row mb-3">
     <div class="col">Image</div>
     <div class="col">Product</div>
     <div class="col">Price</div>
     <div class="col">Quantity</div>
-        <div class="col">Update</div>
-
+    <div class="col">Update</div>
     <div class="col">Remove</div>
     <div class="col">Total</div>
+    <div class="col">Select</div> <!-- Added a new column for selecting product -->
   </div>
-
-
-      {{#each cart}}
+  {{#each cart}}
   <div class="product row mb-3">
     <div class="product-image col">
       <img src="{{this.product.image.url}}" class="img-fluid" alt="Product Image">
@@ -156,11 +191,12 @@
       <button class="btn btn-light" onclick="deleteCart('{{this._id}}')">❌</button>
     </div>
     <div class="product-line-price col">₹12.99</div>
+    <div class="product-select col">
+      <input type="checkbox" class="form-check-input" id="select-product-{{this._id}}" onchange="recalculateSelectedCart()">
+    </div>
   </div>
-{{/each}}
-
+  {{/each}}
   <!-- More products can be added similarly -->
-
   <div class="totals row mt-5">
     <div class="totals-item col">
       <label>Subtotal</label>
@@ -179,11 +215,13 @@
       <div class="totals-value" id="cart-total">₹0</div>
     </div>
   </div>
-
   <div class="row mt-4" style="margin-bottom: 50px;">
     <button class="btn btn-dark checkout">Checkout</button>
   </div>
 </div>
+<!-- Bootstrap JS (optional, if you need JavaScript functionalities from Bootstrap) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <style>
         /* Custom styles for Toastify notification */
         .custom-toastify {
