@@ -11,6 +11,7 @@ const getSubcategoryControllers = require('../controllers/user/subcategory');
 const getProductControllers = require('../controllers/user/Product');
 const getAllControllers = require('../controllers/user/getAll');
 const getControllerHome=require('../controllers/user/home')
+const getPaymentway=require('../controllers/user/paymentgateway')
 
 
 
@@ -84,6 +85,6 @@ router.get('/payment',(req,res)=>{
 
 
   router.post('/products',getProductControllers.getproductData)
- 
+ router.post('/checkout',authenticateJWT, getPaymentway.Address)
   
 module.exports = router;

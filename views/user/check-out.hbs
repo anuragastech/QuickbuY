@@ -16,6 +16,10 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
 
+ {{!-- modal CDN    --}}
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <!-- Css Styles -->
 
           <link rel="stylesheet" href="/user/bootstrap.min.css" type="text/css">
@@ -130,7 +134,7 @@
     </section>
     <!-- Page Add Section End -->
 
-    <!-- Cart Total Page Begin -->
+    <!-- Check-out section   Page Begin -->
     <div class="container" style="margin-top: 50px;margin-bottom: 70px;">
         <div class="row">
             <div class="col-xl-8">
@@ -145,70 +149,96 @@
                                 </div>
                                 <div class="feed-item-list">
                                     <div>
-                                        <h5 class="font-size-16 mb-1">Billing Info</h5>
-                                        <p class="text-muted text-truncate mb-4">Sed ut perspiciatis unde omnis iste</p>
+                                        <h5 class="font-size-16 mb-1">Add address</h5>
+                                        <br>
                                         <div class="mb-3">
-                                            <form>
-                                                <div>
-                                                    <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <div class="mb-3">
-                                                                <label class="form-label" for="billing-name">Name</label>
-                                                                <input type="text" class="form-control" id="billing-name" placeholder="Enter name">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="mb-3">
-                                                                <label class="form-label" for="billing-email-address">Email Address</label>
-                                                                <input type="email" class="form-control" id="billing-email-address" placeholder="Enter email">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="mb-3">
-                                                                <label class="form-label" for="billing-phone">Phone</label>
-                                                                <input type="text" class="form-control" id="billing-phone" placeholder="Enter Phone no.">
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                
+          <button
+              type="button"
+              class="btn btn-light   btn-lg w-50 mb-3"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+          >
+              +
+          </button>
 
-                                                    <div class="mb-3">
-                                                        <label class="form-label" for="billing-address">Address</label>
-                                                        <textarea class="form-control" id="billing-address" rows="3" placeholder="Enter full address"></textarea>
-                                                    </div>
 
-                                                    <div class="row">
-                                                        <div class="col-lg-4">
-                                                            <div class="mb-4 mb-lg-0">
-                                                                <label class="form-label">Country</label>
-                                                                <select class="form-control form-select" title="Country">
-                                                                    <option value="0">Select Country</option>
-                                                                    <option value="AF">Afghanistan</option>
-                                                                    <option value="AL">Albania</option>
-                                                                    <option value="DZ">Algeria</option>
-                                                                    <option value="AS">American Samoa</option>
-                                                                    <option value="AD">Andorra</option>
-                                                                    <option value="AO">Angola</option>
-                                                                    <option value="AI">Anguilla</option>                                   
-                                                                </select>
-                                                            </div>
-                                                        </div>
+                                              <form class="frml" action="/user/checkout" method="POST">
 
-                                                        <div class="col-lg-4">
-                                                            <div class="mb-4 mb-lg-0">
-                                                                <label class="form-label" for="billing-city">City</label>
-                                                                <input type="text" class="form-control" id="billing-city" placeholder="Enter City">
-                                                            </div>
-                                                        </div>
+              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header bg-dark text-light">
+                              <h5 class="modal-title" id="exampleModalLongTitle">Add Category</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <div class="modal-body bg-dark text-light">
+                              <div>
+        <div class="row">
+            <div class="mb-3">
+                <label class="form-label" for="billing-address">Address</label>
+                <textarea class="form-control" name="address" id="billing-address" rows="3" placeholder="Enter full address"></textarea>
+            </div>
 
-                                                        <div class="col-lg-4">
-                                                            <div class="mb-0">
-                                                                <label class="form-label" for="zip-code">Zip / Postal code</label>
-                                                                <input type="text" class="form-control" id="zip-code" placeholder="Enter Postal code">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
+            <div class="col-lg-4">
+                <div class="mb-3">
+                    <label class="form-label" for="billing-phone">Phone</label>
+                    <input type="text" name="phone" class="form-control" id="billing-phone" placeholder="Enter Phone no.">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="mb-4 mb-lg-0">
+                    <label class="form-label">Country</label>
+                    <select class="form-control form-select" name="country" title="Country">
+                        <option value="0">Select Country</option>
+                        <option value="AF">Afghanistan</option>
+                        <option value="AL">Albania</option>
+                        <option value="DZ">Algeria</option>
+                        <option value="AS">American Samoa</option>
+                        <option value="AD">Andorra</option>
+                        <option value="AO">Angola</option>
+                        <option value="AI">Anguilla</option>                                   
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="mb-4 mb-lg-0">
+                    <label class="form-label" for="billing-city">City</label>
+                    <input type="text" name="city" class="form-control" id="billing-city" placeholder="Enter City">
+                </div>
+            </div>
+             <div class="col-lg-4">
+                <div class="mb-4 mb-lg-0">
+                    <label class="form-label" for="billing-city">State</label>
+                    <input type="text" name="state" class="form-control" id="billing-statee" placeholder="Enter state">
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="mb-0">
+                    <label class="form-label" for="zip-code">Zip / Postal code</label>
+                    <input type="text" name="pin" class="form-control" id="zip-code" placeholder="Enter Postal code">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <!-- Add Submit Button -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </form>
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -243,6 +273,8 @@
                         <a href="ecommerce-products.html" class="btn btn-link text-muted">
                             <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping 
                         </a>
+                
+
                     </div>
                     <div class="col">
                         <div class="text-end mt-2 mt-sm-0">
@@ -267,7 +299,7 @@
 
     <!-- Bootstrap JS (optional, if needed) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    <!-- Cart Total Page End -->
+    <!-- Check-out section  Page End -->
 
     <!-- Footer Section Begin -->
     <footer class="footer-section spad">
@@ -366,6 +398,9 @@
     <script src="/user/main.js"></script>
 
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
 
 </body>
 

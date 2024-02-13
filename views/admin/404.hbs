@@ -73,3 +73,91 @@
 </body>
 
 </html>
+{{!-- ---------------------------------------------------------------------- --}}
+  <!-- Modal -->
+
+   <h1 class="h10">Category-List</h1>
+          <button
+              type="button"
+              class="btn btn-light   btn-lg w-50 mb-3"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+          >
+              Add Category
+          </button>
+
+
+                                              <form class="frml" action="/user/checkout" method="POST">
+
+              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header bg-dark text-light">
+                              <h5 class="modal-title" id="exampleModalLongTitle">Add Category</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <div class="modal-body bg-dark text-light">
+                              <div>
+        <div class="row">
+            <div class="mb-3">
+                <label class="form-label" for="billing-address">Address</label>
+                <textarea class="form-control" name="address" id="billing-address" rows="3" placeholder="Enter full address"></textarea>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="mb-3">
+                    <label class="form-label" for="billing-phone">Phone</label>
+                    <input type="text" name="phone" class="form-control" id="billing-phone" placeholder="Enter Phone no.">
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="mb-4 mb-lg-0">
+                    <label class="form-label">Country</label>
+                    <select class="form-control form-select" name="country" title="Country">
+                        <option value="0">Select Country</option>
+                        <option value="AF">Afghanistan</option>
+                        <option value="AL">Albania</option>
+                        <option value="DZ">Algeria</option>
+                        <option value="AS">American Samoa</option>
+                        <option value="AD">Andorra</option>
+                        <option value="AO">Angola</option>
+                        <option value="AI">Anguilla</option>                                   
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="mb-4 mb-lg-0">
+                    <label class="form-label" for="billing-city">City</label>
+                    <input type="text" name="city" class="form-control" id="billing-city" placeholder="Enter City">
+                </div>
+            </div>
+             <div class="col-lg-4">
+                <div class="mb-4 mb-lg-0">
+                    <label class="form-label" for="billing-city">State</label>
+                    <input type="text" name="state" class="form-control" id="billing-statee" placeholder="Enter state">
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="mb-0">
+                    <label class="form-label" for="zip-code">Zip / Postal code</label>
+                    <input type="text" name="pin" class="form-control" id="zip-code" placeholder="Enter Postal code">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <!-- Add Submit Button -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </form>
