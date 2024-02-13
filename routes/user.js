@@ -31,7 +31,7 @@ router.get("/logout",authenticateJWT,userControllers.getlogout)
 // router.get('/index' ,getAllControllers.getindex);
 router.get('/login',authenticateJWT,getAllControllers.getlogin)
 router.get('/category',authenticateJWT,getCategoryControllers.getcategory)
-router.get('/check-out',authenticateJWT,getAllControllers.getcheckout)
+
 router.get('/contact',authenticateJWT,getAllControllers.getcontact)
 
 
@@ -85,6 +85,9 @@ router.get('/payment',(req,res)=>{
 
 
   router.post('/products',getProductControllers.getproductData)
- router.post('/checkout',authenticateJWT, getPaymentway.Address)
-  
+
+ router.post('/checkout',authenticateJWT, getPaymentway.postAddress)
+ 
+ router.get('/check-out',authenticateJWT, getPaymentway.getAddress)
+
 module.exports = router;
