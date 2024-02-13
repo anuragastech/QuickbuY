@@ -1,4 +1,5 @@
 const personal=require('../../models/user/mongodb')
+const cart=require('../../models/user/cart');
 
 let postAddress = async (req, res) => {
     try {
@@ -6,7 +7,7 @@ let postAddress = async (req, res) => {
         const userId = req.user.id; // Assuming you have authenticated the user and their ID is available in req.user
         const currentUser = await personal.findById(userId);
 
-        // Push the new address information into the currentUser's personalInfo array
+        // Push the new address information into the currentUser's personalInfo array 
         currentUser.personalInfo.push({ address, number: phone, country, state, city, pincode: pin });
 
         // Save the updated user document
@@ -25,7 +26,7 @@ let getAddress = async (req, res) => {
         const currentUser = await personal.findById(userId);
         
         const addressInfo = currentUser.personalInfo;
-console.log(addressInfo);
+// console.log(addressInfo);
         res.render('user/check-out', { addressInfo }); 
     } catch (error) {
         console.error('Error showing data:', error);
@@ -34,8 +35,31 @@ console.log(addressInfo);
 };
 
 
+let postCarttocheckout=  async (req, res) => {
+    try {
+        const { selectedItems } = req.body;
+        // Fetch cart items based on selected items
+        const matchcart = await cart.find({ _id: { $in: selectedItems } });
+        console.log(matchcart);
+
+        // Pass cart items data to your checkout page template
+        res.render('user/check-out', { cartItems: matchcart });
+    } catch (error) {
+        console.error('Error showing data:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
 
 
 
 
-module.exports={postAddress ,getAddress };
+
+
+
+
+
+
+
+
+
+module.exports={postAddress ,getAddress,postCarttocheckout};

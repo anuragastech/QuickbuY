@@ -348,6 +348,49 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <!-- Check-out section  Page End -->
 
+
+
+
+{{!-- --------------------------------------------------------------------------   --}}
+ <div id="checkout-data"></div>
+
+    <script>
+        // Fetch cart data and render it on the checkout page
+        fetch('/api/postCarttocheckout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ selectedItems: yourSelectedItemsArray }) // Assuming yourSelectedItemsArray contains the selected item IDs
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Render the fetched data on the page
+            const checkoutDataElement = document.getElementById('checkout-data');
+            checkoutDataElement.innerHTML = `
+                <p>Matched Cart Items:</p>
+                <ul>
+                    ${data.matchcart.map(item => `<li>${item.name}: ${item.price}</li>`).join('')}
+                </ul>
+            `;
+        })
+        .catch(error => {
+            console.error('Error fetching checkout data:', error);
+        });
+    </script>
+
+
+    {{!-- ------------------------------------------------------------   --}}
+
+    <h1>Checkout Page</h1>
+    <div>
+        <h2>Selected Items:</h2>
+        <ul>
+            {{#each cartItems}}
+                <li>{{this.name}} - {{this.price}}</li>
+            {{/each}}
+        </ul>
+    </div>
     <!-- Footer Section Begin -->
     <footer class="footer-section spad">
         <div class="container">
