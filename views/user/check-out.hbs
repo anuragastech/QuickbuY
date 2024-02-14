@@ -223,265 +223,344 @@
                     </div>
                     {{!-- --------------------------------- --}}
 
-<style>
-    label{
-        font-size: 15px;
-    }
-</style>
+                    <style>
+                        label {
+                            font-size: 15px;
+                        }
+                    </style>
 
-<style>
-  /* Style for disabled button */
-#applyCouponButton[disabled] {
-    opacity: 0.5;
-    cursor: not-allowed;
-    /* You can add more styles to visually indicate it's disabled */
-}
-</style>
+                    <style>
+                        /* Style for disabled button */
+                        #applyCouponButton[disabled] {
+                            opacity: 0.5;
+                            cursor: not-allowed;
+                            /* You can add more styles to visually indicate it's disabled */
+                        }
+                    </style>
             </div>
-    <div class="col-lg-3">
-        <div style="height: 300px; overflow-y: auto;">
-            {{#each data }}
-            <div>
-                <img style="height: 80px;width: 80px;" src="{{this.product.image.url}}" alt="">
-                <label for="productname">Product Name: {{this.product.productname}}</label><br>
-                <label for="productcolor">Color: {{this.product.color}}</label><br>
-                <label for="price">Price: ₹{{this.product.price}}</label><br>
-                <label for="size">Size: {{this.size}}</label><br>
-            </div>
-            {{/each}}
-        </div>
-        <hr>
-        <label for="subtotal">Subtotal: <span id="subtotalValue">0</span></label><br>
-        <label for="tax">Tax (5%): <span id="taxValue">0</span></label><br>
-        <label for="shippingCost">Shipping Cost: <span id="shippingCostValue">0</span></label><br>
-        <label for="grandTotal">Grand Total: <span id="grandTotalValue">0</span></label><br>
-        <hr>
-        <input type="text" id="couponCode" placeholder="Enter coupon code">
-        <button id="applyCouponButton" onclick="applyCoupon()">Apply Coupon</button>
-        <hr>
-<div id="discountedAmountContainer">
-    <label for="discountedAmount">Discounted totel Amount: <span id="discountedAmountValue">0</span></label>
-</div>        <hr>
-        <button style="height: 40px; width: 250px; background-color: rgb(0, 0, 0);color: white;">Payment</button>
-        <hr>
-    </div>
-
-
-
-    <script>
-        // Calculate and display grand total
-        document.addEventListener("DOMContentLoaded", function() {
-            const productElements = document.querySelectorAll('.col-lg-3 > div');
-            let subtotal = 0;
-
-            productElements.forEach(function(productElement) {
-                const priceElement = productElement.querySelector('label[for="price"]');
-                if (priceElement) {
-                    const priceText = priceElement.textContent.trim(); // Get the price text
-                    const priceMatch = priceText.match(/₹\s*([\d.]+)/); // Extract the price value (including decimals)
-                    if (priceMatch && priceMatch[1]) {
-                        const price = parseFloat(priceMatch[1]); // Extract the price value
-                        subtotal += price;
-                    } else {
-                        console.error('Invalid price format:', priceText);
-                    }
-                } else {
-                    console.error('Price element not found in product:', productElement);
-                }
-            });
-
-            const tax = subtotal * 0.05; // Calculate tax (5%)
-            const shippingCost = 15; // Flat shipping cost
-            const grandTotal = subtotal + tax + shippingCost; // Calculate grand total
-
-            const subtotalValueElement = document.getElementById('subtotalValue');
-            subtotalValueElement.textContent = `₹${subtotal.toFixed(2)}`; // Format subtotal to 2 decimal places
-
-            const taxValueElement = document.getElementById('taxValue');
-            taxValueElement.textContent = `₹${tax.toFixed(2)}`; // Format tax to 2 decimal places
-
-            const shippingCostValueElement = document.getElementById('shippingCostValue');
-            shippingCostValueElement.textContent = `₹${shippingCost.toFixed(2)}`; // Format shipping cost to 2 decimal places
-
-            const grandTotalValueElement = document.getElementById('grandTotalValue');
-            grandTotalValueElement.textContent = `₹${grandTotal.toFixed(2)}`; // Format grand total to 2 decimal places
-
-            // Store grand total in a hidden input field for passing to backend
-            document.getElementById('grandTotalInput').value = grandTotal.toFixed(2);
-        });
-        
-async function applyCoupon() {
-    
-    const couponCode = document.getElementById('couponCode').value;
-    const grandTotalText = document.getElementById('grandTotalValue').textContent;
-    const grandTotal = parseFloat(grandTotalText.replace('₹', '').trim());
-
-    try {
-        const response = await fetch(`/user/applycoupon`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ couponCode, grandTotal })
-        });
-
-        if (!response.ok) {
-            throw new Error('Failed to apply coupon');
-        }
-
-        const data = await response.json();
-
-        // Update the displayed grand total with the discounted amount
-        document.getElementById('grandTotalValue').textContent = `₹${data.discountedAmount.toFixed(2)}`;
-
-        // Display the discounted amount in the checkout page
-        const discountedAmountContainer = document.getElementById('discountedAmountContainer');
-        discountedAmountContainer.style.display = 'block';
-        document.getElementById('discountedAmountValue').textContent = `₹${data.discountedAmount.toFixed(2)}`;
-    } catch (error) {
-        console.error('Error applying coupon:', error);
-        // Handle error
-    }
-}
-    </script>
-{{!-- <script>
-
-       async function applyCoupon() {
-    const couponCode = document.getElementById('couponCode').value;
-    const grandTotal=document,getElementById('grandTotalValue').value;
-    try {
-        // Send an AJAX request to the server to apply the coupon
-        const response = await fetch(`/user/check-out?couponCode=${couponCode}&grandTotal=${grandTotal}`);
-
-        const data = await response.text(); // Get the HTML content of the checkout page
-
-        // Replace the current checkout page with the updated one
-        document.body.innerHTML = data;
-    } catch (error) {
-        console.error('Error applying coupon:', error);
-        // Handle errors
-    }
-}
-
-</script> --}}
-
-
-
-
-
-    <!-- Page Add Section Begin -->
-
-    <!-- Page Add Section End -->
-
-    <form class="frml" action="/user/checkout" method="POST">
-
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header bg-dark text-light">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Add
-                            Category</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+            <div class="col-lg-3">
+                <div style="height: 300px; overflow-y: auto;">
+                    {{#each data }}
+                    <div>
+                        <img style="height: 80px;width: 80px;" src="{{this.product.image.url}}" alt="">
+                        <label for="productname">Product Name: {{this.product.productname}}</label><br>
+                        <label for="productcolor">Color: {{this.product.color}}</label><br>
+                        <label for="price">Price: ₹{{this.product.price}}</label><br>
+                        <label for="size">Size: {{this.size}}</label><br>
                     </div>
-                    <div class="modal-body bg-dark text-light">
-                        <div>
-                            <div class="row">
-                                <div class="mb-3">
-                                    <label class="form-label" for="billing-address">Address</label>
-                                    <textarea class="form-control" name="address" id="billing-address" rows="3"
-                                        placeholder="Enter full address"></textarea>
-                                </div>
+                    {{/each}}
+                </div>
+                <hr>
+                <label for="subtotal">Subtotal: <span id="subtotalValue">0</span></label><br>
+                <label for="tax">Tax (5%): <span id="taxValue">0</span></label><br>
+                <label for="shippingCost">Shipping Cost: <span id="shippingCostValue">0</span></label><br>
+                <label for="grandTotal">Grand Total: <span id="grandTotalValue">0</span></label><br>
+                <hr>
+                <input type="text" id="couponCode" placeholder="Enter coupon code">
+                <button id="applyCouponButton" onclick="applyCoupon()">Apply Coupon</button>
+                <hr>
+                <div id="discountedAmountContainer">
+                    <label for="discountedAmount">Discounted totel Amount: <span
+                            id="discountedAmountValue">0</span></label>
+                </div>
+                <hr>
+                {{!-- ------------------------------------------------------ --}}
+                <!-- Add the form element around the payment button -->
+                <form id="paymentForm" action="/user/checkout" method="POST">
+                    <!-- Hidden input fields to hold the payment data -->
+                    <input type="hidden" name="productId" id="productId" value="your_product_id_here">
+                    <input type="hidden" name="totalAmount" id="totalAmount" value="your_total_amount_here">
+                    <!-- Add more hidden fields for other payment-related data if needed -->
 
-                                <div class="col-lg-4">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="billing-phone">Phone</label>
-                                        <input type="text" name="phone" class="form-control" id="billing-phone"
-                                            placeholder="Enter Phone no.">
-                                    </div>
-                                </div>
+                    <!-- Hidden input fields to hold the selected address data -->
+                    <input type="hidden" name="address" id="selectedAddress" value="">
+                    <input type="hidden" name="phone" id="selectedPhone" value="">
+                    <input type="hidden" name="country" id="selectedCountry" value="">
+                    <input type="hidden" name="city" id="selectedCity" value="">
+                    <input type="hidden" name="state" id="selectedState" value="">
+                    <input type="hidden" name="pin" id="selectedPin" value="">
+
+                    <div class="col-lg-3">
+                        <!-- Payment button -->
+                        <button type="submit" class="btn btn-primary" id="paymentButton">Payment</button>
+                        <hr>
+                    </div>
+                </form>
+
+
+{{!-- 
+                <button
+                    style="height: 40px; width: 250px; background-color: rgb(0, 0, 0);color: white;">Payment</button> --}}
+                <hr>
+            </div>
+
+
+
+            <script>
+                // Calculate and display grand total
+                document.addEventListener("DOMContentLoaded", function () {
+                    const productElements = document.querySelectorAll('.col-lg-3 > div');
+                    let subtotal = 0;
+
+                    productElements.forEach(function (productElement) {
+                        const priceElement = productElement.querySelector('label[for="price"]');
+                        if (priceElement) {
+                            const priceText = priceElement.textContent.trim(); // Get the price text
+                            const priceMatch = priceText.match(/₹\s*([\d.]+)/); // Extract the price value (including decimals)
+                            if (priceMatch && priceMatch[1]) {
+                                const price = parseFloat(priceMatch[1]); // Extract the price value
+                                subtotal += price;
+                            } else {
+                                console.error('Invalid price format:', priceText);
+                            }
+                        } else {
+                            console.error('Price element not found in product:', productElement);
+                        }
+                    });
+
+                    const tax = subtotal * 0.05; // Calculate tax (5%)
+                    const shippingCost = 15; // Flat shipping cost
+                    const grandTotal = subtotal + tax + shippingCost; // Calculate grand total
+
+                    const subtotalValueElement = document.getElementById('subtotalValue');
+                    subtotalValueElement.textContent = `₹${subtotal.toFixed(2)}`; // Format subtotal to 2 decimal places
+
+                    const taxValueElement = document.getElementById('taxValue');
+                    taxValueElement.textContent = `₹${tax.toFixed(2)}`; // Format tax to 2 decimal places
+
+                    const shippingCostValueElement = document.getElementById('shippingCostValue');
+                    shippingCostValueElement.textContent = `₹${shippingCost.toFixed(2)}`; // Format shipping cost to 2 decimal places
+
+                    const grandTotalValueElement = document.getElementById('grandTotalValue');
+                    grandTotalValueElement.textContent = `₹${grandTotal.toFixed(2)}`; // Format grand total to 2 decimal places
+
+                    // Store grand total in a hidden input field for passing to backend
+                    document.getElementById('grandTotalInput').value = grandTotal.toFixed(2);
+                });
+
+                async function applyCoupon() {
+
+                    const couponCode = document.getElementById('couponCode').value;
+                    const grandTotalText = document.getElementById('grandTotalValue').textContent;
+                    const grandTotal = parseFloat(grandTotalText.replace('₹', '').trim());
+
+                    try {
+                        const response = await fetch(`/user/applycoupon`, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ couponCode, grandTotal })
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Failed to apply coupon');
+                        }
+
+                        const data = await response.json();
+
+                        // Update the displayed grand total with the discounted amount
+                        document.getElementById('grandTotalValue').textContent = `₹${data.discountedAmount.toFixed(2)}`;
+
+                        // Display the discounted amount in the checkout page
+                        const discountedAmountContainer = document.getElementById('discountedAmountContainer');
+                        discountedAmountContainer.style.display = 'block';
+                        document.getElementById('discountedAmountValue').textContent = `₹${data.discountedAmount.toFixed(2)}`;
+                    } catch (error) {
+                        console.error('Error applying coupon:', error);
+                        // Handle error
+                    }
+                }
+            </script>
+
+
+            <script>
+                // JavaScript to handle the click event of the payment button
+                document.getElementById('paymentButton').addEventListener('click', function (event) {
+                    // Prevent the default form submission behavior
+                    event.preventDefault();
+
+                    // Get the selected address details
+                    const selectedAddress = document.querySelector('.address-box.selected');
+                    const address = selectedAddress.querySelector('.address-details').textContent.trim();
+                    const phone = selectedAddress.querySelector('.xl:nth-child(2)').textContent.trim().split(':')[1].trim();
+                    const country = selectedAddress.querySelector('.xl:nth-child(3)').textContent.trim().split(':')[1].trim();
+                    const city = selectedAddress.querySelector('.xl:nth-child(4)').textContent.trim().split(':')[1].trim();
+                    const state = selectedAddress.querySelector('.xl:nth-child(5)').textContent.trim().split(':')[1].trim();
+                    const pin = selectedAddress.querySelector('.xl:nth-child(6)').textContent.trim().split(':')[1].trim();
+
+                    // Set the selected address details in the hidden input fields
+                    document.getElementById('selectedAddress').value = address;
+                    document.getElementById('selectedPhone').value = phone;
+                    document.getElementById('selectedCountry').value = country;
+                    document.getElementById('selectedCity').value = city;
+                    document.getElementById('selectedState').value = state;
+                    document.getElementById('selectedPin').value = pin;
+
+                    // Create a new FormData object to collect form data
+                    const formData = new FormData(document.getElementById('paymentForm'));
+
+                    // Send the form data to the server using fetch API
+                    fetch('/user/checkout', {
+                        method: 'POST',
+                        body: formData
+                    })
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Failed to submit payment data');
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            // Handle the response from the server, if needed
+                            console.log('Payment data submitted successfully:', data);
+                            // Redirect to a success page or display a success message to the user
+                        })
+                        .catch(error => {
+                            console.error('Error submitting payment data:', error);
+                            // Handle errors, such as displaying an error message to the user
+                        });
+                });
+            </script>
+            {{!--
+            <script>
+
+                async function applyCoupon() {
+                    const couponCode = document.getElementById('couponCode').value;
+                    const grandTotal = document, getElementById('grandTotalValue').value;
+                    try {
+                        // Send an AJAX request to the server to apply the coupon
+                        const response = await fetch(`/user/check-out?couponCode=${couponCode}&grandTotal=${grandTotal}`);
+
+                        const data = await response.text(); // Get the HTML content of the checkout page
+
+                        // Replace the current checkout page with the updated one
+                        document.body.innerHTML = data;
+                    } catch (error) {
+                        console.error('Error applying coupon:', error);
+                        // Handle errors
+                    }
+                }
+
+            </script> --}}
+
+
+
+
+
+            <!-- Page Add Section Begin -->
+
+            <!-- Page Add Section End -->
+
+            <form class="frml" action="/user/checkout" method="POST">
+
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-dark text-light">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Add
+                                    Category</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
+                            <div class="modal-body bg-dark text-light">
+                                <div>
+                                    <div class="row">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="billing-address">Address</label>
+                                            <textarea class="form-control" name="address" id="billing-address" rows="3"
+                                                placeholder="Enter full address"></textarea>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="billing-phone">Phone</label>
+                                                <input type="text" name="phone" class="form-control" id="billing-phone"
+                                                    placeholder="Enter Phone no.">
+                                            </div>
+                                        </div>
+                                    </div>
 
 
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="mb-4 mb-lg-0">
-                                        <label class="form-label">Country</label>
-                                        <select class="form-control form-select" name="country" title="Country">
-                                            <option value="0">Select Country
-                                            </option>
-                                            <option value="AF">Afghanistan</option>
-                                            <option value="AL">Albania</option>
-                                            <option value="DZ">Algeria</option>
-                                            <option value="AS">American Samoa
-                                            </option>
-                                            <option value="AD">Andorra</option>
-                                            <option value="AO">Angola</option>
-                                            <option value="AI">Anguilla</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="mb-4 mb-lg-0">
+                                                <label class="form-label">Country</label>
+                                                <select class="form-control form-select" name="country" title="Country">
+                                                    <option value="0">Select Country
+                                                    </option>
+                                                    <option value="AF">Afghanistan</option>
+                                                    <option value="AL">Albania</option>
+                                                    <option value="DZ">Algeria</option>
+                                                    <option value="AS">American Samoa
+                                                    </option>
+                                                    <option value="AD">Andorra</option>
+                                                    <option value="AO">Angola</option>
+                                                    <option value="AI">Anguilla</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
-                                <div class="col-lg-4">
-                                    <div class="mb-4 mb-lg-0">
-                                        <label class="form-label" for="billing-city">City</label>
-                                        <input type="text" name="city" class="form-control" id="billing-city"
-                                            placeholder="Enter City">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="mb-4 mb-lg-0">
-                                        <label class="form-label" for="billing-city">State</label>
-                                        <input type="text" name="state" class="form-control" id="billing-statee"
-                                            placeholder="Enter state">
-                                    </div>
-                                </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-4 mb-lg-0">
+                                                <label class="form-label" for="billing-city">City</label>
+                                                <input type="text" name="city" class="form-control" id="billing-city"
+                                                    placeholder="Enter City">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-4 mb-lg-0">
+                                                <label class="form-label" for="billing-city">State</label>
+                                                <input type="text" name="state" class="form-control" id="billing-statee"
+                                                    placeholder="Enter state">
+                                            </div>
+                                        </div>
 
-                                <div class="col-lg-4">
-                                    <div class="mb-0">
-                                        <label class="form-label" for="zip-code">Zip
-                                            / Postal code</label>
-                                        <input type="text" name="pin" class="form-control" id="zip-code"
-                                            placeholder="Enter Postal code">
+                                        <div class="col-lg-4">
+                                            <div class="mb-0">
+                                                <label class="form-label" for="zip-code">Zip
+                                                    / Postal code</label>
+                                                <input type="text" name="pin" class="form-control" id="zip-code"
+                                                    placeholder="Enter Postal code">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+                                <br>
+                                <!-- Add Submit Button -->
+                                <button type="submit" class="btn btn-primary">Submit</button>
                             </div>
                         </div>
-                        <br>
-                        <!-- Add Submit Button -->
-                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
+
                 </div>
-            </div>
+            </form>
+
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+            <!-- Bootstrap JS (optional, if you need JavaScript functionalities from Bootstrap) -->
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <script>
+                // JavaScript for selecting one address at a time
+                document.addEventListener('DOMContentLoaded', function () {
+                    const addressBoxes = document.querySelectorAll('.address-box');
+
+                    addressBoxes.forEach(box => {
+                        box.addEventListener('click', () => {
+                            addressBoxes.forEach(box => {
+                                box.classList.remove('selected');
+                            });
+                            box.classList.add('selected');
+                        });
+                    });
+                });
+            </script>
+
+            <!-- submit  -->
 
         </div>
-    </form>
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- Bootstrap JS (optional, if you need JavaScript functionalities from Bootstrap) -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        // JavaScript for selecting one address at a time
-        document.addEventListener('DOMContentLoaded', function () {
-            const addressBoxes = document.querySelectorAll('.address-box');
-
-            addressBoxes.forEach(box => {
-                box.addEventListener('click', () => {
-                    addressBoxes.forEach(box => {
-                        box.classList.remove('selected');
-                    });
-                    box.classList.add('selected');
-                });
-            });
-        });
-    </script>
-
-    <!-- submit  -->
-
-    </div>
     </div>
 
     <!-- Bootstrap JS (optional, if needed) -->

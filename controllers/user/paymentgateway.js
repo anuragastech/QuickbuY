@@ -2,6 +2,9 @@ const personal=require('../../models/user/mongodb')
 const cart=require('../../models/user/cart');
 const Checkout=require('../../models/user/checkout')
 const coupen=require('../../models/admin/coupen')
+const order =require('../../models/user/order')
+const razorpay=require('../../config/razorpay')
+
 
 let postAddress = async (req, res) => {
     try {
@@ -78,7 +81,7 @@ const postCarttocheckout = async (req, res) => {
 let coupencheck= async (req, res) => {
     const { couponCode, grandTotal } = req.body;
     // console.log("nfej");
-    console.log(req.body);
+    // console.log(req.body);
 
     try {
         const coupon = await coupen.findOne({ couponCode });
@@ -97,8 +100,38 @@ let coupencheck= async (req, res) => {
     }
 };
 
+let orderPost = async (req, res) => {
+    try {
+        // Create a new order object
+        const newOrder = new orderModel({
+            razorpayOrderId: '', // Placeholder for Razorpay order ID
+            product: req.body.productId,
+            totalAmount: req.body.totalAmount,
+            paymentStatus: 'pending',
+            shippingStatus: 'pending'
+        });
+
+        // Save the new order to the database
+        await newOrder.save();
+
+        // Create an order in Razorpay
+        const razorpayOrder = await razorpay.orders.create({
+            amount: req.body.totalAmount * 100, // Razorpay expects amount in paisa (1 INR = 100 paisa)
+            currency: 'INR',
+            receipt: 'order_receipt_' + newOrder._id // Generate a unique receipt ID
+        });
+
+        // Update the order in your database with the Razorpay order ID
+        await orderModel.findByIdAndUpdate(newOrder._id, { razorpayOrderId: razorpayOrder.id });
+
+        // Send the Razorpay order ID back to the client
+        res.status(200).json({ orderId: razorpayOrder.id });
+    } catch (error) {
+        console.error('Error creating order:', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
 
 
 
-
-module.exports={postAddress ,getAddress,postCarttocheckout,coupencheck};
+module.exports={postAddress ,getAddress,postCarttocheckout,coupencheck ,orderPost};

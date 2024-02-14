@@ -92,7 +92,7 @@ router.get('/payment',(req,res)=>{
  router.post('/checkoutpost',authenticateJWT,getPaymentway.postCarttocheckout)
  router.post('/applycoupon',authenticateJWT, getPaymentway.coupencheck)
 
-
+router.post('/order',authenticateJWT, getPaymentway.orderPost)
 
 
 

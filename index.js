@@ -13,7 +13,7 @@ const adminRouter=require('./routes/admin')
 
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 
 app.set('view engine', 'hbs');
@@ -26,8 +26,6 @@ app.use(cookieParser());
 app.use('/user',userRouter);
 app.use('/vender',venderRouter)
 app.use('/admin', adminRouter);
-
-
 
 
 // mongoose

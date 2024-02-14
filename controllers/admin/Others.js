@@ -89,7 +89,7 @@ let postCoupen = async (req, res) => {
     const couponCode = req.body.couponCode;
     const discountPercentage = req.body.discountPercentage;
 
-    const newCoupon = new Coupon({
+    const newCoupon = new coupenIn({
       couponCode,
       discountPercentage
     });
