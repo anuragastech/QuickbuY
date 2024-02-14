@@ -4,6 +4,7 @@ const create=require('../../models/user/mongodb')
 
 const register=require('../../models/vender/mongodb')
 
+const coupenIn=require('../../models/user/mongodb')
 
 let venderlist = async (req, res) => {
   try {
@@ -66,4 +67,30 @@ let deletVender=async (req, res) => {
     res.status(500).json({ message: "Error deleting User" }); // Close parenthesis
   }
 };
-  module.exports={venderlist,venderadmin, userlist ,deleteUser ,deletVender} ;
+
+
+let getCoupen =(req,res)=>{
+  res.render('admin/coupen')
+};
+
+
+let postCoupen=async (req,res)=>{
+  const couponCode = req.body.couponCode;
+  const discountPercentage = req.body.discountPercentage;
+  const newCoupon = new coupenIn({
+    couponCode,
+    discountPercentage
+  });
+
+  await newCoupon.save();
+  // console.log('Coupon Code:', couponCode);
+  // console.log('Discount Percentage:', discountPercentage);
+
+  res.send('Coupon created successfully!');
+};
+
+
+
+
+
+  module.exports={venderlist,venderadmin, userlist ,deleteUser ,deletVender,getCoupen,postCoupen} ;

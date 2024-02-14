@@ -89,7 +89,16 @@ router.get('/payment',(req,res)=>{
  router.post('/checkout',authenticateJWT, getPaymentway.postAddress)
  
  router.get('/check-out',authenticateJWT, getPaymentway.getAddress)
- router.post('/checkoutpost',getPaymentway.postCarttocheckout)
+ router.post('/checkoutpost',authenticateJWT,getPaymentway.postCarttocheckout)
 
  
 module.exports = router;
+
+
+
+
+
+
+
+
+

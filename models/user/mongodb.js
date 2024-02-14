@@ -30,7 +30,21 @@ const createSchema = mongoose.Schema({
         city: { type: String, },
 
         pincode: { type: Number, },
-    }]
+    }],
+
+
+couponCode: {
+    type: String,
+    unique: true ,
+  },
+  discountPercentage: {
+    type: Number,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  },
+
 });
 
 module.exports = mongoose.model('create' , createSchema);

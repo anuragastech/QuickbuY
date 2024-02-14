@@ -99,59 +99,12 @@
                               </button>
                           </div>
                           <div class="modal-body bg-dark text-light">
-                              <div>
-        <div class="row">
-            <div class="mb-3">
-                <label class="form-label" for="billing-address">Address</label>
-                <textarea class="form-control" name="address" id="billing-address" rows="3" placeholder="Enter full address"></textarea>
-            </div>
+         <label for="couponCode">Coupon Code:</label><br>
+        <input type="text" id="couponCode" name="couponCode"><br>
+        <label for="discountPercentage">Discount Percentage:</label><br>
+        <input type="number" id="discountPercentage" name="discountPercentage" step="0.01"><br>
+        <button type="submit">Create Coupon</button>
 
-            <div class="col-lg-4">
-                <div class="mb-3">
-                    <label class="form-label" for="billing-phone">Phone</label>
-                    <input type="text" name="phone" class="form-control" id="billing-phone" placeholder="Enter Phone no.">
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="mb-4 mb-lg-0">
-                    <label class="form-label">Country</label>
-                    <select class="form-control form-select" name="country" title="Country">
-                        <option value="0">Select Country</option>
-                        <option value="AF">Afghanistan</option>
-                        <option value="AL">Albania</option>
-                        <option value="DZ">Algeria</option>
-                        <option value="AS">American Samoa</option>
-                        <option value="AD">Andorra</option>
-                        <option value="AO">Angola</option>
-                        <option value="AI">Anguilla</option>                                   
-                    </select>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="mb-4 mb-lg-0">
-                    <label class="form-label" for="billing-city">City</label>
-                    <input type="text" name="city" class="form-control" id="billing-city" placeholder="Enter City">
-                </div>
-            </div>
-             <div class="col-lg-4">
-                <div class="mb-4 mb-lg-0">
-                    <label class="form-label" for="billing-city">State</label>
-                    <input type="text" name="state" class="form-control" id="billing-statee" placeholder="Enter state">
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="mb-0">
-                    <label class="form-label" for="zip-code">Zip / Postal code</label>
-                    <input type="text" name="pin" class="form-control" id="zip-code" placeholder="Enter Postal code">
-                </div>
-            </div>
-        </div>
     </div>
     <br>
     <!-- Add Submit Button -->
@@ -220,3 +173,44 @@
 
     <!-- Bootstrap JS (optional, if needed) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+
+     <div class="container mt-5">
+        <!-- Button to trigger the modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#couponModal">
+            Create Coupon
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="couponModal" tabindex="-1" role="dialog" aria-labelledby="couponModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="couponModalLabel">Create Coupon</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Coupon creation form -->
+                        <form action="/create-coupon" method="post">
+                            <div class="form-group">
+                                <label for="couponCode">Coupon Code:</label>
+                                <input type="text" class="form-control" id="couponCode" name="couponCode">
+                            </div>
+                            <div class="form-group">
+                                <label for="discountPercentage">Discount Percentage:</label>
+                                <input type="number" class="form-control" id="discountPercentage" name="discountPercentage" step="0.01">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create Coupon</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shCk+5L4Z6LZsyA8sYyhDYhq6HY3OdI65+24L" crossorigin="anonymous"></script>

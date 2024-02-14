@@ -16,7 +16,6 @@ const venderBlockController=require('../controllers/admin/venderController')
 
 router.get('/vender-product-list',otherControllers.venderlist)
 
-
 router.get('/index',(req,res)=>{
     res.render('admin/index')
 })
@@ -104,6 +103,8 @@ router.post('/unblock-user/:userId',  userController.unblockUser);
 router.post('/block-vender/:userId',  venderBlockController.blockVender);
 router.post('/unblock-vender/:userId',  venderBlockController.unblockVender);
 
+router.get('/coupen',otherControllers.getCoupen)
+router.post('/coupon',otherControllers.postCoupen)
 
 
 
