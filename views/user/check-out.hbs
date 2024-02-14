@@ -228,6 +228,15 @@
         font-size: 15px;
     }
 </style>
+
+<style>
+  /* Style for disabled button */
+#applyCouponButton[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    /* You can add more styles to visually indicate it's disabled */
+}
+</style>
             </div>
     <div class="col-lg-3">
         <div style="height: 300px; overflow-y: auto;">
@@ -248,7 +257,7 @@
         <label for="grandTotal">Grand Total: <span id="grandTotalValue">0</span></label><br>
         <hr>
         <input type="text" id="couponCode" placeholder="Enter coupon code">
-        <button onclick="applyCoupon()">Apply Coupon</button>
+        <button id="applyCouponButton" onclick="applyCoupon()">Apply Coupon</button>
         <hr>
 <div id="discountedAmountContainer">
     <label for="discountedAmount">Discounted totel Amount: <span id="discountedAmountValue">0</span></label>
@@ -256,6 +265,8 @@
         <button style="height: 40px; width: 250px; background-color: rgb(0, 0, 0);color: white;">Payment</button>
         <hr>
     </div>
+
+
 
     <script>
         // Calculate and display grand total
@@ -300,6 +311,7 @@
         });
         
 async function applyCoupon() {
+    
     const couponCode = document.getElementById('couponCode').value;
     const grandTotalText = document.getElementById('grandTotalValue').textContent;
     const grandTotal = parseFloat(grandTotalText.replace('₹', '').trim());
