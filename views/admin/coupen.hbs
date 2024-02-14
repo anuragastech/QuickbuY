@@ -318,27 +318,25 @@ $(document).ready( function () {
             <table id="categoryTable" class="table table-striped w-500"> <!-- Set width to full -->
                 <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Image</th>
+                        <th>Coupens</th>
+                        <th>Percentage</th>
                         <th>Delete</th>
                         <th>Edit</th>
                     </tr>
                 </thead>
                 <tbody style="background-color: black !important;">
-                    {{#each categories}}
+                    {{#each Allcoupens}}
                     <tr>
-                        <td>{{title}}</td>
-                        <td>{{description}}</td>
-                        <td><img src="{{image.url}}" alt="{{title}} Image" /></td>
+                        <td>{{couponCode}}</td>
+                        <td>{{discountPercentage}}</td>
                         <td>
-                            <button class="btn btn-outline-danger p-0 border-0" onclick="deleteCategory('{{this.title}}')">
+                            <button class="btn btn-outline-danger p-0 border-0" onclick="deleteCoupen('{{this.couponCode}}')">
                                 <i class="bi bi-trash-fill" style="font-size: 24px; color: white;"></i>
                             </button>
                         </td>
                         <td>
                             <button style="background-color: transparent;">
-                                <a href="/admin/edit?name={{this._id}}">
+                                <a href="/admin/editcoupen?name={{this._id}}">
                                     <i style="font-size: 24px; background-color: transparent;" class="bi bi-pencil-square text-success "></i>
                                 </a>
                             </button>
@@ -346,7 +344,7 @@ $(document).ready( function () {
                     </tr>
                     {{else}}
                     <tr>
-                        <td colspan="5">No categories found.</td>
+                        <td colspan="5">No Coupens found.</td>
                     </tr>
                     {{/each}}
                 </tbody>
@@ -355,12 +353,14 @@ $(document).ready( function () {
     </div>
 </div>
 
+
+
             {{! delete}}
 
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    function deleteCategory(categoryId) {
+    function deleteCoupen(coupenId) {
         // Show confirmation dialog using SweetAlert2
         Swal.fire({
             title: 'Are you sure?',

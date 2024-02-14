@@ -230,72 +230,129 @@
 </style>
             </div>
     <div class="col-lg-3">
-    <div style="height: 300px; overflow-y: auto;">
-        {{#each data }}
-        <div>
-            <img style="height: 80px;width: 80px;" src="{{this.product.image.url}}" alt="">
-            <label for="productname">Product Name: {{this.product.productname}}</label><br>
-            <label for="productcolor">Color: {{this.product.color}}</label><br>
-            <label for="price">Price: ₹{{this.product.price}}</label><br>
-            <label for="size">Size: {{this.size}}</label><br>
+        <div style="height: 300px; overflow-y: auto;">
+            {{#each data }}
+            <div>
+                <img style="height: 80px;width: 80px;" src="{{this.product.image.url}}" alt="">
+                <label for="productname">Product Name: {{this.product.productname}}</label><br>
+                <label for="productcolor">Color: {{this.product.color}}</label><br>
+                <label for="price">Price: ₹{{this.product.price}}</label><br>
+                <label for="size">Size: {{this.size}}</label><br>
+            </div>
+            {{/each}}
         </div>
-        {{/each}}
+        <hr>
+        <label for="subtotal">Subtotal: <span id="subtotalValue">0</span></label><br>
+        <label for="tax">Tax (5%): <span id="taxValue">0</span></label><br>
+        <label for="shippingCost">Shipping Cost: <span id="shippingCostValue">0</span></label><br>
+        <label for="grandTotal">Grand Total: <span id="grandTotalValue">0</span></label><br>
+        <hr>
+        <input type="text" id="couponCode" placeholder="Enter coupon code">
+        <button onclick="applyCoupon()">Apply Coupon</button>
+        <hr>
+<div id="discountedAmountContainer">
+    <label for="discountedAmount">Discounted totel Amount: <span id="discountedAmountValue">0</span></label>
+</div>        <hr>
+        <button style="height: 40px; width: 250px; background-color: rgb(0, 0, 0);color: white;">Payment</button>
+        <hr>
     </div>
-    <hr>
-    <label for="subtotal">Subtotal: <span id="subtotalValue">0</span></label><br>
-    <label for="tax">Tax (5%): <span id="taxValue">0</span></label><br>
-    <label for="shippingCost">Shipping Cost: <span id="shippingCostValue">0</span></label><br>
-    <label for="grandTotal">Grand Total: <span id="grandTotalValue">0</span></label><br>
-    <hr>
-    <label style="font-size: 20px;" for="couper">Apply coupons  </label>
-    <input type="number">
-    <hr>
-    <label style="font-size: 18px;" for=""> Grand total:</label>
-    <hr>
-    <button style="height: 40px; width: 250px; background-color: rgb(0, 0, 0);color: white;">Payment</button>
-    <hr>
-</div>
 
+    <script>
+        // Calculate and display grand total
+        document.addEventListener("DOMContentLoaded", function() {
+            const productElements = document.querySelectorAll('.col-lg-3 > div');
+            let subtotal = 0;
 
-<script>
-    // Calculate and display grand total
-    document.addEventListener("DOMContentLoaded", function() {
-        const productElements = document.querySelectorAll('.col-lg-3 > div');
-        let subtotal = 0;
-
-        productElements.forEach(function(productElement) {
-            const priceElement = productElement.querySelector('label[for="price"]');
-            if (priceElement) {
-                const priceText = priceElement.textContent.trim(); // Get the price text
-                const priceMatch = priceText.match(/₹\s*([\d.]+)/); // Extract the price value (including decimals)
-                if (priceMatch && priceMatch[1]) {
-                    const price = parseFloat(priceMatch[1]); // Extract the price value
-                    subtotal += price;
+            productElements.forEach(function(productElement) {
+                const priceElement = productElement.querySelector('label[for="price"]');
+                if (priceElement) {
+                    const priceText = priceElement.textContent.trim(); // Get the price text
+                    const priceMatch = priceText.match(/₹\s*([\d.]+)/); // Extract the price value (including decimals)
+                    if (priceMatch && priceMatch[1]) {
+                        const price = parseFloat(priceMatch[1]); // Extract the price value
+                        subtotal += price;
+                    } else {
+                        console.error('Invalid price format:', priceText);
+                    }
                 } else {
-                    console.error('Invalid price format:', priceText);
+                    console.error('Price element not found in product:', productElement);
                 }
-            } else {
-                console.error('Price element not found in product:', productElement);
-            }
+            });
+
+            const tax = subtotal * 0.05; // Calculate tax (5%)
+            const shippingCost = 15; // Flat shipping cost
+            const grandTotal = subtotal + tax + shippingCost; // Calculate grand total
+
+            const subtotalValueElement = document.getElementById('subtotalValue');
+            subtotalValueElement.textContent = `₹${subtotal.toFixed(2)}`; // Format subtotal to 2 decimal places
+
+            const taxValueElement = document.getElementById('taxValue');
+            taxValueElement.textContent = `₹${tax.toFixed(2)}`; // Format tax to 2 decimal places
+
+            const shippingCostValueElement = document.getElementById('shippingCostValue');
+            shippingCostValueElement.textContent = `₹${shippingCost.toFixed(2)}`; // Format shipping cost to 2 decimal places
+
+            const grandTotalValueElement = document.getElementById('grandTotalValue');
+            grandTotalValueElement.textContent = `₹${grandTotal.toFixed(2)}`; // Format grand total to 2 decimal places
+
+            // Store grand total in a hidden input field for passing to backend
+            document.getElementById('grandTotalInput').value = grandTotal.toFixed(2);
+        });
+        
+async function applyCoupon() {
+    const couponCode = document.getElementById('couponCode').value;
+    const grandTotalText = document.getElementById('grandTotalValue').textContent;
+    const grandTotal = parseFloat(grandTotalText.replace('₹', '').trim());
+
+    try {
+        const response = await fetch(`/user/applycoupon`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ couponCode, grandTotal })
         });
 
-        const tax = subtotal * 0.05; // Calculate tax (5%)
-        const shippingCost = 15; // Flat shipping cost
-        const grandTotal = subtotal + tax + shippingCost; // Calculate grand total
+        if (!response.ok) {
+            throw new Error('Failed to apply coupon');
+        }
 
-        const subtotalValueElement = document.getElementById('subtotalValue');
-        subtotalValueElement.textContent = `₹${subtotal.toFixed(2)}`; // Format subtotal to 2 decimal places
+        const data = await response.json();
 
-        const taxValueElement = document.getElementById('taxValue');
-        taxValueElement.textContent = `₹${tax.toFixed(2)}`; // Format tax to 2 decimal places
+        // Update the displayed grand total with the discounted amount
+        document.getElementById('grandTotalValue').textContent = `₹${data.discountedAmount.toFixed(2)}`;
 
-        const shippingCostValueElement = document.getElementById('shippingCostValue');
-        shippingCostValueElement.textContent = `₹${shippingCost.toFixed(2)}`; // Format shipping cost to 2 decimal places
+        // Display the discounted amount in the checkout page
+        const discountedAmountContainer = document.getElementById('discountedAmountContainer');
+        discountedAmountContainer.style.display = 'block';
+        document.getElementById('discountedAmountValue').textContent = `₹${data.discountedAmount.toFixed(2)}`;
+    } catch (error) {
+        console.error('Error applying coupon:', error);
+        // Handle error
+    }
+}
+    </script>
+{{!-- <script>
 
-        const grandTotalValueElement = document.getElementById('grandTotalValue');
-        grandTotalValueElement.textContent = `₹${grandTotal.toFixed(2)}`; // Format grand total to 2 decimal places
-    });
-</script>
+       async function applyCoupon() {
+    const couponCode = document.getElementById('couponCode').value;
+    const grandTotal=document,getElementById('grandTotalValue').value;
+    try {
+        // Send an AJAX request to the server to apply the coupon
+        const response = await fetch(`/user/check-out?couponCode=${couponCode}&grandTotal=${grandTotal}`);
+
+        const data = await response.text(); // Get the HTML content of the checkout page
+
+        // Replace the current checkout page with the updated one
+        document.body.innerHTML = data;
+    } catch (error) {
+        console.error('Error applying coupon:', error);
+        // Handle errors
+    }
+}
+
+</script> --}}
+
 
 
 

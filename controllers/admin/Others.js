@@ -4,7 +4,7 @@ const create=require('../../models/user/mongodb')
 
 const register=require('../../models/vender/mongodb')
 
-const coupenIn=require('../../models/user/mongodb')
+const coupenIn=require('../../models/admin/coupen')
 
 let venderlist = async (req, res) => {
   try {
@@ -69,24 +69,38 @@ let deletVender=async (req, res) => {
 };
 
 
-let getCoupen =(req,res)=>{
-  res.render('admin/coupen')
+let getCoupen = async(req,res)=>{
+
+try {
+  const Allcoupens= await coupenIn.find({});
+
+  res.render('admin/coupen',{Allcoupens});
+
+} catch (error) {
+  console.error('Error creating coupon:', error);
+  res.status(500).send('Internal Server Error');
+}
 };
 
 
-let postCoupen=async (req,res)=>{
-  const couponCode = req.body.couponCode;
-  const discountPercentage = req.body.discountPercentage;
-  const newCoupon = new coupenIn({
-    couponCode,
-    discountPercentage
-  });
 
-  await newCoupon.save();
-  // console.log('Coupon Code:', couponCode);
-  // console.log('Discount Percentage:', discountPercentage);
+let postCoupen = async (req, res) => {
+  try {
+    const couponCode = req.body.couponCode;
+    const discountPercentage = req.body.discountPercentage;
 
-  res.send('Coupon created successfully!');
+    const newCoupon = new Coupon({
+      couponCode,
+      discountPercentage
+    });
+
+    await newCoupon.save();
+
+    res.rendirect('admin/coupen');
+  } catch (error) {
+    console.error('Error creating coupon:', error);
+    res.status(500).send('Internal Server Error');
+  }
 };
 
 
