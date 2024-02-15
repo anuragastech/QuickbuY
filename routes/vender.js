@@ -69,7 +69,7 @@ router.get('/home', (req, res) => {
   return res.render('vender/home');
 });
 
-router.post('/profile',profileControllers.createUserProfile)
+router.post('/profile',profileControllers.createvenderProfile)
 
 router.get('/categories',authenticateJWT, getcatasubController.getcategory)
   

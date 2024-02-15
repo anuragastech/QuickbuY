@@ -31,18 +31,28 @@ const createSchema = mongoose.Schema({
       required: true,
     },
   },
-  userId: {
+  venderId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'registers',
+    ref: 'vender',
+    required: true,
+
   },
   category: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'category', // Make sure it matches the model name
     required: true,
   },
+  categoryName: {
+    type: String,
+    required: true,
+  },
   subcategory: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'subcategory', // Make sure it matches the model name
+    required: true,
+  },
+  subcategoryName: {
+    type: String,
     required: true,
   },
   color: {

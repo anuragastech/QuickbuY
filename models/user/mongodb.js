@@ -47,4 +47,4 @@ couponCode: {
 
 });
 
-module.exports = mongoose.model('create' , createSchema);
+module.exports = mongoose.model('user' , createSchema);

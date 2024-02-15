@@ -2,23 +2,18 @@ const jwt = require('jsonwebtoken');
 // require('dotenv').config();
 // JWT_SECRET=mynameissomethinglikestartwithathatsit
 // const cookies = require('cookies');
-
-
-const secretKey =  'mynameissomethinglikestartwithathatsit';
+const secretKey = 'mynameissomethinglikestartwithathatsit';
 function authenticateJWT(req, res, next) {
     const token = req.cookies.token;
 
     if (!token) {
+        let redirectUrl = '/login'; // Default redirection URL
         if (req.originalUrl.includes('/vender')) {
-            return res.redirect('/vender/login');
+            redirectUrl = '/vender/login'; // Redirect to vender login page
         } else if (req.originalUrl.includes('/user')) {
-            return res.redirect('/user/login');
-        } else {
-            return res.redirect('/login'); // Default login page
+            redirectUrl = '/user/login'; // Redirect to user login page
         }
-
-        
-        return res.status(401).json({ message: 'Unauthorized' });
+        return res.redirect(redirectUrl);
     }
 
     jwt.verify(token, secretKey, (err, user) => {
@@ -27,21 +22,28 @@ function authenticateJWT(req, res, next) {
             return res.status(403).json({ message: 'Forbidden' });
         }
 
-        // console.log('Decoded Token Payload:', user);
-
         if (!user.role) {
             console.error('Role not found in token payload');
             return res.status(403).json({ message: 'Forbidden - Role not found' });
         }
+
+        // Example: Store user details in req.vender for vender routes
         if (user.role === 'vender') {
-        } else if (user.role === 'user') {
-        } else if (user.role === 'admin') {
-        } else {
+            req.vender = user;
         }
-        req.user = user;
+        // Example: Store user details in req.user for user routes
+        else if (user.role === 'user') {
+            req.user = user;
+        }
+        // Example: Store user details in req.admin for admin routes
+        else if (user.role === 'admin') {
+            req.admin = user;
+        }
+
         next();
     });
 }
+
 
 module.exports = {
     authenticateJWT,

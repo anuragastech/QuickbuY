@@ -1,8 +1,8 @@
 const cloudinary = require("../../models/common/cloudinary");
 const multer = require("../../models/common/multerconfig");
-const userprofile = require('../../models/vender/userprofile');
+const venderprofile = require('../../models/vender/venderprofile');
 
-let createUserProfile = async (req, res) => {
+let createvenderProfile = async (req, res) => {
     try {
         const upload = multer.single("image"); // Move multer middleware here
         
@@ -20,7 +20,7 @@ let createUserProfile = async (req, res) => {
                 return res.status(400).json({ error: 'No file uploaded' });
             }
 
-            const { username, email } = req.body;
+            const { vendername, email } = req.body;
             const desiredWidth = 1080;
             const desiredHeight = 1920;
 
@@ -31,9 +31,9 @@ let createUserProfile = async (req, res) => {
                 crop: 'scale'
             });
 
-            // Create a new user profile object
-            const newuserprofile = new userprofile({
-                username: username,
+            // Create a new vender profile object
+            const newvenderprofile = new venderprofile({
+                vendername: vendername,
                 email: email,
                 image: {
                     public_id: results.public_id,
@@ -41,11 +41,11 @@ let createUserProfile = async (req, res) => {
                 }
             });
 
-            // Save the user profile
-            const saveduserprofile = await newuserprofile.save();
+            // Save the vender profile
+            const savedvenderprofile = await newvenderprofile.save();
 
-            // Return the saved user profile in the response
-            res.status(201).json(saveduserprofile);
+            // Return the saved vender profile in the response
+            res.status(201).json(savedvenderprofile);
         });
     } catch (error) {
         // Catch any unhandled errors
@@ -56,11 +56,11 @@ let createUserProfile = async (req, res) => {
 
 let profileget = async (req, res) => {
     try {
-        const profile = await userprofile.find();
+        const profile = await venderprofile.find();
         return res.render('vender/profile', { profile }); 
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-module.exports = { createUserProfile ,profileget};
+module.exports = { createvenderProfile ,profileget};

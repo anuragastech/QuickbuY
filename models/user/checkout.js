@@ -20,7 +20,7 @@ const  checkoutSchema = mongoose.Schema({
 
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'registers',
+        ref: 'user',
         required: true
     }, 
     coupon: {

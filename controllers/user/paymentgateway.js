@@ -3,7 +3,13 @@ const cart=require('../../models/user/cart');
 const Checkout=require('../../models/user/checkout')
 const coupen=require('../../models/admin/coupen')
 const order =require('../../models/user/order')
-const razorpay=require('../../config/razorpay')
+const Razorpay = require('razorpay');
+const { checkout } = require('../../routes/user');
+
+const razorpay = new Razorpay({
+  key_id: 'rzp_test_uF6rcT6FvcQis8',
+  key_secret: 'Pja8iuhLQVUicncsSVHOm2v5',
+});
 
 
 let postAddress = async (req, res) => {
@@ -47,7 +53,7 @@ const postCarttocheckout = async (req, res) => {
         const userId = req.user.id; 
 
         const matchcart = await cart.find({ _id: { $in: selectedItems } });
-        console.log(matchcart);
+        // console.log(matchcart);
 
         for (const item of matchcart) {
             const { product, size, quantity } = item;
@@ -121,17 +127,19 @@ const coupencheck = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
 let orderPost = async (req, res) => {
     try {
         const userId = req.user.id; 
 
         console.log("fernhbu");
+const productId= await checkout.find({})
 
         // Create a new order object
         const newOrder = new order({
-            razorpayOrderId: '', // Placeholder for Razorpay order ID
-            product: req.body.productId,
-            totalAmount: req.body.totalAmount,
+            // razorpayOrderId: '', // Placeholder for Razorpay order ID
+            product: productId,
+            totalAmount: totalAmount,
             paymentMethod: req.body.paymentMethod, // Add payment method to the order
             paymentStatus: req.body.paymentMethod === 'cash' ? 'pending' : 'paid', // Update payment status based on the selected method
             shippingStatus: 'pending'
@@ -161,6 +169,7 @@ let orderPost = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+
 
 
 
