@@ -78,12 +78,19 @@ const postCarttocheckout = async (req, res) => {
 };
 
 
-let coupencheck= async (req, res) => {
-    const { couponCode, grandTotal } = req.body;
-    // console.log("nfej");
-    // console.log(req.body);
 
+const coupencheck = async (req, res) => {
+    const { couponCode, grandTotal} = req.body; // Extract userId from the request body
+    const userId = req.user.id; 
+
+// console.log(req.body);
     try {
+        const existingCheckout = await Checkout.findOne({ userId }); 
+
+        if (existingCheckout && existingCheckout.appliedCouponCode && existingCheckout.appliedCouponCode === couponCode) {
+            return res.status(400).json({ error: 'Coupon already applied to this checkout' });
+        }
+
         const coupon = await coupen.findOne({ couponCode });
 
         if (!coupon) {
@@ -92,6 +99,21 @@ let coupencheck= async (req, res) => {
 
         const discountPercentage = coupon.discountPercentage;
         const discountedAmount = grandTotal * (1 - discountPercentage / 100);
+
+        if (existingCheckout) {
+
+        
+            existingCheckout.appliedCouponCode = couponCode;
+            existingCheckout.discountedAmount = discountedAmount;
+            await existingCheckout.save();
+        } else {
+            await Checkout.create({
+                userId,
+                // coupon: coupon._id,
+                appliedCouponCode: couponCode,
+                discountedAmount
+            });
+        }
 
         res.json({ discountedAmount });
     } catch (error) {
@@ -102,8 +124,12 @@ let coupencheck= async (req, res) => {
 
 let orderPost = async (req, res) => {
     try {
+        const userId = req.user.id; 
+
+        console.log("fernhbu");
+
         // Create a new order object
-        const newOrder = new orderModel({
+        const newOrder = new order({
             razorpayOrderId: '', // Placeholder for Razorpay order ID
             product: req.body.productId,
             totalAmount: req.body.totalAmount,
@@ -111,7 +137,6 @@ let orderPost = async (req, res) => {
             shippingStatus: 'pending'
         });
 
-        // Save the new order to the database
         await newOrder.save();
 
         // Create an order in Razorpay

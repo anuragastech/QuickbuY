@@ -23,6 +23,18 @@ const  checkoutSchema = mongoose.Schema({
         ref: 'registers',
         required: true
     }, 
+    coupon: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'coupen' // Note: You might want to rename 'coupen' to 'coupon' for consistency
+    },
+    appliedCouponCode: {
+        type: String // Store the coupon code that was applied
+    },
+    discountedAmount: {
+        type: Number // Store the discounted amount if applicable
+    },
 });
+
+
 
 module.exports = mongoose.model("Checkout", checkoutSchema);

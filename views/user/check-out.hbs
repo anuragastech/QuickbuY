@@ -382,7 +382,6 @@
 
                     // Get the selected address details
                     const selectedAddress = document.querySelector('.address-box.selected');
-                    const address = selectedAddress.querySelector('.address-details').textContent.trim();
                     const phone = selectedAddress.querySelector('.xl:nth-child(2)').textContent.trim().split(':')[1].trim();
                     const country = selectedAddress.querySelector('.xl:nth-child(3)').textContent.trim().split(':')[1].trim();
                     const city = selectedAddress.querySelector('.xl:nth-child(4)').textContent.trim().split(':')[1].trim();
@@ -390,7 +389,6 @@
                     const pin = selectedAddress.querySelector('.xl:nth-child(6)').textContent.trim().split(':')[1].trim();
 
                     // Set the selected address details in the hidden input fields
-                    document.getElementById('selectedAddress').value = address;
                     document.getElementById('selectedPhone').value = phone;
                     document.getElementById('selectedCountry').value = country;
                     document.getElementById('selectedCity').value = city;
@@ -401,7 +399,7 @@
                     const formData = new FormData(document.getElementById('paymentForm'));
 
                     // Send the form data to the server using fetch API
-                    fetch('/user/checkout', {
+                    fetch('/user/order', {
                         method: 'POST',
                         body: formData
                     })

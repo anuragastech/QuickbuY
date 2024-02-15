@@ -84,6 +84,7 @@ router.get('/payment',(req,res)=>{
 
 
 
+
   router.post('/products',getProductControllers.getproductData)
 
  router.post('/checkout',authenticateJWT, getPaymentway.postAddress)
