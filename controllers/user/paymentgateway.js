@@ -121,7 +121,6 @@ const coupencheck = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-
 let orderPost = async (req, res) => {
     try {
         const userId = req.user.id; 
@@ -133,24 +132,30 @@ let orderPost = async (req, res) => {
             razorpayOrderId: '', // Placeholder for Razorpay order ID
             product: req.body.productId,
             totalAmount: req.body.totalAmount,
-            paymentStatus: 'pending',
+            paymentMethod: req.body.paymentMethod, // Add payment method to the order
+            paymentStatus: req.body.paymentMethod === 'cash' ? 'pending' : 'paid', // Update payment status based on the selected method
             shippingStatus: 'pending'
         });
 
         await newOrder.save();
 
-        // Create an order in Razorpay
-        const razorpayOrder = await razorpay.orders.create({
-            amount: req.body.totalAmount * 100, // Razorpay expects amount in paisa (1 INR = 100 paisa)
-            currency: 'INR',
-            receipt: 'order_receipt_' + newOrder._id // Generate a unique receipt ID
-        });
+        if (req.body.paymentMethod === 'online') {
+            // Create an order in Razorpay
+            const razorpayOrder = await razorpay.orders.create({
+                amount: req.body.totalAmount * 100, // Razorpay expects amount in paisa (1 INR = 100 paisa)
+                currency: 'INR',
+                receipt: 'order_receipt_' + newOrder._id // Generate a unique receipt ID
+            });
 
-        // Update the order in your database with the Razorpay order ID
-        await orderModel.findByIdAndUpdate(newOrder._id, { razorpayOrderId: razorpayOrder.id });
+            // Update the order in your database with the Razorpay order ID
+            await orderModel.findByIdAndUpdate(newOrder._id, { razorpayOrderId: razorpayOrder.id });
 
-        // Send the Razorpay order ID back to the client
-        res.status(200).json({ orderId: razorpayOrder.id });
+            // Send the Razorpay order ID back to the client
+            res.status(200).json({ orderId: razorpayOrder.id });
+        } else {
+            // Send response for cash on delivery
+            res.status(200).json({ message: 'Order placed successfully via Cash on Delivery' });
+        }
     } catch (error) {
         console.error('Error creating order:', error);
         res.status(500).json({ message: 'Internal server error' });

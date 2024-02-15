@@ -264,6 +264,14 @@
                             id="discountedAmountValue">0</span></label>
                 </div>
                 <hr>
+                <!-- Add payment method selection -->
+<label>
+    <input type="radio" name="paymentMethod" value="online" checked> Online Payment
+</label>
+<label>
+    <input type="radio" name="paymentMethod" value="cash"> Cash on Delivery
+</label>
+
                 {{!-- ------------------------------------------------------ --}}
                 <!-- Add the form element around the payment button -->
                 <form id="paymentForm" action="/user/checkout" method="POST">
@@ -373,53 +381,57 @@
                 }
             </script>
 
+<script>
+    // JavaScript to handle the click event of the payment button
+    document.getElementById('paymentButton').addEventListener('click', function (event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
 
-            <script>
-                // JavaScript to handle the click event of the payment button
-                document.getElementById('paymentButton').addEventListener('click', function (event) {
-                    // Prevent the default form submission behavior
-                    event.preventDefault();
+        // Get the selected address details
+        const selectedAddress = document.querySelector('.address-box.selected');
+        const phone = selectedAddress.querySelector('.xl:nth-child(2)').textContent.trim().split(':')[1].trim();
+        const country = selectedAddress.querySelector('.xl:nth-child(3)').textContent.trim().split(':')[1].trim();
+        const city = selectedAddress.querySelector('.xl:nth-child(4)').textContent.trim().split(':')[1].trim();
+        const state = selectedAddress.querySelector('.xl:nth-child(5)').textContent.trim().split(':')[1].trim();
+        const pin = selectedAddress.querySelector('.xl:nth-child(6)').textContent.trim().split(':')[1].trim();
 
-                    // Get the selected address details
-                    const selectedAddress = document.querySelector('.address-box.selected');
-                    const phone = selectedAddress.querySelector('.xl:nth-child(2)').textContent.trim().split(':')[1].trim();
-                    const country = selectedAddress.querySelector('.xl:nth-child(3)').textContent.trim().split(':')[1].trim();
-                    const city = selectedAddress.querySelector('.xl:nth-child(4)').textContent.trim().split(':')[1].trim();
-                    const state = selectedAddress.querySelector('.xl:nth-child(5)').textContent.trim().split(':')[1].trim();
-                    const pin = selectedAddress.querySelector('.xl:nth-child(6)').textContent.trim().split(':')[1].trim();
+        // Set the selected address details in the hidden input fields
+        document.getElementById('selectedPhone').value = phone;
+        document.getElementById('selectedCountry').value = country;
+        document.getElementById('selectedCity').value = city;
+        document.getElementById('selectedState').value = state;
+        document.getElementById('selectedPin').value = pin;
 
-                    // Set the selected address details in the hidden input fields
-                    document.getElementById('selectedPhone').value = phone;
-                    document.getElementById('selectedCountry').value = country;
-                    document.getElementById('selectedCity').value = city;
-                    document.getElementById('selectedState').value = state;
-                    document.getElementById('selectedPin').value = pin;
+        // Get the selected payment method
+        const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
 
-                    // Create a new FormData object to collect form data
-                    const formData = new FormData(document.getElementById('paymentForm'));
+        // Add the payment method to the form data
+        const formData = new FormData(document.getElementById('paymentForm'));
+        formData.append('paymentMethod', paymentMethod);
 
-                    // Send the form data to the server using fetch API
-                    fetch('/user/order', {
-                        method: 'POST',
-                        body: formData
-                    })
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Failed to submit payment data');
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            // Handle the response from the server, if needed
-                            console.log('Payment data submitted successfully:', data);
-                            // Redirect to a success page or display a success message to the user
-                        })
-                        .catch(error => {
-                            console.error('Error submitting payment data:', error);
-                            // Handle errors, such as displaying an error message to the user
-                        });
-                });
-            </script>
+        // Send the form data to the server using fetch API
+        fetch('/user/order', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to submit payment data');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Handle the response from the server, if needed
+            console.log('Payment data submitted successfully:', data);
+            // Redirect to a success page or display a success message to the user
+        })
+        .catch(error => {
+            console.error('Error submitting payment data:', error);
+            // Handle errors, such as displaying an error message to the user
+        });
+    });
+</script>
+
             {{!--
             <script>
 
