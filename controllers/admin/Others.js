@@ -4,6 +4,7 @@ const create=require('../../models/user/mongodb')
 
 const register=require('../../models/vender/mongodb')
 
+const coupenIn=require('../../models/admin/coupen')
 
 let venderlist = async (req, res) => {
   try {
@@ -66,4 +67,44 @@ let deletVender=async (req, res) => {
     res.status(500).json({ message: "Error deleting User" }); // Close parenthesis
   }
 };
-  module.exports={venderlist,venderadmin, userlist ,deleteUser ,deletVender} ;
+
+
+let getCoupen = async(req,res)=>{
+
+try {
+  const Allcoupens= await coupenIn.find({});
+
+  res.render('admin/coupen',{Allcoupens});
+
+} catch (error) {
+  console.error('Error creating coupon:', error);
+  res.status(500).send('Internal Server Error');
+}
+};
+
+
+
+let postCoupen = async (req, res) => {
+  try {
+    const couponCode = req.body.couponCode;
+    const discountPercentage = req.body.discountPercentage;
+
+    const newCoupon = new coupenIn({
+      couponCode,
+      discountPercentage
+    });
+
+    await newCoupon.save();
+
+    res.rendirect('admin/coupen');
+  } catch (error) {
+    console.error('Error creating coupon:', error);
+    res.status(500).send('Internal Server Error');
+  }
+};
+
+
+
+
+
+  module.exports={venderlist,venderadmin, userlist ,deleteUser ,deletVender,getCoupen,postCoupen} ;

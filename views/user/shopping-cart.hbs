@@ -10,16 +10,16 @@
     <title>Violet | Template</title>
 
     <!-- Google Font -->
-                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
-<link rel="stylesheet" href="/user/cart.js">
+    <link rel="stylesheet" href="/user/cart.js">
     <!-- Css Styles -->
 
     <link rel="stylesheet" href="/user/bootstrap.min.css" type="text/css">
@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="/user/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/user/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="/user/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="/user/style.css" type="text/css">
+    <link rel="stylesheet" href="/user/style.css" type="text/css">
 </head>
 </head>
 </head>
@@ -38,17 +38,17 @@
     <div id="preloder">
         <div class="loader"></div>
     </div>
-    
+
     <!-- Search model -->
-	<div class="search-model">
-		<div class="h-100 d-flex align-items-center justify-content-center">
-			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
-			</form>
-		</div>
-	</div>
-	<!-- Search model end -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form class="search-model-form">
+                <input type="text" id="search-input" placeholder="Search here.....">
+            </form>
+        </div>
+    </div>
+    <!-- Search model end -->
 
     <!-- Header Section Begin -->
     <header class="header-section">
@@ -65,10 +65,10 @@
                         <span>2</span>
                     </a>
                 </div>
-                    <div class="user-access">
+                <div class="user-access">
                     {{!-- <a href="/user/sign">Register</a>
                     <a href="/user/login" class="in">Sign in</a> --}}
-                                        <a href="/user/logout">Logout</a>
+                    <a href="/user/logout">Logout</a>
 
                 </div>
                 <nav class="main-menu mobile-menu">
@@ -107,9 +107,9 @@
                 </div>
                 <div class="col-md-4 text-left text-xl-right">
                     <div class="header-item">
-                    <img src="/icons/sales.png" alt="">
-                    <p>30% off on dresses. Use code: 30OFF</p>
-                </div>
+                        <img src="/icons/sales.png" alt="">
+                        <p>30% off on dresses. Use code: 30OFF</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -118,237 +118,317 @@
     <!-- Header End -->
 
     <!-- Page Shopping Cart Section Begin -->
- 
 
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        .address-box {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            /* Add cursor pointer to indicate clickability */
+            position: relative;
+        }
 
- <div class="container">
-  <h1 class="mt-5 mb-4">Shopping Cart</h1>
+        .address-box.selected {
+            background-color: #f0f0f0;
+            /* Change background color when selected */
+        }
 
-  <div class="row mb-3">
-    <div class="col">Image</div>
-    <div class="col">Product</div>
-    <div class="col">Price</div>
-    <div class="col">Quantity</div>
-        <div class="col">Update</div>
+        .select-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #2d29ec;
+            /* Bootstrap primary color for background */
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            display: none;
+            /* Initially hide the select indicator */
+        }
 
-    <div class="col">Remove</div>
-    <div class="col">Total</div>
-  </div>
+        .address-box.selected .select-indicator {
+            display: block;
+            /* Show select indicator when address is selected */
+        }
 
-
-      {{#each cart}}
-  <div class="product row mb-3">
-    <div class="product-image col">
-      <img src="{{this.product.image.url}}" class="img-fluid" alt="Product Image">
-    </div>
-    <div class="product-details col">
-      <div class="product-title">{{this.product.productname}}</div>
-      <p class="product-description">{{this.product.description }}.</p>
-    </div>
-    <div class="product-price col"> ₹{{this.product.price}}</div>
-    <div class="product-quantity col">
-      <input type="number" id="quantity-{{this._id}}" value="{{this.quantity}}" min="1" class="form-control">
-    </div>
-    <div class="product-update col">
-      <button onclick="updateQuantity('{{this._id}}')">Update</button>
-    </div>
-    <div class="product-removal col">
-      <button class="btn btn-light" onclick="deleteCart('{{this._id}}')">❌</button>
-    </div>
-    <div class="product-line-price col">₹12.99</div>
-  </div>
-{{/each}}
-
-  <!-- More products can be added similarly -->
-
-  <div class="totals row mt-5">
-    <div class="totals-item col">
-      <label>Subtotal</label>
-      <div class="totals-value" id="cart-subtotal">₹0</div>
-    </div>
-    <div class="totals-item col">
-      <label>Tax (5%)</label>
-      <div class="totals-value" id="cart-tax">₹0.0</div>
-    </div>
-    <div class="totals-item col">
-      <label>Shipping</label>
-      <div class="totals-value" id="cart-shipping">₹0</div>
-    </div>
-    <div class="totals-item totals-item-total col">
-      <label>Grand Total</label>
-      <div class="totals-value" id="cart-total">₹0</div>
-    </div>
-  </div>
-
-  <div class="row mt-4" style="margin-bottom: 50px;">
-    <button class="btn btn-dark checkout">Checkout</button>
-  </div>
-</div>
-  <style>
-        /* Custom styles for Toastify notification */
-        .custom-toastify {
-            width: 550px;
-            height: 52px;
-            padding: 8px 16px;
-            font-size: 14px;
-            line-height: 1.5;
-            background: linear-gradient(to right, #00b09b, #96c93d);
-            color: #fff;
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .xl {
+            color: black;
+            font-size: 22px;
+            font-weight: bold;
+            font-family: sans-serif;
         }
     </style>
-    <!-- Cart Page Section End -->
+    </head>
 
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-<script>
-    function deleteCart(cartId) {
-        axios.delete(`/user/deletecart/${cartId}`)
-            .then((response) => {
-                if (response.status === 200) {
-                    window.location.href = "/user/shopping-cart";
-                } else {
-                    throw new Error('Delete request failed');
-                }
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }
-</script>
+    <body>
+        <div class="container">
+            <h1 class="mt-5 mb-4">Shopping Cart</h1>
+            <div class="row mb-3">
+                <div class="col">Image</div>
+                <div class="col">Product</div>
+                <div class="col">Price</div>
+                <div class="col">Quantity</div>
+                <div class="col">Update</div>
+                <div class="col">Remove</div>
+                <div class="col">Total</div>
+                <div class="col">Select</div> <!-- Added a new column for selecting product -->
+            </div>
+            {{#each cart}}
+            <div class="product row mb-3">
+                <div class="product-image col">
+                    <img src="{{this.product.image.url}}" class="img-fluid" alt="Product Image">
+                </div>
+                <div class="product-details col">
+                    <div class="product-title">{{this.product.productname}}</div>
+                    <p class="product-description">{{this.product.description }}.</p>
+                </div>
+                <div class="product-price col"> ₹{{this.product.price}}</div>
+                <div class="product-quantity col">
+                    <input type="number" id="quantity-{{this._id}}" value="{{this.quantity}}" min="1"
+                        class="form-control">
+                </div>
+                <div class="product-update col">
+                    <button onclick="updateQuantity('{{this._id}}')">Update</button>
+                </div>
+                <div class="product-removal col">
+                    <button class="btn btn-light" onclick="deleteCart('{{this._id}}')">❌</button>
+                </div>
+                <div class="product-line-price col">₹12.99</div>
+                <div class="product-select col">
+                    <input type="checkbox" class="form-check-input" id="select-product-{{this._id}}"
+                        onchange="recalculateSelectedCart()">
+                </div>
+            </div>
+            {{/each}}
+            <!-- More products can be added similarly -->
+            <div class="totals row mt-5">
+                <div class="totals-item col">
+                    <label>Subtotal</label>
+                    <div class="totals-value" id="cart-subtotal">₹0</div>
+                </div>
+                <div class="totals-item col">
+                    <label>Tax (5%)</label>
+                    <div class="totals-value" id="cart-tax">₹0.0</div>
+                </div>
+                <div class="totals-item col">
+                    <label>Shipping</label>
+                    <div class="totals-value" id="cart-shipping">₹0</div>
+                </div>
+                <div class="totals-item totals-item-total col">
+                    <label>Grand Total</label>
+                    <div class="totals-value" id="cart-total">₹0</div>
+                </div>
+            </div>
+            <div class="row mt-4" style="margin-bottom: 50px;">
+                
+                <button class="btn btn-dark checkout"   onclick="checkout()">Checkout</button>
+            </div>
+                            {{!-- <a href="/user/check-out">g</a> --}}
 
-<script>
+        </div>
+        <!-- Bootstrap JS (optional, if you need JavaScript functionalities from Bootstrap) -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script>
+   function checkout() {
+    var selectedItems = [];
+    var checkboxes = document.querySelectorAll('.product input[type="checkbox"]:checked');
+    checkboxes.forEach(function(checkbox) {
+        var productId = checkbox.getAttribute('id').replace('select-product-', '');
+        selectedItems.push(productId);
+    });
 
-function updateQuantity(cartId) {
-  const newQuantity = document.getElementById(`quantity-${cartId}`).value;
-
-  axios.post(`/user/update-cart/${cartId}`, { quantity: newQuantity })
-    .then((response) => {
-      if (response.status === 200) {
-        // You may want to refresh the page or update the UI here
-        Toastify({
-                  text: "Item updated to cart successfully!",
-                  duration: 3000, // 3 seconds
-                  close: true, // Enable close button
-                  gravity: "top", // Display position
-                  position: "center", // Custom position
-                  className: "custom-toastify", // Custom class name
-                }).showToast();
-      } else {
-        alert('Failed to update cart');
-      }
+    fetch('/user/checkoutpost', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ selectedItems: selectedItems })
     })
-    .catch((error) => {
-      console.error(error);
-      alert('Error updating cart');
+    .then(function(response) {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        // Handle successful response
+        // Redirect or perform other actions as needed
+    })
+    .catch(function(error) {
+        console.error('Error:', error);
+        // Log the error to console
     });
 }
 
-
-
 </script>
-<script src="/user/cart.js"></script>
-    <!-- Footer Section Begin -->
-    <footer class="footer-section spad">
-        <div class="container">
-            <div class="newslatter-form">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <form action="#">
-                            <input type="text" placeholder="Your email address">
-                            <button type="submit">Subscribe to our newsletter</button>
-                        </form>
+
+        <style>
+            /* Custom styles for Toastify notification */
+            .custom-toastify {
+                width: 550px;
+                height: 52px;
+                padding: 8px 16px;
+                font-size: 14px;
+                line-height: 1.5;
+                background: linear-gradient(to right, #00b09b, #96c93d);
+                color: #fff;
+                border-radius: 4px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        </style>
+        <!-- Cart Page Section End -->
+
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script>
+            function deleteCart(cartId) {
+                axios.delete(`/user/deletecart/${cartId}`)
+                    .then((response) => {
+                        if (response.status === 200) {
+                            window.location.href = "/user/shopping-cart";
+                        } else {
+                            throw new Error('Delete request failed');
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
+        </script>
+
+        <script>
+
+            function updateQuantity(cartId) {
+                const newQuantity = document.getElementById(`quantity-${cartId}`).value;
+
+                axios.post(`/user/update-cart/${cartId}`, { quantity: newQuantity })
+                    .then((response) => {
+                        if (response.status === 200) {
+                            // You may want to refresh the page or update the UI here
+                            Toastify({
+                                text: "Item updated to cart successfully!",
+                                duration: 3000, // 3 seconds
+                                close: true, // Enable close button
+                                gravity: "top", // Display position
+                                position: "center", // Custom position
+                                className: "custom-toastify", // Custom class name
+                            }).showToast();
+                        } else {
+                            alert('Failed to update cart');
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        alert('Error updating cart');
+                    });
+            }
+
+
+
+        </script>
+        <script src="/user/cart.js"></script>
+        <!-- Footer Section Begin -->
+        <footer class="footer-section spad">
+            <div class="container">
+                <div class="newslatter-form">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form action="#">
+                                <input type="text" placeholder="Your email address">
+                                <button type="submit">Subscribe to our newsletter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-widget">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h4>About us</h4>
+                                <ul>
+                                    <li>About Us</li>
+                                    <li>Community</li>
+                                    <li>Jobs</li>
+                                    <li>Shipping</li>
+                                    <li>Contact Us</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h4>Customer Care</h4>
+                                <ul>
+                                    <li>Search</li>
+                                    <li>Privacy Policy</li>
+                                    <li>2019 Lookbook</li>
+                                    <li>Shipping & Delivery</li>
+                                    <li>Gallery</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h4>Our Services</h4>
+                                <ul>
+                                    <li>Free Shipping</li>
+                                    <li>Free Returnes</li>
+                                    <li>Our Franchising</li>
+                                    <li>Terms and conditions</li>
+                                    <li>Privacy Policy</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h4>Information</h4>
+                                <ul>
+                                    <li>Payment methods</li>
+                                    <li>Times and shipping costs</li>
+                                    <li>Product Returns</li>
+                                    <li>Shipping methods</li>
+                                    <li>Conformity of the products</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="footer-widget">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h4>About us</h4>
-                            <ul>
-                                <li>About Us</li>
-                                <li>Community</li>
-                                <li>Jobs</li>
-                                <li>Shipping</li>
-                                <li>Contact Us</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h4>Customer Care</h4>
-                            <ul>
-                                <li>Search</li>
-                                <li>Privacy Policy</li>
-                                <li>2019 Lookbook</li>
-                                <li>Shipping & Delivery</li>
-                                <li>Gallery</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h4>Our Services</h4>
-                            <ul>
-                                <li>Free Shipping</li>
-                                <li>Free Returnes</li>
-                                <li>Our Franchising</li>
-                                <li>Terms and conditions</li>
-                                <li>Privacy Policy</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h4>Information</h4>
-                            <ul>
-                                <li>Payment methods</li>
-                                <li>Times and shipping costs</li>
-                                <li>Product Returns</li>
-                                <li>Shipping methods</li>
-                                <li>Conformity of the products</li>
-                            </ul>
-                        </div>
+            <div class="social-links-warp">
+                <div class="container">
+                    <div class="social-links">
+                        <a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
+                        <a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
+                        <a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
+                        <a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
+                        <a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
+                        <a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="social-links-warp">
-			<div class="container">
-				<div class="social-links">
-					<a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
-					<a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
-					<a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
-					<a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
-					<a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
-					<a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
-				</div>
-			</div>
 
 
-            <div class="container text-center pt-5">
- 
+                <div class="container text-center pt-5">
 
 
-		</div>
-    </footer>
-    <!-- Footer Section End -->
 
-    <!-- Js Plugins -->
-   <script src="/user/jquery-3.3.1.min.js"></script>
-    <script src="/user/bootstrap.min.js"></script>
-    <script src="/user/jquery.magnific-popup.min.js"></script>
-    <script src="/user/jquery.slicknav.js"></script>
-    <script src="/user/owl.carousel.min.js"></script>
-    <script src="/user/jquery.nice-select.min.js"></script>
-    <script src="/user/mixitup.min.js"></script>
-    <script src="/user/main.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist//bootstrap.bundle.min.js"></script>
+                </div>
+        </footer>
+        <!-- Footer Section End -->
 
-</body>
+        <!-- Js Plugins -->
+        <script src="/user/jquery-3.3.1.min.js"></script>
+        <script src="/user/bootstrap.min.js"></script>
+        <script src="/user/jquery.magnific-popup.min.js"></script>
+        <script src="/user/jquery.slicknav.js"></script>
+        <script src="/user/owl.carousel.min.js"></script>
+        <script src="/user/jquery.nice-select.min.js"></script>
+        <script src="/user/mixitup.min.js"></script>
+        <script src="/user/main.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist//bootstrap.bundle.min.js"></script>
+
+    </body>
 
 </html>

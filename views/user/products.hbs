@@ -129,19 +129,47 @@
                 <h3>Filter & Sort</h3>
                 <form id="filter-form">
                     <div class="form-group">
-                        <label>Brand:</label><br>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="nike" name="brand" value="nike">
-                            <label class="form-check-label" for="nike">Nike</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="adidas" name="brand" value="adidas">
-                            <label class="form-check-label" for="adidas">Adidas</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="puma" name="brand" value="puma">
-                            <label class="form-check-label" for="puma">Puma</label>
-                        </div>
+                                                <!-- Add more subcategories as needed -->
+
+                        <label>Category:</label><br>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="men" name="category" value="men">
+        <label class="form-check-label" for="men">Men</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="women" name="category" value="women">
+        <label class="form-check-label" for="women">Women</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="children" name="category" value="children">
+        <label class="form-check-label" for="children">Children</label>
+    </div> <br>
+                        <!-- Add more subcategories as needed -->
+                      <label>Subcategory:</label><br>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="shirt" name="subcategory" value="shirt">
+            <label class="form-check-label" for="shirt">Shirt</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="tshirt" name="subcategory" value="tshirt">
+            <label class="form-check-label" for="tshirt">T-Shirt</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="pants" name="subcategory" value="pants">
+            <label class="form-check-label" for="pants">Pants</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="trousers" name="subcategory" value="trousers">
+            <label class="form-check-label" for="trousers">Trousers</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="kurta" name="subcategory" value="kurta">
+            <label class="form-check-label" for="kurta">Kurta</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="saree" name="subcategory" value="saree">
+            <label class="form-check-label" for="saree">Saree</label>
+        </div>
                         <!-- Add more brands as needed -->
                     </div>
                     <div class="form-group">
@@ -187,52 +215,91 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="price-range">Price Range:</label><br>
-                        <input type="range" class="form-control-range" style="width: 10rem;" id="price-range"
-                               name="price-range" min="100" max="10000">
-                        <span id="price-range-output">0 - 1000</span>
+                     <label for="price-range">Price Range:</label><br>
+<input type="range" class="form-control-range" style="width: 10rem;" id="price-range"
+    name="price-range" min="100" max="10000">
+<span id="price-range-output">0 - 1000</span>
+
                     </div>
-                    <button type="submit" class="btn btn-primary">Apply Filters</button>
+                    <button type="submit"  id="apply-filters-btn" class="btn btn-primary">Apply Filters</button>
                 </form>
             </div>
         </div>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<script>
-    // jQuery code to handle form submission and apply filters
-    $(document).ready(function () {
-        $('#filter-form').submit(function (event) {
-            event.preventDefault();
-            // Gather selected filters
-            const filters = {
-                brand: [],
-                size: [],
-                color: [],
-                priceRange: $('#price-range').val()
-            };
-            $('input[name="brand"]:checked').each(function () {
-                filters.brand.push($(this).val());
-            });
-            $('input[name="size"]:checked').each(function () {
-                filters.size.push($(this).val());
-            });
-            $('input[name="color"]:checked').each(function () {
-                filters.color.push($(this).val());
-            });
+<!-- Your HTML structure remains the same -->
 
-            // Apply filters (You can replace this with your filtering logic)
-            console.log('Applied filters:', filters);
-            // For demonstration, I'm just showing the filters in the console
-            // You can write your logic to update the product grid based on the filters
-            // For example, you can make an AJAX request to fetch filtered products from the server and then update the product grid
+<!-- Include Bootstrap JavaScript -->
+<!-- Your HTML structure remains unchanged -->
+
+<!-- Include Bootstrap JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const applyFiltersBtn = document.getElementById('apply-filters-btn');
+    if (applyFiltersBtn) {
+        applyFiltersBtn.addEventListener('click', filterProducts);
+    } else {
+        console.error("Button element with ID 'apply-filters-btn' not found.");
+    }
+});
+
+async function filterProducts() {
+    const formData = new FormData(document.getElementById('filter-form'));
+    try {
+        const response = await fetch('/products', {
+            method: 'POST',
+            body: formData
         });
+
+        if (response.ok) {
+            const filteredProducts = await response.json();
+            renderFilteredProducts(filteredProducts);
+        } else {
+            throw new Error('Failed to filter products');
+        }
+    } catch (error) {
+        console.error(error);
+        // Handle error
+    }
+}
+
+function renderFilteredProducts(products) {
+    const filteredProductsContainer = document.getElementById('display-filtered');
+    filteredProductsContainer.innerHTML = '';
+
+    products.forEach(product => {
+        const productElement = document.createElement('div');
+        productElement.className = 'col-lg-3 col-sm-5 single-product-item';
+        productElement.innerHTML = `
+            <div class="single-product-item">
+                <figure>
+                    <a href="/user/productpage?name=${product._id}"><img src="${product.image.url}" alt=""></a>
+                </figure>
+                <div class="product-text">
+                    <h6>${product.productname}</h6>
+                    <p>$${product.price}</p>
+                </div>
+            </div>`;
+        filteredProductsContainer.appendChild(productElement);
     });
+}
 </script>
 
+{{!-- ---------------------------------------------------------------------------------------------------------------- --}}
+<style>
+       .single-product-item {
+    transition: transform 0.3s ease;
+}
 
-        <div class="col-md-10">
+.single-product-item:hover {
+    transform: scale(1.08); /* Slightly expand the card on hover */
+}
+</style>
+        <div class="col-md-10" id="display-filtered">
             <!-- Content for the second column (7 units) -->
-            <div class="row">
+            <div class="row"  id="from-hiding-point" >
                 {{#each products}}
                 <div class="col-lg-3 col-sm-5">
                     <div class="single-product-item">

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{!-- <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -134,4 +134,469 @@
     });
   </script>
 </body>
-</html>
+</html> --}}
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>
+
+
+
+
+
+                let category = [];
+                let size = [];
+                let subCategory = [];
+                let color = [];
+                var sortOrder = { productName: 1 }//PRE DEFINED STRUCTURE OF SORT WHEN 1ST PRODUCT RENDER now IT WILL COMES IN ALPHABETICAL ORDRER
+
+
+                //SETTING ALL FIELD VALUSE TO SEE ALL PRODUCTS
+                //BRANDS        
+                $('#brands input').on('change', function () {//THIS LINE SELECT ALL INPUT FIELD UNDER THE DIV ID BRANDS.
+                        //IN THE INPUT FILEDS ON CHANGE EVENT HANDLER TAKE THE INPUT CHECKD TYPE VALUES
+                        brand = $('#brands input:checked').map(function () { //THIS MAP FUNCTION TAKE THE ALL SELECTED VALUES AND RETUN THE VALUES TO DECLARED ARRAY
+                                return $(this).val();
+                        }).get();
+
+                        console.log('Selected Brands:', brand);
+                });
+
+
+                //SUBCATEGORY
+                $('#subCategory input').on('change', function () {
+                        subCategory = $('#subCategory input:checked').map(function () {
+                                return $(this).val();
+                        }).get();
+
+                        console.log('Selected subCategory:', subCategory);
+                });
+
+                //COLORS
+                $('#colors input').on('change', function () {
+                        color = $('#colors input:checked').map(function () {
+                                return $(this).val();
+                        }).get();
+
+                        console.log('Selected color:', color);
+                });
+
+
+                //SIZE
+                function sizeArray(li) {
+                        $('#size ul li').css({  //RESET THE PREVIOS CLICKED LI COLOR
+                                'background-color': '',
+                                'color': ''
+                        });
+
+                        $(li).css({
+                                'background-color': 'black',
+                                'color': 'white'
+                        })
+                        size = [];
+                        size.push(li.textContent)
+                        submisions();  //WHENEVER THE SIZE BUTTON CLICKS THE FORM SUBMISSION WORK BCZ ALL OTHER ARE INPUT FIELDS SO IT WIL CALL SUBMISSIN() WHILE ON CHANGE.BUT THIS IN LI SO.CALLING SUBMISSION INDUVIDUALLY
+                }
+                //INITIAL VALUE SETTING END
+
+
+
+
+                function clearSize() { //CLEAR THE SIZE TO DISPLY ALL SIZE PRODUCTS
+                        $('#size ul li').css({  //RESET THE PREVIOS CLICKED LI COLOR
+                                'background-color': '',
+                                'color': ''
+                        });
+                        size = [];
+                        console.log("current size", size, size.length)
+
+                        submisions();  // ITS A BUTTON SO IT CALLED SUBMISSIONS  AS INDUVIDUALLY. AFTER CLEAR SIZE THIS WIL ACT AS THE INPUT ARRY=0
+                }
+
+
+                function sortFunction(value) {  //THIS FUNCTION WILL SEND SORT TYPE .SORT BY NAME,PRICE,DISCOUNT ETC...
+                        //sortOrder=value;
+                        sortOrder = JSON.parse(value); //SOMETIMES THE PRODUCT SORTING NUMBER 1 OR -1 NOT GET AS NUMBER SO IT PARSE HERE
+                        submisions()
+                }
+
+
+                async function submisions() { //FILTER THE FORM WILL SEND HERE
+                        try {
+
+
+                                //IF ARRAY IS 0 AGGREGATION NOT WORK SO THIS CASE .IF CUSTOMER CHOOSE  NOT CHOOSE ANY CRITEREA .ASSIGNING ALL POSSIBLE FILTEER VALUES TO IT .AND IT WILL RETURN AS ALL PRODUCT COLLECTIONSif (brand.length === 0) { //IF THE FILED NOT SELECT ANYHING AGGREGATTION NOT WORK SO INITILLAY ALL FIELD SEND TOO SERVER
+                                        $('input[name^="brands"]').each(function () {
+                                                brand.push((this).value)
+                                        })
+                                }
+                                if (subCategory.length === 0) {
+                                        $('input[name^="subCategory"]').each(function () {
+                                                subCategory.push((this).value)
+                                        })
+                                }
+                                if (color.length === 0) {
+                                        $('input[name^="colors"]').each(function () {
+                                                color.push((this).value)
+                                        })
+                                }
+
+                                if (size.length === 0) {
+                                        $('#size ul li').each(function () {
+                                                size.push($(this).text())
+                                        })
+                                }
+                                console.log(brand)
+                                console.log(subCategory)
+                                console.log(color)
+                                console.log(size)
+                                console.log(sortOrder)
+                                //AT HERE WE CAN SEE IN CONSOLE WHICHEVER FILED ARE USER SELCTED AND IF NOT CHOOSE ANY FILD WE AUTOMATICALLY FULL FILL THE ALL POSSIBLE VALUES
+
+                                let response = await axios.post('/menFilter', { brand, subCategory, color, size, sortOrder })
+                                if (response.data.success) {
+                                        console.log(response.data.Allcollections)//OUT PUT CORRSPOND TO THE FILLTER
+                                        $('.colorlib-product .row.row-pb-md').empty(); //CURRENTLY RENDERED ALL DATA WILL REMOVE AND FILTER OP SHOWS        
+                                        if (response.data.Allcollections.length === 0) {
+                                                let productOutOfStock = <div class="text">
+                                                     <h1 class="title"> <strong>Sorry</strong></h1>
+                                                      <p>Oops! It seems that There are <strong>NO</strong> Products matching your criteria.</p>
+                                                      </div>
+                                                $('.colorlib-product .row.row-pb-md').append(productOutOfStock);
+                                        }
+                                        response.data.Allcollections.forEach(function (product) {//ITERRATE THROUGH EACH PRODUCT AND DISPLAY
+                                                let productHtml = 
+                                               <div class="col-lg-4 col-md-6 mb-4 text-center" onclick="formAct('${product._id}')">
+                                                 <div class="product-entry border">
+                                                   <a href="#" class="prod-img"><img src="${product.productImages[0].url}" class="img-fluid" alt="Free html5 bootstrap 4 template"></a>
+                                                   <div class="desc">
+                                                      <h2><a href="#">${product.productName}</a></h2>
+                                                      <p>Brand : <a style="font-weight: 300;" href="#"><b>${product.productBrand}</b></a></p>
+                                                                                                         ${size.length == 1 ? <p>Size : <a style="font-weight: 200;" href="#"><b>${size[0]}</b></a></p>` : ''}<p>Color : <a style="font-weight: 200;" href="#"><b>${product.productColor}</b></a></p>
+                                                      <p>MRP: <del style="font-size: small;font-weight: 500; color:red">&#x20b9;${product.productMRP}</del> <span style="color: green; padding-left:5px">${product.productDiscount}% off</span></p>
+                                                      <span class="price"> &#x20b9;${product.productPrice}</span>
+                                                    </div>
+                                                 </div>
+                                               </div>`;
+                                                $('.colorlib-product .row.row-pb-md').append(productHtml); //THIS ALL CONTENT WLL BE ATTACHED TO COLORLIB DIV
+                                        });
+                                }
+
+                        } catch (error) {
+                                console.log(error)
+                        }
+                }
+
+
+                function handleInputChange() {//THIS IS A FUNCTION CREATED FOR FORM SUBMISSION WITHOUT CLICK BUTTON ,THIS FUNCTIONS WORK THEN CALL THE FILTER FORM SUBMISSION FUNCTION TO CALL FOR SUBMIT 
+                        submisions(); //FILTER FORM WIL SBMIT
+                }
+
+        //THESE ARE THE EVENTS FOR CALL HANDLEINPUTCHANGE FUNCTION FOR FORM SUBMISSION
+                $('#brands input').on('change', handleInputChange);
+                $('#subCategory input').on('change', handleInputChange);
+                $('#colors input').on('change', handleInputChange);
+
+                //CALLING INDUVIDUAL PRODUCT
+                function formAct(ProductId) {
+                                //alert(ProductId)
+                        $('input[name=productId]').val(ProductId);
+                        $('#productForm').submit();
+
+                }
+
+
+
+        </script>
+        {{!-- //////////////////////////////////////////////////////////////////////////// --}}
+
+
+        function submisions() {
+    try {
+        // Your filter logic goes here
+        
+        let response = await axios.post('/menFilter', { brand, subCategory, color, size, sortOrder });
+        
+        if (response.data.success) {
+            console.log(response.data.Allcollections);
+            $('.colorlib-product .row.row-pb-md').empty();
+            
+            if (response.data.Allcollections.length === 0) {
+                let productOutOfStock = `<div class="text">
+                                             <h1 class="title"> <strong>Sorry</strong></h1>
+                                             <p>Oops! It seems that There are <strong>NO</strong> Products matching your criteria.</p>
+                                         </div>`;
+                $('.colorlib-product .row.row-pb-md').append(productOutOfStock);
+            }
+            
+            response.data.Allcollections.forEach(function (product) {
+                let productHtml = `<div class="col-lg-4 col-md-6 mb-4 text-center" onclick="formAct('${product._id}')">
+                                        <div class="product-entry border">
+                                            <a href="#" class="prod-img"><img src="${product.productImages[0].url}" class="img-fluid" alt="Free html5 bootstrap 4 template"></a>
+                                            <div class="desc">
+                                                <h2><a href="#">${product.productName}</a></h2>
+                                                <p>Brand : <a style="font-weight: 300;" href="#"><b>${product.productBrand}</b></a></p>
+                                                ${size.length == 1 ? `<p>Size : <a style="font-weight: 200;" href="#"><b>${size[0]}</b></a></p>` : ''}
+                                                <p>Color : <a style="font-weight: 200;" href="#"><b>${product.productColor}</b></a></p>
+                                                <p>MRP: <del style="font-size: small;font-weight: 500; color:red">&#x20b9;${product.productMRP}</del> <span style="color: green; padding-left:5px">${product.productDiscount}% off</span></p>
+                                                <span class="price"> &#x20b9;${product.productPrice}</span>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                $('.colorlib-product .row.row-pb-md').append(productHtml);
+            });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function handleInputChange() {
+    submisions();
+}
+
+// Event listeners for input changes
+$('#brands input').on('change', handleInputChange);
+$('#subCategory input').on('change', handleInputChange);
+$('#colors input').on('change', handleInputChange);
+
+// Function to handle individual product click
+function formAct(ProductId) {
+    $('input[name=productId]').val(ProductId);
+    $('#productForm').submit();
+}
+
+
+
+{{!-- --------------------------------------------------------------------   --}}
+
+<div class="container">
+  <h1>Use Bootstrap 3's carousel to show multiple items per slide.</h1>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="carousel slide multi-item-carousel" id="theCarousel">
+        <div class="carousel-inner">
+          <div class="item active">
+            <div class="col-xs-4"><a href="#1"><img src="https://source.unsplash.com/300x300/?perth,australia" class="img-responsive"></a></div>
+          </div>
+          <div class="item">
+            <div class="col-xs-4"><a href="#1"><img src="https://source.unsplash.com/300x300/?fremantle,australia" class="img-responsive"></a></div>
+          </div>
+          <div class="item">
+            <div class="col-xs-4"><a href="#1"><img src="https://source.unsplash.com/300x300/?west-australia" class="img-responsive"></a></div>
+          </div>
+          <div class="item">
+            <div class="col-xs-4"><a href="#1"><img src="https://source.unsplash.com/300x300/?perth" class="img-responsive"></a></div>
+          </div>
+          <div class="item">
+            <div class="col-xs-4"><a href="#1"><img src="https://source.unsplash.com/300x300/?quokka,perth" class="img-responsive"></a></div>
+          </div>
+          <div class="item">
+            <div class="col-xs-4"><a href="#1"><img src="https://source.unsplash.com/300x300/?margaretriver,australia" class="img-responsive"></a></div>
+          </div>
+          <!-- add  more items here -->
+          <!-- Example item start:  -->
+          
+          <div class="item">
+            <div class="col-xs-4"><a href="#1"><img src="https://source.unsplash.com/300x300/?perth,australia&r=7" class="img-responsive"></a></div>
+          </div>
+          
+          <!--  Example item end -->
+        </div>
+        <a class="left carousel-control" href="#theCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+        <a class="right carousel-control" href="#theCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .multi-item-carousel{
+  .carousel-inner{
+    > .item{
+      transition: 500ms ease-in-out left;
+    }
+    .active{
+      &.left{
+        left:-33%;
+      }
+      &.right{
+        left:33%;
+      }
+    }
+    .next{
+      left: 33%;
+    }
+    .prev{
+      left: -33%;
+    }
+    @media all and (transform-3d), (-webkit-transform-3d) {
+      > .item{
+        // use your favourite prefixer here
+        transition: 500ms ease-in-out left;
+        transition: 500ms ease-in-out all;
+        backface-visibility: visible;
+        transform: none!important;
+      }
+    }
+  }
+  .carouse-control{
+    &.left, &.right{
+      background-image: none;
+    }
+  }
+}
+
+// non-related styling:
+body{
+  background: #333;
+  color: #ddd;
+}
+h1{
+  color: white;
+  font-size: 2.25em;
+  text-align: center;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  text-shadow: 0px 2px 0px rgba(0, 0, 0, 1);
+}
+</style>
+
+<script>
+ // Instantiate the Bootstrap carousel
+$('.multi-item-carousel').carousel({
+  interval: false
+});
+
+// for every slide in carousel, copy the next slide's item in the slide.
+// Do the same for the next, next item.
+$('.multi-item-carousel .item').each(function(){
+  var next = $(this).next();
+  if (!next.length) {
+    next = $(this).siblings(':first');
+  }
+  next.children(':first-child').clone().appendTo($(this));
+  
+  if (next.next().length>0) {
+    next.next().children(':first-child').clone().appendTo($(this));
+  } else {
+  	$(this).siblings(':first').children(':first-child').clone().appendTo($(this));
+  }
+});
+</script>
+
+{{!-- ---------------------------------------    --}}
+<section>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="scrollcards">
+        
+          <div class="card">
+            <img class="card-img-top" src="http://via.placeholder.com/350x150">
+            <div class="card-block">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Text Here</p>
+            </div>
+          </div>
+        
+          <div class="card">
+            <img class="card-img-top" src="http://via.placeholder.com/350x150">
+            <div class="card-block">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Text Here</p>
+            </div>
+          </div>
+          
+          <div class="card">
+            <img class="card-img-top" src="http://via.placeholder.com/350x150">
+            <div class="card-block">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Text Here</p>
+            </div>
+          </div>
+        
+          <div class="card">
+            <img class="card-img-top" src="http://via.placeholder.com/350x150">
+            <div class="card-block">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Text Here</p>
+            </div>
+          </div>
+        
+          <div class="card">
+            <img class="card-img-top" src="http://via.placeholder.com/350x150">
+            <div class="card-block">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Text Here</p>
+            </div>
+          </div>
+        
+          <div class="card">
+            <img class="card-img-top" src="http://via.placeholder.com/350x150">
+            <div class="card-block">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Text Here</p>
+            </div>
+          </div>
+        
+          <div class="card">
+            <img class="card-img-top" src="http://via.placeholder.com/350x150">
+            <div class="card-block">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Text Here</p>
+            </div>
+          </div>
+        
+          <div class="card">
+            <img class="card-img-top" src="http://via.placeholder.com/350x150">
+            <div class="card-block">
+              <h4 class="card-title">Card title</h4>
+              <p class="card-text">Text Here</p>
+            </div>
+          </div>
+       
+        
+      </div>
+    </div>
+   </div>
+</section>
+
+
+<style>
+  section{
+  margin-top: 40px;
+}
+.card {
+  border: 2px solid red;
+  margin: 10px 4px;
+  transition: .6s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-block {
+   padding: 10px;
+}
+
+.scrollcards {
+  background-color: #fff;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    background: transparent;
+}
+
+div.scrollcards .card {
+    display: inline-block;
+    padding: 14px;
+    text-decoration: none;
+    height: auto; 
+    width: 300px;
+}
+
+</style>

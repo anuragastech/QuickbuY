@@ -92,7 +92,7 @@ let postcart = async (req, res) => {
         const userId = req.user.id;
         // console.log(yes);
 
-        console.log(userId);
+        // console.log(userId);
 
         if (!productId) {
             return res.status(400).json({ alert: 'Product ID is required' });

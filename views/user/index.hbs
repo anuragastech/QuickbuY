@@ -82,9 +82,9 @@
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li><a class="active" href="/user/index">Home</a></li>
-                        <li><a href="/user/categories">Shop</a>
+                        <li><a href="/user/products">Shop</a>
                             <ul class="sub-menu">
-                                <li><a href="/user/products">Product Page</a></li>
+                                {{!-- <li><a href="/user/products">Product Page</a></li> --}}
                                 <li><a href="/user/shopping-cart">Shopping Card</a></li>
                                 {{!-- <li><a href="/user/check-out">Check out</a></li> --}}
                             </ul>
@@ -239,10 +239,137 @@
         <!-- Features Box -->
         <div class="features-box">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="row">
-                            {{#with categorys.[0]}}
+                {{!-- <div class="row"> --}}
+                    {{!-- <div class="col-lg-6">
+                        <div class="row"> --}}
+
+ 
+            <div class="row">
+               
+   <section>
+  <div class="container">
+    
+    <button style="border-radius: 20px; width: 10px; background-color: white; border: 2px rgb(0, 0, 0); color: rgb(22, 21, 21);" class="scroll-left-btn">&lt;</button>
+    <div class="scrollcards">
+      {{#each subcategor}}
+        <div class="card">
+                            <a onclick="" href="/user/categories/{{this.id}}"><img src="{{this.image.url}}" alt=""></a>
+          <div class="card-block">
+            <h4 class="card-title">{{this.title}}</h4>
+            <p class="card-text">{{this.description}}</p>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+    <button style="" class="scroll-right-btn">&gt;</button>
+  </div>
+</section>
+
+                      
+                    </div>
+                </div>.
+
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+  const scrollContainer = document.querySelector(".scrollcards");
+  const scrollLeftBtn = document.querySelector(".scroll-left-btn");
+  const scrollRightBtn = document.querySelector(".scroll-right-btn");
+
+  scrollLeftBtn.addEventListener("click", function() {
+    scrollContainer.scrollLeft -= 100; // Adjust the scroll amount as needed
+  });
+
+  scrollRightBtn.addEventListener("click", function() {
+    scrollContainer.scrollLeft += 100; // Adjust the scroll amount as needed
+  });
+});
+
+                </script>
+                <style>
+                    section {
+  margin-top: 40px;
+}
+
+.container {
+  position: relative;
+}
+
+.scrollcards {
+  background-color: #fff;
+  overflow: auto;
+  white-space: nowrap;
+  padding: 0 30px; /* Adjusted padding for both left and right buttons */
+}
+
+.scroll-left-btn,
+.scroll-right-btn {
+  position: absolute;
+  top: 0;
+  width: 30px; /* Adjust button width as needed */
+  height: 100%;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.scroll-left-btn {
+  left: 0;
+}
+
+.scroll-right-btn {
+  right: 0;
+}
+
+                </style>
+              {{!-- --------------------------------------    --}}
+
+
+
+
+
+<style>
+  section{
+  margin-top: 40px;
+}
+.card {
+  border: 2px solid rgb(254, 254, 254);
+  margin: 10px 4px;
+  transition: .6s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-block {
+   padding: 10px;
+}
+
+.scrollcards {
+  background-color: #fff;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    background: transparent;
+}
+
+div.scrollcards .card {
+    display: inline-block;
+    padding: 14px;
+    text-decoration: none;
+    height: auto; 
+    width: 300px;
+}
+
+</style>
+
+                            
+                            {{!-- {{#with categorys.[0]}}
                             <div class="col-lg-12">
                                 <div class="single-box-item first-box">
                                     <img src="{{image.url}}" alt="">
@@ -284,7 +411,7 @@
                     </div>
                 </div>
             </div>
-            {{/with}}
+            {{/with}} --}}
 
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -310,27 +437,36 @@
                     </div>
                 </div>
             </div>
+<style>
+   .single-product-item {
+    transition: transform 0.3s ease;
+}
 
+.single-product-item:hover {
+    transform: scale(1.08); /* Slightly expand the card on hover */
+}
+ 
+</style>
 
-            <div class="row" id="product-list">
-                {{#each prdct}}
-                <div class="col-lg-3 col-sm-6  mix all dresses bags">
-                    <div class="single-product-item">
-                        <figure>
-                            <a href="/user/productpage?name={{this._id}}"><img src="{{this.image.url}}" alt="{{this.productname}}"></a>
-                                                        {{!-- <a href="/user/productpage?name={{this._id}}"><img src="{{this.image.url}}" alt=""></a> --}}
-
-
-                            {{!-- <img src="" alt=""> --}}
-                            <div class="p-status">new</div>
-                        </figure>
-                        <div class="product-text">
-                            <h6>{{this.productname}}</h6>
-                            <p>${{this.price}}</p>
-                        </div>
-                    </div>
+          <div class="row" id="product-list">
+    {{#each prdct}}
+        <div class="col-lg-3 col-sm-6 mix all dresses bags">
+            <div class="single-product-item">
+                <figure>
+                    <a href="/user/productpage?name={{this._id}}">
+                        <img src="{{this.image.url}}" alt="{{this.productname}}">
+                    </a>
+                    <div class="p-status">new</div>
+                </figure>
+                <div class="product-text">
+                    <h6>{{this.productname}}</h6>
+                    <p>${{this.price}}</p>
                 </div>
-                {{/each}}
+            </div>
+        </div>
+    {{/each}}
+</div>
+
 
 
             </div>

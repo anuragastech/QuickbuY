@@ -42,8 +42,7 @@ app.use('/admin', adminRouter);
 
 const uri = 'mongodb+srv://anurag:uZ3b7uWu5E5C1Rk8@cluster0.9mscwvc.mongodb.net/data';
 mongoose.connect(uri, {
-   
-    socketTimeoutMS: 30000, // Set the timeout to 30 seconds
+
   })
   .then(() => {
     console.log("MongoDB connected");

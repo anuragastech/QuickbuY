@@ -59,10 +59,10 @@
                     <a href="/index"><img src="/logo.png" alt=""></a>
                 </div>
                 <div class="header-right">
-                    <img src="/icons/search.png" alt="" class="search-trigger">
-                    <img src="/icons/man.png" alt="">
+                    {{!-- <img style="width: 20%;" src="/icons/search.png" alt="" class="search-trigger"> --}}
+                    <img  style="width: 20%;" src="/icons/man.png" alt="">
                     <a href="#">
-                        <img src="/icons/bag.png" alt="">
+                        <img   style="width: 80%;" src="/icons/bag.png" alt="">
                         <span>2</span>
                     </a>
                 </div>
@@ -111,66 +111,303 @@
     <!-- Page Add Section End -->
 
     <!-- Categories Page Section Begin -->
-    <section class="categories-page spad">
-        <div class="container">
-            <div class="categories-controls">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="categories-filter">
-                            <div class="cf-left">
-                                <form action="#">
-                                    <select class="sort">
-                                        <option value="">Sort by</option>
-                                        <option value="">Orders</option>
-                                        <option value="">Newest</option>
-                                        <option value="">Price</option>
-                                    </select>
-                                </form>
-                            </div>
-                            <div class="cf-right">
-                                <span>20 Products</span>
-                                <a href="#">2</a>
-                                <a href="#" class="active">4</a>
-                                <a href="#">6</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+   
             
             <div class="row">
                
-                <div class="col-md-12 col-md-6">
-                    <div class="row">
-                        {{#each subcategor}}
-                        <div class="col-lg-3 col-md-6 col-sm-9">
-                            <div class="single-product-item">
-                                <figure>
-                                    <img src="{{this.image.url}}" alt="">
-                                    {{!-- <div class="p-status sale">sale</div> --}}
-                                </figure>
-                                <div class="product-text">
-                                    <a href="#">
-                                        <h6>{{this.title}}</h6>
-                                    </a>
-                                    <p></p>
-                                </div>
-                            </div>
-                        </div>
-                      {{/each}}
-                      
+   <section>
+  <div class="container">
+    
+    <button style="border-radius: 20px; width: 10px; background-color: white; border: 2px rgb(0, 0, 0); color: rgb(22, 21, 21);" class="scroll-left-btn">&lt;</button>
+    <div class="scrollcards">
+      {{#each subcategor}}
+        <div class="card">
+                            <a onclick="" href="/user/categories/{{this.id}}"><img src="{{this.image.url}}" alt=""></a>
+          <div class="card-block">
+            <h4 class="card-title">{{this.title}}</h4>
+            <p class="card-text">{{this.description}}</p>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+    <button style="" class="scroll-right-btn">&gt;</button>
+  </div>
+</section>
+
                       
                     </div>
-                </div>
-              
+                </div>.
 
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+  const scrollContainer = document.querySelector(".scrollcards");
+  const scrollLeftBtn = document.querySelector(".scroll-left-btn");
+  const scrollRightBtn = document.querySelector(".scroll-right-btn");
+
+  scrollLeftBtn.addEventListener("click", function() {
+    scrollContainer.scrollLeft -= 100; // Adjust the scroll amount as needed
+  });
+
+  scrollRightBtn.addEventListener("click", function() {
+    scrollContainer.scrollLeft += 100; // Adjust the scroll amount as needed
+  });
+});
+
+                </script>
+                <style>
+                    section {
+  margin-top: 40px;
+}
+
+.container {
+  position: relative;
+}
+
+.scrollcards {
+  background-color: #fff;
+  overflow: auto;
+  white-space: nowrap;
+  padding: 0 30px; /* Adjusted padding for both left and right buttons */
+}
+
+.scroll-left-btn,
+.scroll-right-btn {
+  position: absolute;
+  top: 0;
+  width: 30px; /* Adjust button width as needed */
+  height: 100%;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.scroll-left-btn {
+  left: 0;
+}
+
+.scroll-right-btn {
+  right: 0;
+}
+
+                </style>
+              {{!-- --------------------------------------    --}}
+
+
+
+
+
+<style>
+  section{
+  margin-top: 40px;
+}
+.card {
+  border: 2px solid rgb(254, 254, 254);
+  margin: 10px 4px;
+  transition: .6s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card-block {
+   padding: 10px;
+}
+
+.scrollcards {
+  background-color: #fff;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    background: transparent;
+}
+
+div.scrollcards .card {
+    display: inline-block;
+    padding: 14px;
+    text-decoration: none;
+    height: auto; 
+    width: 300px;
+}
+
+</style>
+
+{{!-- ------------------------------------------------------------------------------------   --}}
+  <div class="container">
+
+        <div class="input">
+            {{!-- <input type="range" min="50" max="1000" value="10" step="10" id="priceSlider" >
+            <span id="sliderValue">$10</span> --}}
+            <h5>Related Product</h5>
+        </div>
+
+        <div class="product-list">
+
+{{#each relatedProductIn }}
+            {{!-- ------  --}}
+          <div class="product" data-price="50">
+            <div class="img">
+                            <a href="/user/productpage?name={{this._id}}"><img src="{{this.image.url}}" alt=""></a>
+            </div>
+            <div class="info">
+                <h3>{{this.productname}}</h3>
+                <p>{{this.price}}</p>
+            </div>
+            {{!-- <button style="color: black;">Add to Cart</button> --}}
+          </div>
+
+          {{!-- ---   --}}
+
+{{/each}}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins;
+    color: white;
+}
+
+body{
+  
+}
+
+img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+h3{
+    font-weight: 500;
+}
+
+p{
+    font-style: italic;
+    color: rgb(217, 217, 217);
+}
+
+button{
+    display: inline-block;
+    width: auto; 
+    padding: 0.6rem 1.5rem;
+    border: 1px solid #606060;
+    background: none;
+    font-weight: 400;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+
+
+.input{
+    display: flex;
+    justify-content: center;
+    margin-block: 20px 50px;
+}
+
+.product-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.product-list:has(.product:hover) .product:not(:hover){
+}
+
+.product{
+    border: 1px solid #606060;
+    height: 300px;
+    padding: 10px 10px 20px 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: filter 0.1s ease-in-out, opacity 0.1s ease-in-out;
+}
+
+.img{
+    height: 60%;
+    width: 100%;
+}
+
+.info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+    </style>
+
+  <!-- JavaScript -->
+{{!-- <script>
+    const slider = document.querySelector('#priceSlider');
+    const display = document.querySelector('#sliderValue');
+    const products = document.querySelectorAll('.product');
+
+    // Function to fetch prices from backend
+    async function fetchPrices() {
+        try {
+            // Make a request to fetch prices from the backend
+            const response = await fetch('backend_endpoint_url');
+            const data = await response.json();
+
+            // Update data-price attribute of each product based on the fetched prices
+            products.forEach((product, index) => {
+                const price = data.prices[index]; // Assuming prices are returned as an array in the response
+                product.dataset.price = price; // Update data-price attribute
+            });
+
+            // Update slider value and display
+            updateSlider();
+        } catch (error) {
+            console.error('Error fetching prices:', error);
+        }
+    }
+
+    // Function to update slider value and display
+    function updateSlider() {
+        const sliderValue = parseInt(slider.value);
+        display.textContent = `$${sliderValue}`;
+
+        products.forEach(product => {
+            const price = parseInt(product.dataset.price);
+
+            if (sliderValue >= price) {
+                gsap.to(product, {autoAlpha: 1, scale: 1, duration: 0.5});
+            } else {
+                gsap.to(product, {autoAlpha: 0, scale: 0.8, duration: 0.5});
+            }
+        });
+    }
+
+    // Event listener for slider input
+    slider.oninput = updateSlider;
+
+    // Fetch prices when the page loads
+    window.onload = fetchPrices;
+</script> --}}
+
+{{!-- -----------------------------------------   --}}
 
             </div>
-            <div class="more-product">
+            <div class="more-product" style="height: 100px;">
                 <div class="row">
+{{!--                     
                     <div class="col-lg-12 text-center">
                         <a href="#" class="primary-btn">Load More</a>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

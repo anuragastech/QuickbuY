@@ -9,7 +9,7 @@
     align-items: center;
     /* background-image: url("https://res.cloudinary.com/dd6qdgpfr/image/upload/v1699675457/claudio-schwarz-ID43LcHjO3g-unsplash_tx4og5.jpg"); */
    background-size: cover;
-   background-color: #e5d2d2;
+   /* background-color: #e5d2d2; */
    background-position: center;
     justify-content: center;
     height: 100vh;
@@ -17,20 +17,20 @@
 }
 .wrapper{
     width: 650px;
-    height: 500px;
+    height: auto;
    background: transparent;
-   background-color: rgb(185, 185, 185);
+   background-color:transparent;
     padding: 10px 15px;
     margin: 10px 0;
     position: relative;
-    border: 1px solid rgba(97, 93, 93, 0.2);
+    border: 4px solid rgb(245, 245, 245);
     backdrop-filter: blur(8px);
     border-radius: 20px;
 }
 .wrapper h1{
     font-size: 28px;
-    font-weight: bolder;
-    color: #000000;
+    font-weight: bold;
+    color: #fffefe;
     text-align: center;
 }
 .wrapper .input-box{
@@ -40,7 +40,7 @@
     position: relative;
 }
 .wrapper .input-box input{
-    color: #030303;
+    color: #fffefe;
     width: 100%;
     padding: 10px 12px;
     border-radius: 20px;
@@ -80,7 +80,7 @@ input::placeholder{
     outline: none;
     font-weight: 500;
     background-color: #f8f8f8;
-    box-shadow: 0px 0px 5px rgb(25, 22, 22);
+    box-shadow: 0px 0px 5px rgb(255, 255, 255);
     margin-bottom: 10px;
     
 }
@@ -94,7 +94,7 @@ input[value="Login"]{
 }
 .register p,a{
     text-decoration: none;
-    color: #d64f4f;
+    color: #ffffff;
     font-size: 16px;
     word-spacing: 1px;
    

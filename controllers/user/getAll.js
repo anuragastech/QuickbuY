@@ -1,9 +1,7 @@
 let getcontact=(req,res)=>{
     res.render('user/contact')
     };
-    let getcheckout=(req,res)=>{
-    res.render('user/check-out')
-    };
+  
     getlogin=(req, res) => {
   
         return res.redirect('/vender/home');
@@ -19,4 +17,4 @@ let getuser=(req,res)=>{
     res.render('user/user')
     };
 
-    module.exports={getcontact,getcheckout,getlogin,getindex,getuser}
+    module.exports={getcontact,getlogin,getindex,getuser}

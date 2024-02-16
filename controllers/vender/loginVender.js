@@ -9,15 +9,15 @@ require("dotenv").config();
 let loginvender = async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = await register.findOne({ email });
+        const vender = await register.findOne({ email });
 
-        if (user && !user.blocked && (await bcrypt.compare(password, user.password))) {        
+        if (vender && !vender.blocked && (await bcrypt.compare(password, vender.password))) {        
             console.log('Authentication successful');
 
-            const token = jwt.sign({ id: user._id, role: user.role }, secretKey, { expiresIn: '2h' });
+            const token = jwt.sign({ id: vender._id, role: vender.role }, secretKey, { expiresIn: '2h' });
 
-            user.token = token;
-            await user.save();
+            vender.token = token;
+            await vender.save();
 
             const options = {
                 expires: new Date(Date.now() + 2 * 60 * 60 * 1000),
@@ -29,7 +29,7 @@ let loginvender = async (req, res) => {
             return res.redirect('/vender/productlist');
         } else {
             return res.redirect('/vender/login');    
-                    return; 
+               
         }
     } catch (error) {
         console.error(error);
@@ -44,7 +44,7 @@ let signvender = async(req,res)=>{
         const { name, email, password } = req.body;
         const myEncryptedPassword = await bcrypt.hash(password, 10);
 
-        const newUser = new register({
+        const newvender = new register({
             name,
             password: myEncryptedPassword,
             email,
@@ -52,12 +52,12 @@ let signvender = async(req,res)=>{
             blocked:'false',
         });
 
-        await newUser.save();
+        await newvender.save();
 
-        const token = jwt.sign({ id: newUser._id, role: newUser.role }, secretKey, { expiresIn: '2h' });
+        const token = jwt.sign({ id: newvender._id, role: newvender.role }, secretKey, { expiresIn: '2h' });
 
-        newUser.token = token;
-        await newUser.save();
+        newvender.token = token;
+        await newvender.save();
 
         const options = {
           expires: new Date(Date.now() + 2 * 60 * 60 * 1000),  

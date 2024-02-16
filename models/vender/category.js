@@ -19,9 +19,9 @@ const categorySchema= mongoose.Schema({
       required:true,
      }
    },
-   userId:{
+   venderId:{
       type:mongoose.Schema.Types.ObjectId,
-      ref:'registers'
+      ref:'vender'
    },
 
 })

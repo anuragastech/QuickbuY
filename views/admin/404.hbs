@@ -73,3 +73,144 @@
 </body>
 
 </html>
+{{!-- ---------------------------------------------------------------------- --}}
+  <!-- Modal -->
+
+   <h1 class="h10">Category-List</h1>
+          <button
+              type="button"
+              class="btn btn-light   btn-lg w-50 mb-3"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+          >
+              Add Category
+          </button>
+
+
+                                              <form class="frml" action="/user/checkout" method="POST">
+
+              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header bg-dark text-light">
+                              <h5 class="modal-title" id="exampleModalLongTitle">Add Category</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <div class="modal-body bg-dark text-light">
+         <label for="couponCode">Coupon Code:</label><br>
+        <input type="text" id="couponCode" name="couponCode"><br>
+        <label for="discountPercentage">Discount Percentage:</label><br>
+        <input type="number" id="discountPercentage" name="discountPercentage" step="0.01"><br>
+        <button type="submit">Create Coupon</button>
+
+    </div>
+    <br>
+    <!-- Add Submit Button -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </form>
+
+          {{!-- --------------------------------------------------------------   --}}
+                                </div>
+                            </li>
+                            <li class="checkout-item">
+                                <div class="avatar checkout-icon p-1">
+                                    <div class="avatar-title rounded-circle bg-primary">
+                                        <i class="bx bxs-truck text-white font-size-20"></i>
+                                    </div>
+                                </div>
+                                <div class="feed-item-list">
+                                    <!-- Shipping Info content -->
+                                </div>
+                            </li>
+                            <li class="checkout-item">
+                                <div class="avatar checkout-icon p-1">
+                                    <div class="avatar-title rounded-circle bg-primary">
+                                        <i class="bx bxs-wallet-alt text-white font-size-20"></i>
+                                    </div>
+                                </div>
+                                <div class="feed-item-list">
+                                    <!-- Payment Info content -->
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+  <!-- Continue Shopping and Proceed buttons -->
+                <div class="row my-4">
+                    <div class="col">
+                        <a href="ecommerce-products.html" class="btn btn-link text-muted">
+                            <i class="mdi mdi-arrow-left me-1"></i> Continue Shopping 
+                        </a>
+                
+
+                    </div>
+                    <div class="col">
+                        <div class="text-end mt-2 mt-sm-0">
+                            <a href="#" class="btn btn-success">
+                                <i class="mdi mdi-cart-outline me-1"></i> Proceed 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Summary section -->
+            <div class="col-xl-4">
+                <div class="card checkout-order-summary">
+                    <div class="card-body">
+                        <!-- Order summary content -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (optional, if needed) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+
+     <div class="container mt-5">
+        <!-- Button to trigger the modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#couponModal">
+            Create Coupon
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="couponModal" tabindex="-1" role="dialog" aria-labelledby="couponModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="couponModalLabel">Create Coupon</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Coupon creation form -->
+                        <form action="/create-coupon" method="post">
+                            <div class="form-group">
+                                <label for="couponCode">Coupon Code:</label>
+                                <input type="text" class="form-control" id="couponCode" name="couponCode">
+                            </div>
+                            <div class="form-group">
+                                <label for="discountPercentage">Discount Percentage:</label>
+                                <input type="number" class="form-control" id="discountPercentage" name="discountPercentage" step="0.01">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Create Coupon</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS CDN -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shCk+5L4Z6LZsyA8sYyhDYhq6HY3OdI65+24L" crossorigin="anonymous"></script>
