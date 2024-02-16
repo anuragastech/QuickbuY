@@ -18,6 +18,12 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
+  size:{
+    type:String,
+ },
+ quantity:{
+    type:String,
+ },
   paymentStatus: {
     type: String,
     enum: ['pending', 'paid', 'failed']

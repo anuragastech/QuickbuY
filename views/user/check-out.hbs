@@ -271,29 +271,8 @@
 <label>
     <input type="radio" name="paymentMethod" value="cash"> Cash on Delivery
 </label>
-
+<button id="paymentButton" onclick="sendDataToBackend()">Click Me</button>
                 {{!-- ------------------------------------------------------ --}}
-                <!-- Add the form element around the payment button -->
-                <form id="paymentForm" action="/user/checkout" method="POST">
-                    <!-- Hidden input fields to hold the payment data -->
-                    <input type="hidden" name="productId" id="productId" value="your_product_id_here">
-                    <input type="hidden" name="totalAmount" id="totalAmount" value="your_total_amount_here">
-                    <!-- Add more hidden fields for other payment-related data if needed -->
-
-                    <!-- Hidden input fields to hold the selected address data -->
-                    <input type="hidden" name="address" id="selectedAddress" value="">
-                    <input type="hidden" name="phone" id="selectedPhone" value="">
-                    <input type="hidden" name="country" id="selectedCountry" value="">
-                    <input type="hidden" name="city" id="selectedCity" value="">
-                    <input type="hidden" name="state" id="selectedState" value="">
-                    <input type="hidden" name="pin" id="selectedPin" value="">
-
-                    <div class="col-lg-3">
-                        <!-- Payment button -->
-                        <button type="submit" class="btn btn-primary" id="paymentButton">Payment</button>
-                        <hr>
-                    </div>
-                </form>
 
 
 {{!-- 
@@ -382,55 +361,56 @@
             </script>
 
 <script>
-    // JavaScript to handle the click event of the payment button
-    document.getElementById('paymentButton').addEventListener('click', function (event) {
-        // Prevent the default form submission behavior
-        event.preventDefault();
+function sendDataToBackend() {
+    var paymentMethod = document.querySelector("input[name='paymentMethod']:checked").value;
 
-        // Get the selected address details
-        const selectedAddress = document.querySelector('.address-box.selected');
-        const phone = selectedAddress.querySelector('.xl:nth-child(2)').textContent.trim().split(':')[1].trim();
-        const country = selectedAddress.querySelector('.xl:nth-child(3)').textContent.trim().split(':')[1].trim();
-        const city = selectedAddress.querySelector('.xl:nth-child(4)').textContent.trim().split(':')[1].trim();
-        const state = selectedAddress.querySelector('.xl:nth-child(5)').textContent.trim().split(':')[1].trim();
-        const pin = selectedAddress.querySelector('.xl:nth-child(6)').textContent.trim().split(':')[1].trim();
+    // Find the selected address
+    var selectedAddressElement = document.querySelector(".address-box.selected");
+    var addressData = null;
+    if (selectedAddressElement) {
+        var addressId = selectedAddressElement.getAttribute("data-address-id");
+        var addressDetails = selectedAddressElement.querySelector(".address-details");
+        var address = {
+            id: addressId,
+            address: addressDetails.querySelector("p:nth-child(1)").textContent.trim(),
+            phone: addressDetails.querySelector("p:nth-child(2)").textContent.trim(),
+            country: addressDetails.querySelector("p:nth-child(3)").textContent.trim(),
+            city: addressDetails.querySelector("p:nth-child(4)").textContent.trim(),
+            state: addressDetails.querySelector("p:nth-child(5)").textContent.trim(),
+            pincode: addressDetails.querySelector("p:nth-child(6)").textContent.trim(),
+        };
+        addressData = address;
+    }
 
-        // Set the selected address details in the hidden input fields
-        document.getElementById('selectedPhone').value = phone;
-        document.getElementById('selectedCountry').value = country;
-        document.getElementById('selectedCity').value = city;
-        document.getElementById('selectedState').value = state;
-        document.getElementById('selectedPin').value = pin;
+    var data = {
+        paymentMethod: paymentMethod,
+        address: addressData
+        // You can add other necessary data here if needed
+    };
 
-        // Get the selected payment method
-        const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-
-        // Add the payment method to the form data
-        const formData = new FormData(document.getElementById('paymentForm'));
-        formData.append('paymentMethod', paymentMethod);
-
-        // Send the form data to the server using fetch API
-        fetch('/user/order', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to submit payment data');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Handle the response from the server, if needed
-            console.log('Payment data submitted successfully:', data);
-            // Redirect to a success page or display a success message to the user
-        })
-        .catch(error => {
-            console.error('Error submitting payment data:', error);
-            // Handle errors, such as displaying an error message to the user
-        });
+    // Send data to backend (example using fetch API)
+    fetch('/user/order', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => {
+        if (response.ok) {
+            // Handle successful response
+        } else {
+            // Handle error response
+        }
+    })
+    .catch(error => {
+        // Handle network error
     });
+}
+
 </script>
+
+
 
             {{!--
             <script>
