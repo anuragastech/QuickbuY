@@ -33,17 +33,17 @@ const createSchema = mongoose.Schema({
     }],
 
 
-couponCode: {
-    type: String,
-    unique: true ,
-  },
-  discountPercentage: {
-    type: Number,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  },
+// couponCode: {
+//     type: String,
+//     unique: true ,
+//   },
+//   discountPercentage: {
+//     type: Number,
+//   },
+//   createdAt: {
+//     type: Date,
+//     default: Date.now
+//   },
 
 });
 

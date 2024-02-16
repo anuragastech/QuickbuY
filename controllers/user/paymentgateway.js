@@ -4,6 +4,8 @@ const Checkout=require('../../models/user/checkout')
 const coupen=require('../../models/admin/coupen')
 const order =require('../../models/user/order')
 const Razorpay = require('razorpay');
+const Product =require('../../models/vender/productAdd');
+
 
 const razorpay = new Razorpay({
   key_id: 'rzp_test_uF6rcT6FvcQis8',
@@ -33,7 +35,7 @@ let getAddress = async (req, res) => {
     try {
         const userId = req.user.id; 
         const currentUser = await personal.findById(userId);
-        const data = await Checkout.find({}).populate('product');
+        const data = await Checkout.find({})
         const addressInfo = currentUser.personalInfo;
 
         res.render('user/check-out', { addressInfo, data });
@@ -44,26 +46,35 @@ let getAddress = async (req, res) => {
 };
 
 
-
-
 const postCarttocheckout = async (req, res) => {
     try {
         const { selectedItems } = req.body;
         const userId = req.user.id; 
-
         const matchcart = await cart.find({ _id: { $in: selectedItems } });
-        // console.log(matchcart);
+
+        const productsArray = [];
 
         for (const item of matchcart) {
             const { product, size, quantity } = item;
-            const newcheckoutItem = new Checkout({
-                product: product,
-                userId: userId,
+
+            const populatedProduct = await Product.findById(product);
+
+            const productObject = {
                 size: size,
                 quantity: quantity,
-            });
-            await newcheckoutItem.save();
+                productId: populatedProduct._id,
+                productname: populatedProduct.productname,
+                // vendorId: populatedProduct.vendorId
+            };
+
+            productsArray.push(productObject);
         }
+        const newcheckoutItem = new Checkout({
+            userId: userId,
+            products: productsArray
+        });
+
+        await newcheckoutItem.save();
 
         if (!userId) {
             try {
@@ -77,10 +88,12 @@ const postCarttocheckout = async (req, res) => {
         res.redirect('/user/check-out');
 
     } catch (error) {
-        console.error('Error showing data:', error);
+        console.error('Error transferring items to checkout:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
+
 
 
 
@@ -144,9 +157,9 @@ let orderPost = async (req, res) => {
 
         // Iterate through checkout data    
         for (const item of checkoutData) {
-            
+
             const { product, size, quantity, totalAmount } = item;
-            console.log(product);
+
             // Generate a unique order ID for each product
             const orderId = generateOrderId(); // You can implement your own function to generate order IDs
 
