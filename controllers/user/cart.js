@@ -2,6 +2,7 @@ const Cart =require('../../models/user/cart')
 const product=require('../../models/vender/productAdd')
 const subcategory=require('../../models/admin/subcategory');
 const cart = require('../../models/user/cart');
+const mongoose = require('mongoose');
 
 
 
@@ -85,35 +86,35 @@ let  getcartpage=async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
-
 let postcart = async (req, res) => {
     try {
         const { productId, size, quantity } = req.body;
         const userId = req.user.id;
-        // console.log(yes);
 
-        // console.log(userId);
-
-        if (!productId) {
-            return res.status(400).json({ alert: 'Product ID is required' });
+        if (!productId || !size || !quantity) {
+            return res.status(400).json({ alert: 'Product ID, size, and quantity are required' });
         }
 
-        const existingCartItem = await Cart.findOne({ product: productId });
+        const existingCartItem = await Cart.findOne({ userId: userId, 'products.productId': productId });
 
         if (existingCartItem) {
-            return res.status(400).json({ message: 'Product already in the cart' });
+            // If the product already exists in the cart, update its size and quantity
+            existingCartItem.products.forEach(product => {
+                if (product.productId === productId) {
+                    product.size = size;
+                    product.quantity = quantity;
+                }
+            });
+            await existingCartItem.save();
+        } else {
+            // If the product doesn't exist in the cart, add it as a new item
+            const newCartItem = new Cart({
+                userId: userId,
+                products: [{ productId: productId, size: size, quantity: quantity }]
+            });
+            await newCartItem.save();
         }
-
-        const newCartItem = new Cart({
-            product: productId,
-            userId: userId,
-            size: size,
-            quantity: quantity,
-        });
-
-        await newCartItem.save();
         
-        // Redirect should be done using res.redirect, not res.rendirect
         return res.redirect('/user/shopping-cart');
 
     } catch (error) {
@@ -123,24 +124,48 @@ let postcart = async (req, res) => {
 };
 
 
-let  getshoppingcart =  async (req, res) => {
+
+
+let getshoppingcart = async (req, res) => {
     try {
         const userId = req.user.id;
 
-        const cart = await Cart.find({ userId: userId })
-            .populate({
-                path: 'product',
-                populate: [{ path: 'category' }, { path: 'subcategory' }],
+        const cart = await Cart.aggregate([
+            { $match: { userId: new mongoose.Types.ObjectId(userId) } }, // Corrected line
+            { $unwind: "$products" }, // Deconstruct the products array
+            { 
+                $lookup: {
+                    from: 'products', // Name of the collection to join
+                    localField: 'products.productId',
+                    foreignField: '_id',
+                    as: 'productData'
+                }
+            },
+            { $unwind: "$productData" }, // Deconstruct the productData array
+            { 
+                $group: {
+                    _id: "$products.productId",
+                    products: { $push: "$products" },
+                    productData: { $first: "$productData" }
+                }
+            }
+        ]);
+        cart.forEach(item => {
+            item.products.forEach(product => {
+                // console.log("Size:", product.size);
+
             });
-        //   console.log("test",cart);
+        });
+
+        // console.log(cart);
         res.render('user/shopping-cart', { cart });
-        // console.log('cart');
 
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
+
 
 
 module.exports={ updateCart, deleteCart,getcartpage,postcart,getshoppingcart}

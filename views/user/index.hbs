@@ -63,7 +63,7 @@
         <div class="container-fluid">
             <div class="inner-header">
                 <div class="logo">
-                    <a href="./index.hbs"><img src="/logo.png" alt=""></a>
+                    <a href="./index"><img src="/logo.png" alt=""></a>
                 </div>
                 <div class="header-right">
                     <img src="/icons/search.png" alt="" class="search-trigger">
@@ -73,12 +73,39 @@
                         <span>2</span>
                     </a>
                 </div>
+                <style>
+    /* Hide the logout button by default */
+    .logout-btn {
+        display: none;
+    }
+</style>
                 <div class="user-access">
-                    <a href="/user/sign"  >Register</a>
-                    <a href="/user/login"  class="in">Sign in</a>
+    <a href="/user/sign" id="registerBtn">Register</a>
+    <a href="/user/login" id="loginBtn" class="in">Sign in</a>
+    <a href="#" id="logoutBtn" class="logout-btn">Logout</a>
+</div>
+<script>
+    // Check if the user is signed in (you need to implement this logic)
+    const userSignedIn = false; // Set to true if user is signed in
 
+    // Get references to the buttons
+    const registerBtn = document.getElementById('registerBtn');
+    const loginBtn = document.getElementById('loginBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
 
-                </div>
+    // Toggle visibility based on user sign-in status
+    if (userSignedIn) {
+        registerBtn.style.display = 'none';
+        loginBtn.style.display = 'none';
+        logoutBtn.style.display = 'inline'; // Show logout button
+    } else {
+        registerBtn.style.display = 'inline'; // Show register button
+        loginBtn.style.display = 'inline'; // Show login button
+        logoutBtn.style.display = 'none'; // Hide logout button
+    }
+</script>
+
+                
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li><a class="active" href="/user/index">Home</a></li>
@@ -89,7 +116,7 @@
                                 {{!-- <li><a href="/user/check-out">Check out</a></li> --}}
                             </ul>
                         </li>
-                        <li><a href="/user/product-page">About</a></li>
+                        <li><a href="/user/index">About</a></li>
                         <li><a href="/user/check-out">Blog</a></li>
                         <li><a href="/user/contact">Contact</a></li>
                     </ul>

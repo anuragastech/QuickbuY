@@ -30,20 +30,32 @@ let postAddress = async (req, res) => {
     }
 };
 
-
-let getAddress = async (req, res) => {
+const getAddress = async (req, res) => {
     try {
         const userId = req.user.id; 
         const currentUser = await personal.findById(userId);
-        const data = await Checkout.find({})
+
+        
+        const data = await Checkout.find({ userId }) .populate('products.productId')
+        .exec((err, checkout) => {
+          if (err) {
+            // Handle error
+          } else {
+            // Access populated products
+            console.log(checkout.products);
+          }
+        });
+
         const addressInfo = currentUser.personalInfo;
 
         res.render('user/check-out', { addressInfo, data });
+        console.log(data);
     } catch (error) {
         console.error('Error showing data:', error);
         res.status(500).send('Internal Server Error');
     }
 };
+
 
 
 const postCarttocheckout = async (req, res) => {

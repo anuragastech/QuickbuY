@@ -74,9 +74,9 @@
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li><a class="active" href="/user/index">Home</a></li>
-                        <li><a href="/user/categories">Shop</a>
+                        <li><a href="/user/products">Shop</a>
                             <ul class="sub-menu">
-                                <li><a href="/user/products">Product Page</a></li>
+                                {{!-- <li><a href="/user/products">Product Page</a></li> --}}
                                 <li><a href="/user/shopping-cart">Shopping Card</a></li>
                                 {{!-- <li><a href="/user/check-out">Check out</a></li> --}}
                             </ul>
@@ -180,13 +180,14 @@
             {{#each cart}}
             <div class="product row mb-3">
                 <div class="product-image col">
-                    <img src="{{this.product.image.url}}" class="img-fluid" alt="Product Image">
+                    <img src="{{this.productData.image.url}}" class="img" alt="Product Image">
                 </div>
                 <div class="product-details col">
-                    <div class="product-title">{{this.product.productname}}</div>
-                    <p class="product-description">{{this.product.description }}.</p>
+                    <div class="product-title">{{this.productData.productname}}</div>
+                    <p class="product-description">{{this.productData.description }}.</p>
                 </div>
-                <div class="product-price col"> ₹{{this.product.price}}</div>
+                <div class="product-price col"> ₹{{this.productData.price}}</div>
+                {{#each products}}
                 <div class="product-quantity col">
                     <input type="number" id="quantity-{{this._id}}" value="{{this.quantity}}" min="1"
                         class="form-control">
@@ -197,6 +198,7 @@
                 <div class="product-removal col">
                     <button class="btn btn-light" onclick="deleteCart('{{this._id}}')">❌</button>
                 </div>
+                {{/each}}
                 <div class="product-line-price col">₹12.99</div>
                 <div class="product-select col">
                     <input type="checkbox" class="form-check-input" id="select-product-{{this._id}}"
