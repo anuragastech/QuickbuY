@@ -21,7 +21,7 @@ const categorySchema= mongoose.Schema({
    },
    userId:{
       type:mongoose.Schema.Types.ObjectId,
-      ref:'registers'
+      ref:'admin'
    },
 
 })

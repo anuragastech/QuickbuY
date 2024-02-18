@@ -30,12 +30,13 @@ let getproductData = async (req, res) => {
 
         // Extract query parameters for filtering from both query and body
         const { category, subcategory, size, color, priceRange } = req.method === 'POST' ? req.body : req.query;
+        console.log(size);
         // Construct the query object based on the provided parameters
         if (category && category.length > 0) {
-            query.category = { $in: category };
+            query.categoryName = { $in: category };
         }
         if (subcategory && subcategory.length > 0) {
-            query.subcategory = { $in: subcategory };
+            query.subcategoryName = { $in: subcategory };
         }
         if (size && size.length > 0) {
             query['properties.size'] = { $in: size };

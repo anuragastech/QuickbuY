@@ -1,5 +1,8 @@
 const product = require("../../models/vender/productAdd");
 const cloudinary = require("../../models/common/cloudinary");
+const categorys=require('../../models/admin/category')
+const subcategorys=require('../../models/admin/subcategory')
+
 
 const getpostProductAdd = async (req, res) => {
   try {
@@ -17,14 +20,13 @@ const getpostProductAdd = async (req, res) => {
     } = req.body;
 
     const venderId = req.vender.id;
-    console.log(venderId);
+    // console.log(category);
     if (!req.file) {
       return res.status(400).json({ success: false, message: "File not provided" });
     }
-
-    const categoryname=await category.find({category})
-    const subcategoryname=await subcategory.find({subcategory})
-
+    const categoryData = await categorys.findOne({ _id: category });
+    const subcategoryData = await subcategorys.findOne({ _id: subcategory });
+// console.log(categoryData.title);
     const desiredWidth = 640;
     const desiredHeight = 640;
 
@@ -47,9 +49,9 @@ const getpostProductAdd = async (req, res) => {
       description: description,
       venderId: venderId,
       category: category,
-      categoryName :categoryname.title,
+      categoryName :categoryData.title,
       subcategory: subcategory,
-      subcategoryName:subcategoryname.title,
+      subcategoryName:subcategoryData.title,
       color: color,
       properties: properties,
       image: {

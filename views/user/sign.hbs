@@ -69,11 +69,11 @@
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li><a class="active" href="/user/index">Home</a></li>
-                        <li><a href="/user/categories">Shop</a>
+                        <li><a href="/user/products">Shop</a>
                             <ul class="sub-menu">
-                                <li><a href="/user/productdetails">Product Page</a></li>
+                                {{!-- <li><a href="/user/productdetails">Product Page</a></li> --}}
                                 <li><a href="/user/shopping-cart">Shopping Card</a></li>
-                                <li><a href="/user/check-out">Check out</a></li>
+                                {{!-- <li><a href="/user/check-out">Check out</a></li> --}}
                             </ul>
                         </li>
                         <li><a href="/user/product-page">About</a></li>
@@ -92,7 +92,7 @@
     width: auto;
     align-items: center;
   
-    background-color: rgb(28, 27, 27);
+    background-color: rgb(255, 255, 255);
 
 }
 </style>
@@ -135,7 +135,7 @@
             <label><input type="checkbox">Remember Me</label>
             <a href="#">Forget password?</a>
         </div>
-        <input type="submit" class="btn" value="Submit">
+        <input style="border: 2px solid rgb(238, 228, 228);" type="submit" class="btn" value="Submit">
         <div class="register">
             <p>Don't have an account? </p>
             <a href="/user/login">Sign in</a>
