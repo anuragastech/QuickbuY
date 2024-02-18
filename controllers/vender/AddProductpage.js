@@ -17,12 +17,13 @@ const getpostProductAdd = async (req, res) => {
     } = req.body;
 
     const venderId = req.vender.id;
+    console.log(venderId);
     if (!req.file) {
       return res.status(400).json({ success: false, message: "File not provided" });
     }
 
-    const categoryname=await category.find({})
-    const subcategoryname=await subcategory.find({})
+    const categoryname=await category.find({category})
+    const subcategoryname=await subcategory.find({subcategory})
 
     const desiredWidth = 640;
     const desiredHeight = 640;
@@ -46,9 +47,9 @@ const getpostProductAdd = async (req, res) => {
       description: description,
       venderId: venderId,
       category: category,
-      categoryName,
+      categoryName :categoryname.title,
       subcategory: subcategory,
-      subcategoryName,
+      subcategoryName:subcategoryname.title,
       color: color,
       properties: properties,
       image: {

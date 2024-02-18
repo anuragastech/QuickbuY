@@ -73,10 +73,8 @@
                         <span>2</span>
                     </a>
                 </div>
-                <div>
-                    
-                </div>
-   <!-- Conditional rendering based on user authentication -->
+                <div class="user-access">
+                     <!-- Conditional rendering based on user authentication -->
 {{#if loggedIn}}
     <!-- Show logout button if user is logged in -->
     {{!-- <button id="logoutButton">Logout</button> --}}
@@ -85,10 +83,12 @@
     <!-- Show sign in and sign up buttons if user is not logged in -->
     {{!-- <button id="signInButton">Sign In</button>
     <button id="signUpButton">Sign Up</button> --}}
-        <a style="color: black;" href="/user/login" id="signInButton">sign in</a>
-    <a style="color: black;" href="/user/sign" id="signUpButton">sign up</a>
+        <a style="color: black;" href="/user/login" id="signInButton">sign in</a>/
+    <a style="color: rgb(156, 142, 142);" href="/user/sign" id="signUpButton">sign up</a>
 
-{{/if}}
+{{/if}}  
+                </div>
+
 
 <!-- Your JavaScript code can go here -->
 <script>
