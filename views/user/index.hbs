@@ -73,36 +73,50 @@
                         <span>2</span>
                     </a>
                 </div>
-                <style>
-    /* Hide the logout button by default */
-    .logout-btn {
-        display: none;
-    }
-</style>
-                <div class="user-access">
-    <a href="/user/sign" id="registerBtn">Register</a>
-    <a href="/user/login" id="loginBtn" class="in">Sign in</a>
-    <a href="#" id="logoutBtn" class="logout-btn">Logout</a>
-</div>
+                <div>
+                    
+                </div>
+   <!-- Conditional rendering based on user authentication -->
+{{#if loggedIn}}
+    <!-- Show logout button if user is logged in -->
+    {{!-- <button id="logoutButton">Logout</button> --}}
+    <a style="color: black;" href="/user/logout" id="logoutButton">Logout</a>
+{{else}}
+    <!-- Show sign in and sign up buttons if user is not logged in -->
+    {{!-- <button id="signInButton">Sign In</button>
+    <button id="signUpButton">Sign Up</button> --}}
+        <a style="color: black;" href="/user/login" id="signInButton">sign in</a>
+    <a style="color: black;" href="/user/sign" id="signUpButton">sign up</a>
+
+{{/if}}
+
+<!-- Your JavaScript code can go here -->
 <script>
-    // Check if the user is signed in (you need to implement this logic)
-    const userSignedIn = false; // Set to true if user is signed in
+    // Example JavaScript code
+    // This script can handle interactions such as logging out
+    document.addEventListener('DOMContentLoaded', () => {
+        // Check if the user is logged in
+        const loggedIn = {{loggedIn}};
 
-    // Get references to the buttons
-    const registerBtn = document.getElementById('registerBtn');
-    const loginBtn = document.getElementById('loginBtn');
-    const logoutBtn = document.getElementById('logoutBtn');
+        if (loggedIn) {
+            // If logged in, add event listener to the logout button
+            document.getElementById('logoutButton').addEventListener('click', () => {
+                // Perform logout actions, e.g., redirect to logout route
+                // Example: window.location.href = '/logout';
+            });
+        } else {
+            // If not logged in, add event listeners to the sign in and sign up buttons
+            document.getElementById('signInButton').addEventListener('click', () => {
+                // Perform sign in actions, e.g., redirect to sign in route
+                // Example: window.location.href = '/signin';
+            });
 
-    // Toggle visibility based on user sign-in status
-    if (userSignedIn) {
-        registerBtn.style.display = 'none';
-        loginBtn.style.display = 'none';
-        logoutBtn.style.display = 'inline'; // Show logout button
-    } else {
-        registerBtn.style.display = 'inline'; // Show register button
-        loginBtn.style.display = 'inline'; // Show login button
-        logoutBtn.style.display = 'none'; // Hide logout button
-    }
+            document.getElementById('signUpButton').addEventListener('click', () => {
+                // Perform sign up actions, e.g., redirect to sign up route
+                // Example: window.location.href = '/signup';
+            });
+        }
+    });
 </script>
 
                 

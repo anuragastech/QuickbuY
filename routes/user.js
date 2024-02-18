@@ -67,6 +67,7 @@ router.post('/cart/product', authenticateJWT, getCartControllers.postcart);
 router.get('/shopping-cart',authenticateJWT,getCartControllers.getshoppingcart)
 
 
+
 router.get('/payment',(req,res)=>{
     res.render('user/payment')
     });
@@ -85,7 +86,7 @@ router.get('/payment',(req,res)=>{
 
 
 
-  router.post('/products',getProductControllers.getproductData)
+  router.post('/products',authenticateJWT,getProductControllers.getproductData)
 
  router.post('/checkout',authenticateJWT, getPaymentway.postAddress)
  
