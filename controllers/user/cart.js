@@ -95,33 +95,19 @@ let postcart = async (req, res) => {
             return res.status(400).json({ alert: 'Product ID, size, and quantity are required' });
         }
 
-        const existingCartItem = await Cart.findOne({ userId: userId, 'products.productId': productId });
+        const newCartItem = new Cart({
+            userId: userId,
+            products: [{ productId: productId, size: size, quantity: quantity }]
+        });
+        await newCartItem.save();
 
-        if (existingCartItem) {
-            // If the product already exists in the cart, update its size and quantity
-            existingCartItem.products.forEach(product => {
-                if (product.productId === productId) {
-                    product.size = size;
-                    product.quantity = quantity;
-                }
-            });
-            await existingCartItem.save();
-        } else {
-            // If the product doesn't exist in the cart, add it as a new item
-            const newCartItem = new Cart({
-                userId: userId,
-                products: [{ productId: productId, size: size, quantity: quantity }]
-            });
-            await newCartItem.save();
-        }
-        
         return res.redirect('/user/shopping-cart');
-
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'Internal server error' });
     }
 };
+
 
 
 

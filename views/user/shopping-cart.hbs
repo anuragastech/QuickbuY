@@ -184,7 +184,7 @@
                 </div>
                 <div class="product-details col">
                     <div class="product-title">{{this.productData.productname}}</div>
-                    <p class="product-description">{{this.productData.description }}.</p>
+                    <p class="product-description" > {{this.productData.description }} .</p>
                 </div>
                 <div class="product-price col"> ₹{{this.productData.price}}</div>
                 {{#each products}}
@@ -192,19 +192,24 @@
                     <input type="number" id="quantity-{{this._id}}" value="{{this.quantity}}" min="1"
                         class="form-control">
                 </div>
+                  
                 <div class="product-update col">
                     <button onclick="updateQuantity('{{this._id}}')">Update</button>
                 </div>
+                
                 <div class="product-removal col">
                     <button class="btn btn-light" onclick="deleteCart('{{this._id}}')">❌</button>
                 </div>
-                {{/each}}
+              
                 <div class="product-line-price col">₹12.99</div>
+                
                 <div class="product-select col">
                     <input type="checkbox" class="form-check-input" id="select-product-{{this._id}}"
                         onchange="recalculateSelectedCart()">
                 </div>
+              
             </div>
+              {{/each}} 
             {{/each}}
             <!-- More products can be added similarly -->
             <div class="totals row mt-5">

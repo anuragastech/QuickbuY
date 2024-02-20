@@ -30,7 +30,7 @@ let getproductData = async (req, res) => {
 
         // Extract query parameters for filtering from both query and body
         const { category, subcategory, size, color, priceRange } = req.method === 'POST' ? req.body : req.query;
-        console.log(size);
+        // console.log(size);
         // Construct the query object based on the provided parameters
         if (category && category.length > 0) {
             query.categoryName = { $in: category };
@@ -50,7 +50,6 @@ let getproductData = async (req, res) => {
             query.price = { $gte: minPrice, $lte: maxPrice };
         }
 
-        // Fetch products from the database based on the query
         const products = await product.find(query).populate('category').populate('subcategory');
 // console.log(query.properties.size);
         // Check if the request is a POST request, if so, return JSON response
