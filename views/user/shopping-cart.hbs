@@ -165,7 +165,7 @@
     </head>
 
     <body>
-        <div class="container">
+          <div class="container">
             <h1 class="mt-5 mb-4">Shopping Cart</h1>
             <div class="row mb-3">
                 <div class="col">Image</div>
@@ -180,11 +180,11 @@
             {{#each cart}}
             <div class="product row mb-3">
                 <div class="product-image col">
-                    <img src="{{this.productData.image.url}}" class="img" alt="Product Image">
+                    <img src="{{this.productData.image.url}}" class="img-fluid" alt="Product Image">
                 </div>
                 <div class="product-details col">
                     <div class="product-title">{{this.productData.productname}}</div>
-                    <p class="product-description" > {{this.productData.description }} .</p>
+                    <p class="product-description">{{this.productData.description }}.</p>
                 </div>
                 <div class="product-price col"> ₹{{this.productData.price}}</div>
                 {{#each products}}
@@ -192,23 +192,18 @@
                     <input type="number" id="quantity-{{this._id}}" value="{{this.quantity}}" min="1"
                         class="form-control">
                 </div>
-                  
                 <div class="product-update col">
                     <button onclick="updateQuantity('{{this._id}}')">Update</button>
                 </div>
-                
                 <div class="product-removal col">
                     <button class="btn btn-light" onclick="deleteCart('{{this._id}}')">❌</button>
                 </div>
-              
                 <div class="product-line-price col">₹12.99</div>
-                              {{/each}} 
-
                 <div class="product-select col">
                     <input type="checkbox" class="form-check-input" id="select-product-{{this._id}}"
                         onchange="recalculateSelectedCart()">
                 </div>
-              
+                {{/each}}
             </div>
             {{/each}}
             <!-- More products can be added similarly -->
