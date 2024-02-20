@@ -86,114 +86,116 @@
     </header>
 
     </nav>
-<style>
-.big{
-    height: 750px;
-    width: auto;
-    align-items: center;
-  
-    background-color: rgb(255, 255, 255);
-
-}
-</style>
-<div class="big">
-     <section>
-
-<link rel="stylesheet" href="/sign.css">
 
 
-<div class="wrapper">
-    <form action="/user/sign" method="post" name="myform" onsubmit="return validateForm();">
-        <h1>Signup</h1>
-        <div class="input-box">
-            <input type="text" placeholder="username" name="username" required>
-            <span id="message" class="text-danger" style="font-size: 16px;"></span>
-            <i class='bx bxs-user'></i>
+{{!-- <link rel="stylesheet" href="/sign.css"> --}}
+<div class="container">
+    <div class="row justify-content-center " style="margin-top: 50px;">
+        <div class="col-md-6">
+            <form action="/user/sign" method="post" name="myform" onsubmit="return validateForm();" class="p-4 bg-white shadow-lg rounded">
+                <h1 class="text-center mb-4">Signup</h1>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter username" name="username" required oninput="validateUsername()">
+                    <span id="messageUsername" class="text-danger" style="font-size: 16px;"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email" required oninput="validateEmail()">
+                    <span id="messageEmail" class="text-danger" style="font-size: 16px;"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required oninput="validatePassword()">
+                    <span id="messagePassword" class="text-danger" style="font-size: 16px;"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="repeatPassword" class="form-label">Repeat Password</label>
+                    <input type="password" class="form-control" id="repeatPassword" placeholder="Repeat password" name="repeatPassword" required oninput="validateRepeatPassword()">
+                    <span id="messageRepeatPassword" class="text-dark" style="font-size: 16px;"></span>
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Remember Me</label>
+                    <a href="#" class="ms-2">Forget password?</a>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" id="submitButton" disabled>Submit</button>
+                <div class="mt-3 text-center">
+                    <p>Already have an account? <a href="/user/login">Sign in</a></p>
+                </div>
+            </form>
         </div>
-        <!-- Uncomment the section below if you want to include a name field -->
-        <!-- <div class="input-box">
-            <input type="text" placeholder="name" name="name" required>
-            <i class='bx bxs-user'></i>
-        </div> -->
-        <div class="input-box">
-            <input type="email" placeholder="user-email" name="email" required>
-            <span id="messageMail" class="text-danger" style="font-size: 16px;"></span>
-            <i class='bx bxs-envelope'></i>
-        </div>
-        <div class="input-box">
-            <input type="password"  placeholder="password" name="password" required>
-            <span id="messagePassword" class="text-danger" style="font-size: 16px;"></span>
-            <i class='bx bxs-lock-alt'></i>
-        </div>
-        <div class="input-box">
-            <input type="password" placeholder="repeat password" name="repeatPassword" required>
-            <span id="messageRepeatPassword" class="text-dark" style="font-size: 16px;"></span>
-            <i class='bx bxs-lock-alt'></i>
-        </div>
-
-        <div class="remember">
-            <label><input type="checkbox">Remember Me</label>
-            <a href="#">Forget password?</a>
-        </div>
-        <input style="border: 2px solid rgb(238, 228, 228);" type="submit" class="btn" value="Submit">
-        <div class="register">
-            <p>Don't have an account? </p>
-            <a href="/user/login">Sign in</a>
-        </div>
-    </form>
+    </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    function validateForm() {
-        var username = document.forms["myform"]["username"].value;
-        var email = document.forms["myform"]["email"].value;
-        var password = document.forms["myform"]["password"].value;
-        var repeatPassword = document.forms["myform"]["repeatPassword"].value;
-
-        var usernameError = document.getElementById("message");
-        var emailError = document.getElementById("messageMail");
-        var passwordError = document.getElementById("messagePassword");
-        var repeatPasswordError = document.getElementById("messageRepeatPassword");
-
+    function validateUsername() {
+        var username = document.getElementById("username").value;
+        var messageUsername = document.getElementById("messageUsername");
+        
         if (username === "") {
-            usernameError.innerHTML = "Please fill in your username";
-            return false;
+            messageUsername.innerHTML = "Please fill in your username";
+        } else {
+            messageUsername.innerHTML = "";
         }
-        usernameError.innerHTML = "";
+    }
+
+    function validateEmail() {
+        var email = document.getElementById("email").value;
+        var messageEmail = document.getElementById("messageEmail");
 
         if (email === "") {
-            emailError.innerHTML = "Please fill in your email";
-            return false;
+            messageEmail.innerHTML = "Please fill in your email";
+        } else if (email.indexOf('@') <= 0 || (email.charAt(email.length - 4) !== '.' && email.charAt(email.length - 3) !== '.')) {
+            messageEmail.innerHTML = "Invalid email format";
+        } else {
+            messageEmail.innerHTML = "";
         }
-        if (email.indexOf('@') <= 0 || (email.charAt(email.length - 4) !== '.' && email.charAt(email.length - 3) !== '.')) {
-            emailError.innerHTML = "Invalid email format";
-            return false;
-        }
-        emailError.innerHTML = "";
+    }
+
+    function validatePassword() {
+        var password = document.getElementById("password").value;
+        var messagePassword = document.getElementById("messagePassword");
 
         if (password === "") {
-            passwordError.innerHTML = "Please fill in your password";
-            return false;
+            messagePassword.innerHTML = "Please fill in your password";
+        } else if (password.length < 8) {
+            messagePassword.innerHTML = "Password must be at least 8 characters";
+        } else {
+            messagePassword.innerHTML = "";
         }
-        if (password.length < 8) {
-            passwordError.innerHTML = "Password must be at least 8 characters";
-            return false;
-        }
-        passwordError.innerHTML = "";
+    }
+
+    function validateRepeatPassword() {
+        var repeatPassword = document.getElementById("repeatPassword").value;
+        var password = document.getElementById("password").value;
+        var messageRepeatPassword = document.getElementById("messageRepeatPassword");
 
         if (repeatPassword !== password) {
-            repeatPasswordError.innerHTML = "Passwords do not match";
-            return false;
+            messageRepeatPassword.innerHTML = "Passwords do not match";
+        } else {
+            messageRepeatPassword.innerHTML = "";
         }
-        repeatPasswordError.innerHTML = "";
 
-        return true;
+        enableSubmitButton();
+    }
+
+    function enableSubmitButton() {
+        var username = document.getElementById("username").value;
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+        var repeatPassword = document.getElementById("repeatPassword").value;
+        var submitButton = document.getElementById("submitButton");
+
+        if (username !== "" && email !== "" && password !== "" && repeatPassword !== "" && password === repeatPassword) {
+            submitButton.disabled = false;
+        } else {
+            submitButton.disabled = true;
+        }
     }
 </script>
-
-
-</section>
-</div>
 
   
 
