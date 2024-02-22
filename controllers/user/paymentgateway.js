@@ -5,6 +5,7 @@ const coupen=require('../../models/admin/coupen')
 const order =require('../../models/user/order')
 const Razorpay = require('razorpay');
 const Product =require('../../models/vender/productAdd');
+const mongoose = require("mongoose");
 
 
 const razorpay = new Razorpay({
@@ -30,26 +31,43 @@ let postAddress = async (req, res) => {
     }
 };
 
+
+
+
+
 const getAddress = async (req, res) => {
     try {
         const userId = req.user.id; 
         const currentUser = await personal.findById(userId);
 
         
-        const data = await Checkout.find({ userId }) .populate('products.productId')
-        .exec((err, checkout) => {
-          if (err) {
-            // Handle error
-          } else {
-            // Access populated products
-            console.log(checkout.products);
-          }
-        });
-
+        // const data = await Checkout.find({ userId }) 
+        const data = await Checkout.aggregate([
+            { $match: { userId: new mongoose.Types.ObjectId(userId) } }, 
+            { $unwind: "$products" },
+            { 
+                $lookup: {
+                    from: 'products', 
+                    localField: 'products.productId',
+                    foreignField: '_id',
+                    as: 'productData'
+                }
+            },
+            { $unwind: "$productData" }, 
+            { 
+                $group: {
+                    _id: "$products.productId",
+                    products: { $push: "$products" },
+                    productData: { $first: "$productData" }
+                }
+            }
+        ]);
+       
+console.log(data);
         const addressInfo = currentUser.personalInfo;
 
         res.render('user/check-out', { addressInfo, data });
-        console.log(data);
+        // console.log(data);
     } catch (error) {
         console.error('Error showing data:', error);
         res.status(500).send('Internal Server Error');
@@ -58,52 +76,60 @@ const getAddress = async (req, res) => {
 
 
 
+
 const postCarttocheckout = async (req, res) => {
     try {
         const { selectedItems } = req.body;
-        const userId = req.user.id; 
-        const matchcart = await cart.find({ _id: { $in: selectedItems } });
+        // console.log(selectedItems);
+        const userId = req.user.id;
+        const carts = await cart.find()
+        // console.log(carts);
+        const productArr = []
+        for(const id of selectedItems){
+            // console.log(id);
+           const productss =  await cart.findOne({products:{$elemMatch:{productId:id}}})
 
-        const productsArray = [];
 
-        for (const item of matchcart) {
-            const { product, size, quantity } = item;
+if (productss) {
+    const product = productss.products.find(product => product.productId == id);
+    
+    if (product) {
+        // console.log(product);
+        productArr.push(product)
 
-            const populatedProduct = await Product.findById(product);
+   const newCheckout = new Checkout({ products: productArr , userId:userId});
 
-            const productObject = {
-                size: size,
-                quantity: quantity,
-                productId: populatedProduct._id,
-                productname: populatedProduct.productname,
-                // vendorId: populatedProduct.vendorId
-            };
+   await newCheckout.save();
+console.log(newCheckout);
+   console.log("Checkout document created:", newCheckout);
 
-            productsArray.push(productObject);
+await newCheckout.save();   
+    
+
+
+
+    } else {
+        console.log("Product not found.");
+    }
+} else {
+    console.log("Cart not found or no products match the given id.");
+}
+   
+
         }
-        const newcheckoutItem = new Checkout({
-            userId: userId,
-            products: productsArray
-        });
 
-        await newcheckoutItem.save();
 
-        if (!userId) {
-            try {
-                const deleteResult = await Checkout.deleteMany({});
-                console.log(`${deleteResult.deletedCount} documents deleted from Checkout collection`);
-            } catch (error) {
-                console.error('Error deleting documents from Checkout collection:', error);
-            }
-        }
-        
+
         res.redirect('/user/check-out');
-
     } catch (error) {
         console.error('Error transferring items to checkout:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
+
 };
+
+
+
 
 
 
@@ -207,5 +233,7 @@ let orderPost = async (req, res) => {
 //     // Return the generated ID
 // }
 
-
-module.exports={postAddress ,getAddress,postCarttocheckout,coupencheck ,orderPost};
+const cartProductSelected = async () =>{
+  
+}
+module.exports={postAddress ,getAddress,postCarttocheckout,coupencheck ,orderPost, cartProductSelected};

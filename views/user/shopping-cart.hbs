@@ -199,12 +199,15 @@
                     <button class="btn btn-light" onclick="deleteCart('{{this._id}}')">❌</button>
                 </div>
                 <div class="product-line-price col">₹12.99</div>
+             
                 <div class="product-select col">
-                    <input type="checkbox" class="form-check-input" id="select-product-{{this._id}}"
+                    
+                    <input type="checkbox" class="form-check-input" id="select-product-{{this.productId}}"
                         onchange="recalculateSelectedCart()">
                 </div>
-                {{/each}}
+               
             </div>
+                {{/each}}
             {{/each}}
             <!-- More products can be added similarly -->
             <div class="totals row mt-5">
@@ -235,12 +238,14 @@
         <!-- Bootstrap JS (optional, if you need JavaScript functionalities from Bootstrap) -->
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        
         <script>
    function checkout() {
     var selectedItems = [];
     var checkboxes = document.querySelectorAll('.product input[type="checkbox"]:checked');
     checkboxes.forEach(function(checkbox) {
         var productId = checkbox.getAttribute('id').replace('select-product-', '');
+        console.log("id =",productId)
         selectedItems.push(productId);
     });
 

@@ -20,6 +20,10 @@ const cartSchema = mongoose.Schema({
             ref: 'product',
             required: true,
         },
+        // selected:{
+        //     type:Boolean,
+        //     default:false
+        // }
     }]
 });
 

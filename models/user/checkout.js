@@ -7,19 +7,19 @@ const  checkoutSchema = mongoose.Schema({
             productId: {
                 type: mongoose.Schema.Types.ObjectId, 
                 ref: 'product',
-                required: true
+                // required: true
             },
            productname: {
                 type: String,
-                required: true
+                // required: true
             },
             size: {
                 type: String,
-                required: true
+                // required: true
             },
             quantity: {
                 type: String,
-                required: true
+                // required: true
             },
           
             vednerId: {

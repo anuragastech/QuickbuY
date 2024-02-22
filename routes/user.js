@@ -16,7 +16,6 @@ const getPaymentway=require('../controllers/user/paymentgateway')
 
 
 
-
 router.post('/sign',userControllers.Addsign)
 
 router.post('/login',userControllers.Addlogin)
@@ -95,6 +94,8 @@ router.get('/payment',(req,res)=>{
  router.post('/applycoupon',authenticateJWT, getPaymentway.coupencheck)
 
 router.post('/order',authenticateJWT, getPaymentway.orderPost)
+
+router.put("/cart/selectedProduct",authenticateJWT,getPaymentway.cartProductSelected)
 
 
 

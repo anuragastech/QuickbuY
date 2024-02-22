@@ -242,10 +242,10 @@
                 <div style="height: 300px; overflow-y: auto;">
                     {{#each data }}
                     <div>
-                        <img style="height: 80px;width: 80px;" src="{{this.product.image.url}}" alt="">
-                        <label for="productname">Product Name: {{this.product.productname}}</label><br>
-                        <label for="productcolor">Color: {{this.product.color}}</label><br>
-                        <label for="price">Price: ₹{{this.product.price}}</label><br>
+                        <img style="height: 80px;width: 80px;" src="{{this.productData.image.url}}" alt="">
+                        <label for="productname">Product Name: {{this.productData.productname}}</label><br>
+                        <label for="productcolor">Color: {{this.productData.color}}</label><br>
+                        <label for="price">Price: ₹{{this.productData.price}}</label><br>
                         <label for="size">Size: {{this.size}}</label><br>
                     </div>
                     {{/each}}
