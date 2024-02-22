@@ -3,15 +3,15 @@ const cart=require('../../models/user/cart');
 const Checkout=require('../../models/user/checkout')
 const coupen=require('../../models/admin/coupen')
 const order =require('../../models/user/order')
-const Razorpay = require('razorpay');
+// const Razorpay = require('razorpay');
 const Product =require('../../models/vender/productAdd');
 const mongoose = require("mongoose");
 
 
-const razorpay = new Razorpay({
-  key_id: 'rzp_test_uF6rcT6FvcQis8',
-  key_secret: 'Pja8iuhLQVUicncsSVHOm2v5',
-});
+// const razorpay = new Razorpay({
+//   key_id: 'rzp_test_uF6rcT6FvcQis8',
+//   key_secret: 'Pja8iuhLQVUicncsSVHOm2v5',
+// });
 
 
 let postAddress = async (req, res) => {
@@ -62,8 +62,9 @@ const getAddress = async (req, res) => {
                 }
             }
         ]);
-       
-console.log(data);
+        // const total = await Checkout({ discountedAmount });  
+            //  console.log(total);
+// console.log(data);
         const addressInfo = currentUser.personalInfo;
 
         res.render('user/check-out', { addressInfo, data });
@@ -75,113 +76,84 @@ console.log(data);
 };
 
 
-
-
 const postCarttocheckout = async (req, res) => {
     try {
         const { selectedItems } = req.body;
-        // console.log(selectedItems);
         const userId = req.user.id;
-        const carts = await cart.find()
-        // console.log(carts);
-        const productArr = []
-        for(const id of selectedItems){
-            // console.log(id);
-           const productss =  await cart.findOne({products:{$elemMatch:{productId:id}}})
+        const productArr = [];
 
+        for (const id of selectedItems) {
+            const productss = await cart.findOne({ products: { $elemMatch: { productId: id } } });
 
-if (productss) {
-    const product = productss.products.find(product => product.productId == id);
-    
-    if (product) {
-        // console.log(product);
-        productArr.push(product)
-
-   const newCheckout = new Checkout({ products: productArr , userId:userId});
-
-   await newCheckout.save();
-console.log(newCheckout);
-   console.log("Checkout document created:", newCheckout);
-
-await newCheckout.save();   
-    
-
-
-
-    } else {
-        console.log("Product not found.");
-    }
-} else {
-    console.log("Cart not found or no products match the given id.");
-}
-   
-
+            if (productss) {
+                const product = productss.products.find(product => product.productId == id);
+                if (product) {
+                    productArr.push(product);
+                } else {
+                    console.log("Product not found.");
+                }
+            } else {
+                console.log("Cart not found ");
+            }
         }
 
+        const newCheckout = new Checkout({ products: productArr, userId: userId });
+        await newCheckout.save();
 
-
+        // Redirect the user to the checkout page after successful addition
         res.redirect('/user/check-out');
     } catch (error) {
         console.error('Error transferring items to checkout:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
-
 };
-
-
-
-
-
-
 
 
 
 
 
 const coupencheck = async (req, res) => {
-    const { couponCode, grandTotal} = req.body; // Extract userId from the request body
+    const { couponCode, grandTotal } = req.body; 
+    // Validate userId, assuming it's coming from req.user
     const userId = req.user.id; 
 
-// console.log(req.body);
     try {
         const existingCheckout = await Checkout.findOne({ userId }); 
+        // console.log(existingCheckout);
+
 
         if (existingCheckout && existingCheckout.appliedCouponCode && existingCheckout.appliedCouponCode === couponCode) {
             return res.status(400).json({ error: 'Coupon already applied to this checkout' });
         }
 
-        const coupon = await coupen.findOne({ couponCode });
+        const coupons = await coupen.findOne({ couponCode }); 
 
-        if (!coupon) {
+        if (!coupons) {
             return res.status(404).json({ error: 'Coupon not found' });
         }
 
-        const discountPercentage = coupon.discountPercentage;
+        const discountPercentage = coupons.discountPercentage;
+
         const discountedAmount = grandTotal * (1 - discountPercentage / 100);
 
         if (existingCheckout) {
-
-        
             existingCheckout.appliedCouponCode = couponCode;
             existingCheckout.discountedAmount = discountedAmount;
             await existingCheckout.save();
         } else {
             await Checkout.create({
                 userId,
-                // coupon: coupon._id,
                 appliedCouponCode: couponCode,
                 discountedAmount
             });
         }
-
+// console.log("Amt",discountedAmount);
         res.json({ discountedAmount });
     } catch (error) {
         console.error('Error applying coupon:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-
-
 
 
 let orderPost = async (req, res) => {

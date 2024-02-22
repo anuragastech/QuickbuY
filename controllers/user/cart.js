@@ -1,80 +1,62 @@
 const Cart =require('../../models/user/cart')
 const product=require('../../models/vender/productAdd')
 const subcategory=require('../../models/admin/subcategory');
-const cart = require('../../models/user/cart');
 const mongoose = require('mongoose');
-
-
 
 let deleteCart = async (req, res) => {
     try {
-        const cartId = req.params.id; 
-        const deletedCart = await Cart.findByIdAndDelete(cartId);
-        
-        if (!deletedCart) {
-            return res.status(404).json({ message: "Cart not found" });
+        const cartId = req.params.id;
+
+        const deletedProduct = await Cart.updateOne(
+      
+            { $pull: { products: { productId: cartId} } }
+        );
+
+        // console.log(cartId  );
+        if (!deletedProduct) {
+            return res.status(404).json({ message: "Product not found in cart" });
         }
-        
+
         return res.status(200).json({ success: true });
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ message: "Error deleting cart data", error: error.message });
+        return res.status(500).json({ message: "Error deleting product from cart", error: error.message });
     }
 };
 
 
 
-// getcartlist= async (req, res) => {
-//     try {
-//         const userId = req.user.id;
 
-//         const cart = await Cart.aggregate([
-//             {
-//                 $match: {
-//                     userId: mongoose.Types.ObjectId(userId),
-//                 },
-//             },
-//             {
-//                 $lookup: {
-//                     from: 'products',  
-//                     localField: 'product',
-//                     foreignField: '_id',
-//                     as: 'productDetails',
-//                 },
-//             },
-//             {
-//                 $unwind: '$productDetails',
-//             },
-//             {
-//                 $project: {
-//                     'productDetails.productName': 1,
-//                     // Include other fields from Cart if needed
-//                 },
-//             },
-//         ]);
-//         res.render('user/cartlist', { cart });
-//         console.log('cart');
-
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).json({ success: false, message: 'Internal Server Error' });
-//     }
-
-// };
 
 const updateCart = async (req, res) => {
     try {
-      const cartId = req.params.cartId;
+
+        const userId = req.user.id;
+        // console.log( "user", userId);
+      const productId= req.params.cartId;
+    //   console.log(productId);
       const newQuantity = req.body.quantity;
-  
-      await Cart.findByIdAndUpdate(cartId, { quantity: newQuantity }, { new: true });
-  
+    //   console.log(newQuantity)
+
+
+    const updatedCart = await Cart.findOneAndUpdate(
+        { userId, "products.productId": productId }, 
+        { $set: { "products.$.quantity": newQuantity } }, 
+        { new: true }
+    );
+
       res.status(200).json({ message: 'Cart updated successfully' });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   };
+
+
+
+
+
+
   
 let  getcartpage=async (req, res) => {
     try {
@@ -97,11 +79,9 @@ let postcart = async (req, res) => {
             return res.status(400).json({ alert: 'Product ID, size, and quantity are required' });
         }
 
-        // Find the user's cart
         let cart = await Cart.findOne({ userId });
 
         if (!cart) {
-            // If the user doesn't have a cart, create a new one
             const newCart = new Cart({
                 userId: userId,
                 products: [{ productId: productId, size: size, quantity: quantity }]
