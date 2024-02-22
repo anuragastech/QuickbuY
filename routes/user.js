@@ -16,7 +16,6 @@ const getPaymentway=require('../controllers/user/paymentgateway')
 
 
 
-
 router.post('/sign',userControllers.Addsign)
 
 router.post('/login',userControllers.Addlogin)
@@ -53,7 +52,7 @@ router.delete("/deletecart/:id",getCartControllers.deleteCart);
 
 
 
-router.post('/update-cart/:cartId', getCartControllers.updateCart);
+router.post('/update-cart/:cartId',authenticateJWT, getCartControllers.updateCart);
 
 // router.get('/cart',authenticateJWT, getCartControllers.getcartpage)
 
@@ -65,6 +64,7 @@ router.post('/update-cart/:cartId', getCartControllers.updateCart);
 
 router.post('/cart/product', authenticateJWT, getCartControllers.postcart);
 router.get('/shopping-cart',authenticateJWT,getCartControllers.getshoppingcart)
+
 
 
 router.get('/payment',(req,res)=>{
@@ -85,7 +85,7 @@ router.get('/payment',(req,res)=>{
 
 
 
-  router.post('/products',getProductControllers.getproductData)
+  router.post('/products',authenticateJWT,getProductControllers.getproductData)
 
  router.post('/checkout',authenticateJWT, getPaymentway.postAddress)
  
@@ -94,6 +94,8 @@ router.get('/payment',(req,res)=>{
  router.post('/applycoupon',authenticateJWT, getPaymentway.coupencheck)
 
 router.post('/order',authenticateJWT, getPaymentway.orderPost)
+
+router.put("/cart/selectedProduct",authenticateJWT,getPaymentway.cartProductSelected)
 
 
 

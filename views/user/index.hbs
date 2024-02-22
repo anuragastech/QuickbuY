@@ -63,7 +63,7 @@
         <div class="container-fluid">
             <div class="inner-header">
                 <div class="logo">
-                    <a href="./index.hbs"><img src="/logo.png" alt=""></a>
+                    <a href="./index"><img src="/logo.png" alt=""></a>
                 </div>
                 <div class="header-right">
                     <img src="/icons/search.png" alt="" class="search-trigger">
@@ -74,11 +74,52 @@
                     </a>
                 </div>
                 <div class="user-access">
-                    <a href="/user/sign"  >Register</a>
-                    <a href="/user/login"  class="in">Sign in</a>
+                     <!-- Conditional rendering based on user authentication -->
+{{#if loggedIn}}
+    <!-- Show logout button if user is logged in -->
+    {{!-- <button id="logoutButton">Logout</button> --}}
+    <a style="color: black;" href="/user/logout" id="logoutButton">Logout</a>
+{{else}}
+    <!-- Show sign in and sign up buttons if user is not logged in -->
+    {{!-- <button id="signInButton">Sign In</button>
+    <button id="signUpButton">Sign Up</button> --}}
+        <a style="color: black;" href="/user/login" id="signInButton">sign in</a>/
+    <a style="color: rgb(156, 142, 142);" href="/user/sign" id="signUpButton">sign up</a>
 
-
+{{/if}}  
                 </div>
+
+
+<!-- Your JavaScript code can go here -->
+<script>
+    // Example JavaScript code
+    // This script can handle interactions such as logging out
+    document.addEventListener('DOMContentLoaded', () => {
+        // Check if the user is logged in
+        const loggedIn = {{loggedIn}};
+
+        if (loggedIn) {
+            // If logged in, add event listener to the logout button
+            document.getElementById('logoutButton').addEventListener('click', () => {
+                // Perform logout actions, e.g., redirect to logout route
+                // Example: window.location.href = '/logout';
+            });
+        } else {
+            // If not logged in, add event listeners to the sign in and sign up buttons
+            document.getElementById('signInButton').addEventListener('click', () => {
+                // Perform sign in actions, e.g., redirect to sign in route
+                // Example: window.location.href = '/signin';
+            });
+
+            document.getElementById('signUpButton').addEventListener('click', () => {
+                // Perform sign up actions, e.g., redirect to sign up route
+                // Example: window.location.href = '/signup';
+            });
+        }
+    });
+</script>
+
+                
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li><a class="active" href="/user/index">Home</a></li>
@@ -89,7 +130,7 @@
                                 {{!-- <li><a href="/user/check-out">Check out</a></li> --}}
                             </ul>
                         </li>
-                        <li><a href="/user/product-page">About</a></li>
+                        <li><a href="/user/index">About</a></li>
                         <li><a href="/user/check-out">Blog</a></li>
                         <li><a href="/user/contact">Contact</a></li>
                     </ul>

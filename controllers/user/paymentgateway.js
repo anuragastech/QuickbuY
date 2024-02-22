@@ -3,13 +3,15 @@ const cart=require('../../models/user/cart');
 const Checkout=require('../../models/user/checkout')
 const coupen=require('../../models/admin/coupen')
 const order =require('../../models/user/order')
-const Razorpay = require('razorpay');
-const { checkout } = require('../../routes/user');
+// const Razorpay = require('razorpay');
+const Product =require('../../models/vender/productAdd');
+const mongoose = require("mongoose");
 
-const razorpay = new Razorpay({
-  key_id: 'rzp_test_uF6rcT6FvcQis8',
-  key_secret: 'Pja8iuhLQVUicncsSVHOm2v5',
-});
+
+// const razorpay = new Razorpay({
+//   key_id: 'rzp_test_uF6rcT6FvcQis8',
+//   key_secret: 'Pja8iuhLQVUicncsSVHOm2v5',
+// });
 
 
 let postAddress = async (req, res) => {
@@ -30,14 +32,43 @@ let postAddress = async (req, res) => {
 };
 
 
-let getAddress = async (req, res) => {
+
+
+
+const getAddress = async (req, res) => {
     try {
         const userId = req.user.id; 
         const currentUser = await personal.findById(userId);
-        const data = await Checkout.find({}).populate('product');
+
+        
+        // const data = await Checkout.find({ userId }) 
+        const data = await Checkout.aggregate([
+            { $match: { userId: new mongoose.Types.ObjectId(userId) } }, 
+            { $unwind: "$products" },
+            { 
+                $lookup: {
+                    from: 'products', 
+                    localField: 'products.productId',
+                    foreignField: '_id',
+                    as: 'productData'
+                }
+            },
+            { $unwind: "$productData" }, 
+            { 
+                $group: {
+                    _id: "$products.productId",
+                    products: { $push: "$products" },
+                    productData: { $first: "$productData" }
+                }
+            }
+        ]);
+        // const total = await Checkout({ discountedAmount });  
+            //  console.log(total);
+// console.log(data);
         const addressInfo = currentUser.personalInfo;
 
         res.render('user/check-out', { addressInfo, data });
+        // console.log(data);
     } catch (error) {
         console.error('Error showing data:', error);
         res.status(500).send('Internal Server Error');
@@ -45,82 +76,78 @@ let getAddress = async (req, res) => {
 };
 
 
-
-
 const postCarttocheckout = async (req, res) => {
     try {
         const { selectedItems } = req.body;
-        const userId = req.user.id; 
+        const userId = req.user.id;
+        const productArr = [];
 
-        const matchcart = await cart.find({ _id: { $in: selectedItems } });
-        // console.log(matchcart);
+        for (const id of selectedItems) {
+            const productss = await cart.findOne({ products: { $elemMatch: { productId: id } } });
 
-        for (const item of matchcart) {
-            const { product, size, quantity } = item;
-            const newcheckoutItem = new Checkout({
-                product: product,
-                userId: userId,
-                size: size,
-                quantity: quantity,
-            });
-            await newcheckoutItem.save();
-        }
-
-        if (!userId) {
-            try {
-                const deleteResult = await Checkout.deleteMany({});
-                console.log(`${deleteResult.deletedCount} documents deleted from Checkout collection`);
-            } catch (error) {
-                console.error('Error deleting documents from Checkout collection:', error);
+            if (productss) {
+                const product = productss.products.find(product => product.productId == id);
+                if (product) {
+                    productArr.push(product);
+                } else {
+                    console.log("Product not found.");
+                }
+            } else {
+                console.log("Cart not found ");
             }
         }
-        
-        res.redirect('/user/check-out');
 
+        const newCheckout = new Checkout({ products: productArr, userId: userId });
+        await newCheckout.save();
+
+        // Redirect the user to the checkout page after successful addition
+        res.redirect('/user/check-out');
     } catch (error) {
-        console.error('Error showing data:', error);
+        console.error('Error transferring items to checkout:', error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
 
 
 
+
+
 const coupencheck = async (req, res) => {
-    const { couponCode, grandTotal} = req.body; // Extract userId from the request body
+    const { couponCode, grandTotal } = req.body; 
+    // Validate userId, assuming it's coming from req.user
     const userId = req.user.id; 
 
-// console.log(req.body);
     try {
         const existingCheckout = await Checkout.findOne({ userId }); 
+        // console.log(existingCheckout);
+
 
         if (existingCheckout && existingCheckout.appliedCouponCode && existingCheckout.appliedCouponCode === couponCode) {
             return res.status(400).json({ error: 'Coupon already applied to this checkout' });
         }
 
-        const coupon = await coupen.findOne({ couponCode });
+        const coupons = await coupen.findOne({ couponCode }); 
 
-        if (!coupon) {
+        if (!coupons) {
             return res.status(404).json({ error: 'Coupon not found' });
         }
 
-        const discountPercentage = coupon.discountPercentage;
+        const discountPercentage = coupons.discountPercentage;
+
         const discountedAmount = grandTotal * (1 - discountPercentage / 100);
 
         if (existingCheckout) {
-
-        
             existingCheckout.appliedCouponCode = couponCode;
             existingCheckout.discountedAmount = discountedAmount;
             await existingCheckout.save();
         } else {
             await Checkout.create({
                 userId,
-                // coupon: coupon._id,
                 appliedCouponCode: couponCode,
                 discountedAmount
             });
         }
-
+// console.log("Amt",discountedAmount);
         res.json({ discountedAmount });
     } catch (error) {
         console.error('Error applying coupon:', error);
@@ -128,42 +155,43 @@ const coupencheck = async (req, res) => {
     }
 };
 
+
 let orderPost = async (req, res) => {
     try {
-        const userId = req.user.id; 
+        const userId = req.user.id;
 
-        console.log("fernhbu");
-const productId= await checkout.find({})
+        const{address,paymentMethod}=req.body
 
-        // Create a new order object
-        const newOrder = new order({
-            // razorpayOrderId: '', // Placeholder for Razorpay order ID
-            product: productId,
-            totalAmount: totalAmount,
-            paymentMethod: req.body.paymentMethod, // Add payment method to the order
-            paymentStatus: req.body.paymentMethod === 'cash' ? 'pending' : 'paid', // Update payment status based on the selected method
-            shippingStatus: 'pending'
-        });
+        // Fetch data from Checkout schema
+        const checkoutData = await Checkout.find({ userId });
 
-        await newOrder.save();
+        // Iterate through checkout data    
+        for (const item of checkoutData) {
 
-        if (req.body.paymentMethod === 'online') {
-            // Create an order in Razorpay
-            const razorpayOrder = await razorpay.orders.create({
-                amount: req.body.totalAmount * 100, // Razorpay expects amount in paisa (1 INR = 100 paisa)
-                currency: 'INR',
-                receipt: 'order_receipt_' + newOrder._id // Generate a unique receipt ID
+            const { product, size, quantity, totalAmount } = item;
+
+            // Generate a unique order ID for each product
+            const orderId = generateOrderId(); // You can implement your own function to generate order IDs
+
+            // Create a new order object
+            const newOrder = new order({
+                orderId: orderId,
+                product: product,
+                size: size,
+                quantity: quantity,
+                totalAmount: totalAmount, // Assign the totalAmount from checkout data
+                paymentMethod: paymentMethod,
+                paymentStatus: paymentMethod === 'cash' ? 'pending' : 'paid',
+                shippingStatus: 'pending'
             });
 
-            // Update the order in your database with the Razorpay order ID
-            await orderModel.findByIdAndUpdate(newOrder._id, { razorpayOrderId: razorpayOrder.id });
-
-            // Send the Razorpay order ID back to the client
-            res.status(200).json({ orderId: razorpayOrder.id });
-        } else {
-            // Send response for cash on delivery
-            res.status(200).json({ message: 'Order placed successfully via Cash on Delivery' });
+            // Save the order to the database
+            await newOrder.save();
         }
+
+        // Assuming the rest of your code is correct for payment handling
+
+        res.status(200).json({ message: 'Order(s) placed successfully' });
     } catch (error) {
         console.error('Error creating order:', error);
         res.status(500).json({ message: 'Internal server error' });
@@ -171,6 +199,13 @@ const productId= await checkout.find({})
 };
 
 
+// // Function to generate a unique order ID
+// function generateOrderId() {
+//     // Generate a unique ID using a suitable method (e.g., UUID, timestamp + random characters)
+//     // Return the generated ID
+// }
 
-
-module.exports={postAddress ,getAddress,postCarttocheckout,coupencheck ,orderPost};
+const cartProductSelected = async () =>{
+  
+}
+module.exports={postAddress ,getAddress,postCarttocheckout,coupencheck ,orderPost, cartProductSelected};

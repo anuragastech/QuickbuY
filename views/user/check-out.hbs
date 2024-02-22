@@ -81,14 +81,14 @@
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li><a class="active" href="/user/index">Home</a></li>
-                        <li><a href="/user/categories">Shop</a>
+                        <li><a href="/user/products">Shop</a>
                             <ul class="sub-menu">
-                                <li><a href="/user/products">Product Page</a></li>
+                                {{!-- <li><a href="/user/products">Product Page</a></li> --}}
                                 <li><a href="/user/shopping-cart">Shopping Card</a></li>
                                 {{!-- <li><a href="/user/check-out">Check out</a></li> --}}
                             </ul>
                         </li>
-                        <li><a href="/user/product-page">About</a></li>
+                        <li><a href="/user/check-out">About</a></li>
                         <li><a href="/user/check-out">Blog</a></li>
                         <li><a href="/user/contact">Contact</a></li>
                     </ul>
@@ -239,61 +239,43 @@
                     </style>
             </div>
             <div class="col-lg-3">
-                <div style="height: 300px; overflow-y: auto;">
-                    {{#each data }}
-                    <div>
-                        <img style="height: 80px;width: 80px;" src="{{this.product.image.url}}" alt="">
-                        <label for="productname">Product Name: {{this.product.productname}}</label><br>
-                        <label for="productcolor">Color: {{this.product.color}}</label><br>
-                        <label for="price">Price: ₹{{this.product.price}}</label><br>
-                        <label for="size">Size: {{this.size}}</label><br>
-                    </div>
-                    {{/each}}
-                </div>
-                <hr>
-                <label for="subtotal">Subtotal: <span id="subtotalValue">0</span></label><br>
-                <label for="tax">Tax (5%): <span id="taxValue">0</span></label><br>
-                <label for="shippingCost">Shipping Cost: <span id="shippingCostValue">0</span></label><br>
-                <label for="grandTotal">Grand Total: <span id="grandTotalValue">0</span></label><br>
-                <hr>
-                <input type="text" id="couponCode" placeholder="Enter coupon code">
-                <button id="applyCouponButton" onclick="applyCoupon()">Apply Coupon</button>
-                <hr>
-                <div id="discountedAmountContainer">
-                    <label for="discountedAmount">Discounted totel Amount: <span
-                            id="discountedAmountValue">0</span></label>
-                </div>
-                <hr>
-                <!-- Add payment method selection -->
-<label>
-    <input type="radio" name="paymentMethod" value="online" checked> Online Payment
-</label>
-<label>
-    <input type="radio" name="paymentMethod" value="cash"> Cash on Delivery
-</label>
+    <div style="height: 300px; overflow-y: auto;">
+        {{#each data }}
+        <div>
+            <img style="height: 80px;width: 80px;" src="{{this.productData.image.url}}" alt="">
+            <label for="productname">Product Name: {{this.productData.productname}}</label><br>
+            <label for="productcolor">Color: {{this.productData.color}}</label><br>
+            <label for="price">Price: ₹{{this.productData.price}}</label><br>
+            <label for="size">Size: {{this.size}}</label><br>
+        </div>
+        {{/each}}
+    </div>
+    <hr>
+    <label for="subtotal">Subtotal: <span id="subtotalValue">0</span></label><br>
+    <label for="tax">Tax (5%): <span id="taxValue">0</span></label><br>
+    <label for="shippingCost">Shipping Cost: <span id="shippingCostValue">0</span></label><br>
+    <label for="grandTotal">Grand Total: <span id="grandTotalValue">0</span></label><br>
+    <input type="hidden" id="grandTotalInput" name="grandTotal"> <!-- Hidden input field to store grand total -->
+    <hr>
+    <input type="text" id="couponCode" placeholder="Enter coupon code">
+    <button id="applyCouponButton" onclick="applyCoupon()">Apply Coupon</button>
+    <hr>
+    
+      <div id="discountedAmountContainer">
+        <label for="discountedAmount">Discounted Total Amount: <span id="discountedAmountValue">0</span></label>
+    </div>
+    <hr>
+    <!-- Add payment method selection -->
+    <label>
+        <input type="radio" name="paymentMethod" value="online" checked> Online Payment
+    </label>
+    <label>
+        <input type="radio" name="paymentMethod" value="cash"> Cash on Delivery
+    </label>
+    <button id="paymentButton" onclick="sendDataToBackend()">Proceed to Payment</button>
+</div>
 
                 {{!-- ------------------------------------------------------ --}}
-                <!-- Add the form element around the payment button -->
-                <form id="paymentForm" action="/user/checkout" method="POST">
-                    <!-- Hidden input fields to hold the payment data -->
-                    <input type="hidden" name="productId" id="productId" value="your_product_id_here">
-                    <input type="hidden" name="totalAmount" id="totalAmount" value="your_total_amount_here">
-                    <!-- Add more hidden fields for other payment-related data if needed -->
-
-                    <!-- Hidden input fields to hold the selected address data -->
-                    <input type="hidden" name="address" id="selectedAddress" value="">
-                    <input type="hidden" name="phone" id="selectedPhone" value="">
-                    <input type="hidden" name="country" id="selectedCountry" value="">
-                    <input type="hidden" name="city" id="selectedCity" value="">
-                    <input type="hidden" name="state" id="selectedState" value="">
-                    <input type="hidden" name="pin" id="selectedPin" value="">
-
-                    <div class="col-lg-3">
-                        <!-- Payment button -->
-                        <button type="submit" class="btn btn-primary" id="paymentButton">Payment</button>
-                        <hr>
-                    </div>
-                </form>
 
 
 {{!-- 
@@ -303,156 +285,125 @@
             </div>
 
 
-
-            <script>
-                // Calculate and display grand total
-                document.addEventListener("DOMContentLoaded", function () {
-                    const productElements = document.querySelectorAll('.col-lg-3 > div');
-                    let subtotal = 0;
-
-                    productElements.forEach(function (productElement) {
-                        const priceElement = productElement.querySelector('label[for="price"]');
-                        if (priceElement) {
-                            const priceText = priceElement.textContent.trim(); // Get the price text
-                            const priceMatch = priceText.match(/₹\s*([\d.]+)/); // Extract the price value (including decimals)
-                            if (priceMatch && priceMatch[1]) {
-                                const price = parseFloat(priceMatch[1]); // Extract the price value
-                                subtotal += price;
-                            } else {
-                                console.error('Invalid price format:', priceText);
-                            }
-                        } else {
-                            console.error('Price element not found in product:', productElement);
-                        }
-                    });
-
-                    const tax = subtotal * 0.05; // Calculate tax (5%)
-                    const shippingCost = 15; // Flat shipping cost
-                    const grandTotal = subtotal + tax + shippingCost; // Calculate grand total
-
-                    const subtotalValueElement = document.getElementById('subtotalValue');
-                    subtotalValueElement.textContent = `₹${subtotal.toFixed(2)}`; // Format subtotal to 2 decimal places
-
-                    const taxValueElement = document.getElementById('taxValue');
-                    taxValueElement.textContent = `₹${tax.toFixed(2)}`; // Format tax to 2 decimal places
-
-                    const shippingCostValueElement = document.getElementById('shippingCostValue');
-                    shippingCostValueElement.textContent = `₹${shippingCost.toFixed(2)}`; // Format shipping cost to 2 decimal places
-
-                    const grandTotalValueElement = document.getElementById('grandTotalValue');
-                    grandTotalValueElement.textContent = `₹${grandTotal.toFixed(2)}`; // Format grand total to 2 decimal places
-
-                    // Store grand total in a hidden input field for passing to backend
-                    document.getElementById('grandTotalInput').value = grandTotal.toFixed(2);
-                });
-
-                async function applyCoupon() {
-
-                    const couponCode = document.getElementById('couponCode').value;
-                    const grandTotalText = document.getElementById('grandTotalValue').textContent;
-                    const grandTotal = parseFloat(grandTotalText.replace('₹', '').trim());
-
-                    try {
-                        const response = await fetch(`/user/applycoupon`, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({ couponCode, grandTotal })
-                        });
-
-                        if (!response.ok) {
-                            throw new Error('Failed to apply coupon');
-                        }
-
-                        const data = await response.json();
-
-                        // Update the displayed grand total with the discounted amount
-                        document.getElementById('grandTotalValue').textContent = `₹${data.discountedAmount.toFixed(2)}`;
-
-                        // Display the discounted amount in the checkout page
-                        const discountedAmountContainer = document.getElementById('discountedAmountContainer');
-                        discountedAmountContainer.style.display = 'block';
-                        document.getElementById('discountedAmountValue').textContent = `₹${data.discountedAmount.toFixed(2)}`;
-                    } catch (error) {
-                        console.error('Error applying coupon:', error);
-                        // Handle error
-                    }
-                }
-            </script>
-
 <script>
-    // JavaScript to handle the click event of the payment button
-    document.getElementById('paymentButton').addEventListener('click', function (event) {
-        // Prevent the default form submission behavior
-        event.preventDefault();
+    document.addEventListener("DOMContentLoaded", function () {
+        const priceElements = document.querySelectorAll('.col-lg-3 label[for="price"]');
+        let subtotal = 0;
 
-        // Get the selected address details
-        const selectedAddress = document.querySelector('.address-box.selected');
-        const phone = selectedAddress.querySelector('.xl:nth-child(2)').textContent.trim().split(':')[1].trim();
-        const country = selectedAddress.querySelector('.xl:nth-child(3)').textContent.trim().split(':')[1].trim();
-        const city = selectedAddress.querySelector('.xl:nth-child(4)').textContent.trim().split(':')[1].trim();
-        const state = selectedAddress.querySelector('.xl:nth-child(5)').textContent.trim().split(':')[1].trim();
-        const pin = selectedAddress.querySelector('.xl:nth-child(6)').textContent.trim().split(':')[1].trim();
-
-        // Set the selected address details in the hidden input fields
-        document.getElementById('selectedPhone').value = phone;
-        document.getElementById('selectedCountry').value = country;
-        document.getElementById('selectedCity').value = city;
-        document.getElementById('selectedState').value = state;
-        document.getElementById('selectedPin').value = pin;
-
-        // Get the selected payment method
-        const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked').value;
-
-        // Add the payment method to the form data
-        const formData = new FormData(document.getElementById('paymentForm'));
-        formData.append('paymentMethod', paymentMethod);
-
-        // Send the form data to the server using fetch API
-        fetch('/user/order', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Failed to submit payment data');
+        priceElements.forEach(function (priceElement) {
+            const priceText = priceElement.textContent.trim(); // Get the price text
+            const priceMatch = priceText.match(/₹\s*([\d.]+)/); 
+            if (priceMatch && priceMatch[1]) {
+                const price = parseFloat(priceMatch[1]); 
+                subtotal += price;
+            } else {
+                console.error('Invalid price format:', priceText);
             }
-            return response.json();
-        })
-        .then(data => {
-            // Handle the response from the server, if needed
-            console.log('Payment data submitted successfully:', data);
-            // Redirect to a success page or display a success message to the user
-        })
-        .catch(error => {
-            console.error('Error submitting payment data:', error);
-            // Handle errors, such as displaying an error message to the user
         });
+
+        const tax = subtotal * 0.05; // Calculate tax (5%)
+        const shippingCost = 15; 
+        const grandTotal = subtotal + tax + shippingCost; 
+
+        const subtotalValueElement = document.getElementById('subtotalValue');
+        subtotalValueElement.textContent = `₹${subtotal.toFixed(2)}`;
+
+        const taxValueElement = document.getElementById('taxValue');
+        taxValueElement.textContent = `₹${tax.toFixed(2)}`; 
+
+        const shippingCostValueElement = document.getElementById('shippingCostValue');
+        shippingCostValueElement.textContent = `₹${shippingCost.toFixed(2)}`; 
+
+        const grandTotalValueElement = document.getElementById('grandTotalValue');
+        grandTotalValueElement.textContent = `₹${grandTotal.toFixed(2)}`; 
+
+        // Store grand total in a hidden input field for passing to backend
+        document.getElementById('grandTotalInput').value = grandTotal.toFixed(2);
     });
 </script>
+<script>
+function sendDataToBackend() {
+    var paymentMethod = document.querySelector("input[name='paymentMethod']:checked").value;
 
-            {{!--
+    // Find the selected address
+    var selectedAddressElement = document.querySelector(".address-box.selected");
+    var addressData = null;
+    if (selectedAddressElement) {
+        var addressId = selectedAddressElement.getAttribute("data-address-id");
+        var addressDetails = selectedAddressElement.querySelector(".address-details");
+        var address = {
+            id: addressId,
+            address: addressDetails.querySelector("p:nth-child(1)").textContent.trim(),
+            phone: addressDetails.querySelector("p:nth-child(2)").textContent.trim(),
+            country: addressDetails.querySelector("p:nth-child(3)").textContent.trim(),
+            city: addressDetails.querySelector("p:nth-child(4)").textContent.trim(),
+            state: addressDetails.querySelector("p:nth-child(5)").textContent.trim(),
+            pincode: addressDetails.querySelector("p:nth-child(6)").textContent.trim(),
+        };
+        addressData = address;
+    }
+
+    var data = {
+        paymentMethod: paymentMethod,
+        address: addressData
+        // You can add other necessary data here if needed
+    };
+
+    // Send data to backend (example using fetch API)
+    fetch('/user/order', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => {
+        if (response.ok) {
+            // Handle successful response
+        } else {
+            // Handle error response
+        }
+    })
+    .catch(error => {
+        // Handle network error
+    });
+}
+
+</script>
+
+
+
+        
             <script>
 
-                async function applyCoupon() {
-                    const couponCode = document.getElementById('couponCode').value;
-                    const grandTotal = document, getElementById('grandTotalValue').value;
-                    try {
-                        // Send an AJAX request to the server to apply the coupon
-                        const response = await fetch(`/user/check-out?couponCode=${couponCode}&grandTotal=${grandTotal}`);
+              async function applyCoupon() {
+    const couponCode = document.getElementById('couponCode').value;
+    const grandTotal = document.getElementById('grandTotalInput').value; 
+    try {
+        // Send an AJAX request to the server to apply the coupon
+        const response = await fetch('/user/applycoupon', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ couponCode: couponCode, grandTotal: grandTotal }) 
+        });
 
-                        const data = await response.text(); // Get the HTML content of the checkout page
+        if (!response.ok) {
+            throw new Error('Failed to apply coupon');
+        }
 
-                        // Replace the current checkout page with the updated one
-                        document.body.innerHTML = data;
-                    } catch (error) {
-                        console.error('Error applying coupon:', error);
-                        // Handle errors
-                    }
-                }
+        const data = await response.json();
+console.log(data)
+     document.getElementById('discountedAmountValue').textContent = data.discountedAmount;
+         } catch (error) {
+        console.error('Error applying coupon:', error);
 
-            </script> --}}
+    }
+}
+
+
+            </script> 
 
 
 

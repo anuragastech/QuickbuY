@@ -1,22 +1,34 @@
 const mongoose = require("mongoose");
 
 const  checkoutSchema = mongoose.Schema({
-     product: {
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'product',
-        required: true,
-        // unique: true
-    },
-   
-   
-    size:{
-        type:String,
-        required:true,
-     },
-     quantity:{
-        type:String,
-        required:true,
-     },
+
+    products: [
+        {
+            productId: {
+                type: mongoose.Schema.Types.ObjectId, 
+                ref: 'product',
+                // required: true
+            },
+           productname: {
+                type: String,
+                // required: true
+            },
+            size: {
+                type: String,
+                // required: true
+            },
+            quantity: {
+                type: String,
+                // required: true
+            },
+          
+            vednerId: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'vender',
+                // required: true
+            },
+        }
+    ],
 
     userId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -25,13 +37,13 @@ const  checkoutSchema = mongoose.Schema({
     }, 
     coupon: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'coupen' // Note: You might want to rename 'coupen' to 'coupon' for consistency
+        ref: 'coupen' 
     },
     appliedCouponCode: {
-        type: String // Store the coupon code that was applied
+        type: String 
     },
     discountedAmount: {
-        type: Number // Store the discounted amount if applicable
+        type: Number 
     },
 });
 
