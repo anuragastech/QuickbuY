@@ -73,7 +73,10 @@ router.get('/payment',(req,res)=>{
     router.get('/triel',(req,res)=>{
       res.render('user/triel')
       });
-  
+      router.get('/profile',(req,res)=>{
+        res.render('user/profile')
+        });
+    
 
     // router.get('/products',(req,res)=>{
     //   res.render('user/products')
