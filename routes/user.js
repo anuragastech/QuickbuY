@@ -100,7 +100,7 @@ router.post('/order',authenticateJWT, getPaymentway.orderPost)
 
 router.put("/cart/selectedProduct",authenticateJWT,getPaymentway.cartProductSelected)
 
-
+router.post("/send-mail",authenticateJWT,userControllers.sendmail)
 
 
 

@@ -3,7 +3,8 @@ const bcrypt=require('bcryptjs')
 const jwt= require('jsonwebtoken');
 
 const create=require('../../models/user/mongodb')
- 
+ const nodemailer=require("nodemailer");
+const { response } = require('express');
  
 let Addsign=async (req, res) => {
     try {
@@ -90,5 +91,38 @@ let getsign=(req,res)=>{
         
             res.redirect("/user/login");
         };
+
+
+
+        const sendmail = async (req, res) => {
+            const { name, email, subject, message } = req.body;
         
-module.exports={Addlogin,Addsign,getsign,getlogin,getlogout};
+            const transporter = nodemailer.createTransport({
+                service: "gmail",
+                auth: {
+                    user: "anuragraveendren98in@gmail.com",
+                    pass: "pjfs jyzp ykfu qnnd"
+                }
+            });
+        
+            const mailOptions = {
+                from: email,
+                to: "anuragraveendren98in@gmail.com",
+                subject: subject,
+                text: message ,
+            };
+        
+            transporter.sendMail(mailOptions, function(error, info) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log("Email sent: " + info.response);
+                }
+                res.redirect("/user/profile"); 
+            });
+        };
+        
+       
+
+        
+module.exports={Addlogin,Addsign,getsign,getlogin,getlogout,sendmail};
