@@ -3,15 +3,15 @@ const cart=require('../../models/user/cart');
 const Checkout=require('../../models/user/checkout')
 const coupen=require('../../models/admin/coupen')
 const order =require('../../models/user/order')
-// const Razorpay = require('razorpay');
+const Razorpay = require('razorpay');
 const Product =require('../../models/vender/productAdd');
 const mongoose = require("mongoose");
 
 
-// const razorpay = new Razorpay({
-//   key_id: 'rzp_test_uF6rcT6FvcQis8',
-//   key_secret: 'Pja8iuhLQVUicncsSVHOm2v5',
-// });
+const razorpay = new Razorpay({
+  key_id: 'rzp_test_uF6rcT6FvcQis8',
+  key_secret: 'Pja8iuhLQVUicncsSVHOm2v5',
+});
 
 
 let postAddress = async (req, res) => {
@@ -164,7 +164,7 @@ const coupencheck = async (req, res) => {
             const userId = req.user.id;
 
             const { address, paymentMethod } = req.body;
-
+// console.log(req.body);
             const checkoutData = await Checkout.find({ userId });
 
             const products = checkoutData.map(order => order.products).flat();
@@ -181,6 +181,7 @@ const coupencheck = async (req, res) => {
     }
     orders.push(orderid);
 
+
   
     const unwoundOrders = orders.map(orderDetails => {
         const numProducts = orderDetails.product.length;
@@ -192,15 +193,11 @@ const coupencheck = async (req, res) => {
         }));
     }).flat();
     
-    // const unwoundOrders.save()/
-    
-    // Now unwoundOrders array contains all orders saved based on their index
-    
-
+  
     // console.log(orderDetails.product[i]);
     const savePromises = unwoundOrders.map(async (orderDetails) => {
         const { product, size, quantity, address } = orderDetails;
-        console.log("hi",size);
+        // console.log("hi",size);
 
         // Create a new order object
         const newOrder = new order({
@@ -210,27 +207,41 @@ const coupencheck = async (req, res) => {
             address,
         });
 
-        // Save the order and return the promise
         return newOrder.save();
     });
 
-    // console.log("hai",unwoundOrders);
-
-            res.status(200).json({ message: 'Order(s) placed successfully' });
-        } catch (error) {
-            console.error('Error creating order:', error);
-            res.status(500).json({ message: 'Internal server error' });
-        }
-    };
 
 
-// // Function to generate a unique order ID
-// function generateOrderId() {
-//     // Generate a unique ID using a suitable method (e.g., UUID, timestamp + random characters)
-//     // Return the generated ID
-// }
+    let paymentResponse;
+    if (paymentMethod === 'cash') {
+        paymentResponse = { message: 'Order placed successfully with Cash on Delivery' };
+    } else if (paymentMethod === 'online') {
+        const razorpayOrder =  await razorpay.orders.create({
+            amount: 5000,
+            currency: 'INR',
+            receipt: 'order_rcptid_11', // Replace with your receipt ID
+            payment_capture: 1
+        });
+
+        // Send the Razorpay order ID back to the client-side for payment processing
+        paymentResponse = { message: 'Order placed successfully with Razorpay', razorpayOrder };
+    } else {
+        throw new Error('Invalid payment method');
+    }
+
+    // Send payment response back to the client
+    res.status(200).json(paymentResponse);
+} catch (error) {
+    console.error('Error creating order:', error);
+    res.status(500).json({ message: 'Internal server error' });
+}
+};
+
+
+
 
 const cartProductSelected = async () =>{
   
 }
+
 module.exports={postAddress ,getAddress,postCarttocheckout,coupencheck ,orderPost, cartProductSelected};

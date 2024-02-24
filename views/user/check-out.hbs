@@ -321,56 +321,140 @@
         document.getElementById('grandTotalInput').value = grandTotal.toFixed(2);
     });
 </script>
-<script>
-function sendDataToBackend() {
-    var paymentMethod = document.querySelector("input[name='paymentMethod']:checked").value;
 
-    // Find the selected address
-    var selectedAddressElement = document.querySelector(".address-box.selected");
-    var addressData = null;
-    if (selectedAddressElement) {
-        var addressId = selectedAddressElement.getAttribute("data-address-id");
-        var addressDetails = selectedAddressElement.querySelector(".address-details");
-        var address = {
-            id: addressId,
-            address: addressDetails.querySelector("p:nth-child(1)").textContent.trim(),
-            phone: addressDetails.querySelector("p:nth-child(2)").textContent.trim(),
-            country: addressDetails.querySelector("p:nth-child(3)").textContent.trim(),
-            city: addressDetails.querySelector("p:nth-child(4)").textContent.trim(),
-            state: addressDetails.querySelector("p:nth-child(5)").textContent.trim(),
-            pincode: addressDetails.querySelector("p:nth-child(6)").textContent.trim(),
-        };
-        addressData = address;
-    }
 
-    var data = {
-        paymentMethod: paymentMethod,
-        address: addressData
-        // You can add other necessary data here if needed
-    };
 
-    // Send data to backend (example using fetch API)
-    fetch('/user/order', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => {
-        if (response.ok) {
-            // Handle successful response
-        } else {
-            // Handle error response
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+ <script>
+        function initiateRazorpayPayment(orderDetails) {
+            fetch('/user/order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(orderDetails),
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Failed to initiate payment');
+            })
+            .then(paymentResponse => {
+                if (paymentResponse.message === 'Order placed successfully with Razorpay') {
+                    // Initiate Razorpay payment
+                    var options = {
+                        key: 'rzp_test_uF6rcT6FvcQis8', 
+                        amount: paymentResponse.razorpayOrder.amount,
+                        currency: 'INR',
+                        order_id: paymentResponse.razorpayOrder.id,
+                        name: 'Your Company Name',
+                        description: 'Order payment',
+                        image: 'https://example.com/your_logo.png',
+                        handler: function (response) {
+                            // Handle Razorpay success callback
+                            console.log(response);
+                            // Send the Razorpay payment ID and order ID to your server for verification
+                            var paymentData = {
+                                payment_id: response.razorpay_payment_id,
+                                order_id: response.razorpay_order_id,
+                                signature: response.razorpay_signature
+                            };
+                            fetch('/verifyRazorpayPayment', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(paymentData),
+                            })
+                            .then(response => response.json())
+                            .then(paymentResponse => {
+                                // Handle payment verification response
+                                console.log(paymentResponse);
+                                // Redirect or show a success message to the user
+                            })
+                            .catch(error => {
+                                // Handle error in payment verification
+                                console.error('Error verifying payment:', error);
+                            });
+                        },
+                        prefill: {
+                            name: 'John Doe',
+                            email: 'john@example.com',
+                            contact: '+919876543210'
+                        },
+                        theme: {
+                            color: '#F37254'
+                        }
+                    };
+                    var rzp1 = new Razorpay(options);
+                    rzp1.open();
+                } else {
+                    // Handle successful response for other payment methods
+                    console.log(paymentResponse.message);
+                }
+            })
+            .catch(error => {
+                // Handle error response
+                console.error('Error initiating payment:', error);
+            });
         }
-    })
-    .catch(error => {
-        // Handle network error
-    });
-}
 
-</script>
+        function sendDataToBackend() {
+            var paymentMethod = document.querySelector("input[name='paymentMethod']:checked").value;
 
+            // Find the selected address
+            var selectedAddressElement = document.querySelector(".address-box.selected");
+            var addressData = null;
+            if (selectedAddressElement) {
+                var addressId = selectedAddressElement.getAttribute("data-address-id");
+                var addressDetails = selectedAddressElement.querySelector(".address-details");
+                var address = {
+                    id: addressId,
+                    address: addressDetails.querySelector("p:nth-child(1)").textContent.trim(),
+                    phone: addressDetails.querySelector("p:nth-child(2)").textContent.trim(),
+                    country: addressDetails.querySelector("p:nth-child(3)").textContent.trim(),
+                    city: addressDetails.querySelector("p:nth-child(4)").textContent.trim(),
+                    state: addressDetails.querySelector("p:nth-child(5)").textContent.trim(),
+                    pincode: addressDetails.querySelector("p:nth-child(6)").textContent.trim(),
+                };
+                addressData = address;
+            }
+
+            var data = {
+                paymentMethod: paymentMethod,
+                address: addressData
+                // You can add other necessary data here if needed
+            };
+
+            // If payment method is online, initiate Razorpay payment
+            if (paymentMethod === 'online') {
+                initiateRazorpayPayment(data);
+            } else {
+                // Send data to backend for cash on delivery
+                fetch('/user/order', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Handle successful response for cash on delivery
+                        console.log('Order placed successfully with Cash on Delivery');
+                    } else {
+                        throw new Error('Failed to place order with Cash on Delivery');
+                    }
+                })
+                .catch(error => {
+                    // Handle error response
+                    console.error('Error placing order with Cash on Delivery:', error);
+                });
+            }
+        }
+    </script>
 
 
         
