@@ -118,7 +118,7 @@ let getsign=(req,res)=>{
                 } else {
                     console.log("Email sent: " + info.response);
                 }
-                res.redirect("/user/profile"); 
+                res.redirect("/user/contact"); 
             });
         };
         
