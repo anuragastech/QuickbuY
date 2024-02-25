@@ -103,6 +103,8 @@ router.post('/order',authenticateJWT, getPaymentway.orderPost)
 router.post("/send-mail",authenticateJWT,userControllers.sendmail)
 
 
+router.post('/profileData',authenticateJWT,userControllers.profileData)
+
 
 
  

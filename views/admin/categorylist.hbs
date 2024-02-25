@@ -1,843 +1,640 @@
 <html lang="en">
 
-  <!-- Head -->
-  <head>
-    <!-- Page Meta Tags-->
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <meta name="keywords" content="" />
+<!-- Head -->
 
-    <!-- Favicon -->
-    <script
-      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<head>
+  <!-- Page Meta Tags-->
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
 
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/favicon/apple-touch-icon.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/favicon/favicon-32x32.png"
-    />
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/favicon/favicon-16x16.png"
-    />
-    <link
-      rel="mask-icon"
-      href="/favicon/safari-pinned-tab.svg"
-      color="#5bbad5"
-    />
-    <meta name="msapplication-TileColor" content="#da532c" />
-    <meta name="theme-color" content="#ffffff" />
+  <!-- Favicon -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <!-- Google Font-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600&display=swap"
-      rel="stylesheet"
-    />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+  <meta name="msapplication-TileColor" content="#da532c" />
+  <meta name="theme-color" content="#ffffff" />
 
-    <!-- Vendor CSS -->
-    <link rel="stylesheet" href="/admin/libs.bundle.css" />
+  <!-- Google Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600&display=swap" rel="stylesheet" />
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="/admin/theme.bundle.css" />
+  <!-- Vendor CSS -->
+  <link rel="stylesheet" href="/admin/libs.bundle.css" />
 
-    <!-- Fix for custom scrollbar if JS is disabled-->
-    <noscript>
-      <style>
-        /** * Reinstate scrolling for non-JS clients */
-        .simplebar-content-wrapper { overflow: auto; }
-      </style>
-    </noscript>
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/admin/theme.bundle.css" />
 
-    <!-- Page Title -->
-    <title></title>
-<link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
-<script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>  </head>
-  <body class="">
+  <!-- Fix for custom scrollbar if JS is disabled-->
+  <noscript>
+    <style>
+      /** * Reinstate scrolling for non-JS clients */
+      .simplebar-content-wrapper {
+        overflow: auto;
+      }
+    </style>
+  </noscript>
 
-    <!-- Navbar-->
-    <nav
-      class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top bg-dark-800"
-    >
-      <div class="container-fluid">
-        <div
-          class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions"
-        >
+  <!-- Page Title -->
+  <title></title>
+  <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+  <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+</head>
 
-          <!-- Menu Toggle-->
-          <div
-            class="menu-toggle cursor-pointer me-4 text-primary-hover transition-color disable-child-pointer"
-          >
-            <i
-              class="ri-menu-fold-line ri-lg fold align-middle"
-              data-bs-toggle="tooltip"
-              data-bs-placement="right"
-              title="Close menu"
-            ></i>
-            <i
-              class="ri-menu-unfold-line ri-lg unfold align-middle"
-              data-bs-toggle="tooltip"
-              data-bs-placement="right"
-              title="Open Menu"
-            ></i>
+<body class="">
+
+  <!-- Navbar-->
+  <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top bg-dark-800">
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
+
+        <!-- Menu Toggle-->
+        <div class="menu-toggle cursor-pointer me-4 text-primary-hover transition-color disable-child-pointer">
+          <i class="ri-menu-fold-line ri-lg fold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
+            title="Close menu"></i>
+          <i class="ri-menu-unfold-line ri-lg unfold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
+            title="Open Menu"></i>
+        </div>
+        <!-- / Menu Toggle-->
+
+        <!-- Navbar Actions-->
+        <div class="d-flex align-items-center">
+
+          <!-- Search-->
+          <button class="btn-icon btn-hover-dark btn-search me-2">
+            <i class="ri-search-2-line align-bottom lh-1 text-body"></i>
+          </button>
+
+          <!-- Search navbar overlay-->
+          <div class="navbar-search d-none">
+            <div class="input-group mb-3 h-100">
+              <span class="input-group-text px-4 bg-transparent"><i class="ri-search-line ri-lg"></i></span>
+              <input type="text" class="form-control text-body bg-transparent border-0"
+                placeholder="Enter your search terms..." />
+              <span class="input-group-text px-4 cursor-pointer disable-child-pointer close-search bg-transparent"><i
+                  class="ri-close-circle-line ri-lg text-primary"></i></span>
+            </div>
           </div>
-          <!-- / Menu Toggle-->
+          <!-- / Search navbar overlay-->
 
-          <!-- Navbar Actions-->
-          <div class="d-flex align-items-center">
+          <!-- / Search-->
 
-            <!-- Search-->
-            <button class="btn-icon btn-hover-dark btn-search me-2">
-              <i class="ri-search-2-line align-bottom lh-1 text-body"></i>
+          <!-- Region -->
+          <div class="dropdown me-2">
+            <button class="btn-icon btn-hover-dark" type="button" id="regionDropdown" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <span class="flag-icon flag-icon-gb"></span>
             </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="regionDropdown">
 
-            <!-- Search navbar overlay-->
-            <div class="navbar-search d-none">
-              <div class="input-group mb-3 h-100">
-                <span class="input-group-text px-4 bg-transparent"><i
-                    class="ri-search-line ri-lg"
-                  ></i></span>
-                <input
-                  type="text"
-                  class="form-control text-body bg-transparent border-0"
-                  placeholder="Enter your search terms..."
-                />
-                <span
-                  class="input-group-text px-4 cursor-pointer disable-child-pointer close-search bg-transparent"
-                ><i class="ri-close-circle-line ri-lg text-primary"></i></span>
-              </div>
-            </div>
-            <!-- / Search navbar overlay-->
-
-            <!-- / Search-->
-
-            <!-- Region -->
-            <div class="dropdown me-2">
-              <button
-                class="btn-icon btn-hover-dark"
-                type="button"
-                id="regionDropdown"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <span class="flag-icon flag-icon-gb"></span>
-              </button>
-              <ul
-                class="dropdown-menu dropdown-menu-end"
-                aria-labelledby="regionDropdown"
-              >
-
-              </ul>
-            </div>
-            <!-- /Region -->
-
-            <!-- Language-->
-            <div class="dropdown me-2">
-              <button
-                class="btn-icon btn-hover-dark"
-                type="button"
-                id="language"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <i class="ri-global-line align-bottom text-body lh-1"></i>
-              </button>
-              <ul
-                class="dropdown-menu dropdown-menu-end"
-                aria-labelledby="language"
-              >
-                <li>
-                  <a
-                    class="dropdown-item d-flex justify-content-between align-items-center"
-                    href="#"
-                  >English
-                    <span class="text-muted ms-5">EN</span></a></li>
-                <li><a
-                    class="dropdown-item d-flex justify-content-between align-items-center"
-                    href="#"
-                  >French<span class="text-muted ms-5">FR</span></a></li>
-                <li><a
-                    class="dropdown-item d-flex justify-content-between align-items-center"
-                    href="#"
-                  >Espanol<span class="text-muted ms-5">ES</span></a></li>
-                <li><a
-                    class="dropdown-item d-flex justify-content-between align-items-center"
-                    href="#"
-                  >Turkish<span class="text-muted ms-5">TR</span></a></li>
-                <li><a
-                    class="dropdown-item d-flex justify-content-between align-items-center"
-                    href="#"
-                  >Russian<span class="text-muted ms-5">RU</span></a></li>
-              </ul>
-            </div>
-            <!-- / Language-->
-
-            <!-- Notifications-->
-            <a
-              class="btn-icon btn-hover-dark position-relative p-2 disable-child-pointer"
-              data-bs-toggle="offcanvas"
-              href="#offcanvasNotifications"
-              role="button"
-              aria-controls="offcanvasNotifications"
-            >
-              <i class="ri-notification-fill align-bottom text-body lh-1"></i>
-              <span
-                class="badge bg-primary text-white position-absolute top-0 end-0"
-              >3</span>
-            </a>
-            <!-- / Notifications-->
-
+            </ul>
           </div>
-          <!-- / Navbar Actions-->
+          <!-- /Region -->
+
+          <!-- Language-->
+          <div class="dropdown me-2">
+            <button class="btn-icon btn-hover-dark" type="button" id="language" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="ri-global-line align-bottom text-body lh-1"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language">
+              <li>
+                <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">English
+                  <span class="text-muted ms-5">EN</span></a>
+              </li>
+              <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">French<span
+                    class="text-muted ms-5">FR</span></a></li>
+              <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Espanol<span
+                    class="text-muted ms-5">ES</span></a></li>
+              <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Turkish<span
+                    class="text-muted ms-5">TR</span></a></li>
+              <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russian<span
+                    class="text-muted ms-5">RU</span></a></li>
+            </ul>
+          </div>
+          <!-- / Language-->
+
+          <!-- Notifications-->
+          <a class="btn-icon btn-hover-dark position-relative p-2 disable-child-pointer" data-bs-toggle="offcanvas"
+            href="#offcanvasNotifications" role="button" aria-controls="offcanvasNotifications">
+            <i class="ri-notification-fill align-bottom text-body lh-1"></i>
+            <span class="badge bg-primary text-white position-absolute top-0 end-0">3</span>
+          </a>
+          <!-- / Notifications-->
 
         </div>
+        <!-- / Navbar Actions-->
+
       </div>
-    </nav>
-    <!-- / Navbar-->
+    </div>
+  </nav>
+  <!-- / Navbar-->
 
-    <!-- Page Content -->
-    <main id="main">
+  <!-- Page Content -->
+  <main id="main">
 
-      <!-- Content-->
-      <section class="container-fluid">
+    <!-- Content-->
+    <section class="container-fluid">
 
-        <!-- Breadcrumbs-->
-        <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="./index.html"><i
-                  class="ri-home-line align-bottom me-1"
-                ></i>
-                catagoryList</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Category
-              Details</li>
-          </ol>
-        </nav>
-        <!-- / Breadcrumbs-->
+      <!-- Breadcrumbs-->
+      <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i>
+              catagoryList</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Category
+            Details</li>
+        </ol>
+      </nav>
+      <!-- / Breadcrumbs-->
 
-     
-            {{! ----------------------------------------------------------   }}
 
-        <div class="row g-4">
-      <div class="col-12 col-md-6">
+      {{! ---------------------------------------------------------- }}
+
+      <div class="row g-4">
+        <div class="col-12 col-md-6">
           <!-- Button trigger modal -->
           <h1 class="h10">Category-List</h1>
-          <button
-              type="button"
-              class="btn btn-light   btn-lg w-50 mb-3"
-              data-toggle="modal"
-              data-target="#exampleModalCenter"
-          >
-              Add Category
+          <button type="button" class="btn btn-light   btn-lg w-50 mb-3" data-toggle="modal"
+            data-target="#exampleModalCenter">
+            Add Category
           </button>
 
           <!-- Modal -->
-          <form
-              class="frml"
-              action="/admin/categorylist"
-              method="POST"
-              enctype="multipart/form-data"
-          >
-              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                  <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                          <div class="modal-header bg-dark text-light">
-                              <h5 class="modal-title" id="exampleModalLongTitle">Add Category</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                              </button>
-                          </div>
-                          <div class="modal-body bg-dark text-light">
-                              <label for="title">Title:</label>
-                              <input type="text" id="title" name="title" class="form-control" required />
-                              <br>
-
-                              <label for="description">Description:</label>
-                              <textarea id="description" name="description" class="form-control" required></textarea>
-                              <br />
-
-                              <label for="image">Choose an image:</label>
-                              <input type="file" name="image" class="form-control-file" />
-                          </div>
-                          <div class="modal-footer bg-dark text-light">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="submit" class="btn btn-primary">Submit</button>
-                          </div>
-                      </div>
+          <form class="frml" action="/admin/categorylist" method="POST" enctype="multipart/form-data">
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header bg-dark text-light">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                   </div>
+                  <div class="modal-body bg-dark text-light">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" class="form-control" required />
+                    <br>
+
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" class="form-control" required></textarea>
+                    <br />
+
+                    <label for="image">Choose an image:</label>
+                    <input type="file" name="image" class="form-control-file" />
+                  </div>
+                  <div class="modal-footer bg-dark text-light">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
               </div>
+            </div>
           </form>
+        </div>
       </div>
-  </div>
 
 
-            {{! -----------------------------------------------------------------------------------------   }}
-   <div class="row g-4">
-          <div class="col-12 ">
+      {{! ----------------------------------------------------------------------------------------- }}
+      <div class="row g-4">
+        <div class="col-12 ">
 
-<style>
+          <style>
+            td {
+              text-align: center;
+            }
+          </style>
+          <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+          <script type="text/javascript" charset="utf8"
+            src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+          <script>
+            $(document).ready(function () {
+              $('#categoryTable').DataTable();
+            });
+          </script>
 
-  td{
-    text-align: center;
-  }
-</style>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-<script>
-$(document).ready( function () {
-    $('#categoryTable').DataTable();
-});
-</script>
-
-<div class="card mb-4">
-    <div class="card-header">
-        <h6 class="card-title">Category-List</h6>
-    </div>
-    <div class="card-body" style="background-color: rgb(12, 12, 12); color: white;">
-        <div class="table-responsive"> <!-- Make table responsive -->
-            <table id="categoryTable" class="table table-striped w-500"> <!-- Set width to full -->
-                <thead>
+          <div class="card mb-4">
+            <div class="card-header">
+              <h6 class="card-title">Category-List</h6>
+            </div>
+            <div class="card-body" style="background-color: rgb(12, 12, 12); color: white;">
+              <div class="table-responsive"> <!-- Make table responsive -->
+                <table id="categoryTable" class="table table-striped w-500"> <!-- Set width to full -->
+                  <thead>
                     <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Image</th>
-                        <th>Delete</th>
-                        <th>Edit</th>
+                      <th>Title</th>
+                      <th>Description</th>
+                      <th>Image</th>
+                      <th>Delete</th>
+                      <th>Edit</th>
                     </tr>
-                </thead>
-                <tbody style="background-color: black !important;">
+                  </thead>
+                  <tbody style="background-color: black !important;">
                     {{#each categories}}
                     <tr>
-                        <td>{{title}}</td>
-                        <td>{{description}}</td>
-                        <td><img src="{{image.url}}" alt="{{title}} Image" /></td>
-                        <td>
-                            <button class="btn btn-outline-danger p-0 border-0" onclick="deleteCategory('{{this.title}}')">
-                                <i class="bi bi-trash-fill" style="font-size: 24px; color: white;"></i>
-                            </button>
-                        </td>
-                        <td>
-                            <button style="background-color: transparent;">
-                                <a href="/admin/edit?name={{this._id}}">
-                                    <i style="font-size: 24px; background-color: transparent;" class="bi bi-pencil-square text-success "></i>
-                                </a>
-                            </button>
-                        </td>
+                      <td>{{title}}</td>
+                      <td>{{description}}</td>
+                      <td><img src="{{image.url}}" alt="{{title}} Image" /></td>
+                      <td>
+                        <button class="btn btn-outline-danger p-0 border-0" onclick="deleteCategory('{{this.title}}')">
+                          <i class="bi bi-trash-fill" style="font-size: 24px; color: white;"></i>
+                        </button>
+                      </td>
+                      <td>
+                        <button style="background-color: transparent;">
+                          <a href="/admin/edit?name={{this._id}}">
+                            <i style="font-size: 24px; background-color: transparent;"
+                              class="bi bi-pencil-square text-success "></i>
+                          </a>
+                        </button>
+                      </td>
                     </tr>
                     {{else}}
                     <tr>
-                        <td colspan="5">No categories found.</td>
+                      <td colspan="5">No categories found.</td>
                     </tr>
                     {{/each}}
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-            {{! delete}}
-
- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
-    function deleteCategory(categoryId) {
-        // Show confirmation dialog using SweetAlert2
-        Swal.fire({
-            title: 'Are you sure?',
-            text: 'You will not be able to recover this category!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // If user confirms, proceed with deletion
-                axios.delete(`/admin/delete/${categoryId}`)
-                    .then((response) => {
-                        if (response.status !== 200) {
-                            throw new Error('Delete request failed');
-                        } else {
-                            // Redirect to the category list page after successful deletion
-                            window.location.href = "/admin/categorylist";
-                        }
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                        // Handle error if delete request fails
-                    });
-            }
-        });
-    }
-</script>
-
-
-
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
 
-          {{! <div class="col-12 col-md-6">
+          {{! delete}}
 
-                   
+          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+          <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+          <script>
+            function deleteCategory(categoryId) {
+              // Show confirmation dialog using SweetAlert2
+              Swal.fire({
+                title: 'Are you sure?',
+                text: 'You will not be able to recover this category!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  // If user confirms, proceed with deletion
+                  axios.delete(`/admin/delete/${categoryId}`)
+                    .then((response) => {
+                      if (response.status !== 200) {
+                        throw new Error('Delete request failed');
+                      } else {
+                        // Redirect to the category list page after successful deletion
+                        window.location.href = "/admin/categorylist";
+                      }
+                    })
+                    .catch((error) => {
+                      console.error(error);
+                      // Handle error if delete request fails
+                    });
+                }
+              });
+            }
+          </script>
 
-                </div> }}
+
+
         </div>
 
-        {{! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////  }}
+        {{! <div class="col-12 col-md-6">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.0/toastify.min.css">   
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.0/toastify.min.js"></script>
-         {{! ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// }}
- <script>
+
+
+        </div> }}
+      </div>
+
+      {{!
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      }}
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.0/toastify.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.0/toastify.min.js"></script>
+      {{!
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      }}
+      <script>
         function getCookie(name) {
-            const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-            if (match) return match[2];
+          const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+          if (match) return match[2];
         }
 
         const alertMessage = getCookie('alert');
 
-if (alertMessage) {
-            Toastify({
-                text: alertMessage,
-                duration: 3000, // 3 seconds
-                close: true,
-                gravity: 'top', 
-                position: 'center', 
-                backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)', 
-            }).showToast();
-            // Remove the alert cookie
-            document.cookie = 'alert=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        if (alertMessage) {
+          Toastify({
+            text: alertMessage,
+            duration: 3000, // 3 seconds
+            close: true,
+            gravity: 'top',
+            position: 'center',
+            backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
+          }).showToast();
+          // Remove the alert cookie
+          document.cookie = 'alert=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
         }
-    </script>
-        <!-- Footer -->
-        <footer class="footer">
-          <p class="small text-muted m-0"></p>
-          <p class="small text-muted m-0"><a
-              href="https://www.pixelrocket.store/"
-            ></a></p>
-        </footer>
-        
-        <div class="menu-overlay-bg"></div>
+      </script>
+      <!-- Footer -->
+      <footer class="footer">
+        <p class="small text-muted m-0"></p>
+        <p class="small text-muted m-0"><a href="https://www.pixelrocket.store/"></a></p>
+      </footer>
 
-        <div
-          class="modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                Here goes modal body content
-              </div>
-              <div class="modal-footer">
-                <button
-                  type="button"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
+      <div class="menu-overlay-bg"></div>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Here goes modal body content
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
-        <!-- Offcanvas Imports-->
-        <!-- Place your offcanvas imports here-->
+      </div>
+      <!-- Offcanvas Imports-->
+      <!-- Place your offcanvas imports here-->
 
-        <!-- Default Example Offcanvas Import-->
-        <div
-          class="offcanvas offcanvas-end"
-          tabindex="-1"
-          id="offcanvasExample"
-          aria-labelledby="offcanvasExampleLabel"
-        >
-          <div class="offcanvas-header">
-            <h5
-              class="offcanvas-title"
-              id="offcanvasExampleLabel"
-            >Offcanvas</h5>
-            <button
-              type="button"
-              class="btn-close text-reset"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="offcanvas-body">
-            <div>
-              Some text as placeholder. In real life you can have the elements
-              you have chosen. Like, text, images, lists, etc.
-            </div>
-            <div class="dropdown mt-3">
-              <button
-                class="btn btn-secondary dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-bs-toggle="dropdown"
-              >
-                Dropdown button
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </div>
-          </div>
+      <!-- Default Example Offcanvas Import-->
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <!-- Navbar Notifications offcanvas-->
-        <div
-          class="offcanvas offcanvas-end"
-          tabindex="-1"
-          id="offcanvasNotifications"
-          aria-labelledby="offcanvasNotificationsLabel"
-        >
-          <div class="offcanvas-header">
-            <h5
-              class="offcanvas-title"
-              id="offcanvasNotificationsLabel"
-            >Notifications</h5>
-            <button
-              type="button"
-              class="btn-close text-reset"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close"
-            ></button>
+        <div class="offcanvas-body">
+          <div>
+            Some text as placeholder. In real life you can have the elements
+            you have chosen. Like, text, images, lists, etc.
           </div>
-          <div class="offcanvas-body">
-
-            <!-- Notification-->
-            <div
-              class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3"
-            >
-              <div class="position-relative mt-1">
-                <picture class="avatar avatar-sm">
-                  <img src="/profile-small-2.jpeg" alt="" />
-                </picture>
-                <span
-                  class="dot bg-success avatar-dot border-light dot-sm"
-                ></span>
-              </div>
-              <div class="ms-4">
-                <p class="fw-bolder mb-1">John Jackson</p>
-                <p class="text-muted small mb-0">Just sent over regional sales.
-                  If you can let me know by the end...</p>
-                <span class="fs-xs fw-bolder text-muted text-uppercase">5 mins
-                  ago</span>
-              </div>
-            </div>
-            <!-- / Notification-->
-
-            <!-- Notification-->
-            <div
-              class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3"
-            >
-              <div class="position-relative mt-1">
-                <picture class="avatar avatar-sm">
-                  <img src="/profile-small-3.jpeg" alt="" />
-                </picture>
-                <span
-                  class="dot bg-success avatar-dot border-light dot-sm"
-                ></span>
-              </div>
-              <div class="ms-4">
-                <p class="fw-bolder mb-1">Peter Smith</p>
-                <p class="text-muted small mb-0">Hi Rob, can we setup a meeting
-                  for tomorrow around 2pm...</p>
-                <span class="fs-xs fw-bolder text-muted text-uppercase">30 mins
-                  ago</span>
-              </div>
-            </div>
-            <!-- / Notification-->
-
-            <!-- Notification-->
-            <div
-              class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3"
-            >
-              <div class="position-relative mt-1">
-                <picture class="avatar avatar-sm">
-                  <img src="/profile-small-4.jpeg" alt="" />
-                </picture>
-                <span
-                  class="dot bg-danger avatar-dot border-light dot-sm"
-                ></span>
-              </div>
-              <div class="ms-4">
-                <p class="fw-bolder mb-1">Helen Lewis</p>
-                <p class="text-muted small mb-0">Need to arrange for this year's
-                  Office lisences. Have to add two team licenses...</p>
-                <span class="fs-xs fw-bolder text-muted text-uppercase">43 mins
-                  ago</span>
-              </div>
-            </div>
-            <!-- / Notification-->
-
-            <!-- View all Btn-->
-            <a
-              href="#"
-              class="btn btn-outline-secondary w-100 mt-4"
-              role="button"
-            >View all notifications</a>
-            <!-- / View all btn-->
-
-          </div>
-        </div>
-        <!-- / Footer-->
-
-      </section>
-      <!-- / Content-->
-
-    </main>
-    <!-- /Page Content -->
-
-    <!-- Page Aside-->
-    <aside class="aside bg-dark-700">
-
-      <div class="simplebar-wrapper">
-        <div data-pixr-simplebar>
-          <div class="pb-6 pb-sm-0 position-relative">
-
-            <!-- Mobile close btn-->
-            <div
-              class="cursor-pointer close-menu me-4 text-primary-hover transition-color disable-child-pointer position-absolute end-0 top-0 mt-3 pt-1 d-xl-none"
-            >
-              <i class="ri-close-circle-line ri-lg align-middle me-n2"></i>
-            </div>
-            <!-- / Mobile close btn-->
-
-            <!-- Mobile Logo-->
-            <div class="d-flex justify-content-center align-items-center py-3">
-              <a class="m-0" href="./index.html">
-                <div class="d-flex align-items-center justify-content-center">
-                  <svg
-                    class="f-w-6 me-2 text-primary"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 398.39 353.81"
-                  ><polygon
-                      points="228.38 33.94 0 262.32 0 0 119.61 0 119.61 43.01 101.9 60.73 86.02 76.61 86.02 33.6 33.6 33.6 33.6 181.2 214.46 0.34 390.66 0.34 242.09 148.91 218.73 124.76 309.55 33.94 228.38 33.94"
-                      fill="currentColor"
-                    /><polygon
-                      points="398.39 353.81 217.51 353.81 131.04 261.75 45.09 353.81 0 353.81 0 353.49 131.26 212.91 232.05 320.21 317.27 320.21 170.28 173.21 194.19 149.29 194.19 149.55 254.9 210.51 254.97 210.39 398.39 353.81"
-                      fill="currentColor"
-                    /></svg>
-                  <span class="fw-bold fs-3 text-white">Admin</span>
-                </div>
-              </a>
-            </div>
-            <!-- / Mobile Logo-->
-
-            <!-- User Details-->
-            <div
-              class="border-bottom pt-3 pb-5 mb-6 d-flex flex-column align-items-center"
-            >
-              <div class="position-relative">
-                {{!-- <picture class="avatar avatar-profile">
-                  <img
-                    class="avatar-profile-img"
-                    src="/profile-small.jpeg"
-                    alt=""
-                  />
-                </picture>
-                <span class="dot bg-success avatar-dot"></span>
-              </div>
-              <p class="mb-0 mt-3 text-white">Robert Jones</p>
-              <small>robert.jones@outlook.com</small>
-              <div
-                class="d-flex flex-wrap mt-2 justify-content-between align-items-center"
-              > --}}
-                <div
-                  class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1"
-                >
-                  <a
-                    style="width: 95px;height: 30px;color: black; background-color: white; border-radius: 25px;text-align: center;"
-                    href="logout"
-                  >logout</a>
-                </div>
-
-                <!-- User profile dropdown-->
-                <div class="dropdown m-0">
-                  {{!-- <button
-                    class="border-0 rounded px-2 f-h-9 bg-dark-opacity p-0 text-body"
-                    type="button"
-                    id="profileDropdown"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <i class="ri-settings-2-line"></i>
-                  </button> --}}
-                  <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                    <li><a
-                        class="dropdown-item d-flex align-items-center"
-                        href="#"
-                      ><i class="ri-user-line me-2"></i> Edit profile</a></li>
-                    <li><a
-                        class="dropdown-item d-flex align-items-center"
-                        href="#"
-                      ><i class="ri-settings-2-line me-2"></i>
-                        Edit settings</a></li>
-                    <li><a
-                        class="dropdown-item d-flex align-items-center"
-                        href="#"
-                      ><i class="ri-mail-open-line me-2"></i>
-                        View messages</a></li>
-                    <li>
-                      <hr class="dropdown-divider" />
-                    </li>
-                    <li><a
-                        class="dropdown-item text-danger d-flex align-items-center"
-                        href="#"
-                      ><i class="ri-lock-line me-2"></i> Logout</a></li>
-                  </ul>
-                </div>
-                <!-- / User profile dropdown-->
-              </div>
-            </div>
-            <!-- User Details-->
-
-            <ul class="list-unstyled mb-6 aside-menu">
-
-              <!-- Dashboard Menu Section-->
-              <li class="menu-section">Menu</li>
-              <li class="menu-item"><a
-                  class="d-flex align-items-center menu-link"
-                  href="index"
-                ><i class="ri-home-4-line me-3"></i>
-                  <span>Dashboard</span></a></li>
-              <!-- / Dashboard Menu Section-->
-
-              <!-- UI Kit Menu Section-->
-              <li class="menu-section mt-5">Pages</li>
-              <li class="menu-item"><a
-                  class="d-flex align-items-center collapsed menu-link"
-                  href="#"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseMenuItemUI"
-                  aria-expanded="false"
-                  aria-controls="collapseMenuItemUI"
-                ><i class="ri-shape-fill me-3"></i>
-                  <span>Components</span></a>
-                <div class="collapse" id="collapseMenuItemUI">
-                  <ul class="submenu">
-                             <li><a class="submenu-link" href="categorylist">Category-List</a></li>
-                                    <li><a class="submenu-link" href="subcategories">Sub-Category-List</a></li>
-                                    <li><a class="submenu-link" href="vender-product-list">Productlist</a></li>
-                                    <li><a class="submenu-link" href="User">User management</a></li>
-                                    <li><a class="submenu-link" href="Vender">Vender management</a></li>
-                                    {{!-- <li><a class="submenu-link" href=""></a></li> 
-                                    <li><a class="submenu-link" href=""></a></li> 
-                                    <li><a class="submenu-link" href=""></a></li> 
-                                    <li><a class="submenu-link" href=""></a></li> 
-                                    <li><a class="submenu-link" href=""></a></li>
-                                    <li><a class="submenu-link" href=""></a></li>
-                                    <li><a class="submenu-link" href=""></a></li>
-                                    <li><a class="submenu-link" href=""></a></li> --}}
-                  </ul>
-                </div>
-              </li>
-              <li class="menu-item"><a
-                  class="d-flex align-items-center collapsed menu-link"
-                  href="#"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseMenuItemContent"
-                  aria-expanded="false"
-                  aria-controls="collapseMenuItemContent"
-                ><i class="ri-stack-line me-3"></i>
-                  <span>Content</span></a>
-                <div class="collapse" id="collapseMenuItemContent">
-                  <ul class="submenu">
-                    <li><a
-                        class="submenu-link"
-                        href="HomepageControl"
-                      >Hpme-Page-Control</a></li>
-                    <li><a class="submenu-link" href="HomepageFooterImage"> Home-page-Footer</a></li>
-                  </ul>
-                </div>
-              </li>
-              <!-- / UI Kit Menu Section-->
-
-              <!-- Pages Menu Section-->
-              <li class="menu-section mt-5">Pages</li>
-              <li class="menu-item"><a
-                  class="d-flex align-items-center collapsed menu-link"
-                  href="#"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseMenuItemPages"
-                  aria-expanded="false"
-                  aria-controls="collapseMenuItemPages"
-                ><i class="ri-pencil-line me-3"></i> <span>Pages</span></a>
-                <div class="collapse" id="collapseMenuItemPages">
-                  <ul class="submenu">
-                    <li><a
-                        class="submenu-link"
-                        href="./login.html"
-                      >Login</a></li>
-                    <li><a
-                        class="submenu-link"
-                        href="./register.html"
-                      >Register</a></li>
-                    <li><a
-                        class="submenu-link"
-                        href="./forgot-password.html"
-                      >Forgot Password</a></li>
-                    <li><a class="submenu-link" href="./404.html">404 Page</a></li>
-                    <li><a class="submenu-link" href="./blank.html">Blank Page</a></li>
-                  </ul>
-                </div>
-              </li>
-              <!-- / Pages Menu Section-->
-
+          <div class="dropdown mt-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-bs-toggle="dropdown">
+              Dropdown button
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </div>
         </div>
       </div>
+      <!-- Navbar Notifications offcanvas-->
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNotifications"
+        aria-labelledby="offcanvasNotificationsLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNotificationsLabel">Notifications</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
 
-    </aside>
-    <!-- / Page Aside-->
+          <!-- Notification-->
+          <div class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3">
+            <div class="position-relative mt-1">
+              <picture class="avatar avatar-sm">
+                <img src="/profile-small-2.jpeg" alt="" />
+              </picture>
+              <span class="dot bg-success avatar-dot border-light dot-sm"></span>
+            </div>
+            <div class="ms-4">
+              <p class="fw-bolder mb-1">John Jackson</p>
+              <p class="text-muted small mb-0">Just sent over regional sales.
+                If you can let me know by the end...</p>
+              <span class="fs-xs fw-bolder text-muted text-uppercase">5 mins
+                ago</span>
+            </div>
+          </div>
+          <!-- / Notification-->
 
-    <!-- Theme JS -->
-    <!-- Vendor JS -->
-    <script src="/admin/vendor.bundle.js"></script>
+          <!-- Notification-->
+          <div class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3">
+            <div class="position-relative mt-1">
+              <picture class="avatar avatar-sm">
+                <img src="/profile-small-3.jpeg" alt="" />
+              </picture>
+              <span class="dot bg-success avatar-dot border-light dot-sm"></span>
+            </div>
+            <div class="ms-4">
+              <p class="fw-bolder mb-1">Peter Smith</p>
+              <p class="text-muted small mb-0">Hi Rob, can we setup a meeting
+                for tomorrow around 2pm...</p>
+              <span class="fs-xs fw-bolder text-muted text-uppercase">30 mins
+                ago</span>
+            </div>
+          </div>
+          <!-- / Notification-->
 
-    <!-- Theme JS -->
-    <script src="/admin/theme.bundle.js"></script>
-  </body>
+          <!-- Notification-->
+          <div class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3">
+            <div class="position-relative mt-1">
+              <picture class="avatar avatar-sm">
+                <img src="/profile-small-4.jpeg" alt="" />
+              </picture>
+              <span class="dot bg-danger avatar-dot border-light dot-sm"></span>
+            </div>
+            <div class="ms-4">
+              <p class="fw-bolder mb-1">Helen Lewis</p>
+              <p class="text-muted small mb-0">Need to arrange for this year's
+                Office lisences. Have to add two team licenses...</p>
+              <span class="fs-xs fw-bolder text-muted text-uppercase">43 mins
+                ago</span>
+            </div>
+          </div>
+          <!-- / Notification-->
+
+          <!-- View all Btn-->
+          <a href="#" class="btn btn-outline-secondary w-100 mt-4" role="button">View all notifications</a>
+          <!-- / View all btn-->
+
+        </div>
+      </div>
+      <!-- / Footer-->
+
+    </section>
+    <!-- / Content-->
+
+  </main>
+  <!-- /Page Content -->
+
+  <!-- Page Aside-->
+  <aside class="aside bg-dark-700">
+
+    <div class="simplebar-wrapper">
+      <div data-pixr-simplebar>
+        <div class="pb-6 pb-sm-0 position-relative">
+
+          <!-- Mobile close btn-->
+          <div
+            class="cursor-pointer close-menu me-4 text-primary-hover transition-color disable-child-pointer position-absolute end-0 top-0 mt-3 pt-1 d-xl-none">
+            <i class="ri-close-circle-line ri-lg align-middle me-n2"></i>
+          </div>
+          <!-- / Mobile close btn-->
+
+          <!-- Mobile Logo-->
+          <div class="d-flex justify-content-center align-items-center py-3">
+            <a class="m-0" href="./index.html">
+              <div class="d-flex align-items-center justify-content-center">
+                <svg class="f-w-6 me-2 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 398.39 353.81">
+                  <polygon
+                    points="228.38 33.94 0 262.32 0 0 119.61 0 119.61 43.01 101.9 60.73 86.02 76.61 86.02 33.6 33.6 33.6 33.6 181.2 214.46 0.34 390.66 0.34 242.09 148.91 218.73 124.76 309.55 33.94 228.38 33.94"
+                    fill="currentColor" />
+                  <polygon
+                    points="398.39 353.81 217.51 353.81 131.04 261.75 45.09 353.81 0 353.81 0 353.49 131.26 212.91 232.05 320.21 317.27 320.21 170.28 173.21 194.19 149.29 194.19 149.55 254.9 210.51 254.97 210.39 398.39 353.81"
+                    fill="currentColor" />
+                </svg>
+                <span class="fw-bold fs-3 text-white">Admin</span>
+              </div>
+            </a>
+          </div>
+          <!-- / Mobile Logo-->
+
+          <!-- User Details-->
+          <div class="border-bottom pt-3 pb-5 mb-6 d-flex flex-column align-items-center">
+            <div class="position-relative">
+              {{!-- <picture class="avatar avatar-profile">
+                <img class="avatar-profile-img" src="/profile-small.jpeg" alt="" />
+              </picture>
+              <span class="dot bg-success avatar-dot"></span>
+            </div>
+            <p class="mb-0 mt-3 text-white">Robert Jones</p>
+            <small>robert.jones@outlook.com</small>
+            <div class="d-flex flex-wrap mt-2 justify-content-between align-items-center"> --}}
+              <div
+                class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1">
+                <a style="width: 95px;height: 30px;color: black; background-color: white; border-radius: 25px;text-align: center;"
+                  href="logout">logout</a>
+              </div>
+
+              <!-- User profile dropdown-->
+              <div class="dropdown m-0">
+                {{!-- <button class="border-0 rounded px-2 f-h-9 bg-dark-opacity p-0 text-body" type="button"
+                  id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="ri-settings-2-line"></i>
+                </button> --}}
+                <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                  <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="ri-user-line me-2"></i> Edit
+                      profile</a></li>
+                  <li><a class="dropdown-item d-flex align-items-center" href="#"><i
+                        class="ri-settings-2-line me-2"></i>
+                      Edit settings</a></li>
+                  <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="ri-mail-open-line me-2"></i>
+                      View messages</a></li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li><a class="dropdown-item text-danger d-flex align-items-center" href="#"><i
+                        class="ri-lock-line me-2"></i> Logout</a></li>
+                </ul>
+              </div>
+              <!-- / User profile dropdown-->
+            </div>
+          </div>
+          <!-- User Details-->
+
+          <ul class="list-unstyled mb-6 aside-menu">
+
+            <!-- Dashboard Menu Section-->
+            <li class="menu-section">Menu</li>
+            <li class="menu-item"><a class="d-flex align-items-center menu-link" href="index"><i
+                  class="ri-home-4-line me-3"></i>
+                <span>Dashboard</span></a></li>
+            <!-- / Dashboard Menu Section-->
+
+            <!-- UI Kit Menu Section-->
+            <li class="menu-section mt-5">Pages</li>
+            <li class="menu-item"><a class="d-flex align-items-center collapsed menu-link" href="#"
+                data-bs-toggle="collapse" data-bs-target="#collapseMenuItemUI" aria-expanded="false"
+                aria-controls="collapseMenuItemUI"><i class="ri-shape-fill me-3"></i>
+                <span>Components</span></a>
+              <div class="collapse" id="collapseMenuItemUI">
+                <ul class="submenu">
+                  <li><a class="submenu-link" href="categorylist">Category-List</a></li>
+                  <li><a class="submenu-link" href="subcategories">Sub-Category-List</a></li>
+                  <li><a class="submenu-link" href="vender-product-list">Productlist</a></li>
+                  <li><a class="submenu-link" href="User">User management</a></li>
+                  <li><a class="submenu-link" href="Vender">Vender management</a></li>
+                  {{!-- <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li> --}}
+                </ul>
+              </div>
+            </li>
+            <li class="menu-item"><a class="d-flex align-items-center collapsed menu-link" href="#"
+                data-bs-toggle="collapse" data-bs-target="#collapseMenuItemContent" aria-expanded="false"
+                aria-controls="collapseMenuItemContent"><i class="ri-stack-line me-3"></i>
+                <span>Content</span></a>
+              <div class="collapse" id="collapseMenuItemContent">
+                <ul class="submenu">
+                  <li><a class="submenu-link" href="HomepageControl">Hpme-Page-Control</a></li>
+                  <li><a class="submenu-link" href="HomepageFooterImage"> Home-page-Footer</a></li>
+                </ul>
+              </div>
+            </li>
+            <!-- / UI Kit Menu Section-->
+
+            <!-- Pages Menu Section-->
+            <li class="menu-section mt-5">Pages</li>
+            <li class="menu-item"><a class="d-flex align-items-center collapsed menu-link" href="#"
+                data-bs-toggle="collapse" data-bs-target="#collapseMenuItemPages" aria-expanded="false"
+                aria-controls="collapseMenuItemPages"><i class="ri-pencil-line me-3"></i> <span>Pages</span></a>
+              <div class="collapse" id="collapseMenuItemPages">
+                <ul class="submenu">
+                  <li><a class="submenu-link" href="./login.html">Login</a></li>
+                  <li><a class="submenu-link" href="./register.html">Register</a></li>
+                  <li><a class="submenu-link" href="./forgot-password.html">Forgot Password</a></li>
+                  <li><a class="submenu-link" href="./404.html">404 Page</a></li>
+                  <li><a class="submenu-link" href="./blank.html">Blank Page</a></li>
+                </ul>
+              </div>
+            </li>
+            <!-- / Pages Menu Section-->
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+  <!-- / Page Aside-->
+
+  <!-- Theme JS -->
+  <!-- Vendor JS -->
+  <script src="/admin/vendor.bundle.js"></script>
+
+  <!-- Theme JS -->
+  <script src="/admin/theme.bundle.js"></script>
+</body>
 
 </html>

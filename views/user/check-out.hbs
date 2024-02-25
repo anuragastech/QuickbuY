@@ -272,7 +272,7 @@
     <label>
         <input type="radio" name="paymentMethod" value="cash"> Cash on Delivery
     </label>
-    <button style="color: blue;" id="paymentButton" onclick="sendDataToBackend()">Proceed to Payment</button>
+    <button style="color: rgb(255, 255, 255);background-color: green;  border: 5px solid rgb(225, 225, 225); ;height: 70px; width: 180px;" id="paymentButton" onclick="sendDataToBackend()">Proceed to Payment</button>
 </div>
 
                 {{!-- ------------------------------------------------------ --}}
@@ -280,7 +280,7 @@
 
 {{!-- 
                 <button
-                    style="height: 40px; width: 250px; background-color: rgb(0, 0, 0);color: white;">Payment</button> --}}
+                    style="height: 40px; width: 250px; background-color: rgb(50, 238, 12);color: white;">Payment</button> --}}
                 <hr>
             </div>
 
@@ -317,7 +317,6 @@
         const grandTotalValueElement = document.getElementById('grandTotalValue');
         grandTotalValueElement.textContent = `₹${grandTotal.toFixed(2)}`; 
 
-        // Store grand total in a hidden input field for passing to backend
         document.getElementById('grandTotalInput').value = grandTotal.toFixed(2);
     });
 </script>
@@ -349,13 +348,11 @@
                         amount: paymentResponse.razorpayOrder.amount,
                         currency: 'INR',
                         order_id: paymentResponse.razorpayOrder.id,
-                        name: 'Your Company Name',
+                        name: 'H&d privet.lmtd',
                         description: 'Order payment',
                         image: 'https://example.com/your_logo.png',
                         handler: function (response) {
-                            // Handle Razorpay success callback
                             console.log(response);
-                            // Send the Razorpay payment ID and order ID to your server for verification
                             var paymentData = {
                                 payment_id: response.razorpay_payment_id,
                                 order_id: response.razorpay_order_id,
@@ -370,33 +367,30 @@
                             })
                             .then(response => response.json())
                             .then(paymentResponse => {
-                                // Handle payment verification response
                                 console.log(paymentResponse);
-                                // Redirect or show a success message to the user
                             })
                             .catch(error => {
-                                // Handle error in payment verification
                                 console.error('Error verifying payment:', error);
                             });
                         },
                         prefill: {
-                            name: 'John Doe',
-                            email: 'john@example.com',
-                            contact: '+919876543210'
+                            name: 'Anurag',
+                            email: 'anuragraveendreen98in@.com',
+                            contact: '+919539409743'
                         },
                         theme: {
-                            color: '#F37254'
+                            color: '#008000'
                         }
                     };
+                
+
                     var rzp1 = new Razorpay(options);
                     rzp1.open();
                 } else {
-                    // Handle successful response for other payment methods
                     console.log(paymentResponse.message);
                 }
             })
             .catch(error => {
-                // Handle error response
                 console.error('Error initiating payment:', error);
             });
         }
@@ -425,14 +419,11 @@
             var data = {
                 paymentMethod: paymentMethod,
                 address: addressData
-                // You can add other necessary data here if needed
             };
 
-            // If payment method is online, initiate Razorpay payment
             if (paymentMethod === 'online') {
                 initiateRazorpayPayment(data);
             } else {
-                // Send data to backend for cash on delivery
                 fetch('/user/order', {
                     method: 'POST',
                     headers: {
@@ -442,14 +433,12 @@
                 })
                 .then(response => {
                     if (response.ok) {
-                        // Handle successful response for cash on delivery
                         console.log('Order placed successfully with Cash on Delivery');
                     } else {
                         throw new Error('Failed to place order with Cash on Delivery');
                     }
                 })
                 .catch(error => {
-                    // Handle error response
                     console.error('Error placing order with Cash on Delivery:', error);
                 });
             }
@@ -464,7 +453,6 @@
     const couponCode = document.getElementById('couponCode').value;
     const grandTotal = document.getElementById('grandTotalInput').value; 
     try {
-        // Send an AJAX request to the server to apply the coupon
         const response = await fetch('/user/applycoupon', {
             method: 'POST',
             headers: {
