@@ -123,69 +123,59 @@ let getsign=(req,res)=>{
         };
 
 
+
+
+
         const profileData = async (req, res) => {
             try {
-                const {  facebook, instagram, twitter, github, phonenumber, email, Fullname } = req.body;
+                const { facebook, instagram, twitter, github, phonenumber, email, Fullname ,website} = req.body;
                 const userId = req.user.id;
-                
+                console.log(userId);
                 // Find the user by userId
-                const existingUser = await create.findById(userId);
+                let existingUser = await create.findById(userId);
         
-                let profile;
                 if (existingUser) {
                     // If the user exists, update their profile
-                    profile = await create.findOneAndUpdate(
-                        { userId: userId }, 
-                        {
-                            $set: {
-                                facebook: facebook,
-                                instagram: instagram,
-                                twitter: twitter,
-                                github: github,
-                                phonenumber: phonenumber,
-                                email: email,
-                                Fullname: Fullname
-                            },
-                        },
-                        { new: true }
-                    ); 
-                    
-                    // Push the updated profile into profileData array
-                    existingUser.profileData.push(profile);
-                } else {
-                    // If user does not exist, create a new profile
-                    profile = await create.create({
-                        userId: userId,
+                    existingUser.profileData.push({
                         facebook: facebook,
-                        instagram: instagram,
-                        twitter: twitter,
-                        github: github,
+                        Instegram: instagram,
+                        Twittwer: twitter,
+                        Website:website,
+                        Github: github,
                         phonenumber: phonenumber,
                         email: email,
-                        Fullname: Fullname
+                        fullname: Fullname
                     });
-                    const newUser = await create.findById(userId);
-                    newUser.profileData = newUser.profileData.map(data => {
-                        return {
-                            ...data, // Keep existing data
-                            profile: profile // Push the new profile
-
-                        };
+                } else {
+                    // If user does not exist, create a new profile
+                    existingUser = await create.create({
+                        userId: userId,
+                        profileData: [{
+                            userId: userId,
+                            facebook: facebook,
+                            Instegram: instagram,
+                            Twittwer: twitter,
+                            Website:website,
+                            Github: github,
+                            phonenumber: phonenumber,
+                            email: email,
+                            Fullname: Fullname,
+                        }]
                     });
                 }
-
-                console.log(newUser);
+                console.log(existingUser);
 
                 // Save the changes
                 await existingUser.save();
         
                 // Assuming you want to send back some response after updating/creating the profile
-                res.status(200).json({ message: 'Profile updated/created successfully', profile: profile });
+                res.status(200).json({ message: 'Profile updated/created successfully', profileData: existingUser.profileData });
             } catch (error) {
                 console.error('Error updating/creating profile:', error);
                 res.status(500).json({ message: 'Internal server error' });
             }
         }
+        
         
         
 module.exports={Addlogin,Addsign,getsign,getlogin,getlogout,sendmail ,profileData };

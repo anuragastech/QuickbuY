@@ -40,18 +40,18 @@ profileData :[{
     phoneNumber:{
         type:Number,
     },
-    Website:{
+    Website:{ type:String,
 
     },
-    Twittwer:{
+    Twittwer:{ type:String,
 
     },
-    Github:{
+    Github:{ type:String,
     },
-    Instegram:{
+    Instegram:{ type:String,
 
     },
-    facebook:{
+    facebook:{ type:String,
 
     },
     userId: {
