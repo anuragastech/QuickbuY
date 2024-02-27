@@ -6,7 +6,6 @@ const order =require('../../models/user/order')
 const Razorpay = require('razorpay');
 const Product =require('../../models/vender/productAdd');
 const mongoose = require("mongoose");
-// const { checkout } = require('../../routes/vender');
 const schedule = require('node-schedule');
 
 const razorpay = new Razorpay({
@@ -63,8 +62,6 @@ const getAddress = async (req, res) => {
                 }
             }
         ]);
-        // const total = await Checkout({ discountedAmount });  
-            //  console.log(total);
 // console.log(data);
         const addressInfo = currentUser.personalInfo;
 
