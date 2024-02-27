@@ -27,9 +27,13 @@ const  checkoutSchema = mongoose.Schema({
                 ref: 'vender',
                 // required: true
             },
+          
         }
     ],
-
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
