@@ -22,11 +22,14 @@ const orderSchema = new mongoose.Schema({
       // required: true
     },
     size:{
-      // type:String,
+      type:String,
    },
    quantity:{
-      // type:String,
+      type:String,
    },
+   price:{
+    type:Number,
+ },
   
   
   paymentStatus: {

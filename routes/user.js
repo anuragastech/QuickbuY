@@ -12,6 +12,7 @@ const getProductControllers = require('../controllers/user/Product');
 const getAllControllers = require('../controllers/user/getAll');
 const getControllerHome=require('../controllers/user/home')
 const getPaymentway=require('../controllers/user/paymentgateway')
+// const  checkoutMiddileware  = require('../middleware/checkout');
 
 
 

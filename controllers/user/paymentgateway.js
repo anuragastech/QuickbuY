@@ -6,7 +6,8 @@ const order =require('../../models/user/order')
 const Razorpay = require('razorpay');
 const Product =require('../../models/vender/productAdd');
 const mongoose = require("mongoose");
-
+// const { checkout } = require('../../routes/vender');
+const schedule = require('node-schedule');
 
 const razorpay = new Razorpay({
   key_id: 'rzp_test_uF6rcT6FvcQis8',
@@ -99,7 +100,22 @@ const postCarttocheckout = async (req, res) => {
 
         const newCheckout = new Checkout({ products: productArr, userId: userId });
         await newCheckout.save();
+        // Schedule a job to clear old checkout documents every 2 minutes
+     
 
+        const clearOldCheckouts = async () => {
+            try {
+                const twoMinutesAgo = new Date(Date.now() - (1 * 10 * 1000)); // Calculate 2 minutes ago
+                await Checkout.deleteMany({ createdAt: { $lt: twoMinutesAgo } });
+                console.log('Old checkout documents cleared.');
+            } catch (error) {
+                console.error('Error clearing old checkout documents:', error);
+            }
+        };
+
+        // Schedule the job to clear old checkout documents
+        const clearCheckoutJob = schedule.scheduleJob('*/2 * * * *', clearOldCheckouts);
+// console.log(clearCheckoutJob);
         // Redirect the user to the checkout page after successful addition
         res.redirect('/user/check-out');
     } catch (error) {
@@ -114,7 +130,6 @@ const postCarttocheckout = async (req, res) => {
 
 const coupencheck = async (req, res) => {
     const { couponCode, grandTotal } = req.body; 
-    // Validate userId, assuming it's coming from req.user
     const userId = req.user.id; 
 
     try {
@@ -171,6 +186,8 @@ const coupencheck = async (req, res) => {
             const productId = products.map(product => product.productId);
     const sizes=products.map(product=>product.size)
     const quantity=products.map(product=>product.quantity)
+    const price=checkoutData.map(price=>price.discountedAmount);
+    console.log("price",price);
     // console.log(quantity);
     const orders=[]
     const orderid={
@@ -178,6 +195,7 @@ const coupencheck = async (req, res) => {
     size:sizes,
     quantity:quantity ,
     address:address,
+   
     }
     orders.push(orderid);
 
@@ -189,14 +207,15 @@ const coupencheck = async (req, res) => {
             product: orderDetails.product[i],
             size: orderDetails.size[i],
             quantity: orderDetails.quantity[i],
-            address: orderDetails.address
+            address: orderDetails.address,
+          
         }));
     }).flat();
     
   
     // console.log(orderDetails.product[i]);
     const savePromises = unwoundOrders.map(async (orderDetails) => {
-        const { product, size, quantity, address } = orderDetails;
+        const { product, size, quantity, address  } = orderDetails;
         // console.log("hi",size);
 
         // Create a new order object
@@ -205,19 +224,21 @@ const coupencheck = async (req, res) => {
             size,
             quantity,
             address,
+        
         });
 
         return newOrder.save();
     });
-
+console.log("price",price);
 
 
     let paymentResponse;
     if (paymentMethod === 'cash') {
+        await cart.deleteMany({ userId, product: { $in: productId } });
         paymentResponse = { message: 'Order placed successfully with Cash on Delivery' };
     } else if (paymentMethod === 'online') {
         const razorpayOrder =  await razorpay.orders.create({
-            amount: 5000,
+            amount: price*100,
             currency: 'INR',
             receipt: 'order_rcptid_11', // Replace with your receipt ID
             payment_capture: 1
@@ -243,5 +264,7 @@ const coupencheck = async (req, res) => {
 const cartProductSelected = async () =>{
   
 }
+
+
 
 module.exports={postAddress ,getAddress,postCarttocheckout,coupencheck ,orderPost, cartProductSelected};
