@@ -73,7 +73,10 @@ router.get('/payment',(req,res)=>{
     router.get('/triel',(req,res)=>{
       res.render('user/triel')
       });
-  
+      router.get('/profile',(req,res)=>{
+        res.render('user/profile')
+        });
+    
 
     // router.get('/products',(req,res)=>{
     //   res.render('user/products')
@@ -95,10 +98,12 @@ router.get('/payment',(req,res)=>{
 
 router.post('/order',authenticateJWT, getPaymentway.orderPost)
 
-router.put("/cart/selectedProduct",authenticateJWT,getPaymentway.cartProductSelected)
+// router.put("/cart/selectedProduct",authenticateJWT,getPaymentway.cartProductSelected)
+
+router.post("/send-mail",authenticateJWT,userControllers.sendmail)
 
 
-
+router.post('/profileData',authenticateJWT,userControllers.profileData)
 
 
 

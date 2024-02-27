@@ -3,7 +3,8 @@ const bcrypt=require('bcryptjs')
 const jwt= require('jsonwebtoken');
 
 const create=require('../../models/user/mongodb')
- 
+ const nodemailer=require("nodemailer");
+const { response } = require('express');
  
 let Addsign=async (req, res) => {
     try {
@@ -90,5 +91,91 @@ let getsign=(req,res)=>{
         
             res.redirect("/user/login");
         };
+
+
+
+        const sendmail = async (req, res) => {
+            const { name, email, subject, message } = req.body;
         
-module.exports={Addlogin,Addsign,getsign,getlogin,getlogout};
+            const transporter = nodemailer.createTransport({
+                service: "gmail",
+                auth: {
+                    user: "anuragraveendren98in@gmail.com",
+                    pass: "pjfs jyzp ykfu qnnd"
+                }
+            });
+        
+            const mailOptions = {
+                from: email,
+                to: "anuragraveendren98in@gmail.com",
+                subject: subject,
+                text: message ,
+            };
+        
+            transporter.sendMail(mailOptions, function(error, info) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log("Email sent: " + info.response);
+                }
+                res.redirect("/user/contact"); 
+            });
+        };
+
+
+
+
+
+        const profileData = async (req, res) => {
+            try {
+                const { facebook, instagram, twitter, github, phonenumber, email, Fullname ,website} = req.body;
+                const userId = req.user.id;
+                console.log(userId);
+                // Find the user by userId
+                let existingUser = await create.findById(userId);
+        
+                if (existingUser) {
+                    // If the user exists, update their profile
+                    existingUser.profileData.push({
+                        facebook: facebook,
+                        Instegram: instagram,
+                        Twittwer: twitter,
+                        Website:website,
+                        Github: github,
+                        phonenumber: phonenumber,
+                        email: email,
+                        fullname: Fullname
+                    });
+                } else {
+                    // If user does not exist, create a new profile
+                    existingUser = await create.create({
+                        userId: userId,
+                        profileData: [{
+                            userId: userId,
+                            facebook: facebook,
+                            Instegram: instagram,
+                            Twittwer: twitter,
+                            Website:website,
+                            Github: github,
+                            phonenumber: phonenumber,
+                            email: email,
+                            Fullname: Fullname,
+                        }]
+                    });
+                }
+                console.log(existingUser);
+
+                // Save the changes
+                await existingUser.save();
+        
+                // Assuming you want to send back some response after updating/creating the profile
+                res.status(200).json({ message: 'Profile updated/created successfully', profileData: existingUser.profileData });
+            } catch (error) {
+                console.error('Error updating/creating profile:', error);
+                res.status(500).json({ message: 'Internal server error' });
+            }
+        }
+        
+        
+        
+module.exports={Addlogin,Addsign,getsign,getlogin,getlogout,sendmail ,profileData };

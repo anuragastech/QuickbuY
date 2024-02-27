@@ -3,15 +3,15 @@ const cart=require('../../models/user/cart');
 const Checkout=require('../../models/user/checkout')
 const coupen=require('../../models/admin/coupen')
 const order =require('../../models/user/order')
-// const Razorpay = require('razorpay');
+const Razorpay = require('razorpay');
 const Product =require('../../models/vender/productAdd');
 const mongoose = require("mongoose");
 
 
-// const razorpay = new Razorpay({
-//   key_id: 'rzp_test_uF6rcT6FvcQis8',
-//   key_secret: 'Pja8iuhLQVUicncsSVHOm2v5',
-// });
+const razorpay = new Razorpay({
+  key_id: 'rzp_test_uF6rcT6FvcQis8',
+  key_secret: 'Pja8iuhLQVUicncsSVHOm2v5',
+});
 
 
 let postAddress = async (req, res) => {
@@ -156,56 +156,92 @@ const coupencheck = async (req, res) => {
 };
 
 
-let orderPost = async (req, res) => {
-    try {
-        const userId = req.user.id;
 
-        const{address,paymentMethod}=req.body
 
-        // Fetch data from Checkout schema
-        const checkoutData = await Checkout.find({ userId });
 
-        // Iterate through checkout data    
-        for (const item of checkoutData) {
+    const orderPost = async (req, res) => {
+        try {
+            const userId = req.user.id;
 
-            const { product, size, quantity, totalAmount } = item;
+            const { address, paymentMethod } = req.body;
+// console.log(req.body);
+            const checkoutData = await Checkout.find({ userId });
 
-            // Generate a unique order ID for each product
-            const orderId = generateOrderId(); // You can implement your own function to generate order IDs
-
-            // Create a new order object
-            const newOrder = new order({
-                orderId: orderId,
-                product: product,
-                size: size,
-                quantity: quantity,
-                totalAmount: totalAmount, // Assign the totalAmount from checkout data
-                paymentMethod: paymentMethod,
-                paymentStatus: paymentMethod === 'cash' ? 'pending' : 'paid',
-                shippingStatus: 'pending'
-            });
-
-            // Save the order to the database
-            await newOrder.save();
-        }
-
-        // Assuming the rest of your code is correct for payment handling
-
-        res.status(200).json({ message: 'Order(s) placed successfully' });
-    } catch (error) {
-        console.error('Error creating order:', error);
-        res.status(500).json({ message: 'Internal server error' });
+            const products = checkoutData.map(order => order.products).flat();
+            const productId = products.map(product => product.productId);
+    const sizes=products.map(product=>product.size)
+    const quantity=products.map(product=>product.quantity)
+    // console.log(quantity);
+    const orders=[]
+    const orderid={
+    product:productId,
+    size:sizes,
+    quantity:quantity ,
+    address:address,
     }
+    orders.push(orderid);
+
+
+  
+    const unwoundOrders = orders.map(orderDetails => {
+        const numProducts = orderDetails.product.length;
+        return Array.from({ length: numProducts }, (_, i) => ({
+            product: orderDetails.product[i],
+            size: orderDetails.size[i],
+            quantity: orderDetails.quantity[i],
+            address: orderDetails.address
+        }));
+    }).flat();
+    
+  
+    // console.log(orderDetails.product[i]);
+    const savePromises = unwoundOrders.map(async (orderDetails) => {
+        const { product, size, quantity, address } = orderDetails;
+        // console.log("hi",size);
+
+        // Create a new order object
+        const newOrder = new order({
+            product,
+            size,
+            quantity,
+            address,
+        });
+
+        return newOrder.save();
+    });
+
+
+
+    let paymentResponse;
+    if (paymentMethod === 'cash') {
+        paymentResponse = { message: 'Order placed successfully with Cash on Delivery' };
+    } else if (paymentMethod === 'online') {
+        const razorpayOrder =  await razorpay.orders.create({
+            amount: 5000,
+            currency: 'INR',
+            receipt: 'order_rcptid_11', // Replace with your receipt ID
+            payment_capture: 1
+        });
+
+        // Send the Razorpay order ID back to the client-side for payment processing
+        paymentResponse = { message: 'Order placed successfully with Razorpay', razorpayOrder };
+    } else {
+        throw new Error('Invalid payment method');
+    }
+
+    // Send payment response back to the client
+    res.status(200).json(paymentResponse);
+} catch (error) {
+    console.error('Error creating order:', error);
+    res.status(500).json({ message: 'Internal server error' });
+}
 };
 
 
-// // Function to generate a unique order ID
-// function generateOrderId() {
-//     // Generate a unique ID using a suitable method (e.g., UUID, timestamp + random characters)
-//     // Return the generated ID
-// }
+
 
 const cartProductSelected = async () =>{
   
 }
+
 module.exports={postAddress ,getAddress,postCarttocheckout,coupencheck ,orderPost, cartProductSelected};

@@ -66,10 +66,10 @@
                 </div>
                 <div class="header-right">
                     <img src="/icons/search.png" alt="" class="search-trigger">
-                    <img src="/icons/man.png" alt="">
+        <a href="/user/profile"><img src="/icons/man.png"   alt="/user/profile" ></a>           
                     <a href="#">
                         <img src="/icons/bag.png" alt="">
-                        <span>2</span>
+                        {{!-- <span>2</span> --}}
                     </a>
                 </div>
                 <div class="user-access">
@@ -157,7 +157,7 @@
                 <style>
                     /* Custom CSS */
                     .address-box {
-                        border: 1px solid #ccc;
+                        border: 1px solid #ffffff;
                         border-radius: 5px;
                         padding: 10px;
                         margin-bottom: 10px;
@@ -197,7 +197,7 @@
                     }
                 </style>
                 <h5 style="margin-left: 40px;">select Address</h4>
-                    <div class="container">
+                    <div class="container" >  
                         <div class="card" style="border: none;">
 
                             <div class="card-body">
@@ -272,7 +272,7 @@
     <label>
         <input type="radio" name="paymentMethod" value="cash"> Cash on Delivery
     </label>
-    <button id="paymentButton" onclick="sendDataToBackend()">Proceed to Payment</button>
+    <button style="color: rgb(255, 255, 255);background-color: green;  border: 5px solid rgb(225, 225, 225); ;height: 70px; width: 180px;" id="paymentButton" onclick="sendDataToBackend()">Proceed to Payment</button>
 </div>
 
                 {{!-- ------------------------------------------------------ --}}
@@ -280,7 +280,7 @@
 
 {{!-- 
                 <button
-                    style="height: 40px; width: 250px; background-color: rgb(0, 0, 0);color: white;">Payment</button> --}}
+                    style="height: 40px; width: 250px; background-color: rgb(50, 238, 12);color: white;">Payment</button> --}}
                 <hr>
             </div>
 
@@ -317,60 +317,133 @@
         const grandTotalValueElement = document.getElementById('grandTotalValue');
         grandTotalValueElement.textContent = `₹${grandTotal.toFixed(2)}`; 
 
-        // Store grand total in a hidden input field for passing to backend
         document.getElementById('grandTotalInput').value = grandTotal.toFixed(2);
     });
 </script>
-<script>
-function sendDataToBackend() {
-    var paymentMethod = document.querySelector("input[name='paymentMethod']:checked").value;
 
-    // Find the selected address
-    var selectedAddressElement = document.querySelector(".address-box.selected");
-    var addressData = null;
-    if (selectedAddressElement) {
-        var addressId = selectedAddressElement.getAttribute("data-address-id");
-        var addressDetails = selectedAddressElement.querySelector(".address-details");
-        var address = {
-            id: addressId,
-            address: addressDetails.querySelector("p:nth-child(1)").textContent.trim(),
-            phone: addressDetails.querySelector("p:nth-child(2)").textContent.trim(),
-            country: addressDetails.querySelector("p:nth-child(3)").textContent.trim(),
-            city: addressDetails.querySelector("p:nth-child(4)").textContent.trim(),
-            state: addressDetails.querySelector("p:nth-child(5)").textContent.trim(),
-            pincode: addressDetails.querySelector("p:nth-child(6)").textContent.trim(),
-        };
-        addressData = address;
-    }
 
-    var data = {
-        paymentMethod: paymentMethod,
-        address: addressData
-        // You can add other necessary data here if needed
-    };
 
-    // Send data to backend (example using fetch API)
-    fetch('/user/order', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => {
-        if (response.ok) {
-            // Handle successful response
-        } else {
-            // Handle error response
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+ <script>
+        function initiateRazorpayPayment(orderDetails) {
+            fetch('/user/order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(orderDetails),
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Failed to initiate payment');
+            })
+            .then(paymentResponse => {
+                if (paymentResponse.message === 'Order placed successfully with Razorpay') {
+                    // Initiate Razorpay payment
+                    var options = {
+                        key: 'rzp_test_uF6rcT6FvcQis8', 
+                        amount: paymentResponse.razorpayOrder.amount,
+                        currency: 'INR',
+                        order_id: paymentResponse.razorpayOrder.id,
+                        name: 'H&d privet.lmtd',
+                        description: 'Order payment',
+                        image: 'https://example.com/your_logo.png',
+                        handler: function (response) {
+                            console.log(response);
+                            var paymentData = {
+                                payment_id: response.razorpay_payment_id,
+                                order_id: response.razorpay_order_id,
+                                signature: response.razorpay_signature
+                            };
+                            fetch('/verifyRazorpayPayment', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(paymentData),
+                            })
+                            .then(response => response.json())
+                            .then(paymentResponse => {
+                                console.log(paymentResponse);
+                            })
+                            .catch(error => {
+                                console.error('Error verifying payment:', error);
+                            });
+                        },
+                        prefill: {
+                            name: 'Anurag',
+                            email: 'anuragraveendreen98in@.com',
+                            contact: '+919539409743'
+                        },
+                        theme: {
+                            color: '#008000'
+                        }
+                    };
+                
+
+                    var rzp1 = new Razorpay(options);
+                    rzp1.open();
+                } else {
+                    console.log(paymentResponse.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error initiating payment:', error);
+            });
         }
-    })
-    .catch(error => {
-        // Handle network error
-    });
-}
 
-</script>
+        function sendDataToBackend() {
+            var paymentMethod = document.querySelector("input[name='paymentMethod']:checked").value;
 
+            // Find the selected address
+            var selectedAddressElement = document.querySelector(".address-box.selected");
+            var addressData = null;
+            if (selectedAddressElement) {
+                var addressId = selectedAddressElement.getAttribute("data-address-id");
+                var addressDetails = selectedAddressElement.querySelector(".address-details");
+                var address = {
+                    id: addressId,
+                    address: addressDetails.querySelector("p:nth-child(1)").textContent.trim(),
+                    phone: addressDetails.querySelector("p:nth-child(2)").textContent.trim(),
+                    country: addressDetails.querySelector("p:nth-child(3)").textContent.trim(),
+                    city: addressDetails.querySelector("p:nth-child(4)").textContent.trim(),
+                    state: addressDetails.querySelector("p:nth-child(5)").textContent.trim(),
+                    pincode: addressDetails.querySelector("p:nth-child(6)").textContent.trim(),
+                };
+                addressData = address;
+            }
+
+            var data = {
+                paymentMethod: paymentMethod,
+                address: addressData
+            };
+
+            if (paymentMethod === 'online') {
+                initiateRazorpayPayment(data);
+            } else {
+                fetch('/user/order', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Order placed successfully with Cash on Delivery');
+                    } else {
+                        throw new Error('Failed to place order with Cash on Delivery');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error placing order with Cash on Delivery:', error);
+                });
+            }
+        }
+    </script>
 
 
         
@@ -380,7 +453,6 @@ function sendDataToBackend() {
     const couponCode = document.getElementById('couponCode').value;
     const grandTotal = document.getElementById('grandTotalInput').value; 
     try {
-        // Send an AJAX request to the server to apply the coupon
         const response = await fetch('/user/applycoupon', {
             method: 'POST',
             headers: {
@@ -413,20 +485,20 @@ console.log(data)
 
             <!-- Page Add Section End -->
 
-            <form class="frml" action="/user/checkout" method="POST">
+            <form class="frml " action="/user/checkout"  method="POST">
 
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header bg-dark text-light">
+                        <div class="modal-content   shadow" >
+                            <div class="modal-header bg-light  text-light">
                                 <h5 class="modal-title" id="exampleModalLongTitle">Add
                                     Category</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body bg-dark text-light">
+                            <div class="modal-body bg-light text-light">
                                 <div>
                                     <div class="row">
                                         <div class="mb-3">

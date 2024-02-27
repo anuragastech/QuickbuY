@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Yoga Studio Template">
+    <meta name="keywords" content="Yoga, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Violet | Template</title>
+
+    <!-- Google Font -->
+
+    {{!--
+    <link rel="stylesheet" href="/user/login.css"> --}}
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Styles -->
+
+
+
+    <link rel="stylesheet" href="/user/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="/user/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="/user/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="/user/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/user/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="/user/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="/user/style.css" type="text/css">
+</head>
+</head>
+
+<body>
+    <nav>
+        <!-- Page Preloder -->
+        <div id="preloder">
+            <div class="loader"></div>
+        </div>
+
+        <!-- Search model -->
+        <div class="search-model">
+            <div class="h-100 d-flex align-items-center justify-content-center">
+                <div class="search-close-switch">+</div>
+                <form class="search-model-form">
+                    <input type="text" id="search-input" placeholder="Search here.....">
+                </form>
+            </div>
+        </div>
+        <!-- Search model end -->
+
+        <!-- Header Section Begin -->
+        <header class="header-section">
+            <div class="container-fluid">
+                <div class="inner-header">
+                    <div class="logo">
+                        <a href="index"><img src="/logo.png" alt=""></a>
+                    </div>
+                    <div class="header-right">
+                        <img src="/search.png" alt="" class="search-trigger">
+                        <img src="/man.png" alt="">
+                        <a href="#">
+                            <img src="/bag.png" alt="">
+                            <span>2</span>
+                        </a>
+                    </div>
+                    <div class="user-access">
+                        <a href="/user/sign" style="display: none;">Register</a>
+                        <a href="/user/login" style="display: none;" class="in">Sign in</a>
+                        <a href="/user/logout">Logout</a>
+
+                    </div>
+                    <nav class="main-menu mobile-menu">
+                        <ul>
+                            <li><a class="active" href="/user/index">Home</a></li>
+                            <li><a href="/user/products">Shop</a>
+                                <ul class="sub-menu">
+                                    {{!-- <li><a href="/user/products">Product Page</a></li> --}}
+                                    <li><a href="/user/shopping-cart">Shopping Card</a></li>
+                                    {{!-- <li><a href="/user/check-out">Check out</a></li> --}}
+                                </ul>
+                            </li>
+                            <li><a href="/user/products">About</a></li>
+                            <li><a href="/user/">Blog</a></li>
+                            <li><a href="/user/contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <!-- Header Info Begin -->
+        {{!-- <div class="header-info">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="header-item">
+                            <img src="/icons/delivery.png" alt="">
+                            <p>Free shipping on orders over $30 in USA</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-left text-lg-center">
+                        <div class="header-item">
+                            <img src="/icons/voucher.png" alt="">
+                            <p>20% Student Discount</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-left text-xl-right">
+                        <div class="header-item">
+                            <img src="/icons/sales.png" alt="">
+                            <p>30% off on dresses. Use code: 30OFF</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+        <!-- Header Info End -->
+        <!-- Header End -->
+    </nav>
+    {{!-- -------------------------------------------------------------------- --}}
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <div class="container-fluid  ">
+        <div class="main-body">
+
+            <!-- Breadcrumb -->
+
+            <!-- /Breadcrumb -->
+
+            <div class="row gutters align-items-center" style="margin-left: 280px;">
+                <div class="col-md-10 mb-3">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="User"
+                                    class="rounded-circle" width="150">
+                                <div class="mt-3">
+                                    <h4>John Doe</h4>
+                                    <p class="text-secondary mb-1">Full Stack Developer</p>
+                                    <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                                    {{!-- <button class="btn btn-primary">Follow</button>
+                                    <button class="btn btn-outline-primary">Message</button> --}}
+                                    <!-- Edit button -->
+                                    <button type="button" class="btn btn-primary edit-btn" data-bs-toggle="modal"
+                                        data-bs-target="#editModal">
+                                        Edit Profile
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 ">
+                        <div class="card mb-3 shadow-sm">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Full Name</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        Kenneth Valdez
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Email</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        fip@jukmuh.al
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Phone</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        (239) 816-9029
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Address</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        Bay Area, San Francisco, CA
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    {{!-- links --}}
+                    <div class="card mt-3 shadow-sm">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="feather feather-globe mr-2 icon-inline">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                                        <path
+                                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                                        </path>
+                                    </svg>Website</h6>
+                                <span class="text-secondary">https://bootdey.com</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="feather feather-github mr-2 icon-inline">
+                                        <path
+                                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+                                        </path>
+                                    </svg>Github</h6>
+                                <span class="text-secondary">bootdey</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="feather feather-twitter mr-2 icon-inline text-info">
+                                        <path
+                                            d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+                                        </path>
+                                    </svg>Twitter</h6>
+                                <span class="text-secondary">@bootdey</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="feather feather-instagram mr-2 icon-inline text-danger">
+                                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                                    </svg>Instagram</h6>
+                                <span class="text-secondary">bootdey</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round"
+                                        class="feather feather-facebook mr-2 icon-inline text-primary">
+                                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z">
+                                        </path>
+                                    </svg>Facebook</h6>
+                                <span class="text-secondary">bootdey</span>
+                            </li>
+                        </ul>
+                    </div>
+                    {{!-- end --}}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {{!-- --------------------------------------- --}}
+    <div class="container">
+        <div class="main-body">
+
+            {{!-- <button type="button" class="btn btn-primary edit-btn" data-bs-toggle="modal"
+                data-bs-target="#editModal">
+                Edit Profile
+            </button> --}}
+            <!-- Edit modal -->
+           <form action="/user/profileData" method="POST">
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow-lg">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit User Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="fullName" name="Fullname">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email">
+                    </div>
+                    <div class="mb-3">
+                        <label for="phoneNumber" class="form-label">Phone number</label>
+                        <input type="tel" class="form-control" id="phoneNumber" name="phonenumber">
+                    </div>
+                    <div class="mb-3">
+                        <label for="website" class="form-label">Website</label>
+                        <input type="url" class="form-control" id="website" name="website">
+                    </div>
+                    <div class="mb-3">
+                        <label for="github" class="form-label">Github</label>
+                        <input type="text" class="form-control" id="github" name="github">
+                    </div>
+                    <div class="mb-3">
+                        <label for="twitter" class="form-label">Twitter</label>
+                        <input type="text" class="form-control" id="twitter" name="twitter">
+                    </div>
+                    <div class="mb-3">
+                        <label for="instagram" class="form-label">Instagram</label>
+                        <input type="text" class="form-control" id="instagram" name="instagram">
+                    </div>
+                    <div class="mb-3">
+                        <label for="facebook" class="form-label">Facebook</label>
+                        <input type="text" class="form-control" id="facebook" name="facebook">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+        </div>
+    </div>
+    <!-- Bootstrap JS Bundle (Popper included) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // JavaScript to handle click event of the "Edit" button
+        const editButton = document.querySelector('.edit-btn');
+        const editModal = new bootstrap.Modal(document.getElementById('editModal'));
+
+        editButton.addEventListener('click', function () {
+            editModal.show();
+        });
+    </script>
+
+
+
+    <!-- Footer Section Begin -->
+    <footer class="footer-section spad">
+        <div class="container">
+            <div class="newslatter-form">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form action="#">
+                            <input type="text" placeholder="Your email address">
+                            <button type="submit">Subscribe to our newsletter</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-widget">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h4>About us</h4>
+                            <ul>
+                                <li>About Us</li>
+                                <li>Community</li>
+                                <li>Jobs</li>
+                                <li>Shipping</li>
+                                <li>Contact Us</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h4>Customer Care</h4>
+                            <ul>
+                                <li>Search</li>
+                                <li>Privacy Policy</li>
+                                <li>2019 Lookbook</li>
+                                <li>Shipping & Delivery</li>
+                                <li>Gallery</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h4>Our Services</h4>
+                            <ul>
+                                <li>Free Shipping</li>
+                                <li>Free Returnes</li>
+                                <li>Our Franchising</li>
+                                <li>Terms and conditions</li>
+                                <li>Privacy Policy</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-footer-widget">
+                            <h4>Information</h4>
+                            <ul>
+                                <li>Payment methods</li>
+                                <li>Times and shipping costs</li>
+                                <li>Product Returns</li>
+                                <li>Shipping methods</li>
+                                <li>Conformity of the products</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="social-links-warp">
+            <div class="container">
+                <div class="social-links">
+                    <a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
+                    <a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
+                    <a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
+                    <a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
+                    <a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
+                    <a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
+                </div>
+            </div>
+
+            <div class="container text-center pt-5">
+
+            </div>
+
+
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+
+
+    <script src="/user/jquery-3.3.1.min.js"></script>
+    <script src="/user/bootstrap.min.js"></script>
+    <script src="/user/jquery.magnific-popup.min.js"></script>
+    <script src="/user/jquery.slicknav.js"></script>
+    <script src="/user/owl.carousel.min.js"></script>
+    <script src="/user/jquery.nice-select.min.js"></script>
+    <script src="/user/mixitup.min.js"></script>
+    <script src="/user/main.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+</body>
+
+</html>

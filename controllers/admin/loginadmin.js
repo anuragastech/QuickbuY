@@ -52,4 +52,8 @@ let  getsignup=(req, res) => {
     res.redirect("/admin/login");
   };
 
+
+  
+
+
 module.exports={loginPost,getlogin,getsignup ,logout};

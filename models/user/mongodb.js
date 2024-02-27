@@ -21,6 +21,7 @@ const createSchema = mongoose.Schema({
         type: Boolean,
         default: false // Default value is false, indicating the user is not blocked
     },
+
     personalInfo: [{
         address: { type: String, },
         number: { type: Number, },
@@ -32,18 +33,35 @@ const createSchema = mongoose.Schema({
         pincode: { type: Number, },
     }],
 
+profileData :[{
+    fullname:{
+        type:String,
+    },
+    phoneNumber:{
+        type:Number,
+    },
+    Website:{ type:String,
 
-// couponCode: {
-//     type: String,
-//     unique: true ,
-//   },
-//   discountPercentage: {
-//     type: Number,
-//   },
-//   createdAt: {
-//     type: Date,
-//     default: Date.now
-//   },
+    },
+    Twittwer:{ type:String,
+
+    },
+    Github:{ type:String,
+    },
+    Instegram:{ type:String,
+
+    },
+    facebook:{ type:String,
+
+    },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+        required: true
+    },
+
+}]
+
 
 });
 
