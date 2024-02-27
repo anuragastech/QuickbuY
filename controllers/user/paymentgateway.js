@@ -104,7 +104,7 @@ const postCarttocheckout = async (req, res) => {
             try {
                 const twoMinutesAgo = new Date(Date.now() - (1 * 10 * 1000)); // Calculate 2 minutes ago
                 await Checkout.deleteMany({ createdAt: { $lt: twoMinutesAgo } });
-                console.log('Old checkout documents cleared.');
+                // console.log('Old checkout documents cleared.');
             } catch (error) {
                 console.error('Error clearing old checkout documents:', error);
             }
