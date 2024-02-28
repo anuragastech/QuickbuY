@@ -63,7 +63,7 @@
 <body class="">
 
     <!-- Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top bg-dark-800">
+     <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top "  style="    background-color: rgba(253, 253, 253, 0.98)";>
       <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
     
@@ -171,7 +171,7 @@
     <div class="row">
         <div class="col-12">
             <h1 class="h4 mt-3">Category List</h1>
-            <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModalCenter">
+            <button type="button" class="btn btn-light mb-3" data-toggle="modal" data-target="#exampleModalCenter" style="border: 2px solid rgb(129, 122, 122);">
                 Add Sub-Category
             </button>
         </div>
@@ -214,26 +214,30 @@
 
 <style>
   table{
-    background-color: black;
+    background-color: rgb(255, 255, 255);
   }
   td{
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(255, 255, 255);
+  }
+  th{
+    background-color: white;
+    text-align: center;
   }
 </style>
 
             <div class="row g-4">
-                <div class="col-12 col-md-12">
+                <div class="col-12 col-md-12  bg-white" >
    
-<div class="showsubcategory">
-    <table id="subcategoryTable"  class="table">
+<div class="showsubcategory "  style="border: 8px solid rgb(209, 209, 209);background-color: rgb(180, 181, 182);">
+    <table id="subcategoryTable" style="background-color: white; border: 1px solid rgb(155, 147, 147);text-align: center;" class="table">
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Image</th>
-                <th>Delete</th>
-                <th>Edit</th>
-            </tr>
+        <th style="text-align: center;">Title</th>
+        <th style="text-align: center;">Description</th>
+        <th style="text-align: center;">Image</th>
+        <th style="text-align: center;">Delete</th>
+        <th style="text-align: center;">Edit</th>
+    </tr>
         </thead>
         <tbody >
             {{#each subcategories}}
@@ -243,7 +247,7 @@
                 <td><img class="pic" src="{{image.url}}" alt="{{title}} Image" style="max-width: 140px; height: auto;"></td>
                 <td>
                     <button style="background-color: transparent;" class="btn5" onclick="deleteSubCategory('{{this._id}}')">
-                        <i class="bi bi-trash-fill" style="font-size: 24px; color: rgb(255, 234, 234);"></i>
+                        <i class="bi bi-trash-fill" style="font-size: 24px; color: rgb(56, 55, 55);list-style: none;;"></i>
                     </button>
                 </td>
                 <td>
@@ -496,10 +500,8 @@
                    <div
                   class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1"
                 >
-                  <a
-                    style="width: 95px;height: 30px;color: black; background-color: white; border-radius: 25px;text-align: center;"
-                    href="logout"
-                  >logout</a>
+                                           <a   style="width: 95px;height: 30px;color: black; background-color: transparent;text-align: center;"  href="logout" >logout</a>
+
                 </div>
     
                         

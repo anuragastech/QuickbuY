@@ -61,7 +61,8 @@
 <body class="">
 
   <!-- Navbar-->
-  <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top bg-dark-800">
+  <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top "  style="    background-color: rgba(253, 253, 253, 0.98);
+">
     <div class="container-fluid">
       <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
 
@@ -168,10 +169,10 @@
       {{! ---------------------------------------------------------- }}
 
       <div class="row g-4">
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6 ">
           <!-- Button trigger modal -->
           <h1 class="h10">Category-List</h1>
-          <button type="button" class="btn btn-light   btn-lg w-50 mb-3" data-toggle="modal"
+          <button type="button" class="btn btn-light   btn-lg w-50 mb-3" data-toggle="modal" style="border: 2px solid rgb(115, 113, 113);"
             data-target="#exampleModalCenter">
             Add Category
           </button>
@@ -213,12 +214,13 @@
 
 
       {{! ----------------------------------------------------------------------------------------- }}
-      <div class="row g-4">
+      <div class="row g-4" >
         <div class="col-12 ">
 
           <style>
             td {
               text-align: center;
+              color: black;
             }
           </style>
           <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
@@ -234,19 +236,20 @@
             <div class="card-header">
               <h6 class="card-title">Category-List</h6>
             </div>
-            <div class="card-body" style="background-color: rgb(12, 12, 12); color: white;">
+            <div class="card-body" style="background-color: rgb(179, 179, 179); color: rgb(7, 7, 7);">
               <div class="table-responsive"> <!-- Make table responsive -->
                 <table id="categoryTable" class="table table-striped w-500"> <!-- Set width to full -->
                   <thead>
                     <tr>
-                      <th>Title</th>
-                      <th>Description</th>
-                      <th>Image</th>
-                      <th>Delete</th>
-                      <th>Edit</th>
+                     <th style="text-align: center;">Title</th>
+<th style="text-align: center;">Description</th>
+<th style="text-align: center;">Image</th>
+<th style="text-align: center;">Delete</th>
+<th style="text-align: center;">Edit</th>
+
                     </tr>
                   </thead>
-                  <tbody style="background-color: black !important;">
+                  <tbody style="background-color: rgb(243, 243, 243) !important;">
                     {{#each categories}}
                     <tr>
                       <td>{{title}}</td>
@@ -254,7 +257,7 @@
                       <td><img src="{{image.url}}" alt="{{title}} Image" /></td>
                       <td>
                         <button class="btn btn-outline-danger p-0 border-0" onclick="deleteCategory('{{this.title}}')">
-                          <i class="bi bi-trash-fill" style="font-size: 24px; color: white;"></i>
+                          <i class="bi bi-trash-fill" style="font-size: 24px; color: rgb(10, 9, 9);"></i>
                         </button>
                       </td>
                       <td>
@@ -528,8 +531,8 @@
             <div class="d-flex flex-wrap mt-2 justify-content-between align-items-center"> --}}
               <div
                 class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1">
-                <a style="width: 95px;height: 30px;color: black; background-color: white; border-radius: 25px;text-align: center;"
-                  href="logout">logout</a>
+                                              <a   style="width: 95px;height: 30px;color: black; background-color: transparent;text-align: center;"  href="logout" >logout</a>
+
               </div>
 
               <!-- User profile dropdown-->

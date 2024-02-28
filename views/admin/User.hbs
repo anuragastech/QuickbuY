@@ -58,7 +58,7 @@
     <main id="main">
 
         <!-- Navbar-->
-        <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top bg-dark-800">
+     <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top "  style="    background-color: rgba(253, 253, 253, 0.98)";>
           <div class="container-fluid">
             <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
         
@@ -168,11 +168,14 @@
       {{!-- -------------------------------------------------------                 --}}
 <style>
   table{
-    border: 10px solid rgb(244, 243, 243);
+    border: 3px solid rgb(130, 126, 126);
+    background-color: white;
+    color: rgb(162, 153, 153);
 
   }
   th{
     font-size: 26px;
+    color: rgb(181, 173, 173);
 
 font-weight: bolder;  
   height: 50px;
@@ -180,10 +183,10 @@ font-weight: bolder;
     text-align: center;
   }
   td{
-    color: white;
+    color: rgb(31, 30, 30);
     font-size: 22px;
     font-weight: bolder;
-        border: 2px solid rgb(255, 255, 255);
+        border: 2px solid rgb(154, 154, 154);
         text-align: center;
 
   }
@@ -191,7 +194,8 @@ font-weight: bolder;
 
 
 
-            <table class="col-lg-12 col-md-6 col-sm-3" style="width: 1500px;" >
+            <table class="col-lg-12 col-md-6 col-sm-3"  >
+              
               <thead>
                 <tr>
                   <th>User-Name</th>
@@ -235,7 +239,7 @@ font-weight: bolder;
 
 </td> --}}
 <td>
-   <button onclick="toggleBlock('{{this._id}}', {{this.blocked}})">
+   <button onclick="toggleBlock('{{this._id}}', {{this.blocked}})"  style="border-radius: 18px;  background-color: white;">
     {{#if this.blocked}}
         Unblock 
     {{else}}
@@ -374,11 +378,11 @@ function unblockUser(userId) {
 
 
 
-            <!-- Footer -->
-            <footer class="  footer">
+            {{!-- <!-- Footer -->
+            <footer class="  footer" style="background-color: aliceblue;">
                 <p class="small text-muted m-0"> | </p>
                 <p class="small text-muted m-0"> <a href="https://www.pixelrocket.store/"></a></p>
-            </footer>
+            </footer> --}}
             
             
             <!-- Sidebar Menu Overlay-->
@@ -534,17 +538,17 @@ function unblockUser(userId) {
                     <!-- User Details-->
                     <div class="border-bottom pt-3 pb-5 mb-6 d-flex flex-column align-items-center">
                         <div class="position-relative">
-                            <picture class="avatar avatar-profile">
+                            {{!-- <picture class="avatar avatar-profile">
                                 <img class="avatar-profile-img" src="./assets/images/profile-small.jpeg"
                                   alt="">
-                            </picture>
+                            </picture> --}}
                             <span class="dot bg-success avatar-dot"></span>
                         </div>
-                        <p class="mb-0 mt-3 text-white">Robert Jones</p>
-                        <small>robert.jones@outlook.com</small>
+                        {{!-- <p class="mb-0 mt-3 text-white">Robert Jones</p>
+                        <small>robert.jones@outlook.com</small> --}}
                         <div class="d-flex flex-wrap mt-2 justify-content-between align-items-center">
                             <div class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1">
-                                <a   style="width: 95px;height: 30px;color: black; background-color: white; border-radius: 25px;text-align: center;"  href="logout" >logout</a>
+                                <a   style="width: 95px;height: 30px;color: black; background-color: transparent;text-align: center;"  href="logout" >logout</a>
                             </div>
     
                             <!-- User profile dropdown-->
