@@ -198,8 +198,8 @@ font-weight: bolder;
                   <th>Email</th>
                   {{!-- <th>Image</th> --}}
                   {{!-- <th>Remove</th> --}}
-                  <th>Block</th>
-                  <th>Unblock</th>
+                  <th>Block/unblock</th>
+                 
                
                 </tr>
               </thead>
@@ -219,15 +219,59 @@ font-weight: bolder;
                    <td> 
 
                  <!-- Block User Button -->
-<button onclick="blockVender('{{this._id}}')">Block User</button>
+{{!-- <button onclick="blockVender('{{this._id}}')">Block User</button>
                      </td>
 <td>
 <!-- Unblock User Button -->
-<button onclick="unblockVender('{{this._id}}')">Unblock User</button>
+<button onclick="unblockVender('{{this._id}}')">Unblock User</button> --}}
+<button onclick="toggleVender('{{this._id}}', {{this.blocked}})">
+    {{#if this.blocked}}
+        Unblock 
+    {{else}}
+        Block 
+    {{/if}}
+</button>
+
 
 </td>
                   
+<script>
+function toggleVender(userId, blocked) {
+    if (blocked) {
+        axios.post(`/admin/unblock-vender/${userId}`)
+            .then((response) => {
+                if (response.status === 200) {
+                    alert('Vendor unblocked successfully');
+                                                        location.reload(); // Reload the page
 
+                } else {
+                    alert('Failed to unblock vendor');
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                alert('Error unblocking vendor');
+            });
+    } else {
+        axios.post(`/admin/block-vender/${userId}`)
+            .then((response) => {
+                if (response.status === 200) {
+                    alert('Vendor blocked successfully');
+                                                            location.reload(); // Reload the page
+
+                } else {
+                    alert('Failed to block vendor');
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                alert('Error blocking vendor');
+            });
+    }
+}
+
+
+</script>
                       {{!-- <button style="background-color: transparent;" > <a href="/admin/edit?name={{this._id}}"><i style="font-size: 24px;background-color: transparent;" class="bi bi-pencil-square text-success "></i></a> </button>  --}}
 
                       {{! ---------------------------------------------------------- }}
@@ -260,7 +304,7 @@ function deleteUser(userId) {
 
 
 </script>
-<script>
+{{!-- <script>
 
 
   function blockVender(userId) {
@@ -293,7 +337,7 @@ function unblockVender(userId) {
         });
 }
 
-</script>
+</script> --}}
 
 
 

@@ -198,11 +198,9 @@ font-weight: bolder;
                   <th>Email</th>
                   {{!-- <th>Image</th> --}}
                   {{!-- <th>Remove</th> --}}
-               <th> Block </th>
+               <th> Block/unblock </th>
 
-<th>
-  Unblock
-</th>
+
 
                 </tr>
               </thead>
@@ -223,7 +221,7 @@ font-weight: bolder;
                       {{!-- <button style="background-color: transparent;" > <a href="/admin/edit?name={{this._id}}"><i style="font-size: 24px;background-color: transparent;" class="bi bi-pencil-square text-success "></i></a> </button>  --}}
 
                       {{! ---------------------------------------------------------- }}
-                   <td> 
+                   {{!-- <td> 
 
                  <!-- Block User Button -->
 <button onclick="blockUser('{{this._id}}')">Block User</button>
@@ -235,9 +233,74 @@ font-weight: bolder;
 <!-- Unblock User Button -->
 <button onclick="unblockUser('{{this._id}}')">Unblock User</button>
 
+</td> --}}
+<td>
+   <button onclick="toggleBlock('{{this._id}}', {{this.blocked}})">
+    {{#if this.blocked}}
+        Unblock 
+    {{else}}
+        Block 
+    {{/if}}
+</button>
+
 </td>
 
 
+
+<script>
+ function toggleBlock(userId, isBlocked) {
+    let action;
+    if (isBlocked) {
+        action = unblockUser;
+    } else {
+        action = blockUser;
+    }
+
+    action(userId);
+}
+
+function blockUser(userId) {
+    axios.post(`/admin/block-user/${userId}`)
+        .then((response) => {
+            if (response.status === 200) {
+                // User blocked successfully
+                alert('User blocked successfully');
+                                                    location.reload(); // Reload the page
+
+                // Optionally, you can update the UI to reflect the blocked status
+            } else {
+                // Handle other response statuses if needed
+                alert('Failed to block user');
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            alert('Error blocking user');
+        });
+}
+
+function unblockUser(userId) {
+    axios.post(`/admin/unblock-user/${userId}`)
+        .then((response) => {
+            if (response.status === 200) {
+                // User unblocked successfully
+                alert('User unblocked successfully');
+                                                    location.reload(); // Reload the page
+
+                // Optionally, you can update the UI to reflect the unblocked status
+            } else {
+                // Handle other response statuses if needed
+                alert('Failed to unblock user');
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            alert('Error unblocking user');
+        });
+}
+
+
+</script>
 
                   
                   </tr>
@@ -266,7 +329,7 @@ function deleteUser(userId) {
 
 
 </script>
-<script>
+{{!-- <script>
 
 
   function blockUser(userId) {
@@ -305,7 +368,7 @@ function unblockUser(userId) {
         });
 }
 
-</script>
+</script> --}}
 
 
 

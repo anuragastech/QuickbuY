@@ -57,7 +57,7 @@ profileData :[{
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
-        required: true
+        // required: true
     },
 
 }]

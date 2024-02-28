@@ -7,11 +7,14 @@ const Razorpay = require('razorpay');
 const Product =require('../../models/vender/productAdd');
 const mongoose = require("mongoose");
 const schedule = require('node-schedule');
+const productAdd=require('../../models/vender/productAdd')
 
 const razorpay = new Razorpay({
   key_id: 'rzp_test_uF6rcT6FvcQis8',
   key_secret: 'Pja8iuhLQVUicncsSVHOm2v5',
 });
+
+
 
 
 let postAddress = async (req, res) => {
@@ -171,6 +174,8 @@ const coupencheck = async (req, res) => {
 
 
 
+
+
     const orderPost = async (req, res) => {
         try {
             const userId = req.user.id;
@@ -214,7 +219,7 @@ const coupencheck = async (req, res) => {
     const savePromises = unwoundOrders.map(async (orderDetails) => {
         const { product, size, quantity, address  } = orderDetails;
         // console.log("hi",size);
-
+// console.log(product);
         // Create a new order object
         const newOrder = new order({
             product,
@@ -226,12 +231,17 @@ const coupencheck = async (req, res) => {
 
         return newOrder.save();
     });
-console.log("price",price);
+console.log("price",unwoundOrders);
 
 
     let paymentResponse;
     if (paymentMethod === 'cash') {
-        await cart.deleteMany({ userId, product: { $in: productId } });
+        // console.log(product);
+        // const productIds = unwoundOrders.map(product => product.product);
+        // // console.log("p", productIds);
+        // await cart.deleteMany({ userId, 'products.productId': { $in: productIds } });
+        // await productAdd.updateone({})
+        
         paymentResponse = { message: 'Order placed successfully with Cash on Delivery' };
     } else if (paymentMethod === 'online') {
         const razorpayOrder =  await razorpay.orders.create({
