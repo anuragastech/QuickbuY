@@ -100,6 +100,7 @@ const postCarttocheckout = async (req, res) => {
 
         const newCheckout = new Checkout({ products: productArr, userId: userId });
         await newCheckout.save();
+        // console.log("ch",newCheckout);
         // Schedule a job to clear old checkout documents every 2 minutes
      
 
@@ -189,7 +190,8 @@ const coupencheck = async (req, res) => {
     const sizes=products.map(product=>product.size)
     const quantity=products.map(product=>product.quantity)
     const price=checkoutData.map(price=>price.discountedAmount);
-    console.log("price",price);
+    // console.log("price",price);
+
     // console.log(quantity);
     const orders=[]
     const orderid={
@@ -214,11 +216,32 @@ const coupencheck = async (req, res) => {
         }));
     }).flat();
     
-  
+  console.log(unwoundOrders);
     // console.log(orderDetails.product[i]);
     const savePromises = unwoundOrders.map(async (orderDetails) => {
         const { product, size, quantity, address  } = orderDetails;
-        // console.log("hi",size);
+        const productresult = await Product.aggregate([
+            {
+                $match: {
+                    _id:product,
+                }
+            },
+            {
+                $lookup: {
+                    from: 'products',
+                    localField: 'product',
+                    foreignField: '_id', 
+                    as: 'productDetails' 
+                }
+            }
+        ]);
+    const color=productresult.map(l=>l.color)
+    const productname=productresult.map(l=>l.productname)
+    const brand=productresult.map(l=>l.brand)
+
+        console.log("hi",color,productname,brand);
+      
+        // console.log(productscolor);
 // console.log(product);
         // Create a new order object
         const newOrder = new order({
@@ -226,12 +249,20 @@ const coupencheck = async (req, res) => {
             size,
             quantity,
             address,
+            price,
+            color,
+            productname,
+            brand,
+            paymentStatus:paymentMethod,
+            shippingStatus,
+            orderAccepted,
+
         
         });
 
         return newOrder.save();
     });
-console.log("price",unwoundOrders);
+// console.log("price",unwoundOrders);
 
 
     let paymentResponse;

@@ -30,6 +30,17 @@ const orderSchema = new mongoose.Schema({
    price:{
     type:Number,
  },
+ color:{
+  type:String,
+},
+productname:{
+  type:String,
+},
+brand:{
+  type:String,
+},
+
+
   
   
   paymentStatus: {
@@ -39,7 +50,12 @@ const orderSchema = new mongoose.Schema({
   shippingStatus: {
     type: String,
     enum: ['pending', 'shipped', 'delivered']
-  }
+  },
+  orderAccepted: {
+    type: Boolean,
+    default: false // Default value is false, indicating order is not accepted
+}
+  
 });
 
 module.exports = mongoose.model('Order', orderSchema);

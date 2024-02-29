@@ -11,6 +11,7 @@ const HomepageController= require('../controllers/admin/Homepage');
 const userController= require('../controllers/admin/userController');
 
 const venderBlockController=require('../controllers/admin/venderController')
+const orderController= require('../controllers/admin/order');
 
 
 
@@ -105,6 +106,7 @@ router.post('/unblock-vender/:userId',  venderBlockController.unblockVender);
 
 router.get('/coupen',otherControllers.getCoupen)
 router.post('/coupon',otherControllers.postCoupen)
+router.get('/orderList',orderController.order )
 
 
 
