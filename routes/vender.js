@@ -13,7 +13,7 @@ const productControllers = require('../controllers/vender/AddProductpage');
 
 const otherControllers = require('../controllers/vender/Others');
 const profileControllers = require('../controllers/vender/profile');
-
+const ordersControls  = require('../controllers/vender/order')
 
 router.post("/login",venderControllers.loginvender);
 
@@ -78,7 +78,9 @@ router.get('/categories',authenticateJWT, getcatasubController.getcategory)
   router.get('/color',authenticateJWT,getcatasubController.getcolor)
   router.get('/size', authenticateJWT,getcatasubController.getsize)
 
-
+  router.get('/orderDetails',authenticateJWT,ordersControls.orderlist)
+  router.post('/updateShippingStatus',ordersControls.shippingStatus)
+router.post('/OrderShippingStatus',ordersControls.orderStatus)
 
 
 module.exports = router ;

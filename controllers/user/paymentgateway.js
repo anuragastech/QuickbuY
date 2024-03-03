@@ -7,11 +7,14 @@ const Razorpay = require('razorpay');
 const Product =require('../../models/vender/productAdd');
 const mongoose = require("mongoose");
 const schedule = require('node-schedule');
+const productAdd=require('../../models/vender/productAdd')
 
 const razorpay = new Razorpay({
   key_id: 'rzp_test_uF6rcT6FvcQis8',
   key_secret: 'Pja8iuhLQVUicncsSVHOm2v5',
 });
+
+
 
 
 let postAddress = async (req, res) => {
@@ -97,6 +100,7 @@ const postCarttocheckout = async (req, res) => {
 
         const newCheckout = new Checkout({ products: productArr, userId: userId });
         await newCheckout.save();
+        // console.log("ch",newCheckout);
         // Schedule a job to clear old checkout documents every 2 minutes
      
 
@@ -170,10 +174,9 @@ const coupencheck = async (req, res) => {
 
 
 
-
     const orderPost = async (req, res) => {
         try {
-            const userId = req.user.id;
+            const userId = req.vender.id;
 
             const { address, paymentMethod } = req.body;
 // console.log(req.body);
@@ -184,20 +187,54 @@ const coupencheck = async (req, res) => {
     const sizes=products.map(product=>product.size)
     const quantity=products.map(product=>product.quantity)
     const price=checkoutData.map(price=>price.discountedAmount);
-    console.log("price",price);
+const prices =price[0]
+    // console.log("price",price);
+
     // console.log(quantity);
     const orders=[]
-    const orderid={
+
+// console.log("hell",productId);
+
+const productresult = await Product.aggregate([
+    {
+        $match: {
+            _id: { $in: productId } 
+        }
+    },
+    {
+        $lookup: {
+            from: 'products',
+            localField: 'product',
+            foreignField: '_id', 
+            as: 'productDetails' 
+        }
+    }
+]);
+const color=productresult.map(l=>l.color)
+const productname=productresult.map(l=>l.productname)
+const brand=productresult.map(l=>l.brand)
+const category=productresult.map(l=>l.categoryName)
+const subcategory=productresult.map(l=>l.subcategoryName)
+const venderId=productresult.map(l=>l.venderId)
+
+// console.log("hi",color,productname,brand,category,subcategory);
+// -----  
+const orderid={
     product:productId,
     size:sizes,
     quantity:quantity ,
     address:address,
-   
+   color:color,
+   productname:productname,
+   brand:brand,
+   category:category,
+   subcategory:subcategory,
+   venderId:venderId,
     }
+    // console.log("hell0", orderid);
     orders.push(orderid);
 
-
-  
+//   console.log("orders",orders);
     const unwoundOrders = orders.map(orderDetails => {
         const numProducts = orderDetails.product.length;
         return Array.from({ length: numProducts }, (_, i) => ({
@@ -205,33 +242,62 @@ const coupencheck = async (req, res) => {
             size: orderDetails.size[i],
             quantity: orderDetails.quantity[i],
             address: orderDetails.address,
+            color:orderDetails.color[i],
+            productname:orderDetails.productname[i],
+            brand:orderDetails.brand[i],
+            venderId:orderDetails.venderId[i],
+
+            category:orderDetails.category[i],
+
+            subcategory:orderDetails.subcategory[i],
+
+
           
         }));
     }).flat();
     
-  
+//   console.log(unwoundOrders);
     // console.log(orderDetails.product[i]);
     const savePromises = unwoundOrders.map(async (orderDetails) => {
-        const { product, size, quantity, address  } = orderDetails;
-        // console.log("hi",size);
+        const { product, size, quantity, address,color,productname,brand ,category,subcategory ,venderId} = orderDetails;
+        // console.log("price",paymentMethod);
 
+        console.log(venderId,address);
+
+        // console.log(productscolor);
+// console.log(product);
         // Create a new order object
         const newOrder = new order({
             product,
             size,
             quantity,
             address,
+            price:prices,
+            color,
+            productname,
+            brand,
+            category,
+            subcategory,
+            venderId:venderId,
+            paymentMethod:paymentMethod,
+            paymentStatus:'success',
+            shippingStatus:'processing',
+            orderAccepted:'pending',
+
         
         });
 
         return newOrder.save();
     });
-console.log("price",price);
-
 
     let paymentResponse;
     if (paymentMethod === 'cash') {
-        await cart.deleteMany({ userId, product: { $in: productId } });
+        // console.log(product);
+        // const productIds = unwoundOrders.map(product => product.product);
+        // // console.log("p", productIds);
+        // await cart.deleteMany({ userId, 'products.productId': { $in: productIds } });
+        // await productAdd.updateone({})
+        
         paymentResponse = { message: 'Order placed successfully with Cash on Delivery' };
     } else if (paymentMethod === 'online') {
         const razorpayOrder =  await razorpay.orders.create({
@@ -261,6 +327,9 @@ console.log("price",price);
 const cartProductSelected = async () =>{
   
 }
+
+
+
 
 
 

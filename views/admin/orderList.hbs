@@ -157,207 +157,225 @@
       <!-- Breadcrumbs-->
       <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i>
-              catagoryList</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Category
+          <li class="breadcrumb-item" style="color: #161313;"><a href=""><i class="ri-home-line align-bottom me-1"></i>
+              Order List</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Order
             Details</li>
         </ol>
       </nav>
       <!-- / Breadcrumbs-->
 
 
-      {{! ---------------------------------------------------------- }}
+      <!-- Page Title-->
 
-      <div class="row g-4">
-        <div class="col-12 col-md-6 ">
-          <!-- Button trigger modal -->
-          <h1 class="h10">Category-List</h1>
-          <button type="button" class="btn btn-light   btn-lg w-50 mb-3" data-toggle="modal" style="border: 2px solid rgb(115, 113, 113);"
-            data-target="#exampleModalCenter">
-            Add Category
-          </button>
+      {{!-- ------------------------------------------------------    --}}
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #211e1e;
+            color: white;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .pagination button.active {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <table id="orderTable">
+        <thead>
+            <tr>
+                <th>Product name</th>
+                <th>size</th>
+                <th> Quantity</th>
+                <th>Price</th>
+                <th>color</th>
+                <th>product Id</th>
+                <th> Brand</th>
+                                <th>payment Status</th>
 
-          <!-- Modal -->
-          <form class="frml" action="/admin/categorylist" method="POST" enctype="multipart/form-data">
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-              aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <div class="modal-header bg-dark text-light">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Add Category</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body bg-dark text-light">
-                    <label for="title">Title:</label>
-                    <input type="text" id="title" name="title" class="form-control" required />
-                    <br>
+                <th>Shipping Status</th>
+                <th>Order Status</th>
+                <th>Order Date </th>
+            </tr>
+        </thead>
+        <tbody>
+{{#each orderData}}
+<tr>
+    <td>{{this.productname}}</td>
+    <td>{{this.size}}</td>
+    <td>{{this.quantity}}</td>
+    <td>{{this.price}}</td>
+    <td>{{this.color}}</td>
+    <td>{{this.product}}</td>
+    <td>
+       {{this.brand}} 
+    </td>
+        <td>
+{{this.paymentStatus}}
+        </td>
+        <td> {{this.shippingStatus}} 
 
-                    <label for="description">Description:</label>
-                    <textarea id="description" name="description" class="form-control" required></textarea>
-                    <br />
 
-                    <label for="image">Choose an image:</label>
-                    <input type="file" name="image" class="form-control-file" />
-                  </div>
-                  <div class="modal-footer bg-dark text-light">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                  </div>
-                </div>
-              </div>
+   {{!-- <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" style="height: 2px;width: 100px;" type="button" id="statusDropdown{{this._id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <!-- Display the current status -->
+            </button>
+            <div class="dropdown-menu" aria-labelledby="statusDropdown{{this._id}}">
+                <button class="dropdown-item" onclick="updateStatus('{{this._id}}', 'Delivered')">Delivered</button>
+                <button class="dropdown-item" onclick="updateStatus('{{this._id}}', 'pending')">Pending</button>
+                <button class="dropdown-item" onclick="updateStatus('{{this._id}}', 'not processed')">Not processed</button>
             </div>
-          </form>
-        </div>
-      </div>
+        </div> --}}
+        </td>
+        <td>{{this.orderAccepted}}
+
+{{!-- <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" style="height: 2px;width: 100px;" type="button" id="orderDropdown{{this._id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{this.shipmentStatus}} <!-- Display the current status -->
+    </button>
+    <div class="dropdown-menu" aria-labelledby="orderDropdown{{this._id}}">
+        <button class="dropdown-item" onclick="orderStatus('{{this._id}}', 'Accepted')">Accepted</button>
+        <button class="dropdown-item" onclick="orderStatus('{{this._id}}', 'Pending')">pending </button>
+        <button class="dropdown-item" onclick="orderStatus('{{this._id}}', 'Out of stock')">Out of stock</button>
+    </div>
+</div> --}}
+
+          
+        </td>
+        <td>{{this.orderDate}}</td>
+
+</tr>
+{{/each}}
 
 
-      {{! ----------------------------------------------------------------------------------------- }}
-      <div class="row g-4" >
-        <div class="col-12 ">
+        </tbody>
+    </table>
+    <div class="pagination" id="pagination"></div>
 
-          <style>
-            td {
-              text-align: center;
-              color: black;
+    {{!-- document.getElementById('statusDropdown' + id).innerText = status; --}}
+        {{!-- document.getElementById('orderDropdown' + id).innerText = status; --}}
+
+{{!-- 
+<script>
+ function updateStatus(id, status) {
+    // Update the dropdown button text with the selected status
+    // You can also update the data in your backend using a fetch request
+    fetch('/admin/updateShippingStatus', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: id,
+            status: status
+        })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('There was a problem with the fetch operation:', error));
+}
+
+
+</script>
+
+<script>
+ function orderStatus(id, status) {
+    // Update the dropdown button text with the selected status
+    // You can also update the data in your backend using a fetch request
+    fetch('/admin/OrderShippingStatus', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: id,
+            status: status
+        })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('There was a problem with the fetch operation:', error));
+}
+
+
+</script> --}}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            var currentPage = 1;
+            var rowsPerPage = 10; // Number of rows per page
+            var orders = []; // This should be populated with your order data
+            
+            // Function to display orders for a specific page
+            function displayOrders(page) {
+                var startIndex = (page - 1) * rowsPerPage;
+                var endIndex = startIndex + rowsPerPage;
+                var paginatedOrders = orders.slice(startIndex, endIndex);
+
+              
+
             }
-          </style>
-          <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-          <script type="text/javascript" charset="utf8"
-            src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-          <script>
-            $(document).ready(function () {
-              $('#categoryTable').DataTable();
-            });
-          </script>
 
-          <div class="card mb-4">
-            <div class="card-header">
-              <h6 class="card-title">Category-List</h6>
-            </div>
-            <div class="card-body" style="background-color: rgb(179, 179, 179); color: rgb(7, 7, 7);">
-              <div class="table-responsive"> <!-- Make table responsive -->
-                <table id="categoryTable" class="table table-striped w-500"> <!-- Set width to full -->
-                  <thead>
-                    <tr>
-                     <th style="text-align: center;">Title</th>
-<th style="text-align: center;">Description</th>
-<th style="text-align: center;">Image</th>
-<th style="text-align: center;">Delete</th>
-<th style="text-align: center;">Edit</th>
-
-                    </tr>
-                  </thead>
-                  <tbody style="background-color: rgb(243, 243, 243) !important;">
-                    {{#each categories}}
-                    <tr>
-                      <td>{{title}}</td>
-                      <td>{{description}}</td>
-                      <td><img src="{{image.url}}" alt="{{title}} Image" /></td>
-                      <td>
-                        <button class="btn btn-outline-danger p-0 border-0" onclick="deleteCategory('{{this.title}}')">
-                          <i class="bi bi-trash-fill" style="font-size: 24px; color: rgb(10, 9, 9);"></i>
-                        </button>
-                      </td>
-                      <td>
-                        <button style="background-color: transparent;">
-                          <a href="/admin/edit?name={{this._id}}">
-                            <i style="font-size: 24px; background-color: transparent;"
-                              class="bi bi-pencil-square text-success "></i>
-                          </a>
-                        </button>
-                      </td>
-                    </tr>
-                    {{else}}
-                    <tr>
-                      <td colspan="5">No categories found.</td>
-                    </tr>
-                    {{/each}}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          {{! delete}}
-
-          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-          <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-          <script>
-            function deleteCategory(categoryId) {
-              // Show confirmation dialog using SweetAlert2
-              Swal.fire({
-                title: 'Are you sure?',
-                text: 'You will not be able to recover this category!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  // If user confirms, proceed with deletion
-                  axios.delete(`/admin/delete/${categoryId}`)
-                    .then((response) => {
-                      if (response.status !== 200) {
-                        throw new Error('Delete request failed');
-                      } else {
-                        // Redirect to the category list page after successful deletion
-                        window.location.href = "/admin/categorylist";
-                      }
-                    })
-                    .catch((error) => {
-                      console.error(error);
-                      // Handle error if delete request fails
+            // Function to generate pagination buttons
+            function generatePaginationButtons(totalPages) {
+                $('#pagination').empty();
+                for (var i = 1; i <= totalPages; i++) {
+                    var button = $('<button>').text(i);
+                    if (i === currentPage) {
+                        button.addClass('active');
+                    }
+                    button.click(function() {
+                        currentPage = parseInt($(this).text());
+                        displayOrders(currentPage);
+                        generatePaginationButtons(Math.ceil(orders.length / rowsPerPage));
                     });
+                    $('#pagination').append(button);
                 }
-              });
             }
-          </script>
+
+            // Sample orders data (replace this with your actual data)
+            var sampleOrders = [
+                { product: 'Product 1', orderDate: '2024-01-01', totalAmount: 100, size: 'L', quantity: 2, price: 50, paymentStatus: 'paid', shippingStatus: 'shipped' },
+                // Add more sample orders here
+            ];
+
+            orders = sampleOrders; // Assign your actual order data to the 'orders' variable
+
+            displayOrders(currentPage);
+            generatePaginationButtons(Math.ceil(orders.length / rowsPerPage));
+        });
+    </script>
 
 
 
-        </div>
-
-        {{! <div class="col-12 col-md-6">
 
 
 
-        </div> }}
-      </div>
 
-      {{!
-      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      }}
-
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.0/toastify.min.css">
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.11.0/toastify.min.js"></script>
-      {{!
-      //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-      }}
-      <script>
-        function getCookie(name) {
-          const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-          if (match) return match[2];
-        }
-
-        const alertMessage = getCookie('alert');
-
-        if (alertMessage) {
-          Toastify({
-            text: alertMessage,
-            duration: 3000, // 3 seconds
-            close: true,
-            gravity: 'top',
-            position: 'center',
-            backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
-          }).showToast();
-          // Remove the alert cookie
-          document.cookie = 'alert=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
-        }
-      </script>
-      <!-- Footer -->
+  <!-- Footer -->
       <footer class="footer">
         <p class="small text-muted m-0"></p>
         <p class="small text-muted m-0"><a href="https://www.pixelrocket.store/"></a></p>

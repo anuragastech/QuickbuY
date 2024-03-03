@@ -59,7 +59,7 @@
 <body class="">
 
     <!-- Navbar-->
-    <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top bg-dark-800">
+     <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top "  style="    background-color: rgba(253, 253, 253, 0.98)";>
       <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
     
@@ -157,13 +157,23 @@
 {{!-- -----------------------------------------------------------------------------------------   --}}
    
     <div class="row ">
-                <div class="col-lg-12 col-md-6 col-sm-3" >
+                <div class="col-lg-12 col-md-6 col-sm-3 " style="" >
 
 {{!-- ------------------------------------------------------------------------------------------------------- --}}
+
+<style>
+  td{
+  }
+  table{
+    border: 2px solid rgb(227, 214, 214);
+  }
+</style>
 <h1 class="heading">Product List</h1>
-<div class="container table-responsive py-5">
-    <table id="productTable" class="table table-bordered " style="background-color: transparent;">
-        <thead class="thead-dark">
+      <div  style="border: 20px solid #24293b; background-color: #24293b; color: rgb(168, 161, 161);"> Product list</div>
+
+<div class="container-fluid table-responsive py-2"  style="border: 1px solid rgb(165, 157, 157);background-color: rgb(211, 212, 214);">
+    <table id="productTable" class="table table-bordered  bg-light" style="background-color: white;border: 2px solid rgb(206, 201, 201);">
+        <thead class="thead-light">
             <tr>
                 <th scope="col">Product Name</th>
                 <th scope="col">Manufacture Name</th>
@@ -178,14 +188,14 @@
         <tbody  >
             {{#each products}}
             <tr>
-                <td>{{this.productname}}</td>
-                <td>{{this.manufacturename}}</td>
-                <td>{{this.brand}}</td>
-                <td>{{this.price}}</td>
-                <td>{{this.description}}</td>
-                <td>{{this.category.title}}</td>
-                <td>{{this.subcategory.title}}</td>
-                <td>
+                <td style="    border: 1px solid rgb(209, 203, 203);">{{this.productname}}</td>
+                <td style="    border: 1px solid rgb(209, 203, 203);">{{this.manufacturename}}</td>
+                <td style="    border: 1px solid rgb(209, 203, 203);">{{this.brand}}</td>
+                <td style="    border: 1px solid rgb(209, 203, 203)">{{this.price}}</td>
+                <td style="    border: 1px solid rgb(209, 203, 203);">{{this.description}}</td>
+                <td style="    border: 1px solid rgb(209, 203, 203);">{{this.category.title}}</td>
+                <td style="    border: 1px solid rgb(209, 203, 203);">{{this.subcategory.title}}</td>
+                <td style="    border: 1px solid rgb(209, 203, 203);">
                     <img src="{{this.image.url}}" alt="{{this.productname}} Image" style="max-width: 140px; height: auto;">
                 </td>
             </tr>
@@ -394,7 +404,7 @@
                         <small></small>
                         <div class="d-flex flex-wrap mt-2 justify-content-between align-items-center">
                             <div class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1">
-                                <a   style="width: 95px;height: 30px;color: black; background-color: white; border-radius: 25px;text-align: center;"  href="logout" >logout</a>
+                                <a   style="width: 95px;height: 30px;color: black; background-color: transparent;text-align: center;"  href="logout" >logout</a>
                             </div>
     
                             <!-- User profile dropdown-->

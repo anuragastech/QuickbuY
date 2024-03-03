@@ -24,7 +24,7 @@ let Addsign=async (req, res) => {
             role: 'user',
             blocked:'false',
         });
-
+console.log(newCreate);
         await newCreate.save();
 
         const token = jwt.sign({ id: newCreate._id, role: newCreate.role }, secretKey, { expiresIn: '2h' });

@@ -2124,7 +2124,10 @@
     direction: inherit !important;
     box-sizing: inherit !important;
     resize: none !important;
-    -webkit-overflow-scrolling: touch
+    -webkit-overflow-scrolling: touch;
+    background-color: rgb(225, 218, 218);
+    /* color: black !; */
+    
 }
 
 .simplebar-content-wrapper {
@@ -2595,8 +2598,8 @@ body {
     font-size: .975rem;
     font-weight: 400;
     line-height: 1.5;
-    color: hsla(0, 0%, 100%, .75);
-    background-color: #202433;
+    color: hsla(0, 0%, 0%, 0.999);
+    background-color: #ffffff;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
@@ -4832,18 +4835,19 @@ progress {
 }
 
 .table {
-    --bs-table-bg: rgb(0, 0, 0);
+    color: #000;
+    --bs-table-bg: rgb(249, 249, 249);
     --bs-table-striped-color: hsla(0, 0%, 100%, 0.75);
-    --bs-table-striped-bg: #202433;
-    --bs-table-active-color: hsla(0, 0%, 100%, 0.75);
+    --bs-table-striped-bg: #ffffff;
+    --bs-table-active-color: hsla(0, 11%, 2%, 0.918);
     --bs-table-active-bg: #fff;
-    --bs-table-hover-color: hsla(0, 0%, 100%, 0.75);
+    --bs-table-hover-color: hsla(0, 0%, 3%, 0.75);
     --bs-table-hover-bg: #9396a0;
     width: 100%;
     margin-bottom: 1rem;
-    color: hsla(0, 0%, 100%, .75);
+    color: hsl(0, 0%, 4%);
     vertical-align: middle;
-    border-color: hsla(0, 0%, 100%, .08)
+    border-color: hsla(0, 0%, 0%, 0.971)
 }
 
 .table>:not(caption)>*>* {
@@ -23802,13 +23806,13 @@ body {
     display: block;
     padding: 7px 1rem 7px 2rem;
     border-radius: .25rem;
-    color: hsla(0, 0%, 100%, .75);
+    color: #2a2626;
     transition: background .2s ease-in
 }
 
 .aside .submenu-link.active,
 .aside .submenu-link:hover {
-    background: hsla(0, 0%, 100%, .1)
+    background:white;
 }
 
 .aside-menu {
@@ -23835,11 +23839,16 @@ body {
 }
 
 .menu-link {
-    color: hsla(0, 0%, 100%, .75)
+    color: #2a2626;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .menu-link.active {
-    color: #fff
+    color: #2a2626;
+    font-weight: bold;
+    font-size: 15px;
+
 }
 
 .menu-section {
@@ -23850,7 +23859,8 @@ body {
     letter-spacing: .025rem;
     margin-bottom: .5rem;
     height: 1rem;
-    position: relative
+    position: relative;
+    color: #2a2626;
 }
 
 .menu-hidden .aside {
@@ -23876,7 +23886,8 @@ body {
 
 .menu-overlay.menu-hidden .menu-overlay-bg {
     visibility: visible;
-    opacity: 1
+    opacity: 1;
+  
 }
 
 @media(max-width:1199.98px) {

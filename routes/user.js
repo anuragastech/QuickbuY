@@ -12,7 +12,7 @@ const getProductControllers = require('../controllers/user/Product');
 const getAllControllers = require('../controllers/user/getAll');
 const getControllerHome=require('../controllers/user/home')
 const getPaymentway=require('../controllers/user/paymentgateway')
-// const  checkoutMiddileware  = require('../middleware/checkout');
+const  OrderMiddileware  = require('../controllers/user/order');
 
 
 
@@ -105,7 +105,6 @@ router.post("/send-mail",authenticateJWT,userControllers.sendmail)
 
 
 router.post('/profileData',authenticateJWT,userControllers.profileData)
-
 
 
  
