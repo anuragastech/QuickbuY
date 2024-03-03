@@ -39,22 +39,45 @@ productname:{
 brand:{
   type:String,
 },
+category:{
+  type:String,
+},
+subcategory:{
+  type:String,
+},
+address:{
+  type:Object,
+  required: true
+},
 
+
+
+paymentMethod: {
+  type: String,
+
+},
+venderId: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: 'vender',
+  // required: true
+},
 
   
   
-  paymentStatus: {
-    type: String,
-    enum: ['pending', 'paid', 'failed']
-  },
-  shippingStatus: {
-    type: String,
-    enum: ['pending', 'shipped', 'delivered']
-  },
+
+shippingStatus: {
+  type: String,
+  default: 'processing' ,
+
+},
+paymentStatus: {
+  type: String,
+  default: 'Success' ,
+},
   orderAccepted: {
-    type: Boolean,
-    default: false // Default value is false, indicating order is not accepted
-}
+    type: String,
+    default: 'pending' ,
+},
   
 });
 

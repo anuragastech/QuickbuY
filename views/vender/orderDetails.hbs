@@ -1,33 +1,17 @@
-<!doctype html>
 <html lang="en">
 
 <!-- Head -->
 
 <head>
   <!-- Page Meta Tags-->
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <meta name="keywords" content="">
-  {{!--
-  <link rel="stylesheet" href="/vender/productAdd.css"> --}}
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <meta name="keywords" content="" />
 
   <!-- Favicon -->
-  {{!-- bootstrap --}}
-  <!-- Option 1: Include in HTML -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-
-
-  {{!-- table cdn --}}
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-  <!-- jQuery CDN -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-  {{!-- icon --}}
-
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
@@ -37,20 +21,20 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png">
-  <link rel="mask-icon" href="./assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
-  <meta name="msapplication-TileColor" content="#da532c">
-  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#5bbad5" />
+  <meta name="msapplication-TileColor" content="#da532c" />
+  <meta name="theme-color" content="#ffffff" />
 
   <!-- Google Font-->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600&display=swap" rel="stylesheet" />
 
   <!-- Vendor CSS -->
   <link rel="stylesheet" href="/vender/libs.bundle.css" />
@@ -61,9 +45,7 @@
   <!-- Fix for custom scrollbar if JS is disabled-->
   <noscript>
     <style>
-      /**
-          * Reinstate scrolling for non-JS clients
-          */
+      /** * Reinstate scrolling for non-JS clients */
       .simplebar-content-wrapper {
         overflow: auto;
       }
@@ -72,19 +54,17 @@
 
   <!-- Page Title -->
   <title></title>
-
+  <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+  <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 </head>
 
 <body class="">
-
-  <!-- Page Content -->
-  <main id="main">
 
     <!-- Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top bg-dark-800">
       <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
-
+    
           <!-- Menu Toggle-->
           <div class="menu-toggle cursor-pointer me-4 text-primary-hover transition-color disable-child-pointer">
             <i class="ri-menu-fold-line ri-lg fold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
@@ -93,113 +73,93 @@
               title="Open Menu"></i>
           </div>
           <!-- / Menu Toggle-->
-
+    
           <!-- Navbar Actions-->
           <div class="d-flex align-items-center">
-
+    
             <!-- Search-->
             <button class="btn-icon btn-hover-dark btn-search me-2">
               <i class="ri-search-2-line align-bottom lh-1 text-body"></i>
             </button>
-
+    
             <!-- Search navbar overlay-->
             <div class="navbar-search d-none">
               <div class="input-group mb-3 h-100">
                 <span class="input-group-text px-4 bg-transparent"><i class="ri-search-line ri-lg"></i></span>
-                <input type="text" class="form-control text-body bg-transparent border-0"
-                  placeholder="Enter your search terms...">
-                <span class="input-group-text px-4 cursor-pointer disable-child-pointer close-search bg-transparent"><i
-                    class="ri-close-circle-line ri-lg text-primary"></i></span>
+                <input type="text" class="form-control text-body bg-transparent border-0" placeholder="Enter your search terms...">
+                <span class="input-group-text px-4 cursor-pointer disable-child-pointer close-search bg-transparent"><i class="ri-close-circle-line ri-lg text-primary"></i></span>
               </div>
             </div>
             <!-- / Search navbar overlay-->
-
+    
             <!-- / Search-->
-
+    
             <!-- Region -->
             <div class="dropdown me-2">
-              <button class="btn-icon btn-hover-dark" type="button" id="regionDropdown" data-bs-toggle="dropdown"
-                aria-expanded="false">
+              <button class="btn-icon btn-hover-dark" type="button" id="regionDropdown"
+                data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="flag-icon flag-icon-gb"></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="regionDropdown">
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United Kingdom
-                    <span class="text-muted ms-5"><span class="flag-icon flag-icon-gb"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United
-                    States<span class="text-muted ms-5"><span class="flag-icon flag-icon-us"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Australia<span
-                      class="text-muted ms-5"><span class="flag-icon flag-icon-au"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Belgium<span
-                      class="text-muted ms-5"><span class="flag-icon flag-icon-be"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Canada<span
-                      class="text-muted ms-5"><span class="flag-icon flag-icon-ca"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">China <span
-                      class="text-muted ms-5"><span class="flag-icon flag-icon-cn"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Denmark <span
-                      class="text-muted ms-5"><span class="flag-icon flag-icon-dk"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">France<span
-                      class="text-muted ms-5"><span class="flag-icon flag-icon-fr"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Netherlands<span
-                      class="text-muted ms-5"><span class="flag-icon flag-icon-nl"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russia<span
-                      class="text-muted ms-5"><span class="flag-icon flag-icon-ru"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United Kingdom <span class="text-muted ms-5"><span class="flag-icon flag-icon-gb"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United States<span class="text-muted ms-5"><span class="flag-icon flag-icon-us"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Australia<span class="text-muted ms-5"><span class="flag-icon flag-icon-au"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Belgium<span class="text-muted ms-5"><span class="flag-icon flag-icon-be"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Canada<span class="text-muted ms-5"><span class="flag-icon flag-icon-ca"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">China <span class="text-muted ms-5"><span class="flag-icon flag-icon-cn"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Denmark <span class="text-muted ms-5"><span class="flag-icon flag-icon-dk"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">France<span class="text-muted ms-5"><span class="flag-icon flag-icon-fr"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Netherlands<span class="text-muted ms-5"><span class="flag-icon flag-icon-nl"></span></span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russia<span class="text-muted ms-5"><span class="flag-icon flag-icon-ru"></span></span></a></li>
               </ul>
             </div>
             <!-- /Region -->
-
+    
             <!-- Language-->
             <div class="dropdown me-2">
-              <button class="btn-icon btn-hover-dark" type="button" id="language" data-bs-toggle="dropdown"
-                aria-expanded="false">
+              <button class="btn-icon btn-hover-dark" type="button" id="language"
+                data-bs-toggle="dropdown" aria-expanded="false">
                 <i class="ri-global-line align-bottom text-body lh-1"></i>
               </button>
               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language">
                 <li>
-                  <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">English
-                    <span class="text-muted ms-5">EN</span></a>
-                </li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">French<span
-                      class="text-muted ms-5">FR</span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Espanol<span
-                      class="text-muted ms-5">ES</span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Turkish<span
-                      class="text-muted ms-5">TR</span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russian<span
-                      class="text-muted ms-5">RU</span></a></li>
+                  <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">English 
+                    <span class="text-muted ms-5">EN</span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">French<span class="text-muted ms-5">FR</span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Espanol<span class="text-muted ms-5">ES</span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Turkish<span class="text-muted ms-5">TR</span></a></li>
+                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russian<span class="text-muted ms-5">RU</span></a></li>
               </ul>
             </div>
             <!-- / Language-->
-
+    
             <!-- Notifications-->
-            <a class="btn-icon btn-hover-dark position-relative p-2 disable-child-pointer" data-bs-toggle="offcanvas"
-              href="#offcanvasNotifications" role="button" aria-controls="offcanvasNotifications">
+            <a class="btn-icon btn-hover-dark position-relative p-2 disable-child-pointer" data-bs-toggle="offcanvas" href="#offcanvasNotifications" role="button"
+            aria-controls="offcanvasNotifications">
               <i class="ri-notification-fill align-bottom text-body lh-1"></i>
               <span class="badge bg-primary text-white position-absolute top-0 end-0">3</span>
             </a>
             <!-- / Notifications-->
-
+    
           </div>
           <!-- / Navbar Actions-->
-
+        
         </div>
       </div>
-    </nav> <!-- / Navbar-->
+    </nav>    <!-- / Navbar-->
 
-    <!-- Content-->
+    <!-- Page Content -->
+    <main id="main">
 
+        <!-- Content-->
+        <section class="container-fluid">
 
-
-
-    <section class="container-fluid">
-
-      <!-- Breadcrumbs-->
-      <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i>
-              Dashboard</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Blank Page</li>
-        </ol>
-      </nav> <!-- / Breadcrumbs-->
+            <!-- Breadcrumbs-->
+            <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="/index"><i class="ri-home-line align-bottom me-1"></i> Dashboard</a></li>
+                </ol>
+            </nav>            <!-- / Breadcrumbs-->
 
       <!-- Page Title-->
 
@@ -217,6 +177,7 @@
         th {
             background-color: #211e1e;
             color: white;
+            text-align: center;
         }
         .pagination {
             display: flex;
@@ -241,36 +202,127 @@
     <table id="orderTable">
         <thead>
             <tr>
-                <th>Product</th>
-                <th>Order Date</th>
-                <th>Total Amount</th>
-                <th>Size</th>
-                <th>Quantity</th>
+           <th>Product Id</th>
+                <th>size</th>
+                <th> Quantity</th>
                 <th>Price</th>
-                <th>Payment Status</th>
+                <th>color</th>
+                <th>productName</th>
+                <th> Brand</th>
+                                <th>payment Status</th>
+
                 <th>Shipping Status</th>
+                <th>Order Status</th>
+                <th>Order Date </th>
             </tr>
         </thead>
         <tbody>
 {{#each orderlists}}
 <tr>
-    <td>{{this.product}}</td>
+   <td>{{this.product}}</td>
     <td>{{this.size}}</td>
     <td>{{this.quantity}}</td>
-    <td>{{this.orderDate}}</td>
-    <td>{{this.product.productname}}</td>
-    <td>{{this.size}}</td>
+    <td>{{this.price}}</td>
+    <td>{{this.color}}</td>
+    <td>{{this.productname}}</td>
     <td>
-        
+       {{this.brand}} 
     </td>
         <td>
-
+{{this.paymentStatus}}
         </td>
+        <td> {{this.shippingStatus}} 
+
+
+   <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" style="height: 2px;width: 100px;" type="button" id="statusDropdown{{this._id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <!-- Display the current status -->
+            </button>
+            <div class="dropdown-menu" aria-labelledby="statusDropdown{{this._id}}">
+                <button class="dropdown-item" onclick="updateStatus('{{this._id}}', 'Delivered')">Delivered</button>
+                <button class="dropdown-item" onclick="updateStatus('{{this._id}}', 'pending')">Pending</button>
+                                <button class="dropdown-item" onclick="updateStatus('{{this._id}}', 'shipped')">Shipped</button>
+
+                <button class="dropdown-item" onclick="updateStatus('{{this._id}}', 'not processed')">Not processed</button>
+            </div>
+        </div>
+        </td>
+        <td>{{this.orderAccepted}}
+
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" style="height: 2px;width: 100px;" type="button" id="orderDropdown{{this._id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{this.shipmentStatus}} <!-- Display the current status -->
+    </button>
+    <div class="dropdown-menu" aria-labelledby="orderDropdown{{this._id}}">
+        <button class="dropdown-item" onclick="orderStatus('{{this._id}}', 'Accepted')">Accepted</button>
+        <button class="dropdown-item" onclick="orderStatus('{{this._id}}', 'Pending')">pending </button>
+        <button class="dropdown-item" onclick="orderStatus('{{this._id}}', 'Out of stock')">Out of stock</button>
+    </div>
+</div>
+
+          
+        </td>
+        <td>{{this.orderDate}}</td>
 
 </tr>
 {{/each}}
         </tbody>
     </table>
+
+
+    {{!-- document.getElementById('statusDropdown' + id).innerText = status; --}}
+
+<script>
+ function updateStatus(id, status) {
+    // Update the dropdown button text with the selected status
+    // You can also update the data in your backend using a fetch request
+    fetch('/vender/updateShippingStatus', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: id,
+            status: status
+        })
+    })
+    .then(response => response.json())
+     .then(data => {
+        console.log(data);
+        window.location.href = window.location.href;
+    })
+    
+    .catch(error => console.error('There was a problem with the fetch operation:', error));
+}
+
+
+</script>
+    {{!-- document.getElementById('orderDropdown' + id).innerText = status; --}}
+
+<script>
+ function orderStatus(id, status) {
+    // Update the dropdown button text with the selected status
+    // You can also update the data in your backend using a fetch request
+    fetch('/vender/OrderShippingStatus', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: id,
+            status: status
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        window.location.href = window.location.href;
+    })
+    .catch(error => console.error('There was a problem with the fetch operation:', error));
+}
+
+
+</script>
     <div class="pagination" id="pagination"></div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

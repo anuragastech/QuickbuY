@@ -157,9 +157,9 @@
       <!-- Breadcrumbs-->
       <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i>
-              catagoryList</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Category
+          <li class="breadcrumb-item" style="color: #161313;"><a href=""><i class="ri-home-line align-bottom me-1"></i>
+              Order List</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Order
             Details</li>
         </ol>
       </nav>
@@ -177,7 +177,7 @@
         th, td {
             border: 1px solid #ddd;
             padding: 8px;
-            text-align: left;
+            text-align: center;
         }
         th {
             background-color: #211e1e;
@@ -206,37 +206,121 @@
     <table id="orderTable">
         <thead>
             <tr>
-                <th>Product</th>
-                <th>Order Date</th>
-                <th>Total Amount</th>
-                <th>Size</th>
-                <th>Quantity</th>
+                <th>Product name</th>
+                <th>size</th>
+                <th> Quantity</th>
                 <th>Price</th>
-                <th>Payment Status</th>
+                <th>color</th>
+                <th>product Id</th>
+                <th> Brand</th>
+                                <th>payment Status</th>
+
                 <th>Shipping Status</th>
+                <th>Order Status</th>
+                <th>Order Date </th>
             </tr>
         </thead>
         <tbody>
-{{#each orderlists}}
+{{#each orderData}}
 <tr>
-    <td>{{this.product}}</td>
+    <td>{{this.productname}}</td>
     <td>{{this.size}}</td>
     <td>{{this.quantity}}</td>
-    <td>{{this.orderDate}}</td>
-    <td>{{this.product.productname}}</td>
-    <td>{{this.size}}</td>
+    <td>{{this.price}}</td>
+    <td>{{this.color}}</td>
+    <td>{{this.product}}</td>
     <td>
-        
+       {{this.brand}} 
     </td>
         <td>
-
+{{this.paymentStatus}}
         </td>
+        <td> {{this.shippingStatus}} 
+
+
+   {{!-- <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" style="height: 2px;width: 100px;" type="button" id="statusDropdown{{this._id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <!-- Display the current status -->
+            </button>
+            <div class="dropdown-menu" aria-labelledby="statusDropdown{{this._id}}">
+                <button class="dropdown-item" onclick="updateStatus('{{this._id}}', 'Delivered')">Delivered</button>
+                <button class="dropdown-item" onclick="updateStatus('{{this._id}}', 'pending')">Pending</button>
+                <button class="dropdown-item" onclick="updateStatus('{{this._id}}', 'not processed')">Not processed</button>
+            </div>
+        </div> --}}
+        </td>
+        <td>{{this.orderAccepted}}
+
+{{!-- <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" style="height: 2px;width: 100px;" type="button" id="orderDropdown{{this._id}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{this.shipmentStatus}} <!-- Display the current status -->
+    </button>
+    <div class="dropdown-menu" aria-labelledby="orderDropdown{{this._id}}">
+        <button class="dropdown-item" onclick="orderStatus('{{this._id}}', 'Accepted')">Accepted</button>
+        <button class="dropdown-item" onclick="orderStatus('{{this._id}}', 'Pending')">pending </button>
+        <button class="dropdown-item" onclick="orderStatus('{{this._id}}', 'Out of stock')">Out of stock</button>
+    </div>
+</div> --}}
+
+          
+        </td>
+        <td>{{this.orderDate}}</td>
 
 </tr>
 {{/each}}
+
+
         </tbody>
     </table>
     <div class="pagination" id="pagination"></div>
+
+    {{!-- document.getElementById('statusDropdown' + id).innerText = status; --}}
+        {{!-- document.getElementById('orderDropdown' + id).innerText = status; --}}
+
+{{!-- 
+<script>
+ function updateStatus(id, status) {
+    // Update the dropdown button text with the selected status
+    // You can also update the data in your backend using a fetch request
+    fetch('/admin/updateShippingStatus', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: id,
+            status: status
+        })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('There was a problem with the fetch operation:', error));
+}
+
+
+</script>
+
+<script>
+ function orderStatus(id, status) {
+    // Update the dropdown button text with the selected status
+    // You can also update the data in your backend using a fetch request
+    fetch('/admin/OrderShippingStatus', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: id,
+            status: status
+        })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('There was a problem with the fetch operation:', error));
+}
+
+
+</script> --}}
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>

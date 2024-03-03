@@ -174,12 +174,9 @@ const coupencheck = async (req, res) => {
 
 
 
-
-
-
     const orderPost = async (req, res) => {
         try {
-            const userId = req.user.id;
+            const userId = req.vender.id;
 
             const { address, paymentMethod } = req.body;
 // console.log(req.body);
@@ -190,21 +187,54 @@ const coupencheck = async (req, res) => {
     const sizes=products.map(product=>product.size)
     const quantity=products.map(product=>product.quantity)
     const price=checkoutData.map(price=>price.discountedAmount);
+const prices =price[0]
     // console.log("price",price);
 
     // console.log(quantity);
     const orders=[]
-    const orderid={
+
+// console.log("hell",productId);
+
+const productresult = await Product.aggregate([
+    {
+        $match: {
+            _id: { $in: productId } 
+        }
+    },
+    {
+        $lookup: {
+            from: 'products',
+            localField: 'product',
+            foreignField: '_id', 
+            as: 'productDetails' 
+        }
+    }
+]);
+const color=productresult.map(l=>l.color)
+const productname=productresult.map(l=>l.productname)
+const brand=productresult.map(l=>l.brand)
+const category=productresult.map(l=>l.categoryName)
+const subcategory=productresult.map(l=>l.subcategoryName)
+const venderId=productresult.map(l=>l.venderId)
+
+// console.log("hi",color,productname,brand,category,subcategory);
+// -----  
+const orderid={
     product:productId,
     size:sizes,
     quantity:quantity ,
     address:address,
-   
+   color:color,
+   productname:productname,
+   brand:brand,
+   category:category,
+   subcategory:subcategory,
+   venderId:venderId,
     }
+    // console.log("hell0", orderid);
     orders.push(orderid);
 
-
-  
+//   console.log("orders",orders);
     const unwoundOrders = orders.map(orderDetails => {
         const numProducts = orderDetails.product.length;
         return Array.from({ length: numProducts }, (_, i) => ({
@@ -212,35 +242,28 @@ const coupencheck = async (req, res) => {
             size: orderDetails.size[i],
             quantity: orderDetails.quantity[i],
             address: orderDetails.address,
+            color:orderDetails.color[i],
+            productname:orderDetails.productname[i],
+            brand:orderDetails.brand[i],
+            venderId:orderDetails.venderId[i],
+
+            category:orderDetails.category[i],
+
+            subcategory:orderDetails.subcategory[i],
+
+
           
         }));
     }).flat();
     
-  console.log(unwoundOrders);
+//   console.log(unwoundOrders);
     // console.log(orderDetails.product[i]);
     const savePromises = unwoundOrders.map(async (orderDetails) => {
-        const { product, size, quantity, address  } = orderDetails;
-        const productresult = await Product.aggregate([
-            {
-                $match: {
-                    _id:product,
-                }
-            },
-            {
-                $lookup: {
-                    from: 'products',
-                    localField: 'product',
-                    foreignField: '_id', 
-                    as: 'productDetails' 
-                }
-            }
-        ]);
-    const color=productresult.map(l=>l.color)
-    const productname=productresult.map(l=>l.productname)
-    const brand=productresult.map(l=>l.brand)
+        const { product, size, quantity, address,color,productname,brand ,category,subcategory ,venderId} = orderDetails;
+        // console.log("price",paymentMethod);
 
-        console.log("hi",color,productname,brand);
-      
+        console.log(venderId,address);
+
         // console.log(productscolor);
 // console.log(product);
         // Create a new order object
@@ -249,21 +272,23 @@ const coupencheck = async (req, res) => {
             size,
             quantity,
             address,
-            price,
+            price:prices,
             color,
             productname,
             brand,
-            paymentStatus:paymentMethod,
-            shippingStatus,
-            orderAccepted,
+            category,
+            subcategory,
+            venderId:venderId,
+            paymentMethod:paymentMethod,
+            paymentStatus:'success',
+            shippingStatus:'processing',
+            orderAccepted:'pending',
 
         
         });
 
         return newOrder.save();
     });
-// console.log("price",unwoundOrders);
-
 
     let paymentResponse;
     if (paymentMethod === 'cash') {
@@ -302,6 +327,9 @@ const coupencheck = async (req, res) => {
 const cartProductSelected = async () =>{
   
 }
+
+
+
 
 
 

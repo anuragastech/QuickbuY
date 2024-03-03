@@ -19,7 +19,7 @@ const getpostProductAdd = async (req, res) => {
       quantity,
     } = req.body;
 
-    const venderId = req.vender.id;
+    const venderId = req.user.id;
     // console.log(category);
     if (!req.file) {
       return res.status(400).json({ success: false, message: "File not provided" });

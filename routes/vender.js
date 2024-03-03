@@ -78,8 +78,9 @@ router.get('/categories',authenticateJWT, getcatasubController.getcategory)
   router.get('/color',authenticateJWT,getcatasubController.getcolor)
   router.get('/size', authenticateJWT,getcatasubController.getsize)
 
-  router.get('/orderDetails',ordersControls.orderlist)
-  
+  router.get('/orderDetails',authenticateJWT,ordersControls.orderlist)
+  router.post('/updateShippingStatus',ordersControls.shippingStatus)
+router.post('/OrderShippingStatus',ordersControls.orderStatus)
 
 
 module.exports = router ;

@@ -107,6 +107,8 @@ router.post('/unblock-vender/:userId',  venderBlockController.unblockVender);
 router.get('/coupen',otherControllers.getCoupen)
 router.post('/coupon',otherControllers.postCoupen)
 router.get('/orderList',orderController.order )
+router.post('/updateShippingStatus',orderController.shippingStatus)
+router.post('/OrderShippingStatus',orderController.orderStatus)
 
 
 
