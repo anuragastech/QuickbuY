@@ -151,15 +151,21 @@ let  getcategories=async (req, res) => {
       res.status(500).json({ success: false });
     }
   };
- let editpost = async (req, res) => {
+
+  let editpost = async (req, res) => {
     try {
-        const categoryId = req.params.id;  
+        const categoryId = req.body;  
         const { title, description } = req.body;
 
+        console.log('Received request to update category with ID:', categoryId);
+        console.log('Received data:', req.body);
+
+        // Validate if title and description are provided
         if (!title || !description) {
             return res.status(400).json({ success: false, message: 'Incomplete data for category update' });
         }
 
+        // Update the category based on the provided data
         const updatedCategory = await category.findOneAndUpdate(
             { _id: categoryId },
             {
@@ -170,15 +176,19 @@ let  getcategories=async (req, res) => {
             },
             { new: true } 
         );
-        
-        res.render('admin/categorylist')
 
-       
-        res.status(200).json({ success: true, message: 'Category updated successfully', updatedCategory });
-      } catch (error) {
+        console.log('Updated category:', updatedCategory);
+
+        if (!updatedCategory) {
+            return res.status(404).json({ success: false, message: 'Category not found or not updated' });
+        }
+
+        return res.status(200).json({ success: true, message: 'Category updated successfully', updatedCategory });
+    } catch (error) {
         console.error(error);
-        res.status(500).json({ success: false });
+        return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
+
   
 module.exports={editpost,putCategory,getcategoryDelete,getcategories, editGetCategory,deleteCategory,postCategory,getCategorylist};
