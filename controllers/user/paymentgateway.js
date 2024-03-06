@@ -176,7 +176,7 @@ const coupencheck = async (req, res) => {
 
     const orderPost = async (req, res) => {
         try {
-            const userId = req.vender.id;
+            const userId = req.user.id;
 
             const { address, paymentMethod } = req.body;
 // console.log(req.body);

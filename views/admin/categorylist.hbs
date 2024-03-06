@@ -252,9 +252,9 @@
                   <tbody style="background-color: rgb(243, 243, 243) !important;">
                     {{#each categories}}
                     <tr>
-                      <td>{{title}}</td>
+                      <td>{{this.title}}</td>
                       <td>{{description}}</td>
-                      <td><img src="{{image.url}}" alt="{{title}} Image" /></td>
+                      <td><img src="{{image.url}}" alt="{{this.image.public_id}}" /></td>
                       <td>
                         <button class="btn btn-outline-danger p-0 border-0" onclick="deleteCategory('{{this.title}}')">
                           <i class="bi bi-trash-fill" style="font-size: 24px; color: rgb(10, 9, 9);"></i>
@@ -331,48 +331,48 @@
       </div>
       {{!-- ------------------------------------------------------------------ --}}
 
-      <!-- Edit Category Modal -->
-      <form id="editCategoryForm" action=" /admin/edit-categorylist" method="post" >
-        <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog"
-          aria-labelledby="editCategoryModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
+<form id="offer-form" role="form" enctype="multipart/form-data" action="/admin/edit-categorylist" method="POST">
+    <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-
-                <!-- Form fields for editing category data -->
-                <div class="form-group">
-                  <label for="editTitle">Title</label>
-                  <input type="text" class="form-control" id="editTitle" name="title">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="form-group">
-                  <label for="editDescription">Description</label>
-                  <textarea class="form-control" id="editDescription" name="description"></textarea>
+                <div class="modal-body">
+                    <input id="editCategoryId" name="categoryIds" type="hidden">
+                    <!-- Form fields for editing category data -->
+                    <div class="form-group">
+                        <label for="editTitle">Title</label>
+                        <input type="text" class="form-control" id="editTitle" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="editDescription">Description</label>
+                        <textarea class="form-control" id="editDescription" name="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="editImage">Image</label>
+                        <button type="button" onclick="handleImagePreviewClick()"> 
+                            <img id="editImagePreview" class="img-fluid" src="imageUrl" alt="imagePublicId"> 
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Image</label>
+                        <input type="file" id="image" name="image" class="form-control-file" accept="image/*" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                  <label for="editImage">Image</label>
-                  
-                  {{!-- <input type="file" class="form-control-file" id="editImage" name=""> --}}
-                  <button type="button" onclick="handleImagePreviewClick()"> <img id="editImagePreview" class="img-fluid"  alt="Category Image"> </button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="saveChangesBtn">Save Changes</button>
                 </div>
-              </div>
-
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-  <button type="submit" class="btn btn-primary" id="saveChangesBtn">Save Changes</button>
-              </div>
             </div>
-          </div>
         </div>
-      </form>
+    </div>
+</form>
 
       <script>
-    // JavaScript code
     $(document).ready(function () {
       // Event listener for edit buttons
       $('.editBtn').click(function () {
@@ -384,13 +384,15 @@
         var title = row.find('td:eq(0)').text(); // Assuming title is in the first column
         var description = row.find('td:eq(1)').text(); // Assuming description is in the second column
         var imageUrl = row.find('td:eq(2) img').attr('src'); // Assuming image URL is in the third column
+         var imagePublicId = row.find('img').attr('alt'); // Assuming image public ID is in the alt attribute
 
         // Populate form fields with extracted category data
         $('#editCategoryId').val(categoryId); // Set the category ID in a hidden input field
         $('#editTitle').val(title);
         $('#editDescription').val(description);
-        $('#editImagePreview').attr('src', imageUrl); // Set the src attribute of the image element to show the image
-
+        $('#editImagePreview').attr('src', imageUrl);
+        $('#editImagePreview').attr('alt', imagePublicId);
+console.log(imagePublicId)
         // Open the edit modal
         $('#editCategoryModal').modal('show');
       });
@@ -422,6 +424,32 @@
       });
     });
 </script>
+
+{{!-- <script>
+  function handleImagePreviewClick() {
+        var imageUrl = document.getElementById('editImagePreview').getAttribute('src');
+  const imagePublicId = $('#editImagePreview').attr('alt');
+              // Example of fetching data from the backend
+    fetch('/admin/editCategoryImage', {
+        method: 'put',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            imageUrl: imageUrl,
+            image:imagePublicId,
+
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        // Refresh the page after successful update
+        window.location.href = window.location.href;
+    })
+    .catch(error => console.error('There was a problem with the fetch operation:', error));
+  }
+</script> --}}
 
       {{!
       ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

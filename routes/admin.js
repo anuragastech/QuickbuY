@@ -47,7 +47,9 @@ router.post("/categorylist", upload,categoryControllers.postCategory);
 router.get("/categorylist",categoryControllers.getCategorylist);
 
 router.get("/edit",categoryControllers.editGetCategory);
-router.post('/edit-categorylist',categoryControllers.editpost)
+router.post('/edit-categorylist',upload,categoryControllers.editpost)
+// router.put('/editCategoryImage',categoryControllers.editput)
+
 router.get("/edit-subcategory",subCategoryControllers.editGetsubCategory);
 router.post('/edit-subcategory/:id',subCategoryControllers.editsubcategorypost)
 router.delete("/deleteBannerfoot/:id",HomepageController.deleteBannerfoot);
