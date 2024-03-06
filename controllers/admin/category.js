@@ -178,6 +178,8 @@ let  getcategories=async (req, res) => {
             return res.status(404).json({ success: false, message: 'Category not found' });
         }
 
+        const desiredWidth = 300;
+        const desiredHeight = 200;
         if (req.file) {
             const result = await cloudinary.uploader.upload(req.file.path, {
                 width: desiredWidth,
