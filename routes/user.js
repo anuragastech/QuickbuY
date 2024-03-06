@@ -106,7 +106,9 @@ router.post("/send-mail",authenticateJWT,userControllers.sendmail)
 
 router.post('/profileData',authenticateJWT,userControllers.profileData)
 
-
+router.get('/about',(req,res)=>{
+  res.render('user/about')
+})
  
  
 module.exports = router;
