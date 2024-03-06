@@ -61,7 +61,7 @@
 <body class="">
 
   <!-- Navbar-->
-  <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top "  style="    background-color: rgba(253, 253, 253, 0.98);
+  <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top " style="    background-color: rgba(253, 253, 253, 0.98);
 ">
     <div class="container-fluid">
       <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
@@ -172,8 +172,8 @@
         <div class="col-12 col-md-6 ">
           <!-- Button trigger modal -->
           <h1 class="h10">Category-List</h1>
-          <button type="button" class="btn btn-light   btn-lg w-50 mb-3" data-toggle="modal" style="border: 2px solid rgb(115, 113, 113);"
-            data-target="#exampleModalCenter">
+          <button type="button" class="btn btn-light   btn-lg w-50 mb-3" data-toggle="modal"
+            style="border: 2px solid rgb(115, 113, 113);" data-target="#exampleModalCenter">
             Add Category
           </button>
 
@@ -214,7 +214,7 @@
 
 
       {{! ----------------------------------------------------------------------------------------- }}
-      <div class="row g-4" >
+      <div class="row g-4">
         <div class="col-12 ">
 
           <style>
@@ -241,32 +241,34 @@
                 <table id="categoryTable" class="table table-striped w-500"> <!-- Set width to full -->
                   <thead>
                     <tr>
-                     <th style="text-align: center;">Title</th>
-<th style="text-align: center;">Description</th>
-<th style="text-align: center;">Image</th>
-<th style="text-align: center;">Delete</th>
-<th style="text-align: center;">Edit</th>
+                      <th style="text-align: center;">Title</th>
+                      <th style="text-align: center;">Description</th>
+                      <th style="text-align: center;">Image</th>
+                      <th style="text-align: center;">Delete</th>
+                      <th style="text-align: center;">Edit</th>
 
                     </tr>
                   </thead>
                   <tbody style="background-color: rgb(243, 243, 243) !important;">
                     {{#each categories}}
                     <tr>
-                      <td>{{title}}</td>
+                      <td>{{this.title}}</td>
                       <td>{{description}}</td>
-                      <td><img src="{{image.url}}" alt="{{title}} Image" /></td>
+                      <td><img src="{{image.url}}" alt="{{this.image.public_id}}" /></td>
                       <td>
                         <button class="btn btn-outline-danger p-0 border-0" onclick="deleteCategory('{{this.title}}')">
                           <i class="bi bi-trash-fill" style="font-size: 24px; color: rgb(10, 9, 9);"></i>
                         </button>
                       </td>
                       <td>
-                        <button style="background-color: transparent;">
+                        {{!-- <button style="background-color: transparent;">
                           <a href="/admin/edit?name={{this._id}}">
                             <i style="font-size: 24px; background-color: transparent;"
                               class="bi bi-pencil-square text-success "></i>
                           </a>
-                        </button>
+                        </button> --}}
+                        <button class="btn btn-primary editBtn" data-toggle="modal"  value="{{this._id}}"
+                          data-target="#editCategoryModal">Edit</button>
                       </td>
                     </tr>
                     {{else}}
@@ -318,6 +320,7 @@
 
 
 
+
         </div>
 
         {{! <div class="col-12 col-md-6">
@@ -326,6 +329,128 @@
 
         </div> }}
       </div>
+      
+      {{!-- ------------------------------------------------------------------ --}}
+
+<form id="offer-form" role="form" enctype="multipart/form-data" action="/admin/edit-categorylist" method="POST">
+    <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input id="editCategoryId" name="categoryIds" type="hidden">
+                    <!-- Form fields for editing category data -->
+                    <div class="form-group">
+                        <label for="editTitle">Title</label>
+                        <input type="text" class="form-control" id="editTitle" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="editDescription">Description</label>
+                        <textarea class="form-control" id="editDescription" name="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="editImage">Image</label>
+                        <button type="button" onclick="handleImagePreviewClick()"> 
+                            <img id="editImagePreview" class="img-fluid" src="imageUrl" alt="imagePublicId"> 
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label for="image"></label>
+                        <input type="file" id="image" name="image" class="form-control-file" accept="image/*" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="saveChangesBtn">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+      <script>
+    $(document).ready(function () {
+      // Event listener for edit buttons
+      $('.editBtn').click(function () {
+        // Get the closest table row to the clicked button
+        var row = $(this).closest('tr');
+
+        // Extract category data from the table row
+        var categoryId = $(this).val(); // Get the category ID from the button's value attribute
+        var title = row.find('td:eq(0)').text(); // Assuming title is in the first column
+        var description = row.find('td:eq(1)').text(); // Assuming description is in the second column
+        var imageUrl = row.find('td:eq(2) img').attr('src'); // Assuming image URL is in the third column
+         var imagePublicId = row.find('img').attr('alt'); // Assuming image public ID is in the alt attribute
+
+        // Populate form fields with extracted category data
+        $('#editCategoryId').val(categoryId); // Set the category ID in a hidden input field
+        $('#editTitle').val(title);
+        $('#editDescription').val(description);
+        $('#editImagePreview').attr('src', imageUrl);
+        $('#editImagePreview').attr('alt', imagePublicId);
+console.log(imagePublicId)
+        // Open the edit modal
+        $('#editCategoryModal').modal('show');
+      });
+
+      // Event listener for save changes button
+      $('#saveChangesBtn').click(function () {
+        // Get the category ID from the hidden input field
+        var categoryId = $('#editCategoryId').val();
+
+        // Logic to save changes to the server
+        // You can use AJAX to send the form data to the backend, or submit the form directly
+        // Example using AJAX:
+        $.ajax({
+          type: 'POST',
+          url: '/admin/edit-categorylist/' + categoryId, // Include the category ID in the URL
+          data: $('#editCategoryForm').serialize(), // Serialize the form data
+          success: function (response) {
+            // Handle the response from the server
+            console.log(response);
+          },
+          error: function (error) {
+            // Handle any errors
+            console.error(error);
+          }
+        });
+
+        // Close the modal after saving changes
+        $('#editCategoryModal').modal('hide');
+      });
+    });
+</script>
+
+{{!-- <script>
+  function handleImagePreviewClick() {
+        var imageUrl = document.getElementById('editImagePreview').getAttribute('src');
+  const imagePublicId = $('#editImagePreview').attr('alt');
+              // Example of fetching data from the backend
+    fetch('/admin/editCategoryImage', {
+        method: 'put',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            imageUrl: imageUrl,
+            image:imagePublicId,
+
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        // Refresh the page after successful update
+        window.location.href = window.location.href;
+    })
+    .catch(error => console.error('There was a problem with the fetch operation:', error));
+  }
+</script> --}}
 
       {{!
       ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -531,7 +656,8 @@
             <div class="d-flex flex-wrap mt-2 justify-content-between align-items-center"> --}}
               <div
                 class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1">
-                                              <a   style="width: 95px;height: 30px;color: black; background-color: transparent;text-align: center;"  href="logout" >logout</a>
+                <a style="width: 95px;height: 30px;color: black; background-color: transparent;text-align: center;"
+                  href="logout">logout</a>
 
               </div>
 

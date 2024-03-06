@@ -2,7 +2,7 @@ const order = require('../../models/user/order');
 
 const orderlist = async (req, res) => {
     try {
-        venderId=req.vender.id;
+        venderId=req.user.id;
         // console.log(venderId);
 
 

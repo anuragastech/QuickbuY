@@ -227,10 +227,13 @@
   }
 </style>
 
+
+
             <div class="row g-4" style="background-color: rgb(12, 38, 66);height: 80px;margin-top: 5px;">
                 <div class="col-12 col-md-12  bg-white" >
    
 <div class="showsubcategory "  style="border: 8px solid rgb(209, 209, 209);background-color: rgb(180, 181, 182);">
+
     <table id="subcategoryTable" style="background-color: white; border: 1px solid rgb(155, 147, 147);text-align: center;" class="table">
         <thead>
             <tr>
@@ -253,11 +256,17 @@
                     </button>
                 </td>
                 <td>
-                    <button style="background-color: transparent;" class="btn5">
+                    {{!-- <button style="background-color: transparent;" class="btn5">
                         <a href="/admin/edit-subcategory?name={{this._id}}">
                             <i class="bi bi-pencil-square text-success bg-transparent" style="font-size: 24px;"></i>
                         </a>
-                    </button>
+                    </button> --}}
+  <button class="btn btn-primary editBtn" data-toggle="modal"  value="{{this._id}}"
+                          data-target="#editCategoryModal">Edit</button>
+                    <td>
+    
+</td>
+
                 </td>
             </tr>
             {{/each}}
@@ -276,6 +285,103 @@
         $('#subcategoryTable').DataTable();
     });
 </script>
+{{!-- --------------------------------------------------      --}}
+
+
+<form id="offer-form" role="form" enctype="multipart/form-data" action="/admin/editSubcategorylist" method="POST">
+    <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input id="editCategoryId" name="subcategoryId" type="hidden">
+                    <!-- Form fields for editing category data -->
+                    <div class="form-group">
+                        <label for="editTitle">Title</label>
+                        <input type="text" class="form-control" id="editTitle" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="editDescription">Description</label>
+                        <textarea class="form-control" id="editDescription" name="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="editImage">Image</label>
+                        <button type="button" onclick="handleImagePreviewClick()"> 
+                            <img id="editImagePreview" class="img-fluid" src="imageUrl" alt="imagePublicId"> 
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label for="image"></label>
+                        <input type="file" id="image" name="image" class="form-control-file" accept="image/*" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" id="saveChangesBtn">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+      <script>
+    $(document).ready(function () {
+      // Event listener for edit buttons
+      $('.editBtn').click(function () {
+        // Get the closest table row to the clicked button
+        var row = $(this).closest('tr');
+
+        // Extract category data from the table row
+        var categoryId = $(this).val(); // Get the category ID from the button's value attribute
+        var title = row.find('td:eq(0)').text(); // Assuming title is in the first column
+        var description = row.find('td:eq(1)').text(); // Assuming description is in the second column
+        var imageUrl = row.find('td:eq(2) img').attr('src'); // Assuming image URL is in the third column
+         var imagePublicId = row.find('img').attr('alt'); // Assuming image public ID is in the alt attribute
+
+        // Populate form fields with extracted category data
+        $('#editCategoryId').val(categoryId); // Set the category ID in a hidden input field
+        $('#editTitle').val(title);
+        $('#editDescription').val(description);
+        $('#editImagePreview').attr('src', imageUrl);
+        $('#editImagePreview').attr('alt', imagePublicId);
+console.log(categoryId)
+        // Open the edit modal
+        $('#editCategoryModal').modal('show');
+      });
+
+      // Event listener for save changes button
+      $('#saveChangesBtn').click(function () {
+        // Get the category ID from the hidden input field
+        var categoryId = $('#editCategoryId').val();
+
+        // Logic to save changes to the server
+        // You can use AJAX to send the form data to the backend, or submit the form directly
+        // Example using AJAX:
+        $.ajax({
+          type: 'POST',
+          url: '/admin/edit-categorylist/' + categoryId, // Include the category ID in the URL
+          data: $('#editCategoryForm').serialize(), // Serialize the form data
+          success: function (response) {
+            // Handle the response from the server
+            console.log(response);
+          },
+          error: function (error) {
+            // Handle any errors
+            console.error(error);
+          }
+        });
+
+        // Close the modal after saving changes
+        $('#editCategoryModal').modal('hide');
+      });
+    });
+</script>
+
 
 
 {{!-- -------------------------------------------------------------- --}}
