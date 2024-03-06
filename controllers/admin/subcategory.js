@@ -95,33 +95,79 @@ let editGetsubCategory= async (req, res) => {
   }
 };
 
-let editsubcategorypost = async (req, res) => {
-  try {
-      const subcategoryId = req.params.id;  
-      const { title, description } = req.body;
+// let editsubcategorypost = async (req, res) => {
+//   try {
+//       const subcategoryId = req.params.id;  
+//       const { title, description } = req.body;
 
-      if (!title || !description) {
-          return res.status(400).json({ success: false, message: 'Incomplete data for category update' });
-      }
+//       if (!title || !description) {
+//           return res.status(400).json({ success: false, message: 'Incomplete data for category update' });
+//       }
 
-      const updatedsubCategory = await subcategory.findOneAndUpdate(
-          { _id: subcategoryId },
-          {
-              $set: {
-                  title: title,
-                  description: description,
-              },
-          },
-          { new: true } 
-      );
+//       const updatedsubCategory = await subcategory.findOneAndUpdate(
+//           { _id: subcategoryId },
+//           {
+//               $set: {
+//                   title: title,
+//                   description: description,
+//               },
+//           },
+//           { new: true } 
+//       );
       
-      res.render('admin/subcategorylist')
+//       res.render('admin/subcategorylist')
 
      
-      res.status(200).json({ success: true, message: 'subCategory updated successfully', updatedsubCategory });
+//       res.status(200).json({ success: true, message: 'subCategory updated successfully', updatedsubCategory });
+//     } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ success: false });
+//     }
+//   };
+
+  const editsubcategorypost = async (req, res) => {
+    try {
+        const { subcategoryId, title, description } = req.body;
+console.log(subcategoryId);
+        const updatedSubCategory = await subcategory.findOneAndUpdate(
+            { _id: subcategoryId },
+            {
+                $set: {
+                    title: title,
+                    description: description,
+                },
+            },
+            { new: true }
+        );
+        console.log(updatedSubCategory);
+
+        if (!updatedSubCategory) {
+            return res.status(404).json({ success: false, message: 'SubCategory not found' });
+        }
+
+        const desiredWidth = 400;
+        const desiredHeight = 400;
+        if (req.file) {
+            const result = await cloudinary.uploader.upload(req.file.path, {
+                width: desiredWidth,
+                height: desiredHeight,
+                crop: 'scale',
+            });
+// console.log(result);
+            await cloudinary.uploader.destroy(updatedSubCategory.image.public_id);
+
+            updatedSubCategory.image.public_id = result.public_id;
+            updatedSubCategory.image.url = result.secure_url;
+
+            await updatedSubCategory.save();
+        }
+
+
+        res.redirect('/admin/categorylist');
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ success: false });
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Internal server error' });
     }
-  };
+};
+
 module.exports = {editsubcategorypost, getsubcategories, getsubcategory,deleteSubCategory, editGetsubCategory,postSubcategory };

@@ -48,6 +48,8 @@ router.get("/categorylist",categoryControllers.getCategorylist);
 
 router.get("/edit",categoryControllers.editGetCategory);
 router.post('/edit-categorylist',upload,categoryControllers.editpost)
+router.post('/editSubcategorylist',upload,subCategoryControllers.editsubcategorypost)
+
 // router.put('/editCategoryImage',categoryControllers.editput)
 
 router.get("/edit-subcategory",subCategoryControllers.editGetsubCategory);
