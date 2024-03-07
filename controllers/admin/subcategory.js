@@ -128,7 +128,7 @@ let editGetsubCategory= async (req, res) => {
   const editsubcategorypost = async (req, res) => {
     try {
         const { subcategoryId, title, description } = req.body;
-console.log(subcategoryId);
+// console.log(subcategoryId);
         const updatedSubCategory = await subcategory.findOneAndUpdate(
             { _id: subcategoryId },
             {
@@ -163,7 +163,7 @@ console.log(subcategoryId);
         }
 
 
-        res.redirect('/admin/categorylist');
+        res.redirect('/admin/subcategories');
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: 'Internal server error' });

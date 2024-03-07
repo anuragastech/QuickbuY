@@ -153,16 +153,16 @@
                             </div>
                         </div>
                     </div>
-
+{{#each profileData}}
                     <div class="col-md-12 ">
                         <div class="card mb-3 shadow-sm">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Full Name</h6>
+                                        <h6 class="mb-0">Full Name </h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        Kenneth Valdez
+                                       {{this.fullname}}
                                     </div>
                                 </div>
                                 <hr>
@@ -175,6 +175,7 @@
                                     </div>
                                 </div>
                                 <hr>
+                                
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <h6 class="mb-0">Phone</h6>
@@ -265,6 +266,7 @@
                         </ul>
                     </div>
                     {{!-- end --}}
+                    {{/each}}
                 </div>
 
             </div>

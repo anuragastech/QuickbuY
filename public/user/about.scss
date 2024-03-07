@@ -1,0 +1,191 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@300;400&display=swap");
+
+$color-white: #fafafa;
+$color-off-white: #dfdfdf;
+$color-gray: darken($color-white, 50%);
+$color-black: #000;
+$font-copy: "Montserrat", sans-serif;
+$font-title: "Anton", sans-serif;
+
+$screen-lg: 920px;
+$screen-md: 760px;
+$screen-sm: 580px;
+$screen-xsm: 370px;
+
+@mixin respond($screen-size) {
+  @media only screen and (max-width: $screen-size) {
+    @content;
+  }
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*::selection {
+  color: $color-black;
+  background-color: $color-off-white;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  min-height: 100vh;
+  font-family: $font-copy;
+  font-size: 1.5rem;
+  line-height: 1.5;
+  font-weight: 300;
+  color: $color-off-white;
+  background-color: $color-black;
+}
+
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 0 6rem 6rem 6rem;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8rem 0 6rem 0;
+
+  @include respond($screen-sm) {
+    padding-bottom: 2rem;
+  }
+
+  &__list {
+    display: flex;
+    gap: 16rem;
+    list-style: none;
+
+    @include respond($screen-lg) {
+      gap: 6rem;
+    }
+
+    @include respond($screen-sm) {
+      gap: 4rem;
+    }
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $color-white;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: darken($color-white, 40%);
+    }
+
+    &--active {
+      color: darken($color-white, 60%);
+
+      &:hover {
+        color: darken($color-white, 60%);
+      }
+    }
+  }
+
+  &__copy {
+    @include respond($screen-sm) {
+      display: none;
+    }
+  }
+}
+
+.page-title {
+  margin-bottom: 8rem;
+  font-family: $font-title;
+  font-size: 16rem;
+  font-weight: 100;
+  text-transform: uppercase;
+  letter-spacing: -0.4px;
+  line-height: 16rem;
+  color: $color-white;
+
+  @include respond($screen-md) {
+    margin-bottom: 6rem;
+    font-size: 8rem;
+  }
+
+  @include respond($screen-sm) {
+    margin-bottom: 4rem;
+    font-size: 7rem;
+  }
+
+  @include respond($screen-xsm) {
+    margin-bottom: 0;
+    font-size: 5rem;
+  }
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  @include respond($screen-md) {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
+
+  &__descriptor {
+    width: 14%;
+    border-top: 1px solid $color-gray;
+    padding-top: 4rem;
+
+    @include respond($screen-md) {
+      width: 100%;
+      padding: 2rem 0;
+      border-top: none;
+    }
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+
+  &__text-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 2rem;
+    width: 50%;
+    border-top: 1px solid $color-gray;
+    border-bottom: 1px solid $color-gray;
+    margin-right: 10rem;
+    padding: 4rem 0;
+
+    @include respond($screen-lg) {
+      margin-right: 0;
+    }
+
+    @include respond($screen-md) {
+      width: 100%;
+      padding: 2rem 0;
+    }
+
+    @include respond($screen-sm) {
+      border-bottom: none;
+    }
+  }
+
+  &__text {
+    width: 320px;
+
+    @include respond($screen-sm) {
+      width: 100%;
+    }
+  }
+}

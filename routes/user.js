@@ -74,9 +74,7 @@ router.get('/payment',(req,res)=>{
     router.get('/triel',(req,res)=>{
       res.render('user/triel')
       });
-      router.get('/profile',(req,res)=>{
-        res.render('user/profile')
-        });
+    
     
 
     // router.get('/products',(req,res)=>{
@@ -109,7 +107,7 @@ router.post('/profileData',authenticateJWT,userControllers.profileData)
 router.get('/about',(req,res)=>{
   res.render('user/about')
 })
- 
+router.get('/profile',authenticateJWT,userControllers.GetProfile )
  
 module.exports = router;
 
