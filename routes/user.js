@@ -13,7 +13,8 @@ const getAllControllers = require('../controllers/user/getAll');
 const getControllerHome=require('../controllers/user/home')
 const getPaymentway=require('../controllers/user/paymentgateway')
 const  OrderMiddileware  = require('../controllers/user/order');
-
+const multer = require("../models/common/multerconfig");
+const upload = multer.single("image");
 
 
 
@@ -90,6 +91,8 @@ router.get('/payment',(req,res)=>{
   router.post('/products',authenticateJWT,getProductControllers.getproductData)
 
  router.post('/checkout',authenticateJWT, getPaymentway.postAddress)
+
+ 
  
  router.get('/check-out',authenticateJWT, getPaymentway.getAddress)
  router.post('/checkoutpost',authenticateJWT,getPaymentway.postCarttocheckout)
@@ -108,7 +111,11 @@ router.get('/about',(req,res)=>{
   res.render('user/about')
 })
 router.get('/profile',authenticateJWT,userControllers.GetProfile )
- 
+router.post('/postAddress',authenticateJWT, userControllers.postAddresses)
+router.post('/profileUpdateImage',upload, authenticateJWT, userControllers.postProfilepic)
+
+
+
 module.exports = router;
 
 

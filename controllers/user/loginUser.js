@@ -6,6 +6,8 @@ const create=require('../../models/user/mongodb')
  const nodemailer=require("nodemailer");
 const { response } = require('express');
 const profile=require('../../models/user/mongodb')
+const cloudinary = require("../../models/common/cloudinary");
+
  
 let Addsign=async (req, res) => {
     try {
@@ -122,29 +124,29 @@ let getsign=(req,res)=>{
                 res.redirect("/user/contact"); 
             });
         };
-
+        
         const GetProfile = async (req, res) => {
             const userId = req.user.id;
             try {
-                const getProfileData = await profile.findOne({ _id: userId }).populate('profileData');
+                const getProfileData = await profile.findOne({ _id: userId });
+                // console.log("fkggk", getProfileData.profileData);
         
-             
-                console.log(getProfileData);
-        
-                res.render('user/profile', {getProfileData});
+                res.render('user/profile', { profileData: getProfileData.profileData }); // Assuming your template expects 'profileData'
             } catch (error) {
                 console.error(error);
                 res.status(500).send("Internal Server Error");
             }
         }
-
+        
+        
+        
         
         
         const profileData = async (req, res) => {
             try {
                 const { facebook, instagram, twitter, github, phonenumber, email, Fullname, website } = req.body;
                 const userId = req.user.id;
-                console.log(req.body);
+                // console.log(req.body);
         
                 let existingUser = await create.findById(userId);
         
@@ -187,7 +189,66 @@ let getsign=(req,res)=>{
             }
         }
         
+
+
+        let postAddresses = async (req, res) => {
+            try {
+                const { address, phone, country, city, state, pin } = req.body;
+                const userId = req.user.id;
         
+                const currentUser = await create.findById(userId);
+                currentUser.personalInfo.push({ address, number: phone, country, state, city, pincode: pin });
         
+                await currentUser.save();
         
-module.exports={Addlogin,Addsign,getsign,getlogin,getlogout,sendmail ,profileData ,GetProfile};
+                res.redirect('/user/profile');
+                } catch (error) {
+                console.error('Error saving address:', error);
+                res.status(500).json({ message: 'Failed to save address' });
+            }
+        };
+        
+
+
+        const postProfilepic = async (req, res) => {
+            try {
+                // Check if a file was uploaded
+                if (!req.file) {
+                    return res.status(400).json({ success: false, message: 'No file uploaded' });
+                }
+        
+                // Desired dimensions for the uploaded image
+                const desiredWidth = 300;
+                const desiredHeight = 200;
+        
+                // Upload the image to Cloudinary
+                const result = await cloudinary.uploader.upload(req.file.path, {
+                    width: desiredWidth,
+                    height: desiredHeight,
+                    crop: 'scale' 
+                });
+        
+                console.log('Image uploaded to Cloudinary:', result);
+        
+                // Find the profile in the database
+                const profiles = await profile.findById(req.user.id);
+                console.log(profiles);
+                // Update the profile with the uploaded image details
+                profiles.image = {
+                    url: result.secure_url,
+                    public_id: result.public_id
+                };
+        
+                await profiles.save();
+        
+                // Send success response
+                res.status(200).json({ success: true, message: 'Image uploaded successfully to Cloudinary and saved to the profile' });
+            } catch (error) {
+                console.error('Error uploading image to Cloudinary:', error);
+                res.status(500).json({ success: false, message: 'Internal Server Error' });
+            }
+        };
+        
+
+        
+module.exports={Addlogin,Addsign,getsign,getlogin,getlogout,sendmail ,profileData ,GetProfile, postAddresses,postProfilepic};

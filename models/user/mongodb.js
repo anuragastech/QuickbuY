@@ -47,7 +47,16 @@ const createSchema = mongoose.Schema({
             ref: 'user',
         },
     },
-
+    image:{
+        public_id:{
+         type:String,
+        //  required:true,
+        },
+        url:{
+         type:String,
+        //  required:true,
+        }
+    }
 // }]
 
 
