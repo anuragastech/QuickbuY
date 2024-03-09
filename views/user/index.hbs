@@ -488,22 +488,31 @@ div.scrollcards .card {
 .single-product-item:hover {
     transform: scale(1.08); /* Slightly expand the card on hover */
 }
+     .box {
+            width: 200px;
+            height: 200px;
+            background-color: #ffffff; /* Background color */
+            border: 1px solid #cccccc; /* Border color */
+            box-shadow: 1 1 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+            /* The box shadow consists of horizontal offset, vertical offset, blur radius, and color */
+            margin: 20px; /* Margin for spacing */
+        }
  
 </style>
 
-          <div class="row" id="product-list">
+          <div class="row" id="product-list shadow-lg" >
     {{#each prdct}}
-        <div class="col-lg-3 col-sm-6 mix all dresses bags">
-            <div class="single-product-item">
+        <div class="col-lg-4 col-sm-6 mix all dresses bags " >
+            <div class="single-product-item" style="border: 10px solid rgb(249, 249, 249);">
                 <figure>
                     <a href="/user/productpage?name={{this._id}}">
                         <img src="{{this.image.url}}" alt="{{this.productname}}">
                     </a>
-                    <div class="p-status">new</div>
+                    {{!-- <div class="p-status"></div> --}}
                 </figure>
-                <div class="product-text">
-                    <h6>{{this.productname}}</h6>
-                    <p>${{this.price}}</p>
+                <div class="product-text" >
+                    <h6 style="color: black;">{{this.productname}}</h6>
+                    <p  style="color: rgb(174, 169, 169);font-family:sans-serif;font-weight: bold;font-size: 20px;">${{this.price}}</p>
                 </div>
             </div>
         </div>

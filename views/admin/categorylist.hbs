@@ -254,7 +254,7 @@
                     <tr>
                       <td>{{this.title}}</td>
                       <td>{{description}}</td>
-                      <td><img src="{{image.url}}" alt="{{this.image.public_id}}" /></td>
+                      <td><img src="{{image.url}}" alt="{{this.image.public_id}}" style="height: 60px;width:70px;" /></td>
                       <td>
                         <button class="btn btn-outline-danger p-0 border-0" onclick="deleteCategory('{{this.title}}')">
                           <i class="bi bi-trash-fill" style="font-size: 24px; color: rgb(10, 9, 9);"></i>
@@ -329,7 +329,6 @@
 
         </div> }}
       </div>
-      
       {{!-- ------------------------------------------------------------------ --}}
 
 <form id="offer-form" role="form" enctype="multipart/form-data" action="/admin/edit-categorylist" method="POST">

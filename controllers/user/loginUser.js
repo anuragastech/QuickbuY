@@ -231,15 +231,16 @@ let getsign=(req,res)=>{
                 console.log('Image uploaded to Cloudinary:', result);
         
                 // Find the profile in the database
-                const profiles = await profile.findById(req.user.id);
-                console.log(profiles);
+                const userProfile = await profile.findById(req.user.id);
+                
                 // Update the profile with the uploaded image details
-                profiles.image = {
+                userProfile.image = {
                     url: result.secure_url,
                     public_id: result.public_id
                 };
         
-                await profiles.save();
+                // Save the updated profile
+                await userProfile.save();
         
                 // Send success response
                 res.status(200).json({ success: true, message: 'Image uploaded successfully to Cloudinary and saved to the profile' });
@@ -250,5 +251,4 @@ let getsign=(req,res)=>{
         };
         
 
-        
 module.exports={Addlogin,Addsign,getsign,getlogin,getlogout,sendmail ,profileData ,GetProfile, postAddresses,postProfilepic};

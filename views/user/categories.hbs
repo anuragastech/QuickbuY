@@ -136,7 +136,9 @@
 
                       
                     </div>
-                </div>.
+                </div>
+
+                
 
                 <script>
                     document.addEventListener("DOMContentLoaded", function() {
@@ -246,6 +248,7 @@ div.scrollcards .card {
             <h5>Related Product</h5>
         </div>
 
+
         <div class="product-list">
 
 {{#each relatedProductIn }}
@@ -255,8 +258,8 @@ div.scrollcards .card {
                             <a href="/user/productpage?name={{this._id}}"><img src="{{this.image.url}}" alt=""></a>
             </div>
             <div class="info">
-                <h3>{{this.productname}}</h3>
-                <p>{{this.price}}</p>
+                <h3 style="color: black;margin-right: 10%;fo">{{this.productname}}</h3>
+                <p style="color: black; margin: 18px;">₹{{this.price}}</p>
             </div>
             {{!-- <button style="color: black;">Add to Cart</button> --}}
           </div>
@@ -273,7 +276,8 @@ div.scrollcards .card {
     padding: 0;
     box-sizing: border-box;
     font-family: Poppins;
-    color: white;
+    color: rgb(0, 0, 0);
+    text-align: center;
 }
 
 body{
@@ -283,7 +287,7 @@ body{
 img{
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: fill;
     border-radius: 7px;
 }
 
@@ -293,7 +297,7 @@ h3{
 
 p{
     font-style: italic;
-    color: rgb(217, 217, 217);
+    color: rgb(255, 255, 255);
 }
 
 button{
@@ -325,10 +329,10 @@ button{
 }
 
 .product{
-    border: 1px solid #606060;
-    height: 300px;
-    padding: 10px 10px 20px 10px;
-    border-radius: 10px;
+    border: 3px solid #e5eae7;
+    height: 350px;
+    padding: 5px 5px 20px 10px;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -337,7 +341,7 @@ button{
 }
 
 .img{
-    height: 60%;
+    height: 80%;
     width: 100%;
 }
 
@@ -346,6 +350,8 @@ button{
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    
+    font-size: 8%;
 }
 
     </style>
