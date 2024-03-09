@@ -157,12 +157,12 @@
         <section class="container-fluid">
 
             <!-- Breadcrumbs-->
-            <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
+            {{!-- <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Subcategory List</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Subcategory</li>
                 </ol>
-            </nav>            <!-- / Breadcrumbs-->
+            </nav>            <!-- / Breadcrumbs--> --}}
 
             <!-- Page Title-->
            
@@ -218,10 +218,11 @@
   }
   td{
     background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(174, 171, 171);
+    border: 1px solid rgb(238, 232, 232);
+    
   }
   th{
-    background-color: white;
+    background-color: rgb(239, 239, 239);
     text-align: center;
 
   }
@@ -229,17 +230,17 @@
 
 
 
-            <div class="row g-4" style="background-color: rgb(12, 38, 66);height: 80px;margin-top: 5px;">
-                <div class="col-12 col-md-12  bg-white" >
+            <div class="row g-4" style="background-color: rgb(255, 255, 255);height: 80px;margin-top: 5px;">
+                <div class=" col-sm-12  col-lg-12  bg-white" >
    
-<div class="showsubcategory "  style="border: 8px solid rgb(209, 209, 209);background-color: rgb(180, 181, 182);">
+<div class="showsubcategory "  style="border: 1px solid rgb(235, 232, 232);background-color: rgb(255, 255, 255);">
 
-    <table id="subcategoryTable" style="background-color: white; border: 1px solid rgb(155, 147, 147);text-align: center;" class="table">
+    <table id="subcategoryTable" style="background-color: white; border: 1px solid rgb(255, 255, 255);text-align: center;" class="table">
         <thead>
             <tr>
+        <th style="text-align: center;">Image</th>
         <th style="text-align: center;">Title</th>
         <th style="text-align: center;">Description</th>
-        <th style="text-align: center;">Image</th>
         <th style="text-align: center;">Delete</th>
         <th style="text-align: center;">Edit</th>
     </tr>
@@ -247,9 +248,9 @@
         <tbody >
             {{#each subcategories}}
             <tr>
+                <td><img class="pic" src="{{image.url}}" alt="{{title}} Image" style="max-width: 140px; height: auto;height: 60px;width: 80px;"></td>
                 <td>{{title}}</td>
                 <td>{{description}}</td>
-                <td><img class="pic" src="{{image.url}}" alt="{{title}} Image" style="max-width: 140px; height: auto;"></td>
                 <td>
                     <button style="background-color: transparent;" class="btn5" onclick="deleteSubCategory('{{this._id}}')">
                         <i class="bi bi-trash-fill" style="font-size: 24px; color: rgb(56, 55, 55);list-style: none;;"></i>
@@ -263,9 +264,9 @@
                     </button> --}}
   <button class="btn btn-primary editBtn" data-toggle="modal"  value="{{this._id}}"
                           data-target="#editCategoryModal">Edit</button>
-                    <td>
-    
-</td>
+                      {{!-- <td>
+      
+  </td> --}}
 
                 </td>
             </tr>
@@ -338,9 +339,9 @@
 
         // Extract category data from the table row
         var categoryId = $(this).val(); // Get the category ID from the button's value attribute
-        var title = row.find('td:eq(0)').text(); // Assuming title is in the first column
-        var description = row.find('td:eq(1)').text(); // Assuming description is in the second column
-        var imageUrl = row.find('td:eq(2) img').attr('src'); // Assuming image URL is in the third column
+        var title = row.find('td:eq(1)').text(); // Assuming title is in the first column
+        var description = row.find('td:eq(2)').text(); // Assuming description is in the second column
+        var imageUrl = row.find('td:eq(0) img').attr('src'); // Assuming image URL is in the third column
          var imagePublicId = row.find('img').attr('alt'); // Assuming image public ID is in the alt attribute
 
         // Populate form fields with extracted category data

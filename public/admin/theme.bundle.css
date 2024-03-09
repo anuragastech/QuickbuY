@@ -8252,7 +8252,7 @@ fieldset:disabled .btn {
     word-wrap: break-word;
     background-color: #24293b;
     background-clip: border-box;
-    border: 0 solid hsla(0, 0%, 100%, .08);
+    border: 1px solid hsla(0, 0%, 100%, .08);
     border-radius: .25rem
 }
 

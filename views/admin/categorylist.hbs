@@ -230,20 +230,20 @@
             $(document).ready(function () {
               $('#categoryTable').DataTable();
             });
-          </script>
+          </script>   
 
           <div class="card mb-4">
-            <div class="card-header">
-              <h6 class="card-title">Category-List</h6>
+            <div class="card-header" style="background-color: rgb(255, 255, 255);">
+              <h6 style="background-color: rgb(250, 250, 250);" class="card-title">Category-List</h6>
             </div>
-            <div class="card-body" style="background-color: rgb(179, 179, 179); color: rgb(7, 7, 7);">
+            <div class="card-body" style="background-color: rgb(255, 255, 255); color: rgb(7, 7, 7);">
               <div class="table-responsive"> <!-- Make table responsive -->
                 <table id="categoryTable" class="table table-striped w-500"> <!-- Set width to full -->
                   <thead>
                     <tr>
+                      <th style="text-align: center;">Image</th>
                       <th style="text-align: center;">Title</th>
                       <th style="text-align: center;">Description</th>
-                      <th style="text-align: center;">Image</th>
                       <th style="text-align: center;">Delete</th>
                       <th style="text-align: center;">Edit</th>
 
@@ -252,9 +252,9 @@
                   <tbody style="background-color: rgb(243, 243, 243) !important;">
                     {{#each categories}}
                     <tr>
+                      <td><img src="{{image.url}}" alt="{{this.image.public_id}}" style="height: 60px;width:70px;" /></td>
                       <td>{{this.title}}</td>
                       <td>{{description}}</td>
-                      <td><img src="{{image.url}}" alt="{{this.image.public_id}}" style="height: 60px;width:70px;" /></td>
                       <td>
                         <button class="btn btn-outline-danger p-0 border-0" onclick="deleteCategory('{{this.title}}')">
                           <i class="bi bi-trash-fill" style="font-size: 24px; color: rgb(10, 9, 9);"></i>
@@ -381,9 +381,9 @@
 
         // Extract category data from the table row
         var categoryId = $(this).val(); // Get the category ID from the button's value attribute
-        var title = row.find('td:eq(0)').text(); // Assuming title is in the first column
-        var description = row.find('td:eq(1)').text(); // Assuming description is in the second column
-        var imageUrl = row.find('td:eq(2) img').attr('src'); // Assuming image URL is in the third column
+        var title = row.find('td:eq(1)').text(); // Assuming title is in the first column
+        var description = row.find('td:eq(2)').text(); // Assuming description is in the second column
+        var imageUrl = row.find('td:eq(0) img').attr('src'); // Assuming image URL is in the third column
          var imagePublicId = row.find('img').attr('alt'); // Assuming image public ID is in the alt attribute
 
         // Populate form fields with extracted category data

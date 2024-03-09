@@ -175,19 +175,23 @@
     <table id="productTable" class="table table-bordered  bg-light" style="background-color: white;border: 2px solid rgb(206, 201, 201);">
         <thead class="thead-light">
             <tr>
-                <th scope="col">Product Name</th>
-                <th scope="col">Manufacture Name</th>
-                <th scope="col">Brand</th>
-                <th scope="col">Price</th>
-                <th scope="col">Description</th>
-                <th scope="col">Category</th>
-                <th scope="col">Subcategory</th>
-                <th scope="col">Image</th>
+                              <th scope="col">Image</th>
+
+                <th style="text-align: center;" scope="col">Product Name</th>
+                <th style="text-align: center;" scope="col">Manufacture Name</th>
+                <th style="text-align: center;" scope="col">Brand</th>
+                <th style="text-align: center;" scope="col">Price</th>
+                <th style="text-align: center;" scope="col">Description</th>
+                <th style="text-align: center;" scope="col">Category</th>
+                <th style="text-align: center;"scope="col">Subcategory</th>
             </tr>
         </thead>
         <tbody  >
             {{#each products}}
             <tr>
+                  <td style="    border: 1px solid rgb(209, 203, 203);">
+                    <img src="{{this.image.url}}" alt="{{this.productname}} Image" style="max-width: 140px; height: auto;height: 60px;width: 80px;">
+                </td>
                 <td style="    border: 1px solid rgb(209, 203, 203);">{{this.productname}}</td>
                 <td style="    border: 1px solid rgb(209, 203, 203);">{{this.manufacturename}}</td>
                 <td style="    border: 1px solid rgb(209, 203, 203);">{{this.brand}}</td>
@@ -195,9 +199,7 @@
                 <td style="    border: 1px solid rgb(209, 203, 203);">{{this.description}}</td>
                 <td style="    border: 1px solid rgb(209, 203, 203);">{{this.category.title}}</td>
                 <td style="    border: 1px solid rgb(209, 203, 203);">{{this.subcategory.title}}</td>
-                <td style="    border: 1px solid rgb(209, 203, 203);">
-                    <img src="{{this.image.url}}" alt="{{this.productname}} Image" style="max-width: 140px; height: auto;">
-                </td>
+            
             </tr>
             {{/each}}
         </tbody>
