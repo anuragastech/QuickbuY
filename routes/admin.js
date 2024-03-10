@@ -12,6 +12,7 @@ const userController= require('../controllers/admin/userController');
 
 const venderBlockController=require('../controllers/admin/venderController')
 const orderController= require('../controllers/admin/order');
+const dashboardController= require('../controllers/admin/Dashboard');
 
 
 
@@ -79,13 +80,6 @@ router.get("/subcategories",subCategoryControllers.getsubcategories)
 
 router.get("/admin/subcategory",subCategoryControllers.getsubcategory);
 
-
-
-
-
-
-
-
 // Logout route
 router.get("/logout",adminControllers.logout )
 
@@ -114,6 +108,8 @@ router.get('/orderList',orderController.order )
 router.post('/updateShippingStatus',orderController.shippingStatus)
 router.post('/OrderShippingStatus',orderController.orderStatus)
 
+
+// Dashboard route 
 
 
 module.exports = router;

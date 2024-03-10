@@ -59,7 +59,7 @@
 <body class="">
 
     <!-- Navbar-->
-     <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top "  style="    background-color: rgba(253, 253, 253, 0.98)";>
+     <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top "  style="    background-color: rgba(0, 0, 0, 0.98)";>
       <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
     
@@ -144,12 +144,12 @@
         <section class="container-fluid">
 
             <!-- Breadcrumbs-->
-            <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
+            {{!-- <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> VendersProduct Details</a></li>
                     <li class="breadcrumb-item active" aria-current="page"> VendersProduct Details</li>
                 </ol>
-            </nav>            <!-- / Breadcrumbs-->
+            </nav>            <!-- / Breadcrumbs--> --}}
 
         
 
@@ -171,8 +171,8 @@
 <h1 class="heading">Product List</h1>
       <div  style="border: 20px solid #24293b; background-color: #24293b; color: rgb(168, 161, 161);"> Product list</div>
 
-<div class="container-fluid table-responsive py-2"  style="border: 1px solid rgb(165, 157, 157);background-color: rgb(211, 212, 214);">
-    <table id="productTable" class="table table-bordered  bg-light" style="background-color: white;border: 2px solid rgb(206, 201, 201);">
+<div class="container-fluid table-responsive py-2"  style="border: 1px solid rgb(14, 13, 13);background-color: rgb(1, 1, 1);">
+    <table id="productTable" class="table table-bordered  bg-light" style="background-color: rgb(0, 0, 0);border: 2px solid rgb(45, 41, 41);">
         <thead class="thead-light">
             <tr>
                               <th scope="col">Image</th>
@@ -189,16 +189,16 @@
         <tbody  >
             {{#each products}}
             <tr>
-                  <td style="    border: 1px solid rgb(209, 203, 203);">
+                  <td style="    border: 1px solid rgb(0, 0, 0);">
                     <img src="{{this.image.url}}" alt="{{this.productname}} Image" style="max-width: 140px; height: auto;height: 60px;width: 80px;">
                 </td>
-                <td style="    border: 1px solid rgb(209, 203, 203);">{{this.productname}}</td>
-                <td style="    border: 1px solid rgb(209, 203, 203);">{{this.manufacturename}}</td>
-                <td style="    border: 1px solid rgb(209, 203, 203);">{{this.brand}}</td>
-                <td style="    border: 1px solid rgb(209, 203, 203)">{{this.price}}</td>
-                <td style="    border: 1px solid rgb(209, 203, 203);">{{this.description}}</td>
-                <td style="    border: 1px solid rgb(209, 203, 203);">{{this.category.title}}</td>
-                <td style="    border: 1px solid rgb(209, 203, 203);">{{this.subcategory.title}}</td>
+                <td style="    border: 1px solid rgb(0, 0, 0);">{{this.productname}}</td>
+                <td style="    border: 1px solid rgb(0, 0, 0);">{{this.manufacturename}}</td>
+                <td style="    border: 1px solid rgb(4, 4, 4);">{{this.brand}}</td>
+                <td style="    border: 1px solid rgb(0, 0, 0)">{{this.price}}</td>
+                <td style="    border: 1px solid rgb(4, 3, 3);">{{this.description}}</td>
+                <td style="    border: 1px solid rgb(0, 0, 0);">{{this.category.title}}</td>
+                <td style="    border: 1px solid rgb(0, 0, 0);">{{this.subcategory.title}}</td>
             
             </tr>
             {{/each}}

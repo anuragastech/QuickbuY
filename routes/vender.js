@@ -32,6 +32,7 @@ router.delete("/delete/product/:id",authenticateJWT,productControllers.productDe
 router.get("/productlist",authenticateJWT,productControllers.getproductDetails);
 router.get('/edit-product',authenticateJWT, productControllers.geteditProduct)
 router.post('/edit-product/:id',authenticateJWT,productControllers.postedit)
+const dashboardController= require('../controllers/vender/Dashboard');
 
 
 
@@ -81,6 +82,9 @@ router.get('/categories',authenticateJWT, getcatasubController.getcategory)
   router.get('/orderDetails',authenticateJWT,ordersControls.orderlist)
   router.post('/updateShippingStatus',ordersControls.shippingStatus)
 router.post('/OrderShippingStatus',ordersControls.orderStatus)
+
+// dashboard  
+
 
 
 module.exports = router ;
