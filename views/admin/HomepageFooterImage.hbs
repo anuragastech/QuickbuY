@@ -58,7 +58,7 @@
     <main id="main">
 
         <!-- Navbar-->
-     <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top "  style="    background-color: rgba(253, 253, 253, 0.98)";>
+     <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top "  style="    background-color: rgba(0, 0, 0, 0.98)";>
           <div class="container-fluid">
             <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
         
@@ -184,7 +184,7 @@ input{
       width: 900px;
       height: 650px;
       border-radius: 10px;
-      border: 45px solid rgb(228, 224, 224);
+      border: 2px solid rgb(5, 5, 5);
     }
     label{
       padding-left: 80px;
@@ -197,20 +197,20 @@ input{
 .btn{
 
  
-  background-color: rgb(245, 244, 244); 
+  background-color: rgb(0, 0, 0); 
 
   border-radius: 30px;
   color: rgb(16, 15, 13);
 
   font-size: 18px;
-  border: 2px solid white;
+  border: 2px solid rgb(13, 13, 13);
 
 }
 .btn:hover{
   border: solid black;
 
-background-color: rgb(243, 243, 243);
-color: rgb(124, 124, 124);
+background-color: rgb(0, 0, 0);
+color: rgb(255, 236, 236);
 font-weight: bolder;
 }
 input{
@@ -221,7 +221,7 @@ input{
  margin-left: 50px;
   height: 50px;
   text-align: center;
-    color: rgb(0, 0, 0);
+    color: rgb(238, 238, 238);
     border-radius: 10px;
     font-size: larger;
 
@@ -241,7 +241,7 @@ align-items: center;
             <h1 class="h10" > Add Home-Footer</h1>
             <button
               type="button"
-              style="background-color: white;margin-bottom: 10px; margin-top: -20px; font-size: 20px;font-weight: bolder; height: 55px; margin-left: 900px; width: 400px;"
+              style="background-color: rgb(0, 0, 0);margin-bottom: 10px; margin-top: -20px; font-size: 20px;font-weight: bolder; height: 55px; margin-left: 900px; width: 400px;"
               class="btn btn-primary"
               data-toggle="modal"
               data-target="#exampleModalCenter"
@@ -257,16 +257,16 @@ align-items: center;
 
 
                                <div 
-                                        class="modal fade  " style="  background-color: rgba(0, 0, 0, 0.761);"
+                                        class="modal fade  " style="  background-color: rgba(22, 21, 21, 0.761);color: white;"
                                         id="exampleModalCenter"
                                         tabindex="-1"
                                         role="dialog"
                                         aria-labelledby="exampleModalCenterTitle"
                                         aria-hidden="true"
                                       >
-<div class="modal-dialog modal-dialog-centered modal-xl" style="border: 2px solid white;" role="document">                                      <div class="modal-content "  >
+<div class="modal-dialog modal-dialog-centered modal-xl" style="border: 2px solid rgb(42, 39, 39);" role="document">                                      <div class="modal-content "  >
                                         <div class="modal-header bg-dark text-light" >
-                                              <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bolder;">Add Home-Page-Footer</h5>
+                                              <h5 class="modal-title" id="exampleModalLongTitle" style="font-weight: bolder;color: white;">Add Home-Page-Footer</h5>
                                               <button
                                                 type="button"
                                                 class="close"
@@ -341,7 +341,7 @@ align-items: center;
       {{!-- -------------------------------------------------------                 --}}
 <style>
   table{
-    border: 10px solid rgb(244, 243, 243);
+    border: 1px solid rgb(64, 62, 62);
 
   }
   th{
@@ -356,7 +356,7 @@ font-weight: bolder;
     color: white;
     font-size: 22px;
     font-weight: bolder;
-        border: 2px solid rgb(255, 255, 255);
+        border: 1px solid rgb(46, 45, 45);
         text-align: center;
 
   }
@@ -367,9 +367,9 @@ font-weight: bolder;
             <table class="col-lg-12" style="width: 1500px;" >
               <thead>
                 <tr>
+                  <th>Image</th>
                   <th>h1</th>
                   <th>h2</th>
-                  <th>Image</th>
                   <th>Description</th>
                   <th>Delete</th>
                
@@ -378,11 +378,14 @@ font-weight: bolder;
               <tbody>
                 {{#each homeFoot}}
                   <tr>
-                    <td>{{h1}}</td>
-                    <td>{{h2}}</td>
+                                        <td><img style="height: 60px ; width: 80px ;" src="{{image.url}}" alt="{{title}} Image" /></td>
+
                     {{!-- <td>{{description}}</td> --}}
                     
-                    <td><img style="height: 400px ; width: 400px ;" src="{{image.url}}" alt="{{title}} Image" /></td>
+                                        <td>{{h1}}</td>
+                                                            <td>{{h2}}</td>
+
+
                     <td></td>
                     <td>
                       <button style="background-color: transparent;"

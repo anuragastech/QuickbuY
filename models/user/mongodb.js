@@ -33,34 +33,31 @@ const createSchema = mongoose.Schema({
         pincode: { type: Number, },
     }],
 
-profileData :[{
-    fullname:{
-        type:String,
+// profileData :[{
+    profileData: {
+        fullname: { type: String },
+        phoneNumber: { type: Number },
+        website: { type: String },
+        twitter: { type: String },
+        github: { type: String },
+        instagram: { type: String },
+        facebook: { type: String },
+        userId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'user',
+        },
     },
-    phoneNumber:{
-        type:Number,
-    },
-    Website:{ type:String,
-
-    },
-    Twittwer:{ type:String,
-
-    },
-    Github:{ type:String,
-    },
-    Instegram:{ type:String,
-
-    },
-    facebook:{ type:String,
-
-    },
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'user',
-        // required: true
-    },
-
-}]
+    image:{
+        public_id:{
+         type:String,
+        //  required:true,
+        },
+        url:{
+         type:String,
+        //  required:true,
+        }
+    }
+// }]
 
 
 });

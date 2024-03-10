@@ -58,7 +58,7 @@
     <main id="main">
 
         <!-- Navbar-->
-     <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top "  style="    background-color: rgba(253, 253, 253, 0.98)";>
+     <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top "  style="    background-color: rgba(0, 0, 0, 0.98)";>
           <div class="container-fluid">
             <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
         
@@ -149,17 +149,19 @@
         <section class="container-fluid">
 
             <!-- Breadcrumbs-->
-            <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
+            {{!-- <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> User-management</a></li>
                     <li class="breadcrumb-item active" aria-current="page">User-management</li>
                 </ol>
-            </nav>            <!-- / Breadcrumbs-->
+            </nav>            <!-- / Breadcrumbs--> --}}
 
             <!-- Page Title-->
           
             <!-- / Page Title-->
-
+<div>
+  <h2>User-management</h2>
+</div>
 
             <div class="card mb-4">
             
@@ -168,28 +170,28 @@
       {{!-- -------------------------------------------------------                 --}}
 <style>
   table{
-    border: 3px solid rgb(130, 126, 126);
-    background-color: white;
-    color: rgb(162, 153, 153);
+    border: 2px solid rgb(50, 48, 48);
+    background-color: rgb(4, 3, 3);
+    color: rgb(255, 255, 255);
 
   }
   th{
     font-size: 26px;
-    color: rgb(181, 173, 173);
+    color: rgb(255, 253, 253);
 
 font-weight: bolder;  
   height: 50px;
     width: 100px;
     text-align: center;
   }
-  td{
-    color: rgb(31, 30, 30);
+td {
+    color: rgb(255, 255, 255);
     font-size: 22px;
     font-weight: bolder;
-        border: 2px solid rgb(154, 154, 154);
-        text-align: center;
+    border: 2px solid rgb(55, 52, 52);
+    text-align: center; 
+}
 
-  }
 </style>
 
 
@@ -239,7 +241,7 @@ font-weight: bolder;
 
 </td> --}}
 <td>
-   <button onclick="toggleBlock('{{this._id}}', {{this.blocked}})"  style="background-color: white; border: none; ">
+   <button onclick="toggleBlock('{{this._id}}', {{this.blocked}})"  style="background-color: rgb(235, 233, 233); width: 100px; ">
     {{#if this.blocked}}
         Unblock 
     {{else}}
