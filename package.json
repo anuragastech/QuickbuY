@@ -9,8 +9,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@canvasjs/charts": "^3.7.42",
     "bcryptjs": "^2.4.3",
     "bootstrap-icons": "^1.11.3",
+    "chart.js": "^4.4.2",
     "cloudinary": "^1.41.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.3.1",
@@ -22,6 +24,7 @@
     "node-schedule": "^2.1.1",
     "nodemailer": "^6.9.10",
     "nodemon": "^3.0.2",
+    "npm": "^10.5.0",
     "path": "^0.12.7",
     "razorpay": "^2.9.2"
   },

@@ -43,7 +43,9 @@
 
     <!-- Page Title -->
     <title></title>
-    
+    {{!-- chart link   --}}
+   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
 </head>
 <body class="">
 
@@ -149,9 +151,60 @@
             </nav>            <!-- / Breadcrumbs-->
 
             <!-- Top Row Widgets-->
-     
+     {{!-- ---------------------------------   --}}
 
 
+   <h1>My Chart</h1>
+    <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+    <script>
+        // Function to render the chart with the provided data
+        function renderChart(chartData) {
+            // Prepare dataPoints array for CanvasJS
+            const dataPoints = chartData.map(entry => ({
+                label: entry.label,
+                y: entry.y
+            }));
+
+            // Render the chart using the provided data
+            const chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                title: {
+                    text: "My Chart"
+                },
+                data: [{
+                    type: "column",
+                    dataPoints: dataPoints
+                }]
+            });
+
+            // Render the chart
+            chart.render();
+        }
+
+        // Fetch chart data from the server
+        fetch('/admin/index')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Extract chart data
+                const chartData = data.chartData;
+
+                // Render the chart using the fetched data
+                renderChart(chartData);
+            })
+            console.log(chartData)
+            .catch(error => {
+                console.error('Error fetching or rendering chart:', error);
+            });
+    </script>
+{{!-- -----------------------------------------------   --}}
+
+  
 
             <!-- Footer -->
             <footer class="  footer">
