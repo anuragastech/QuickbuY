@@ -144,15 +144,34 @@
         <section class="container-fluid">
 
             <!-- Breadcrumbs-->
-            <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
+            {{!-- <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="/index"><i class="ri-home-line align-bottom me-1"></i> Dashboard</a></li>
                 </ol>
-            </nav>            <!-- / Breadcrumbs-->
+            </nav>         --}}
 
             <!-- Top Row Widgets-->
      {{!-- ---------------------------------   --}}
-
+<div class="container-fluid">
+  <div class="row" style="margin-left: 10%;">
+    <div class="col mx-8" style="max-width: 200px;">
+      <button class="btn btn-outline-light btn-block" style="height: 60px; width: 200px;">
+        <h1 class="text-center">fe</h1>
+      </button>
+    </div>
+    <div class="col mx-8" style="max-width: 200px;">
+      <button class="btn btn-outline-light btn-block" style="height: 60px;width: 200px;">
+        <h1 class="text-center">fe</h1>
+      </button>
+    </div>
+    <div class="col mx-" style="max-width: 200px;">
+      <button class="btn btn-outline-light btn-block" style="height: 60px;width: 200px;">
+        <h1 class="text-center">fe</h1>
+      </button>
+    </div>
+  </div>
+</div>
+{{!-- ---------------------------   --}}
 
    <h1>My Chart</h1>
     <div id="chartContainer" style="height: 370px; width: 100%;"></div>
@@ -166,7 +185,6 @@
                 y: entry.y
             }));
 
-            // Render the chart using the provided data
             const chart = new CanvasJS.Chart("chartContainer", {
                 animationEnabled: true,
                 title: {
@@ -182,8 +200,7 @@
             chart.render();
         }
 
-        // Fetch chart data from the server
-        fetch('/admin/index')
+        fetch('/admin/chart-data')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
@@ -191,17 +208,14 @@
                 return response.json();
             })
             .then(data => {
-                // Extract chart data
                 const chartData = data.chartData;
-
-                // Render the chart using the fetched data
                 renderChart(chartData);
             })
-            console.log(chartData)
             .catch(error => {
                 console.error('Error fetching or rendering chart:', error);
             });
     </script>
+
 {{!-- -----------------------------------------------   --}}
 
   

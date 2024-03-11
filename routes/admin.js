@@ -18,7 +18,9 @@ const dashboardController= require('../controllers/admin/Dashboard');
 
 router.get('/vender-product-list',otherControllers.venderlist)
 
-router.get('/index',dashboardController.chart)
+router.get('/index',dashboardController.index)
+router.get('/chart-data',dashboardController.chart)
+
 
 router.get('/login', (req,res)=>{
     res.render('admin/login')
