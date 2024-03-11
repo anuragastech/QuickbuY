@@ -136,29 +136,67 @@
 
                 </div>
                 <div class="col-lg-6">
-                    <form action="/user/send-mail" class="contact-form bg-light p-4 rounded shadow " method="post" >
-                        <div class="form-row">
-                            <div class="col-md-12 mb-3">
-                                <input type="text" class="form-control" placeholder="First Name" name="name">
-                            </div>
-                            {{!-- <div class="col-md-6 mb-3">
-                                <input type="text" class="form-control" placeholder="Last Name" name="lastname">
-                            </div> --}}
-                            <div class="col-md-12 mb-3">
-                                <input type="email" class="form-control" placeholder="E-mail" name="email">
-                            </div>
-                            <div class="col-md-12 mb-3">
-                                <input type="text" class="form-control" placeholder="Subject" name="subject" >
-                            </div>
-                            <div class="col-md-12 mb-3">
-                                <textarea class="form-control" style="border: 2px solid rgb(214, 214, 226) ;" placeholder="message" rows="4" name="message"></textarea>
-                            </div>
-                            <div class="col-md-12 text-right">
-                                <button type="submit" style="border-radius: 10px;" class="btn btn-primary">Send message</button>
-                            </div>
-                        </div>
-                    </form>
+<form action="/user/send-mail" class="contact-form bg-light p-4 rounded shadow" method="post" onsubmit="return validateForm()">
+    <div class="form-row">
+        <div class="col-md-12 mb-3">
+            <input type="text" class="form-control" placeholder="First Name" name="name" required>
+            <span class="error-message" data-validation-for="name"></span>
+        </div>
+        <div class="col-md-12 mb-3">
+            <input type="email" class="form-control" placeholder="E-mail" name="email" required>
+            <span class="error-message" data-validation-for="email"></span>
+        </div>
+        <div class="col-md-12 mb-3">
+            <input type="text" class="form-control" placeholder="Subject" name="subject" required>
+            <span class="error-message" data-validation-for="subject"></span>
+        </div>
+        <div class="col-md-12 mb-3">
+            <textarea class="form-control" style="border: 2px solid rgb(214, 214, 226);" placeholder="Message" rows="4" name="message" required></textarea>
+            <span class="error-message" data-validation-for="message"></span>
+        </div>
+        <div class="col-md-12 text-right">
+            <button type="submit" style="border-radius: 10px;" class="btn btn-primary">Send message</button>
+        </div>
+    </div>
+</form>
                 </div>
+
+<script>
+    var inputs = document.querySelectorAll('.contact-form input, .contact-form textarea');
+
+    function validateField(event) {
+        var fieldName = event.target.name;
+        var errorMessage = document.querySelector('[data-validation-for="' + fieldName + '"]');
+        
+        if (!event.target.value) {
+            errorMessage.textContent = "This field is required.";
+        } else {
+            errorMessage.textContent = "";
+        }
+    }
+
+    inputs.forEach(function(input) {
+        input.addEventListener('blur', validateField);
+    });
+
+    function validateForm() {
+        var isValid = true;
+
+        inputs.forEach(function(input) {
+            var fieldName = input.name;
+            var errorMessage = document.querySelector('[data-validation-for="' + fieldName + '"]');
+            
+            if (!input.value) {
+                errorMessage.textContent = "This field is required.";
+                isValid = false;
+            } else {
+                errorMessage.textContent = "";
+            }
+        });
+
+        return isValid;
+    }
+</script>
                 <div class="col-lg-4 mt-4 mt-lg-0">
                     <div class="contact-info">
                         <div class="contact-item">
