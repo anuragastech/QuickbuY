@@ -58,15 +58,17 @@
     <!-- Search model end -->
 
     <!-- Header Section Begin -->
-    <header class="header-section">
+    <header class="header-section" style="position: fixed;z-index:5;background-color: white;width: 100%;top:0%;">
         <div class="container-fluid">
             <div class="inner-header">
                 <div class="logo">
-                    <a href="/user/index"><img src="/logo.png" alt=""></a>
+                                        <h5 style="font-size:2em;color: #3e4152;font-weight: bold;">QuickBuY</h5>
+
+                    {{!-- <a href="/user/index"><img src="/logo.png" alt=""></a> --}}
                 </div>
                 <div class="header-right">
                     <img src="/icons/search.png" alt="" class="search-trigger">
-                    <a href="/user/profile"><img src="/icons/man.png" alt="/user/profile"></a>
+        <a href="/user/profile"><img src="/icons/man.png"   alt="/user/profile" ></a>           
                     <a href="#">
                         <img src="/icons/bag.png" alt="">
                         {{!-- <span>2</span> --}}
@@ -97,7 +99,7 @@
         </div>
     </header>
     <!-- Header Info Begin -->
-    <div class="header-info">
+    <div class="header-info" style="margin-top: 5%;">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-4">
@@ -138,11 +140,11 @@
             </div>
         </div>
     </section>
-    <div class="container-fluid" >
-        <div class="row" style="margin-left: 10%;" >
+    <div class="container">
+        <div class="row">
 
 
-            <div class="col-lg-3" style="background-color: rgb(246, 246, 246);" >
+            <div class="col-lg-3">
                 <h5 class="font-size-16 mb-1">Add address</h5>
                 <br>
 
@@ -152,13 +154,12 @@
                 </button>
 
             </div>
-            <div class="col-lg-6"  style="border: 3px solid rgb(255, 255, 255);background-color: rgb(240, 242, 242);">
+            <div class="col-lg-6">
                 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
                 <style>
                     /* Custom CSS */
                     .address-box {
-                        border: 2px solid #e3e1e1;
-                        background-color:white ;
+                        border: 1px solid #ffffff;
                         border-radius: 5px;
                         padding: 10px;
                         margin-bottom: 10px;
@@ -198,7 +199,7 @@
                     }
                 </style>
                 <h5 style="margin-left: 40px;">select Address</h4>
-                    <div class="container">
+                    <div class="container" >  
                         <div class="card" style="border: none;">
 
                             <div class="card-body">
@@ -239,367 +240,372 @@
                         }
                     </style>
             </div>
-            <div class="col-lg-2" style="border: 2px solid rgb(236, 236, 236); background-color: rgb(240, 242, 242);">
-                <div style="height: 300px; overflow-y: auto;">
-                    {{#each data }}
-                    <div>
-                        <img style="height: 80px;width: 80px;" src="{{this.productData.image.url}}" alt="">
-                        <label for="productname">Product Name: {{this.productData.productname}}</label><br>
-                        <label for="productcolor">Color: {{this.productData.color}}</label><br>
-                        <label for="price">Price: ₹{{this.productData.price}}</label><br>
-                        <label for="size">Size: {{this.size}}</label><br>
-                    </div>
-                    {{/each}}
-                </div>
-                <hr>
-                <label for="subtotal">Subtotal: <span id="subtotalValue">0</span></label><br>
-                <label for="tax">Tax (5%): <span id="taxValue">0</span></label><br>
-                <label for="shippingCost">Shipping Cost: <span id="shippingCostValue">0</span></label><br>
-                <label for="grandTotal">Grand Total: <span id="grandTotalValue">0</span></label><br>
-                <input type="hidden" id="grandTotalInput" name="grandTotal">
-                <!-- Hidden input field to store grand total -->
-                <hr>
-                <input type="text" id="couponCode" placeholder="Enter coupon code">
-                <button id="applyCouponButton" onclick="applyCoupon()">Apply Coupon</button>
-                <hr>
+            <div class="col-lg-3">
+    <div style="height: 100px; overflow-y: auto;">
+        {{#each data }}
+        <div>
+            <img style="height: 80px;width: 80px;" src="{{this.productData.image.url}}" alt="">
+            <label for="productname">Product Name: {{this.productData.productname}}</label><br>
+            <label for="productcolor">Color: {{this.productData.color}}</label><br>
+            <label for="price">Price: ₹{{this.productData.price}}</label><br>
+            <label for="size">Size: {{this.size}}</label><br>
+        </div>
+        {{/each}}
+    </div>
+    <hr>
+    <label for="subtotal">Subtotal: <span id="subtotalValue">0</span></label><br>
+    <label for="tax">Tax (5%): <span id="taxValue">0</span></label><br>
+    <label for="shippingCost">Shipping Cost: <span id="shippingCostValue">0</span></label><br>
+    <label for="grandTotal">Grand Total: <span id="grandTotalValue">0</span></label><br>
+    <input type="hidden" id="grandTotalInput" name="grandTotal"> <!-- Hidden input field to store grand total -->
+    <hr>
+    <input type="text" id="couponCode" placeholder="Enter coupon code">
+    <button id="applyCouponButton" onclick="applyCoupon()">Apply Coupon</button>
+    <hr>
+    
+      <div id="discountedAmountContainer">
+        <label for="discountedAmount">Discounted Total Amount: <span id="discountedAmountValue">0</span></label>
+    </div>
+    <hr>
+    <!-- Add payment method selection -->
+    <label>
+        <input type="radio" name="paymentMethod" value="online" checked> Online Payment
+    </label>
+    <label>
+        <input type="radio" name="paymentMethod" value="cash"> Cash on Delivery
+    </label>
+    <button style="color: rgb(255, 255, 255);background-color: green;  border: 5px solid rgb(225, 225, 225); ;height: 70px; width: 180px;" id="paymentButton" onclick="sendDataToBackend()">Proceed to Payment</button>
+</div>
 
-                <div id="discountedAmountContainer">
-                    <label for="discountedAmount">Discounted Total Amount: <span
-                            id="discountedAmountValue">0</span></label>
-                </div>
-                <hr>
-                <!-- Add payment method selection -->
-                <label>
-                    <input type="radio" name="paymentMethod" value="online" checked> Online Payment
-                </label>
-                <label>
-                    <input type="radio" name="paymentMethod" value="cash"> Cash on Delivery
-                </label>
+                {{!-- ------------------------------------------------------ --}}
+
+
+{{!-- 
                 <button
-                    style="color: rgb(255, 255, 255);background-color: green;  border: 5px solid rgb(225, 225, 225); ;height: 70px; width: 180px;"
-                    id="paymentButton" onclick="sendDataToBackend()">Proceed to Payment</button>
+                    style="height: 40px; width: 250px; background-color: rgb(50, 238, 12);color: white;">Payment</button> --}}
+                <hr>
             </div>
 
-            {{!-- ------------------------------------------------------ --}}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const priceElements = document.querySelectorAll('.col-lg-3 label[for="price"]');
+        let subtotal = 0;
+
+        priceElements.forEach(function (priceElement) {
+            const priceText = priceElement.textContent.trim(); // Get the price text
+            const priceMatch = priceText.match(/₹\s*([\d.]+)/); 
+            if (priceMatch && priceMatch[1]) {
+                const price = parseFloat(priceMatch[1]); 
+                subtotal += price;
+            } else {
+                console.error('Invalid price format:', priceText);
+            }
+        });
+
+        const tax = subtotal * 0.05; // Calculate tax (5%)
+        const shippingCost = 15; 
+        const grandTotal = subtotal + tax + shippingCost; 
+
+        const subtotalValueElement = document.getElementById('subtotalValue');
+        subtotalValueElement.textContent = `₹${subtotal.toFixed(2)}`;
+
+        const taxValueElement = document.getElementById('taxValue');
+        taxValueElement.textContent = `₹${tax.toFixed(2)}`; 
+
+        const shippingCostValueElement = document.getElementById('shippingCostValue');
+        shippingCostValueElement.textContent = `₹${shippingCost.toFixed(2)}`; 
+
+        const grandTotalValueElement = document.getElementById('grandTotalValue');
+        grandTotalValueElement.textContent = `₹${grandTotal.toFixed(2)}`; 
+
+        document.getElementById('grandTotalInput').value = grandTotal.toFixed(2);
+    });
+</script>
 
 
-            {{!--
-            <button
-                style="height: 40px; width: 250px; background-color: rgb(50, 238, 12);color: white;">Payment</button>
-            --}}
-            <hr>
-        </div>
 
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const priceElements = document.querySelectorAll('.col-lg-3 label[for="price"]');
-                let subtotal = 0;
-
-                priceElements.forEach(function (priceElement) {
-                    const priceText = priceElement.textContent.trim(); // Get the price text
-                    const priceMatch = priceText.match(/₹\s*([\d.]+)/);
-                    if (priceMatch && priceMatch[1]) {
-                        const price = parseFloat(priceMatch[1]);
-                        subtotal += price;
-                    } else {
-                        console.error('Invalid price format:', priceText);
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script>
+    function initiateRazorpayPayment(orderDetails) {
+        fetch('/user/order', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(orderDetails),
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Failed to initiate payment');
+        })
+        .then(paymentResponse => {
+            if (paymentResponse.message === 'Order placed successfully with Razorpay') {
+                // Initiate Razorpay payment
+                var options = {
+                    key: 'rzp_test_uF6rcT6FvcQis8', 
+                    amount: paymentResponse.razorpayOrder.amount,
+                    currency: 'INR',
+                    order_id: paymentResponse.razorpayOrder.id,
+                    name: 'H&d privet.lmtd',
+                    description: 'Order payment',
+                    image: 'https://example.com/your_logo.png',
+                    handler: function (response) {
+                        console.log(response);
+                        var paymentData = {
+                            payment_id: response.razorpay_payment_id,
+                            order_id: response.razorpay_order_id,
+                            signature: response.razorpay_signature
+                        };
+                        fetch('/verifyRazorpayPayment', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(paymentData),
+                        })
+                        .then(response => response.json())
+                        .then(paymentResponse => {
+                            console.log(paymentResponse);
+                        })
+                        .catch(error => {
+                            console.error('Error verifying payment:', error);
+                        });
+                    },
+                    prefill: {
+                        name: 'Anurag',
+                        email: 'anuragraveendreen98in@.com',
+                        contact: '+919539409743'
+                    },
+                    theme: {
+                        color: '#008000'
                     }
-                });
+                };
+            
 
-                const tax = subtotal * 0.05; // Calculate tax (5%)
-                const shippingCost = 15;
-                const grandTotal = subtotal + tax + shippingCost;
+                var rzp1 = new Razorpay(options);
+                rzp1.open();
+            } else if (paymentResponse.message === 'Order placed successfully with Cash on Delivery') {
+                // Display an alert for successful cash on delivery
+                alert('Order placed successfully with Cash on Delivery');
+            } else {
+                console.log(paymentResponse.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error initiating payment:', error);
+        });
+    }
 
-                const subtotalValueElement = document.getElementById('subtotalValue');
-                subtotalValueElement.textContent = `₹${subtotal.toFixed(2)}`;
+   function sendDataToBackend() {
+            var paymentMethod = document.querySelector("input[name='paymentMethod']:checked").value;
 
-                const taxValueElement = document.getElementById('taxValue');
-                taxValueElement.textContent = `₹${tax.toFixed(2)}`;
+            // Find the selected address
+            var selectedAddressElement = document.querySelector(".address-box.selected");
+            if (!selectedAddressElement) {
+                // If no address is selected, display a Toastify alert and return early
+                Toastify({
+                    text: 'Please select an address.',
+                    duration: 3000, // 3 seconds
+                    close: true,
+                    gravity: 'top', 
+                    position: 'center', 
+                    backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)', 
+                }).showToast();
+                return;
+            }
 
-                const shippingCostValueElement = document.getElementById('shippingCostValue');
-                shippingCostValueElement.textContent = `₹${shippingCost.toFixed(2)}`;
+            var addressData = {
+                id: selectedAddressElement.getAttribute("data-address-id"),
+                address: selectedAddressElement.querySelector(".address-details p:nth-child(1)").textContent.trim(),
+                phone: selectedAddressElement.querySelector(".address-details p:nth-child(2)").textContent.trim(),
+                country: selectedAddressElement.querySelector(".address-details p:nth-child(3)").textContent.trim(),
+                city: selectedAddressElement.querySelector(".address-details p:nth-child(4)").textContent.trim(),
+                state: selectedAddressElement.querySelector(".address-details p:nth-child(5)").textContent.trim(),
+                pincode: selectedAddressElement.querySelector(".address-details p:nth-child(6)").textContent.trim(),
+            };
 
-                const grandTotalValueElement = document.getElementById('grandTotalValue');
-                grandTotalValueElement.textContent = `₹${grandTotal.toFixed(2)}`;
+            var data = {
+                paymentMethod: paymentMethod,
+                address: addressData
+            };
 
-                document.getElementById('grandTotalInput').value = grandTotal.toFixed(2);
-            });
-        </script>
-
-
-
-
-        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-        <script>
-            function initiateRazorpayPayment(orderDetails) {
+            if (paymentMethod === 'online') {
+                initiateRazorpayPayment(data);
+            } else {
                 fetch('/user/order', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(orderDetails),
+                    body: JSON.stringify(data),
                 })
-                    .then(response => {
-                        if (response.ok) {
-                            return response.json();
-                        }
-                        throw new Error('Failed to initiate payment');
-                    })
-                    .then(paymentResponse => {
-                        if (paymentResponse.message === 'Order placed successfully with Razorpay') {
-                            // Initiate Razorpay payment
-                            var options = {
-                                key: 'rzp_test_uF6rcT6FvcQis8',
-                                amount: paymentResponse.razorpayOrder.amount,
-                                currency: 'INR',
-                                order_id: paymentResponse.razorpayOrder.id,
-                                name: 'H&d privet.lmtd',
-                                description: 'Order payment',
-                                image: 'https://example.com/your_logo.png',
-                                handler: function (response) {
-                                    console.log(response);
-                                    var paymentData = {
-                                        payment_id: response.razorpay_payment_id,
-                                        order_id: response.razorpay_order_id,
-                                        signature: response.razorpay_signature
-                                    };
-                                    fetch('/verifyRazorpayPayment', {
-                                        method: 'POST',
-                                        headers: {
-                                            'Content-Type': 'application/json',
-                                        },
-                                        body: JSON.stringify(paymentData),
-                                    })
-                                        .then(response => response.json())
-                                        .then(paymentResponse => {
-                                            console.log(paymentResponse);
-                                        })
-                                        .catch(error => {
-                                            console.error('Error verifying payment:', error);
-                                        });
-                                },
-                                prefill: {
-                                    name: 'Anurag',
-                                    email: 'anuragraveendreen98in@.com',
-                                    contact: '+919539409743'
-                                },
-                                theme: {
-                                    color: '#008000'
-                                }
-                            };
-
-
-                            var rzp1 = new Razorpay(options);
-                            rzp1.open();
-                        } else {
-                            console.log(paymentResponse.message);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error initiating payment:', error);
-                    });
-            }
-
-            function sendDataToBackend() {
-                var paymentMethod = document.querySelector("input[name='paymentMethod']:checked").value;
-
-                // Find the selected address
-                var selectedAddressElement = document.querySelector(".address-box.selected");
-                var addressData = null;
-                if (selectedAddressElement) {
-                    var addressId = selectedAddressElement.getAttribute("data-address-id");
-                    var addressDetails = selectedAddressElement.querySelector(".address-details");
-                    var address = {
-                        id: addressId,
-                        address: addressDetails.querySelector("p:nth-child(1)").textContent.trim(),
-                        phone: addressDetails.querySelector("p:nth-child(2)").textContent.trim(),
-                        country: addressDetails.querySelector("p:nth-child(3)").textContent.trim(),
-                        city: addressDetails.querySelector("p:nth-child(4)").textContent.trim(),
-                        state: addressDetails.querySelector("p:nth-child(5)").textContent.trim(),
-                        pincode: addressDetails.querySelector("p:nth-child(6)").textContent.trim(),
-                    };
-                    addressData = address;
-                }
-
-                var data = {
-                    paymentMethod: paymentMethod,
-                    address: addressData
-                };
-
-                if (paymentMethod === 'online') {
-                    initiateRazorpayPayment(data);
-                } else {
-                    fetch('/user/order', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(data),
-                    })
-                        .then(response => {
-                            if (response.ok) {
-                                console.log('Order placed successfully with Cash on Delivery');
-                            } else {
-                                throw new Error('Failed to place order with Cash on Delivery');
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error placing order with Cash on Delivery:', error);
-                        });
-                }
-            }
-        </script>
-
-
-
-        <script>
-
-            async function applyCoupon() {
-                const couponCode = document.getElementById('couponCode').value;
-                const grandTotal = document.getElementById('grandTotalInput').value;
-                try {
-                    const response = await fetch('/user/applycoupon', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ couponCode: couponCode, grandTotal: grandTotal })
-                    });
-
-                    if (!response.ok) {
-                        throw new Error('Failed to apply coupon');
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Order placed successfully with Cash on Delivery');
+                    } else {
+                        throw new Error('Failed to place order with Cash on Delivery');
                     }
-
-                    const data = await response.json();
-                    console.log(data)
-                    document.getElementById('discountedAmountValue').textContent = data.discountedAmount;
-                } catch (error) {
-                    console.error('Error applying coupon:', error);
-
-                }
+                })
+                .catch(error => {
+                    console.error('Error placing order with Cash on Delivery:', error);
+                });
             }
+        }
+</script>
 
 
-        </script>
+        
+            <script>
+
+              async function applyCoupon() {
+    const couponCode = document.getElementById('couponCode').value;
+    const grandTotal = document.getElementById('grandTotalInput').value; 
+    try {
+        const response = await fetch('/user/applycoupon', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ couponCode: couponCode, grandTotal: grandTotal }) 
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to apply coupon');
+        }
+
+        const data = await response.json();
+console.log(data)
+     document.getElementById('discountedAmountValue').textContent = data.discountedAmount;
+         } catch (error) {
+        console.error('Error applying coupon:', error);
+
+    }
+}
+
+
+            </script> 
 
 
 
 
 
-        <!-- Page Add Section Begin -->
+            <!-- Page Add Section Begin -->
 
-        <!-- Page Add Section End -->
+            <!-- Page Add Section End -->
 
-        <form class="frml " action="/user/checkout" method="POST">
+            <form class="frml " action="/user/checkout"  method="POST">
 
-            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content   shadow">
-                        <div class="modal-header bg-light  text-light">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Add
-                                Category</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body bg-light text-light">
-                            <div>
-                                <div class="row">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="billing-address">Address</label>
-                                        <textarea class="form-control" name="address" id="billing-address" rows="3"
-                                            placeholder="Enter full address"></textarea>
-                                    </div>
-
-                                    <div class="col-lg-4">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="billing-phone">Phone</label>
-                                            <input type="text" name="phone" class="form-control" id="billing-phone"
-                                                placeholder="Enter Phone no.">
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <div class="mb-4 mb-lg-0">
-                                            <label class="form-label">Country</label>
-                                            <select class="form-control form-select" name="country" title="Country">
-                                                <option value="0">Select Country
-                                                </option>
-                                                <option value="AF">Afghanistan</option>
-                                                <option value="AL">Albania</option>
-                                                <option value="DZ">Algeria</option>
-                                                <option value="AS">American Samoa
-                                                </option>
-                                                <option value="AD">Andorra</option>
-                                                <option value="AO">Angola</option>
-                                                <option value="AI">Anguilla</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4">
-                                        <div class="mb-4 mb-lg-0">
-                                            <label class="form-label" for="billing-city">City</label>
-                                            <input type="text" name="city" class="form-control" id="billing-city"
-                                                placeholder="Enter City">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="mb-4 mb-lg-0">
-                                            <label class="form-label" for="billing-city">State</label>
-                                            <input type="text" name="state" class="form-control" id="billing-statee"
-                                                placeholder="Enter state">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4">
-                                        <div class="mb-0">
-                                            <label class="form-label" for="zip-code">Zip
-                                                / Postal code</label>
-                                            <input type="text" name="pin" class="form-control" id="zip-code"
-                                                placeholder="Enter Postal code">
-                                        </div>
-                                    </div>
-                                </div>
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content   shadow" >
+                            <div class="modal-header bg-light  text-light">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Add
+                                    Category</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <br>
-                            <!-- Add Submit Button -->
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="modal-body bg-light text-light">
+                                <div>
+                                    <div class="row">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="billing-address">Address</label>
+                                            <textarea class="form-control" name="address" id="billing-address" rows="3"
+                                                placeholder="Enter full address"></textarea>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="billing-phone">Phone</label>
+                                                <input type="text" name="phone" class="form-control" id="billing-phone"
+                                                    placeholder="Enter Phone no.">
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-lg-4">
+                                            <div class="mb-4 mb-lg-0">
+                                                <label class="form-label">Country</label>
+                                                <select class="form-control form-select" name="country" title="Country">
+                                                    <option value="0">Select Country
+                                                    </option>
+                                                    <option value="AF">Afghanistan</option>
+                                                    <option value="AL">Albania</option>
+                                                    <option value="DZ">Algeria</option>
+                                                    <option value="AS">American Samoa
+                                                    </option>
+                                                    <option value="AD">Andorra</option>
+                                                    <option value="AO">Angola</option>
+                                                    <option value="AI">Anguilla</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <div class="mb-4 mb-lg-0">
+                                                <label class="form-label" for="billing-city">City</label>
+                                                <input type="text" name="city" class="form-control" id="billing-city"
+                                                    placeholder="Enter City">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <div class="mb-4 mb-lg-0">
+                                                <label class="form-label" for="billing-city">State</label>
+                                                <input type="text" name="state" class="form-control" id="billing-statee"
+                                                    placeholder="Enter state">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <div class="mb-0">
+                                                <label class="form-label" for="zip-code">Zip
+                                                    / Postal code</label>
+                                                <input type="text" name="pin" class="form-control" id="zip-code"
+                                                    placeholder="Enter Postal code">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <!-- Add Submit Button -->
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
                         </div>
                     </div>
+
                 </div>
+            </form>
 
-            </div>
-        </form>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <!-- Bootstrap JS (optional, if you need JavaScript functionalities from Bootstrap) -->
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <script>
+                // JavaScript for selecting one address at a time
+                document.addEventListener('DOMContentLoaded', function () {
+                    const addressBoxes = document.querySelectorAll('.address-box');
 
-        <!-- Bootstrap JS (optional, if you need JavaScript functionalities from Bootstrap) -->
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script>
-            // JavaScript for selecting one address at a time
-            document.addEventListener('DOMContentLoaded', function () {
-                const addressBoxes = document.querySelectorAll('.address-box');
-
-                addressBoxes.forEach(box => {
-                    box.addEventListener('click', () => {
-                        addressBoxes.forEach(box => {
-                            box.classList.remove('selected');
+                    addressBoxes.forEach(box => {
+                        box.addEventListener('click', () => {
+                            addressBoxes.forEach(box => {
+                                box.classList.remove('selected');
+                            });
+                            box.classList.add('selected');
                         });
-                        box.classList.add('selected');
                     });
                 });
-            });
-        </script>
+            </script>
 
-        <!-- submit  -->
+            <!-- submit  -->
 
-    </div>
+        </div>
     </div>
 
     <!-- Bootstrap JS (optional, if needed) -->

@@ -7,7 +7,7 @@
     <meta name="keywords" content="Yoga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Violet | Template</title>
+    <title></title>
 
     <!-- Google Font -->
 
@@ -61,67 +61,65 @@
     <!-- Search model end -->
 
     <!-- Header Section Begin -->
-    <header class="header-section" >
-        <div class="container-fluid">
-            <div class="inner-header" >
+    <header class="header-section" style="position: fixed;z-index:5;background-color: white;width: 100%;top:0%;">
+        <div class="container-fluid" >
+            <div class="inner-header">
                 <div class="logo">
-                    <a href="./index"><img src="/logo.png" alt=""></a>
+                    <h5 style="font-size:2em;color: #3e4152;font-weight: bold;">QuickBuY</h5>
+                        {{!-- <a href="./index"><img style="width: 50px;width:50px;" src="https://res.cloudinary.com/dd6qdgpfr/image/upload/v1710255212/photo_2024-03-12_20-09-56_sjo5zj.jpg" alt=""></a> --}}
                 </div>
                 <div class="header-right">
                     <img src="/icons/search.png" alt="" class="search-trigger">
-        <a href="/user/profile"><img src="/icons/man.png"   alt="/user/profile" ></a>           
+                    <a href="/user/profile"><img src="/icons/man.png" alt="/user/profile"></a>
                     <a href="index">
                         <img src="/icons/bag.png" alt="">
                         {{!-- <span>2</span> --}}
                     </a>
                 </div>
                 <div class="user-access">
-                     <!-- Conditional rendering based on user authentication -->
-{{#if loggedIn}}
-    <!-- Show logout button if user is logged in -->
-    {{!-- <button id="logoutButton">Logout</button> --}}
-    <a style="color: black;" href="/user/logout" id="logoutButton">Logout</a>
-{{else}}
-    <!-- Show sign in and sign up buttons if user is not logged in -->
-    {{!-- <button id="signInButton">Sign In</button>
-    <button id="signUpButton">Sign Up</button> --}}
-        <a style="color: black;" href="/user/login" id="signInButton">sign in</a>/
-    <a style="color: rgb(156, 142, 142);" href="/user/sign" id="signUpButton">sign up</a>
+                    <!-- Conditional rendering based on user authentication -->
+                    {{#if loggedIn}}
 
-{{/if}}  
+                    <a style="color: black;" href="/user/logout" id="logoutButton">Logout</a>
+                    {{else}}
+
+                    <a style="color: black;" href="/user/login" id="signInButton">sign in</a>/
+                    <a style="color: rgb(156, 142, 142);" href="/user/sign" id="signUpButton">sign up</a>
+
+                    {{/if}}
                 </div>
 
 
-<!-- Your JavaScript code can go here -->
-<script>
-    // Example JavaScript code
-    // This script can handle interactions such as logging out
-    document.addEventListener('DOMContentLoaded', () => {
-        // Check if the user is logged in
-        const loggedIn = {{loggedIn}};
+                <!-- Your JavaScript code can go here -->
+                <script>
+                    // Example JavaScript code
+                    // This script can handle interactions such as logging out
+                    document.addEventListener('DOMContentLoaded', () => {
+                        // Check if the user is logged in
+                        const loggedIn = {{ loggedIn }};
 
-        if (loggedIn) {
-            // If logged in, add event listener to the logout button
-            document.getElementById('logoutButton').addEventListener('click', () => {
-                // Perform logout actions, e.g., redirect to logout route
-                // Example: window.location.href = '/logout';
-            });
-        } else {
-            // If not logged in, add event listeners to the sign in and sign up buttons
-            document.getElementById('signInButton').addEventListener('click', () => {
-                // Perform sign in actions, e.g., redirect to sign in route
-                // Example: window.location.href = '/signin';
-            });
+                    if (loggedIn) {
+                        // If logged in, add event listener to the logout button
+                        document.getElementById('logoutButton').addEventListener('click', () => {
+                            // Perform logout actions, e.g., redirect to logout route
+                            // Example: window.location.href = '/logout';
+                        });
+                    } else {
+                        // If not logged in, add event listeners to the sign in and sign up buttons
+                        document.getElementById('signInButton').addEventListener('click', () => {
+                            // Perform sign in actions, e.g., redirect to sign in route
+                            // Example: window.location.href = '/signin';
+                        });
 
-            document.getElementById('signUpButton').addEventListener('click', () => {
-                // Perform sign up actions, e.g., redirect to sign up route
-                // Example: window.location.href = '/signup';
-            });
-        }
+                        document.getElementById('signUpButton').addEventListener('click', () => {
+                            // Perform sign up actions, e.g., redirect to sign up route
+                            // Example: window.location.href = '/signup';
+                        });
+                    }
     });
-</script>
+                </script>
 
-                
+
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li><a class="active" href="/user/index">Home</a></li>
@@ -184,55 +182,56 @@
             {{!-- {{#each homebanner}} --}}
             {{!-- <div class="single-slider-item set-bg">
                 {{!-- <img src="{{this.image.url}}" alt="" class="full-width-image"> --}}
-          {{!-- <div class="single-slider-item set-bg" data-setbg="/slider-2.jpg">
+                {{!-- <div class="single-slider-item set-bg" data-setbg="/slider-2.jpg">
 
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1>{{this.h1}}</h1>
-                            <h2>{{this.h2}}</h2>
-                            <a href="#" class="primary-btn">See More</a>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1>{{this.h1}}</h1>
+                                <h2>{{this.h2}}</h2>
+                                <a href="#" class="primary-btn">See More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
+                {{!-- {{/each}} --}}
+                {{!-- <div class="single-slider-item set-bg" data-setbg="/slider-2.jpg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1>2023</h1>
+                                <h2>Lookbook.</h2>
+                                <a href="#" class="primary-btn">See More</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>   --}}
-            {{!-- {{/each}} --}}
-            {{!-- <div class="single-slider-item set-bg" data-setbg="/slider-2.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1>2023</h1>
-                            <h2>Lookbook.</h2>
-                            <a href="#" class="primary-btn">See More</a>
+                <div class="single-slider-item set-bg" data-setbg="/slider-3.jpg">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1>2019</h1>
+                                <h2>Lookbook.</h2>
+                                <a href="#" class="primary-btn">See More</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
+                {{!--
             </div>
-            <div class="single-slider-item set-bg" data-setbg="/slider-3.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1>2019</h1>
-                            <h2>Lookbook.</h2>
-                            <a href="#" class="primary-btn">See More</a>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
-        {{!-- </div>
     </section> --}}
     <!-- Hero Slider End -->
 
 
- <section class="hero-slider">
+    <section class="hero-slider" style="height: 500px;margin-top:7%;">
         <div class="hero-items owl-carousel">
-                        {{#each homebanner }}
+            {{#each homebanner }}
 
-            <div class="single-slider-item set-bg" data-setbg="{{this.image.url}}">
-                            {{!-- <img src="{{this.image.url}}" alt="" class="full-width-image"> --}}
+            <div class="single-slider-item set-bg" style="height: 500px;" data-setbg="{{this.image.url}}">
+                {{!-- <img src="{{this.image.url}}" alt="" class="full-width-image"> --}}
 
-                <div class="container">
+                {{!-- <div class="container">
                     <div class="row">
                         <div class="col-lg-12">
                             <h1>{{this.h1}}</h1>
@@ -240,9 +239,9 @@
                             <a href="#" class="primary-btn">See More</a>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
-                        {{/each}}
+            {{/each}}
 
 
         </div>
@@ -250,8 +249,10 @@
     <!-- Features Section Begin -->
     <section class="features-section spad">
         <div class="features-ads">
-            <div class="container">
-                <div class="row">
+            <div class="container-fluid">
+                <h2 style="font-size: 1.8em;margin-left: 2%;font-family: sans-serif;color:#3e4152;font-weight: 700;">
+                    MEDAL WORTHY BRANDS TO BAG</h2>
+                {{!-- <div class="row">
                     <div class="col-lg-4">
                         <div class="single-features-ads first">
                             <img src="/icons/f-delivery.png" alt="">
@@ -276,185 +277,189 @@
                                 aliquet libero viverra cursus. </p>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
         <!-- Features Box -->
         <div class="features-box">
-            <div class="container">
+            <div class="container-fluid">
                 {{!-- <div class="row"> --}}
                     {{!-- <div class="col-lg-6">
                         <div class="row"> --}}
 
- 
-            <div class="row">
-               
-   <section>
-  <div class="container">
-    
-    <button style="border-radius: 20px; width: 10px; background-color: white; border: 2px rgb(0, 0, 0); color: rgb(22, 21, 21);" class="scroll-left-btn">&lt;</button>
-    <div class="scrollcards">
-      {{#each subcategor}}
-        <div class="card">
-                            <a onclick="" href="/user/categories/{{this.id}}"><img src="{{this.image.url}}" alt=""></a>
-          <div class="card-block">
-            <h4 class="card-title">{{this.title}}</h4>
-            <p class="card-text">{{this.description}}</p>
-          </div>
-        </div>
-      {{/each}}
-    </div>
-    <button style="" class="scroll-right-btn">&gt;</button>
-  </div>
-</section>
 
-                      
-                    </div>
-                </div>.
+                            <div class="row">
 
-                <script>
-                    document.addEventListener("DOMContentLoaded", function() {
-  const scrollContainer = document.querySelector(".scrollcards");
-  const scrollLeftBtn = document.querySelector(".scroll-left-btn");
-  const scrollRightBtn = document.querySelector(".scroll-right-btn");
+                                <section>
+                                    <div class="container-fluid">
 
-  scrollLeftBtn.addEventListener("click", function() {
-    scrollContainer.scrollLeft -= 100; // Adjust the scroll amount as needed
-  });
-
-  scrollRightBtn.addEventListener("click", function() {
-    scrollContainer.scrollLeft += 100; // Adjust the scroll amount as needed
-  });
-});
-
-                </script>
-                <style>
-                    section {
-  margin-top: 40px;
-}
-
-.container {
-  position: relative;
-}
-
-.scrollcards {
-  background-color: #fff;
-  overflow: auto;
-  white-space: nowrap;
-  padding: 0 30px; /* Adjusted padding for both left and right buttons */
-}
-
-.scroll-left-btn,
-.scroll-right-btn {
-  position: absolute;
-  top: 0;
-  width: 30px; /* Adjust button width as needed */
-  height: 100%;
-  background: transparent;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.scroll-left-btn {
-  left: 0;
-}
-
-.scroll-right-btn {
-  right: 0;
-}
-
-                </style>
-              {{!-- --------------------------------------    --}}
-
-
-
-
-
-<style>
-  section{
-  margin-top: 40px;
-}
-.card {
-  border: 2px solid rgb(254, 254, 254);
-  margin: 10px 4px;
-  transition: .6s ease;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card-block {
-   padding: 10px;
-}
-
-.scrollcards {
-  background-color: #fff;
-  overflow: auto;
-  white-space: nowrap;
-}
-
-::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
-    background: transparent;
-}
-
-div.scrollcards .card {
-    display: inline-block;
-    padding: 14px;
-    text-decoration: none;
-    height: auto; 
-    width: 300px;
-}
-
-</style>
-
-                            
-                            {{!-- {{#with categorys.[0]}}
-                            <div class="col-lg-12">
-                                <div class="single-box-item first-box">
-                                    <img src="{{image.url}}" alt="">
-                                    <div class="box-text">
-                                        <span style="color: white;" class="trend-year">{{title}} </span>
-                                        <h2></h2>
-                                        <span  style="color: white;" class="trend-alert">{{ description}}</span>
-                                        <a href="#" class="primary-btn">See More</a>
+                                        <button
+                                            style="border-radius: 20px; width: 10px; background-color: white; border: 2px rgb(0, 0, 0); color: #3e4152;"
+                                            class="scroll-left-btn">&lt;</button>
+                                        <div class="scrollcards">
+                                            {{#each subcategor}}
+                                            <div class="card">
+                                                <a onclick="" href="/user/categories/{{this.id}}"><img
+                                                        src="{{this.image.url}}" alt=""></a>
+                                                <div class="card-block">
+                                                    <h4 class="card-title">{{this.title}}</h4>
+                                                    <p class="card-text">{{this.description}}</p>
+                                                </div>
+                                            </div>
+                                            {{/each}}
+                                        </div>
+                                        <button style="" class="scroll-right-btn">&gt;</button>
                                     </div>
-                                </div>
+                                </section>
+
+
                             </div>
-                            {{/with}}
-                            {{#with categorys.[1]}}
+                        </div>.
 
-                            <div class="col-lg-12">
-                                <div class="single-box-item second-box">
-                                    <img src="{{image.url}}" alt="">
-                                    <div class="box-text">
-                                        <span style="color: rgb(0, 0, 0);" class="trend-year">{{title}}</span>
-                                        <h2>BUy</h2>
-                                        <span style="color: white;" class="trend-alert">{{ description}}</span>
-                                    </div>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                                const scrollContainer = document.querySelector(".scrollcards");
+                                const scrollLeftBtn = document.querySelector(".scroll-left-btn");
+                                const scrollRightBtn = document.querySelector(".scroll-right-btn");
+
+                                scrollLeftBtn.addEventListener("click", function () {
+                                    scrollContainer.scrollLeft -= 100; // Adjust the scroll amount as needed
+                                });
+
+                                scrollRightBtn.addEventListener("click", function () {
+                                    scrollContainer.scrollLeft += 100; // Adjust the scroll amount as needed
+                                });
+                            });
+
+                        </script>
+                        <style>
+                            section {
+                                margin-top: 40px;
+                            }
+
+                            .container {
+                                position: relative;
+                            }
+
+                            .scrollcards {
+                                background-color: #fff;
+                                overflow: auto;
+                                white-space: nowrap;
+                                padding: 0 30px;
+                                /* Adjusted padding for both left and right buttons */
+                            }
+
+                            .scroll-left-btn,
+                            .scroll-right-btn {
+                                position: absolute;
+                                top: 0;
+                                width: 30px;
+                                /* Adjust button width as needed */
+                                height: 100%;
+                                background: transparent;
+                                border: none;
+                                font-size: 20px;
+                                cursor: pointer;
+                            }
+
+                            .scroll-left-btn {
+                                left: 0;
+                            }
+
+                            .scroll-right-btn {
+                                right: 0;
+                            }
+                        </style>
+                        {{!-- -------------------------------------- --}}
+
+
+
+
+
+                        <style>
+                            section {
+                                margin-top: 40px;
+                            }
+
+                            .card {
+                                border: 2px solid rgb(254, 254, 254);
+                                margin: 10px 4px;
+                                transition: .6s ease;
+                            }
+
+                            .card:hover {
+                                transform: scale(1.05);
+                            }
+
+                            .card-block {
+                                padding: 10px;
+                            }
+
+                            .scrollcards {
+                                background-color: #fff;
+                                overflow: auto;
+                                white-space: nowrap;
+                            }
+
+                            ::-webkit-scrollbar {
+                                width: 0px;
+                                height: 0px;
+                                background: transparent;
+                            }
+
+                            div.scrollcards .card {
+                                display: inline-block;
+                                padding: 14px;
+                                text-decoration: none;
+                                height: auto;
+                                width: 300px;
+                            }
+                        </style>
+
+
+                        {{!-- {{#with categorys.[0]}}
+                        <div class="col-lg-12">
+                            <div class="single-box-item first-box">
+                                <img src="{{image.url}}" alt="">
+                                <div class="box-text">
+                                    <span style="color: white;" class="trend-year">{{title}} </span>
+                                    <h2></h2>
+                                    <span style="color: white;" class="trend-alert">{{ description}}</span>
+                                    <a href="#" class="primary-btn">See More</a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {{/with}}
-                    {{#with categorys.[2]}}
+                        {{/with}}
+                        {{#with categorys.[1]}}
 
-                    <div class="col-lg-6">
-                        <div class="single-box-item large-box">
-                            <img src="{{image.url}}" alt="">
-                            <div class="box-text">
-                                <span style="color: rgb(0, 0, 0);" class="trend-year">{{title}}</span>
-                                <h2>Collection</h2>
-                                <div style="color: rgb(1, 1, 1);" class="trend-alert">{{ description}}   </div>
+                        <div class="col-lg-12">
+                            <div class="single-box-item second-box">
+                                <img src="{{image.url}}" alt="">
+                                <div class="box-text">
+                                    <span style="color: rgb(0, 0, 0);" class="trend-year">{{title}}</span>
+                                    <h2>BUy</h2>
+                                    <span style="color: white;" class="trend-alert">{{ description}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {{/with}}
+                {{#with categorys.[2]}}
+
+                <div class="col-lg-6">
+                    <div class="single-box-item large-box">
+                        <img src="{{image.url}}" alt="">
+                        <div class="box-text">
+                            <span style="color: rgb(0, 0, 0);" class="trend-year">{{title}}</span>
+                            <h2>Collection</h2>
+                            <div style="color: rgb(1, 1, 1);" class="trend-alert">{{ description}} </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            {{/with}} --}}
+        </div>
+        {{/with}} --}}
 
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -463,12 +468,12 @@ div.scrollcards .card {
 
     <!-- Latest Product Begin -->
     <section class="latest-products spad">
-        <div class="container">
+        <div class="container-fluid">
             <div class="product-filter">
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <div class="section-title">
-                            <h2>Latest Products</h2>
+                            <h2 style="color:#3e4152 ;">Latest Products</h2>
                         </div>
                         <ul class="product-controls">
                             <li data-filter="*">All</li>
@@ -480,48 +485,54 @@ div.scrollcards .card {
                     </div>
                 </div>
             </div>
-<style>
-   .single-product-item {
-    transition: transform 0.3s ease;
-}
+            <style>
+                .single-product-item {
+                    transition: transform 0.3s ease;
+                }
 
-.single-product-item:hover {
-    transform: scale(1.08); /* Slightly expand the card on hover */
-}
-     .box {
-            width: 200px;
-            height: 200px;
-            background-color: #ffffff; /* Background color */
-            border: 1px solid #cccccc; /* Border color */
-            box-shadow: 1 1 10px rgba(0, 0, 0, 0.1); /* Box shadow */
-            /* The box shadow consists of horizontal offset, vertical offset, blur radius, and color */
-            margin: 20px; /* Margin for spacing */
-        }
- 
-</style>
+                .single-product-item:hover {
+                    transform: scale(1.08);
+                    /* Slightly expand the card on hover */
+                }
 
-          <div class="row" id="product-list shadow-lg" >
-    {{#each prdct}}
-        <div class="col-lg-4 col-sm-6 mix all dresses bags " >
-            <div class="single-product-item" style="border: 10px solid rgb(249, 249, 249);">
-                <figure>
-                    <a href="/user/productpage?name={{this._id}}">
-                        <img src="{{this.image.url}}" alt="{{this.productname}}">
-                    </a>
-                    {{!-- <div class="p-status"></div> --}}
-                </figure>
-                <div class="product-text" >
-                    <h6 style="color: black;">{{this.productname}}</h6>
-                    <p  style="color: rgb(174, 169, 169);font-family:sans-serif;font-weight: bold;font-size: 20px;">${{this.price}}</p>
+                .box {
+                    width: 200px;
+                    height: 200px;
+                    background-color: #ffffff;
+                    /* Background color */
+                    border: 1px solid #cccccc;
+                    /* Border color */
+                    box-shadow: 1 1 10px rgba(0, 0, 0, 0.1);
+                    /* Box shadow */
+                    /* The box shadow consists of horizontal offset, vertical offset, blur radius, and color */
+                    margin: 20px;
+                    /* Margin for spacing */
+                }
+            </style>
+
+            <div class="row" id="product-list shadow-lg">
+                {{#each prdct}}
+                <div class="col-lg-2 col-sm-6 mix all dresses bags ">
+                    <div class="single-product-item" style="border: 10px solid rgb(249, 249, 249);">
+                        <figure>
+                            <a href="/user/productpage?name={{this._id}}">
+                                <img src="{{this.image.url}}" alt="{{this.productname}}">
+                            </a>
+                            {{!-- <div class="p-status"></div> --}}
+                        </figure>
+                        <div class="product-text">
+                            <h6 style="color: #3e4152;">{{this.productname}}</h6>
+                            <p style="color:#3e4152;font-family:sans-serif;font-weight: bold;font-size: 20px;">
+                                ${{this.price}}</p>
+                        </div>
+                    </div>
                 </div>
+                {{/each}}
             </div>
+
+
+
         </div>
-    {{/each}}
-</div>
-
-
-
-            </div>
         </div>
         </div>
         </div>
@@ -530,7 +541,7 @@ div.scrollcards .card {
     <!-- Lookbok Section Begin -->
     <section class="lookbok-section">
         <div class="container-fluid">
-                            {{#each Homepagepics}}
+            {{#each Homepagepics}}
 
             <div class="row">
                 <div class="col-lg-4 offset-lg-1">

@@ -51,11 +51,13 @@
     <!-- Search model end -->
 
     <!-- Header Section Begin -->
-    <header class="header-section">
+    <header class="header-section" style="position: fixed;z-index:5;background-color: white;width: 100%;top:0%;">
         <div class="container-fluid">
             <div class="inner-header">
                 <div class="logo">
-                    <a href="./index"><img src="/logo.png" alt=""></a>
+                                        <h5 style="font-size:2em;color: #3e4152;font-weight: bold;">QuickBuY</h5>
+
+                    {{!-- <a href="./index"><img src="/logo.png" alt=""></a> --}}
                 </div>
                 <div class="header-right">
                     <img src="/icons/search.png" alt="" class="search-trigger">
@@ -90,7 +92,7 @@
         </div>
     </header>
     <!-- Header Info Begin -->
-    <div class="header-info">
+    <div class="header-info" style="margin-top:5%;">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-4">
@@ -198,7 +200,7 @@
                     <button class="btn btn-outline-primary" onclick="updateQuantity('{{this.productId}}')">Update</button>
                 </div>
                 <div class="product-removal col">
-                    <button class="btn btn-outline-danger" onclick="deleteCart('{{this.productId}}')">❌</button>
+                    <button class="btn btn-outline-danger" style="border: none;font-size:15px;font-weight: lighter;" onclick="deleteCart('{{this.productId}}')">❌</button>
                 </div>
                 <div class="product-line-price col">₹0</div>
              

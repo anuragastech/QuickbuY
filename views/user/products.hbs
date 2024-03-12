@@ -54,11 +54,13 @@
 	<!-- Search model end -->
 
     <!-- Header Section Begin -->
-    <header class="header-section">
+    <header class="header-section" style="position: fixed;z-index:5;background-color: white;width: 100%;top:0%;">
         <div class="container-fluid">
             <div class="inner-header">
                 <div class="logo">
-                    <a href="index"><img src="/logo.png" alt=""></a>
+                                        <h5 style="font-size:2em;color: #3e4152;font-weight: bold;">QuickBuY</h5>
+
+                    {{!-- <a href="index"><img src="/logo.png" alt=""></a> --}}
                 </div>
                 <div class="header-right">
                     <img src="/search.png" alt="" class="search-trigger">
@@ -102,7 +104,7 @@
             background-color: #f8f9fa;
             border-radius: 10px;
             padding: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             border: 2px solid black;
         }
 
@@ -124,7 +126,7 @@
     </style>
 </head>
 <body>
-<div class="container-fluid">
+<div class="container-fluid" style="margin-top: 6%;">
     <div class="row">
         <div class="col-md-2">
             <div class="filter-box">

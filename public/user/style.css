@@ -912,7 +912,8 @@ ol {
 -----------------------*/
 
 .footer-section {
-	background: #626262;
+	background: #eaebea;
+	color: black;
 	padding-bottom: 0;
 }
 
@@ -941,8 +942,8 @@ ol {
 .newslatter-form form button {
 	width: 310px;
 	height: 53px;
-	background: #B0BCC2;
-	border: 2px solid #B0BCC2;
+	background: #575757;
+	border: 2px solid #242525;
 	color: #fff;
 	cursor: pointer;
 	text-transform: uppercase;
@@ -962,13 +963,13 @@ ol {
 }
 
 .footer-widget .single-footer-widget h4 {
-	color: #fff;
+	color:#1d1d1f;
 	font-size: 26px;
 	margin-bottom: 44px;
 }
 
 .footer-widget .single-footer-widget ul li {
-	color: #fff;
+	color: #161616;
 	font-size: 14px;
 	font-weight: 500;
 	list-style: none;
@@ -977,7 +978,7 @@ ol {
 }
 
 .social-links-warp {
-	background: #626262;
+	background: #e3e0e0;
 	padding: 46px 0;
 }
 
@@ -992,7 +993,8 @@ ol {
 
 .social-links a i {
 	font-size: 30px;
-	color: #d7d7d7;
+	color: #000000;
+	font-size: 10px;
 	float: left;
 	margin-right: 19px;
 	overflow: hidden;
@@ -1005,46 +1007,46 @@ ol {
 	font-size: 12px;
 	font-weight: 400;
 	text-transform: uppercase;
-	color: #9f9fa0;
+	color: #000000;
 	padding-top: 10px;
 	-webkit-transition: all 0.3s;
 	transition: all 0.3s;
 }
 
 .social-links a.instagram:hover i {
-	color: #2F5D84;
+	color: #111111;
 }
 
 .social-links a.google-plus:hover i {
-	color: #E04B37;
+	color: #0f0e0e;
 }
 
 .social-links a.twitter:hover i {
-	color: #5abed6;
+	color: #000000;
 }
 
 .social-links a.pinterest:hover i {
-	color: #CD212D;
+	color: #060505;
 }
 
 .social-links a.facebook:hover i {
-	color: #39599F;
+	color: #080808;
 }
 
 .social-links a.twitter:hover i {
-	color: #5abed6;
+	color: #000000;
 }
 
 .social-links a.youtube:hover i {
-	color: #D12227;
+	color: #000000;
 }
 
 .social-links a.tumblr:hover i {
-	color: #37475E;
+	color: #000000;
 }
 
 .social-links a:hover span {
-	color: #fff;
+	color: #c6bfbf;
 }
 
 /*---------------------------- Other Pages Styles ----------------------------*/
