@@ -63,7 +63,7 @@
         <!-- Login Form-->
       <div class="login-container">
     <h1>Login</h1>
-    <form id="form" action="/admin/login" method="POST" onsubmit="return validateLoginForm()">
+    <form id="form" action="/admin/loginpost" method="POST" onsubmit="return validateLoginForm()">
         <label for="username">Username</label>
         <input type="email" name="email" id="username" required/>
         <span id="message" class="text-danger" style="font-size: 16px;"></span>
@@ -72,7 +72,7 @@
         <input type="password" name="password" id="password" required/>
         <span id="messagePassword" class="text-danger" style="font-size: 16px;"></span>
 
-        <a href="/admin/sign">Signup</a>
+        <a href="/admin/signup">Signup</a>
         <input type="submit">
     </form>
 </div>

@@ -12,6 +12,8 @@ function authenticateJWT(req, res, next) {
             redirectUrl = '/vender/login'; // Redirect to vender login page
         } else if (req.originalUrl.includes('/user')) {
             redirectUrl = '/user/login'; // Redirect to user login page
+        } else if (req.originalUrl.includes('/admin')) {
+            redirectUrl = '/admin/login'; // Redirect to user login page
         }
         return res.redirect(redirectUrl);
     }

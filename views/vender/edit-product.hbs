@@ -26,10 +26,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS -->
-    <link rel="stylesheet" href="/admin/libs.bundle.css" />
+    <link rel="stylesheet" href="/venderlibs.bundle.css" />
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="/admin/theme.bundle.css" />
+    <link rel="stylesheet" href="/vender/theme.bundle.css" />
 
     <!-- Fix for custom scrollbar if JS is disabled-->
     <noscript>
@@ -47,7 +47,7 @@
     <title></title>
     
 </head>
-<body class="">
+<body style="background-color: #282c3d;">
 
     <!-- Page Content -->
     <main id="main">
@@ -141,15 +141,16 @@
         </nav>        <!-- / Navbar-->
 
         <!-- Content-->
-        <section class="container-fluid">
+        <section class="container-fluid" style="background-color: #24293b;">
 
             <!-- Breadcrumbs-->
-            <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
+            {{!-- <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Edit Page</a></li>
                     <li class="breadcrumb-item active" aria-current="page">Edit Product</li>
                 </ol>
-            </nav>            <!-- / Breadcrumbs-->
+            </nav>            --}}
+             <!-- / Breadcrumbs-->
 
             <!-- Page Title-->
           
@@ -160,18 +161,7 @@
             
 
 
-<style>
-  .clr{
-    background-color: rgb(198, 157, 231);
-  }
-  .edit{
-    background-color: rgba(140, 142, 184, 0.921);
-    margin-left: 650px;
-    margin-top: -10px;
-    border: rgb(221, 222, 221);
-    
-  }
-</style>
+
 <body class="clr">
     <title>Add Product</title>
         <link rel="stylesheet" href="productAdd.css">
@@ -186,7 +176,7 @@
 
    {{#if prod }}
 
- <form style="background-color: transparent !important;border:rgb(0, 0, 0)" class="clr" action="/vender/productAdd" method="POST" enctype="multipart/form-data" >
+ <form style="background-color: transparent !important;border:rgb(0, 0, 0);border: 1px solid #e2e3e5;box-shadow:15px;border-radius: 10px;" class="clr" action="/vender/productAdd" method="POST" enctype="multipart/form-data" >
 
   <label for="productName">Product Name:</label>
   <input type="text" id="productName" name="productname"   value="{{prod.productname}}" required>
@@ -567,21 +557,18 @@
                     </div>
                     <!-- / Mobile Logo-->
     
-                    <!-- User Details-->
+             <!-- User Details-->
                     <div class="border-bottom pt-3 pb-5 mb-6 d-flex flex-column align-items-center">
                         <div class="position-relative">
-                            <picture class="avatar avatar-profile">
-                                <img class="avatar-profile-img" src="./assets/images/profile-small.jpeg"
+                            {{!-- <picture class="avatar avatar-profile">
+                                <img class="avatar-profile-img" src=""
                                   alt="">
-                            </picture>
-                            <span class="dot bg-success avatar-dot"></span>
+                            </picture> --}}
+                            {{!-- <span class="dot bg-success avatar-dot"></span> --}}
                         </div>
-                        <p class="mb-0 mt-3 text-white">Robert Jones</p>
-                        <small>robert.jones@outlook.com</small>
-                        <div class="d-flex flex-wrap mt-2 justify-content-between align-items-center">
-                            <div class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1">
-                                <a   style="width: 95px;height: 30px;color: black; background-color: white; border-radius: 25px;text-align: center;"  href="logout" >logout</a>
-                            </div>
+                        {{!-- <p class="mb-0 mt-3 text-white">Robert Jones</p> --}}
+                        <small></small>
+                     
     
                             <!-- User profile dropdown-->
                             <div class="dropdown m-0">
@@ -611,13 +598,13 @@
                     <ul class="list-unstyled mb-6 aside-menu">
     
                         <!-- Dashboard Menu Section-->
-                        <li class="menu-section">Menu</li>
+                        <li class="menu-section"></li>
                         <li class="menu-item"><a class="d-flex align-items-center menu-link" href="index"><i
                                     class="ri-home-4-line me-3"></i> <span>Dashboard</span></a></li>
                         <!-- / Dashboard Menu Section-->
     
                         <!-- UI Kit Menu Section-->
-                        <li class="menu-section mt-5">UI Kit</li>
+                        <li class="menu-section mt-5">Menu</li>
                         <li class="menu-item"><a class="d-flex align-items-center collapsed  menu-link" href="#"
                                 data-bs-toggle="collapse" data-bs-target="#collapseMenuItemUI" aria-expanded="false"
                                 aria-controls="collapseMenuItemUI"><i class="ri-shape-fill me-3"></i>
@@ -625,8 +612,8 @@
                             <div class="collapse" id="collapseMenuItemUI">
                                 <ul class="submenu">
                                     <li><a class="submenu-link" href="productlist">Productlist</a></li>
-                                    <li><a class="submenu-link" href="profile">Profile</a></li>
-                                    <li><a class="submenu-link" href=""></a></li>
+                                    {{!-- <li><a class="submenu-link" href="profile">Profile</a></li> --}}
+                                    <li><a class="submenu-link" href="orderDetails">Order List</a></li>
                                     {{!-- <li><a class="submenu-link" href="">Button</a></li>
                                     <li><a class="submenu-link" href="">Card</a></li>
                                     <li><a class="submenu-link" href="">Collapse</a></li>
@@ -640,17 +627,17 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="menu-item"><a class="d-flex align-items-center collapsed menu-link" href="#"
+                        {{!-- <li class="menu-item"><a class="d-flex align-items-center collapsed menu-link" href="#"
                                 data-bs-toggle="collapse" data-bs-target="#collapseMenuItemContent" aria-expanded="false"
                                 aria-controls="collapseMenuItemContent"><i class="ri-stack-line me-3"></i>
                                 <span>Content</span></a>
                             <div class="collapse" id="collapseMenuItemContent">
                                 <ul class="submenu">
-                                    <li><a class="submenu-link" href="./tables.html">Tables</a></li>
-                                    <li><a class="submenu-link" href="./forms.html">Forms</a></li>
+                                    <li><a class="submenu-link" href="./tables.hbs">Tables</a></li>
+                                    <li><a class="submenu-link" href="./forms.hbs">Forms</a></li>
                                 </ul>
                             </div>
-                        </li>
+                        </li> --}}
                         <!-- / UI Kit Menu Section-->
     
                         <!-- Pages Menu Section-->
@@ -660,11 +647,16 @@
                                 aria-controls="collapseMenuItemPages"><i class="ri-pencil-line me-3"></i> <span>Pages</span></a>
                             <div class="collapse" id="collapseMenuItemPages">
                                 <ul class="submenu">
-                                    <li><a class="submenu-link" href="./login.html">Login</a></li>
-                                    <li><a class="submenu-link" href="./register.html">Register</a></li>
-                                    <li><a class="submenu-link" href="./forgot-password.html">Forgot Password</a></li>
-                                    <li><a class="submenu-link" href="./404.html">404 Page</a></li>
-                                    <li><a class="submenu-link" href="./blank.html">Blank Page</a></li>
+                                    <li><a class="submenu-link" href="./profile">Profile</a></li>
+    <li>
+    <a href="logout">Logout</a>
+</li>
+
+
+                                    {{!-- <li><a class="submenu-link" href="./register.hbs">Register</a></li>
+                                    <li><a class="submenu-link" href="./forgot-password.hbs">Forgot Password</a></li>
+                                    <li><a class="submenu-link" href="./404.hbs">404 Page</a></li>
+                                    <li><a class="submenu-link" href="./blank.hbs">Blank Page</a></li> --}}
                                 </ul>
                             </div>
                         </li>

@@ -1687,7 +1687,7 @@
 .simplebar-scrollbar:before {
   position: absolute;
   content: "";
-  background: #000;
+  background: #950f0f;
   border-radius: 7px;
   left: 2px;
   right: 2px;
@@ -3796,7 +3796,7 @@ progress {
   }
 }
 .table {
-  --bs-table-bg: black;
+  --bs-table-bg:transparent;
   --bs-table-striped-color: hsla(0, 0%, 100%, 0.75);
   --bs-table-striped-bg: #202433;
   --bs-table-active-color: hsla(0, 0%, 100%, 0.75);
@@ -3848,7 +3848,7 @@ progress {
   color: var(--bs-table-active-color);
 }
 .table-hover > tbody > tr:hover {
-  --bs-table-accent-bg: var(--bs-table-hover-bg);
+  --bs-table-accent-bg:#202433;
   color: var(--bs-table-hover-color);
 }
 .table-primary {

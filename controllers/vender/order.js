@@ -2,12 +2,13 @@ const order = require('../../models/user/order');
 
 const orderlist = async (req, res) => {
     try {
-        venderId=req.user.id;
+        venderId=req.vender.id;
         // console.log(venderId);
+        // console.log("vkmeekm");
 
 
         const orderlists = await order.find({ venderId: venderId });
-        console.log(orderlists);
+        // console.log(orderlists);
         return res.render('vender/orderDetails',{orderlists});
     } catch (error) {
         console.error(error);

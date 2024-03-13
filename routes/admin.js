@@ -9,6 +9,7 @@ const multer = require("../models/common/multerconfig");
 const upload = multer.single("image");
 const HomepageController= require('../controllers/admin/Homepage');
 const userController= require('../controllers/admin/userController');
+const { authenticateJWT } = require('../middleware/authmiddleware');
 
 const venderBlockController=require('../controllers/admin/venderController')
 const orderController= require('../controllers/admin/order');
@@ -16,7 +17,7 @@ const dashboardController= require('../controllers/admin/Dashboard');
 
 
 
-router.get('/vender-product-list',otherControllers.venderlist)
+router.get('/vender-product-list',authenticateJWT,otherControllers.venderlist)
 
 router.get('/index',dashboardController.index)
 router.get('/chart-data',dashboardController.chart)
@@ -32,19 +33,22 @@ router.get('/404', (req,res)=>{
 
 // ---------------------------------------------------------------------------------------------------------------
 router.post('/HomepageFooterImage', upload,HomepageController.HomepageFooterpost );
-router.get('/HomepageFooterImage',HomepageController.HomepageFooterGet)
+router.get('/HomepageFooterImage',authenticateJWT,HomepageController.HomepageFooterGet)
 
 router.post('/HomepageController', upload,HomepageController.HomepagepicPost );
-router.get('/HomepageControl',HomepageController.HomepagepicGet)
+router.get('/HomepageControl',authenticateJWT,HomepageController.HomepagepicGet)
 
-router.post("/login",adminControllers.loginPost);
+router.post("/signup",adminControllers.AdminSignup);
+router.get("/signup",adminControllers.getsignUp);
 
 router.get("/login",adminControllers.getlogin);
+router.post("/loginpost",adminControllers.Addlogin);
+
 
 router.post("/categorylist", upload,categoryControllers.postCategory);
 
 
-router.get("/categorylist",categoryControllers.getCategorylist);
+router.get("/categorylist",authenticateJWT,categoryControllers.getCategorylist);
 
 router.get("/edit",categoryControllers.editGetCategory);
 router.post('/edit-categorylist',upload,categoryControllers.editpost)
@@ -74,7 +78,7 @@ router.post("/subcategories", upload,subCategoryControllers.postSubcategory);
 
 
 
-router.get("/subcategories",subCategoryControllers.getsubcategories)
+router.get("/subcategories",authenticateJWT,subCategoryControllers.getsubcategories)
 
 
 router.get("/admin/subcategory",subCategoryControllers.getsubcategory);
@@ -91,8 +95,8 @@ router.get("/category",(req,res)=>{
 router.get("/edit-subcategory",(req,res)=>{
     res.render('admin/edit-subcategory')
 })
-router.get("/User", otherControllers.userlist  )
-router.get("/Vender", otherControllers.venderadmin)
+router.get("/User",authenticateJWT, otherControllers.userlist  )
+router.get("/Vender",authenticateJWT, otherControllers.venderadmin)
 
 router.post('/block-user/:userId',  userController.blockUser);
 router.post('/unblock-user/:userId',  userController.unblockUser);
@@ -101,9 +105,9 @@ router.post('/unblock-user/:userId',  userController.unblockUser);
 router.post('/block-vender/:userId',  venderBlockController.blockVender);
 router.post('/unblock-vender/:userId',  venderBlockController.unblockVender);
 
-router.get('/coupen',otherControllers.getCoupen)
+router.get('/coupen',authenticateJWT,otherControllers.getCoupen)
 router.post('/coupon',otherControllers.postCoupen)
-router.get('/orderList',orderController.order )
+router.get('/orderList',authenticateJWT,orderController.order )
 router.post('/updateShippingStatus',orderController.shippingStatus)
 router.post('/OrderShippingStatus',orderController.orderStatus)
 
