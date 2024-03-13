@@ -129,7 +129,7 @@
     <section class="page-add">
         <div class="container">
             <div class="row">
-                <div class="col-lg-2">
+                <div class="col-lg-2" style="height:50px;">
                     <div class="page-breadcrumb">
                         <h2>Checkout<span>.</span></h2>
                     </div>
@@ -140,89 +140,112 @@
             </div>
         </div>
     </section>
-    <div class="container">
+    <div class="container-fluid" style="margin-bottom: 10%;">
         <div class="row">
 
 
-            <div class="col-lg-3">
-                <h5 class="font-size-16 mb-1">Add address</h5>
+            <div class="col-lg-3" style="border: 1px solid rgb(237, 237, 237);">
+                <h5 class="font-size-16 mb-1"></h5>
                 <br>
 
-                <button type="button" class="btn btn-light   btn-lg w-100 mb-3" style="border: 2px solid black;"
-                    data-toggle="modal" data-target="#exampleModalCenter">
-                    +
-                </button>
+              
 
             </div>
-            <div class="col-lg-6">
+
+            <div class="col-lg-5" style="border: 1px solid rgb(237, 232, 232);">
+<div class="row">
+    <div class="col-8">
+<h5 style="margin-top: 5%;color: black;margin-left: 6%;">Select Delivery Address</h5>
+    </div>
+<div  class="col-4">
+<button type="button" class="btn btn-light   btn-lg w-15 mb-3" style="border: 1px solid #333333; height: 40px;padding-bottom:0px;margin-top: 9%;background-color: #ffffff;"
+                    data-toggle="modal" data-target="#exampleModalCenter">
+                    Add address
+                </button>
+
+</div>
+</div>
+                  
                 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
                 <style>
-                    /* Custom CSS */
-                    .address-box {
-                        border: 1px solid #ffffff;
-                        border-radius: 5px;
-                        padding: 10px;
-                        margin-bottom: 10px;
-                        cursor: pointer;
-                        /* Add cursor pointer to indicate clickability */
-                        position: relative;
-                    }
+                      /* Custom CSS */
+    .address-box {
+        border: 1px solid #dddddd;
+        border-radius: 5px;
+        padding: 15px;
+        margin-bottom: 20px;
+        cursor: pointer;
+        position: relative;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add border shadow */
+        background-color: #ffffff; /* Add background color */
+    }
 
-                    .address-box.selected {
-                        background-color: #f0f0f0;
-                        /* Change background color when selected */
-                    }
+    .address-box.selected {
+        background-color: #f0f0f0;
+        /* Change background color when selected */
+    }
 
-                    .select-indicator {
-                        width: 12px;
-                        height: 12px;
-                        border-radius: 50%;
-                        background-color: #2d29ec;
-                        /* Bootstrap primary color for background */
-                        position: absolute;
-                        top: 5px;
-                        right: 5px;
-                        display: none;
-                        /* Initially hide the select indicator */
-                    }
+    .select-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: #2d29ec;
+        /* Bootstrap primary color for background */
+        position: absolute;
+        
+        top: 10px;
+        right: 10px;
+        display: none;
+        /* Initially hide the select indicator */
+    }
 
-                    .address-box.selected .select-indicator {
-                        display: block;
-                        /* Show select indicator when address is selected */
-                    }
+    .address-box.selected .select-indicator {
+        display: block;
+        /* Show select indicator when address is selected */
+    }
 
-                    .xl {
-                        color: black;
-                        font-size: 12px;
-                        font-weight: bolder;
-                        font-family: sans-serif;
-                    }
+    .xl {
+        color: #333333; /* Change color to text */
+        font-size: 14px; /* Increase font size */
+        font-weight: bold;
+        font-family: Arial, sans-serif; /* Change font family */
+        margin-bottom: 5px; /* Add margin bottom to separate lines */
+    }
                 </style>
-                <h5 style="margin-left: 40px;">select Address</h4>
-                    <div class="container" >  
-                        <div class="card" style="border: none;">
-
-                            <div class="card-body">
-                                <div class="row">
-                                    {{#each addressInfo}}
-                                    <div class="col-lg-4">
-                                        <div class="address-box" data-address-id="{{@index}}">
-                                            <div class="address-details">
-                                                <p class="xl"><strong>Address:</strong> {{this.address}}</p>
-                                                <p class="xl"><strong>Phone:</strong> {{this.phone}}</p>
-                                                <p class="xl"><strong>Country:</strong> {{this.country}}</p>
-                                                <p class="xl"><strong>City:</strong> {{this.city}}</p>
-                                                <p class="xl"><strong>State:</strong> {{this.state}}</p>
-                                                <p class="xl"><strong>Pincode:</strong> {{this.pin}}</p>
-                                            </div>
-                                            <div class="select-indicator"></div> <!-- Select indicator -->
-                                        </div>
-                                    </div>
-                                    {{/each}}
-                                </div>
-                            </div>
+                {{!-- <h5 style="margin-left: 40px;">Select Address</h5> --}}
+<div class="container" style="max-height: 600px; overflow-y: auto;" > <!-- Set max height and overflow -->
+    <div class="card" style="border: none;">
+        <div class="card-body" style="background-color: #ffffff;">
+            <div class="row">
+                {{#each addressInfo}}
+                <div class="col-lg-12">
+                    <div class="address-box" data-address-id="{{@index}}">
+                        <div class="address-details">
+                            <p style="color: #857979;" class="xl"><strong>Address:</strong> {{this.address}}</p>
+                            <p style="color: #857979;"class="xl"><strong>Phone:</strong> {{this.phone}}</p>
+                            <p style="color: #857979;"class="xl"><strong>Country:</strong> {{this.country}}</p>
+                            <p style="color: #857979;"class="xl"><strong>City:</strong> {{this.city}}</p>
+                            <p style="color: #857979;"class="xl"><strong>State:</strong> {{this.state}}</p>
+                            <p style="color: #857979;"class="xl"><strong>Pincode:</strong> {{this.pin}}</p>
                         </div>
+                        <div class="select-indicator"></div> <!-- Select indicator -->
                     </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+<dir class="col-10" style="border: 2px solid rgb(74, 71, 71);height: 3em;margin-top: 4%;margin-left: 10%;height:75px;border-style: dashed ;">
+  
+<button type="button" class="btn    btn-lg w-10 mb-3"  style="height: 45px;background-color: white;border: none;color: red; margin-top: 1%;"
+                    data-toggle="modal" data-target="#exampleModalCenter">
+                   + Add address
+                </button>
+</dir>
+</div>
+
                     {{!-- --------------------------------- --}}
 
                     <style>
@@ -240,31 +263,37 @@
                         }
                     </style>
             </div>
-            <div class="col-lg-3">
-    <div style="height: 100px; overflow-y: auto;">
-        {{#each data }}
+        <div class="col-lg-4" style="border: 1px solid rgb(237, 233, 233); overflow-y: auto;">
+<div class="col-lg-4" style="border: 1px solid rgb(237, 233, 233); overflow-y: scroll; max-height: 300px; max-width: 420px;margin-top:5%;">    
+        {{#each data}}
         <div>
-            <img style="height: 80px;width: 80px;" src="{{this.productData.image.url}}" alt="">
-            <label for="productname">Product Name: {{this.productData.productname}}</label><br>
-            <label for="productcolor">Color: {{this.productData.color}}</label><br>
-            <label for="price">Price: ₹{{this.productData.price}}</label><br>
-            <label for="size">Size: {{this.size}}</label><br>
-        </div>
-        {{/each}}
-    </div>
-    <hr>
+            <img style="height: 80px;width: 80px;" src="{{this.productData.image.url}}" alt=""> 
+            <label for="productname">Product Name: {{this.productData.productname}}</label><br> 
+            <label for="productcolor">Color: {{this.productData.color}}</label><br> 
+            <label for="price">Price: ₹{{this.productData.price}}</label><br> 
+            <label for="size">Size: {{this.size}}</label><br> 
+        </div> 
+        {{/each}} 
+    </div> 
+    <hr> 
     <label for="subtotal">Subtotal: <span id="subtotalValue">0</span></label><br>
     <label for="tax">Tax (5%): <span id="taxValue">0</span></label><br>
     <label for="shippingCost">Shipping Cost: <span id="shippingCostValue">0</span></label><br>
+    <br>
+    <div style="border: 1px solid #e7e4e4;"></div>
+    <br>
     <label for="grandTotal">Grand Total: <span id="grandTotalValue">0</span></label><br>
+    
     <input type="hidden" id="grandTotalInput" name="grandTotal"> <!-- Hidden input field to store grand total -->
     <hr>
+      <label for="">Coupons</label> <br>
     <input type="text" id="couponCode" placeholder="Enter coupon code">
-    <button id="applyCouponButton" onclick="applyCoupon()">Apply Coupon</button>
+  
+    <button id="applyCouponButton" onclick="applyCoupon()" style="border-color: rgb(255, 26, 26);color: red;background-color: white;">Apply Coupon</button>
     <hr>
     
-      <div id="discountedAmountContainer">
-        <label for="discountedAmount">Discounted Total Amount: <span id="discountedAmountValue">0</span></label>
+    <div id="discountedAmountContainer">
+        <label style="color: #333333;" for="discountedAmount">Discounted Total Amount: <span id="discountedAmountValue">0</span></label>
     </div>
     <hr>
     <!-- Add payment method selection -->
@@ -273,23 +302,13 @@
     </label>
     <label>
         <input type="radio" name="paymentMethod" value="cash"> Cash on Delivery
-    </label>
-    <button style="color: rgb(255, 255, 255);background-color: green;  border: 5px solid rgb(225, 225, 225); ;height: 70px; width: 180px;" id="paymentButton" onclick="sendDataToBackend()">Proceed to Payment</button>
+    </label><br>
+    <button style="color: rgb(255, 255, 255);background-color: rgb(0, 128, 49); border: 1px solid rgb(225, 225, 225); height: 50px; width:60%; border-radius: 10px;" id="paymentButton" onclick="sendDataToBackend()">Place Order</button>
 </div>
-
-                {{!-- ------------------------------------------------------ --}}
-
-
-{{!-- 
-                <button
-                    style="height: 40px; width: 250px; background-color: rgb(50, 238, 12);color: white;">Payment</button> --}}
-                <hr>
-            </div>
-
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const priceElements = document.querySelectorAll('.col-lg-3 label[for="price"]');
+        const priceElements = document.querySelectorAll('.col-lg-4 label[for="price"]');
         let subtotal = 0;
 
         priceElements.forEach(function (priceElement) {
@@ -322,7 +341,6 @@
         document.getElementById('grandTotalInput').value = grandTotal.toFixed(2);
     });
 </script>
-
 
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
