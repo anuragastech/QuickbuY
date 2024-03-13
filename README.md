@@ -19,7 +19,9 @@ QuichbuY is an e-commerce website specializing in dresses. It allows users to br
 - **Shopping Cart**: Ability to add/remove items and proceed to checkout.
 - **Payment Integration**: Integration with payment gateway for seamless transactions.
 - **Order Management**: Users can view and manage their orders.
-- **Admin Panel**: Admins can add/update/delete products and manage orders.
+- **Admin Panel**: Admins can manage user,vender .
+- - **Vender Panel**: Vender can add/update/delete products and manage orders.
+
 
 ## Installation
 
