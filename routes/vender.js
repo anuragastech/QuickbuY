@@ -42,9 +42,9 @@ router.get("/logout",authenticateJWT,venderControllers.logout )
 
 
 
-router.get('/index', (req, res) => {
-  return res.render('vender/index');
-});
+router.get('/index',dashboardController.index)
+router.get('/chart-data',dashboardController.chart)
+
 
 router.get('/profile', profileControllers.profileget)
 

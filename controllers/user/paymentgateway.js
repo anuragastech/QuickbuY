@@ -289,7 +289,7 @@ const orderid={
 
         return newOrder.save();
     });
-
+console.log(paymentMethod);
     let paymentResponse;
     if (paymentMethod === 'cash') {
         // console.log(product);

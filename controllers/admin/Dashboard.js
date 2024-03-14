@@ -9,7 +9,7 @@ const chart = (req, res) => {
         { label: "Orange", y: 15 },
         { label: "Banana", y: 25 },
         { label: "Mango", y: 30 },
-        { label: "Grape", y: 28 },
+        { label: "Grape", y: 50 },
     ];
     res.json({ chartData }); 
 }

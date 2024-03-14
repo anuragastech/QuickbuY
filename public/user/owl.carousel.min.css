@@ -10,12 +10,14 @@
 }
 .owl-carousel {
   display: none;
-  width: 80%;
+  width: 100%;
   z-index: 1;
-  left: 10%;
+  height: 50%;
+  /* left: 10%; */
 
 }
 .owl-carousel .owl-stage {
+  
   position: relative;
   -ms-touch-action: pan-Y;
   touch-action: manipulation;
@@ -30,6 +32,7 @@
   height: 0;
 }
 .owl-carousel .owl-stage-outer {
+  
   position: relative;
   overflow: hidden;
   -webkit-transform: translate3d(0, 0, 0);
@@ -44,12 +47,14 @@
   -ms-transform: translate3d(0, 0, 0);
 }
 .owl-carousel .owl-item {
+  
   min-height: 1px;
   float: left;
   -webkit-backface-visibility: hidden;
   -webkit-touch-callout: none;
 }
 .owl-carousel .owl-item img {
+  
   display: block;
   width: 100%;
 }
