@@ -364,12 +364,12 @@ const forgotPassword = async (req, res) => {
 
 const veryfyOtp = async (req, res) => {
     const {  userEnteredOTP } = req.body;
-    console.log(userEnteredOTP);
-    console.log("nfe");
+    // console.log(userEnteredOTP);
+    // console.log("nfe");
     try {
       const record = await ForgotPassword.findOne({  otp: userEnteredOTP });
       if (record) {
-        console.log(record);
+        // console.log(record);
         res.redirect(`/user/ResetPassword`);
       } else {
         res.status(400).send('Invalid OTP');
@@ -387,19 +387,26 @@ const veryfyOtp = async (req, res) => {
       res.render('user/reset-password', { phoneNumber });
   };
   
+
   const resetpasword = async (req, res) => {
-    const {  newPassword } = req.body;
+    const {  newPassword } = req.body; // Extract email from req.body
     try {
         // Find the record based on the email
-        const record = await ForgotPassword.findOne({ email });
-console.log(record,"fej");
+        const record = await ForgotPassword.find({});     
+           console.log(record, "newPassword");
+
+        console.log("fej");
+        console.log(record, "fej");
+const x=record.map(a=>a.email);
+console.log(x);
         if (!record) {
             return res.status(404).send('User not found');
         }
 
         // Update the user's password
-        // Assuming you have a User model/schema
-        const user = await create.findOneAndUpdate({ email: record.email }, { password: newPassword });
+        // Assuming you have a User model/schema, replace 'create' with your User model
+        const user = await create.findOneAndUpdate({ email:x }, { password: newPassword });
+        console.log("njf", user);
 
         if (!user) {
             return res.status(404).send('User not found');
@@ -412,6 +419,7 @@ console.log(record,"fej");
         res.status(500).send('Error resetting password');
     }
 };
+
 
   
 

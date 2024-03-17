@@ -118,7 +118,7 @@ router.post('/profileUpdateImage',upload, authenticateJWT, userControllers.postP
 router.post('/forgot-password',userControllers.forgotPassword)
 router.post('/verify-otp',userControllers.veryfyOtp) 
 router.get('/reset-password',userControllers.getResetPassword) 
-router.post('/reset-password',userControllers.resetpasword) 
+router.post('/resetpassword',userControllers.resetpasword) 
 
 router.get('/ResetPassword',(req,res)=>{
   res.render('user/ResetPassword')
