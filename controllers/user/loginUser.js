@@ -9,11 +9,18 @@ const profile=require('../../models/user/mongodb')
 const cloudinary = require("../../models/common/cloudinary");
 const { Vonage } = require('@vonage/server-sdk')
 
+const ForgotPassword =require('../../models/user/forgot-Password')
 // Initialize Vonage client with your API key and secret
 const vonages = new Vonage({
   apiKey: '71cb7d4a',
   apiSecret: 'EMyk7GgxSvSMeCgk'
 });
+
+
+
+const otpCache = new Map(); // Using a Map to store OTPs temporarily
+
+const OTP_EXPIRATION_TIME = 5 * 60 * 1000; // 5 minutes in milliseconds
 
 
 
@@ -308,6 +315,7 @@ const forgotPassword = async (req, res) => {
             return res.status(404).send('User not found');
         }
 
+
         // Function to generate OTP
         function generateOTP() {
             const length = 6; // Length of the OTP
@@ -322,7 +330,11 @@ const forgotPassword = async (req, res) => {
         // Generate OTP
         const otp = generateOTP();
 
-        // Send OTP via Vonage SMS API
+       // Store the generated OTP along with the email in the cache with expiration time
+       const record = new ForgotPassword({ email, otp });
+       await record.save();
+   
+
         const from = "918129323813"; // Replace with your Vonage virtual number
         const to = "918129323813"; // Recipient's phone number
         const text = `Your OTP for password reset is: ${otp}`;
@@ -350,44 +362,58 @@ const forgotPassword = async (req, res) => {
 };
 
 
-  const veryfyOtp = async (req, res) => {
-      const { phoneNumber, otp } = req.body;
-      try {
-          // Verify the OTP (assuming you have a separate function for this)
-          // const verification_check = await otpService.verifyOTP(phoneNumber, otp);
-          // For simplicity, let's assume verification is successful
-          const verification_check = { status: 'approved' };
-          
-          if (verification_check.status === 'approved') {
-              // Redirect to reset password page
-              res.redirect(`/reset-password?phoneNumber=${phoneNumber}`);
-          } else {
-              res.status(400).send('Invalid OTP');
-          }
-      } catch (error) {
-          console.error('Error verifying OTP:', error);
-          res.status(500).send('Error verifying OTP');
+const veryfyOtp = async (req, res) => {
+    const {  userEnteredOTP } = req.body;
+    console.log(userEnteredOTP);
+    console.log("nfe");
+    try {
+      const record = await ForgotPassword.findOne({  otp: userEnteredOTP });
+      if (record) {
+        console.log(record);
+        res.redirect(`/user/ResetPassword`);
+      } else {
+        res.status(400).send('Invalid OTP');
       }
+    } catch (error) {
+      console.error('Error verifying OTP:', error);
+      res.status(500).send('Error verifying OTP');
+    }
   };
   
+
+
   const getResetPassword = (req, res) => {
       const phoneNumber = req.query.phoneNumber;
       res.render('user/reset-password', { phoneNumber });
   };
   
   const resetpasword = async (req, res) => {
-      const { phoneNumber, newPassword } = req.body;
-      try {
-          // Update the user's password
-          const user = await create.findOneAndUpdate({ phoneNumber }, { password: newPassword });
-          if (!user) {
-              return res.status(404).send('User not found');
-          }
-          res.send('Password updated successfully');
-      } catch (error) {
-          console.error('Error resetting password:', error);
-          res.status(500).send('Error resetting password');
-      }
-  };
+    const {  newPassword } = req.body;
+    try {
+        // Find the record based on the email
+        const record = await ForgotPassword.findOne({ email });
+console.log(record,"fej");
+        if (!record) {
+            return res.status(404).send('User not found');
+        }
+
+        // Update the user's password
+        // Assuming you have a User model/schema
+        const user = await create.findOneAndUpdate({ email: record.email }, { password: newPassword });
+
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        // Password updated successfully
+        res.send('Password updated successfully');
+    } catch (error) {
+        console.error('Error resetting password:', error);
+        res.status(500).send('Error resetting password');
+    }
+};
+
+  
+
 
 module.exports={Addlogin,Addsign,getsign,getlogin,getlogout,sendmail ,profileData ,GetProfile, postAddresses,postProfilepic ,forgotPassword,veryfyOtp,getResetPassword,resetpasword};
