@@ -115,7 +115,18 @@ router.post('/postAddress',authenticateJWT, userControllers.postAddresses)
 router.post('/profileUpdateImage',upload, authenticateJWT, userControllers.postProfilepic)
 
 
+router.post('/forgot-password',userControllers.forgotPassword)
+router.post('/verify-otp',userControllers.veryfyOtp) 
+router.get('/reset-password',userControllers.getResetPassword) 
+router.post('/reset-password',userControllers.resetpasword) 
 
+router.get('/ResetPassword',(req,res)=>{
+  res.render('user/ResetPassword')
+  });
+
+  router.get('/matchEmail',(req,res)=>{
+    res.render('user/matchEmail')
+    });
 module.exports = router;
 
 
