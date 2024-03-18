@@ -1,6 +1,4 @@
-// const CanvasJS = require("@canvasjs/charts")
-// Function to calculate or fetch chart data
-// Backend route to provide chart data
+
 
 const Order = require("../../models/user/order");
 
@@ -82,7 +80,7 @@ const index = async (req, res) => {
       ]);
       const canceledOrdersResult = await Order.aggregate([
         {
-          $match: { status: "canceled" } // Assuming "canceled" is the status for canceled orders
+          $match: { status: "canceled" } 
         },
         {
           $group: {
@@ -96,9 +94,8 @@ const index = async (req, res) => {
       const totalSales = totalPriceResult.map(x => x.totalSales);
       const totalCost =  Math.round(0.8 * totalSales);
 
-      // Calculate total profit
       const totalProfit = totalSales - totalCost;
-      console.log(totalCanceledOrders);
+    //   console.log(totalCanceledOrders);
   
       res.render("admin/index", { chartData, totalSales ,totalProfit ,totalCanceledOrders});
     } catch (error) {
