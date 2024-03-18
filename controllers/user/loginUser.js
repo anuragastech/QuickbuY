@@ -389,32 +389,27 @@ const veryfyOtp = async (req, res) => {
   
 
   const resetpasword = async (req, res) => {
-    const {  newPassword } = req.body; // Extract email from req.body
+    const {  newPassword } = req.body; 
     try {
-        // Find the record based on the email
         const record = await ForgotPassword.find({});     
-           console.log(record, "newPassword");
+     
 
-        console.log("fej");
-        console.log(record, "fej");
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
 const x=record.map(a=>a.email);
-console.log(x);
         if (!record) {
             return res.status(404).send('User not found');
         }
 
-        // Update the user's password
-        // Assuming you have a User model/schema, replace 'create' with your User model
-        const user = await create.findOneAndUpdate({ email:x }, { password: newPassword });
-        console.log("njf", user);
+
+        const user = await create.findOneAndUpdate({ email:x }, { password: hashedPassword });
 
         if (!user) {
             return res.status(404).send('User not found');
         }
 
-        // Password updated successfully
-        res.send('Password updated successfully');
-    } catch (error) {
+        res.redirect('/user/login'); // Adjust the URL as per your application's routes  
+      } catch (error) {
         console.error('Error resetting password:', error);
         res.status(500).send('Error resetting password');
     }
