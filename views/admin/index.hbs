@@ -156,17 +156,23 @@
   <div class="row" style="margin-left: 10%;">
     <div class="col mx-8" style="max-width: 200px;">
       <button class="btn btn-outline-light btn-block" style="height: 60px; width: 200px;">
-        <h1 class="text-center">fe</h1>
+     
+        <h1 class="text-center"> <p style="font-size: 18px;">Total Sales: {{ totalSales }}</p>
+  
+        
       </button>
+    
+
     </div>
+    
     <div class="col mx-8" style="max-width: 200px;">
       <button class="btn btn-outline-light btn-block" style="height: 60px;width: 200px;">
-        <h1 class="text-center">fe</h1>
+        <h1 class="text-center"> <p style="font-size: 18px;">Total Profit: {{totalProfit}} </p> </h1>
       </button>
     </div>
     <div class="col mx-" style="max-width: 200px;">
       <button class="btn btn-outline-light btn-block" style="height: 60px;width: 200px;">
-        <h1 class="text-center">fe</h1>
+        <h1 class="text-center"><p style="font-size: 18px;">Total Order canceled: {{totalCanceledOrders}} </p></h1>
       </button>
     </div>
   </div>
@@ -185,9 +191,19 @@
     }
 </style>
 
+
+
    <h1>My Chart</h1>
     <div id="chartContainer" style="height: 370px; width: 80%;background-color: black;"></div>
 
+
+
+  <ul>
+        {{#each chartData}}
+        <li style="border: 4px solid rgb(180, 175, 175); width: 150px; margin-top:5%;padding:5px;">Total Orders: {{this.totalOrders}}, Month: {{this.month}}</li>
+        {{/each}}
+    </ul>
+    
    <script>
     // Function to render the chart with the provided data
     function renderChart(chartData) {
@@ -200,7 +216,7 @@
         const chart = new CanvasJS.Chart("chartContainer", {
             animationEnabled: true,
             title: {
-                text: "Profit and Loss Datas",
+                text: "Total orders",
                   color: "white",
             },
             data: [{
