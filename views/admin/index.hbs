@@ -239,6 +239,7 @@
         .then(data => {
             const chartData = data.chartData;
             renderChart(chartData);
+
         })
         .catch(error => {
             console.error('Error fetching or rendering chart:', error);

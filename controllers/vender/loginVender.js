@@ -61,6 +61,7 @@ let loginvender = async (req, res) => {
 
 let signvender = async(req,res)=>{
     try {
+        // console.log("njvrn");
         const { name, email, password } = req.body;
         const myEncryptedPassword = await bcrypt.hash(password, 10);
 
@@ -92,6 +93,9 @@ let signvender = async(req,res)=>{
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+
+
+
 
  let getlogin = (req, res) => {
     return res.render("vender/login");

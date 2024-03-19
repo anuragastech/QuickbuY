@@ -21,7 +21,7 @@ router.get("/login",venderControllers.getlogin);
 
 router.get("/signup",venderControllers.getsignup);
 
-router.post("/signup",authenticateJWT,venderControllers.signvender);
+router.post("/signup",venderControllers.signvender);
 
 
 
@@ -42,8 +42,8 @@ router.get("/logout",authenticateJWT,venderControllers.logout )
 
 
 
-router.get('/index',dashboardController.index)
-router.get('/chart-data',dashboardController.chart)
+router.get('/index',authenticateJWT,dashboardController.index)
+router.get('/chart-data',authenticateJWT,dashboardController.chart)
 
 
 router.get('/profile', profileControllers.profileget)
