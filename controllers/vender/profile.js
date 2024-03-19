@@ -1,66 +1,91 @@
 const cloudinary = require("../../models/common/cloudinary");
 const multer = require("../../models/common/multerconfig");
 const venderprofile = require('../../models/vender/venderprofile');
-
-let createvenderProfile = async (req, res) => {
+const createvenderProfile = async (req, res) => {
     try {
-        const upload = multer.single("image"); // Move multer middleware here
-        
-        upload(req, res, async function (err) {
-            if (err && err instanceof multer.MulterError) {
-                // A Multer error occurred when uploading.
-                return res.status(400).json({ error: 'Multer error occurred' });
-            } else if (err) {
-                // An unknown error occurred when uploading.
-                return res.status(500).json({ error: 'Internal Server Error' });
-            }
-            
-            // Check if req.file is undefined
-            if (!req.file) {
-                return res.status(400).json({ error: 'No file uploaded' });
-            }
+        const { vendername, Brandname, CompanyDetails } = req.body;
+        const venderId = req.vender.id
 
-            const { vendername, email } = req.body;
-            const desiredWidth = 1080;
-            const desiredHeight = 1920;
+        if (!req.file) {
+            return res.status(400).json({ error: 'No file uploaded' });
+        }
 
-            // Upload the file to Cloudinary
-            const results = await cloudinary.uploader.upload(req.file.path, {
-                width: desiredWidth,
-                height: desiredHeight,
-                crop: 'scale'
-            });
+        const desiredWidth = 1080;
+        const desiredHeight = 1920;
 
-            // Create a new vender profile object
-            const newvenderprofile = new venderprofile({
+        const results = await cloudinary.uploader.upload(req.file.path, {
+            width: desiredWidth,
+            height: desiredHeight,
+            crop: 'scale'
+        });
+
+        console.log(results);
+
+        const existingProfile = await venderprofile.findOne({ venderId });
+
+        if (existingProfile) {
+                existingProfile.vendername = vendername;
+            existingProfile.Brandname = Brandname;
+            existingProfile.CompanyDetails = CompanyDetails;
+            existingProfile.image = {
+                public_id: results.public_id,
+                url: results.secure_url
+            };
+
+            const updatedVenderProfile = await existingProfile.save();
+            res.redirect('/vender/profile');
+        } else {
+            const newVenderProfile = new venderprofile({
                 vendername: vendername,
-                email: email,
+                Brandname: Brandname,
+                CompanyDetails: CompanyDetails,
+                venderId: venderId,
                 image: {
                     public_id: results.public_id,
                     url: results.secure_url
                 }
             });
 
-            // Save the vender profile
-            const savedvenderprofile = await newvenderprofile.save();
-
-            // Return the saved vender profile in the response
-            res.status(201).json(savedvenderprofile);
-        });
+            const savedVenderProfile = await newVenderProfile.save();
+            res.redirect('/vender/profile');
+        }
     } catch (error) {
-        // Catch any unhandled errors
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
 
+
+//  let profileget = async (req, res) => {
+//     res.render("vender/profile")
+//  }
 let profileget = async (req, res) => {
     try {
-        const profile = await venderprofile.find();
-        return res.render('vender/profile', { profile }); 
+        const venderId = req.vender.id; 
+        console.log(venderId);
+        const vendorProfiles = await venderprofile.find({ venderId: venderId });
+        console.log(vendorProfiles);
+        if (!vendorProfiles || vendorProfiles.length === 0) {
+            return res.status(404).send('Vendor profile not found');
+        }
+
+        const vendername = vendorProfiles[0].vendername;
+        const Brandname = vendorProfiles[0].Brandname;
+        const CompanyDetails = vendorProfiles[0].CompanyDetails;
+        const image = vendorProfiles[0].image;
+        // console.log(vendername);
+
+        res.render('vender/profile', { 
+            vendername,
+            Brandname,
+            CompanyDetails,
+            image
+        });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
+
 module.exports = { createvenderProfile ,profileget};

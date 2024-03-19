@@ -46,7 +46,7 @@ router.get('/index',authenticateJWT,dashboardController.index)
 router.get('/chart-data',authenticateJWT,dashboardController.chart)
 
 
-router.get('/profile', profileControllers.profileget)
+router.get('/profile',authenticateJWT, profileControllers.profileget)
 
 
 router.get('/pagination', (req, res) => {
@@ -70,7 +70,7 @@ router.get('/home', (req, res) => {
   return res.render('vender/home');
 });
 
-router.post('/profile',profileControllers.createvenderProfile)
+router.post('/profile',upload,authenticateJWT,profileControllers.createvenderProfile)
 
 router.get('/categories',authenticateJWT, getcatasubController.getcategory)
   
