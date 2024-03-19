@@ -56,15 +56,11 @@ const createvenderProfile = async (req, res) => {
 };
 
 
-//  let profileget = async (req, res) => {
-//     res.render("vender/profile")
-//  }
+
 let profileget = async (req, res) => {
     try {
         const venderId = req.vender.id; 
-        console.log(venderId);
         const vendorProfiles = await venderprofile.find({ venderId: venderId });
-        console.log(vendorProfiles);
         if (!vendorProfiles || vendorProfiles.length === 0) {
             return res.status(404).send('Vendor profile not found');
         }
@@ -73,7 +69,6 @@ let profileget = async (req, res) => {
         const Brandname = vendorProfiles[0].Brandname;
         const CompanyDetails = vendorProfiles[0].CompanyDetails;
         const image = vendorProfiles[0].image;
-        // console.log(vendername);
 
         res.render('vender/profile', { 
             vendername,

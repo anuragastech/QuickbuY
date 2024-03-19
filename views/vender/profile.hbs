@@ -172,13 +172,14 @@
     <section class="container-fluid">
 
       <!-- Breadcrumbs-->
-      <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
+      {{!-- <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i>
               Dashboard</a></li>
           <li class="breadcrumb-item active" aria-current="page">Blank Page</li>
         </ol>
-      </nav> <!-- / Breadcrumbs-->
+      </nav> --}}
+       <!-- / Breadcrumbs-->
 
       <!-- Page Title-->
 
@@ -187,10 +188,9 @@
 
       <div class="card mb-4">
 
-
         {{!-- ------------------------------------------------------- --}}
         <!-- Button trigger modal -->
-        <h1 class="h10"> Profile </h1>
+     
       
 
 
@@ -235,13 +235,16 @@
 <div class="container text-center mt-5">
     <div class="row">
       <div class="col">
+           <h3 style="align-items: center;" class="h10"> Profile </h3>
+
             <img class="profile-image rounded-circle" src="{{ image.url }}" alt="{{ vendername }} Profile Image" style="width: 150px; height: 150px;">
         </div>
     </div>
     <div class="row mt-3">
         <div class="col">
             <button type="button"
-                    class="btn btn-primary"
+                    class="btn btn-secondary "
+                    style="border: 1px solid white;"
                     data-toggle="modal"
                     data-target="#exampleModalCenter">
                 Add profile data
@@ -252,8 +255,8 @@
 
 <div class="container mt-5">
     <div class="row">
-        <div class="col text-center">
-            <h2>{{ vendername }} Profile</h2>
+        <div class="col text-center tect-light">
+            <h2>User Name :{{ vendername }} Profile</h2>
             <p><strong>Brand Name:</strong> {{ Brandname }}</p>
             <p><strong>Company Details:</strong> {{ CompanyDetails }}</p>
         </div>

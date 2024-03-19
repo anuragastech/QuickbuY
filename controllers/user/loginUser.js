@@ -1,7 +1,7 @@
 const secretKey =  'mynameissomethinglikestartwithathatsit';
 const bcrypt=require('bcryptjs')
 const jwt= require('jsonwebtoken');
-
+const Order =require("../../models/user/order")
 const create=require('../../models/user/mongodb')
  const nodemailer=require("nodemailer");
 const { response } = require('express');
@@ -177,9 +177,9 @@ let getsign=(req,res)=>{
             const userId = req.user.id;
             try {
                 const getProfileData = await profile.findOne({ _id: userId });
-                // console.log("fkggk", getProfileData.profileData);
-        
-                res.render('user/profile', { profileData: getProfileData.profileData }); // Assuming your template expects 'profileData'
+        const orderData =await Order.find({userId})
+        console.log(orderData);
+                res.render('user/profile', { profileData: getProfileData.profileData }); 
             } catch (error) {
                 console.error(error);
                 res.status(500).send("Internal Server Error");
@@ -260,16 +260,13 @@ let getsign=(req,res)=>{
 
         const postProfilepic = async (req, res) => {
             try {
-                // Check if a file was uploaded
                 if (!req.file) {
                     return res.status(400).json({ success: false, message: 'No file uploaded' });
                 }
         
-                // Desired dimensions for the uploaded image
                 const desiredWidth = 300;
                 const desiredHeight = 200;
         
-                // Upload the image to Cloudinary
                 const result = await cloudinary.uploader.upload(req.file.path, {
                     width: desiredWidth,
                     height: desiredHeight,
@@ -278,19 +275,15 @@ let getsign=(req,res)=>{
         
                 console.log('Image uploaded to Cloudinary:', result);
         
-                // Find the profile in the database
                 const userProfile = await profile.findById(req.user.id);
                 
-                // Update the profile with the uploaded image details
                 userProfile.image = {
                     url: result.secure_url,
                     public_id: result.public_id
                 };
         
-                // Save the updated profile
                 await userProfile.save();
         
-                // Send success response
                 res.status(200).json({ success: true, message: 'Image uploaded successfully to Cloudinary and saved to the profile' });
             } catch (error) {
                 console.error('Error uploading image to Cloudinary:', error);
@@ -300,7 +293,6 @@ let getsign=(req,res)=>{
         
 
 
-// Array to store OTPs
 
 
 
@@ -308,18 +300,15 @@ let getsign=(req,res)=>{
 const forgotPassword = async (req, res) => {
     const { email } = req.body;
     try {
-        // Find the user by email
         const user = await create.findOne({ email });
         if (!user) {
-            // If user doesn't exist, show an alert
             return res.status(404).send('User not found');
         }
 
 
-        // Function to generate OTP
         function generateOTP() {
-            const length = 6; // Length of the OTP
-            const digits = '0123456789'; // Allowed characters in the OTP
+            const length = 6; 
+            const digits = '0123456789'; 
             let otp = '';
             for (let i = 0; i < length; i++) {
                 otp += digits[Math.floor(Math.random() * 10)];
@@ -327,16 +316,14 @@ const forgotPassword = async (req, res) => {
             return otp;
         }
 
-        // Generate OTP
         const otp = generateOTP();
 
-       // Store the generated OTP along with the email in the cache with expiration time
        const record = new ForgotPassword({ email, otp });
        await record.save();
    
 
-        const from = "918129323813"; // Replace with your Vonage virtual number
-        const to = "918129323813"; // Recipient's phone number
+        const from = "918129323813"; 
+        const to = "918129323813"; 
         const text = `Your OTP for password reset is: ${otp}`;
 
         async function sendSMS() {
@@ -344,7 +331,6 @@ const forgotPassword = async (req, res) => {
                 const responseData = await vonages.sms.send({ to, from, text });
                 console.log('Message sent successfully');
                 console.log(responseData);
-                // Redirect to the reset password page
                 res.redirect(`/user/reset-password`);
             } catch (error) {
                 console.error('Error sending SMS:', error);
@@ -352,7 +338,6 @@ const forgotPassword = async (req, res) => {
             }
         }
 
-        // Call the sendSMS function
         await sendSMS();
 
     } catch (error) {
@@ -408,7 +393,7 @@ const x=record.map(a=>a.email);
             return res.status(404).send('User not found');
         }
 
-        res.redirect('/user/login'); // Adjust the URL as per your application's routes  
+        res.redirect('/user/login'); 
       } catch (error) {
         console.error('Error resetting password:', error);
         res.status(500).send('Error resetting password');

@@ -61,6 +61,12 @@ venderId: {
   ref: 'vender',
   // required: true
 },
+userId: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: 'user',
+  // required: true
+},
+
 
   
   

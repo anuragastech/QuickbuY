@@ -230,6 +230,7 @@ const orderid={
    category:category,
    subcategory:subcategory,
    venderId:venderId,
+ 
     }
     // console.log("hell0", orderid);
     orders.push(orderid);
@@ -283,6 +284,7 @@ const orderid={
             paymentStatus:'success',
             shippingStatus:'processing',
             orderAccepted:'pending',
+            userId:userId,
 
         
         });
