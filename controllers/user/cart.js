@@ -60,9 +60,11 @@ const updateCart = async (req, res) => {
   
 let  getcartpage=async (req, res) => {
     try {
+
         const products = await product.find().populate('category').populate('subcategory');
         
         res.render('user/cart', { products });
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });
@@ -164,4 +166,4 @@ let getshoppingcart = async (req, res) => {
 
 
 
-module.exports={ updateCart, deleteCart,getcartpage,postcart,getshoppingcart}
+module.exports={ updateCart, deleteCart,getcartpage,postcart,getshoppingcart}  

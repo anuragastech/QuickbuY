@@ -21,7 +21,7 @@ router.get("/login",venderControllers.getlogin);
 
 router.get("/signup",venderControllers.getsignup);
 
-router.post("/signup",authenticateJWT,venderControllers.signvender);
+router.post("/signup",venderControllers.signvender);
 
 
 
@@ -42,8 +42,8 @@ router.get("/logout",authenticateJWT,venderControllers.logout )
 
 
 
-router.get('/index',dashboardController.index)
-router.get('/chart-data',dashboardController.chart)
+router.get('/index',authenticateJWT,dashboardController.index)
+router.get('/chart-data',authenticateJWT,dashboardController.chart)
 
 
 router.get('/profile', profileControllers.profileget)
@@ -83,6 +83,19 @@ router.get('/categories',authenticateJWT, getcatasubController.getcategory)
   router.post('/updateShippingStatus',ordersControls.shippingStatus)
 router.post('/OrderShippingStatus',ordersControls.orderStatus)
 
+
+
+router.post('/forgot-password',venderControllers.forgotPassword)
+router.post('/verify-otp',venderControllers.veryfyOtp) 
+router.get('/reset-password',venderControllers.getResetPassword) 
+router.post('/resetpassword',venderControllers.resetpasword) 
+
+router.get('/ResetPassword',(req,res)=>{
+  res.render('vender/ResetPassword')
+  });
+  router.get('/matchEmail',(req,res)=>{
+    res.render('vender/matchEmail')
+    });
 // dashboard  
 
 

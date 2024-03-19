@@ -7,6 +7,54 @@ const create=require('../../models/user/mongodb')
 const { response } = require('express');
 const profile=require('../../models/user/mongodb')
 const cloudinary = require("../../models/common/cloudinary");
+const { Vonage } = require('@vonage/server-sdk')
+
+const ForgotPassword =require('../../models/user/forgot-Password')
+// Initialize Vonage client with your API key and secret
+const vonages = new Vonage({
+  apiKey: '71cb7d4a',
+  apiSecret: 'EMyk7GgxSvSMeCgk'
+});
+
+
+
+const otpCache = new Map(); // Using a Map to store OTPs temporarily
+
+const OTP_EXPIRATION_TIME = 5 * 60 * 1000; // 5 minutes in milliseconds
+
+
+
+// require('dotenv').config(); // Load environment variables
+// const twilio = require('twilio');
+
+// const accountSid = "ACab0bff2c60ea38e03fa4814041e5e86f";
+// const authToken = "3b2976ea427d81e9b01c4715e03eb455";
+// // const twilioPhoneNumber = "9995937035"
+// const twilioClient = twilio(accountSid, authToken);
+
+// client.verify.v2
+//   .services(verifySid)
+//   .verifications.create({ to: "+918129323813", channel: "sms" })
+//   .then((verification) => console.log(verification.status))
+//   .then(() => {
+//     const readline = require("readline").createInterface({
+//       input: process.stdin,
+//       output: process.stdout,
+//     });
+
+
+// const client = twilio(accountSid, authToken);
+
+// client.messages
+//     .create({
+//         body: 'This is a test message sent from Twilio!',
+//         from: twilioPhoneNumber,
+//         to: '+1234567890' // Replace with the recipient's phone number
+//     })
+//     .then(message => console.log('Message sent. SID:', message.sid))
+//     .catch(error => console.error('Error sending message:', error));
+
+
 
  
 let Addsign=async (req, res) => {
@@ -251,4 +299,124 @@ let getsign=(req,res)=>{
         };
         
 
-module.exports={Addlogin,Addsign,getsign,getlogin,getlogout,sendmail ,profileData ,GetProfile, postAddresses,postProfilepic};
+
+// Array to store OTPs
+
+
+
+
+const forgotPassword = async (req, res) => {
+    const { email } = req.body;
+    try {
+        // Find the user by email
+        const user = await create.findOne({ email });
+        if (!user) {
+            // If user doesn't exist, show an alert
+            return res.status(404).send('User not found');
+        }
+
+
+        // Function to generate OTP
+        function generateOTP() {
+            const length = 6; // Length of the OTP
+            const digits = '0123456789'; // Allowed characters in the OTP
+            let otp = '';
+            for (let i = 0; i < length; i++) {
+                otp += digits[Math.floor(Math.random() * 10)];
+            }
+            return otp;
+        }
+
+        // Generate OTP
+        const otp = generateOTP();
+
+       // Store the generated OTP along with the email in the cache with expiration time
+       const record = new ForgotPassword({ email, otp });
+       await record.save();
+   
+
+        const from = "918129323813"; // Replace with your Vonage virtual number
+        const to = "918129323813"; // Recipient's phone number
+        const text = `Your OTP for password reset is: ${otp}`;
+
+        async function sendSMS() {
+            try {
+                const responseData = await vonages.sms.send({ to, from, text });
+                console.log('Message sent successfully');
+                console.log(responseData);
+                // Redirect to the reset password page
+                res.redirect(`/user/reset-password`);
+            } catch (error) {
+                console.error('Error sending SMS:', error);
+                res.status(500).send('Error sending OTP');
+            }
+        }
+
+        // Call the sendSMS function
+        await sendSMS();
+
+    } catch (error) {
+        console.error('Error generating OTP:', error);
+        res.status(500).send('Error generating OTP');
+    }
+};
+
+
+const veryfyOtp = async (req, res) => {
+    const {  userEnteredOTP } = req.body;
+    // console.log(userEnteredOTP);
+    // console.log("nfe");
+    try {
+      const record = await ForgotPassword.findOne({  otp: userEnteredOTP });
+      if (record) {
+        // console.log(record);
+        res.redirect(`/user/ResetPassword`);
+      } else {
+        res.status(400).send('Invalid OTP');
+      }
+    } catch (error) {
+      console.error('Error verifying OTP:', error);
+      res.status(500).send('Error verifying OTP');
+    }
+  };
+  
+
+
+  const getResetPassword = (req, res) => {
+      const phoneNumber = req.query.phoneNumber;
+      res.render('user/reset-password', { phoneNumber });
+  };
+  
+
+  const resetpasword = async (req, res) => {
+    const {  newPassword } = req.body; 
+    try {
+        const record = await ForgotPassword.find({});     
+     
+
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+const x=record.map(a=>a.email);
+        if (!record) {
+            return res.status(404).send('User not found');
+        }
+
+
+        const user = await create.findOneAndUpdate({ email:x }, { password: hashedPassword });
+
+        if (!user) {
+            return res.status(404).send('User not found');
+        }
+
+        res.redirect('/user/login'); // Adjust the URL as per your application's routes  
+      } catch (error) {
+        console.error('Error resetting password:', error);
+        res.status(500).send('Error resetting password');
+    }
+};
+
+
+  
+
+
+module.exports={Addlogin,Addsign,getsign,getlogin,getlogout,sendmail ,profileData ,GetProfile, postAddresses,postProfilepic ,forgotPassword,veryfyOtp,getResetPassword,resetpasword};

@@ -1,33 +1,25 @@
 const mongoose = require("mongoose");
 
-const  checkoutSchema = mongoose.Schema({
-
+const checkoutSchema = mongoose.Schema({
     products: [
         {
             productId: {
-                type: mongoose.Schema.Types.ObjectId, 
+                type: mongoose.Schema.Types.ObjectId,
                 ref: 'product',
-                // required: true
             },
-           productname: {
+            productName: {
                 type: String,
-                // required: true
             },
             size: {
                 type: String,
-                // required: true
             },
             quantity: {
                 type: String,
-                // required: true
             },
-          
-            vednerId: {
+            vendorId: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'vender',
-                // required: true
+                ref: 'vendor',
             },
-          
         }
     ],
     createdAt: {
@@ -38,19 +30,20 @@ const  checkoutSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'user',
         required: true
-    }, 
+    },
     coupon: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'coupen' 
+        ref: 'coupon'
     },
     appliedCouponCode: {
-        type: String 
+        type: String
     },
     discountedAmount: {
-        type: Number 
+        type: Number
     },
 });
 
-
+// Create a unique index on the userId field
+checkoutSchema.index({ userId: 1 }, { unique: true });
 
 module.exports = mongoose.model("Checkout", checkoutSchema);

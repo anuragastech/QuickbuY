@@ -111,7 +111,17 @@ router.get('/orderList',authenticateJWT,orderController.order )
 router.post('/updateShippingStatus',orderController.shippingStatus)
 router.post('/OrderShippingStatus',orderController.orderStatus)
 
+router.post('/forgot-password',adminControllers.forgotPassword)
+router.post('/verify-otp',adminControllers.veryfyOtp) 
+router.get('/reset-password',adminControllers.getResetPassword) 
+router.post('/resetpassword',adminControllers.resetpasword) 
 
+router.get('/ResetPassword',(req,res)=>{
+  res.render('admin/ResetPassword')
+  });
+  router.get('/matchEmail',(req,res)=>{
+    res.render('admin/matchEmail')
+    });
 // Dashboard route 
 
 
