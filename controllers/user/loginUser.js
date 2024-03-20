@@ -93,7 +93,7 @@ console.log(newCreate);
 
         res.cookie('token', token, options);
 
-        res.redirect('login');
+        res.redirect('/login');
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
@@ -119,7 +119,7 @@ let Addlogin  = async (req, res) => {
 
             res.cookie('token', token, options);
 
-            return res.redirect('index');
+            return res.redirect('/index');
         } else {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
@@ -140,7 +140,7 @@ let getsign=(req,res)=>{
         let getlogout= (req, res) => {
             res.clearCookie("token");
         
-            res.redirect("/user/login");
+            res.redirect("/login");
         };
 
 
@@ -169,7 +169,7 @@ let getsign=(req,res)=>{
                 } else {
                     console.log("Email sent: " + info.response);
                 }
-                res.redirect("/user/contact"); 
+                res.redirect("/contact"); 
             });
         };
         
@@ -249,7 +249,7 @@ let getsign=(req,res)=>{
         
                 await currentUser.save();
         
-                res.redirect('/user/profile');
+                res.redirect('/profile');
                 } catch (error) {
                 console.error('Error saving address:', error);
                 res.status(500).json({ message: 'Failed to save address' });
@@ -331,7 +331,7 @@ const forgotPassword = async (req, res) => {
                 const responseData = await vonages.sms.send({ to, from, text });
                 console.log('Message sent successfully');
                 console.log(responseData);
-                res.redirect(`/user/reset-password`);
+                res.redirect(`/reset-password`);
             } catch (error) {
                 console.error('Error sending SMS:', error);
                 res.status(500).send('Error sending OTP');
@@ -355,7 +355,7 @@ const veryfyOtp = async (req, res) => {
       const record = await ForgotPassword.findOne({  otp: userEnteredOTP });
       if (record) {
         // console.log(record);
-        res.redirect(`/user/ResetPassword`);
+        res.redirect(`/ResetPassword`);
       } else {
         res.status(400).send('Invalid OTP');
       }
@@ -393,7 +393,7 @@ const x=record.map(a=>a.email);
             return res.status(404).send('User not found');
         }
 
-        res.redirect('/user/login'); 
+        res.redirect('/login'); 
       } catch (error) {
         console.error('Error resetting password:', error);
         res.status(500).send('Error resetting password');

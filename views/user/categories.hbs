@@ -69,23 +69,23 @@
                     </a>
                 </div>
                      <div class="user-access">
-                     <a href="/user/sign" style="display: none;"  >Register</a>
-                    <a href="/user/login"  style="display: none;"  class="in">Sign in</a>
-                                        <a href="/user/sign"  >Logout</a>
+                     <a href="/sign" style="display: none;"  >Register</a>
+                    <a href="/login"  style="display: none;"  class="in">Sign in</a>
+                                        <a href="/sign"  >Logout</a>
                 </div>
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li><a class="active" href="/user/index">Home</a></li>
-                        <li><a href="/user/categories">Shop</a>
+                        <li><a class="active" href="/index">Home</a></li>
+                        <li><a href="/categories">Shop</a>
                             <ul class="sub-menu">
-                                <li><a href="/user/products">Product Page</a></li>
-                                <li><a href="/user/shopping-cart">Shopping Card</a></li>
-                                {{!-- <li><a href="/user/check-out">Check out</a></li> --}}
+                                <li><a href="/products">Product Page</a></li>
+                                <li><a href="/shopping-cart">Shopping Card</a></li>
+                                {{!-- <li><a href="/check-out">Check out</a></li> --}}
                             </ul>
                         </li>
-                        <li><a href="/user/product-page">About</a></li>
-                        <li><a href="/user/check-out">Blog</a></li>
-                        <li><a href="/user/contact">Contact</a></li>
+                        <li><a href="/product-page">About</a></li>
+                        <li><a href="/check-out">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -124,7 +124,7 @@
     <div class="scrollcards">
       {{#each subcategor}}
         <div class="card">
-                            <a onclick="" href="/user/categories/{{this.id}}"><img src="{{this.image.url}}" alt=""></a>
+                            <a onclick="" href="/categories/{{this.id}}"><img src="{{this.image.url}}" alt=""></a>
           <div class="card-block">
             <h4 class="card-title">{{this.title}}</h4>
             <p class="card-text">{{this.description}}</p>
@@ -257,7 +257,7 @@ div.scrollcards .card {
             {{!-- ------  --}}
           <div class="product" data-price="50">
             <div class="img">
-                            <a href="/user/productpage?name={{this._id}}"><img src="{{this.image.url}}" alt=""></a>
+                            <a href="/productpage?name={{this._id}}"><img src="{{this.image.url}}" alt=""></a>
             </div>
             <div class="info">
                 <h3 style="color: black;margin-right: 10%;fo">{{this.productname}}</h3>

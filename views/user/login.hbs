@@ -69,22 +69,22 @@
                     </a>
                 </div>
                      <div class="user-access">
-                    <a href="/user/sign">Register</a>
-                    <a href="/user/login" class="in">Sign in</a>
+                    <a href="/sign">Register</a>
+                    <a href="/login" class="in">Sign in</a>
                 </div>
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li><a class="active" href="/user/index">Home</a></li>
-                        <li><a href="/user/products">Shop</a>
+                        <li><a class="active" href="/index">Home</a></li>
+                        <li><a href="/products">Shop</a>
                             <ul class="sub-menu">
-                                {{!-- <li><a href="/user/productdetails">Product Page</a></li> --}}
-                                <li><a href="/user/shopping-cart">Shopping Card</a></li>
-                                {{!-- <li><a href="/user/check-out">Check out</a></li> --}}
+                                {{!-- <li><a href="/productdetails">Product Page</a></li> --}}
+                                <li><a href="/shopping-cart">Shopping Card</a></li>
+                                {{!-- <li><a href="/check-out">Check out</a></li> --}}
                             </ul>
                         </li>
-                        <li><a href="/user/product-page">About</a></li>
-                        <li><a href="/user/check-out">Blog</a></li>
-                        <li><a href="/user/contact">Contact</a></li>
+                        <li><a href="/product-page">About</a></li>
+                        <li><a href="/check-out">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -96,7 +96,7 @@
     <div class="container">
         <div class="row justify-content-center" style="margin-top: 120px;">
             <div class="col-lg-5 col-md-6">
-                <form action="/user/login" method="post" class="p-4 border rounded shadow-lg" onsubmit="return validateLoginForm()">
+                <form action="/login" method="post" class="p-4 border rounded shadow-lg" onsubmit="return validateLoginForm()">
                     <h1 class="text-center mb-4">Login</h1>
                     <div class="mb-3">
                         <input type="text" class="form-control" placeholder="Username" name="email" id="username" oninput="validateEmail()" required>
@@ -109,7 +109,7 @@
                     <div class="mb-3 form-check">
                         <input class="form-check-input" type="checkbox" id="rememberMe">
                         <label class="form-check-label" for="rememberMe">Remember Me</label>
-                        <a href="/user/matchEmail" class="ms-3">Forgot password?</a>
+                        <a href="/matchEmail" class="ms-3">Forgot password?</a>
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">Login</button>
                     <div class="mt-3 text-center">

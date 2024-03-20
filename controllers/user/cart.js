@@ -63,7 +63,7 @@ let  getcartpage=async (req, res) => {
 
         const products = await product.find().populate('category').populate('subcategory');
         
-        res.render('user/cart', { products });
+        res.render('/cart', { products });
 
     } catch (error) {
         console.error(error);
@@ -111,7 +111,7 @@ let postcart = async (req, res) => {
             }
         }
 
-        return res.redirect('/user/shopping-cart');
+        return res.redirect('/shopping-cart');
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'Internal server error' });

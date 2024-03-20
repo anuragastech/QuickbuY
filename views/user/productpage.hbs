@@ -101,25 +101,25 @@
                     </a>
                 </div>
                 <div class="user-access">
-                    <a href="/user/sign" style="display: none;">Register</a>
-                    <a href="/user/login" style="display: none;" class="in">Sign in</a>
-                    <a href="/user/logout">Logout</a>
+                    <a href="/sign" style="display: none;">Register</a>
+                    <a href="/login" style="display: none;" class="in">Sign in</a>
+                    <a href="/logout">Logout</a>
                     </a>
 
                 </div>
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li><a class="active" href="/user/index">Home</a></li>
-                        <li><a href="/user/products">Shop</a>
+                        <li><a class="active" href="/index">Home</a></li>
+                        <li><a href="/products">Shop</a>
                             <ul class="sub-menu">
                                 {{!-- <li><a href="/user/products">Product Page</a></li> --}}
-                                <li><a href="/user/shopping-cart">Shopping Card</a></li>
-                                {{!-- <li><a href="/user/check-out">Check out</a></li> --}}
+                                <li><a href="/shopping-cart">Shopping Card</a></li>
+                                {{!-- <li><a href="/check-out">Check out</a></li> --}}
                             </ul>
                         </li>
-                        <li><a href="/user/shopping-cart">About</a></li>
-                        <li><a href="/user/check-out">Blog</a></li>
-                        <li><a href="/user/contact">Contact</a></li>
+                        <li><a href="/shopping-cart">About</a></li>
+                        <li><a href="/check-out">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -261,7 +261,7 @@
 
                             <div class="col-8 col-md-4 col-lg-3 mb-3">
                                 <div class="card" style="display: flex; flex-direction: row;">
-                                    <a href="/user/productpage?name={{this._id}}" tabindex="-1">
+                                    <a href="/productpage?name={{this._id}}" tabindex="-1">
 
                                         <img class="card-img" src="{{this.image.url}}" alt="Image">
 
@@ -362,12 +362,12 @@
 
     <script>
         function cartProduct(productId) {
-            axios.post(`/user/cart/product/${productId}`)
+            axios.post(`/cart/product/${productId}`)
                 .then((response) => {
                     if (response.status !== 200) {
                         throw new Error('Cart request failed');
                     } else {
-                        document.location.href = "/user/shopping-cart";
+                        document.location.href = "/shopping-cart";
                     }
                 })
                 .catch((error) => {
@@ -418,7 +418,7 @@
             };
 
             // Using Axios to post data to the server
-            axios.post('/user/cart/product', data)
+            axios.post('/cart/product', data)
                 .then(function (response) {
                     // Handle success
                     Toastify({
