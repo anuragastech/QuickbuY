@@ -177,8 +177,9 @@ let getsign=(req,res)=>{
             const userId = req.user.id;
             try {
                 const getProfileData = await profile.findOne({ _id: userId });
-        const orderData =await Order.find({userId})
-        console.log(orderData);
+        const orderData =await Order.find({userId:userId})
+        console.log("jbhfrtrnj");
+        console.log(orderData,"mkerjtnjbhfb");
                 res.render('user/profile', { profileData: getProfileData.profileData }); 
             } catch (error) {
                 console.error(error);
