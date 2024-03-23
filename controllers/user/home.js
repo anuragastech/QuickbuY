@@ -38,7 +38,6 @@ const getproductDataIn = async (req, res) => {
             const Homepagepics = await HomepageFooter.find();
             const prdctSliced = prdcts.slice(0, 8); // Limit to 8 products
 
-            // Render the home page without user-specific content
             res.render('user/index', { subcategor, prdct: prdctSliced, categorys, homebanner, Homepagepics, loggedIn: false });
         }
     } catch (error) {

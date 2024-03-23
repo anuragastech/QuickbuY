@@ -2,7 +2,6 @@
 
 const register=require('../../models/vender/mongodb')
 
-// Controller logic for blocking a user
 const blockVender = async (req, res) => {
     try {
         const userId = req.params.userId;
@@ -14,7 +13,6 @@ const blockVender = async (req, res) => {
     }
 };
 
-// Controller logic for unblocking a user
 const unblockVender = async (req, res) => {
     try {
         const userId = req.params.userId;

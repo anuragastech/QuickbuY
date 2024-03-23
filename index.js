@@ -28,7 +28,6 @@ app.use('/vender',venderRouter)
 app.use('/admin', adminRouter);
 
 
-
 app.use('/',userRouter);
 
 // mongoose
