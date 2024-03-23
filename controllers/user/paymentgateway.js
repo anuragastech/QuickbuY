@@ -27,7 +27,7 @@ let postAddress = async (req, res) => {
 
         await currentUser.save();
 
-        res.redirect('/user/check-out');
+        res.redirect('/check-out');
         } catch (error) {
         console.error('Error saving address:', error);
         res.status(500).json({ message: 'Failed to save address' });
@@ -118,7 +118,7 @@ const postCarttocheckout = async (req, res) => {
         const clearCheckoutJob = schedule.scheduleJob('*/2 * * * *', clearOldCheckouts);
 // console.log(clearCheckoutJob);
         // Redirect the user to the checkout page after successful addition
-        res.redirect('/user/check-out');
+        res.redirect('/check-out');
     } catch (error) {
         console.error('Error transferring items to checkout:', error);
         res.status(500).json({ error: 'Internal Server Error' });
@@ -163,7 +163,6 @@ const coupencheck = async (req, res) => {
                 discountedAmount
             });
         }
-// console.log("Amt",discountedAmount);
         res.json({ discountedAmount });
     } catch (error) {
         console.error('Error applying coupon:', error);
@@ -188,7 +187,6 @@ const coupencheck = async (req, res) => {
     const quantity=products.map(product=>product.quantity)
     const price=checkoutData.map(price=>price.discountedAmount);
 const prices =price[0]
-    // console.log("price",price);
 
     // console.log(quantity);
     const orders=[]
@@ -230,6 +228,7 @@ const orderid={
    category:category,
    subcategory:subcategory,
    venderId:venderId,
+ 
     }
     // console.log("hell0", orderid);
     orders.push(orderid);
@@ -283,9 +282,11 @@ const orderid={
             paymentStatus:'success',
             shippingStatus:'processing',
             orderAccepted:'pending',
+            userId:userId,
 
         
         });
+        console.log(userId,"hellpo");
 
         return newOrder.save();
     });

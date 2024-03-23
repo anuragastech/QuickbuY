@@ -65,12 +65,14 @@
         <div class="container-fluid" >
             <div class="inner-header">
                 <div class="logo">
-                    <h5 style="font-size:2em;color: #3e4152;font-weight: bold;">QuickBuY</h5>
+<a href="/index">
+    <h5 style="font-size: 2em; color: #3e4152; font-weight: bold;">QuickBuY</h5>
+</a>
                         {{!-- <a href="./index"><img style="width: 50px;width:50px;" src="https://res.cloudinary.com/dd6qdgpfr/image/upload/v1710255212/photo_2024-03-12_20-09-56_sjo5zj.jpg" alt=""></a> --}}
                 </div>
                 <div class="header-right">
                     <img src="/icons/search.png" alt="" class="search-trigger">
-                    <a href="/user/profile"><img src="/icons/man.png" alt="/user/profile"></a>
+                    <a href="/profile"><img src="/icons/man.png" alt="/profile"></a>
                     <a href="index">
                         <img src="/icons/bag.png" alt="">
                         {{!-- <span>2</span> --}}
@@ -80,11 +82,11 @@
                     <!-- Conditional rendering based on user authentication -->
                     {{#if loggedIn}}
 
-                    <a style="color: black;" href="/user/logout" id="logoutButton">Logout</a>
+                    <a style="color: black;" href="/logout" id="logoutButton">Logout</a>
                     {{else}}
 
-                    <a style="color: black;" href="/user/login" id="signInButton">sign in</a>/
-                    <a style="color: rgb(156, 142, 142);" href="/user/sign" id="signUpButton">sign up</a>
+                    <a style="color: black;" href="/login" id="signInButton">sign in</a>/
+                    <a style="color: rgb(156, 142, 142);" href="/sign" id="signUpButton">sign up</a>
 
                     {{/if}}
                 </div>
@@ -122,17 +124,17 @@
 
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li><a class="active" href="/user/index">Home</a></li>
-                        <li><a href="/user/products">Shop</a>
+                        <li><a class="active" href="/index">Home</a></li>
+                        <li><a href="/products">Shop</a>
                             <ul class="sub-menu">
                                 {{!-- <li><a href="/user/products">Product Page</a></li> --}}
-                                <li><a href="/user/shopping-cart">Shopping Card</a></li>
-                                {{!-- <li><a href="/user/check-out">Check out</a></li> --}}
+                                <li><a href="/shopping-cart">Shopping Card</a></li>
+                                {{!-- <li><a href="/check-out">Check out</a></li> --}}
                             </ul>
                         </li>
-                        <li><a href="/user/index">About</a></li>
-                        <li><a href="/user/check-out">Blog</a></li>
-                        <li><a href="/user/contact">Contact</a></li>
+                        <li><a href="/index">About</a></li>
+                        <li><a href="/check-out">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -299,7 +301,7 @@
                                         <div class="scrollcards">
                                             {{#each subcategor}}
                                             <div class="card">
-                                                <a onclick="" href="/user/categories/{{this.id}}"><img
+                                                <a onclick="" href="/categories/{{this.id}}"><img
                                                         src="{{this.image.url}}" alt=""></a>
                                                 <div class="card-block">
                                                     <h4 class="card-title">{{this.title}}</h4>
@@ -515,7 +517,7 @@
                 <div class="col-lg-2 col-sm-6 mix all dresses bags ">
                     <div class="single-product-item" style="border: 10px solid rgb(249, 249, 249);">
                         <figure>
-                            <a href="/user/productpage?name={{this._id}}">
+                            <a href="/productpage?name={{this._id}}">
                                 <img src="{{this.image.url}}" alt="{{this.productname}}">
                             </a>
                             {{!-- <div class="p-status"></div> --}}

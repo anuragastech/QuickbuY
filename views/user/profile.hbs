@@ -70,24 +70,24 @@
                         </a>
                     </div>
                     <div class="user-access">
-                        <a href="/user/sign" style="display: none;">Register</a>
-                        <a href="/user/login" style="display: none;" class="in">Sign in</a>
-                        <a href="/user/logout">Logout</a>
+                        <a href="/sign" style="display: none;">Register</a>
+                        <a href="/login" style="display: none;" class="in">Sign in</a>
+                        <a href="/logout">Logout</a>
 
                     </div>
                     <nav class="main-menu mobile-menu">
                         <ul>
-                            <li><a class="active" href="/user/index">Home</a></li>
-                            <li><a href="/user/products">Shop</a>
+                            <li><a class="active" href="/index">Home</a></li>
+                            <li><a href="/products">Shop</a>
                                 <ul class="sub-menu">
                                     {{!-- <li><a href="/user/products">Product Page</a></li> --}}
-                                    <li><a href="/user/shopping-cart">Shopping Card</a></li>
+                                    <li><a href="/shopping-cart">Shopping Card</a></li>
                                     {{!-- <li><a href="/user/check-out">Check out</a></li> --}}
                                 </ul>
                             </li>
-                            <li><a href="/user/products">About</a></li>
-                            <li><a href="/user/">Blog</a></li>
-                            <li><a href="/user/contact">Contact</a></li>
+                            <li><a href="/products">About</a></li>
+                            <li><a href="/">Blog</a></li>
+                            <li><a href="/contact">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -196,6 +196,16 @@
                             Bay Area, San Francisco, CA
                         </div>
                     </div>
+                                        <hr>
+
+                       <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Order Details</h6>
+                        </div>
+                        <div class="col-sm-9 text-dark">
+                            ??
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -247,6 +257,9 @@
             </div>
         </div>
     </div>
+
+
+
     {{!-- -------------------------------------- --}}
     {{!--
     <script>
@@ -278,7 +291,7 @@
     </script> --}}
     {{!-- ----------------------------------------------------- --}}
 
-    <form class="frml " action="/user/postAddress" method="POST">
+    <form class="frml " action="/postAddress" method="POST">
 
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -373,7 +386,7 @@
                 Edit Profile
             </button> --}}
             <!-- Edit modal -->
-            <form action="/user/profileData" method="POST">
+            <form action="/profileData" method="POST">
                 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel"
                     aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">

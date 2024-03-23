@@ -1,18 +1,22 @@
 const mongoose = require("mongoose");
 
 const userprofileSchema = mongoose.Schema({
-  username: {
+  vendername: {
     type: String,
     required: true,
   },
-  email: {
+  Brandname: {
     type: String,
     required: true,
 },
-  // userId: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'registers',
-  // },
+CompanyDetails: {
+  type: String,
+  required: true,
+},
+  venderId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'registers',
+  },
   image:{
     public_id:{
      type:String,
@@ -26,4 +30,4 @@ const userprofileSchema = mongoose.Schema({
 
 });
 
-module.exports = mongoose.model("userprofile", userprofileSchema);
+module.exports = mongoose.model("venderprofile", userprofileSchema);

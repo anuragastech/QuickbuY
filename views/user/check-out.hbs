@@ -64,35 +64,35 @@
                 <div class="logo">
                                         <h5 style="font-size:2em;color: #3e4152;font-weight: bold;">QuickBuY</h5>
 
-                    {{!-- <a href="/user/index"><img src="/logo.png" alt=""></a> --}}
+                    {{!-- <a href="/index"><img src="/logo.png" alt=""></a> --}}
                 </div>
                 <div class="header-right">
                     <img src="/icons/search.png" alt="" class="search-trigger">
-        <a href="/user/profile"><img src="/icons/man.png"   alt="/user/profile" ></a>           
+        <a href="/profile"><img src="/icons/man.png"   alt="/profile" ></a>           
                     <a href="#">
                         <img src="/icons/bag.png" alt="">
                         {{!-- <span>2</span> --}}
                     </a>
                 </div>
                 <div class="user-access">
-                    <a href="/user/sign" style="display: none;">Register</a>
-                    <a href="/user/login" style="display: none;" class="in">Sign in</a>
-                    <a href="/user/sign">Logout</a>
+                    <a href="/sign" style="display: none;">Register</a>
+                    <a href="/login" style="display: none;" class="in">Sign in</a>
+                    <a href="/sign">Logout</a>
 
                 </div>
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li><a class="active" href="/user/index">Home</a></li>
-                        <li><a href="/user/products">Shop</a>
+                        <li><a class="active" href="/index">Home</a></li>
+                        <li><a href="/products">Shop</a>
                             <ul class="sub-menu">
-                                {{!-- <li><a href="/user/products">Product Page</a></li> --}}
-                                <li><a href="/user/shopping-cart">Shopping Card</a></li>
-                                {{!-- <li><a href="/user/check-out">Check out</a></li> --}}
+                                {{!-- <li><a href="/products">Product Page</a></li> --}}
+                                <li><a href="/shopping-cart">Shopping Card</a></li>
+                                {{!-- <li><a href="/check-out">Check out</a></li> --}}
                             </ul>
                         </li>
-                        <li><a href="/user/check-out">About</a></li>
-                        <li><a href="/user/check-out">Blog</a></li>
-                        <li><a href="/user/contact">Contact</a></li>
+                        <li><a href="/check-out">About</a></li>
+                        <li><a href="/check-out">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -348,7 +348,7 @@
 <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script>
     function initiateRazorpayPayment(orderDetails) {
-        fetch('/user/order', {
+        fetch('/order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -455,7 +455,7 @@
             if (paymentMethod === 'online') {
                 initiateRazorpayPayment(data);
             } else {
-                fetch('/user/order', {
+                fetch('/order', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -484,7 +484,7 @@
     const couponCode = document.getElementById('couponCode').value;
     const grandTotal = document.getElementById('grandTotalInput').value; 
     try {
-        const response = await fetch('/user/applycoupon', {
+        const response = await fetch('/applycoupon', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -516,7 +516,7 @@ console.log(data)
 
             <!-- Page Add Section End -->
 
-            <form class="frml " action="/user/checkout"  method="POST">
+            <form class="frml " action="/checkout"  method="POST">
 
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -635,7 +635,7 @@ console.log(data)
 
 
     {{!-- -------------------------------------------------------------------------- --}}
-    <div id="checkout-data"></div>
+    {{!-- <div id="checkout-data"></div> --}}
 
     <script>
         // Fetch cart data and render it on the checkout page

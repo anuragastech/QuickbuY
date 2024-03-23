@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 const cookieParser=require('cookie-parser');
 
 const venderRouter=require('./routes/vender')
-const userRouter=require('./routes/user')
+const userRouter = require('./routes/user');
 const adminRouter=require('./routes/admin')
 
 
@@ -23,10 +23,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 
-app.use('/user',userRouter);
+// app.use('/user', userRouter);
 app.use('/vender',venderRouter)
 app.use('/admin', adminRouter);
 
+
+app.use('/',userRouter);
 
 // mongoose
 //     .connect("mongodb://localhost:27017/data")

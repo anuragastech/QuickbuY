@@ -70,22 +70,22 @@
                 <div class="user-access">
                     {{!-- <a href="/user/sign">Register</a>
                     <a href="/user/login" class="in">Sign in</a> --}}
-                    <a href="/user/logout">Logout</a>
+                    <a href="/logout">Logout</a>
 
                 </div>
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li><a class="active" href="/user/index">Home</a></li>
-                        <li><a href="/user/products">Shop</a>
+                        <li><a class="active" href="/index">Home</a></li>
+                        <li><a href="/products">Shop</a>
                             <ul class="sub-menu">
                                 {{!-- <li><a href="/user/products">Product Page</a></li> --}}
-                                <li><a href="/user/shopping-cart">Shopping Card</a></li>
-                                {{!-- <li><a href="/user/check-out">Check out</a></li> --}}
+                                <li><a href="/shopping-cart">Shopping Card</a></li>
+                                {{!-- <li><a href="/check-out">Check out</a></li> --}}
                             </ul>
                         </li>
-                        <li><a href="/user/product-page">About</a></li>
-                        <li><a href="/user/check-out">Blog</a></li>
-                        <li><a href="/user/contact">Contact</a></li>
+                        <li><a href="/product-page">About</a></li>
+                        <li><a href="/check-out">Blog</a></li>
+                        <li><a href="/contact">Contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -253,7 +253,7 @@
         selectedItems.push(productId);
     });
 
-    fetch('/user/checkoutpost', {
+    fetch('/checkoutpost', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -265,7 +265,7 @@
             throw new Error('Network response was not ok');
         }
         // Handle successful response
-        window.location.href = '/user/check-out';
+        window.location.href = '/check-out';
             })
     .catch(function(error) {
         console.error('Error:', error);
@@ -298,10 +298,10 @@
         <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script>
             function deleteCart(cartId) {
-                axios.delete(`/user/deletecart/${cartId}`)
+                axios.delete(`/deletecart/${cartId}`)
                     .then((response) => {
                         if (response.status === 200) {
-                            window.location.href = "/user/shopping-cart";
+                            window.location.href = "/shopping-cart";
                         } else {
                             throw new Error('Delete request failed');
                         }
@@ -317,7 +317,7 @@
             function updateQuantity(cartId) {
                 const newQuantity = document.getElementById(`quantity-${cartId}`).value;
 
-                axios.post(`/user/update-cart/${cartId}`, { quantity: newQuantity })
+                axios.post(`/update-cart/${cartId}`, { quantity: newQuantity })
                     .then((response) => {
                         if (response.status === 200) {
                             // You may want to refresh the page or update the UI here
@@ -342,7 +342,7 @@
 
 
         </script>
-        <script src="/user/cart.js"></script>
+
         <!-- Footer Section Begin -->
         <footer class="footer-section spad">
             <div class="container">
@@ -440,6 +440,8 @@
         <script src="/user/mixitup.min.js"></script>
         <script src="/user/main.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist//bootstrap.bundle.min.js"></script>
+                <script src="/user/cart.js"></script>
+
 
     </body>
 
