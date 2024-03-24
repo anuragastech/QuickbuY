@@ -177,7 +177,8 @@ const coupencheck = async (req, res) => {
         try {
             const userId = req.user.id;
 
-            const { address, paymentMethod } = req.body;
+            const { address, paymentMethod ,grandTotal} = req.body;
+            // console.log("enthaada",grandTotal,paymentMethod);
 // console.log(req.body);
             const checkoutData = await Checkout.find({ userId });
 
@@ -186,7 +187,9 @@ const coupencheck = async (req, res) => {
     const sizes=products.map(product=>product.size)
     const quantity=products.map(product=>product.quantity)
     const price=checkoutData.map(price=>price.discountedAmount);
-const prices =price[0]
+const prices =price[0] != null ? price : grandTotal;
+
+console.log("hahali",prices);
 
     // console.log(quantity);
     const orders=[]
@@ -290,19 +293,22 @@ const orderid={
 
         return newOrder.save();
     });
+    console.log("rare",prices);
 console.log(paymentMethod);
     let paymentResponse;
     if (paymentMethod === 'cash') {
+        // For cash on delivery
+        paymentResponse = { message: 'Order placed successfully with Cash on Delivery' };
         // console.log(product);
         // const productIds = unwoundOrders.map(product => product.product);
         // // console.log("p", productIds);
         // await cart.deleteMany({ userId, 'products.productId': { $in: productIds } });
         // await productAdd.updateone({})
         
-        paymentResponse = { message: 'Order placed successfully with Cash on Delivery' };
+        // paymentResponse = { message: 'Order placed successfully with Cash on Delivery' };
     } else if (paymentMethod === 'online') {
         const razorpayOrder =  await razorpay.orders.create({
-            amount: price*100,
+            amount: prices*100,
             currency: 'INR',
             receipt: 'order_rcptid_11', // Replace with your receipt ID
             payment_capture: 1

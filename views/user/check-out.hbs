@@ -386,10 +386,21 @@
                             },
                             body: JSON.stringify(paymentData),
                         })
-                        .then(response => response.json())
-                        .then(paymentResponse => {
-                            console.log(paymentResponse);
-                        })
+                       .then(response => response.json())
+                   .then(paymentResponse => {
+    if (paymentResponse.message === 'Order placed successfully with Razorpay') {
+        window.location.href = "/"; // Redirect to the home page
+    } else if (paymentResponse.message === 'Order placed successfully with Cash on Delivery') {
+        // Display an alert for successful cash on delivery
+        alert('Order placed successfully with Cash on Delivery');
+    } else {
+        console.log(paymentResponse.message);
+    }
+})
+
+
+
+                    
                         .catch(error => {
                             console.error('Error verifying payment:', error);
                         });
@@ -421,7 +432,7 @@
 
    function sendDataToBackend() {
             var paymentMethod = document.querySelector("input[name='paymentMethod']:checked").value;
-
+    var grandTotal = parseFloat(document.getElementById("grandTotalInput").value); // Extract grand total from the hidden input field and parse it as float
             // Find the selected address
             var selectedAddressElement = document.querySelector(".address-box.selected");
             if (!selectedAddressElement) {
@@ -449,11 +460,13 @@
 
             var data = {
                 paymentMethod: paymentMethod,
-                address: addressData
+                address: addressData,
+                        grandTotal: grandTotal  // Include the grand total in the data sent to the backend
             };
 
             if (paymentMethod === 'online') {
                 initiateRazorpayPayment(data);
+
             } else {
                 fetch('/order', {
                     method: 'POST',
@@ -462,12 +475,24 @@
                     },
                     body: JSON.stringify(data),
                 })
-                .then(response => {
-                    if (response.ok) {
-                        console.log('Order placed successfully with Cash on Delivery');
-                    } else {
-                        throw new Error('Failed to place order with Cash on Delivery');
-                    }
+               .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Failed to place order');
+        }
+    })
+    .then(paymentResponse => {
+        if (paymentResponse.message === 'Order placed successfully with Cash on Delivery') {
+            // Display success message as an alert
+            alert('Order placed successfully with Cash on Delivery');
+
+            window.location.href = '/'; // Replace with the URL of your home page
+
+        } else {
+            console.log(paymentResponse.message);
+        }
+                    
                 })
                 .catch(error => {
                     console.error('Error placing order with Cash on Delivery:', error);
@@ -477,7 +502,17 @@
 </script>
 
 
-        
+
+               {{!-- Toastify({
+                text: 'Order placed successfully with Cash on Delivery',
+                duration: 3000, // 3 seconds
+                close: true,
+                gravity: 'top',
+                position: 'center',
+                backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
+            }).showToast();
+         --}}
+
             <script>
 
               async function applyCoupon() {

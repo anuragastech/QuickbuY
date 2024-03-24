@@ -119,7 +119,7 @@ let Addlogin  = async (req, res) => {
 
             res.cookie('token', token, options);
 
-            return res.redirect('/index');
+            return res.redirect('/');
         } else {
             return res.status(401).json({ message: 'Invalid email or password' });
         }

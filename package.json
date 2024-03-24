@@ -10,7 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@canvasjs/charts": "^3.7.42",
-    "@vonage/server-sdk": "^3.13.1",
+    "@vonage/server-sdk": "^3.14.0",
     "bcryptjs": "^2.4.3",
     "bootstrap-icons": "^1.11.3",
     "chart.js": "^4.4.2",
