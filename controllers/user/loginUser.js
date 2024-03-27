@@ -99,6 +99,7 @@ console.log(newCreate);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+
 let Addlogin  = async (req, res) => {
     try {
         const { email, password } = req.body;

@@ -19,6 +19,10 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
 
+        
+    <!-- Toastify Styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
     <!-- Css Styles -->
    
    
@@ -161,6 +165,28 @@
         }
     }
 </script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<script>
+    function showNotification(message, type) {
+        Toastify({
+            text: message,
+            duration: 3000, // 3 seconds
+            close: true,
+            gravity: 'top',
+            position: 'center',
+            backgroundColor: type === 'success' ? 'linear-gradient(to right, #00b09b, #96c93d)' : 'linear-gradient(to right, #ff0000, #ffcc00)'
+        }).showToast();
+    }
+
+    // Example usage:
+    // showNotification('Login successful', 'success');
+    // showNotification('Invalid email or password', 'error');
+</script>
+
+
 </section> 
 
 
