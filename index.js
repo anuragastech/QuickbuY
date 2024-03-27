@@ -9,7 +9,7 @@ const cookieParser=require('cookie-parser');
 const venderRouter=require('./routes/vender')
 const userRouter = require('./routes/user');
 const adminRouter=require('./routes/admin')
-
+const createError = require('http-errors'); 
 
 
 const app = express();
@@ -61,6 +61,18 @@ app.use(express.static(path.join(__dirname, 'js')));
 app.use(express.static(path.join(__dirname, 'models')));
 app.use(express.static(path.join(__dirname, 'controllers')));
 app.use(express.static(path.join(__dirname, 'routes')));
+
+
+// Middleware to handle undefined routes and throw a 404 error
+app.use((req, res, next) => {
+  next(createError(404));
+});
+
+// Middleware to handle 404 errors and perform redirection
+app.use((err, req, res, next) => {
+
+res.render("error")
+});
 
 
 

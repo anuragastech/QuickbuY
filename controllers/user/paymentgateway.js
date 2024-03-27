@@ -289,12 +289,29 @@ const orderid={
 
         
         });
-        console.log(userId,"hellpo");
 
         return newOrder.save();
+        await Promise.all(savePromises);
+
+        console.log("fgjbjgeghgeh");
+        const productIds = unwoundOrders.map(order => order.product);
+          // Remove products from the cart
+          await cart.updateMany(
+            { userId: userId },
+            { $pull: { products: { productId: { $in: productIds } } } }
+        );
+        console.log("fgjbjgeghgeh");
+
+        console.log(productIds,"hellpo");
+        const productIdss = unwoundOrders.map(order => order.product);
+        await cart.updateMany(
+            { userId: userId },
+            { $pull: { products: { productId: { $in: productIds } } } }
+        );
     });
-    console.log("rare",prices);
-console.log(paymentMethod);
+
+    // console.log("rare",prices);
+// console.log(paymentMethod);
     let paymentResponse;
     if (paymentMethod === 'cash') {
         // For cash on delivery
