@@ -32,7 +32,6 @@
 
 
 
-
     {{!-- pagination --}}
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Font -->
@@ -56,6 +55,10 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
 
+            {{!-- font auwsom --}}
+{{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> --}}
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <!-- Css Styles -->
     <link rel="stylesheet" href="/user/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/user/font-awesome.min.css" type="text/css">
@@ -64,9 +67,10 @@
     <link rel="stylesheet" href="/user/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="/user/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/user/style.css" type="text/css">
-</head>
 
 </head>
+
+
 
 <body>
     <!-- Page Preloder -->
@@ -216,7 +220,7 @@
 
                 <div class="col-lg-4">
                     <div class="product-content">
-                        <h2 style="font-size:29px;font-weight:bold;font-family: sans-serif ;font-style: initial;"
+                        <h2 style="font-size:x-large;font-weight:;font-family:'Times New Roman', Times, serif;font-style: initial;"
                             id="productName">{{data.productname}}</h2>
                         <div class="pc-meta">
                             {{!-- <div class="rating">
@@ -241,15 +245,16 @@
 
                             <h1 style="margin-bottom: 15px; font-size: 18px;font-weight:lighter;color: rgb(35, 35, 35);font-family: sans-serif;">
                            <div class="price-container">
+                            <h5 style="font-size:15px;">Color:</h5>
+
     <h5 class="original-price">₹{{data.price}}</h5>
-    <span style="background-color: rgb(194, 180, 180);" class="discounted-price"> </span><span  style="background-color:rgb(194, 180, 180);">(20% off)</span>
+    <span style="background-color: rgb(194, 180, 180);font-size:15px;" class="discounted-price"> </span><span  style="background-color:rgb(194, 180, 180); color: rgb(82, 55, 138);font-size: 15px;">(20% off)</span>
 </div>                           {{!-- <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
                             <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
                             --}}
-
                             <li style="margin-bottom: 20px;">
                                 {{!-- <span>Size :</span> --}}
-                                <h5>Size:</h5>
+                                <h5 style="font-size:15px;">Size:</h5>
                                 <div class="btn-group" id="sizeDiv" role="group" aria-label="Size Options">
                                     {{#each data.properties}}
                                     <button type="button" class="btn btn-outline-dark size"
@@ -283,6 +288,7 @@
                                     <a href="/productpage?name={{this._id}}" tabindex="-1">
 
                                         <img class="card-img" src="{{this.image.url}}" alt="Image">
+
 
                                     </a>
                                 </div>
@@ -338,27 +344,28 @@
 
                         </script>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-jqXNuKfeywxEN44C4yizKMGvPV/RKiNVWk6N1K6PQi/QRDePFvhF6lD9p0Ggg3l9iI0O+RfMQL0z4KNSfZ0okA==" crossorigin="anonymous" />
 
                         <script
                             src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
                         <div class="product-quantity">
-                            <div class="input-group mb-4" style="width: 100px; margin-top: 10px;">
-                                <span class="input-group-btn" style="margin-right: 5px;">
+                            <div class="input-group mb-4" >
+                                <span class="input-group-btn" >
                                     <button type="button"
-                                        style="background-color: rgb(253, 253, 253); width: 24px; height: 24px; padding: 0;"
+                                        style="background-color: rgb(220, 218, 218); width:37px; height:37px; padding: 0;margin-top:11%;border: 1px solid rgb(231, 227, 227);"
                                         class="quantity-minus btn btn-outline-secondary" onclick="decrementQuantity()">
                                         <i style="font-weight: bolder; font-size: 16px;" class="bi bi-dash"></i>
                                     </button>
 
                                 </span>
                                 <input type="text"
-                                    style="width: 40px; margin-right: 5px;height: 30px; background-color: rgb(246, 246, 246); border: none; text-align: center; font-size: 20px; font"
-                                    id="quantity" name="quantity" class="form-control input-number" value="1" min="1"
+                                style="height: 45px;margin-left:2%;margin-right: 2%;text-align: center;box-shadow: 0 2px 4px rgba(249, 246, 246, 0.1);"
+                                    id="quantity" name="quantity" class="form-control input-number " value="1" min="1"
                                     data-qty="{{data.Quantity}}" max="{{data.Quantity}}">
                                 <span class="input-group-btn">
                                     <button type="button"
-                                        style="width: 24px; height: 24px; padding: 0; background-color: rgb(243, 231, 231);"
+                                        style="width:37px; height:37px; padding: 0; background-color: rgb(220, 218, 218);margin-top:11%;border: 1px solid rgb(231, 227, 227);"
                                         class="quantity-plus btn btn-outline-secondary" onclick="incrementQuantity()">
                                         <i style="font-size: 16px;" class="bi bi-plus"></i>
                                     </button>
@@ -370,9 +377,12 @@
                             <h1>{{data.Quantity}}</h1>
                             <h1 id="productId" style="display: none;">{{data._id}}</h1>
                             {{!-- <a href="#" class="primary-btn pc-btn">Add to cart</a> --}}
-                            <button class="btn txt-light w-100 mb-3 mb-md-0"
-                                style="height:50px;background-color: black;color: white;"
-                                onclick="addToCart('{{data._id}}')">Add to Cart</button>
+
+                            <button class="btn txt-light w-50 mb-3 mb-md-0"
+                                style="height:42px;background-color: rgb(95, 92, 92);color: white;font-size:18px;"
+                                onclick="addToCart('{{data._id}}')"><i class="material-icons" style="color: #ffffff;font-size:19px;">shopping_cart</i>
+  Add to Cart</button><br>
+
                             <ul class="p-info">
                                 <li>Product Information</li>
                                 <li>Reviews</li>
@@ -385,7 +395,10 @@
             </div>
             {{/if}}
 
+
     </section>
+                 
+
     <!-- Product Page Section End -->
 
     <!-- Related Product Section Begin -->

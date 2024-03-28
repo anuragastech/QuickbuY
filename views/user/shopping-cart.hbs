@@ -7,7 +7,7 @@
     <meta name="keywords" content="Yoga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Violet | Template</title>
+    <title>QuickBuY</title>
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
     <link rel="stylesheet" href="/user/cart.js">
+
+    {{!-- link google bootstrap --}}
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Css Styles -->
 
     <link rel="stylesheet" href="/user/bootstrap.min.css" type="text/css">
@@ -98,7 +101,7 @@
                 <div class="col-md-4">
                     <div class="header-item">
                         <img src="/icons/delivery.png" alt="">
-                        <p>Free shipping on orders over ₹30 in USA</p>
+                        <p>Free shipping on orders over ₹30 in india</p>
                     </div>
                 </div>
                 <div class="col-md-4 text-left text-lg-center">
@@ -110,7 +113,7 @@
                 <div class="col-md-4 text-left text-xl-right">
                     <div class="header-item">
                         <img src="/icons/sales.png" alt="">
-                        <p>30% off on dresses. Use code: 30OFF</p>
+                        <p> off on dresses. Use code: Hello</p>
                     </div>
                 </div>
             </div>
@@ -179,7 +182,7 @@
                 <div class="col">Update</div>
                 <div class="col">Remove</div>
                 <div class="col">Total</div>
-                <div class="col">Select</div> <!-- Added a new column for selecting product -->
+                <div class="col">Select</div> 
             </div>
             {{#each cart}}
             <div class="product row mb-3 shadow-sm rounded p-3">
@@ -200,7 +203,7 @@
                     <button class="btn btn-outline-primary" onclick="updateQuantity('{{this.productId}}')">Update</button>
                 </div>
                 <div class="product-removal col">
-                    <button class="btn btn-outline-danger" style="border: none;font-size:15px;font-weight: lighter;" onclick="deleteCart('{{this.productId}}')">❌</button>
+                    <button class="btn btn-outline-danger" style="border: none;font-size:15px;font-weight: lighter;" onclick="deleteCart('{{this.productId}}')"><i style="color: #3e4152;font-size:20px;" class="bi bi-trash"></i></button>
                 </div>
                 <div class="product-line-price col">₹0</div>
              
