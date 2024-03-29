@@ -15,7 +15,7 @@ const getPaymentway=require('../controllers/user/paymentgateway')
 const  OrderMiddileware  = require('../controllers/user/order');
 const multer = require("../models/common/multerconfig");
 const upload = multer.single("image");
-
+const OrderController=require('../controllers/user/order')
 
 
 router.post('/sign',userControllers.Addsign)
@@ -33,7 +33,7 @@ router.get("/logout",authenticateJWT,userControllers.getlogout)
 router.get('/login',authenticateJWT,getAllControllers.getlogin)
 router.get('/category',authenticateJWT,getCategoryControllers.getcategory)
 
-router.get('/contact',authenticateJWT,getAllControllers.getcontact)
+router.get('/contact',getAllControllers.getcontact)
 
 
 router.get('/user',authenticateJWT,getAllControllers.getuser)
@@ -127,6 +127,9 @@ router.get('/ResetPassword',(req,res)=>{
   router.get('/matchEmail',(req,res)=>{
     res.render('user/matchEmail')
     });
+
+
+    router.get('/OrderDetails',authenticateJWT,OrderController.orderGet)
 module.exports = router;
 
 
