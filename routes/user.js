@@ -43,10 +43,10 @@ router.get('/user',authenticateJWT,getAllControllers.getuser)
 
     
 
-router.get('/productpage',authenticateJWT, getProductControllers.getproductpage)
+router.get('/productpage', getProductControllers.getproductpage)
 
 
-router.get('/products',authenticateJWT,getProductControllers.getproductData)
+router.get('/products',getProductControllers.getproductData)
 router.get('/',getControllerHome.getproductDataIn)
 
 
@@ -58,9 +58,9 @@ router.post('/update-cart/:cartId',authenticateJWT, getCartControllers.updateCar
 
 // router.get('/cart',authenticateJWT, getCartControllers.getcartpage)
 
-
-
 // router.get('/cartlist', authenticateJWT,getCartControllers.getcartlist)
+
+
 
 
 
