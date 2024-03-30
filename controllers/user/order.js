@@ -9,8 +9,8 @@ const orderGet=async (req,res)=>{
         const userId=req.user.id
 
 // console.log(userId);
-        const orders= await order.find({userId:userId})
-        // console.log(orders);
+const orders = await order.find({ userId: userId }).populate('product');
+
     res.render('user/OrderDetails',{orders})
     }
     catch (error){

@@ -44,6 +44,11 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap JavaScript Bundle (includes Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
 </head>
@@ -115,42 +120,31 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="table-responsive">
-                    <table id="ordersTable" class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Image</th>
-                                <th>Product Name</th>
-                                <th>Brand</th>
-                                <th>Price</th>
-                                <th>Size</th>
-                                <th>Quantity</th>
-                                <th>Order Status</th>
-                                <th>o</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{#each orders}}
-                            <tr>
-                                <td><img src="{{this.image}}" alt="Product Image" style="max-width: 100px;"></td>
-                                <td>{{this.productname}}</td>
-                                <td>{{this.brand}}</td>
-                                <td>{{this.price}}</td>
-                                <td>{{this.size}}</td>
-                                <td>{{this.quantity}}</td>
-                                <td>{{this.orderAccepted}}</td>
+                <div class="row">
+    {{#each orders}}
+    <div class="col-md-9 mb-5" style="margin-left:15%;">
+        <div class="card">
+                <img src="{{this.product.image}}" class="card-img-top" alt="Product Image">
+                            <div class="card-body">
+                
+                <h5 class="card-title">{{this.productname}}</h5>
+                <p class="card-text">Brand: {{this.brand}}</p>
+                <p class="card-text">Price: {{this.price}}</p>
+                <p class="card-text">Size: {{this.size}}</p>
+                <p class="card-text">Quantity: {{this.quantity}}</p>
+                <p class="card-text">Order Status: {{this.orderAccepted}}</p>
+                <button class="openModalBtn btn btn-light" data-orderid="{{this._id}}">
+                    <i class="material-icons">visibility</i> Invoice
+                </button>
+<button class=" btn btn-light">
+                    <i class="material-icons">visibility</i> Cancel Order
+                </button>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
 
-<td>
-   <button class="openModalBtn btn btn-light" data-orderid="{{this._id}}">
-    <i class="material-icons">visibility</i>
-</button>
-
-</td>
-
-
-                            </tr>
-                            {{/each}}
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
@@ -165,19 +159,37 @@
   
   {{!-- ----------------------  --}}
 
- <!-- Modal -->
-<div class="modal-content">
-    <span class="close">&times;</span>
-    <p><strong>Order ID:</strong> <span id="orderId"></span></p>
-    <p><strong>Product Name:</strong> <span id="productName"></span></p>
-    <!-- Add more elements for other order details -->
-    <button id="printDataBtn">Print Data</button>
+<!-- Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <p><strong>Order ID:</strong> <span id="image"></span></p>
+        <p><strong>Product Name:</strong> <span id="productName"></span></p>
+                <p><strong>Product Size:</strong> <span id="productSize"></span></p>
+        <p><strong>Product Quantity:</strong> <span id="productQuantity"></span></p>
+        <p><strong>Product color:</strong> <span id="productColor"></span></p>
+                <p><strong>Product Brand:</strong> <span id="productBrand"></span></p>
+                                <p><strong>Product Category:</strong> <span id="productCategory"></span></p>
+                <p><strong>Product Subcategory:</strong> <span id="productSubcategory"></span></p>
+                                <p><strong>Product Address:</strong> <span id="productAddress"></span></p>
+                                                <p><strong>Product Subcategory:</strong> <span id="productSubcategory"></span></p>
+                <p><strong>Order status:</strong> <span id="OrderStatus"></span></p>
+
+
+
+
+
+        <!-- Add more elements for other order details -->
+        <button id="printDataBtn">Print Data</button>
+    </div>
 </div>
+
+
 
 
 <!-- Updated JavaScript -->
 <script>
-   document.addEventListener('DOMContentLoaded', function () {
+ document.addEventListener('DOMContentLoaded', function () {
     const buttons = document.querySelectorAll('.openModalBtn');
     buttons.forEach(button => {
         button.addEventListener('click', function () {
@@ -185,17 +197,30 @@
             sendOrderToBackend(orderId);
         });
     });
+
+    // Modal close functionality
+    const modal = document.getElementById("myModal");
+    const closeModal = modal.querySelector(".close");
+    closeModal.addEventListener("click", function() {
+        modal.style.display = "none";
+    });
+
+    // Print data button functionality (optional)
+    const printDataBtn = document.getElementById("printDataBtn");
+    printDataBtn.addEventListener("click", function() {
+        // Implement printing logic here
+    });
 });
 
 function sendOrderToBackend(orderId) {
-    fetch('/OrderDetailses',{
+    fetch('/OrderDetailses', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ orderId: orderId }),
     })
-     .then(response => {
+    .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
@@ -204,87 +229,36 @@ function sendOrderToBackend(orderId) {
     .then(data => {
         // Once you receive the order details, update the modal content
         updateModalContent(data.orderDetails);
+        // Open the modal
+        const modal = document.getElementById("myModal");
+        modal.style.display = "block";
     })
     .catch(error => {
         console.error('There was a problem sending or receiving data from the backend:', error);
     });
 }
 
-// Function to update modal content with order details
 function updateModalContent(orderDetails) {
-    console.log(orderDetails)
-    // Assuming the modal content has elements with specific IDs where the order details will be displayed
-    document.getElementById('productName').textContent = orderDetails.productName;
+
+    document.getElementById('image').textContent = orderDetails.orderId;
+    document.getElementById('productName').textContent = orderDetails.productname;
+        document.getElementById('productSize').textContent = orderDetails.size;
+
+    document.getElementById('productQuantity').textContent = orderDetails.quantity;
+
+    document.getElementById('productColor').textContent = orderDetails.color;
+    document.getElementById('productBrand').textContent = orderDetails.brand;
+    document.getElementById('productCategory').textContent = orderDetails.category;
+    document.getElementById('productSubcategory').textContent = orderDetails.subcategory;
+    document.getElementById('productSubcategory').textContent = orderDetails.address;
+    document.getElementById('OrderStatus').textContent = orderDetails.orderAccepted;
+  
     // Add more lines to update other elements with relevant order details
+
 }
 
-// Add an event listener to the button to trigger the fetch request
-document.addEventListener('DOMContentLoaded', function () {
-    const buttons = document.querySelectorAll('.openModalBtn');
-    buttons.forEach(button => {
-        button.addEventListener('click', function () {
-            const orderId = this.dataset.orderid;
-            sendOrderToBackend(orderId);
-        });
-    });
-});
+
 </script>
-{{!-- --------------------------------------  --}}
-{{!-- <!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p> This is a  ???</p>
-    <!-- Button inside the modal for printing data -->
-    <button id="printDataBtn">Print Data</button>
-  </div>
-
-</div> --}}
-{{!-- ------------------------  --}}
-{{!-- <script>
-  // Get the modal element
-  var modal = document.getElementById("myModal");
-
-  // Get the button that opens the modal
-  var btn = document.getElementById("openModalBtn");
-
-  // Get the <span> element that closes the modal
-  var span = document.getElementsByClassName("close")[0];
-
-  // When the user clicks the button, open the modal
-  btn.onclick = function() {
-    modal.style.display = "block";
-  }
-
-  // When the user clicks on <span> (x), close the modal
-  span.onclick = function() {
-    modal.style.display = "none";
-  }
-
-  // When the user clicks anywhere outside of the modal, close it
-  window.onclick = function(event) {
-    if (event.target == modal) {
-      modal.style.display = "none";
-    }
-  }
-
-  // Function to handle printing data
-  function printData() {
-    // Replace this with your printing logic
-    console.log("Printing data...");
-  }
-
-  // Get the print data button
-  var printDataBtn = document.getElementById("printDataBtn");
-
-  // Add click event listener to print data button
-  printDataBtn.onclick = function() {
-    printData();
-  }
-</script> --}}
-
 
   {{!-- ------------------------------------------------------------ --}}
 
