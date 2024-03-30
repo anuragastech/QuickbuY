@@ -2,12 +2,15 @@
 const order =require("../../models/user/order")
 
 const orderGet=async (req,res)=>{
+
     try{
+        const {orderId}=req.body;
+        // console.log(orderId,"mnfnmf");
         const userId=req.user.id
 
 // console.log(userId);
         const orders= await order.find({userId:userId})
-        console.log(orders);
+        // console.log(orders);
     res.render('user/OrderDetails',{orders})
     }
     catch (error){
@@ -17,8 +20,25 @@ const orderGet=async (req,res)=>{
 }
 
 
+const PostOrder = async (req, res) => {
+    try {
+        const { orderId } = req.body;
+        // console.log(orderId, "orderId");
+// console.log("mvrnjvr4t");
+        // Assuming you have a method to fetch order details by ID from your database
+        const orderDetails = await order.findById(orderId);
+console.log(orderDetails,"mfkefmf3rmki");
+        // Send the order details to the frontend
+        res.json({ orderDetails });
+    } catch (error) {
+        console.error('Error fetching order details:', error);
+        res.status(500).json({ error: 'An error occurred while fetching order details' });
+    }
+}
 
 
 
 
-module.exports={orderGet}
+
+
+module.exports={orderGet,PostOrder}

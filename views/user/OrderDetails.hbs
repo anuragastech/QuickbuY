@@ -138,11 +138,15 @@
                                 <td>{{this.size}}</td>
                                 <td>{{this.quantity}}</td>
                                 <td>{{this.orderAccepted}}</td>
+
 <td>
-    <button id="openModalBtn" class="btn btn-light">
-        <i class="material-icons">visibility</i>
-    </button>
+   <button class="openModalBtn btn btn-light" data-orderid="{{this._id}}">
+    <i class="material-icons">visibility</i>
+</button>
+
 </td>
+
+
                             </tr>
                             {{/each}}
                         </tbody>
@@ -158,10 +162,75 @@
             $('#ordersTable').DataTable();
         });
     </script>
+  
+  {{!-- ----------------------  --}}
+
+ <!-- Modal -->
+<div class="modal-content">
+    <span class="close">&times;</span>
+    <p><strong>Order ID:</strong> <span id="orderId"></span></p>
+    <p><strong>Product Name:</strong> <span id="productName"></span></p>
+    <!-- Add more elements for other order details -->
+    <button id="printDataBtn">Print Data</button>
+</div>
 
 
+<!-- Updated JavaScript -->
+<script>
+   document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('.openModalBtn');
+    buttons.forEach(button => {
+        button.addEventListener('click', function () {
+            const orderId = this.dataset.orderid;
+            sendOrderToBackend(orderId);
+        });
+    });
+});
 
-<!-- The Modal -->
+function sendOrderToBackend(orderId) {
+    fetch('/OrderDetailses',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ orderId: orderId }),
+    })
+     .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // Parse the JSON response
+    })
+    .then(data => {
+        // Once you receive the order details, update the modal content
+        updateModalContent(data.orderDetails);
+    })
+    .catch(error => {
+        console.error('There was a problem sending or receiving data from the backend:', error);
+    });
+}
+
+// Function to update modal content with order details
+function updateModalContent(orderDetails) {
+    console.log(orderDetails)
+    // Assuming the modal content has elements with specific IDs where the order details will be displayed
+    document.getElementById('productName').textContent = orderDetails.productName;
+    // Add more lines to update other elements with relevant order details
+}
+
+// Add an event listener to the button to trigger the fetch request
+document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('.openModalBtn');
+    buttons.forEach(button => {
+        button.addEventListener('click', function () {
+            const orderId = this.dataset.orderid;
+            sendOrderToBackend(orderId);
+        });
+    });
+});
+</script>
+{{!-- --------------------------------------  --}}
+{{!-- <!-- The Modal -->
 <div id="myModal" class="modal">
 
   <!-- Modal content -->
@@ -172,9 +241,9 @@
     <button id="printDataBtn">Print Data</button>
   </div>
 
-</div>
+</div> --}}
 {{!-- ------------------------  --}}
-<script>
+{{!-- <script>
   // Get the modal element
   var modal = document.getElementById("myModal");
 
@@ -214,7 +283,7 @@
   printDataBtn.onclick = function() {
     printData();
   }
-</script>
+</script> --}}
 
 
   {{!-- ------------------------------------------------------------ --}}

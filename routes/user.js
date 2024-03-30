@@ -130,6 +130,9 @@ router.get('/ResetPassword',(req,res)=>{
 
 
     router.get('/OrderDetails',authenticateJWT,OrderController.orderGet)
+
+router.post('/OrderDetailses',OrderController.PostOrder)
+
 module.exports = router;
 
 
