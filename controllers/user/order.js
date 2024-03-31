@@ -1,23 +1,45 @@
 
 const order =require("../../models/user/order")
 
-const orderGet=async (req,res)=>{
+const orderGet = async (req, res) => {
+    try {
+        const { orderId } = req.body;
+        const userId = req.user.id;
 
-    try{
-        const {orderId}=req.body;
-        // console.log(orderId,"mnfnmf");
-        const userId=req.user.id
+        const page = parseInt(req.query.page) || 1;
+        const limit = 10; // Number of items per page
 
-// console.log(userId);
-const orders = await order.find({ userId: userId }).populate('product');
+        const totalOrders = await order.countDocuments({ userId: userId });
+        const totalPages = Math.ceil(totalOrders / limit);
+        const skip = (page - 1) * limit;
 
-    res.render('user/OrderDetails',{orders})
-    }
-    catch (error){
+        const orders = await order.find({ userId: userId })
+                                  .populate('product')
+                                  .skip(skip)
+                                  .limit(limit);
+
+        // Pagination details
+        const pagination = {
+            prev: page > 1 ? `?page=${page - 1}` : null,
+            next: page < totalPages ? `?page=${page + 1}` : null,
+            pages: []
+        };
+
+        // Create pagination page numbers
+        for (let i = 1; i <= totalPages; i++) {
+            pagination.pages.push({
+                number: i,
+                url: `?page=${i}`,
+                active: i === page
+            });
+        }
+
+        res.render('user/OrderDetails', { orders, pagination });
+    } catch (error) {
         console.error('Error related to order status:', error);
         res.status(500).json({ error: 'An related to ordered error status' });
     }
-}
+};
 
 
 const PostOrder = async (req, res) => {
