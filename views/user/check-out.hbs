@@ -62,8 +62,9 @@
         <div class="container-fluid">
             <div class="inner-header">
                 <div class="logo">
-                                        <h5 style="font-size:2em;color: #3e4152;font-weight: bold;">QuickBuY</h5>
-
+<a href="/">
+    <h5 style="font-size: 2em; color: #3e4152; font-weight: bold;">QuickBuY</h5>
+</a>
                     {{!-- <a href="/"><img src="/logo.png" alt=""></a> --}}
                 </div>
                 <div class="header-right">
@@ -386,17 +387,21 @@
                             },
                             body: JSON.stringify(paymentData),
                         })
-                        .then(response => response.json())
-                        .then(paymentResponse => {
-                            console.log(paymentResponse);
-                             if (paymentResponse.message === 'Order placed successfully with Razorpay') {
+                       .then(response => response.json())
+                   .then(paymentResponse => {
+    if (paymentResponse.message === 'Order placed successfully with Razorpay') {
+        window.location.href = "/"; // Redirect to the home page
+    } else if (paymentResponse.message === 'Order placed successfully with Cash on Delivery') {
+        // Display an alert for successful cash on delivery
+        alert('Order placed successfully with Cash on Delivery');
+    } else {
+        console.log(paymentResponse.message);
+    }
+})
 
 
-                            }
 
-
-
-                        })
+                    
                         .catch(error => {
                             console.error('Error verifying payment:', error);
                         });

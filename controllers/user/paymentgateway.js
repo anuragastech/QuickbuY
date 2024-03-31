@@ -264,7 +264,7 @@ const orderid={
         const { product, size, quantity, address,color,productname,brand ,category,subcategory ,venderId} = orderDetails;
         // console.log("price",paymentMethod);
 
-        console.log(venderId,address);
+        // console.log(venderId,address);
 
         // console.log(productscolor);
 // console.log(product);
@@ -309,7 +309,7 @@ const orderid={
             { $pull: { products: { productId: { $in: productIds } } } }
         );
     });
-
+console.log(prices,'prices');
     // console.log("rare",prices);
 // console.log(paymentMethod);
     let paymentResponse;
@@ -323,6 +323,7 @@ const orderid={
         // await productAdd.updateone({})
         
         // paymentResponse = { message: 'Order placed successfully with Cash on Delivery' };
+
     } else if (paymentMethod === 'online') {
         const razorpayOrder =  await razorpay.orders.create({
             amount: prices*100,
