@@ -142,7 +142,7 @@ let getsign=(req,res)=>{
         let getlogout= (req, res) => {
             res.clearCookie("token");
         
-            res.redirect("/login");
+            res.redirect("user/login");
         };
 
 
