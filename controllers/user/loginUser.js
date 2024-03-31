@@ -178,11 +178,16 @@ let getsign=(req,res)=>{
         const GetProfile = async (req, res) => {
             const userId = req.user.id;
             try {
-                const getProfileData = await profile.findOne({ _id: userId });
+             
+                const currentUser = await profile.findOne({ _id: userId }).populate('personalInfo');
+                                const getProfileData = await profile.findOne({ _id: userId });
         const orderData =await Order.find({userId:userId})
-        console.log("jbhfrtrnj");
-        console.log(orderData,"mkerjtnjbhfb");
-                res.render('user/profile', { profileData: getProfileData.profileData }); 
+        // console.log("jbhfrtrnj");
+        // console.log(orderData,"mkerjtnjbhfb");
+        // const address=currentUser.map(x=>x.personalInfo);
+        const address=currentUser.personalInfo
+        // console.log(x,"nfejebj");
+                res.render('user/profile', { profileData: getProfileData.profileData ,address }); 
             } catch (error) {
                 console.error(error);
                 res.status(500).send("Internal Server Error");

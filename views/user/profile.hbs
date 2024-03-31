@@ -164,8 +164,35 @@
                     </div>
                 </div>
             </div>
+<style>
+    /* styles.css */
+ .popup {
+        display: none;
+        position: fixed;
+        top: 50%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%); /* Center the popup */
+        width: 400px; /* Adjust width as needed */
+        height: 300px; /* Adjust height as needed */
+        background-color: white;
+        border: 1px solid rgb(255 231 231);
+        padding: 20px;
+        z-index: 1000;
+        overflow-y: auto; /* Enable vertical scrolling if content exceeds popup height */
+    }
 
-            <div class="card mb-3 shadow-sm"  style="border: 2px solid rgb(215, 214, 214);margin-top: 10px;background-color: rgb(255, 255, 255);">
+    .popup-content {
+        /* Add styling for popup content as needed */
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+</style>
+            <div class="card mb-3 shadow-sm"  style="border: 1px solid rgb(238, 232, 232);">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-3">
@@ -201,7 +228,7 @@
                         </div>
                         <div class="col-sm-9 text-dark">
                             {{!-- Bay Area, San Francisco, CA --}}
-                            <button style="background-color: white;border: 1px solid rgb(222, 219, 219);height: 40px;width:140px;margin-top:2%;">Show Address</button>
+                            <button id="popupButton" style="background-color: white;border: 1px solid rgb(222, 219, 219);height: 40px;width:140px;margin-top:2%;">Show Address</button>
                         </div>
                     </div>
                                         <hr>
@@ -219,6 +246,46 @@
                 </div>
             </div>
 
+
+
+   <div id="popup" class="popup" style="width:40%;height:400px; ">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <h2 style="align-items: center;" >Addresses</h2>
+        <ul>
+            {{#each address}}
+            <li style="border: 1px solid rgb(255 231 231);">
+                <strong>Address:</strong> {{this.address}} <br>
+                <strong>Number:</strong> {{this.number}} <br>
+                <strong>Country:</strong> {{this.country}} <br>
+                <strong>State:</strong> {{this.state}} <br>
+                <strong>City:</strong> {{this.city}} <br>
+                <strong>Pincode:</strong> {{this.pincode}} <br>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
+
+
+
+
+
+    
+    <script>
+        // script.js
+function openPopup() {
+    document.getElementById("popup").style.display = "block";
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+document.getElementById("popupButton").addEventListener("click", openPopup);
+
+    </script>
+    {{!-- ------------------------------------------------------------- --}}
             <div class="card mt-3 shadow-sm"  style="border: 2px solid rgb(225, 220, 220);background-color: rgb(204, 200, 231);margin-bottom: 5%;">
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
