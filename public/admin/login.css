@@ -3,8 +3,10 @@ body {
     display: flex;
     justify-content: center;
     font-family: Helvetica, sans-serif;
-    background-image: url("https://images.unsplash.com/photo-1678366633407-7f49da199a42?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80");
+    /* background-image: url("https://images.unsplash.com/photo-1678366633407-7f49da199a42?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1332&q=80"); */
+  /* background-color: #b51111; */
     background-size: cover;
+
 }
 
 .login-container {
@@ -15,7 +17,7 @@ body {
     width: 500px;
     margin-top: 29%;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 20px;
     height: 450px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }

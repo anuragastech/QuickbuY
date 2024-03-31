@@ -51,113 +51,134 @@
 <body class="">
 
   <!-- Main Section-->
-  <section class="d-flex justify-content-center align-items-start vh-100 py-5 px-3 px-md-0">
+   <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .login-container {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      max-width: 500px;
+      margin: auto;
+      margin-top: 100px;
+    }
+    .login-container h1 {
+      font-size: 28px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      font-weight: bold;
+    }
+    .form-control {
+      border-radius: 5px;
+    }
+    .signup-btn {
+      width: 100%;
+    }
+    .login-link {
+      font-size: 14px;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .login-link a {
+      color: #007bff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
 
-    <!-- Login Form-->
-    <div class="d-flex flex-column w-100 align-items-center">
+<section class="vh-100 d-flex justify-content-center align-items-center">
+  <div class="login-container" style="height: 560px;">
+    <h1>Signup</h1>
+    <form id="form" action="/admin/signup" method="post" name="myform" onsubmit="return validateForm();">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" name="name" id="username" class="form-control" required/>
+        <span id="message" class="text-danger" style="font-size: 16px;"></span>
+      </div>
 
-    
-        </div>      </a>
-      <!-- Logo-->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="usermail" class="form-control" required/>
+        <span id="messageMail" class="text-danger" style="font-size: 16px;"></span>
+      </div>
 
-   <div class="login-container">
-        <h1>signup</h1>
-        <form id="form" action="/admin/signup" method="post" name="myform" onsubmit="return validateForm();">
-            <label for="username">Username</label>
-            <input type="text" name="name" id="username" required/>
-            <span id="message" class="text-danger " style="font-size: 16px;"></span>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="pass" class="form-control" required/>
+        <span id="messagePassword" class="text-danger" style="font-size: 16px;"></span>
+      </div>
 
+      <div class="form-group">
+        <label for="repeatPassword">Repeat Password</label>
+        <input type="password" id="repeatPassword" class="form-control" name="repeatPassword" required/>
+        <span id="messageRepeatPassword" class="text-danger" style="font-size: 16px;"></span>
+      </div>
 
-            <label for="email">Email</label>
-            <input type="email" name="email" id="usermail" required/>
-            <span id="messageMail" class="text-danger " style="font-size: 16px;"></span>
+      <div class="form-group">
+        <input type="submit" class="btn btn-primary signup-btn" value="Signup">
+      </div>
+    </form>
 
-            <label for="password">Password</label>
-            <input type="password" name="password" id="pass" required/>
-            <span id="messagePassword" class="text-danger " style="font-size: 16px;"></span>
-
-
-
-            <label class="form-label" for="password">Repeat your password</label>
-            <input type="password" id="form3Example4cdg" class="form-control form-control-lg" name="repeatPassword" />
-            <span id="messageRepeatPassword" class="text-danger font-weight" style="font-size: 16px;"></span>
-          
-
-            <!-- <label for="repass">Password</label>
-            <input type="Re-password" name="password" id="repassword" required/> -->
-
-
-
-            <input type="submit">
-        </form>
-    </div>
-
-
-
+    <div class="login-link">Already have an account? <a href="/admin/login">Login</a></div>
+  </div>
+</section>
 
 <script>
-    function validateForm() {
-        var name = document.forms["myform"]["name"].value;
-        var email = document.forms["myform"]["email"].value;
-        var password = document.forms["myform"]["password"].value;
-        var repeatPassword = document.forms["myform"]["repeatPassword"].value;
+  function validateForm() {
+    var name = document.forms["myform"]["name"].value;
+    var email = document.forms["myform"]["email"].value;
+    var password = document.forms["myform"]["password"].value;
+    var repeatPassword = document.forms["myform"]["repeatPassword"].value;
 
-        var nameError = document.getElementById("message");
-        var emailError = document.getElementById("messageMail");
-        var passwordError = document.getElementById("messagePassword");
-        var repeatPasswordError = document.getElementById("messageRepeatPassword");
+    var nameError = document.getElementById("message");
+    var emailError = document.getElementById("messageMail");
+    var passwordError = document.getElementById("messagePassword");
+    var repeatPasswordError = document.getElementById("messageRepeatPassword");
 
-        
-        if (name === "") {
-            nameError.innerHTML = "Please fill in your name";
-            return false;
-        }
-        nameError.innerHTML = "";
-
-        
-        if (email === "") {
-            emailError.innerHTML = "Please fill in your email";
-            return false;
-        }
-        if (email.indexOf('@') <= 0 || (email.charAt(email.length - 4) !== '.' && email.charAt(email.length - 3) !== '.')) {
-            emailError.innerHTML = "Invalid email format";
-            return false;
-        }
-        emailError.innerHTML = "";
-
-      
-        if (password === "") {
-            passwordError.innerHTML = "Please fill in your password";
-            return false;
-        }
-        if (password.length < 8) {
-            passwordError.innerHTML = "Password must be at least 8 characters";
-            return false;
-        }
-        passwordError.innerHTML = "";
-
-      
-        if (repeatPassword !== password) {
-            repeatPasswordError.innerHTML = "Passwords do not match";
-            return false;
-        }
-        repeatPasswordError.innerHTML = "";
-
-        return true;
+    if (name === "") {
+      nameError.innerHTML = "Please fill in your name";
+      return false;
     }
+    nameError.innerHTML = "";
+
+    if (email === "") {
+      emailError.innerHTML = "Please fill in your email";
+      return false;
+    }
+    if (email.indexOf('@') <= 0 || (email.charAt(email.length - 4) !== '.' && email.charAt(email.length - 3) !== '.')) {
+      emailError.innerHTML = "Invalid email format";
+      return false;
+    }
+    emailError.innerHTML = "";
+
+    if (password === "") {
+      passwordError.innerHTML = "Please fill in your password";
+      return false;
+    }
+    if (password.length < 8) {
+      passwordError.innerHTML = "Password must be at least 8 characters";
+      return false;
+    }
+    passwordError.innerHTML = "";
+
+    if (repeatPassword !== password) {
+      repeatPasswordError.innerHTML = "Passwords do not match";
+      return false;
+    }
+    repeatPasswordError.innerHTML = "";
+
+    return true;
+  }
 </script>
 
-      
-     
-
-
-        <p class="d-block text-center text-muted small">New customer? <a class=" text-decoration-underline"
-            href="./register.html">Sign up for an account</a></p>
-      </div>
-    </div>
-    <!-- / Login Form-->
-
-  </section>
   <!-- / Main Section-->
 
   <!-- Theme JS -->
