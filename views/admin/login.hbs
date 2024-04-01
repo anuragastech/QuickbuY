@@ -1,11 +1,9 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
-<!-- Head -->
-
 <head>
-  <!-- Page Meta Tags-->
-  <meta charset="utf-8">
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
@@ -19,9 +17,8 @@
   <link rel="mask-icon" href="./assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
-  <link rel="stylesheet" href="/admin/login.css">
 
-  <!-- Google Font-->
+  <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600&display=swap" rel="stylesheet">
@@ -32,12 +29,9 @@
   <!-- Main CSS -->
   <link rel="stylesheet" href="./assets/css/theme.bundle.css" />
 
-  <!-- Fix for custom scrollbar if JS is disabled-->
+  <!-- Fix for custom scrollbar if JS is disabled -->
   <noscript>
     <style>
-      /**
-          * Reinstate scrolling for non-JS clients
-          */
       .simplebar-content-wrapper {
         overflow: auto;
       }
@@ -45,114 +39,125 @@
   </noscript>
 
   <!-- Page Title -->
-  <title></title>
+  <title>Login</title>
 
-</head>
+  <!-- Bootstrap CSS (CDN) -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-<body class="">
-
-  <!-- Main Section-->
   <style>
     body {
       background-color: #fcfcfc;
     }
+
     .login-container {
-      background-color: rgb(241, 237, 237)
+      background-color: rgb(249, 249, 249);
       border-radius: 20px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
       padding: 30px;
     }
+
     .login-container h1 {
       font-size: 28px;
       margin-bottom: 30px;
       text-align: center;
     }
+
     .form-group {
       margin-bottom: 20px;
     }
+
     .form-group label {
       font-weight: bold;
     }
+
     .form-control {
       border-radius: 5px;
     }
+
     .login-link {
       font-size: 14px;
       text-align: center;
     }
+
     .login-link a {
       color: #007bff;
       text-decoration: none;
     }
+
+    /* Added styles for responsiveness */
+    @media (max-width: 768px) {
+      .login-container {
+        padding: 20px;
+      }
+    }
   </style>
 </head>
+
 <body>
 
-<div class="container">
-  <div class="row justify-content-center align-items-center vh-100">
-    <div class="col-md-6">
-      <div class="login-container">
-        <h1>Login</h1>
-        <form id="form" action="/admin/loginpost" method="POST" onsubmit="return validateLoginForm()">
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input type="email" name="email" id="username" class="form-control" required />
-            <span id="message" class="text-danger" style="font-size: 16px;"></span>
-          </div>
+  <!-- Main Section -->
+  <div class="container">
+    <div class="row justify-content-center align-items-center vh-100">
+      <div class="col-md-6">
+        <div class="login-container border p-4">
+          <h1 class="text-center">Login</h1>
+          <form id="form" action="/admin/loginpost" method="POST" onsubmit="return validateLoginForm()">
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="email" name="email" id="username" class="form-control" required />
+              <span id="message" class="text-danger" style="font-size: 16px;"></span>
+            </div>
 
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" class="form-control" required />
-            <span id="messagePassword" class="text-danger" style="font-size: 16px;"></span>
-          </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" class="form-control" required />
+              <span id="messagePassword" class="text-danger" style="font-size: 16px;"></span>
+            </div>
 
-          <div class="form-group">
-            <input type="submit" class="btn btn-primary btn-block" value="Login">
-          </div>
-        </form>
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary btn-block" value="Login">
+            </div>
+          </form>
 
-        <p class="login-link">New customer? <a href="/admin/signup">Sign up for an account</a></p>
+          <p class="login-link text-center">New customer? <a href="/admin/signup">Sign up for an account</a></p>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  <!-- /Main Section -->
 
-<script>
-  function validateLoginForm() {
-    var email = document.getElementById("username").value;
-    var password = document.getElementById("password").value;
-    var emailValidationMessage = document.getElementById("message");
-    var passwordValidationMessage = document.getElementById("messagePassword");
-    var valid = true;
+  <!-- Bootstrap JS (CDN) -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    if (!email) {
-      emailValidationMessage.innerHTML = "Email is required.";
-      valid = false;
-    } else {
-      emailValidationMessage.innerHTML = "";
+  <!-- Custom Script -->
+  <script>
+    function validateLoginForm() {
+      var email = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+      var emailValidationMessage = document.getElementById("message");
+      var passwordValidationMessage = document.getElementById("messagePassword");
+      var valid = true;
+
+      if (!email) {
+        emailValidationMessage.innerHTML = "Email is required.";
+        valid = false;
+      } else {
+        emailValidationMessage.innerHTML = "";
+      }
+
+      if (!password) {
+        passwordValidationMessage.innerHTML = "Password is required.";
+        valid = false;
+      } else if (password.length < 8) {
+        passwordValidationMessage.innerHTML = "Password must be at least 8 characters.";
+        valid = false;
+      } else {
+        passwordValidationMessage.innerHTML = "";
+      }
+
+      return valid;
     }
-
-    if (!password) {
-      passwordValidationMessage.innerHTML = "Password is required.";
-      valid = false;
-    } else if (password.length < 8) {
-      passwordValidationMessage.innerHTML = "Password must be at least 8 characters.";
-      valid = false;
-    } else {
-      passwordValidationMessage.innerHTML = "";
-    }
-
-    return valid;
-  }
-</script>
-  <!-- / Main Section-->
-
-  <!-- Theme JS -->
-  <!-- Vendor JS -->
-  <script src="./assets/js/vendor.bundle.js"></script>
-
-  <!-- Theme JS -->
-  <script src="./assets/js/theme.bundle.js"></script>
+  </script>
 </body>
 
 </html>
