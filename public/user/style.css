@@ -2207,6 +2207,13 @@ ol {
 	.slicknav_nav ul {
 		margin: 0 0 0 0;
 	}
+	.user-access{
+		display: none;
+		
+	}
+	.header-right{
+		display: none;
+	}
 	.main-menu {
 		display: none;
 	}
