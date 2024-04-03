@@ -123,13 +123,17 @@ let Addlogin  = async (req, res) => {
             return res.redirect('/');
         } else {
             return res.status(401).json({ message: 'Invalid email or password' });
-            redirect('')
+            // redirect('')
         }
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+
+
+
+
 let getsign=(req,res)=>{
 
  res.render('user/sign');

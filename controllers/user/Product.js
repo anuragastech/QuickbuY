@@ -3,6 +3,7 @@ const product =require('../../models/vender/productAdd')
 
 let getproductpage =async (req, res) => {
     try {
+        const token = req.cookies.token;
         // console.log("PRODUCT PAGE \n");
         const productId=req.query.name
         // console.log(productId);
@@ -14,7 +15,7 @@ let getproductpage =async (req, res) => {
         //  console.log(relatedProducts);
         if (productData) {
          //  console.log(productData);
-            res.status(200).render('user/productpage', { data: productData ,relatedProducts });
+            res.status(200).render('user/productpage', { data: productData ,relatedProducts ,token});
         } else {
             res.status(404).json({ success: false, message: 'Product not found' });
         }

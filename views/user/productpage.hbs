@@ -386,11 +386,14 @@
                             <h1>{{data.Quantity}}</h1>
                             <h1 id="productId" style="display: none;">{{data._id}}</h1>
                             {{!-- <a href="#" class="primary-btn pc-btn">Add to cart</a> --}}
+<button class="btn txt-light w-50 mb-3 mb-md-0"
+    style="height:42px;background-color: rgb(95, 92, 92);color: white;font-size:18px;"
+    onclick="handleAddToCart('{{data._id}}', '{{token}}')">
+    <i class="material-icons" style="color: #ffffff;font-size:19px;">shopping_cart</i> Add to Cart
+</button>
+<br>
 
-                            <button class="btn txt-light w-50 mb-3 mb-md-0"
-                                style="height:42px;background-color: rgb(95, 92, 92);color: white;font-size:18px;"
-                                onclick="addToCart('{{data._id}}')"><i class="material-icons" style="color: #ffffff;font-size:19px;">shopping_cart</i>
-  Add to Cart</button><br>
+
 
                             <ul class="p-info">
                                 <li>Product Information</li>
@@ -406,10 +409,38 @@
 
 
     </section>
-                 
+         <script>
+    function handleAddToCart(productId, token) {
+        // Check if the token exists
+        if (token) {
+            // Token exists, proceed to add item to the cart
+            addToCart(productId);
+        } else {
+            // Token doesn't exist, redirect to the login page
+            window.location.href = "/login"; // Replace "/login" with the actual URL of your login page
+        }
+    }
+
+    function addToCart(productId) {
+        // Implement the logic to add the item to the cart here
+        console.log("Item added to cart with ID: " + productId);
+    }
+</script>
+        
 
     <!-- Product Page Section End -->
+    <div class="user-not">
+                    <!-- Conditional rendering based on user authentication -->
+                    {{#if loggedIn}}
 
+                    <a style="color: black;" href="/logout" id="logoutButton">Logout</a>
+                    {{else}}
+
+                    <a style="color: black;" href="/login" id="signInButton">sign in</a>/
+                    <a style="color: rgb(156, 142, 142);" href="/sign" id="signUpButton">sign up</a>
+
+                    {{/if}}
+                </div>
     <!-- Related Product Section Begin -->
     <section class="related-product spad">
 
@@ -451,6 +482,7 @@
             left: 35%;
             transform: translateX(-10%);
             text-align: center;
+            z-index:6;
         }
 
         /* Vertically center the notification */
