@@ -424,6 +424,12 @@ ol {
 .slicknav_menu {
 	display: none;
 }
+.header-not{
+	display: none;
+}
+.user-not{
+	display: none;
+}
 
 /*---------------------
   Search Bar
