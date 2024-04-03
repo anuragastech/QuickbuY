@@ -100,38 +100,39 @@ console.log(newCreate);
     }
 };
 
-let Addlogin  = async (req, res) => {
+let Addlogin = async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await create.findOne({ email });
 
-        if (user && !user.blocked && (await bcrypt.compare(password, user.password))) {        
-                console.log('Authentication successful');
-
-            const token = jwt.sign({ id: user._id, role: user.role }, secretKey, { expiresIn: '2h' });
-
-            user.token = token;
-            await user.save();
-
-            const options = {
-                expires: new Date(Date.now() + 2 * 60 * 60 * 1000),
-                httpOnly: true,
-            };
-
-            res.cookie('token', token, options);
-
-            return res.redirect('/');
-        } else {
+        if (!user || user.blocked) {
             return res.status(401).json({ message: 'Invalid email or password' });
-            // redirect('')
         }
+
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        if (!passwordMatch) {
+            return res.status(401).json({ message: 'Invalid email or password' });
+        }
+
+        console.log('Authentication successful');
+        const token = jwt.sign({ id: user._id, role: user.role }, secretKey, { expiresIn: '2h' });
+
+        user.token = token;
+        await user.save();
+
+        const options = {
+            expires: new Date(Date.now() + 2 * 60 * 60 * 1000),
+            httpOnly: true,
+        };
+
+        res.cookie('token', token, options);
+        return res.status(200).json({ message: 'Login successful', user: user });
+        return res.redirect('/');
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
+        return res.status(500).json({ message: 'Internal server error' });
     }
 };
-
-
 
 
 let getsign=(req,res)=>{
