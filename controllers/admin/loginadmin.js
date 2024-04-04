@@ -40,8 +40,9 @@ let Addlogin = async (req, res) => {
             };
 
             res.cookie('token', token, options);
+            return res.status(200).json({ message: 'Login successful', user: user });
 
-            return res.redirect('/admin/index'); 
+            // return res.redirect('/admin/index'); 
         } else {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
