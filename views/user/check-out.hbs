@@ -390,10 +390,18 @@
                        .then(response => response.json())
                    .then(paymentResponse => {
     if (paymentResponse.message === 'Order placed successfully with Razorpay') {
-        window.location.href = "/"; // Redirect to the home page
+        window.location.href = "/"; 
     } else if (paymentResponse.message === 'Order placed successfully with Cash on Delivery') {
-        // Display an alert for successful cash on delivery
-        alert('Order placed successfully with Cash on Delivery');
+
+        Toastify({
+    text: "Order placed successfully with Cash on Delivery",
+    duration: 3000, // 3 seconds
+    close: true,
+    gravity: "top",
+    position: "center",
+    className: "custom-toastify",
+}).showToast();
+
     } else {
         console.log(paymentResponse.message);
     }
@@ -418,7 +426,14 @@
                 rzp1.open();
             } else if (paymentResponse.message === 'Order placed successfully with Cash on Delivery') {
                 // Display an alert for successful cash on delivery
-                alert('Order placed successfully with Cash on Delivery');
+                Toastify({
+    text: "Order placed successfully with Cash on Delivery",
+    duration: 3000, // 3 seconds
+    close: true,
+    gravity: "top",
+    position: "center",
+    className: "custom-toastify",
+}).showToast();
             } else {
                 console.log(paymentResponse.message);
             }
@@ -485,7 +500,15 @@
     .then(paymentResponse => {
         if (paymentResponse.message === 'Order placed successfully with Cash on Delivery') {
             // Display success message as an alert
-            alert('Order placed successfully with Cash on Delivery');
+    Toastify({
+    text: "Order placed successfully with Cash on Delivery",
+    duration: 3000, // 5 seconds
+    close: true,
+    gravity: "top",
+    position: "center",
+    backgroundColor: "red", // Change background color to red
+    zIndex: -6, // Set z-index to -6
+}).showToast();
 
             window.location.href = '/'; // Replace with the URL of your home page
 
