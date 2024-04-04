@@ -291,23 +291,7 @@ const orderid={
         });
 
         return newOrder.save();
-        await Promise.all(savePromises);
-
-        console.log("fgjbjgeghgeh");
-        const productIds = unwoundOrders.map(order => order.product);
-          // Remove products from the cart
-          await cart.updateMany(
-            { userId: userId },
-            { $pull: { products: { productId: { $in: productIds } } } }
-        );
-        console.log("fgjbjgeghgeh");
-
-        console.log(productIds,"hellpo");
-        const productIdss = unwoundOrders.map(order => order.product);
-        await cart.updateMany(
-            { userId: userId },
-            { $pull: { products: { productId: { $in: productIds } } } }
-        );
+       
     });
 console.log(prices,'prices');
     // console.log("rare",prices);
@@ -316,13 +300,7 @@ console.log(prices,'prices');
     if (paymentMethod === 'cash') {
         // For cash on delivery
         paymentResponse = { message: 'Order placed successfully with Cash on Delivery' };
-        // console.log(product);
-        // const productIds = unwoundOrders.map(product => product.product);
-        // // console.log("p", productIds);
-        // await cart.deleteMany({ userId, 'products.productId': { $in: productIds } });
-        // await productAdd.updateone({})
-        
-        // paymentResponse = { message: 'Order placed successfully with Cash on Delivery' };
+       
 
     } else if (paymentMethod === 'online') {
         const razorpayOrder =  await razorpay.orders.create({
@@ -331,7 +309,37 @@ console.log(prices,'prices');
             receipt: 'order_rcptid_11', // Replace with your receipt ID
             payment_capture: 1
         });
+     // Reduce product quantities
+    //  await Promise.all(unwoundOrders.map(async (orderDetails) => {
+    //     const { product, quantity } = orderDetails;
+    //     const x=orderDetails.product
+    //     // const UpdateOrderedDAta=await productAdd.find({_id:x})
+    //     console.log(x,"dstaahgdgywwgh");
+    
+// Extract product IDs and quantities from unwoundOrders
+const productsToUpdate = unwoundOrders.map(orderDetails => ({
+    productId: orderDetails.product,
+    size: orderDetails.size, // Assuming orderDetails contains the size of the product
+    quantity: orderDetails.quantity
+}));
 
+const updateOperations = productsToUpdate.map(({ productId, size, quantity }) => ({
+    updateOne: {
+        filter: { _id: productId, 'properties.size': size }, // Filter to find the product by its ID and size
+        update: { $inc: { 'properties.$.quantity': -quantity } } // Decrement the quantity for the specific size
+    }
+}));
+
+// Execute update operations in parallel
+await Promise.all(updateOperations.map(op => productAdd.updateOne(op)));
+
+console.log('Quantities updated successfully.');
+        // const existingProduct = await Product.findById(product);
+        // if (existingProduct) {
+        //     existingProduct.quantity -= quantity;
+        //     await existingProduct.save();
+        // }
+    // }));
         // Send the Razorpay order ID back to the client-side for payment processing
         paymentResponse = { message: 'Order placed successfully with Razorpay', razorpayOrder };
     } else {

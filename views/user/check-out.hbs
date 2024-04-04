@@ -390,7 +390,8 @@
                        .then(response => response.json())
                    .then(paymentResponse => {
     if (paymentResponse.message === 'Order placed successfully with Razorpay') {
-        window.location.href = "/"; 
+        window.location.href = '/'; 
+
     } else if (paymentResponse.message === 'Order placed successfully with Cash on Delivery') {
 
         Toastify({
@@ -455,7 +456,7 @@
     duration: 3000, // 3 seconds
     close: true,
     gravity: 'top', // Align to the top
-    position: 'center', // Position at the center horizontally
+    position: 'center', 
     backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
     className: 'custom-toast', // Add a custom CSS class
 }).showToast();
@@ -499,18 +500,18 @@
     })
     .then(paymentResponse => {
         if (paymentResponse.message === 'Order placed successfully with Cash on Delivery') {
-            // Display success message as an alert
+
     Toastify({
     text: "Order placed successfully with Cash on Delivery",
-    duration: 3000, // 5 seconds
+    duration: 3000,
     close: true,
     gravity: "top",
     position: "center",
-    backgroundColor: "red", // Change background color to red
-    zIndex:6, // Set z-index to -6
+    backgroundColor: "red", 
+    zIndex:6, 
 }).showToast();
 
-            window.location.href = '/'; // Replace with the URL of your home page
+            window.location.href = '/'; 
 
         } else {
             console.log(paymentResponse.message);
