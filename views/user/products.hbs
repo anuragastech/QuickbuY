@@ -11,457 +11,568 @@
 
 
 
-  {{!-- bootstrap icon  --}}
+    {{!-- bootstrap icon --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Google Font -->
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-        {{!-- <link rel="stylesheet" href="/user/login.css"> --}}
+    {{!--
+    <link rel="stylesheet" href="/user/login.css"> --}}
 
-                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
 
     <!-- Css Styles -->
-   
-   
 
-           <link rel="stylesheet" href="/user/bootstrap.min.css" type="text/css">
+
+
+    <link rel="stylesheet" href="/user/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/user/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="/user/nice-select.css" type="text/css">
     <link rel="stylesheet" href="/user/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/user/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="/user/slicknav.min.css" type="text/css">
-<link rel="stylesheet" href="/user/style.css" type="text/css">
+    <link rel="stylesheet" href="/user/style.css" type="text/css">
 </head>
 </head>
 
 <body>
     <nav>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
-    
-    <!-- Search model -->
-	<div class="search-model">
-		<div class="h-100 d-flex align-items-center justify-content-center">
-			<div class="search-close-switch">+</div>
-			<form class="search-model-form">
-				<input type="text" id="search-input" placeholder="Search here.....">
-			</form>
-		</div>
-	</div>
-	<!-- Search model end -->
-
-    <!-- Header Section Begin -->
-    <header class="header-section" style="position: fixed;z-index:5;background-color: white;width: 100%;top:0%;">
-        <div class="container-fluid">
-            <div class="inner-header">
-                <div class="logo">
-<a href="/">
-    <h5 style="font-size: 2em; color: #3e4152; font-weight: bold;">QuickBuY</h5>
-</a>
-                    {{!-- <a href="index"><img src="/logo.png" alt=""></a> --}}
-                </div>
-               <div class="header-right">
-             
-                                        <a style="margin-right:1px;" class="search-trigger" href=""> <i style="font-size:20px;" class="bi bi-search"></i> </a>
-
-
-                                        <a  style="font-size:24px;margin-left:1px;" href="/shopping-cart"><i style="margin-top:5%;" class="bi bi-cart3"></i></a>
-
-                    <a   href="/profile"><i style="font-size:24px;" class="bi bi-person"></i></a>
-                
-
-
-                </div>
-                     <div class="user-access">
-                    <a href="/sign"  style="display: none;">Register</a>
-                    <a href="/login"  style="display: none;" class="in">Sign in</a>
-                                        <a href="/logout">Logout</a>
-
-                </div>
-                <nav class="main-menu mobile-menu">
-                    <ul>
-                        <li><a class="active" href="/">Home</a></li>
-                        <li><a href="/products">Shop</a>
-                            <ul class="sub-menu">
-                                {{!-- <li><a href="/products">Product Page</a></li> --}}
-                                <li><a href="/shopping-cart">Shopping Card</a></li>
-                                {{!-- <li><a href="/check-out">Check out</a></li> --}}
-                            </ul>
-                        </li>
-                        <li><a href="/products">About</a></li>
-                        <li><a href="/">Blog</a></li>
-                        <li><a href="/contact">Contact</a></li>
-                    </ul> 
-                </nav>
-            </div>
+        <!-- Page Preloder -->
+        <div id="preloder">
+            <div class="loader"></div>
         </div>
-    </header>
-    {{!-- ----------------------------------------------------------------------------- --}}
 
-    <!-- Related Product Section Begin -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Custom styles */
-        .filter-box {
-            background-color: #f8f9fa;
-            border-radius: ;
-            padding: 20px;
-            margin-bottom: 30px;
-            border: 1px solid rgb(239, 239, 239);
-            box-shadow:rgb(183, 182, 180) ;
-        }
-
-        .filter-box h3 {
-            margin-bottom: 20px;
-        }
-
-        .filter-box .form-check {
-            margin-right: 10px;
-        }
-
-        /* Additional custom styling */
-        @media (min-width: 768px) {
-            .filter-box {
-                max-width: 300px;
-                margin-top: 5px;
-            }
-        }
-    </style>
-</head>
-<body>
-<div class="container-fluid" style="margin-top: 6%;">
-    <div class="row">
-        <div class="col-md-2">
-            <div class="filter-box">
-                <h3>Filter & Sort</h3>
-                <form id="filter-form">
-                    <div class="form-group">
-                                                <!-- Add more subcategories as needed -->
-
-                        <label>Category:</label><br>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="men" name="category" value="Men">
-        <label class="form-check-label" for="men">Men</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="women" name="category" value="Women">
-        <label class="form-check-label" for="women">Women</label>
-    </div>
-    <div class="form-check form-check-inline">
-        <input class="form-check-input" type="checkbox" id="children" name="category" value="Children">
-        <label class="form-check-label" for="children">Children</label>
-    </div> <br>
-                        <!-- Add more subcategories as needed -->
-                      <label>Subcategory:</label><br>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="shirt" name="subcategory" value="Shirt">
-            <label class="form-check-label" for="shirt">Shirt</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="tshirt" name="subcategory" value="Tshirt">
-            <label class="form-check-label" for="tshirt">T-Shirt</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="pants" name="subcategory" value="Pants">
-            <label class="form-check-label" for="pants">Pants</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="trousers" name="subcategory" value="Trousers">
-            <label class="form-check-label" for="trousers">Trousers</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="kurta" name="subcategory" value="Kurta">
-            <label class="form-check-label" for="kurta">Kurta</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" id="saree" name="subcategory" value="saree">
-            <label class="form-check-label" for="saree">Saree</label>
-        </div>
-                        <!-- Add more brands as needed -->
-                    </div>
-                    <div class="form-group">
-                        <label>Size:</label><br>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="xl" name="size" value="XL">
-                            <label class="form-check-label" for="xl">XL</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="l" name="size" value="L">
-                            <label class="form-check-label" for="l">L</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="xxl" name="size" value="XXL">
-                            <label class="form-check-label" for="xxl">XXL</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="m" name="size" value="M">
-                            <label class="form-check-label" for="m">M</label>
-                        </div>
-                        <!-- Add more sizes as needed -->
-                    </div>
-                    <div class="form-group">
-                        <label>Color:</label><br>
-                        <div class="btn-group-toggle" data-toggle="buttons" id="color-buttons">
-                            <label class="btn btn-secondary">
-                                <input type="checkbox" name="color" value="red"> Red
-                                <br>
-                            </label>
-                            <label class="btn btn-secondary">
-                                <input type="checkbox" name="color" value="blue"> Blue
-                                <br>
-                            </label>
-                            <label class="btn btn-secondary">
-                                <input type="checkbox" name="color" value="black"> Black
-                                <br>
-                            </label>
-                            <label style="margin-top: 2px;" class="btn btn-secondary">
-                                <input type="checkbox" name="color" value="white"> White
-                                <br>
-                            </label>
-                            <!-- Add more colors as needed -->
-                        </div>
-                    </div>
-                    <div class="form-group">
-                     {{!-- <label for="price-range">Price Range:</label><br>
-<input type="range" class="form-control-range" style="width: 10rem;" id="price-range"
-    name="price-range" min="100" max="10000">
-<span id="price-range-output">0 - 1000</span> --}}
-
-                    </div>
-                    <button type="submit"  id="apply-filters-btn" class="btn btn-primary">Apply Filters</button>
+        <!-- Search model -->
+        <div class="search-model">
+            <div class="h-100 d-flex align-items-center justify-content-center">
+                <div class="search-close-switch">+</div>
+                <form class="search-model-form">
+                    <input type="text" id="search-input" placeholder="Search here.....">
                 </form>
             </div>
         </div>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- Search model end -->
 
-<!-- Your HTML structure remains the same -->
+        <!-- Header Section Begin -->
+        <header class="header-section" style="position: fixed;z-index:5;background-color: white;width: 100%;top:0%;">
+            <div class="container-fluid">
+                <div class="inner-header">
+                    <div class="logo">
+                        <a href="/">
+                            <h5 style="font-size: 2em; color: #3e4152; font-weight: bold;">QuickBuY</h5>
+                        </a>
+                        {{!-- <a href="index"><img src="/logo.png" alt=""></a> --}}
+                    </div>
+                    <div class="header-right">
 
-<!-- Include Bootstrap JavaScript -->
-<!-- Your HTML structure remains unchanged -->
+                        <a style="margin-right:1px;" class="search-trigger" href=""> <i style="font-size:20px;"
+                                class="bi bi-search"></i> </a>
 
-<!-- Include Bootstrap JavaScript -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+                        <a style="font-size:24px;margin-left:1px;" href="/shopping-cart"><i style="margin-top:5%;"
+                                class="bi bi-cart3"></i></a>
+
+                        <a href="/profile"><i style="font-size:24px;" class="bi bi-person"></i></a>
+
+
+
+                    </div>
+                    <div class="user-access">
+                        <a href="/sign" style="display: none;">Register</a>
+                        <a href="/login" style="display: none;" class="in">Sign in</a>
+                        <a href="/logout">Logout</a>
+
+                    </div>
+                    <nav class="main-menu mobile-menu">
+                        <ul>
+                            <li><a class="active" href="/">Home</a></li>
+                            <li><a href="/products">Shop</a>
+                                <ul class="sub-menu">
+                                    {{!-- <li><a href="/products">Product Page</a></li> --}}
+                                    <li><a href="/shopping-cart">Shopping Card</a></li>
+                                    {{!-- <li><a href="/check-out">Check out</a></li> --}}
+                                </ul>
+                            </li>
+                            <li><a href="/products">About</a></li>
+                            <li><a href="/">Blog</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        {{!-- ----------------------------------------------------------------------------- --}}
+
+        <!-- Related Product Section Begin -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+            /* Custom styles */
+            .filter-box {
+                background-color: #f8f9fa;
+                border-radius: ;
+                padding: 20px;
+                margin-bottom: 30px;
+                border: 1px solid rgb(239, 239, 239);
+                box-shadow: rgb(183, 182, 180);
+            }
+
+            .filter-box h3 {
+                margin-bottom: 20px;
+            }
+
+            .filter-box .form-check {
+                margin-right: 10px;
+            }
+
+            /* Additional custom styling */
+            @media (min-width: 768px) {
+                .filter-box {
+                    max-width: 300px;
+                    margin-top: 5px;
+                }
+            }
+        </style>
+        <style>
+            .hidden {
+                display: none;
+            }
+
+        </style>
+        <style>
+               .container-fluid {
+        
+            transition: margin-top 0.5s ease; /* Add transition for margin-top */
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .slow-hide {
+            margin-top: -100%; /* Move container out of view */
+        }
+        </style>
+        
+        </head>
+
+        <body>
+            <div class="container-fluid" style="margin-top: 8%;">
+                 <div class="row">
+        <button style="width:10%;margin-bottom: 2%;margin-left: 1%;background-color: rgb(231, 244, 238);color: #3e4152;border:1px solid rgb(245, 243, 243);" id="toggleContainerBtn" class="btn btn-primary">Hide filtter</button>
+    </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="filter-box">
+                            <h3>Filter & Sort</h3>
+                            <form id="filter-form">
+                                <div class="form-group">
+                                    <label>
+                                        <button type="button" class="toggle-btn" style="border: none;" data-target="category">+</button>
+                                        Category:
+                                    </label><br>
+                                    <div class="category-options hidden">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="men" name="category"
+                                                value="Men">
+                                            <label class="form-check-label" for="men">Men</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="women" name="category"
+                                                value="Women">
+                                            <label class="form-check-label" for="women">Women</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="children"
+                                                name="category" value="Children">
+                                            <label class="form-check-label" for="children">Children</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <button type="button" style="border: none;" class="toggle-btn" data-target="subcategory">+</button>
+                                        Subcategory:
+                                    </label><br>
+                                    <div class="subcategory-options hidden">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="shirt"
+                                                name="subcategory" value="Shirt">
+                                            <label class="form-check-label" for="shirt">Shirt</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="tshirt"
+                                                name="subcategory" value="Tshirt">
+                                            <label class="form-check-label" for="tshirt">T-Shirt</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="pants"
+                                                name="subcategory" value="Pants">
+                                            <label class="form-check-label" for="pants">Pants</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="trousers"
+                                                name="subcategory" value="Trousers">
+                                            <label class="form-check-label" for="trousers">Trousers</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="kurta"
+                                                name="subcategory" value="Kurta">
+                                            <label class="form-check-label" for="kurta">Kurta</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="saree"
+                                                name="subcategory" value="saree">
+                                            <label class="form-check-label" for="saree">Saree</label>
+                                        </div>
+                                        <!-- Subcategory options here -->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <button type="button" style="border: none;" class="toggle-btn" data-target="size">+</button>
+                                        Color:
+                                    </label><br>
+                                    <div class="size-options hidden">
+                                        <!-- Color options here -->
+                                        <label class="btn btn-secondary">
+                                            <input type="checkbox" name="color" value="red"> Red
+                                            <br>
+                                        </label>
+                                        <label class="btn btn-secondary">
+                                            <input type="checkbox" name="color" value="blue"> Blue
+                                            <br>
+                                        </label>
+                                        <label class="btn btn-secondary">
+                                            <input type="checkbox" name="color" value="black"> Black
+                                            <br>
+                                        </label>
+                                        <label style="margin-top: 2px;" class="btn btn-secondary">
+                                            <input type="checkbox" name="color" value="white"> White
+                                            <br>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <button type="button" style="border: none;" class="toggle-btn" data-target="color">+</button>
+                                        Size:
+                                    </label><br>
+                                    <div class="color-options hidden">
+                                        <!-- Size options here -->
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="xl" name="size"
+                                                value="XL">
+                                            <label class="form-check-label" for="xl">XL</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="l" name="size"
+                                                value="L">
+                                            <label class="form-check-label" for="l">L</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="xxl" name="size"
+                                                value="XXL">
+                                            <label class="form-check-label" for="xxl">XXL</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="m" name="size"
+                                                value="M">
+                                            <label class="form-check-label" for="m">M</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>
+                                        <button type="button" style="border:none;" class="toggle-btn" data-target="price">+</button>
+                                        Price Range:
+
+                                    </label><br>
+                                    <div class="price-options hidden">
+                                        <!-- Price options here -->
+                                        <label for="price-range">Price Range:</label><br>
+                                        <input type="range" class="form-control-range" style="width: 10rem;"
+                                            id="price-range" name="price-range" min="100" max="10000">
+                                        <span id="price-range-output">0 - 1000</span>
+                                    </div>
+                                </div>
+                                <button type="submit" id="apply-filters-btn" class="btn btn-primary">Apply
+                                    Filters</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const toggleButtons = document.querySelectorAll('.toggle-btn');
+
+                            toggleButtons.forEach(button => {
+                                button.addEventListener('click', function () {
+                                    const target = button.dataset.target;
+                                    const options = document.querySelector(`.${target}-options`);
+                                    if (options) {
+                                        options.classList.toggle('hidden');
+                                        button.textContent = options.classList.contains('hidden') ? '+' : '-';
+                                    }
+                                });
+                            });
+                        });
+                    </script>
+
+
+
+
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+                    <!-- Your HTML structure remains the same -->
+
+                    <!-- Include Bootstrap JavaScript -->
+                    <!-- Your HTML structure remains unchanged -->
+
+                    <!-- Include Bootstrap JavaScript -->
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const applyFiltersBtn = document.getElementById('apply-filters-btn');
+                            if (applyFiltersBtn) {
+                                applyFiltersBtn.addEventListener('click', filterProducts);
+                            } else {
+                                console.error("Button element with ID 'apply-filters-btn' not found.");
+                            }
+                        });
+
+                        async function filterProducts() {
+                            const formData = new FormData(document.getElementById('filter-form'));
+                            try {
+                                const response = await fetch('/products', {
+                                    method: 'POST',
+                                    body: formData
+                                });
+
+                                if (response.ok) {
+                                    const filteredProducts = await response.json();
+                                    renderFilteredProducts(filteredProducts);
+                                } else {
+                                    throw new Error('Failed to filter products');
+                                }
+                            } catch (error) {
+                                console.error(error);
+                                // Handle error
+                            }
+                        }
+
+                        function renderFilteredProducts(products) {
+                            const filteredProductsContainer = document.getElementById('display-filtered');
+                            filteredProductsContainer.innerHTML = '';
+
+                            products.forEach(product => {
+                                const productElement = document.createElement('div');
+                                productElement.className = 'col-lg-3 col-sm-5 single-product-item';
+                                productElement.innerHTML = `
+                                            <div class="single-product-item">
+                                                <figure>
+                                                    <a href="/productpage?name=${product._id}"><img src="${product.image.url}" alt=""></a>
+                                                </figure>
+                                                <div class="product-text">
+                                                    <h6>${product.productname}</h6>
+                                                    <p>$${product.price}</p>
+                                                </div>
+                                            </div>`;
+                                filteredProductsContainer.appendChild(productElement);
+                            });
+                        }
+                    </script>
+
+                    {{!--
+                    ----------------------------------------------------------------------------------------------------------------
+                    --}}
+                    <style>
+                        .single-product-item {
+                            transition: transform 0.3s ease;
+                        }
+
+                        .single-product-item:hover {
+                            transform: scale(1.08);
+                            /* Slightly expand the card on hover */
+                        }
+                    </style>
+                    <div class="col-md-10" id="display-filtered">
+                        <!-- Content for the second column (7 units) -->
+                        <div class="row" id="from-hiding-point">
+                            {{#each products}}
+                            <div class="col-lg-3 col-sm-5">
+                                <div class="single-product-item">
+                                    <figure>
+                                        <a href="/productpage?name={{this._id}}"><img src="{{this.image.url}}"
+                                                alt=""></a>
+                                    </figure>
+                                    <div class="product-text">
+                                        <h6>{{this.productname}}</h6>
+                                        <p>${{this.price}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+
+                        <!-- Pagination -->
+                        <nav aria-label="Page navigation" class="mt-4">
+                            <ul class="pagination justify-content-end">
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+
+
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const applyFiltersBtn = document.getElementById('apply-filters-btn');
-    if (applyFiltersBtn) {
-        applyFiltersBtn.addEventListener('click', filterProducts);
-    } else {
-        console.error("Button element with ID 'apply-filters-btn' not found.");
-    }
-});
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleContainerBtn = document.getElementById('toggleContainerBtn');
+        const firstContainer = document.querySelector('.col-md-2');
+        const secondContainer = document.querySelector('.col-md-10');
 
-async function filterProducts() {
-    const formData = new FormData(document.getElementById('filter-form'));
-    try {
-        const response = await fetch('/products', {
-            method: 'POST',
-            body: formData
-        });
-
-        if (response.ok) {
-            const filteredProducts = await response.json();
-            renderFilteredProducts(filteredProducts);
+        if (toggleContainerBtn && firstContainer && secondContainer) {
+            toggleContainerBtn.addEventListener('click', function () {
+                firstContainer.classList.toggle('hidden');
+                secondContainer.classList.toggle('col-md-10');
+                secondContainer.classList.toggle('col-md-12');
+            });
         } else {
-            throw new Error('Failed to filter products');
+            console.error("Button or container elements not found.");
         }
-    } catch (error) {
-        console.error(error);
-        // Handle error
-    }
-}
-
-function renderFilteredProducts(products) {
-    const filteredProductsContainer = document.getElementById('display-filtered');
-    filteredProductsContainer.innerHTML = '';
-
-    products.forEach(product => {
-        const productElement = document.createElement('div');
-        productElement.className = 'col-lg-3 col-sm-5 single-product-item';
-        productElement.innerHTML = `
-            <div class="single-product-item">
-                <figure>
-                    <a href="/productpage?name=${product._id}"><img src="${product.image.url}" alt=""></a>
-                </figure>
-                <div class="product-text">
-                    <h6>${product.productname}</h6>
-                    <p>$${product.price}</p>
-                </div>
-            </div>`;
-        filteredProductsContainer.appendChild(productElement);
     });
-}
 </script>
 
-{{!-- ---------------------------------------------------------------------------------------------------------------- --}}
-<style>
-       .single-product-item {
-    transition: transform 0.3s ease;
-}
+            <!-- Bootstrap JS CDN -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-.single-product-item:hover {
-    transform: scale(1.08); /* Slightly expand the card on hover */
-}
-</style>
-        <div class="col-md-10" id="display-filtered">
-            <!-- Content for the second column (7 units) -->
-            <div class="row"  id="from-hiding-point" >
-                {{#each products}}
-                <div class="col-lg-3 col-sm-5">
-                    <div class="single-product-item">
-                        <figure>
-                            <a href="/productpage?name={{this._id}}"><img src="{{this.image.url}}" alt=""></a>
-                        </figure>
-                        <div class="product-text">
-                            <h6>{{this.productname}}</h6>
-                            <p>${{this.price}}</p>
+
+
+
+            <!-- Related Product Section End -->
+
+
+            <!-- Footer Section Begin -->
+            <footer class="footer-section spad">
+                <div class="container">
+                    <div class="newslatter-form">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form action="#">
+                                    <input type="text" placeholder="Your email address">
+                                    <button type="submit">Subscribe to our newsletter</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-widget">
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="single-footer-widget">
+                                    <h4>About us</h4>
+                                    <ul>
+                                        <li>About Us</li>
+                                        <li>Community</li>
+                                        <li>Jobs</li>
+                                        <li>Shipping</li>
+                                        <li>Contact Us</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="single-footer-widget">
+                                    <h4>Customer Care</h4>
+                                    <ul>
+                                        <li>Search</li>
+                                        <li>Privacy Policy</li>
+                                        <li>2019 Lookbook</li>
+                                        <li>Shipping & Delivery</li>
+                                        <li>Gallery</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="single-footer-widget">
+                                    <h4>Our Services</h4>
+                                    <ul>
+                                        <li>Free Shipping</li>
+                                        <li>Free Returnes</li>
+                                        <li>Our Franchising</li>
+                                        <li>Terms and conditions</li>
+                                        <li>Privacy Policy</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="single-footer-widget">
+                                    <h4>Information</h4>
+                                    <ul>
+                                        <li>Payment methods</li>
+                                        <li>Times and shipping costs</li>
+                                        <li>Product Returns</li>
+                                        <li>Shipping methods</li>
+                                        <li>Conformity of the products</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                {{/each}}
-            </div>
-
-            <!-- Pagination -->
-            <nav aria-label="Page navigation" class="mt-4">
-                <ul class="pagination justify-content-end">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-</div>
-
-<!-- Bootstrap JS CDN -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-
-
-    <!-- Related Product Section End -->
-
-
-    <!-- Footer Section Begin -->
-    <footer class="footer-section spad">
-        <div class="container">
-            <div class="newslatter-form">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <form action="#">
-                            <input type="text" placeholder="Your email address">
-                            <button type="submit">Subscribe to our newsletter</button>
-                        </form>
+                <div class="social-links-warp">
+                    <div class="container">
+                        <div class="social-links">
+                            <a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
+                            <a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
+                            <a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
+                            <a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
+                            <a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
+                            <a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
+                        </div>
                     </div>
+
+                    <div class="container text-center pt-5">
+
+                    </div>
+
                 </div>
-            </div>
-            <div class="footer-widget">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h4>About us</h4>
-                            <ul>
-                                <li>About Us</li>
-                                <li>Community</li>
-                                <li>Jobs</li>
-                                <li>Shipping</li>
-                                <li>Contact Us</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h4>Customer Care</h4>
-                            <ul>
-                                <li>Search</li>
-                                <li>Privacy Policy</li>
-                                <li>2019 Lookbook</li>
-                                <li>Shipping & Delivery</li>
-                                <li>Gallery</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h4>Our Services</h4>
-                            <ul>
-                                <li>Free Shipping</li>
-                                <li>Free Returnes</li>
-                                <li>Our Franchising</li>
-                                <li>Terms and conditions</li>
-                                <li>Privacy Policy</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h4>Information</h4>
-                            <ul>
-                                <li>Payment methods</li>
-                                <li>Times and shipping costs</li>
-                                <li>Product Returns</li>
-                                <li>Shipping methods</li>
-                                <li>Conformity of the products</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="social-links-warp">
-			<div class="container">
-				<div class="social-links">
-					<a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
-					<a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
-					<a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
-					<a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
-					<a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
-					<a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
-				</div>
-			</div>
+            </footer>
+            <!-- Footer Section End -->
 
-<div class="container text-center pt-5">
-
-            </div>
-
-		</div>
-    </footer>
-    <!-- Footer Section End -->
-
-    <!-- Js Plugins -->
-    <script src="/user/jquery-3.3.1.min.js"></script>
-    <script src="/user/bootstrap.min.js"></script>
-    <script src="/user/jquery.magnific-popup.min.js"></script>
-    <script src="/user/jquery.slicknav.js"></script>
-    <script src="/user/owl.carousel.min.js"></script>
-    <script src="/user/jquery.nice-select.min.js"></script>
-    <script src="/user/mixitup.min.js"></script>
-    <script src="/user/main.js"></script>
+            <!-- Js Plugins -->
+            <script src="/user/jquery-3.3.1.min.js"></script>
+            <script src="/user/bootstrap.min.js"></script>
+            <script src="/user/jquery.magnific-popup.min.js"></script>
+            <script src="/user/jquery.slicknav.js"></script>
+            <script src="/user/owl.carousel.min.js"></script>
+            <script src="/user/jquery.nice-select.min.js"></script>
+            <script src="/user/mixitup.min.js"></script>
+            <script src="/user/main.js"></script>
 
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-</body>
+        </body>
 
 </html>

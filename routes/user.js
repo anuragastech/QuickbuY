@@ -39,7 +39,7 @@ router.get('/contact',getAllControllers.getcontact)
 router.get('/user',authenticateJWT,getAllControllers.getuser)
 
 
-    router.get('/categories/:id',authenticateJWT,getSubcategoryControllers.getsubcategories)
+    router.get('/categories/:id',getSubcategoryControllers.getsubcategories)
 
     
 
@@ -102,7 +102,7 @@ router.post('/order',authenticateJWT, getPaymentway.orderPost)
 
 // router.put("/cart/selectedProduct",authenticateJWT,getPaymentway.cartProductSelected)
 
-router.post("/send-mail",authenticateJWT,userControllers.sendmail)
+router.post("/send-mail",userControllers.sendmail)
 
 
 router.post('/profileData',authenticateJWT,userControllers.profileData)
