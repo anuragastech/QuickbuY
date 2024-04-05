@@ -109,6 +109,7 @@ router.post('/profileData',authenticateJWT,userControllers.profileData)
 
 router.get('/about',(req,res)=>{
   res.render('user/about')
+  
 })
 router.get('/profile',authenticateJWT,userControllers.GetProfile )
 router.post('/postAddress',authenticateJWT, userControllers.postAddresses)
