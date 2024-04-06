@@ -93,11 +93,12 @@
   display: inline;
 }
 .slicknav_menu {
-  *zoom: 1;
+  zoom: 1; /* Removed the asterisk */
   font-size: 21px;
   background: #1f1e1e;
-  padding: 0px;
+  padding: 0; /* Adjusted padding value */
 }
+
 .slicknav_nav,
 .slicknav_nav ul {
   list-style: none;
