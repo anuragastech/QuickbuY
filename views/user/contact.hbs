@@ -7,9 +7,19 @@
     <meta name="keywords" content="Yoga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Violet | Template</title>
+    <title>QuickBuY</title>
 
+
+
+    {{!-- bootstrap icon --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Google Font -->
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    {{!--
+    <link rel="stylesheet" href="/user/login.css"> --}}
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
@@ -17,6 +27,8 @@
         rel="stylesheet">
 
     <!-- Css Styles -->
+
+
 
     <link rel="stylesheet" href="/user/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/user/font-awesome.min.css" type="text/css">
@@ -29,27 +41,28 @@
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
-
-    <!-- Search model -->
-    <div class="search-model">
-        <div class="h-100 d-flex align-items-center justify-content-center">
-            <div class="search-close-switch">+</div>
-            <form class="search-model-form">
-                <input type="text" id="search-input" placeholder="Search here.....">
-            </form>
+    <nav>
+        <!-- Page Preloder -->
+        <div id="preloder">
+            <div class="loader"></div>
         </div>
-    </div>
-    <!-- Search model end -->
 
-    <!-- Header Section Begin -->
-    <header class="header-section">
-        <div class="container-fluid">
-            <div class="inner-header">
-             <div class="logo">
+        <!-- Search model -->
+        <div class="search-model">
+            <div class="h-100 d-flex align-items-center justify-content-center">
+                <div class="search-close-switch">+</div>
+                <form class="search-model-form">
+                    <input type="text" id="search-input" placeholder="Search here.....">
+                </form>
+            </div>
+        </div>
+        <!-- Search model end -->
+
+        <!-- Header Section Begin -->
+        <header class="header-section" style="position: fixed;z-index:5;background-color: white;width: 100%;top:0%;">
+            <div class="container-fluid">
+                <div class="inner-header">
+                   <div class="logo">
   <a href="#">
         <h5>
             <img style="height:40px;width:40px;background-color:white;color:white;" src="https://res.cloudinary.com/dd6qdgpfr/image/upload/v1712106218/photo_2024-03-12_20-09-56__2___1_-transformed_ncuoze.png" alt="">
@@ -57,37 +70,44 @@
         </h5>
     </a>
                 </div>
-                <div class="header-right">
-                    <img src="/icons/search.png" alt="" class="search-trigger">
-        <a href="/profile"><img src="/icons/man.png"   alt="/profile" ></a>           
-                    <a href="#">
-                        <img src="/icons/bag.png" alt="">
-                        {{!-- <span>2</span> --}}
-                    </a>
+                    <div class="header-right">
+
+                        <a style="margin-right:1px;" class="search-trigger" href=""> <i style="font-size:20px;"
+                                class="bi bi-search"></i> </a>
+
+
+                        <a style="font-size:24px;margin-left:1px;" href="/shopping-cart"><i style="margin-top:5%;"
+                                class="bi bi-cart3"></i></a>
+
+                        <a href="/profile"><i style="font-size:24px;" class="bi bi-person"></i></a>
+
+
+
+                    </div>
+                    <div class="user-access">
+                        <a href="/sign" style="display: none;">Register</a>
+                        <a href="/login" style="display: none;" class="in">Sign in</a>
+                        <a href="/logout">Logout</a>
+
+                    </div>
+                    <nav class="main-menu mobile-menu">
+                        <ul>
+                            <li><a class="active" href="/">Home</a></li>
+                            <li><a href="/products">Shop</a>
+                                <ul class="sub-menu">
+                                    {{!-- <li><a href="/products">Product Page</a></li> --}}
+                                    <li><a href="/shopping-cart">Shopping Card</a></li>
+                                    {{!-- <li><a href="/check-out">Check out</a></li> --}}
+                                </ul>
+                            </li>
+                            <li><a href="/about">About</a></li>
+                            {{!-- <li><a href="/">Blog</a></li> --}}
+                            <li><a href="/contact">Contact</a></li>
+                        </ul>
+                    </nav>
                 </div>
-                <div class="user-access">
-                    <a href="/sign" style="display: none;">Register</a>
-                    <a href="/login" style="display: none;" class="in">Sign in</a>
-                    <a href="/sign">Logout</a>
-                </div>
-                <nav class="main-menu mobile-menu">
-                    <ul>
-                        <li><a class="active" href="/">Home</a></li>
-                        <li><a href="/products">Shop</a>
-                            <ul class="sub-menu">
-                                {{!-- <li><a href="/productdetails">Product Page</a></li> --}}
-                                <li><a href="/shopping-cart">Shopping Card</a></li>
-                                {{!-- <li><a href="/check-out">Check out</a></li> --}}
-                            </ul>
-                        </li>
-                        <li><a href="/about">About</a></li>
-                        <li><a href="/check-out">Blog</a></li>
-                        <li><a href="/contact">Contact</a></li>
-                    </ul>
-                </nav>
             </div>
-        </div>
-    </header>
+        </header>
     <!-- Header Info Begin -->
     <div class="header-info">
         <div class="container-fluid">
