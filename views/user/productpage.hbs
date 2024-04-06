@@ -55,9 +55,10 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
 
-            {{!-- font auwsom --}}
-{{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> --}}
-   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {{!-- font auwsom --}}
+    {{!--
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> --}}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="/user/bootstrap.min.css" type="text/css">
@@ -70,8 +71,8 @@
 
 
 
-{{!-- ------  --}}
-  {{!-- bootstrap icon  --}}
+    {{!-- ------ --}}
+    {{!-- bootstrap icon --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
@@ -99,20 +100,27 @@
         <div class="container-fluid">
             <div class="inner-header">
                 <div class="logo">
- <a href="/">
-    <h5 style="font-size: 2em; color: #ad0101;font-weight:bolder; ">                <img style="height:40px;width:40px;background-color: white;color:white;fo" src="https://res.cloudinary.com/dd6qdgpfr/image/upload/v1712106218/photo_2024-03-12_20-09-56__2___1_-transformed_ncuoze.png" alt="">
-QuickBuY</h5>
-</a>
+                    <a href="/">
+                        <h5 style="font-size: 2em; color: #ad0101;font-weight:bolder;"> <img
+                                style="height:40px;width:40px;background-color: white;color:white;fo"
+                                src="https://res.cloudinary.com/dd6qdgpfr/image/upload/v1712106218/photo_2024-03-12_20-09-56__2___1_-transformed_ncuoze.png"
+                                alt="">
+                            QuickBuY</h5>
+                    </a>
+
+
                 </div>
                 <div class="header-right">
-             
-                                        <a style="margin-right:1px;" class="search-trigger" href=""> <i style="font-size:20px;" class="bi bi-search"></i> </a>
+
+                    <a style="margin-right:1px;" class="search-trigger" href=""> <i style="font-size:20px;"
+                            class="bi bi-search"></i> </a>
 
 
-                                        <a  style="font-size:24px;margin-left:1px;" href="/shopping-cart"><i style="margin-top:5%;" class="bi bi-cart3"></i></a>
+                    <a style="font-size:24px;margin-left:1px;" href="/shopping-cart"><i style="margin-top:5%;"
+                            class="bi bi-cart3"></i></a>
 
-                    <a   href="/profile"><i style="font-size:24px;" class="bi bi-person"></i></a>
-                
+                    <a href="/profile"><i style="font-size:24px;" class="bi bi-person"></i></a>
+
 
 
                 </div>
@@ -202,7 +210,7 @@ QuickBuY</h5>
                 <a href="#"></a>
             </div>
             <div class="row">
-                <div class="col-lg-6" >
+                <div class="col-lg-6">
                     <div class="product-slider owl-carousel">
                         <div class="product-img">
                             <figure>
@@ -210,11 +218,11 @@ QuickBuY</h5>
                                 {{!-- <div class="p-status">new</div> --}}
                             </figure>
                         </div>
-                       <div class="product-img">
-    <figure class="img-wrapper">
-        <img src="{{data.image.url}}" alt="{{this.productname}}" class="img-fluid">
-    </figure>
-</div>
+                        <div class="product-img">
+                            <figure class="img-wrapper">
+                                <img src="{{data.image.url}}" alt="{{this.productname}}" class="img-fluid">
+                            </figure>
+                        </div>
 
                     </div>
 
@@ -225,6 +233,13 @@ QuickBuY</h5>
                 <div class="col-2">
 
                 </div>
+
+
+
+
+<style>
+    
+</style>
 
 
                 <div class="col-lg-4">
@@ -239,12 +254,11 @@ QuickBuY</h5>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                             </div> --}}
-<style>
-    .discounted-price {
-  text-decoration: line-through;
-}
-
-</style>
+                            <style>
+                                .discounted-price {
+                                    text-decoration: line-through;
+                                }
+                            </style>
                         </div>
                         <p>{{data.discription}}</p>
                         <ul class="tags">
@@ -252,27 +266,31 @@ QuickBuY</h5>
                                     style=" font-size: 15px ;margin-bottom: 10px; font-weight: bold;color: rgb(43, 42, 42);">Category
                                     :{{#each data.category }} {{this.title}} {{/each}} </span> </li>
 
-                            <h1 style="margin-bottom: 15px; font-size: 18px;font-weight:lighter;color: rgb(35, 35, 35);font-family: sans-serif;">
-                           <div class="price-container">
-                            <h5 style="font-size:15px;">Color:</h5>
+                            <h1
+                                style="margin-bottom: 15px; font-size: 18px;font-weight:lighter;color: rgb(35, 35, 35);font-family: sans-serif;">
+                                <div class="price-container">
+                                    <h5 style="font-size:15px;">Color:</h5>
 
-    <h5 class="original-price">₹{{data.price}}</h5>
-    <span style="background-color: rgb(194, 180, 180);font-size:15px;" class="discounted-price"> </span><span  style="background-color:rgb(194, 180, 180); color: rgb(82, 55, 138);font-size: 15px;">(20% off)</span>
-</div>                           {{!-- <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
-                            <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
-                            --}}
-                            <li style="margin-bottom: 20px;">
-                                {{!-- <span>Size :</span> --}}
-                                <h5 style="font-size:15px;">Size:</h5>
-                                <div class="btn-group" id="sizeDiv" role="group" aria-label="Size Options">
-                                    {{#each data.properties}}
-                                    <button type="button" class="btn btn-outline-dark size"
-                                        onclick="selectSize('{{this.size}}')">
-                                        {{this.size}}
-                                    </button>
-                                    {{/each}}
-                                </div>
-                                <input type="hidden" id="selectedSize" name="selectedSize" value="">
+                                    <h5 class="original-price">₹{{data.price}}</h5>
+                                    <span style="background-color: rgb(194, 180, 180);font-size:15px;"
+                                        class="discounted-price"> </span><span
+                                        style="background-color:rgb(194, 180, 180); color: rgb(82, 55, 138);font-size: 15px;">(20%
+                                        off)</span>
+                                </div> {{!-- <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
+                                <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
+                                --}}
+                                <li style="margin-bottom: 20px;">
+                                    {{!-- <span>Size :</span> --}}
+                                    <h5 style="font-size:15px;">Size:</h5>
+                                    <div class="btn-group" id="sizeDiv" role="group" aria-label="Size Options">
+                                        {{#each data.properties}}
+                                        <button type="button" class="btn btn-outline-dark size"
+                                            onclick="selectSize('{{this.size}}')">
+                                            {{this.size}}
+                                        </button>
+                                        {{/each}}
+                                    </div>
+                                    <input type="hidden" id="selectedSize" name="selectedSize" value="">
 
 
 
@@ -287,31 +305,32 @@ QuickBuY</h5>
                             style="font-size:12px;margin-left :5px; font-weight:initial; color: rgba(19, 19, 20, 0.948);">
                             COLORS</h5>
                         <br>
-                      <div class="row">
-            {{#each relatedProducts }}
-                <div class="col-6 col-md-4 col-lg-3 mb-3">
-                    <div class="card" style="max-width: 100%;">
-                        <a href="/productpage?name={{this._id}}" tabindex="-1">
-                            <img class="card-img" src="{{this.image.url}}" alt="Image" style="width: 100%; height: auto;">
-                        </a>
-                    </div>
-                </div>
-            {{/each}}
-        </div>
+                        <div class="row">
+                            {{#each relatedProducts }}
+                            <div class="col-6 col-md-4 col-lg-3 mb-3">
+                                <div class="card" style="max-width: 100%;">
+                                    <a href="/productpage?name={{this._id}}" tabindex="-1">
+                                        <img class="card-img" src="{{this.image.url}}" alt="Image"
+                                            style="width: 100%; height: auto;">
+                                    </a>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
                         <script>
-    // Get the original price from the HTML content
-    const originalPriceElement = document.querySelector('.original-price');
-    const originalPrice = parseFloat(originalPriceElement.textContent.replace('₹', ''));
+                            // Get the original price from the HTML content
+                            const originalPriceElement = document.querySelector('.original-price');
+                            const originalPrice = parseFloat(originalPriceElement.textContent.replace('₹', ''));
 
-    // Calculate the discounted price
-    const discountPercentage = 20;
-    const discountAmount = (originalPrice * discountPercentage) / 100;
-    const discountedPrice = originalPrice + discountAmount;
+                            // Calculate the discounted price
+                            const discountPercentage = 20;
+                            const discountAmount = (originalPrice * discountPercentage) / 100;
+                            const discountedPrice = originalPrice + discountAmount;
 
-    // Display the discounted price
-    const discountedPriceElement = document.querySelector('.discounted-price');
-    discountedPriceElement.textContent = `₹${discountedPrice.toFixed(2)}`; // Assuming you want 2 decimal places
-</script>
+                            // Display the discounted price
+                            const discountedPriceElement = document.querySelector('.discounted-price');
+                            discountedPriceElement.textContent = `₹${discountedPrice.toFixed(2)}`; // Assuming you want 2 decimal places
+                        </script>
 
                         <script>
 
@@ -346,14 +365,17 @@ QuickBuY</h5>
 
                         </script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-jqXNuKfeywxEN44C4yizKMGvPV/RKiNVWk6N1K6PQi/QRDePFvhF6lD9p0Ggg3l9iI0O+RfMQL0z4KNSfZ0okA==" crossorigin="anonymous" />
+                        <link rel="stylesheet"
+                            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+                            integrity="sha512-jqXNuKfeywxEN44C4yizKMGvPV/RKiNVWk6N1K6PQi/QRDePFvhF6lD9p0Ggg3l9iI0O+RfMQL0z4KNSfZ0okA=="
+                            crossorigin="anonymous" />
 
                         <script
                             src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
                         <div class="product-quantity">
-                            <div class="input-group mb-4" >
-                                <span class="input-group-btn" >
+                            <div class="input-group mb-4">
+                                <span class="input-group-btn">
                                     <button type="button"
                                         style="background-color: rgb(220, 218, 218); width:37px; height:37px; padding: 0;margin-top:11%;border: 1px solid rgb(231, 227, 227);"
                                         class="quantity-minus btn btn-outline-secondary" onclick="decrementQuantity()">
@@ -362,7 +384,7 @@ QuickBuY</h5>
 
                                 </span>
                                 <input type="text"
-                                style="height: 45px;margin-left:2%;margin-right: 2%;text-align: center;box-shadow: 0 2px 4px rgba(249, 246, 246, 0.1);"
+                                    style="height: 45px;margin-left:2%;margin-right: 2%;text-align: center;box-shadow: 0 2px 4px rgba(249, 246, 246, 0.1);"
                                     id="quantity" name="quantity" class="form-control input-number " value="1" min="1"
                                     data-qty="{{data.Quantity}}" max="{{data.Quantity}}">
                                 <span class="input-group-btn">
@@ -379,12 +401,13 @@ QuickBuY</h5>
                             <h1>{{data.Quantity}}</h1>
                             <h1 id="productId" style="display: none;">{{data._id}}</h1>
                             {{!-- <a href="#" class="primary-btn pc-btn">Add to cart</a> --}}
-<button class="btn txt-light w-50 mb-3 mb-md-0"
-    style="height:42px;background-color: rgb(95, 92, 92);color: white;font-size:18px;"
-    onclick="handleAddToCart('{{data._id}}', '{{token}}')">
-    <i class="material-icons" style="color: #ffffff;font-size:19px;">shopping_cart</i> Add to Cart
-</button>
-<br>
+                            <button class="btn txt-light w-50 mb-3 mb-md-0"
+                                style="height:42px;background-color: rgb(95, 92, 92);color: white;font-size:18px;"
+                                onclick="handleAddToCart('{{data._id}}', '{{token}}')">
+                                <i class="material-icons" style="color: #ffffff;font-size:19px;">shopping_cart</i> Add
+                                to Cart
+                            </button>
+                            <br>
 
 
 
@@ -402,34 +425,34 @@ QuickBuY</h5>
 
 
     </section>
-         <script>
-    function handleAddToCart(productId, token) {
-        if (token) {
-            addToCart(productId);
-        } else {
-            window.location.href = "/login";
+    <script>
+        function handleAddToCart(productId, token) {
+            if (token) {
+                addToCart(productId);
+            } else {
+                window.location.href = "/login";
+            }
         }
-    }
 
-    function addToCart(productId) {
-        console.log("Item added to cart with ID: " + productId);
-    }
-</script>
-        
+        function addToCart(productId) {
+            console.log("Item added to cart with ID: " + productId);
+        }
+    </script>
+
 
     <!-- Product Page Section End -->
     <div class="user-not">
-                    <!-- Conditional rendering based on user authentication -->
-                    {{#if loggedIn}}
+        <!-- Conditional rendering based on user authentication -->
+        {{#if loggedIn}}
 
-                    <a style="color: black;" href="/logout" id="logoutButton">Logout</a>
-                    {{else}}
+        <a style="color: black;" href="/logout" id="logoutButton">Logout</a>
+        {{else}}
 
-                    <a style="color: black;" href="/login" id="signInButton">sign in</a>/
-                    <a style="color: rgb(156, 142, 142);" href="/sign" id="signUpButton">sign up</a>
+        <a style="color: black;" href="/login" id="signInButton">sign in</a>/
+        <a style="color: rgb(156, 142, 142);" href="/sign" id="signUpButton">sign up</a>
 
-                    {{/if}}
-                </div>
+        {{/if}}
+    </div>
     <!-- Related Product Section Begin -->
     <section class="related-product spad">
 
@@ -471,7 +494,7 @@ QuickBuY</h5>
             left: 35%;
             transform: translateX(-10%);
             text-align: center;
-            z-index:6;
+            z-index: 6;
         }
 
         /* Vertically center the notification */
@@ -488,18 +511,18 @@ QuickBuY</h5>
             var size = document.getElementById("selectedSize").value;
             var quantitys = document.getElementById("quantity").value;
 
- // Check if size is not selected
-    if (!size) {
-        Toastify({
-            text: "Please select a size.",
-            duration: 3000, // 3 seconds
-            close: true,
-            gravity: "top",
-            position: "center",
-            className: "custom-toastify",
-        }).showToast();
-        return; // Exit the function if size is not selected
-    }
+            // Check if size is not selected
+            if (!size) {
+                Toastify({
+                    text: "Please select a size.",
+                    duration: 3000, // 3 seconds
+                    close: true,
+                    gravity: "top",
+                    position: "center",
+                    className: "custom-toastify",
+                }).showToast();
+                return; // Exit the function if size is not selected
+            }
 
             // Constructing the data object
             var data = {
@@ -516,10 +539,10 @@ QuickBuY</h5>
                     Toastify({
                         text: "Item added to cart successfully!",
                         duration: 3000, // 3 seconds
-                        close: true, 
-                        gravity: "top", 
-                        position: "center", 
-                        className: "custom-toastify", 
+                        close: true,
+                        gravity: "top",
+                        position: "center",
+                        className: "custom-toastify",
                     }).showToast();
                 })
                 .catch(function (error) {

@@ -134,6 +134,10 @@ router.get('/ResetPassword',(req,res)=>{
 
 router.post('/OrderDetailses',OrderController.PostOrder)
 
+
+router.get('/search',getControllerHome.Search)
+
+
 module.exports = router;
 
 

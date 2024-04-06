@@ -41,7 +41,40 @@ const getproductDataIn = async (req, res) => {
 };
 
 
-module.exports = { getproductDataIn };
+
+const Search = async (req, res) => {
+    try {
+        const { search } = req.method === 'POST' ? req.body : req.query;
+
+
+        if (!search || search.trim().length === 0) {
+            return res.status(400).json({ success: false, message: 'Search query is required.' });
+        }
+
+        // Search for products based on name, description, category, subcategory, size, color, etc.
+        const products = await product.find({
+            $or: [
+                { productname: { $regex: search, $options: 'i' } }, // Assuming productname is the field for product name
+                { description: { $regex: search, $options: 'i' } },
+                { categoryName: { $regex: search, $options: 'i' } },
+                { subcategoryName: { $regex: search, $options: 'i' } },
+                { 'properties.size': { $regex: search, $options: 'i' } },
+                { color: { $regex: search, $options: 'i' } },
+                // Add more fields as needed for search
+            ]
+        }).populate('category').populate('subcategory');
+        console.log(products,"hehfheuwfhue");
+
+        // Render the search page with the fetched products
+        res.render('user/search', { products, searchQuery: search });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+};
+
+
+module.exports = { getproductDataIn ,Search};
 
 
 
