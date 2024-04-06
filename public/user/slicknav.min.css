@@ -41,7 +41,8 @@
   float: left;
   width: 1.125em;
   height: 0.875em;
-  margin: 0.188em 0 0 0.438em;
+  /* margin: 0.188em 0 0 0.438em; */
+  color: #000;
 }
 .slicknav_menu .slicknav_icon:before {
   background: 0 0;
