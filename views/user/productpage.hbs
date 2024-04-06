@@ -287,24 +287,17 @@
                             style="font-size:12px;margin-left :5px; font-weight:initial; color: rgba(19, 19, 20, 0.948);">
                             COLORS</h5>
                         <br>
-                        <div style="display: flex ;flex-direction: row;">
-
-                            {{#each relatedProducts }}
-
-
-                            <div class="col-8 col-md-4 col-lg-3 mb-3">
-                                <div class="card" style="display: flex; flex-direction: row;">
-                                    <a href="/productpage?name={{this._id}}" tabindex="-1">
-
-                                        <img class="card-img" src="{{this.image.url}}" alt="Image">
-
-
-                                    </a>
-                                </div>
-                            </div>
-                            {{/each}}
-
-                        </div>
+                      <div class="row">
+            {{#each relatedProducts }}
+                <div class="col-6 col-md-4 col-lg-3 mb-3">
+                    <div class="card" style="max-width: 100%;">
+                        <a href="/productpage?name={{this._id}}" tabindex="-1">
+                            <img class="card-img" src="{{this.image.url}}" alt="Image" style="width: 100%; height: auto;">
+                        </a>
+                    </div>
+                </div>
+            {{/each}}
+        </div>
                         <script>
     // Get the original price from the HTML content
     const originalPriceElement = document.querySelector('.original-price');
