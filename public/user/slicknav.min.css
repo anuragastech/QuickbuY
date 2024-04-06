@@ -22,6 +22,13 @@
 .slicknav_btn .slicknav_icon-bar + .slicknav_icon-bar {
   margin-top: 0.188em;
 }
+.slicknav_icon{
+  font-size:18px;
+  color: #000;
+}
+.slicknav_icon-bar{
+  color: #000;
+}
 .slicknav_menu .slicknav_menutxt {
   display: none;
   line-height: 1.188em;
