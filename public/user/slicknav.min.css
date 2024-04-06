@@ -16,7 +16,7 @@
   display: block;
   vertical-align: middle;
   float: right;
-  /* padding: 0.438em 0.625em; */
+  padding: 0.438em 0.625em;
   line-height: 1.125em;
 }
 .slicknav_btn .slicknav_icon-bar + .slicknav_icon-bar {
@@ -35,8 +35,6 @@
   width: 1.125em;
   height: 0.875em;
   margin: 0.188em 0 0 0.438em;
- 
-  
 }
 .slicknav_menu .slicknav_icon:before {
   background: 0 0;
@@ -102,16 +100,15 @@
   background-color: #fff;
 }
 .slicknav_btn {
-  margin: -46px 16px 6px;
+  margin: -47px 16px 6px;
   text-decoration: none;
   text-shadow: 0 1px 1px rgba(36, 136, 81, 0.75);
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
   background-color: #f7f7f7;
-  /* border: 2px solid rgb(43, 44, 43); */
-  color:rgb(0, 0, 0) ;
-  
+  border: 2px solid rgb(43, 44, 43);
+font-size:1.4vh;  
 }
 .slicknav_nav {
   clear: both;
