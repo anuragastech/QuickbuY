@@ -32,6 +32,10 @@ let getproductpage =async (req, res) => {
 
 let getproductData = async (req, res) => {
     try {
+        
+        const token = req.cookies.token;
+        const loggedIn = !!token; // Set loggedIn to true if token exists, false otherwise
+
         let query = {};
 
         // Extract query parameters for filtering from both query and body
@@ -95,7 +99,7 @@ let getproductData = async (req, res) => {
         }
 
         // Render the user/products page with the fetched products and pagination
-        res.render('user/products', { products, pagination });
+        res.render('user/products', { products, pagination ,loggedIn});
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });

@@ -44,9 +44,12 @@ const getproductDataIn = async (req, res) => {
 
 const Search = async (req, res) => {
     try {
+        const token = req.cookies.token;
+        const loggedIn = !!token; // Set loggedIn to true if token exists, false otherwise
+
         const { search } = req.method === 'POST' ? req.body : req.query;
 
-        console.log(search,"hehfheuwfhue");
+        // console.log(search,"hehfheuwfhue");
 
         if (!search || search.trim().length === 0) {
             return res.status(400).json({ success: false, message: 'Search query is required.' });
@@ -66,7 +69,7 @@ const Search = async (req, res) => {
         }).populate('category').populate('subcategory');
 
         // Render the search page with the fetched products
-        res.render('user/search', { products, searchQuery: search });
+        res.render('user/search', { products, searchQuery: search ,loggedIn});
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });

@@ -107,10 +107,7 @@ router.post("/send-mail",userControllers.sendmail)
 
 router.post('/profileData',authenticateJWT,userControllers.profileData)
 
-router.get('/about',(req,res)=>{
-  res.render('user/about')
-  
-})
+router.get('/about',getAllControllers.about)
 router.get('/profile',authenticateJWT,userControllers.GetProfile )
 router.post('/postAddress',authenticateJWT, userControllers.postAddresses)
 router.post('/profileUpdateImage',upload, authenticateJWT, userControllers.postProfilepic)

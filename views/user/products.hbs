@@ -7,29 +7,32 @@
     <meta name="keywords" content="Yoga, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>QuickBuY</title>
+    <title></title>
 
-
-
-    {{!-- bootstrap icon --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Google Font -->
+    
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    {{!--
-    <link rel="stylesheet" href="/user/login.css"> --}}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css">
+
+
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"     
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+
+
+
+
 
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900&display=swap"
         rel="stylesheet">
 
     <!-- Css Styles -->
-
-
-
     <link rel="stylesheet" href="/user/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="/user/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="/user/nice-select.css" type="text/css">
@@ -37,75 +40,146 @@
     <link rel="stylesheet" href="/user/magnific-popup.css" type="text/css">
     <link rel="stylesheet" href="/user/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="/user/style.css" type="text/css">
+
+    {{!-- bootstrap icon  --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    {{!-- font auson  --}}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-/y83yQ65RbEsG4TJUJf0EbpF25bAdN1mzfS4P6P+sh/wrhU/79kGy7Bv+3u0S0Pv53e4GYpFdV5AU4Q7hrG/wA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
-</head>
+
+
 
 <body>
-    <nav>
-        <!-- Page Preloder -->
-        <div id="preloder">
-            <div class="loader"></div>
-        </div>
+    <!-- Page Preloder -->
+    {{!-- <div id="preloder">
+        <div class="loader"></div>
+    </div> --}}
 
-        <!-- Search model -->
-        <div class="search-model">
-            <div class="h-100 d-flex align-items-center justify-content-center">
-                <div class="search-close-switch">+</div>
-                <form class="search-model-form">
-                    <input type="text" id="search-input" placeholder="Search here.....">
-                </form>
-            </div>
+    <!-- Search model -->
+    <div class="search-model">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="search-close-switch">+</div>
+            <form id="searchForm" action="/search" method="GET" style="display: none;">
+    <label for="searchQuery">Search:</label>
+    <input type="text" id="searchQuery" name="search" placeholder="Enter your search query" required>
+    <button type="submit">Search</button>
+</form>
         </div>
-        <!-- Search model end -->
+    </div>
+    <!-- Search model end -->
+<script>
+    function toggleSearch() {
+        const searchForm = document.getElementById('searchForm');
+        if (searchForm.style.display === 'none') {
+            searchForm.style.display = 'block';
+        } else {
+            searchForm.style.display = 'none';
+        }
+    }
+</script>
 
-        <!-- Header Section Begin -->
-        <header class="header-section" style="position: fixed;z-index:5;background-color: white;width: 100%;top:0%;">
-            <div class="container-fluid">
-                <div class="inner-header">
-                   <div class="logo">
- <a href="/">
+    <!-- Header Section Begin -->
+    <header class="header-section" style="position: fixed;z-index:5;background-color: white;width: 100%;top:0%;padding:1.5rem;">
+        <div class="container-fluid" >
+            <div class="inner-header">
+                <div class="logo">
+<a href="/">
     <h5 style="font-size: 2em; color: #ad0101;font-weight:bolder; ">                <img style="height:40px;width:40px;background-color: white;color:white;fo" src="https://res.cloudinary.com/dd6qdgpfr/image/upload/v1712106218/photo_2024-03-12_20-09-56__2___1_-transformed_ncuoze.png" alt="">
 QuickBuY</h5>
 </a>
+
                 </div>
-                    <div class="header-right">
+                <div class="header-right" style="margin-right:;">
+             
+<a style="margin-right:1px;" class="search-trigger" href="#" onclick="toggleSearch()">
+    <i style="font-size:20px;" class="bi bi-search"></i>
+</a>
 
-                        <a style="margin-right:1px;" class="search-trigger" href=""> <i style="font-size:20px;"
-                                class="bi bi-search"></i> </a>
+                                        <a  style="font-size:24px;margin-left:1px;" href="/shopping-cart"><i style="margin-top:5%;color: black;" class="bi bi-cart3"></i></a>
+
+                    <a   href="/profile"><i style="font-size:24px;color: black;" class="bi bi-person"></i></a>
+                
 
 
-                        <a style="font-size:24px;margin-left:1px;" href="/shopping-cart"><i style="margin-top:5%;"
-                                class="bi bi-cart3"></i></a>
-
-                        <a href="/profile"><i style="font-size:24px;" class="bi bi-person"></i></a>
-
-
-
-                    </div>
-                    <div class="user-access">
-                        <a href="/sign" style="display: none;">Register</a>
-                        <a href="/login" style="display: none;" class="in">Sign in</a>
-                        <a href="/logout">Logout</a>
-
-                    </div>
-                    <nav class="main-menu mobile-menu">
-                        <ul>
-                            <li><a class="active" href="/">Home</a></li>
-                            <li><a href="/products">Shop</a>
-                                <ul class="sub-menu">
-                                    {{!-- <li><a href="/products">Product Page</a></li> --}}
-                                    <li><a href="/shopping-cart">Shopping Card</a></li>
-                                    {{!-- <li><a href="/check-out">Check out</a></li> --}}
-                                </ul>
-                            </li>
-                            <li><a href="/about">About</a></li>
-                            {{!-- <li><a href="/">Blog</a></li> --}}
-                            <li><a href="/contact">Contact</a></li>
-                        </ul>
-                    </nav>
                 </div>
-            </div>
-        </header>
+
+
+                
+                <div class="user-access">
+                    <!-- Conditional rendering based on user authentication -->
+                    {{#if loggedIn}}
+
+                    <a style="color: black;" href="/logout" id="logoutButton">Logout</a>
+                    {{else}}
+
+                    <a style="color: black;" href="/login" id="signInButton">sign in</a>/
+                    <a style="color: rgb(156, 142, 142);" href="/sign" id="signUpButton">sign up</a>
+
+                    {{/if}}
+                </div>
+
+
+                <!-- Your JavaScript code can go here -->
+                <script>
+                    // Example JavaScript code
+                    // This script can handle interactions such as logging out
+                    document.addEventListener('DOMContentLoaded', () => {
+                        // Check if the user is logged in
+                        const loggedIn = {{ loggedIn }};
+
+                    if (loggedIn) {
+                        // If logged in, add event listener to the logout button
+                        document.getElementById('logoutButton').addEventListener('click', () => {
+                            // Perform logout actions, e.g., redirect to logout route
+                            // Example: window.location.href = '/logout';
+                        });
+                    } else {
+                        // If not logged in, add event listeners to the sign in and sign up buttons
+                        document.getElementById('signInButton').addEventListener('click', () => {
+                            // Perform sign in actions, e.g., redirect to sign in route
+                            // Example: window.location.href = '/signin';
+                        });
+
+                        document.getElementById('signUpButton').addEventListener('click', () => {
+                            // Perform sign up actions, e.g., redirect to sign up route
+                            // Example: window.location.href = '/signup';
+                        });
+                    }
+    });
+                </script>
+
+
+                <nav class="main-menu mobile-menu">
+                    <ul>
+                        <li><a class="active" href="/">Home</a></li>
+                        <li><a href="/products">Shop</a>
+                            <ul class="sub-menu">
+                                {{!-- <li><a href="/user/products">Product Page</a></li> --}}
+                                <li><a href="/shopping-cart">Shopping Cart</a></li>
+                                {{!-- <li><a href="/check-out">Check out</a></li> --}}
+                            </ul>
+                        </li>
+                        <li><a href="/about">About</a></li>
+                        {{!-- <li><a href="/check-out">Blog</a></li> --}}
+                        <li><a href="/contact">Contact</a></li>
+                          <div class="header-not" style="margin-right: 15%;">
+             
+                                        <a style="margin-right:1px;" class="search-trigger" href=""> <i style="font-size:20px;color: black;" class="bi bi-search"></i> </a>
+
+
+                                        <a  style="font-size:24px;margin-left:1px;" href="/shopping-cart"><i style="margin-top:5%;color: black;" class="bi bi-cart3"></i></a>
+
+                    <a   href="/profile"><i style="font-size:24px;color: black;" class="bi bi-person"></i></a>
+                
+
+
+                </div>
+         
+        </div>
+    </header>
         {{!-- ----------------------------------------------------------------------------- --}}
 
         <!-- Related Product Section Begin -->
