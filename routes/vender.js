@@ -11,11 +11,11 @@ const venderControllers = require('../controllers/vender/loginVender');
 const { authenticateJWT } = require("../middleware/authmiddleware");
 const productControllers = require('../controllers/vender/AddProductpage');
 
-const otherControllers = require('../controllers/vender/Others');
+const otherControllers  = require('../controllers/vender/Others');
 const profileControllers = require('../controllers/vender/profile');
 const ordersControls  = require('../controllers/vender/order')
 
-router.post("/login",venderControllers.loginvender);
+router.post("/loginPost",venderControllers.loginvender);
 
 router.get("/login",venderControllers.getlogin);
 
@@ -96,6 +96,12 @@ router.get('/ResetPassword',(req,res)=>{
   router.get('/matchEmail',(req,res)=>{
     res.render('vender/matchEmail')
     });
+
+
+
+
+  
+
 // dashboard  
 
 

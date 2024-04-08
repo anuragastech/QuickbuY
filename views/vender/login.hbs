@@ -102,7 +102,7 @@
       <div class="col-md-6">
         <div class="login-container border p-4">
           <h1 class="text-center">Login</h1>
-          <form id="form" action="/vender/loginpost" method="POST" onsubmit="return validateLoginForm(event)">
+          <form id="form" action=" /vender//loginPost" method="POST" onsubmit="return validateLoginForm(event)">
             <div class="form-group">
               <label for="username">Username</label>
               <input type="email" name="email" id="username" class="form-control" required />
@@ -186,7 +186,7 @@
       }
 
       try {
-        const response = await fetch('/admin/loginpost', {
+        const response = await fetch('/vender/loginPost', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

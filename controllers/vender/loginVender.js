@@ -30,6 +30,8 @@ let loginvender = async (req, res) => {
     try {
         const { email, password } = req.body;
         const vender = await register.findOne({ email });
+// console.log("fdnjegfbjkbgef");
+console.log(vender,"heikfgjfgj");
 
         if (vender && !vender.blocked && (await bcrypt.compare(password, vender.password))) {        
             console.log('Authentication successful');
@@ -46,7 +48,7 @@ let loginvender = async (req, res) => {
 
             res.cookie('token', token, options);
 
-            return res.status(200).json({ message: 'Login successful', user: user });
+            return res.status(200).json({ message: 'Login successful', vender: vender });
         } else {
             return res.status(401).json({ message: 'Invalid email or password' });
                
@@ -56,6 +58,8 @@ let loginvender = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
+
+
 
 
 
