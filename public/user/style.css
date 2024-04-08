@@ -349,7 +349,7 @@ ol {
 }
 
 .inner-header .main-menu ul li a {
-	color: #1e1e1e;
+	color:#a60000;
 	font-size: 16px;
 	display: inline-block;
 	font-weight: 500;
@@ -1062,7 +1062,7 @@ ol {
 -----------------------*/
 
 .page-add {
-	padding-top: 31px;
+	padding-top: 119px;
 	margin-bottom: 92px;
 }
 

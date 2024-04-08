@@ -94,13 +94,13 @@ QuickBuY</h5>
                 </div>
                 <div class="header-right" style="margin-right:;">
              
-<a style="margin-right:1px;" class="search-trigger" href="#" onclick="toggleSearch()">
+<a style="margin-right:1px;color: #ad0101;" class="search-trigger" href="#" onclick="toggleSearch()">
     <i style="font-size:20px;" class="bi bi-search"></i>
 </a>
 
-                                        <a  style="font-size:24px;margin-left:1px;" href="/shopping-cart"><i style="margin-top:5%;color: black;" class="bi bi-cart3"></i></a>
+                                        <a  style="font-size:24px;margin-left:1px;" href="/shopping-cart"><i style="margin-top:5%;color: #ad0101;" class="bi bi-cart3"></i></a>
 
-                    <a   href="/profile"><i style="font-size:24px;color: black;" class="bi bi-person"></i></a>
+                    <a   href="/profile"><i style="font-size:24px;color: #ad0101;" class="bi bi-person"></i></a>
                 
 
 
@@ -112,10 +112,10 @@ QuickBuY</h5>
                     <!-- Conditional rendering based on user authentication -->
                     {{#if loggedIn}}
 
-                    <a style="color: black;" href="/logout" id="logoutButton">Logout</a>
+                    <a style="color: #ad0101;" href="/logout" id="logoutButton">Logout</a>
                     {{else}}
 
-                    <a style="color: black;" href="/login" id="signInButton">sign in</a>/
+                    <a style="color: #ad0101;" href="/login" id="signInButton">sign in</a>/
                     <a style="color: rgb(156, 142, 142);" href="/sign" id="signUpButton">sign up</a>
 
                     {{/if}}
@@ -154,7 +154,7 @@ QuickBuY</h5>
 
                 <nav class="main-menu mobile-menu">
                     <ul>
-                        <li><a class="active" href="/">Home</a></li>
+                        <li ><a class="active" href="/">Home</a></li>
                         <li><a href="/products">Shop</a>
                             <ul class="sub-menu">
                                 {{!-- <li><a href="/user/products">Product Page</a></li> --}}
