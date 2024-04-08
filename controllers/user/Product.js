@@ -25,13 +25,20 @@ let getproductpage =async (req, res) => {
     }
 };
 
+
+
+
+
+
 let getproductData = async (req, res) => {
     try {
         let query = {};
 
         // Extract query parameters for filtering from both query and body
         const { category, subcategory, size, color, priceRange } = req.method === 'POST' ? req.body : req.query;
-        // console.log(size);
+        const page = parseInt(req.query.page) || 1;
+        const limit = 8; // Number of products per page
+
         if (category && category.length > 0) {
             query.categoryName = { $in: category };
         }
@@ -43,22 +50,52 @@ let getproductData = async (req, res) => {
         }
         if (color && color.length > 0) {
             query.color = { $in: color };
-
         }
         if (priceRange) {
             const [minPrice, maxPrice] = priceRange.split('-').map(parseFloat);
             query.price = { $gte: minPrice, $lte: maxPrice };
         }
 
-        const products = await product.find(query).populate('category').populate('subcategory');
-// console.log(query.properties.size);
-        // Check if the request is a POST request, if so, return JSON response
-        if (req.method === 'POST') {
-            return res.json(products);
+        const skip = (page - 1) * limit;
+
+        const products = await product.find(query)
+                                      .populate('category')
+                                      .populate('subcategory')
+                                      .skip(skip)
+                                      .limit(limit);
+
+        // Count total number of products (without pagination)
+        const totalCount = await product.countDocuments(query);
+
+        // Calculate total pages
+        const totalPages = Math.ceil(totalCount / limit);
+
+        // Pagination details
+        const pagination = {
+            prev: page > 1 ? `?page=${page - 1}` : null,
+            next: page < totalPages ? `?page=${page + 1}` : null,
+            pages: []
+        };
+
+        // Create pagination page numbers
+        for (let i = 1; i <= totalPages; i++) {
+            pagination.pages.push({
+                number: i,
+                url: `?page=${i}`,
+                active: i === page
+            });
         }
 
-        // Render the user/products page with the fetched products
-        res.render('user/products', { products });
+        // Check if the request is a POST request, if so, return JSON response
+        if (req.method === 'POST') {
+            return res.json({
+                products,
+                pagination
+            });
+        }
+
+        // Render the user/products page with the fetched products and pagination
+        res.render('user/products', { products, pagination });
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });
@@ -67,7 +104,6 @@ let getproductData = async (req, res) => {
 
 
 
-     
 
 
 

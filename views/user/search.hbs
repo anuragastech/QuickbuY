@@ -51,13 +51,24 @@
         <div class="search-model">
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="search-close-switch">+</div>
-                <form class="search-model-form">
-                    <input type="text" id="search-input" placeholder="Search here.....">
-                </form>
+                       <form id="searchForm" action="/search" method="GET" style="display: none;">
+    <label for="searchQuery">Search:</label>
+    <input type="text" id="searchQuery" name="search" placeholder="Enter your search query" required>
+    <button type="submit">Search</button>
+</form>
             </div>
         </div>
         <!-- Search model end -->
-
+<script>
+    function toggleSearch() {
+        const searchForm = document.getElementById('searchForm');
+        if (searchForm.style.display === 'none') {
+            searchForm.style.display = 'block';
+        } else {
+            searchForm.style.display = 'none';
+        }
+    }
+</script>
         <!-- Header Section Begin -->
         <header class="header-section" style="position: fixed;z-index:5;background-color: white;width: 100%;top:0%;">
             <div class="container-fluid">
@@ -70,8 +81,9 @@ QuickBuY</h5>
                 </div>
                     <div class="header-right">
 
-                 <a style="margin-right:1px;" class="search-trigger" href="#" onclick="submitSearch()"> <i style="font-size:20px;"
-    class="bi bi-search"></i> </a>
+          <a style="margin-right:1px;" class="search-trigger" href="#" onclick="toggleSearch()">
+    <i style="font-size:20px;" class="bi bi-search"></i>
+</a>
 
                         <a style="font-size:24px;margin-left:1px;" href="/shopping-cart"><i style="margin-top:5%;"
                                 class="bi bi-cart3"></i></a>
@@ -115,13 +127,21 @@ QuickBuY</h5>
 
 <body>
     <h1 style="margin-top:8%;">Product Search</h1>
-    <form id="searchForm">
-        <label for="searchQuery">Search:</label>
-        <input type="text" id="searchQuery" name="searchQuery" placeholder="Enter your search query" required>
-        <button type="submit">Search</button>
-    </form>
+<form id="searchForm" action="/search" method="GET">
+    <label for="searchQuery">Search:</label>
+    <input type="text" id="searchQuery" name="search" placeholder="Enter your search query" required>
+    <button type="submit">Search</button>
+</form>
+
 
     <div id="searchResults"></div>
+
+<script>
+    
+</script>
+
+
+
 
  <div class="container mt-5">
         <h1>Search Results</h1>

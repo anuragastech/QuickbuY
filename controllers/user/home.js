@@ -46,6 +46,7 @@ const Search = async (req, res) => {
     try {
         const { search } = req.method === 'POST' ? req.body : req.query;
 
+        console.log(search,"hehfheuwfhue");
 
         if (!search || search.trim().length === 0) {
             return res.status(400).json({ success: false, message: 'Search query is required.' });
@@ -63,7 +64,6 @@ const Search = async (req, res) => {
                 // Add more fields as needed for search
             ]
         }).populate('category').populate('subcategory');
-        console.log(products,"hehfheuwfhue");
 
         // Render the search page with the fetched products
         res.render('user/search', { products, searchQuery: search });
