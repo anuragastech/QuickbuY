@@ -1,6 +1,5 @@
 
 const order =require("../../models/user/order")
-
 const orderGet = async (req, res) => {
     try {
         const { orderId } = req.body;
@@ -13,10 +12,14 @@ const orderGet = async (req, res) => {
         const totalPages = Math.ceil(totalOrders / limit);
         const skip = (page - 1) * limit;
 
-        const orders = await order.find({ userId: userId })
+        let orders = [];
+
+        if (totalOrders > 0) {
+            orders = await order.find({ userId: userId })
                                   .populate('product')
                                   .skip(skip)
                                   .limit(limit);
+        }
 
         // Pagination details
         const pagination = {
@@ -34,13 +37,18 @@ const orderGet = async (req, res) => {
             });
         }
 
-        res.render('user/OrderDetails', { orders, pagination });
+        if (totalOrders === 0) {
+            // If there are no orders, render a message div
+            res.render('user/NoOrderPlaced');
+        } else {
+            // If there are orders, render the orders and pagination
+            res.render('user/OrderDetails', { orders, pagination });
+        }
     } catch (error) {
         console.error('Error related to order status:', error);
         res.status(500).json({ error: 'An related to ordered error status' });
     }
 };
-
 
 
 

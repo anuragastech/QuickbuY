@@ -186,8 +186,18 @@ const coupencheck = async (req, res) => {
             const productId = products.map(product => product.productId);
     const sizes=products.map(product=>product.size)
     const quantity=products.map(product=>product.quantity)
-    const price=checkoutData.map(price=>price.discountedAmount);
-const prices =price[0] != null ? price : grandTotal;
+//     const price=checkoutData.map(price=>price.discountedAmount);
+// const prices =price[0] != null ? price : grandTotal;
+let prices;
+
+const price = checkoutData.map(price => price.discountedAmount);
+if (price.length > 0) {
+    prices = price[0];
+} else {
+    prices = grandTotal;
+}
+
+
 
 console.log("hahali",prices);
 
