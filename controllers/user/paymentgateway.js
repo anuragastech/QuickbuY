@@ -226,12 +226,24 @@ const coupencheck = async (req, res) => {
     const quantity=products.map(product=>product.quantity)
 //     const price=checkoutData.map(price=>price.discountedAmount);
 // const prices =price[0] != null ? price : grandTotal;
+// let prices;
+
+// const price = checkoutData.map(price => price.discountedAmount);
+// if (price.length > 0) {
+//     prices = price[0];
+// } else {
+//     prices = grandTotal;
+// }
 let prices;
 
-const price = checkoutData.map(price => price.discountedAmount);
-if (price.length > 0) {
-    prices = price[0];
+// Check if there are any items with discounted prices in checkoutData
+const discountedPrices = checkoutData.filter(item => item.discountedAmount !== undefined && item.discountedAmount !== null);
+
+if (discountedPrices.length > 0) {
+    // If there are discounted prices, use the first one
+    prices = discountedPrices[0].discountedAmount;
 } else {
+    // If there are no discounted prices, use the grand total
     prices = grandTotal;
 }
 
