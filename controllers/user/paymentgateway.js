@@ -36,6 +36,12 @@ let postAddress = async (req, res) => {
 
 
 
+const deleteAddress= async (req,res) =>{
+    const addressId= req.params.Id;
+console.log("hellofdwifgwnm");
+console.log(addressId);
+    
+}
 
 
 const getAddress = async (req, res) => {
@@ -426,4 +432,4 @@ const cartProductSelected = async () =>{
 
 
 
-module.exports={postAddress ,getAddress,postCarttocheckout,coupencheck ,orderPost, cartProductSelected};
+module.exports={postAddress ,getAddress,postCarttocheckout,coupencheck ,orderPost, cartProductSelected,deleteAddress};

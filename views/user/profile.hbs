@@ -256,17 +256,51 @@ QuickBuY</h5>
         <ul>
             {{#each address}}
             <li style="border: 1px solid rgb(255 231 231);">
+
                 <strong>Address:</strong> {{this.address}} <br>
                 <strong>Number:</strong> {{this.number}} <br>
                 <strong>Country:</strong> {{this.country}} <br>
                 <strong>State:</strong> {{this.state}} <br>
                 <strong>City:</strong> {{this.city}} <br>
                 <strong>Pincode:</strong> {{this.pincode}} <br>
-            </li>
+    <button onclick="deleteAddress('{{this._id}}')">Delete</button>
+                    </li>
             {{/each}}
         </ul>
     </div>
 </div>
+
+<script>
+function deleteAddress(addressId) {
+    fetch(`/addressDelete/${addressId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to delete address');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log(data.message); // Output: Address deleted successfully
+        // Update UI or perform other actions as needed
+        // For example, you can remove the deleted address from the DOM
+        const listItem = document.querySelector(`li[data-address-id="${addressId}"]`);
+        if (listItem) {
+            listItem.remove();
+        }
+    })
+    .catch(error => {
+        console.error('Error deleting address:', error);
+        // Handle error, display error message, etc.
+    });
+}
+
+</script>
+
 
 
 
@@ -477,14 +511,14 @@ document.getElementById("popupButton").addEventListener("click", openPopup);
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <div class="mb-3">
+                                {{!-- <div class="mb-3">
                                     <label for="fullName" class="form-label">Full Name</label>
                                     <input type="text" class="form-control" id="fullName" name="Fullname">
-                                </div>
-                                <div class="mb-3">
+                                </div> --}}
+                                {{!-- <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
                                     <input type="email" class="form-control" id="email" name="email">
-                                </div>
+                                </div> --}}
                                 <div class="mb-3">
                                     <label for="phoneNumber" class="form-label">Phone number</label>
                                     <input type="tel" class="form-control" id="phoneNumber" name="phonenumber">

@@ -135,6 +135,8 @@ router.post('/OrderDetailses',OrderController.PostOrder)
 router.get('/search',getControllerHome.Search)
 
 
+router.delete('/addressDelete/:id',getPaymentway.deleteAddress)
+
 module.exports = router;
 
 
