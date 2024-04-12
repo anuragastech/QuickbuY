@@ -77,6 +77,56 @@ const getAddress = async (req, res) => {
 };
 
 
+
+
+// const postCarttocheckout = async (req, res) => {
+//     try {
+//         const { selectedItems } = req.body;
+//         const userId = req.user.id;
+//         const productArr = [];
+
+//         for (const id of selectedItems) {
+//             const productss = await cart.findOne({ products: { $elemMatch: { productId: id } } });
+
+//             if (productss) {
+//                 const product = productss.products.find(product => product.productId == id);
+//                 if (product) {
+//                     productArr.push(product);
+//                 } else {
+//                     console.log("Product not found.");
+//                 }
+//             } else {
+//                 console.log("Cart not found ");
+//             }
+//         }
+
+//         const newCheckout = new Checkout({ products: productArr, userId: userId });
+//         await newCheckout.save();
+//         // console.log("ch",newCheckout);
+//         // Schedule a job to clear old checkout documents every 2 minutes
+     
+
+//         const clearOldCheckouts = async () => {
+//             try {
+//                 const twoMinutesAgo = new Date(Date.now() - (1 * 10 * 1000)); // Calculate 2 minutes ago
+//                 await Checkout.deleteMany({ createdAt: { $lt: twoMinutesAgo } });
+//                 // console.log('Old checkout documents cleared.');
+//             } catch (error) {
+//                 console.error('Error clearing old checkout documents:', error);
+//             }
+//         };
+
+//         // Schedule the job to clear old checkout documents
+//         const clearCheckoutJob = schedule.scheduleJob('*/2 * * * *', clearOldCheckouts);
+// // console.log(clearCheckoutJob);
+//         // Redirect the user to the checkout page after successful addition
+//         res.redirect('/check-out');
+//     } catch (error) {
+//         console.error('Error transferring items to checkout:', error);
+//         res.status(500).json({ error: 'Internal Server Error' });
+//     }
+// };
+
 const postCarttocheckout = async (req, res) => {
     try {
         const { selectedItems } = req.body;
@@ -98,25 +148,15 @@ const postCarttocheckout = async (req, res) => {
             }
         }
 
+        // Delete the existing checkout document for the user
+        await Checkout.deleteOne({ userId: userId });
+
+        // Create a new checkout document with the updated products
         const newCheckout = new Checkout({ products: productArr, userId: userId });
+        
+        // Save the new checkout document
         await newCheckout.save();
-        // console.log("ch",newCheckout);
-        // Schedule a job to clear old checkout documents every 2 minutes
-     
 
-        const clearOldCheckouts = async () => {
-            try {
-                const twoMinutesAgo = new Date(Date.now() - (1 * 10 * 1000)); // Calculate 2 minutes ago
-                await Checkout.deleteMany({ createdAt: { $lt: twoMinutesAgo } });
-                // console.log('Old checkout documents cleared.');
-            } catch (error) {
-                console.error('Error clearing old checkout documents:', error);
-            }
-        };
-
-        // Schedule the job to clear old checkout documents
-        const clearCheckoutJob = schedule.scheduleJob('*/2 * * * *', clearOldCheckouts);
-// console.log(clearCheckoutJob);
         // Redirect the user to the checkout page after successful addition
         res.redirect('/check-out');
     } catch (error) {
@@ -124,8 +164,6 @@ const postCarttocheckout = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
-
-
 
 
 
