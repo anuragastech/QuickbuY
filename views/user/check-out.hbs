@@ -10,6 +10,8 @@
     <title>QuickBuY</title>
 
 
+<!-- Add this line to include SweetAlert CDN -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     {{!-- bootstrap icon --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -62,14 +64,16 @@
         <header class="header-section" style="position: fixed;z-index:5;background-color: white;width: 100%;top:0%;">
             <div class="container-fluid">
                 <div class="inner-header">
-                 <div class="logo">
-  <a href="#">
-        <h5>
-            <img style="height:40px;width:40px;background-color:white;color:white;" src="https://res.cloudinary.com/dd6qdgpfr/image/upload/v1712106218/photo_2024-03-12_20-09-56__2___1_-transformed_ncuoze.png" alt="">
-            QuickBuY
-        </h5>
-    </a>
-                </div>
+                    <div class="logo">
+                        <a href="#">
+                            <h5>
+                                <img style="height:40px;width:40px;background-color:white;color:white;"
+                                    src="https://res.cloudinary.com/dd6qdgpfr/image/upload/v1712106218/photo_2024-03-12_20-09-56__2___1_-transformed_ncuoze.png"
+                                    alt="">
+                                QuickBuY
+                            </h5>
+                        </a>
+                    </div>
                     <div class="header-right">
 
                         <a style="margin-right:1px;" class="search-trigger" href=""> <i style="font-size:20px;"
@@ -108,153 +112,170 @@
                 </div>
             </div>
         </header>
-    <!-- Header Info Begin -->
-    <div class="header-info" style="margin-top: 5%;">
-        <div class="container-fluid">
-            {{!-- <div class="row">
-                <div class="col-md-4">
-                    <div class="header-item">
-                        <img src="/icons/delivery.png" alt="">
-                        <p>Free shipping on orders over $30 in USA</p>
-                    </div>
-                </div>
-                <div class="col-md-4 text-left text-lg-center">
-                    <div class="header-item">
-                        <img src="/icons/voucher.png" alt="">
-                        <p>20% Student Discount</p>
-                    </div>
-                </div>
-                <div class="col-md-4 text-left text-xl-right">
-                    <div class="header-item">
-                        <img src="/icons/sales.png" alt="">
-                        <p>30% off on dresses. Use code: 30OFF</p>
-                    </div>
-                </div>
-            </div> --}}
-        </div>
-    </div>
-    <!-- Header Info End -->
-    <!-- Header End -->
-
-    <section class="page-add">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-2" style="height:50px;">
-                    <div class="page-breadcrumb">
-                        <h2>Checkout<span>.</span></h2>
-                    </div>
-                </div>
-                {{!-- <div class="col-lg-8">
-                    <img src="/add.jpg" alt=""> --}}
-                </div>
-            </div>
-        </div>
-    </section>
-    <div class="container-fluid" style="margin-bottom: 10%;">
-        <div class="row">
-
-
-            <div class="col-lg-3" style="border: 1px solid rgb(237, 237, 237);">
-                <h5 class="font-size-16 mb-1"></h5>
-                <br>
-
-              
-
-            </div>
-
-            <div class="col-lg-5" style="border: 1px solid rgb(237, 232, 232);">
-<div class="row">
-    <div class="col-8">
-<h5 style="margin-top: 5%;color: black;margin-left: 6%;">Select Delivery Address</h5>
-    </div>
-<div  class="col-4">
-<button type="button" class="btn btn-light   btn-lg w-15 mb-3" style="border: 1px solid #333333; height: 40px;padding-bottom:0px;margin-top: 9%;background-color: #ffffff;"
-                    data-toggle="modal" data-target="#exampleModalCenter">
-                    Add address
-                </button>
-
-</div>
-</div>
-                  
-                <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-                <style>
-                      /* Custom CSS */
-    .address-box {
-        border: 1px solid #dddddd;
-        border-radius: 5px;
-        padding: 15px;
-        margin-bottom: 20px;
-        cursor: pointer;
-        position: relative;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add border shadow */
-        background-color: #ffffff; /* Add background color */
-    }
-
-    .address-box.selected {
-        background-color: #f0f0f0;
-        /* Change background color when selected */
-    }
-
-    .select-indicator {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background-color: #2d29ec;
-        /* Bootstrap primary color for background */
-        position: absolute;
-        
-        top: 10px;
-        right: 10px;
-        display: none;
-        /* Initially hide the select indicator */
-    }
-
-    .address-box.selected .select-indicator {
-        display: block;
-        /* Show select indicator when address is selected */
-    }
-
-    .xl {
-        color: #333333; /* Change color to text */
-        font-size: 14px; /* Increase font size */
-        font-weight: bold;
-        font-family: Arial, sans-serif; /* Change font family */
-        margin-bottom: 5px; /* Add margin bottom to separate lines */
-    }
-                </style>
-                {{!-- <h5 style="margin-left: 40px;">Select Address</h5> --}}
-<div class="container" style="max-height: 600px; overflow-y: auto;" > <!-- Set max height and overflow -->
-    <div class="card" style="border: none;">
-        <div class="card-body" style="background-color: #ffffff;">
-            <div class="row">
-                {{#each addressInfo}}
-                <div class="col-lg-12">
-                    <div class="address-box" data-address-id="{{@index}}">
-                        <div class="address-details">
-                            <p style="color: #857979;" class="xl"><strong>Address:</strong> {{this.address}}</p>
-                            <p style="color: #857979;"class="xl"><strong>Phone:</strong> {{this.phone}}</p>
-                            <p style="color: #857979;"class="xl"><strong>Country:</strong> {{this.country}}</p>
-                            <p style="color: #857979;"class="xl"><strong>City:</strong> {{this.city}}</p>
-                            <p style="color: #857979;"class="xl"><strong>State:</strong> {{this.state}}</p>
-                            <p style="color: #857979;"class="xl"><strong>Pincode:</strong> {{this.pin}}</p>
+        <!-- Header Info Begin -->
+        <div class="header-info" style="margin-top: 5%;">
+            <div class="container-fluid">
+                {{!-- <div class="row">
+                    <div class="col-md-4">
+                        <div class="header-item">
+                            <img src="/icons/delivery.png" alt="">
+                            <p>Free shipping on orders over $30 in USA</p>
                         </div>
-                        <div class="select-indicator"></div> <!-- Select indicator -->
                     </div>
-                </div>
-                {{/each}}
+                    <div class="col-md-4 text-left text-lg-center">
+                        <div class="header-item">
+                            <img src="/icons/voucher.png" alt="">
+                            <p>20% Student Discount</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-left text-xl-right">
+                        <div class="header-item">
+                            <img src="/icons/sales.png" alt="">
+                            <p>30% off on dresses. Use code: 30OFF</p>
+                        </div>
+                    </div>
+                </div> --}}
             </div>
         </div>
-    </div>
-</div>
-<div class="row">
-<dir class="col-10" style="border: 2px solid rgb(74, 71, 71);height: 3em;margin-top: 4%;margin-left: 10%;height:75px;border-style: dashed ;">
-  
-<button type="button" class="btn    btn-lg w-10 mb-3"  style="height: 45px;background-color: white;border: none;color: red; margin-top: 1%;"
-                    data-toggle="modal" data-target="#exampleModalCenter">
-                   + Add address
-                </button>
-</dir>
-</div>
+        <!-- Header Info End -->
+        <!-- Header End -->
+
+        <section class="page-add">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2" style="height:50px;">
+                        <div class="page-breadcrumb">
+                            <h2>Checkout<span>.</span></h2>
+                        </div>
+                    </div>
+                    {{!-- <div class="col-lg-8">
+                        <img src="/add.jpg" alt=""> --}}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="container-fluid" style="margin-bottom: 10%;">
+            <div class="row">
+
+
+                <div class="col-lg-3" style="border: 1px solid rgb(237, 237, 237);">
+                    <h5 class="font-size-16 mb-1"></h5>
+                    <br>
+
+
+
+                </div>
+
+                <div class="col-lg-5" style="border: 1px solid rgb(237, 232, 232);">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5 style="margin-top: 5%;color: black;margin-left: 6%;">Select Delivery Address</h5>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" class="btn btn-light   btn-lg w-15 mb-3"
+                                style="border: 1px solid #333333; height: 40px;padding-bottom:0px;margin-top: 9%;background-color: #ffffff;"
+                                data-toggle="modal" data-target="#exampleModalCenter">
+                                Add address
+                            </button>
+
+                        </div>
+                    </div>
+
+                    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+                        rel="stylesheet">
+                    <style>
+                        /* Custom CSS */
+                        .address-box {
+                            border: 1px solid #dddddd;
+                            border-radius: 5px;
+                            padding: 15px;
+                            margin-bottom: 20px;
+                            cursor: pointer;
+                            position: relative;
+                            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                            /* Add border shadow */
+                            background-color: #ffffff;
+                            /* Add background color */
+                        }
+
+                        .address-box.selected {
+                            background-color: #f0f0f0;
+                            /* Change background color when selected */
+                        }
+
+                        .select-indicator {
+                            width: 12px;
+                            height: 12px;
+                            border-radius: 50%;
+                            background-color: #2d29ec;
+                            /* Bootstrap primary color for background */
+                            position: absolute;
+
+                            top: 10px;
+                            right: 10px;
+                            display: none;
+                            /* Initially hide the select indicator */
+                        }
+
+                        .address-box.selected .select-indicator {
+                            display: block;
+                            /* Show select indicator when address is selected */
+                        }
+
+                        .xl {
+                            color: #333333;
+                            /* Change color to text */
+                            font-size: 14px;
+                            /* Increase font size */
+                            font-weight: bold;
+                            font-family: Arial, sans-serif;
+                            /* Change font family */
+                            margin-bottom: 5px;
+                            /* Add margin bottom to separate lines */
+                        }
+                    </style>
+                    {{!-- <h5 style="margin-left: 40px;">Select Address</h5> --}}
+                    <div class="container" style="max-height: 600px; overflow-y: auto;">
+                        <!-- Set max height and overflow -->
+                        <div class="card" style="border: none;">
+                            <div class="card-body" style="background-color: #ffffff;">
+                                <div class="row">
+                                    {{#each addressInfo}}
+                                    <div class="col-lg-12">
+                                        <div class="address-box" data-address-id="{{@index}}">
+                                            <div class="address-details">
+                                                <p style="color: #857979;" class="xl"><strong>Address:</strong>
+                                                    {{this.address}}</p>
+                                                <p style="color: #857979;" class="xl"><strong>Phone:</strong>
+                                                    {{this.phone}}</p>
+                                                <p style="color: #857979;" class="xl"><strong>Country:</strong>
+                                                    {{this.country}}</p>
+                                                <p style="color: #857979;" class="xl"><strong>City:</strong>
+                                                    {{this.city}}</p>
+                                                <p style="color: #857979;" class="xl"><strong>State:</strong>
+                                                    {{this.state}}</p>
+                                                <p style="color: #857979;" class="xl"><strong>Pincode:</strong>
+                                                    {{this.pin}}</p>
+                                            </div>
+                                            <div class="select-indicator"></div> <!-- Select indicator -->
+                                        </div>
+                                    </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <dir class="col-10"
+                            style="border: 2px solid rgb(74, 71, 71);height: 3em;margin-top: 4%;margin-left: 10%;height:75px;border-style: dashed ;">
+
+                            <button type="button" class="btn    btn-lg w-10 mb-3"
+                                style="height: 45px;background-color: white;border: none;color: red; margin-top: 1%;"
+                                data-toggle="modal" data-target="#exampleModalCenter">
+                                + Add address
+                            </button>
+                        </dir>
+                    </div>
 
                     {{!-- --------------------------------- --}}
 
@@ -272,564 +293,570 @@
                             /* You can add more styles to visually indicate it's disabled */
                         }
                     </style>
-            </div>
-        <div class="col-lg-4" style="border: 1px solid rgb(237, 233, 233); overflow-y: auto;">
-<div class="col-lg-4" style="border: 1px solid rgb(237, 233, 233); overflow-y: scroll; max-height: 300px; max-width: 420px;margin-top:5%;">    
-        {{#each data}}
-        <div>
-            <img style="height: 80px;width: 80px;" src="{{this.productData.image.url}}" alt=""> 
-            <label for="productname">Product Name: {{this.productData.productname}}</label><br> 
-            <label for="productcolor">Color: {{this.productData.color}}</label><br> 
-            <label for="price">Price: ₹{{this.productData.price}}</label><br> 
-            <label for="size">Size: {{this.size}}</label><br> 
-        </div> 
-        {{/each}} 
-    </div> 
-    <hr> 
-    <label for="subtotal">Subtotal: <span id="subtotalValue">0</span></label><br>
-    <label for="tax">Tax (5%): <span id="taxValue">0</span></label><br>
-    <label for="shippingCost">Shipping Cost: <span id="shippingCostValue">0</span></label><br>
-    <br>
-    <div style="border: 1px solid #e7e4e4;"></div>
-    <br>
-    <label for="grandTotal">Grand Total: <span id="grandTotalValue">0</span></label><br>
-    
-    <input type="hidden" id="grandTotalInput" name="grandTotal"> <!-- Hidden input field to store grand total -->
-    <hr>
-      <label for="">Coupons</label> <br>
-<input type="text" id="couponCode" placeholder="Enter coupon code" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; width: 200px;">
+                </div>
+                <div class="col-lg-4" style="border: 1px solid rgb(237, 233, 233); overflow-y: auto;">
+                    <div class="col-lg-4"
+                        style="border: 1px solid rgb(237, 233, 233); overflow-y: scroll; max-height: 300px; max-width: 420px;margin-top:5%;">
+                        {{#each data}}
+                        <div>
+                            <img style="height: 80px;width: 80px;" src="{{this.productData.image.url}}" alt="">
+                            <label for="productname">Product Name: {{this.productData.productname}}</label><br>
+                            <label for="productcolor">Color: {{this.productData.color}}</label><br>
+                            <label for="price">Price: ₹{{this.productData.price}}</label><br>
+                            <label for="size">Size: {{this.size}}</label><br>
+                        </div>
+                        {{/each}}
+                    </div>
+                    <hr>
+                    <label for="subtotal">Subtotal: <span id="subtotalValue">0</span></label><br>
+                    <label for="tax">Tax (5%): <span id="taxValue">0</span></label><br>
+                    <label for="shippingCost">Shipping Cost: <span id="shippingCostValue">0</span></label><br>
+                    <br>
+                    <div style="border: 1px solid #e7e4e4;"></div>
+                    <br>
+                    <label for="grandTotal">Grand Total: <span id="grandTotalValue">0</span></label><br>
 
-  
-<button id="applyCouponButton" onclick="applyCoupon()" style="border: 1px solid rgb(183, 178, 178); color: red; background-color: white; padding: 10px; border-radius: 5px; font-size: 16px; cursor: pointer;">Apply Coupon</button>
-    <hr>
-    
-    <div id="discountedAmountContainer">
-        <label style="color: #333333;" for="discountedAmount">Discounted Total Amount: <span id="discountedAmountValue">0</span></label>
-    </div>
-    <hr>
-    <!-- Add payment method selection -->
-    <label>
-        <input type="radio" name="paymentMethod" value="online" checked> Online Payment
-    </label>
-    <label>
-        <input type="radio" name="paymentMethod" value="cash"> Cash on Delivery
-    </label><br>
-    <button style="color: rgb(255, 255, 255);background-color: rgb(0, 128, 49); border: 1px solid rgb(225, 225, 225); height: 50px; width:60%; border-radius: 10px;" id="paymentButton" onclick="sendDataToBackend()">Place Order</button>
-</div>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const priceElements = document.querySelectorAll('.col-lg-4 label[for="price"]');
-        let subtotal = 0;
-
-        priceElements.forEach(function (priceElement) {
-            const priceText = priceElement.textContent.trim(); // Get the price text
-            const priceMatch = priceText.match(/₹\s*([\d.]+)/); 
-            if (priceMatch && priceMatch[1]) {
-                const price = parseFloat(priceMatch[1]); 
-                subtotal += price;
-            } else {
-                console.error('Invalid price format:', priceText);
-            }
-        });
-
-        const tax = subtotal * 0.05; // Calculate tax (5%)
-        const shippingCost = 15; 
-        const grandTotal = subtotal + tax + shippingCost; 
-
-        const subtotalValueElement = document.getElementById('subtotalValue');
-        subtotalValueElement.textContent = `₹${subtotal.toFixed(2)}`;
-
-        const taxValueElement = document.getElementById('taxValue');
-        taxValueElement.textContent = `₹${tax.toFixed(2)}`; 
-
-        const shippingCostValueElement = document.getElementById('shippingCostValue');
-        shippingCostValueElement.textContent = `₹${shippingCost.toFixed(2)}`; 
-
-        const grandTotalValueElement = document.getElementById('grandTotalValue');
-        grandTotalValueElement.textContent = `₹${grandTotal.toFixed(2)}`; 
-
-        document.getElementById('grandTotalInput').value = grandTotal.toFixed(2);
-    });
-</script>
+                    <input type="hidden" id="grandTotalInput" name="grandTotal">
+                    <!-- Hidden input field to store grand total -->
+                    <hr>
+                    <label for="">Coupons</label> <br>
+                    <input type="text" id="couponCode" placeholder="Enter coupon code"
+                        style="padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; width: 200px;">
 
 
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-<script>
-    function initiateRazorpayPayment(orderDetails) {
-        fetch('/order', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(orderDetails),
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw new Error('Failed to initiate payment');
-        })
-        .then(paymentResponse => {
-            if (paymentResponse.message === 'Order placed successfully with Razorpay') {
-                // Initiate Razorpay payment
-                var options = {
-                    key: 'rzp_test_uF6rcT6FvcQis8', 
-                    amount: paymentResponse.razorpayOrder.amount,
-                    currency: 'INR',
-                    order_id: paymentResponse.razorpayOrder.id,
-                    name: 'H&d privet.lmtd',
-                    description: 'Order payment',
-                    image: 'https://example.com/your_logo.png',
-                    handler: function (response) {
-                        console.log(response);
-                        var paymentData = {
-                            payment_id: response.razorpay_payment_id,
-                            order_id: response.razorpay_order_id,
-                            signature: response.razorpay_signature
-                        };
-                        fetch('/verifyRazorpayPayment', {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify(paymentData),
-                        })
-                       .then(response => response.json())
-                   .then(paymentResponse => {
-    if (paymentResponse.message === 'Order placed successfully with Razorpay') {
-        window.location.href = '/'; 
+                    <button id="applyCouponButton" onclick="applyCoupon()"
+                        style="border: 1px solid rgb(183, 178, 178); color: red; background-color: white; padding: 10px; border-radius: 5px; font-size: 16px; cursor: pointer;">Apply
+                        Coupon</button>
+                    <hr>
 
-    } else if (paymentResponse.message === 'Order placed successfully with Cash on Delivery') {
+                    <div id="discountedAmountContainer">
+                        <label style="color: #333333;" for="discountedAmount">Discounted Total Amount: <span
+                                id="discountedAmountValue">0</span></label>
+                    </div>
+                    <hr>
+                    <!-- Add payment method selection -->
+                    <label>
+                        <input type="radio" name="paymentMethod" value="online" checked> Online Payment
+                    </label>
+                    <label>
+                        <input type="radio" name="paymentMethod" value="cash"> Cash on Delivery
+                    </label><br>
+                    <button
+                        style="color: rgb(255, 255, 255);background-color: rgb(0, 128, 49); border: 1px solid rgb(225, 225, 225); height: 50px; width:60%; border-radius: 10px;"
+                        id="paymentButton" onclick="sendDataToBackend()">Place Order</button>
+                </div>
 
-        Toastify({
-    text: "Order placed successfully with Cash on Delivery",
-    duration: 3000, // 3 seconds
-    close: true,
-    gravity: "top",
-    position: "center",
-    className: "custom-toastify",
-}).showToast();
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const priceElements = document.querySelectorAll('.col-lg-4 label[for="price"]');
+                        let subtotal = 0;
 
-    } else {
-        console.log(paymentResponse.message);
-    }
-})
-
-                        .catch(error => {
-                            console.error('Error verifying payment:', error);
+                        priceElements.forEach(function (priceElement) {
+                            const priceText = priceElement.textContent.trim(); // Get the price text
+                            const priceMatch = priceText.match(/₹\s*([\d.]+)/);
+                            if (priceMatch && priceMatch[1]) {
+                                const price = parseFloat(priceMatch[1]);
+                                subtotal += price;
+                            } else {
+                                console.error('Invalid price format:', priceText);
+                            }
                         });
-                    },
-                    prefill: {
-                        name: 'Anurag',
-                        email: 'anuragraveendreen98in@.com',
-                        contact: '+919539409743'
-                    },
-                    theme: {
-                        color: '#008000'
-                    }
-                };
-            
 
-                var rzp1 = new Razorpay(options);
-                rzp1.open();
-            } else if (paymentResponse.message === 'Order placed successfully with Cash on Delivery') {
-                // Display an alert for successful cash on delivery
-                Toastify({
-    text: "Order placed successfully with Cash on Delivery",
-    duration: 3000, // 3 seconds
-    close: true,
-    gravity: "top",
-    position: "center",
-    className: "custom-toastify",
-}).showToast();
-            } else {
-                console.log(paymentResponse.message);
-            }
-        })
-        .catch(error => {
-            console.error('Error initiating payment:', error);
-        });
-    }
+                        const tax = subtotal * 0.05; // Calculate tax (5%)
+                        const shippingCost = 15;
+                        const grandTotal = subtotal + tax + shippingCost;
 
-   function sendDataToBackend() {
-            var paymentMethod = document.querySelector("input[name='paymentMethod']:checked").value;
-    var grandTotal = parseFloat(document.getElementById("grandTotalInput").value); // Extract grand total from the hidden input field and parse it as float
-            // Find the selected address
-            var selectedAddressElement = document.querySelector(".address-box.selected");
-            if (!selectedAddressElement) {
-                // If no address is selected, display a Toastify alert and return early
-             Toastify({
-    text: 'Please select an address.',
-    duration: 3000, // 3 seconds
-    close: true,
-    gravity: 'top', // Align to the top
-    position: 'center', 
-    backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
-    className: 'custom-toast', // Add a custom CSS class
-}).showToast();
+                        const subtotalValueElement = document.getElementById('subtotalValue');
+                        subtotalValueElement.textContent = `₹${subtotal.toFixed(2)}`;
 
-                return;
-            }
+                        const taxValueElement = document.getElementById('taxValue');
+                        taxValueElement.textContent = `₹${tax.toFixed(2)}`;
 
-            var addressData = {
-                id: selectedAddressElement.getAttribute("data-address-id"),
-                address: selectedAddressElement.querySelector(".address-details p:nth-child(1)").textContent.trim(),
-                phone: selectedAddressElement.querySelector(".address-details p:nth-child(2)").textContent.trim(),
-                country: selectedAddressElement.querySelector(".address-details p:nth-child(3)").textContent.trim(),
-                city: selectedAddressElement.querySelector(".address-details p:nth-child(4)").textContent.trim(),
-                state: selectedAddressElement.querySelector(".address-details p:nth-child(5)").textContent.trim(),
-                pincode: selectedAddressElement.querySelector(".address-details p:nth-child(6)").textContent.trim(),
-            };
+                        const shippingCostValueElement = document.getElementById('shippingCostValue');
+                        shippingCostValueElement.textContent = `₹${shippingCost.toFixed(2)}`;
 
-            var data = {
-                paymentMethod: paymentMethod,
-                address: addressData,
-                        grandTotal: grandTotal  // Include the grand total in the data sent to the backend
-            };
+                        const grandTotalValueElement = document.getElementById('grandTotalValue');
+                        grandTotalValueElement.textContent = `₹${grandTotal.toFixed(2)}`;
 
-            if (paymentMethod === 'online') {
-                initiateRazorpayPayment(data);
+                        document.getElementById('grandTotalInput').value = grandTotal.toFixed(2);
+                    });
+                </script>
 
-            } else {
-                fetch('/order', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data),
-                })
-               .then(response => {
+
+
+                <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+                <script>
+                   function initiateRazorpayPayment(orderDetails) {
+    fetch('/order', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderDetails),
+    })
+    .then(response => {
         if (response.ok) {
             return response.json();
-        } else {
-            throw new Error('Failed to place order');
         }
+        throw new Error('Failed to initiate payment');
     })
     .then(paymentResponse => {
-        if (paymentResponse.message === 'Order placed successfully with Cash on Delivery') {
-
-    Toastify({
-    text: "Order placed successfully with Cash on Delivery",
-    duration: 3000,
-    close: true,
-    gravity: "top",
-    position: "center",
-    backgroundColor: "red", 
-    zIndex:6, 
-}).showToast();
-
-            window.location.href = '/'; 
-
+        if (paymentResponse.message === 'Order placed successfully with Razorpay') {
+            // Initiate Razorpay payment
+            var options = {
+                key: 'rzp_test_uF6rcT6FvcQis8',
+                amount: paymentResponse.razorpayOrder.amount,
+                currency: 'INR',
+                order_id: paymentResponse.razorpayOrder.id,
+                name: 'H&d privet.lmtd',
+                description: 'Order payment',
+                image: 'https://example.com/your_logo.png',
+               handler: function (response) {
+    console.log(response);
+    var paymentData = {
+        payment_id: response.razorpay_payment_id,
+        order_id: response.razorpay_order_id,
+        signature: response.razorpay_signature
+    };
+    fetch('/verifyRazorpayPayment', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(paymentData),
+    })
+    .then(response => response.json())
+    .then(paymentResponse => {
+        if (paymentResponse.message === 'Order placed successfully with Razorpay') {
+            console.log("Payment successful!");
+            
+            
         } else {
             console.log(paymentResponse.message);
         }
-                    
-                })
-                .catch(error => {
-                    console.error('Error placing order with Cash on Delivery:', error);
-                });
-            }
+    })
+    .catch(error => {
+        console.error('Error verifying payment:', error);
+    })
+    .finally(() => {
+        console.log("Before redirection");
+
+
+        window.location.href = '/'
+        console.log("After redirection");
+    });
+},
+
+                prefill: {
+                    name: 'Anurag',
+                    email: 'anuragraveendreen98in@.com',
+                    contact: '+919539409743'
+                },
+                theme: {
+                    color: '#008000'
+                }
+            };
+            
+            var rzp1 = new Razorpay(options);
+            rzp1.open();
+        } else {
+            console.log(paymentResponse.message);
         }
-</script>
+    })
+    .catch(error => {
+        console.error('Error initiating payment:', error);
+    });
+}
+
+//---------------------------------------  
 
 
 
-               {{!-- Toastify({
+
+                    function sendDataToBackend() {
+                        var paymentMethod = document.querySelector("input[name='paymentMethod']:checked").value;
+                        var grandTotal = parseFloat(document.getElementById("grandTotalInput").value); // Extract grand total from the hidden input field and parse it as float
+                        // Find the selected address
+                        var selectedAddressElement = document.querySelector(".address-box.selected");
+                        if (!selectedAddressElement) {
+                            // If no address is selected, display a Toastify alert and return early
+                            Toastify({
+                                text: 'Please select an address.',
+                                duration: 3000, // 3 seconds
+                                close: true,
+                                gravity: 'top', // Align to the top
+                                position: 'center',
+                                backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
+                                className: 'custom-toast', // Add a custom CSS class
+                            }).showToast();
+
+                            return;
+                        }
+
+                        var addressData = {
+                            id: selectedAddressElement.getAttribute("data-address-id"),
+                            address: selectedAddressElement.querySelector(".address-details p:nth-child(1)").textContent.trim(),
+                            phone: selectedAddressElement.querySelector(".address-details p:nth-child(2)").textContent.trim(),
+                            country: selectedAddressElement.querySelector(".address-details p:nth-child(3)").textContent.trim(),
+                            city: selectedAddressElement.querySelector(".address-details p:nth-child(4)").textContent.trim(),
+                            state: selectedAddressElement.querySelector(".address-details p:nth-child(5)").textContent.trim(),
+                            pincode: selectedAddressElement.querySelector(".address-details p:nth-child(6)").textContent.trim(),
+                        };
+
+                        var data = {
+                            paymentMethod: paymentMethod,
+                            address: addressData,
+                            grandTotal: grandTotal  // Include the grand total in the data sent to the backend
+                        };
+
+                        if (paymentMethod === 'online') {
+                            initiateRazorpayPayment(data);
+
+                        } else {
+                            fetch('/order', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify(data),
+                            })
+                                .then(response => {
+                                    if (response.ok) {
+                                        return response.json();
+                                    } else {
+                                        throw new Error('Failed to place order');
+                                    }
+                                })
+                                .then(paymentResponse => {
+                                 if (paymentResponse.message === 'Order placed successfully with Cash on Delivery') {
+    // Display SweetAlert for cash payment success
+    Swal.fire({
+        title: 'Cash Payment Successful!',
+        text: 'Click OK to continue',
+        icon: 'success',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            console.log("Before redirection");
+            window.location.href = '/'; // Redirect to the index page
+            console.log("After redirection");
+        }
+    });
+} else {
+    console.log(paymentResponse.message);
+}
+
+                                })
+                                .catch(error => {
+                                    console.error('Error placing order with Cash on Delivery:', error);
+                                });
+                        }
+                    }
+                </script>
+
+
+
+
+
+
+                {{!-- Toastify({
                 text: 'Order placed successfully with Cash on Delivery',
                 duration: 3000, // 3 seconds
                 close: true,
                 gravity: 'top',
                 position: 'center',
                 backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
-            }).showToast();
-         --}}
+                }).showToast();
+                --}}
 
-            <script>
+                <script>
 
-              async function applyCoupon() {
-    const couponCode = document.getElementById('couponCode').value;
-    const grandTotal = document.getElementById('grandTotalInput').value; 
-    try {
-        const response = await fetch('/applycoupon', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ couponCode: couponCode, grandTotal: grandTotal }) 
-        });
+                    async function applyCoupon() {
+                        const couponCode = document.getElementById('couponCode').value;
+                        const grandTotal = document.getElementById('grandTotalInput').value;
+                        try {
+                            const response = await fetch('/applycoupon', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({ couponCode: couponCode, grandTotal: grandTotal })
+                            });
 
-        if (!response.ok) {
-            throw new Error('Failed to apply coupon');
-        }
+                            if (!response.ok) {
+                                throw new Error('Failed to apply coupon');
+                            }
 
-        const data = await response.json();
-console.log(data)
-     document.getElementById('discountedAmountValue').textContent = data.discountedAmount;
-         } catch (error) {
-        console.error('Error applying coupon:', error);
+                            const data = await response.json();
+                            console.log(data)
+                            document.getElementById('discountedAmountValue').textContent = data.discountedAmount;
+                        } catch (error) {
+                            console.error('Error applying coupon:', error);
 
-    }
-}
-
-
-            </script> 
+                        }
+                    }
 
 
+                </script>
 
 
 
-            <!-- Page Add Section Begin -->
-
-            <!-- Page Add Section End -->
-
-            <form class="frml " action="/checkout"  method="POST">
-
-                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content   shadow" >
-                            <div class="modal-header bg-light  text-light">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Add
-                                    Category</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body bg-light text-light">
-                                <div>
-                                    <div class="row">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="billing-address">Address</label>
-                                            <textarea class="form-control" name="address" id="billing-address" rows="3"
-                                                placeholder="Enter full address"></textarea>
-                                        </div>
-
-                                        <div class="col-lg-4">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="billing-phone">Phone</label>
-                                                <input type="text" name="phone" class="form-control" id="billing-phone"
-                                                    placeholder="Enter Phone no.">
-                                            </div>
-                                        </div>
-                                    </div>
 
 
-                                    <div class="row">
-                                        <div class="col-lg-4">
-                                            <div class="mb-4 mb-lg-0">
-                                                <label class="form-label">Country</label>
-                                                <select class="form-control form-select" name="country" title="Country">
-                                                    <option value="0">Select Country
-                                                    </option>
-                                                    <option value="AF">Afghanistan</option>
-                                                    <option value="AL">Albania</option>
-                                                    <option value="DZ">Algeria</option>
-                                                    <option value="AS">American Samoa
-                                                    </option>
-                                                    <option value="AD">Andorra</option>
-                                                    <option value="AO">Angola</option>
-                                                    <option value="AI">Anguilla</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                <!-- Page Add Section Begin -->
 
-                                        <div class="col-lg-4">
-                                            <div class="mb-4 mb-lg-0">
-                                                <label class="form-label" for="billing-city">City</label>
-                                                <input type="text" name="city" class="form-control" id="billing-city"
-                                                    placeholder="Enter City">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4">
-                                            <div class="mb-4 mb-lg-0">
-                                                <label class="form-label" for="billing-city">State</label>
-                                                <input type="text" name="state" class="form-control" id="billing-statee"
-                                                    placeholder="Enter state">
-                                            </div>
-                                        </div>
+                <!-- Page Add Section End -->
 
-                                        <div class="col-lg-4">
-                                            <div class="mb-0">
-                                                <label class="form-label" for="zip-code">Zip
-                                                    / Postal code</label>
-                                                <input type="text" name="pin" class="form-control" id="zip-code"
-                                                    placeholder="Enter Postal code">
-                                            </div>
-                                        </div>
-                                    </div>
+                <form class="frml " action="/checkout" method="POST">
+
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content   shadow">
+                                <div class="modal-header bg-light  text-light">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Add
+                                        Category</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
                                 </div>
-                                <br>
-                                <!-- Add Submit Button -->
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <div class="modal-body bg-light text-light">
+                                    <div>
+                                        <div class="row">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="billing-address">Address</label>
+                                                <textarea class="form-control" name="address" id="billing-address"
+                                                    rows="3" placeholder="Enter full address"></textarea>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="billing-phone">Phone</label>
+                                                    <input type="text" name="phone" class="form-control"
+                                                        id="billing-phone" placeholder="Enter Phone no.">
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <div class="mb-4 mb-lg-0">
+                                                    <label class="form-label">Country</label>
+                                                    <select class="form-control form-select" name="country"
+                                                        title="Country">
+                                                        <option value="0">Select Country
+                                                        </option>
+                                                        <option value="AF">Afghanistan</option>
+                                                        <option value="AL">Albania</option>
+                                                        <option value="DZ">Algeria</option>
+                                                        <option value="AS">American Samoa
+                                                        </option>
+                                                        <option value="AD">Andorra</option>
+                                                        <option value="AO">Angola</option>
+                                                        <option value="AI">Anguilla</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="mb-4 mb-lg-0">
+                                                    <label class="form-label" for="billing-city">City</label>
+                                                    <input type="text" name="city" class="form-control"
+                                                        id="billing-city" placeholder="Enter City">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="mb-4 mb-lg-0">
+                                                    <label class="form-label" for="billing-city">State</label>
+                                                    <input type="text" name="state" class="form-control"
+                                                        id="billing-statee" placeholder="Enter state">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4">
+                                                <div class="mb-0">
+                                                    <label class="form-label" for="zip-code">Zip
+                                                        / Postal code</label>
+                                                    <input type="text" name="pin" class="form-control" id="zip-code"
+                                                        placeholder="Enter Postal code">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <!-- Add Submit Button -->
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
                             </div>
                         </div>
+
                     </div>
+                </form>
 
-                </div>
-            </form>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                <!-- Bootstrap JS (optional, if you need JavaScript functionalities from Bootstrap) -->
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+                <script>
+                    // JavaScript for selecting one address at a time
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const addressBoxes = document.querySelectorAll('.address-box');
 
-            <!-- Bootstrap JS (optional, if you need JavaScript functionalities from Bootstrap) -->
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-            <script>
-                // JavaScript for selecting one address at a time
-                document.addEventListener('DOMContentLoaded', function () {
-                    const addressBoxes = document.querySelectorAll('.address-box');
-
-                    addressBoxes.forEach(box => {
-                        box.addEventListener('click', () => {
-                            addressBoxes.forEach(box => {
-                                box.classList.remove('selected');
+                        addressBoxes.forEach(box => {
+                            box.addEventListener('click', () => {
+                                addressBoxes.forEach(box => {
+                                    box.classList.remove('selected');
+                                });
+                                box.classList.add('selected');
                             });
-                            box.classList.add('selected');
                         });
                     });
-                });
-            </script>
+                </script>
 
-            <!-- submit  -->
+                <!-- submit  -->
 
+            </div>
         </div>
-    </div>
 
-    <!-- Bootstrap JS (optional, if needed) -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-    <!-- Check-out section  Page End -->
-
+        <!-- Bootstrap JS (optional, if needed) -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+        <!-- Check-out section  Page End -->
 
 
 
-    {{!-- -------------------------------------------------------------------------- --}}
-    {{!-- <div id="checkout-data"></div> --}}
 
-    <script>
-        // Fetch cart data and render it on the checkout page
-        fetch('/api/postCarttocheckout', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ selectedItems: yourSelectedItemsArray }) // Assuming yourSelectedItemsArray contains the selected item IDs
-        })
-            .then(response => response.json())
-            .then(data => {
-                // Render the fetched data on the page
-                const checkoutDataElement = document.getElementById('checkout-data');
-                checkoutDataElement.innerHTML = `
+        {{!-- -------------------------------------------------------------------------- --}}
+        {{!-- <div id="checkout-data"></div> --}}
+
+        <script>
+            // Fetch cart data and render it on the checkout page
+            fetch('/api/postCarttocheckout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ selectedItems: yourSelectedItemsArray }) // Assuming yourSelectedItemsArray contains the selected item IDs
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Render the fetched data on the page
+                    const checkoutDataElement = document.getElementById('checkout-data');
+                    checkoutDataElement.innerHTML = `
                 <p>Matched Cart Items:</p>
                 <ul>
                     ${data.matchcart.map(item => `<li>${item.name}: ${item.price}</li>`).join('')}
                 </ul>
             `;
-            })
-            .catch(error => {
-                console.error('Error fetching checkout data:', error);
-            });
-    </script>
+                })
+                .catch(error => {
+                    console.error('Error fetching checkout data:', error);
+                });
+        </script>
 
 
-    {{!-- ------------------------------------------------------------ --}}
+        {{!-- ------------------------------------------------------------ --}}
 
-    <!-- Footer Section Begin -->
-    <footer class="footer-section spad">
-        <div class="container">
-            <div class="newslatter-form">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <form action="#">
-                            <input type="text" placeholder="Your email address">
-                            <button type="submit">Subscribe to our newsletter</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-widget">
-                <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h4>About us</h4>
-                            <ul>
-                                <li>About Us</li>
-                                <li>Community</li>
-                                <li>Jobs</li>
-                                <li>Shipping</li>
-                                <li>Contact Us</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h4>Customer Care</h4>
-                            <ul>
-                                <li>Search</li>
-                                <li>Privacy Policy</li>
-                                <li>2019 Lookbook</li>
-                                <li>Shipping & Delivery</li>
-                                <li>Gallery</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h4>Our Services</h4>
-                            <ul>
-                                <li>Free Shipping</li>
-                                <li>Free Returnes</li>
-                                <li>Our Franchising</li>
-                                <li>Terms and conditions</li>
-                                <li>Privacy Policy</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="single-footer-widget">
-                            <h4>Information</h4>
-                            <ul>
-                                <li>Payment methods</li>
-                                <li>Times and shipping costs</li>
-                                <li>Product Returns</li>
-                                <li>Shipping methods</li>
-                                <li>Conformity of the products</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="social-links-warp">
+        <!-- Footer Section Begin -->
+        <footer class="footer-section spad">
             <div class="container">
-                <div class="social-links">
-                    <a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
-                    <a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
-                    <a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
-                    <a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
-                    <a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
-                    <a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
+                <div class="newslatter-form">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <form action="#">
+                                <input type="text" placeholder="Your email address">
+                                <button type="submit">Subscribe to our newsletter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-widget">
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h4>About us</h4>
+                                <ul>
+                                    <li>About Us</li>
+                                    <li>Community</li>
+                                    <li>Jobs</li>
+                                    <li>Shipping</li>
+                                    <li>Contact Us</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h4>Customer Care</h4>
+                                <ul>
+                                    <li>Search</li>
+                                    <li>Privacy Policy</li>
+                                    <li>2019 Lookbook</li>
+                                    <li>Shipping & Delivery</li>
+                                    <li>Gallery</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h4>Our Services</h4>
+                                <ul>
+                                    <li>Free Shipping</li>
+                                    <li>Free Returnes</li>
+                                    <li>Our Franchising</li>
+                                    <li>Terms and conditions</li>
+                                    <li>Privacy Policy</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="single-footer-widget">
+                                <h4>Information</h4>
+                                <ul>
+                                    <li>Payment methods</li>
+                                    <li>Times and shipping costs</li>
+                                    <li>Product Returns</li>
+                                    <li>Shipping methods</li>
+                                    <li>Conformity of the products</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="social-links-warp">
+                <div class="container">
+                    <div class="social-links">
+                        <a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
+                        <a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
+                        <a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
+                        <a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
+                        <a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
+                        <a href="" class="tumblr"><i class="fa fa-tumblr-square"></i><span>tumblr</span></a>
+                    </div>
+                </div>
 
-            <div class="container text-center pt-5">
+                <div class="container text-center pt-5">
 
 
 
-            </div>
-    </footer>
-    <!-- Footer Section End -->
+                </div>
+        </footer>
+        <!-- Footer Section End -->
 
-    <!-- Js Plugins -->
-    <script src="/user/jquery-3.3.1.min.js"></script>
-    <script src="/user/bootstrap.min.js"></script>
-    <script src="/user/jquery.magnific-popup.min.js"></script>
-    <script src="/user/jquery.slicknav.js"></script>
-    <script src="/user/owl.carousel.min.js"></script>
-    <script src="/user/jquery.nice-select.min.js"></script>
-    <script src="/user/mixitup.min.js"></script>
-    <script src="/user/main.js"></script>
+        <!-- Js Plugins -->
+        <script src="/user/jquery-3.3.1.min.js"></script>
+        <script src="/user/bootstrap.min.js"></script>
+        <script src="/user/jquery.magnific-popup.min.js"></script>
+        <script src="/user/jquery.slicknav.js"></script>
+        <script src="/user/owl.carousel.min.js"></script>
+        <script src="/user/jquery.nice-select.min.js"></script>
+        <script src="/user/mixitup.min.js"></script>
+        <script src="/user/main.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
 

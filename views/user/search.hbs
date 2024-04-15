@@ -149,7 +149,7 @@ QuickBuY</h5>
             {{#each products}}
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img src="{{this.image.url}}" class="card-img-top" alt="{{this.productname}}">
+                            <a href="/productpage?name={{this._id}}"><img src="{{this.image.url}}" alt=""></a>
                         <div class="card-body">
                             <h5 class="card-title">{{this.productname}}</h5>
                             <p class="card-text">{{this.brand}}</p>

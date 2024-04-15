@@ -37,6 +37,20 @@
 </head>
 
 <body>
+    <script type="text/javascript">
+  function preventBack() {
+    window.history.forward();
+  }
+  setTimeout("preventBack()", 0);
+  window.onload = function() { 
+    document.addEventListener("keydown", function(e) {
+      if (e.keyCode === 8) {
+        e.preventDefault();
+      }
+    });
+  };
+</script>
+
     <nav>
         <!-- Page Preloder -->
         <div id="preloder">
