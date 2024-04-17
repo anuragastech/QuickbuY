@@ -65,8 +65,10 @@ const getAddress = async (req, res) => {
             { $unwind: "$productData" }, 
             { 
                 $group: {
-                    _id: "$products.productId",
-                    products: { $push: "$products" },
+                    _id: { productId: "$products.productId", size: "$products.size" },
+                    quantity: { $sum: "$products.quantity" },
+                    price: { $first: { $toDouble: "$productData.price" } },
+                    totalPrice: { $sum: { $multiply: [ { $toDouble: "$products.quantity" }, { $toDouble: "$productData.price" } ] } },                                        products: { $push: "$products" },
                     productData: { $first: "$productData" }
                 }
             }
@@ -75,7 +77,7 @@ const getAddress = async (req, res) => {
         const addressInfo = currentUser.personalInfo;
 
         res.render('user/check-out', { addressInfo, data });
-        // console.log(data);
+        console.log(data);
     } catch (error) {
         console.error('Error showing data:', error);
         res.status(500).send('Internal Server Error');
@@ -136,6 +138,7 @@ const getAddress = async (req, res) => {
 const postCarttocheckout = async (req, res) => {
     try {
         const { selectedItems } = req.body;
+        console.log(selectedItems,"nonon");
         const userId = req.user.id;
         const productArr = [];
 

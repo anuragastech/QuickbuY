@@ -302,7 +302,8 @@
                             <img style="height: 80px;width: 80px;" src="{{this.productData.image.url}}" alt="">
                             <label for="productname">Product Name: {{this.productData.productname}}</label><br>
                             <label for="productcolor">Color: {{this.productData.color}}</label><br>
-                            <label for="price">Price: ₹{{this.productData.price}}</label><br>
+
+                            <label for="price">Price: ₹{{this.totalPrice}}</label><br>
                             <label for="size">Size: {{this.size}}</label><br>
                         </div>
                         {{/each}}
@@ -353,6 +354,7 @@
 
                         priceElements.forEach(function (priceElement) {
                             const priceText = priceElement.textContent.trim(); // Get the price text
+
                             const priceMatch = priceText.match(/₹\s*([\d.]+)/);
                             if (priceMatch && priceMatch[1]) {
                                 const price = parseFloat(priceMatch[1]);

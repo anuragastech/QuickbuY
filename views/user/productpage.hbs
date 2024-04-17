@@ -196,6 +196,9 @@
     <!-- Page Add Section End -->
 
     <!-- Product Page Section Beign -->
+
+
+    
     <style>
         .size.selected {
             background-color: black;
@@ -276,7 +279,8 @@
                                         class="discounted-price"> </span><span
                                         style="background-color:rgb(194, 180, 180); color: rgb(82, 55, 138);font-size: 15px;">(20%
                                         off)</span>
-                                </div> {{!-- <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
+                                </div> 
+                                {{!-- <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
                                 <li><span>Tags :</span> man, shirt, dotted, elegant, cool</li>
                                 --}}
                                 <li style="margin-bottom: 20px;">
@@ -317,6 +321,8 @@
                             </div>
                             {{/each}}
                         </div>
+
+
                         <script>
                             // Get the original price from the HTML content
                             const originalPriceElement = document.querySelector('.original-price');
@@ -331,6 +337,7 @@
                             const discountedPriceElement = document.querySelector('.discounted-price');
                             discountedPriceElement.textContent = `₹${discountedPrice.toFixed(2)}`; // Assuming you want 2 decimal places
                         </script>
+
 
                         <script>
 

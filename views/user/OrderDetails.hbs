@@ -11,7 +11,7 @@
 
 
 
-  {{!-- bootstrap icon  --}}
+    {{!-- bootstrap icon --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Google Font -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
@@ -61,21 +61,26 @@
     <header class="header-section" style="position: fixed;z-index:5;background-color: white;width: 100%;top:0%;">
         <div class="container-fluid">
             <div class="inner-header">
-               <div class="logo">
-<a href="/">
-    <h5 style="font-size: 2em; color: #ad0101;font-weight:bolder; ">                <img style="height:40px;width:40px;background-color: white;color:white;fo" src="https://res.cloudinary.com/dd6qdgpfr/image/upload/v1712106218/photo_2024-03-12_20-09-56__2___1_-transformed_ncuoze.png" alt="">
-QuickBuY</h5>
-</a>
+                <div class="logo">
+                    <a href="/">
+                        <h5 style="font-size: 2em; color: #ad0101;font-weight:bolder; "> <img
+                                style="height:40px;width:40px;background-color: white;color:white;fo"
+                                src="https://res.cloudinary.com/dd6qdgpfr/image/upload/v1712106218/photo_2024-03-12_20-09-56__2___1_-transformed_ncuoze.png"
+                                alt="">
+                            QuickBuY</h5>
+                    </a>
                 </div>
-               <div class="header-right">
-             
-                                        <a style="margin-right:1px;" class="search-trigger" href=""> <i style="font-size:20px;" class="bi bi-search"></i> </a>
+                <div class="header-right">
+
+                    <a style="margin-right:1px;" class="search-trigger" href=""> <i style="font-size:20px;"
+                            class="bi bi-search"></i> </a>
 
 
-                                        <a  style="font-size:24px;margin-left:1px;" href="/shopping-cart"><i style="margin-top:5%;" class="bi bi-cart3"></i></a>
+                    <a style="font-size:24px;margin-left:1px;" href="/shopping-cart"><i style="margin-top:5%;"
+                            class="bi bi-cart3"></i></a>
 
-                    <a   href="/profile"><i style="font-size:24px;" class="bi bi-person"></i></a>
-                
+                    <a href="/profile"><i style="font-size:24px;" class="bi bi-person"></i></a>
+
 
 
                 </div>
@@ -103,13 +108,15 @@ QuickBuY</h5>
             </div>
         </div>
     </header>
-    <div class="container-fluid" style="margin-top: -3.5%;position: fixed;z-index:5;color:xxwhite; ">
-    <div class="row">
-<div class="col-lg-12 sm-0">
-<h4 style="text-align: center;background-color: rgb(160, 176, 176);">Buy Your Dream Collections </h4>
-</div>
-    </div>
-</div>
+
+
+    {{!-- <div class="container-fluid" style="margin-top: -3.5%;position: fixed;z-index:5;color:xxwhite; ">
+        <div class="row">
+            <div class="col-lg-12 sm-0">
+                <h4 style="text-align: center;background-color: rgb(160, 176, 176);">Buy Your Dream Collections </h4>
+            </div>
+        </div>
+    </div> --}}
     <!-- Header Info Begin -->
 
 
@@ -122,20 +129,34 @@ QuickBuY</h5>
             overflow: hidden;
             /* Hide overflow content */
         }
+        .card-text{
+            font-size: 1.5vh;
+        }
+        .card-title{
+                        font-size: 2vh;
+
+        }
+        .mt-3 mt-md-auto{
+            size: 5vh;
+        }
+        .card-body{
+            height:38vh;
+        }
     </style>
-   <!-- Add a container for the orders -->
-{{#if orders.length}}
-    <div class="container" style="margin-top: 8%; margin-right: 5%;">
+    <!-- Add a container for the orders -->
+    {{#if orders.length}}
+    <div class="container" style="margin-top: 9%; margin-right: 5%;">
         <div class="row">
             <!-- Loop through each order -->
             {{#each orders}}
-            <div class="col-lg-7 mb-5">
+            <div class="col-lg-8 md-5 col-md-5 col-sm-3">
                 <div class="card custom-card">
                     <div class="row g-0">
                         <div class="col-md-5">
-                            <img style="height: 25vh; width: 30vh;" src="{{this.product.image.url}}" class="card-img-top" alt="Product Image">
+                            <img style="height: 15rem; width: 15rem;" src="{{this.product.image.url}}"
+                                class="card-img-top" alt="Product Image">
                         </div>
-                        <div class="col-md-7">
+                        <div class="col-md-7 col-sm-3">
                             <div class="card-body">
                                 <h5 class="card-title">{{this.productname}}</h5>
                                 <p class="card-text">Brand: {{this.brand}}</p>
@@ -143,12 +164,19 @@ QuickBuY</h5>
                                 <p class="card-text">Size: {{this.size}}</p>
                                 <p class="card-text">Quantity: {{this.quantity}}</p>
                                 <p class="card-text">Order Status: {{this.orderAccepted}}</p>
-                                <div class="mt-auto">
-                                    <button class="openModalBtn btn btn-light" data-orderid="{{this._id}}">
-                                        <i class="material-icons">visibility</i> Invoice
-                                    </button>
-                                    <button class="btn btn-light">Cancel Order</button>
+                                <div class="mt-3 mt-md-auto">
+                                    <div class="row justify-content-center justify-content-md-start">
+                                        <div class="col-md-auto mb-2 mb-md-0">
+                                            <button  class="openModalBtn btn btn-light" data-orderid="{{this._id}}">
+                                                <i class="material-icons">visibility</i> Invoice
+                                            </button>
+                                        </div>
+                                        <div class="col-md-auto">
+                                            <button class="btn btn-light">Cancel Order</button>
+                                        </div>
+                                    </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -156,27 +184,28 @@ QuickBuY</h5>
             </div>
             {{/each}}
         </div>
-        
+
         <!-- Bootstrap Pagination -->
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">
                 {{#if pagination.prev}}
-                    <li class="page-item"><a class="page-link" href="{{pagination.prev}}">&laquo;</a></li>
+                <li class="page-item"><a class="page-link" href="{{pagination.prev}}">&laquo;</a></li>
                 {{/if}}
-                
+
                 {{#each pagination.pages}}
-                    <li class="page-item {{#if this.active}}active{{/if}}"><a class="page-link" href="{{this.url}}">{{this.number}}</a></li>
+                <li class="page-item {{#if this.active}}active{{/if}}"><a class="page-link"
+                        href="{{this.url}}">{{this.number}}</a></li>
                 {{/each}}
-                
+
                 {{#if pagination.next}}
-                    <li class="page-item"><a class="page-link" href="{{pagination.next}}">&raquo;</a></li>
+                <li class="page-item"><a class="page-link" href="{{pagination.next}}">&raquo;</a></li>
                 {{/if}}
             </ul>
         </nav>
     </div>
-{{else}}
+    {{else}}
     <p>No orders found.</p>
-{{/if}}
+    {{/if}}
 
 
 
@@ -189,8 +218,8 @@ QuickBuY</h5>
     </script>
 
     {{!-- ---------------------- --}}
-    {{!-- for print invoice  --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+    {{!-- for print invoice --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
     <!-- Modal -->
     <div id="myModal" class="modal">
@@ -219,20 +248,20 @@ QuickBuY</h5>
         </div>
     </div>
 
-<script>
-// Print data button functionality
-//for downloading as pdf
-const printDataBtn = document.getElementById("printDataBtn");
-printDataBtn.addEventListener("click", function () {
-    const modalContent = document.querySelector('.modal-content');
+    <script>
+        // Print data button functionality
+        //for downloading as pdf
+        const printDataBtn = document.getElementById("printDataBtn");
+        printDataBtn.addEventListener("click", function () {
+            const modalContent = document.querySelector('.modal-content');
 
-    // Convert modal content to PDF
-    html2pdf()
-        .from(modalContent)
-        .save();
-});
+            // Convert modal content to PDF
+            html2pdf()
+                .from(modalContent)
+                .save();
+        });
 
-</script>
+    </script>
 
 
     <!-- Updated JavaScript -->
@@ -288,7 +317,7 @@ printDataBtn.addEventListener("click", function () {
 
         function updateModalContent(orderDetails) {
 
-     
+
             // Add more lines to update other elements with relevant order details
             const invoiceHTML = `
         <p><strong>Purchased Date:</strong> ${orderDetails.orderDate}</p>
@@ -339,18 +368,18 @@ printDataBtn.addEventListener("click", function () {
 
 
     </script>
-       {{!-- document.getElementById('image').textContent = orderDetails.orderId;
-            document.getElementById('productName').textContent = orderDetails.productname;
-            document.getElementById('productSize').textContent = orderDetails.size;
+    {{!-- document.getElementById('image').textContent = orderDetails.orderId;
+    document.getElementById('productName').textContent = orderDetails.productname;
+    document.getElementById('productSize').textContent = orderDetails.size;
 
-            document.getElementById('productQuantity').textContent = orderDetails.quantity;
+    document.getElementById('productQuantity').textContent = orderDetails.quantity;
 
-            document.getElementById('productColor').textContent = orderDetails.color;
-            document.getElementById('productBrand').textContent = orderDetails.brand;
-            document.getElementById('productCategory').textContent = orderDetails.category;
-            document.getElementById('productSubcategory').textContent = orderDetails.subcategory;
-            document.getElementById('productSubcategory').textContent = orderDetails.address;
-            document.getElementById('OrderStatus').textContent = orderDetails.orderAccepted; --}}
+    document.getElementById('productColor').textContent = orderDetails.color;
+    document.getElementById('productBrand').textContent = orderDetails.brand;
+    document.getElementById('productCategory').textContent = orderDetails.category;
+    document.getElementById('productSubcategory').textContent = orderDetails.subcategory;
+    document.getElementById('productSubcategory').textContent = orderDetails.address;
+    document.getElementById('OrderStatus').textContent = orderDetails.orderAccepted; --}}
 
     {{!-- ------------------------------------------------------------ --}}
 

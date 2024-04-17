@@ -26,34 +26,25 @@ let deleteCart = async (req, res) => {
 
 
 
-
-
 const updateCart = async (req, res) => {
     try {
-
         const userId = req.user.id;
-        // console.log( "user", userId);
-      const productId= req.params.cartId;
-    //   console.log(productId);
-      const newQuantity = req.body.quantity;
-    //   console.log(newQuantity)
+        const productId = req.params.cartId; // Corrected parameter name
+        console.log(productId,"hfhghr ");
+        const newQuantity = req.body.quantity;
 
+        const updatedCart = await Cart.findOneAndUpdate(
+            { userId, "products.productId": productId },
+            { $set: { "products.$.quantity": newQuantity } },
+            { new: true }
+        );
 
-    const updatedCart = await Cart.findOneAndUpdate(
-        { userId, "products.productId": productId }, 
-        { $set: { "products.$.quantity": newQuantity } }, 
-        { new: true }
-    );
-
-      res.status(200).json({ message: 'Cart updated successfully' });
+        res.status(200).json({ message: 'Cart updated successfully' });
     } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Internal Server Error' });
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
-  };
-
-
-
+};
 
 
 
@@ -130,6 +121,7 @@ let getshoppingcart = async (req, res) => {
 
         const cart = await Cart.aggregate([
             { $match: { userId: new mongoose.Types.ObjectId(userId) } }, // Corrected line
+
             { $unwind: "$products" }, // Deconstruct the products array
             { 
                 $lookup: {
@@ -140,12 +132,15 @@ let getshoppingcart = async (req, res) => {
                 }
             },
             { $unwind: "$productData" }, // Deconstruct the productData array
-            { 
-                $group: {
-                    _id: "$products.productId",
-                    products: { $push: "$products" },
-                    productData: { $first: "$productData" }
-                }
+                { 
+                    $group: {
+                        _id: { productId: "$products.productId", size: "$products.size" },
+                        productId:{$first: "$products.productId"},
+                cart: { $first: "$products._id" },
+                                                quantity: { $sum: "$products.quantity" },
+                        products: { $push: "$products" },
+                        productData: { $first: "$productData" }
+                    }
             }
         ]);
         cart.forEach(item => {
@@ -155,7 +150,8 @@ let getshoppingcart = async (req, res) => {
             });
         });
 
-        // console.log(cart);
+console.log(cart.products ,"jo")
+        console.log(cart , "hell");
         res.render('user/shopping-cart', { cart });
 
     } catch (error) {
