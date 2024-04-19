@@ -303,8 +303,8 @@
                             <label for="productname">Product Name: {{this.productData.productname}}</label><br>
                             <label for="productcolor">Color: {{this.productData.color}}</label><br>
 
-                            <label for="price">Price: ₹{{this.totalPrice}}</label><br>
-                            <label for="size">Size: {{this.size}}</label><br>
+                            <label for="price">Price: ₹{{this.productData.price}}</label><br>
+                            <label for="size">Size: {{this._id.size}}</label><br>
                         </div>
                         {{/each}}
                     </div>
@@ -386,8 +386,17 @@
 
 
 
+
+
+
+
+
                 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
                 <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+
+
+                
                 <script>
                    function initiateRazorpayPayment(orderDetails) {
     fetch('/order', {
@@ -560,7 +569,7 @@
                 </script>
 
 
-
+------------------------------  
 
 
 
@@ -573,6 +582,8 @@
                 backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
                 }).showToast();
                 --}}
+
+
 
                 <script>
 
