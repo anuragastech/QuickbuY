@@ -15,7 +15,7 @@ CompanyDetails: {
 },
   venderId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'registers',
+    ref: 'vender',
   },
   image:{
     public_id:{

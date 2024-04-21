@@ -45,7 +45,7 @@ const getproductDataIn = async (req, res) => {
 const Search = async (req, res) => {
     try {
         const token = req.cookies.token;
-        const loggedIn = !!token; // Set loggedIn to true if token exists, false otherwise
+        const loggedIn = !!token; 
 
         const { search } = req.method === 'POST' ? req.body : req.query;
 

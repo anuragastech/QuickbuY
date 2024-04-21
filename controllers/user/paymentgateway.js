@@ -36,12 +36,16 @@ let postAddress = async (req, res) => {
 
 
 
+
+
 const deleteAddress= async (req,res) =>{
     const addressId= req.params.Id;
 console.log("hellofdwifgwnm");
 console.log(addressId);
     
 }
+
+
 
 
 const getAddress = async (req, res) => {
@@ -438,14 +442,11 @@ const coupencheck = async (req, res) => {
 // }
 // };
 
-
-
-
 const orderPost = async (req, res) => {
     try {
         const userId = req.user.id;
         const { address, paymentMethod, grandTotal } = req.body;
-
+console.log(paymentMethod,"hh");
         // Fetch cart data for the user
         const cartData = await cart.findOne({ userId });
 
@@ -553,21 +554,36 @@ const orderPost = async (req, res) => {
             return newOrder.save();
         });
 
+        // Integrate Razorpay payment
+        if (paymentMethod === 'online') {
+            const razorpayOrder = await razorpay.orders.create({
+                amount: prices * 100, // Amount in paise
+                currency: 'INR',
+                receipt: 'order_rcptid_11', // Replace with your receipt ID
+                payment_capture: 1
+            });
+            // Send the Razorpay order details back to the client
+            return res.status(200).json({ message: 'Order placed successfully with Razorpay', razorpayOrder });
+        }
+
+        // Update product quantities and remove items from the cart after successful order creation
+        for (let i = 0; i < productId.length; i++) {
+            const existingProduct = await Product.findById(productId[i]);
+            if (existingProduct) {
+                existingProduct.quantity -= quantity[i];
+                await existingProduct.save();
+            }
+        }
+
         // Remove items from the cart after successful order creation
-        await cart.findOneAndUpdate({ userId }, { $set: { products: [] } });
-
-        //update product from product schema 
-
-        
+        await cart.updateOne({ userId }, { $pull: { products: { productId: { $in: productId } } } });
         // Send payment response back to the client
         let paymentResponse;
-
         if (paymentMethod === 'cash') {
             // For cash on delivery
             paymentResponse = { message: 'Order placed successfully with Cash on Delivery' };
-        } else if (paymentMethod === 'online') {
-            // For online payment
-            paymentResponse = { message: 'Order placed successfully with Razorpay' }; // Or any other response you want
+        } else {
+            paymentResponse = { message: 'Order placed successfully' }; // Or any other response you want
         }
 
         res.status(200).json(paymentResponse);

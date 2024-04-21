@@ -418,92 +418,165 @@ document.getElementById("popupButton").addEventListener("click", openPopup);
 
     </script> --}}
     {{!-- ----------------------------------------------------- --}}
-
-    <form class="frml " action="/postAddress" method="POST">
-
-        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content   shadow">
-                    <div class="modal-header bg-light  text-light">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Add
-                            Category</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body bg-light text-light">
-                        <div>
-                            <div class="row">
-                                <div class="mb-3">
-                                    <label class="form-label" for="billing-address">Address</label>
-                                    <textarea class="form-control" name="address" id="billing-address" rows="3"
-                                        placeholder="Enter full address"></textarea>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="mb-3">
-                                        <label class="form-label" for="billing-phone">Phone</label>
-                                        <input type="text" name="phone" class="form-control" id="billing-phone"
-                                            placeholder="Enter Phone no.">
-                                    </div>
-                                </div>
+<form class="frml" action="/postAddress" method="POST" onsubmit="return validateForm()">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content shadow">
+                <div class="modal-header bg-light text-light">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Add Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body bg-light text-light">
+                    <div>
+                        <div class="row">
+                            <div class="mb-3">
+                                <label class="form-label" for="billing-address">Address</label>
+                                <textarea class="form-control" name="address" id="billing-address" rows="3" placeholder="Enter full address"></textarea>
+                                <span id="address-error" class="error-message"></span>
                             </div>
-
-
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <div class="mb-4 mb-lg-0">
-                                        <label class="form-label">Country</label>
-                                        <select class="form-control form-select" name="country" title="Country">
-                                            <option value="0">Select Country
-                                            </option>
-                                            <option value="AF">Afghanistan</option>
-                                            <option value="AL">Albania</option>
-                                            <option value="DZ">Algeria</option>
-                                            <option value="AS">American Samoa
-                                            </option>
-                                            <option value="AD">Andorra</option>
-                                            <option value="AO">Angola</option>
-                                            <option value="AI">Anguilla</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="mb-4 mb-lg-0">
-                                        <label class="form-label" for="billing-city">City</label>
-                                        <input type="text" name="city" class="form-control" id="billing-city"
-                                            placeholder="Enter City">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="mb-4 mb-lg-0">
-                                        <label class="form-label" for="billing-city">State</label>
-                                        <input type="text" name="state" class="form-control" id="billing-statee"
-                                            placeholder="Enter state">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4">
-                                    <div class="mb-0">
-                                        <label class="form-label" for="zip-code">Zip
-                                            / Postal code</label>
-                                        <input type="text" name="pin" class="form-control" id="zip-code"
-                                            placeholder="Enter Postal code">
-                                    </div>
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="billing-phone">Phone</label>
+                                    <input type="number" name="phone" class="form-control" id="billing-phone" placeholder="Enter Phone no.">
+                                    <span id="phone-error" class="error-message"></span>
                                 </div>
                             </div>
                         </div>
-                        <br>
-                        <!-- Add Submit Button -->
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="mb-4 mb-lg-0">
+                                    <label class="form-label">Country</label>
+                                    <select class="form-control form-select" name="country" id="billing-country" title="Country">
+                                        <option value="0">Select Country</option>
+                                        <option value="AF">Afghanistan</option>
+                                        <option value="AL">Albania</option>
+                                        <option value="DZ">Algeria</option>
+                                        <option value="AS">American Samoa</option>
+                                        <option value="AD">Andorra</option>
+                                        <option value="AO">Angola</option>
+                                        <option value="AI">India</option>
+                                    </select>
+                                    <span id="country-error" class="error-message"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-4 mb-lg-0">
+                                    <label class="form-label" for="billing-city">City</label>
+                                    <input type="text" name="city" class="form-control" id="billing-city" placeholder="Enter City">
+                                    <span id="city-error" class="error-message"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-4 mb-lg-0">
+                                    <label class="form-label" for="billing-state">State</label>
+                                    <input type="text" name="state" class="form-control" id="billing-state" placeholder="Enter state">
+                                    <span id="state-error" class="error-message"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-0">
+                                    <label class="form-label" for="zip-code">Zip / Postal code</label>
+                                    <input type="number" name="pin" class="form-control" id="zip-code" placeholder="Enter Postal code">
+                                    <span id="pin-error" class="error-message"></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <br>
+                    <!-- Add Submit Button -->
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </div>
-
         </div>
-    </form>
+    </div>
+</form>
+
+<!-- Include SweetAlert library -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    function validateForm() {
+        const address = document.getElementById('billing-address').value.trim();
+        const phone = document.getElementById('billing-phone').value.trim();
+        const country = document.getElementById('billing-country').value;
+        const city = document.getElementById('billing-city').value.trim();
+        const state = document.getElementById('billing-state').value.trim();
+        const pin = document.getElementById('zip-code').value.trim();
+
+        const addressError = document.getElementById('address-error');
+        const phoneError = document.getElementById('phone-error');
+        const countryError = document.getElementById('country-error');
+        const cityError = document.getElementById('city-error');
+        const stateError = document.getElementById('state-error');
+        const pinError = document.getElementById('pin-error');
+
+        addressError.textContent = '';
+        phoneError.textContent = '';
+        countryError.textContent = '';
+        cityError.textContent = '';
+        stateError.textContent = '';
+        pinError.textContent = '';
+
+        let isValid = true;
+
+        if (address === '') {
+            addressError.textContent = 'Address is required';
+            isValid = false;
+        }
+
+        if (phone === '') {
+            phoneError.textContent = 'Phone is required';
+            isValid = false;
+        } else if (!/^\d{10}$/.test(phone)) {
+            phoneError.textContent = 'Phone must be a 10-digit number';
+            isValid = false;
+        }
+
+        if (country === '0') {
+            countryError.textContent = 'Country is required';
+            isValid = false;
+        }
+
+        if (city === '') {
+            cityError.textContent = 'City is required';
+            isValid = false;
+        }
+
+        if (state === '') {
+            stateError.textContent = 'State is required';
+            isValid = false;
+        }
+
+        if (state === '') {
+            stateError.textContent = 'State is required';
+            isValid = false;
+        }
+
+        if (pin === '') {
+            pinError.textContent = 'Postal code is required';
+            isValid = false;
+        } else if (!/^\d{6}$/.test(pin)) {
+            pinError.textContent = 'Postal code must be a 6-digit number';
+            isValid = false;
+        }
+
+
+        if (!isValid) {
+            // Display an error message using SweetAlert
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please fill out all required fields!',
+                confirmButtonText: 'OK'
+            });
+            return false; // Prevent form submission
+        }
+
+        return true; // Allow form submission
+    }
+</script>
 
     {{!-- --------------------------------------- --}}
     <div class="container">

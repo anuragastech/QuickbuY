@@ -23,7 +23,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
-    <link rel="stylesheet" href="/user/cart.js">
+    {{!-- <link rel="stylesheet" href="/user/cart.js">? --}}
 
     {{!-- link google bootstrap --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -160,8 +160,7 @@
                             <th scope="col">Price</th>
                             <th scope="col">Quantity</th>
                             <th scope="col">Update</th>
-                                                        <th scope="col">Size</th>
-
+                            <th scope="col">Size</th>
                             <th scope="col">Remove</th>
                             <th scope="col">Total</th>
                         </tr>
@@ -175,61 +174,106 @@
                             <td>{{this.productData.productname}}</td>
                             <td>₹{{this.productData.price}}</td>
                             <td>
-                                <input type="number" class="form-control" id="quantity-{{this.cart_id}}" value="1" min="1">
+                                <input type="number" class="form-control quantity" id="quantity-{{this.cart_id}}" value="1" min="1" data-price="{{this.productData.price}}">
                             </td>
                             <td>
-                                <button class="btn btn-outline-primary btn-sm" onclick="updateQuantity('{{this.cart_id}}')">Update</button>
+                                <button class="btn btn-outline-primary btn-sm update-btn" data-cartid="{{this.cart_id}}">Update</button>
                             </td>
                             <td>
                                 <button class="btn btn-outline-primary btn-sm" >{{this._id.size}}</button>
                             </td>
                             <td>
-                                <button class="btn btn-outline-danger btn-sm" onclick="deleteCart('{{this.productData._id}}')">
+                                <button class="btn btn-outline-danger btn-sm delete-btn" data-productid="{{this.productData._id}}">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </td>
-                            <td>₹0</td>
+                            <td>₹<span class="item-total">0</span></td>
                         </tr>
                         {{/each}}
                     </tbody>
                 </table>
             </div>
-            <div class="row mt-4 justify-content-center">
-                <div class="col-lg-6 text-center">
-                    <button class="btn btn-dark checkout" style="border-radius:20px;height:38px;" onclick="checkout()">Proceed to Buy</button>
-                </div>
+        </div>
+
+        <div class="row mt-4 justify-content-center">
+            <div class="col-lg-6 text-center">
+                <button class="btn btn-dark checkout" style="border-radius:20px;height:38px;">Proceed to Buy</button>
             </div>
-            <div class="row mt-5">
-                <div class="col-lg-3">
-                    <label>Subtotal</label>
-                    <div id="cart-subtotal">₹0</div>
-                </div>
-                <div class="col-lg-3">
-                    <label>Tax (5%)</label>
-                    <div id="cart-tax">₹0.0</div>
-                </div>
-                <div class="col-lg-3">
-                    <label>Shipping</label>
-                    <div id="cart-shipping">₹0</div>
-                </div>
-                <div class="col-lg-3">
-                    <label>Grand Total</label>
-                    <div id="cart-total">₹0</div>
-                </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-lg-3">
+                <label>Subtotal</label>
+                <div id="cart-subtotal">₹0</div>
             </div>
-             <div class="row mt-4">
-                  <div class="col-lg-6 offset-lg-6 text-lg-end">
-                    <a href="/check-out">
-                        <button class="btn btn-dark proceed" style="border-radius:20px;height:38px;">Proceed to Checkout</button>
-                    </a>
-                </div>
+            <div class="col-lg-3">
+                <label>Tax (5%)</label>
+                <div id="cart-tax">₹0.0</div>
             </div>
+            <div class="col-lg-3">
+                <label>Shipping</label>
+                <div id="cart-shipping">₹0</div>
+            </div>
+            <div class="col-lg-3">
+                <label>Grand Total</label>
+                <div id="cart-total">₹0</div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-lg-6 offset-lg-6 text-lg-end">
+                <a href="/check-out">
+                    <button class="btn btn-dark proceed" style="border-radius:20px;height:38px;">Proceed to Checkout</button>
+                </a>
             </div>
         </div>
     </div>
 </div>
 
+<script>
+    // Call updateTotals() when the page loads
+    updateTotals();
 
+    $(document).ready(function() {
+        // Bind updateTotals() to update button click event
+        $('.update-btn').on('click', function() {
+            updateTotals();
+        });
+
+        // Bind updateTotals() to delete button click event
+        $('.delete-btn').on('click', function() {
+            updateTotals();
+        });
+
+        // Bind updateTotals() to quantity change event
+        $('.quantity').on('change', function() {
+            updateTotals();
+        });
+    });
+
+    function updateTotals() {
+        var subtotal = 0;
+
+        // Calculate subtotal
+        $('.quantity').each(function() {
+            var quantity = parseInt($(this).val());
+            var price = parseFloat($(this).data('price') || 0); // Default to 0 if data-price is missing
+            subtotal += quantity * price;
+
+            // Update item total
+            $(this).closest('tr').find('.item-total').text('₹' + (quantity * price).toFixed(2));
+        });
+
+        // Calculate tax (5%)
+        var tax = subtotal * 0.05;
+
+        // Calculate grand total
+        var grandTotal = subtotal + tax;
+
+        // Update subtotal, tax, and grand total display
+        $('#cart-subtotal').text('₹' + subtotal.toFixed(2));
+        $('#cart-tax').text('₹' + tax.toFixed(2));
+        $('#cart-total').text('₹' + grandTotal.toFixed(2));
+    }
+</script>
 
         <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script>

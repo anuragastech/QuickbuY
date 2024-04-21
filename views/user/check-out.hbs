@@ -396,7 +396,7 @@
 
 
 
-                
+{{!--                 
                 <script>
                    function initiateRazorpayPayment(orderDetails) {
     fetch('/order', {
@@ -566,22 +566,155 @@
                                 });
                         }
                     }
-                </script>
+                </script> --}}
 
 
-------------------------------  
+<script>
+    function initiateRazorpayPayment(orderDetails) {
+        fetch('/order', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(orderDetails),
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Failed to initiate payment');
+        })
+        .then(paymentResponse => {
+            if (paymentResponse.message === 'Order placed successfully with Razorpay') {
+                // Initiate Razorpay payment
+                var options = {
+                key: 'rzp_test_uF6rcT6FvcQis8',
+                amount: paymentResponse.razorpayOrder.amount,
+                    currency: 'INR',
+                    order_id: paymentResponse.order_id, // Adjust this according to your backend response
+                    name: 'H&d privet.lmtd',
+                    description: 'Order payment',
+                    image: 'https://example.com/your_logo.png',
+                    handler: function (response) {
+                        var paymentData = {
+                            payment_id: response.razorpay_payment_id,
+                            order_id: response.razorpay_order_id,
+                            signature: response.razorpay_signature
+                        };
+                        fetch('/verifyRazorpayPayment', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify(paymentData),
+                        })
+                        .then(response => response.json())
+                        .then(verifyResponse => {
+                            if (verifyResponse.message === 'Payment successful') {
+                                console.log("Payment successful!");
+                                window.location.href = '/'; // Redirect to the home page
+                            } else {
+                                console.log(verifyResponse.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error verifying payment:', error);
+                        });
+                    },
+                    prefill: {
+                        name: 'Anurag',
+                        email: 'anuragraveendreen98in@.com',
+                        contact: '+919539409743'
+                    },
+                    theme: {
+                        color: '#008000'
+                    }
+                };
+                
+                var rzp1 = new Razorpay(options);
+                rzp1.open();
+            } else {
+                console.log(paymentResponse.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error initiating payment:', error);
+        });
+    }
+
+    function sendDataToBackend() {
+        var paymentMethod = document.querySelector("input[name='paymentMethod']:checked").value;
+        var grandTotal = parseFloat(document.getElementById("grandTotalInput").value);
+
+        var selectedAddressElement = document.querySelector(".address-box.selected");
+        if (!selectedAddressElement) {
+            // If no address is selected, display an alert and return early
+            alert('Please select an address.');
+            return;
+        }
+
+        var addressData = {
+            id: selectedAddressElement.getAttribute("data-address-id"),
+            address: selectedAddressElement.querySelector(".address-details p:nth-child(1)").textContent.trim(),
+            phone: selectedAddressElement.querySelector(".address-details p:nth-child(2)").textContent.trim(),
+            country: selectedAddressElement.querySelector(".address-details p:nth-child(3)").textContent.trim(),
+            city: selectedAddressElement.querySelector(".address-details p:nth-child(4)").textContent.trim(),
+            state: selectedAddressElement.querySelector(".address-details p:nth-child(5)").textContent.trim(),
+            pincode: selectedAddressElement.querySelector(".address-details p:nth-child(6)").textContent.trim(),
+        };
+
+        var data = {
+            paymentMethod: paymentMethod,
+            address: addressData,
+            grandTotal: grandTotal
+        };
+
+        if (paymentMethod === 'online') {
+            initiateRazorpayPayment(data);
+        } else {
+            fetch('/order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to place order');
+                }
+            })
+            .then(paymentResponse => {
+                if (paymentResponse.message === 'Order placed successfully with Cash on Delivery') {
+                     // Display SweetAlert for cash payment success
+    Swal.fire({
+        title: 'Cash Payment Successful!',
+        text: 'Click OK to continue',
+        icon: 'success',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'OK'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            console.log("Before redirection");
+            window.location.href = '/'; // Redirect to the index page
+            console.log("After redirection");
+        }
+    });
+                } else {
+                    console.log(paymentResponse.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error placing order with Cash on Delivery:', error);
+            });
+        }
+    }
+</script>
 
 
-
-                {{!-- Toastify({
-                text: 'Order placed successfully with Cash on Delivery',
-                duration: 3000, // 3 seconds
-                close: true,
-                gravity: 'top',
-                position: 'center',
-                backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
-                }).showToast();
-                --}}
 
 
 
@@ -622,93 +755,162 @@
                 <!-- Page Add Section Begin -->
 
                 <!-- Page Add Section End -->
-
-                <form class="frml " action="/checkout" method="POST">
-
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content   shadow">
-                                <div class="modal-header bg-light  text-light">
-                                    <h5 class="modal-title" id="exampleModalLongTitle">Add
-                                        Category</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body bg-light text-light">
-                                    <div>
-                                        <div class="row">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="billing-address">Address</label>
-                                                <textarea class="form-control" name="address" id="billing-address"
-                                                    rows="3" placeholder="Enter full address"></textarea>
-                                            </div>
-
-                                            <div class="col-lg-4">
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="billing-phone">Phone</label>
-                                                    <input type="text" name="phone" class="form-control"
-                                                        id="billing-phone" placeholder="Enter Phone no.">
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                        <div class="row">
-                                            <div class="col-lg-4">
-                                                <div class="mb-4 mb-lg-0">
-                                                    <label class="form-label">Country</label>
-                                                    <select class="form-control form-select" name="country"
-                                                        title="Country">
-                                                        <option value="0">Select Country
-                                                        </option>
-                                                        <option value="AF">Afghanistan</option>
-                                                        <option value="AL">Albania</option>
-                                                        <option value="DZ">Algeria</option>
-                                                        <option value="AS">American Samoa
-                                                        </option>
-                                                        <option value="AD">Andorra</option>
-                                                        <option value="AO">Angola</option>
-                                                        <option value="AI">Anguilla</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-4">
-                                                <div class="mb-4 mb-lg-0">
-                                                    <label class="form-label" for="billing-city">City</label>
-                                                    <input type="text" name="city" class="form-control"
-                                                        id="billing-city" placeholder="Enter City">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <div class="mb-4 mb-lg-0">
-                                                    <label class="form-label" for="billing-city">State</label>
-                                                    <input type="text" name="state" class="form-control"
-                                                        id="billing-statee" placeholder="Enter state">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-4">
-                                                <div class="mb-0">
-                                                    <label class="form-label" for="zip-code">Zip
-                                                        / Postal code</label>
-                                                    <input type="text" name="pin" class="form-control" id="zip-code"
-                                                        placeholder="Enter Postal code">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <!-- Add Submit Button -->
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+<form class="frml" action="/checkout" method="POST" onsubmit="return validateForm()">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content shadow">
+                <div class="modal-header bg-light text-light">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Checkout Form</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body bg-light text-light">
+                    <div>
+                        <div class="row">
+                            <div class="mb-3">
+                                <label class="form-label" for="billing-address">Address</label>
+                                <textarea class="form-control" name="address" id="billing-address" rows="3" placeholder="Enter full address"></textarea>
+                                <span id="address-error" class="error-message"></span>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-3">
+                                    <label class="form-label" for="billing-phone">Phone</label>
+                                    <input type="text" name="phone" class="form-control" id="billing-phone" placeholder="Enter Phone no.">
+                                    <span id="phone-error" class="error-message"></span>
                                 </div>
                             </div>
                         </div>
-
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="mb-4 mb-lg-0">
+                                    <label class="form-label">Country</label>
+                                    <select class="form-control form-select" name="country" id="billing-country" title="Country">
+                                        <option value="0">Select Country</option>
+                                        <option value="AF">Afghanistan</option>
+                                        <option value="AL">Albania</option>
+                                        <option value="DZ">Algeria</option>
+                                        <option value="AS">American Samoa</option>
+                                        <option value="AD">Andorra</option>
+                                        <option value="AO">Angola</option>
+                                        <option value="AI">India</option>
+                                    </select>
+                                    <span id="country-error" class="error-message"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-4 mb-lg-0">
+                                    <label class="form-label" for="billing-city">City</label>
+                                    <input type="text" name="city" class="form-control" id="billing-city" placeholder="Enter City">
+                                    <span id="city-error" class="error-message"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-4 mb-lg-0">
+                                    <label class="form-label" for="billing-city">State</label>
+                                    <input type="text" name="state" class="form-control" id="billing-state" placeholder="Enter state">
+                                    <span id="state-error" class="error-message"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="mb-0">
+                                    <label class="form-label" for="zip-code">Zip / Postal code</label>
+                                    <input type="text" name="pin" class="form-control" id="zip-code" placeholder="Enter Postal code">
+                                    <span id="pin-error" class="error-message"></span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </form>
+                    <br>
+                    <!-- Add Submit Button -->
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<!-- Include Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Include SweetAlert JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.14.0/dist/sweetalert2.min.js"></script>
+
+<script>
+    function validateForm() {
+        const address = document.getElementById('billing-address').value.trim();
+        const phone = document.getElementById('billing-phone').value.trim();
+        const country = document.getElementById('billing-country').value;
+        const city = document.getElementById('billing-city').value.trim();
+        const state = document.getElementById('billing-state').value.trim();
+        const pin = document.getElementById('zip-code').value.trim();
+
+        const addressError = document.getElementById('address-error');
+        const phoneError = document.getElementById('phone-error');
+        const countryError = document.getElementById('country-error');
+        const cityError = document.getElementById('city-error');
+        const stateError = document.getElementById('state-error');
+        const pinError = document.getElementById('pin-error');
+
+        addressError.textContent = '';
+        phoneError.textContent = '';
+        countryError.textContent = '';
+        cityError.textContent = '';
+        stateError.textContent = '';
+        pinError.textContent = '';
+
+        let isValid = true;
+
+        if (address === '') {
+            addressError.textContent = 'Address is required';
+            isValid = false;
+        }
+
+        if (phone === '') {
+            phoneError.textContent = 'Phone is required';
+            isValid = false;
+        } else if (!/^\d{10}$/.test(phone)) {
+            phoneError.textContent = 'Phone must be a 10-digit number';
+            isValid = false;
+        }
+
+        if (country === '0') {
+            countryError.textContent = 'Country is required';
+            isValid = false;
+        }
+
+        if (city === '') {
+            cityError.textContent = 'City is required';
+            isValid = false;
+        }
+
+        if (state === '') {
+            stateError.textContent = 'State is required';
+            isValid = false;
+        }
+
+        if (pin === '') {
+            pinError.textContent = 'Postal code is required';
+            isValid = false;
+        } else if (!/^\d{6}$/.test(pin)) {
+            pinError.textContent = 'Postal code must be a 6-digit number';
+            isValid = false;
+        }
+
+        if (!isValid) {
+            // Display an error message using SweetAlert
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please fill out all required fields correctly!',
+                confirmButtonText: 'OK'
+            });
+            return false; // Prevent form submission
+        }
+
+        return true; // Allow form submission
+    }
+</script>
 
                 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 

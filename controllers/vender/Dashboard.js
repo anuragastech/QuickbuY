@@ -3,13 +3,13 @@ const chart = async (req, res) => {
 
     try {
       const userId = req.vender.id
-    //    console.log(userId);
+       console.log(userId);
   
       const chartData = await Order.aggregate([
         {
           $match: {
-            userid: userId 
-          }
+            venderId: userId
+                    }
         },
         {
           $group: {
@@ -66,7 +66,7 @@ const index= async (req, res) => {
 const chartData = await Order.aggregate([
     {
       $match: {
-        userid: userId 
+        venderId: userId 
       }
     },
     {
@@ -88,7 +88,7 @@ const chartData = await Order.aggregate([
   const totalPriceResult = await Order.aggregate([
     {
       $match: {
-        userid: userId // Filter orders by userid
+        venderId: userId // Filter orders by userid
       }
     },
     {
@@ -103,7 +103,7 @@ const chartData = await Order.aggregate([
   const canceledOrdersResult = await Order.aggregate([
     {
       $match: {
-        userid: userId, 
+        venderId: userId, 
         status: "canceled" 
       }
     },

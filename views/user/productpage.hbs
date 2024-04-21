@@ -408,12 +408,17 @@
                             <h1>{{data.Quantity}}</h1>
                             <h1 id="productId" style="display: none;">{{data._id}}</h1>
                             {{!-- <a href="#" class="primary-btn pc-btn">Add to cart</a> --}}
-                            <button class="btn txt-light w-50 mb-3 mb-md-0"
-                                style="height:42px;background-color: rgb(95, 92, 92);color: white;font-size:18px;"
-                                onclick="handleAddToCart('{{data._id}}', '{{token}}')">
-                                <i class="material-icons" style="color: #ffffff;font-size:19px;">shopping_cart</i> Add
-                                to Cart
-                            </button>
+                        <div class="d-flex justify-content-between">
+    <button class="btn txt-light mb-3 mb-md-0" style="height:42px;background-color: rgb(95, 92, 92);color: white;font-size:18px;" onclick="handleAddToCart('{{data._id}}', '{{token}}')">
+        <i class="material-icons" style="color: #ffffff;font-size:19px;">shopping_cart</i> Add to Cart
+    </button>
+    <button class="btn txt-light mb-3 mb-md-0" style="height:42px;background-color: rgb(95, 92, 92);color: white;font-size:18px;" onclick="handleAddToCartto('{{data._id}}', '{{token}}')">
+        <i class="material-icons" style="color: #ffffff;font-size:19px;">shopping_cart</i> Buy Now 
+    </button>
+</div>
+
+
+
                             <br>
 
 
@@ -447,6 +452,12 @@
     </script>
 
 
+
+
+
+
+
+
     <!-- Product Page Section End -->
     <div class="user-not">
         <!-- Conditional rendering based on user authentication -->
@@ -468,7 +479,9 @@
     <!-- Related Product Section End -->
 
 
+
     <script>
+
         function cartProduct(productId) {
             axios.post(`/cart/product/${productId}`)
                 .then((response) => {
@@ -482,7 +495,9 @@
                     console.error(error);
                 });
         }
+        
     </script>
+
 
     <style>
         /* Custom styles for Toastify notification */
