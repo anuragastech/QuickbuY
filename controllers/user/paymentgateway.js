@@ -543,8 +543,8 @@ console.log(paymentMethod,"hh");
                 brand,
                 category,
                 subcategory,
-                venderId: venderId,
-                paymentMethod: paymentMethod,
+                venderId, // Ensure venderId is included here
+                                paymentMethod: paymentMethod,
                 paymentStatus: 'success',
                 shippingStatus: 'processing',
                 orderAccepted: 'pending',

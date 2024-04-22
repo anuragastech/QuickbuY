@@ -9,6 +9,8 @@ const orderData = await orders.find()
 
 }
 
+
+
 const shippingStatus = async (req, res) => {
     const { id, status } = req.body;
 
@@ -29,6 +31,8 @@ const shippingStatus = async (req, res) => {
         res.status(500).json({ error: 'An error occurred while updating shipping status' });
     }
 }
+
+
 
 const orderStatus= async (req, res) => {
     const { id, status } = req.body;
