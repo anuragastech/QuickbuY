@@ -62,6 +62,7 @@ let  getcartpage=async (req, res) => {
     }
 };
 
+// const Cart = require('./path/to/cartModel'); // Import the Cart model
 
 let postcart = async (req, res) => {
     try {
