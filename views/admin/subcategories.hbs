@@ -2,604 +2,645 @@
 <html lang="en">
 
 <!-- Head -->
+
 <head>
-    <!-- Page Meta Tags-->
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keywords" content="">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- Page Meta Tags-->
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="keywords" content="">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 
 
-{{!-- modal CDN   --}}
- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png">
-    <link rel="mask-icon" href="./assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-{{!-- modal  --}}
+  {{!-- modal CDN --}}
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="./assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  {{!-- modal --}}
 
-{{!--  --}}
-    <!-- Google Font-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600&display=swap" rel="stylesheet">
+  {{!-- --}}
+  <!-- Google Font-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600&display=swap" rel="stylesheet">
 
 
-<!-- table cdn  -->
-<link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
-<script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>  </head>
-    <!-- Vendor CSS -->
-    <link rel="stylesheet" href="/admin/libs.bundle.css" />
+  <!-- table cdn  -->
+  <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+  <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+</head>
+<!-- Vendor CSS -->
+<link rel="stylesheet" href="/admin/libs.bundle.css" />
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="/admin/theme.bundle.css" />
+<!-- Main CSS -->
+<link rel="stylesheet" href="/admin/theme.bundle.css" />
 
-    <!-- Fix for custom scrollbar if JS is disabled-->
-    <noscript>
-        <style>
-          /**
+<!-- Fix for custom scrollbar if JS is disabled-->
+<noscript>
+  <style>
+    /**
           * Reinstate scrolling for non-JS clients
           */
-          .simplebar-content-wrapper {
-            overflow: auto;
-          }
-        </style>
-    </noscript>
+    .simplebar-content-wrapper {
+      overflow: auto;
+    }
+  </style>
+</noscript>
 
-    <!-- Page Title -->
-    <title> </title>
-    
+<!-- Page Title -->
+<title> </title>
+
 </head>
+
 <body class="">
 
-    <!-- Navbar-->
-     <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top "  style="    background-color: rgba(0, 0, 0, 0.98)";>
-      <div class="container-fluid">
-        <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
-    
-          <!-- Menu Toggle-->
-          <div class="menu-toggle cursor-pointer me-4 text-primary-hover transition-color disable-child-pointer">
-            <i class="ri-menu-fold-line ri-lg fold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
-              title="Close menu"></i>
-            <i class="ri-menu-unfold-line ri-lg unfold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
-              title="Open Menu"></i>
+  <!-- Navbar-->
+  <nav class="navbar navbar-expand-lg navbar-light border-0 py-0 fixed-top "
+    style="    background-color: rgba(0, 0, 0, 0.98)" ;>
+    <div class="container-fluid">
+      <div class="d-flex justify-content-between align-items-center flex-grow-1 navbar-actions">
+
+        <!-- Menu Toggle-->
+        <div class="menu-toggle cursor-pointer me-4 text-primary-hover transition-color disable-child-pointer">
+          <i class="ri-menu-fold-line ri-lg fold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
+            title="Close menu"></i>
+          <i class="ri-menu-unfold-line ri-lg unfold align-middle" data-bs-toggle="tooltip" data-bs-placement="right"
+            title="Open Menu"></i>
+        </div>
+        <!-- / Menu Toggle-->
+
+        <!-- Navbar Actions-->
+        {{!-- <div class="d-flex align-items-center">
+
+          <!-- Search-->
+          <button class="btn-icon btn-hover-dark btn-search me-2">
+            <i class="ri-search-2-line align-bottom lh-1 text-body"></i>
+          </button>
+
+          <!-- Search navbar overlay-->
+          <div class="navbar-search d-none">
+            <div class="input-group mb-3 h-100">
+              <span class="input-group-text px-4 bg-transparent"><i class="ri-search-line ri-lg"></i></span>
+              <input type="text" class="form-control text-body bg-transparent border-0"
+                placeholder="Enter your search terms...">
+              <span class="input-group-text px-4 cursor-pointer disable-child-pointer close-search bg-transparent"><i
+                  class="ri-close-circle-line ri-lg text-primary"></i></span>
+            </div>
           </div>
-          <!-- / Menu Toggle-->
-    
-          <!-- Navbar Actions-->
-          <div class="d-flex align-items-center">
-    
-            <!-- Search-->
-            <button class="btn-icon btn-hover-dark btn-search me-2">
-              <i class="ri-search-2-line align-bottom lh-1 text-body"></i>
+          <!-- / Search navbar overlay-->
+
+          <!-- / Search-->
+
+          <!-- Region -->
+          <div class="dropdown me-2">
+            <button class="btn-icon btn-hover-dark" type="button" id="regionDropdown" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <span class="flag-icon flag-icon-gb"></span>
             </button>
-    
-            <!-- Search navbar overlay-->
-            <div class="navbar-search d-none">
-              <div class="input-group mb-3 h-100">
-                <span class="input-group-text px-4 bg-transparent"><i class="ri-search-line ri-lg"></i></span>
-                <input type="text" class="form-control text-body bg-transparent border-0" placeholder="Enter your search terms...">
-                <span class="input-group-text px-4 cursor-pointer disable-child-pointer close-search bg-transparent"><i class="ri-close-circle-line ri-lg text-primary"></i></span>
-              </div>
-            </div>
-            <!-- / Search navbar overlay-->
-    
-            <!-- / Search-->
-    
-            <!-- Region -->
-            <div class="dropdown me-2">
-              <button class="btn-icon btn-hover-dark" type="button" id="regionDropdown"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="flag-icon flag-icon-gb"></span>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="regionDropdown">
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United Kingdom <span class="text-muted ms-5"><span class="flag-icon flag-icon-gb"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United States<span class="text-muted ms-5"><span class="flag-icon flag-icon-us"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Australia<span class="text-muted ms-5"><span class="flag-icon flag-icon-au"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Belgium<span class="text-muted ms-5"><span class="flag-icon flag-icon-be"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Canada<span class="text-muted ms-5"><span class="flag-icon flag-icon-ca"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">China <span class="text-muted ms-5"><span class="flag-icon flag-icon-cn"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Denmark <span class="text-muted ms-5"><span class="flag-icon flag-icon-dk"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">France<span class="text-muted ms-5"><span class="flag-icon flag-icon-fr"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Netherlands<span class="text-muted ms-5"><span class="flag-icon flag-icon-nl"></span></span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russia<span class="text-muted ms-5"><span class="flag-icon flag-icon-ru"></span></span></a></li>
-              </ul>
-            </div>
-            <!-- /Region -->
-    
-            <!-- Language-->
-            <div class="dropdown me-2">
-              <button class="btn-icon btn-hover-dark" type="button" id="language"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="ri-global-line align-bottom text-body lh-1"></i>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language">
-                <li>
-                  <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">English 
-                    <span class="text-muted ms-5">EN</span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">French<span class="text-muted ms-5">FR</span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Espanol<span class="text-muted ms-5">ES</span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Turkish<span class="text-muted ms-5">TR</span></a></li>
-                <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russian<span class="text-muted ms-5">RU</span></a></li>
-              </ul>
-            </div>
-            <!-- / Language-->
-    
-            <!-- Notifications-->
-            <a class="btn-icon btn-hover-dark position-relative p-2 disable-child-pointer" data-bs-toggle="offcanvas" href="#offcanvasNotifications" role="button"
-            aria-controls="offcanvasNotifications">
-              <i class="ri-notification-fill align-bottom text-body lh-1"></i>
-              <span class="badge bg-primary text-white position-absolute top-0 end-0">3</span>
-            </a>
-            <!-- / Notifications-->
-    
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="regionDropdown">
+              <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United Kingdom
+                  <span class="text-muted ms-5"><span class="flag-icon flag-icon-gb"></span></span></a></li>
+              <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">United States<span
+                    class="text-muted ms-5"><span class="flag-icon flag-icon-us"></span></span></a></li>
+              <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Australia<span
+                    class="text-muted ms-5"><span class="flag-icon flag-icon-au"></span></span></a></li>
+              <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Belgium<span
+                    class="text-muted ms-5"><span class="flag-icon flag-icon-be"></span></span></a></li>
+              <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Canada<span
+                    class="text-muted ms-5"><span class="flag-icon flag-icon-ca"></span></span></a></li>
+              <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">China <span
+                    class="text-muted ms-5"><span class="flag-icon flag-icon-cn"></span></span></a></li>
+              <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Denmark <span
+                    class="text-muted ms-5"><span class="flag-icon flag-icon-dk"></span></span></a></li>
+              <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">France<span
+                    class="text-muted ms-5"><span class="flag-icon flag-icon-fr"></span></span></a></li>
+              <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Netherlands<span
+                    class="text-muted ms-5"><span class="flag-icon flag-icon-nl"></span></span></a></li>
+              <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russia<span
+                    class="text-muted ms-5"><span class="flag-icon flag-icon-ru"></span></span></a></li>
+            </ul>
           </div>
-          <!-- / Navbar Actions-->
-        
+          <!-- /Region -->
+
+          <!-- Language-->
+          <div class="dropdown me-2">
+            <button class="btn-icon btn-hover-dark" type="button" id="language" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="ri-global-line align-bottom text-body lh-1"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="language">
+              <li>
+                <a class="dropdown-item d-flex justify-content-between align-items-center" href="#">English
+                  <span class="text-muted ms-5">EN</span></a>
+              </li>
+              <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">French<span
+                    class="text-muted ms-5">FR</span></a></li>
+              <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Espanol<span
+                    class="text-muted ms-5">ES</span></a></li>
+              <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Turkish<span
+                    class="text-muted ms-5">TR</span></a></li>
+              <li><a class="dropdown-item d-flex justify-content-between align-items-center" href="#">Russian<span
+                    class="text-muted ms-5">RU</span></a></li>
+            </ul>
+          </div>
+          <!-- / Language-->
+
+          <!-- Notifications-->
+          <a class="btn-icon btn-hover-dark position-relative p-2 disable-child-pointer" data-bs-toggle="offcanvas"
+            href="#offcanvasNotifications" role="button" aria-controls="offcanvasNotifications">
+            <i class="ri-notification-fill align-bottom text-body lh-1"></i>
+            <span class="badge bg-primary text-white position-absolute top-0 end-0">3</span>
+          </a>
+          <!-- / Notifications-->
+
+        </div> --}}
+        <!-- / Navbar Actions-->
+
+      </div>
+    </div>
+  </nav> <!-- / Navbar-->
+
+  <!-- Page Content -->
+  <main id="main">
+
+    <!-- Content-->
+    <section class="container-fluid">
+
+      <!-- Breadcrumbs-->
+      {{!-- <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Subcategory
+              List</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Subcategory</li>
+        </ol>
+      </nav> <!-- / Breadcrumbs--> --}}
+
+      <!-- Page Title-->
+
+      <!-- / Page Title-->
+      <div class="container">
+        <div class="row">
+          <div class="col-10">
+            <h1 class="h4 mt-3">Category List</h1>
+          </div>
+          <div class="col-2 text-right">
+            <button type="button" class="btn btn-light mb-3" data-toggle="modal" data-target="#exampleModalCenter"
+              style="border: 2px solid rgb(129, 122, 122);height: 8px;">
+              Add Sub-Category
+            </button>
+          </div>
         </div>
       </div>
-    </nav>    <!-- / Navbar-->
 
-    <!-- Page Content -->
-    <main id="main">
-
-        <!-- Content-->
-        <section class="container-fluid">
-
-            <!-- Breadcrumbs-->
-            {{!-- <nav class="mb-4 pb-2 border-bottom" aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="./index.html"><i class="ri-home-line align-bottom me-1"></i> Subcategory List</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Subcategory</li>
-                </ol>
-            </nav>            <!-- / Breadcrumbs--> --}}
-
-            <!-- Page Title-->
-           
-            <!-- / Page Title-->
-<div class="container">
-    <div class="row">
-        <div class="col-10">
-            <h1 class="h4 mt-3">Category List</h1>
-        </div>
-        <div class="col-2 text-right">
-            <button type="button" class="btn btn-light mb-3" data-toggle="modal" data-target="#exampleModalCenter" style="border: 2px solid rgb(129, 122, 122);height: 8px;">
-                Add Sub-Category
-            </button>
-        </div>
-    </div>
-</div>
-
-<!-- Modal -->
-<form action="/admin/subcategories" class="frml" method="POST" enctype="multipart/form-data">
-    <div class="modal fade" style="background-color: rgba(0, 0, 0, 0.761);" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+      <!-- Modal -->
+      <form action="/admin/subcategories" class="frml" method="POST" enctype="multipart/form-data">
+        <div class="modal fade" style="background-color: rgba(0, 0, 0, 0.761);" id="exampleModalCenter" tabindex="-1"
+          role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-dark text-light">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Add Sub-Category</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body bg-dark text-light">
-                    <label for="title">Title:</label>
-                    <input type="text" id="title" name="title" class="form-control" required>
-                    <br>
+              <div class="modal-header bg-dark text-light">
+                <h5 class="modal-title" id="exampleModalLongTitle">Add Sub-Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body bg-dark text-light">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" class="form-control" required>
+                <br>
 
-                    <label for="description">Description:</label>
-                    <textarea id="description" name="description" class="form-control" style="height: 30px;" required></textarea>
-                    <br>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" class="form-control" style="height: 30px;"
+                  required></textarea>
+                <br>
 
-                    <label for="image">Image:</label>
-                    <input type="file" id="image" name="image" class="form-control-file" accept="image/*" required>
-                </div>
-                <div class="modal-footer bg-dark text-light">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
+                <label for="image">Image:</label>
+                <input type="file" id="image" name="image" class="form-control-file" accept="image/*" required>
+              </div>
+              <div class="modal-footer bg-dark text-light">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</form>
+      </form>
 
-      {{!-- -------------------------------------------------------                 --}}
+      {{!-- ------------------------------------------------------- --}}
 
-<style>
-  table{
-    background-color: rgb(255, 255, 255);
-  }
-  td{
-    background-color: rgb(0, 0, 0);
-    border: 1px solid rgb(0, 0, 0);
-    
-  }
-  th{
-    background-color: rgb(0, 0, 0);
-    color: white;
-    text-align: center;
-
-  }
-</style>
-
-
-
-            <div class="row g-4" style="background-color: rgb(0, 0, 0);height: 80px;margin-top: 5px;">
-                <div class=" col-sm-12  col-lg-12  bg-white" >
-   
-<div class="showsubcategory "  style="border: 1px solid rgb(7, 7, 7);background-color: rgb(0, 0, 0);">
-
-    <table id="subcategoryTable" style="background-color: rgb(1, 1, 1); border: 1px solid rgb(49, 48, 48);text-align: center;" class="table">
-        <thead>
-            <tr>
-        <th style="text-align: center;">Image</th>
-        <th style="text-align: center;">Title</th>
-        <th style="text-align: center;">Description</th>
-        <th style="text-align: center;">Delete</th>
-        <th style="text-align: center;">Edit</th>
-    </tr>
-        </thead>
-        <tbody >
-            {{#each subcategories}}
-            <tr>
-                <td><img class="pic" src="{{image.url}}" alt="{{title}} Image" style="max-width: 140px; height: auto;height: 60px;width: 80px;"></td>
-                <td>{{title}}</td>
-                <td>{{description}}</td>
-                <td>
-                    <button style="background-color: transparent;" class="btn5" onclick="deleteSubCategory('{{this._id}}')">
-                        <i class="bi bi-trash-fill" style="font-size: 24px; color: rgb(56, 55, 55);list-style: none;;"></i>
-                    </button>
-                </td>
-                <td>
-                    {{!-- <button style="background-color: transparent;" class="btn5">
-                        <a href="/admin/edit-subcategory?name={{this._id}}">
-                            <i class="bi bi-pencil-square text-success bg-transparent" style="font-size: 24px;"></i>
-                        </a>
-                    </button> --}}
-  <button class="btn btn-primary editBtn" data-toggle="modal"  value="{{this._id}}"
-                          data-target="#editCategoryModal">Edit</button>
-                      {{!-- <td>
-      
-  </td> --}}
-
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
-</div>
-</div>
-<!-- DataTables CSS -->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-
-<!-- DataTables JS -->
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-
-<script>
-    $(document).ready(function () {
-        $('#subcategoryTable').DataTable();
-    });
-</script>
-{{!-- --------------------------------------------------      --}}
-
-
-<form id="offer-form" role="form" enctype="multipart/form-data" action="/admin/editSubcategorylist" method="POST">
-    <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <input id="editCategoryId" name="subcategoryId" type="hidden">
-                    <!-- Form fields for editing category data -->
-                    <div class="form-group">
-                        <label for="editTitle">Title</label>
-                        <input type="text" class="form-control" id="editTitle" name="title">
-                    </div>
-                    <div class="form-group">
-                        <label for="editDescription">Description</label>
-                        <textarea class="form-control" id="editDescription" name="description"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="editImage">Image</label>
-                        <button type="button" onclick="handleImagePreviewClick()"> 
-                            <img id="editImagePreview" class="img-fluid" src="imageUrl" alt="imagePublicId"> 
-                        </button>
-                    </div>
-                    <div class="form-group">
-                        <label for="image"></label>
-                        <input type="file" id="image" name="image" class="form-control-file" accept="image/*" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="saveChangesBtn">Save Changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
-
-      <script>
-    $(document).ready(function () {
-      // Event listener for edit buttons
-      $('.editBtn').click(function () {
-        // Get the closest table row to the clicked button
-        var row = $(this).closest('tr');
-
-        // Extract category data from the table row
-        var categoryId = $(this).val(); // Get the category ID from the button's value attribute
-        var title = row.find('td:eq(1)').text(); // Assuming title is in the first column
-        var description = row.find('td:eq(2)').text(); // Assuming description is in the second column
-        var imageUrl = row.find('td:eq(0) img').attr('src'); // Assuming image URL is in the third column
-         var imagePublicId = row.find('img').attr('alt'); // Assuming image public ID is in the alt attribute
-
-        // Populate form fields with extracted category data
-        $('#editCategoryId').val(categoryId); // Set the category ID in a hidden input field
-        $('#editTitle').val(title);
-        $('#editDescription').val(description);
-        $('#editImagePreview').attr('src', imageUrl);
-        $('#editImagePreview').attr('alt', imagePublicId);
-console.log(categoryId)
-        // Open the edit modal
-        $('#editCategoryModal').modal('show');
-      });
-
-      // Event listener for save changes button
-      $('#saveChangesBtn').click(function () {
-        // Get the category ID from the hidden input field
-        var categoryId = $('#editCategoryId').val();
-
-        // Logic to save changes to the server
-        // You can use AJAX to send the form data to the backend, or submit the form directly
-        // Example using AJAX:
-        $.ajax({
-          type: 'POST',
-          url: '/admin/edit-categorylist/' + categoryId, // Include the category ID in the URL
-          data: $('#editCategoryForm').serialize(), // Serialize the form data
-          success: function (response) {
-            // Handle the response from the server
-            console.log(response);
-          },
-          error: function (error) {
-            // Handle any errors
-            console.error(error);
-          }
-        });
-
-        // Close the modal after saving changes
-        $('#editCategoryModal').modal('hide');
-      });
-    });
-</script>
-
-
-
-{{!-- -------------------------------------------------------------- --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script>
-        function getCookie(name) {
-            const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-            if (match) return match[2];
+      <style>
+        table {
+          background-color: rgb(255, 255, 255);
         }
 
-        const alertMessage = getCookie('alert');
+        td {
+          background-color: rgb(0, 0, 0);
+          border: 1px solid rgb(0, 0, 0);
 
-        if (alertMessage) {
+        }
+
+        th {
+          background-color: rgb(0, 0, 0);
+          color: white;
+          text-align: center;
+
+        }
+      </style>
+
+
+
+      <div class="row g-4" style="background-color: rgb(0, 0, 0);height: 80px;margin-top: 5px;">
+        <div class=" col-sm-12  col-lg-12  bg-white">
+
+          <div class="showsubcategory " style="border: 1px solid rgb(7, 7, 7);background-color: rgb(0, 0, 0);">
+
+            <table id="subcategoryTable"
+              style="background-color: rgb(1, 1, 1); border: 1px solid rgb(49, 48, 48);text-align: center;"
+              class="table">
+              <thead>
+                <tr>
+                  <th style="text-align: center;">Image</th>
+                  <th style="text-align: center;">Title</th>
+                  <th style="text-align: center;">Description</th>
+                  <th style="text-align: center;">Delete</th>
+                  <th style="text-align: center;">Edit</th>
+                </tr>
+              </thead>
+              <tbody>
+                {{#each subcategories}}
+                <tr>
+                  <td><img class="pic" src="{{image.url}}" alt="{{title}} Image"
+                      style="max-width: 140px; height: auto;height: 60px;width: 80px;"></td>
+                  <td>{{title}}</td>
+                  <td>{{description}}</td>
+                  <td>
+                    <button style="background-color: transparent;" class="btn5"
+                      onclick="deleteSubCategory('{{this._id}}')">
+                      <i class="bi bi-trash-fill"
+                        style="font-size: 24px; color: rgb(56, 55, 55);list-style: none;;"></i>
+                    </button>
+                  </td>
+                  <td>
+                    {{!-- <button style="background-color: transparent;" class="btn5">
+                      <a href="/admin/edit-subcategory?name={{this._id}}">
+                        <i class="bi bi-pencil-square text-success bg-transparent" style="font-size: 24px;"></i>
+                      </a>
+                    </button> --}}
+                    <button class="btn btn-primary editBtn" data-toggle="modal" value="{{this._id}}"
+                      data-target="#editCategoryModal">Edit</button>
+                    {{!--
+                  <td>
+
+                  </td> --}}
+
+                  </td>
+                </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+
+        <!-- DataTables JS -->
+        <script type="text/javascript" charset="utf8"
+          src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+        <script>
+          $(document).ready(function () {
+            $('#subcategoryTable').DataTable();
+          });
+        </script>
+        {{!-- -------------------------------------------------- --}}
+
+
+        <form id="offer-form" role="form" enctype="multipart/form-data" action="/admin/editSubcategorylist"
+          method="POST">
+          <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog"
+            aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <input id="editCategoryId" name="subcategoryId" type="hidden">
+                  <!-- Form fields for editing category data -->
+                  <div class="form-group">
+                    <label for="editTitle">Title</label>
+                    <input type="text" class="form-control" id="editTitle" name="title">
+                  </div>
+                  <div class="form-group">
+                    <label for="editDescription">Description</label>
+                    <textarea class="form-control" id="editDescription" name="description"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="editImage">Image</label>
+                    <button type="button" onclick="handleImagePreviewClick()">
+                      <img id="editImagePreview" class="img-fluid" src="imageUrl" alt="imagePublicId">
+                    </button>
+                  </div>
+                  <div class="form-group">
+                    <label for="image"></label>
+                    <input type="file" id="image" name="image" class="form-control-file" accept="image/*" required>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary" id="saveChangesBtn">Save Changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <script>
+          $(document).ready(function () {
+            // Event listener for edit buttons
+            $('.editBtn').click(function () {
+              // Get the closest table row to the clicked button
+              var row = $(this).closest('tr');
+
+              // Extract category data from the table row
+              var categoryId = $(this).val(); // Get the category ID from the button's value attribute
+              var title = row.find('td:eq(1)').text(); // Assuming title is in the first column
+              var description = row.find('td:eq(2)').text(); // Assuming description is in the second column
+              var imageUrl = row.find('td:eq(0) img').attr('src'); // Assuming image URL is in the third column
+              var imagePublicId = row.find('img').attr('alt'); // Assuming image public ID is in the alt attribute
+
+              // Populate form fields with extracted category data
+              $('#editCategoryId').val(categoryId); // Set the category ID in a hidden input field
+              $('#editTitle').val(title);
+              $('#editDescription').val(description);
+              $('#editImagePreview').attr('src', imageUrl);
+              $('#editImagePreview').attr('alt', imagePublicId);
+              console.log(categoryId)
+              // Open the edit modal
+              $('#editCategoryModal').modal('show');
+            });
+
+            // Event listener for save changes button
+            $('#saveChangesBtn').click(function () {
+              // Get the category ID from the hidden input field
+              var categoryId = $('#editCategoryId').val();
+
+              // Logic to save changes to the server
+              // You can use AJAX to send the form data to the backend, or submit the form directly
+              // Example using AJAX:
+              $.ajax({
+                type: 'POST',
+                url: '/admin/edit-categorylist/' + categoryId, // Include the category ID in the URL
+                data: $('#editCategoryForm').serialize(), // Serialize the form data
+                success: function (response) {
+                  // Handle the response from the server
+                  console.log(response);
+                },
+                error: function (error) {
+                  // Handle any errors
+                  console.error(error);
+                }
+              });
+
+              // Close the modal after saving changes
+              $('#editCategoryModal').modal('hide');
+            });
+          });
+        </script>
+
+
+
+        {{!-- -------------------------------------------------------------- --}}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+        <script>
+          function getCookie(name) {
+            const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            if (match) return match[2];
+          }
+
+          const alertMessage = getCookie('alert');
+
+          if (alertMessage) {
             Toastify({
-                text: alertMessage,
-                duration: 3000, // 3 seconds
-                close: true,
-                gravity: 'top',
-                position: 'center',
-                backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
+              text: alertMessage,
+              duration: 3000, // 3 seconds
+              close: true,
+              gravity: 'top',
+              position: 'center',
+              backgroundColor: 'linear-gradient(to right, #00b09b, #96c93d)',
             }).showToast();
             // Remove the alert cookie
             document.cookie = 'alert=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
-        }
-    </script>
-{{!-- delete--}}
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-<script>
-  function deleteSubCategory(subcategoryId) {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'You are about to delete this subcategory. This action cannot be undone.',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
+          }
+        </script>
+        {{!-- delete--}}
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script>
+          function deleteSubCategory(subcategoryId) {
+            Swal.fire({
+              title: 'Are you sure?',
+              text: 'You are about to delete this subcategory. This action cannot be undone.',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
 
-      if (result.isConfirmed) {
-        axios.delete(`/admin/delete-subcategory/${subcategoryId}`)
-          .then((response) => {
-            if (response.status !== 200) {
-              throw new Error('Delete request failed');
-            } else {
-              window.location.href = "/admin/subcategories";
-            }
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      }
-    });
-  }
-</script>
+              if (result.isConfirmed) {
+                axios.delete(`/admin/delete-subcategory/${subcategoryId}`)
+                  .then((response) => {
+                    if (response.status !== 200) {
+                      throw new Error('Delete request failed');
+                    } else {
+                      window.location.href = "/admin/subcategories";
+                    }
+                  })
+                  .catch((error) => {
+                    console.error(error);
+                  });
+              }
+            });
+          }
+        </script>
 
 
 
-              
+
+      </div>
+
+      <!-- Footer -->
+      <footer class="  footer">
+        <p class="small text-muted m-0"> </p>
+        <p class="small text-muted m-0"> <a href="https://www.pixelrocket.store/"></a></p>
+      </footer>
+
+
+      <!-- Sidebar Menu Overlay-->
+      <div class="menu-overlay-bg"></div>
+      <!-- / Sidebar Menu Overlay-->
+
+      <!-- Modal Imports-->
+      <!-- Place your modal imports here-->
+
+      <!-- Default Example Modal Import-->
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
+            <div class="modal-body">
+              Here goes modal body content
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Offcanvas Imports-->
+      <!-- Place your offcanvas imports here-->
 
-            <!-- Footer -->
-            <footer class="  footer">
-                <p class="small text-muted m-0">  </p>
-                <p class="small text-muted m-0"> <a href="https://www.pixelrocket.store/"></a></p>
-            </footer>
-            
-            
-            <!-- Sidebar Menu Overlay-->
-            <div class="menu-overlay-bg"></div>
-            <!-- / Sidebar Menu Overlay-->
-            
-            <!-- Modal Imports-->
-            <!-- Place your modal imports here-->
-            
-            <!-- Default Example Modal Import-->
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      Here goes modal body content
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <!-- Offcanvas Imports-->
-            <!-- Place your offcanvas imports here-->
-            
-            <!-- Default Example Offcanvas Import-->
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-                <div class="offcanvas-header">
-                  <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-                  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                  <div>
-                    Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-                  </div>
-                  <div class="dropdown mt-3">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
-                      Dropdown button
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <li><a class="dropdown-item" href="#">Action</a></li>
-                      <li><a class="dropdown-item" href="#">Another action</a></li>
-                      <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            <!-- Navbar Notifications offcanvas-->
-            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNotifications"
-              aria-labelledby="offcanvasNotificationsLabel">
-              <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasNotificationsLabel">Notifications</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-              </div>
-              <div class="offcanvas-body">
-            
-                <!-- Notification-->
-                <div class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3">
-                  <div class="position-relative mt-1 ">
-                    <picture class="avatar avatar-sm">
-                      <img src="./assets/images/profile-small-2.jpeg"
-                        alt="">
-                    </picture>
-                    <span
-                    class="dot bg-success avatar-dot border-light dot-sm"></span>
-                  </div>
-                  <div class="ms-4">
-                    <p class="fw-bolder mb-1">John Jackson</p>
-                    <p class="text-muted small mb-0">Just sent over regional sales. If you can let me know by the end...</p>
-                    <span class="fs-xs fw-bolder text-muted text-uppercase">5 mins ago</span>
-                  </div>
-                </div>
-                <!-- / Notification-->
-            
-                <!-- Notification-->
-                <div class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3">
-                  <div class="position-relative mt-1 ">
-                    <picture class="avatar avatar-sm">
-                      <img src="./assets/images/profile-small-3.jpeg"
-                        alt="HTML Bootstrap Admin Template by Pixel Rocket">
-                    </picture>
-                    <span
-                    class="dot bg-success avatar-dot border-light dot-sm"></span>
-                  </div>
-                  <div class="ms-4">
-                    <p class="fw-bolder mb-1">Peter Smith</p>
-                    <p class="text-muted small mb-0">Hi Rob, can we setup a meeting for tomorrow around 2pm...</p>
-                    <span class="fs-xs fw-bolder text-muted text-uppercase">30 mins ago</span>
-                  </div>
-                </div>
-                <!-- / Notification-->
-            
-                <!-- Notification-->
-                <div class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3">
-                  <div class="position-relative mt-1 ">
-                    <picture class="avatar avatar-sm">
-                      <img src="./assets/images/profile-small-4.jpeg"
-                        alt="">
-                    </picture>
-                    <span
-                    class="dot bg-danger avatar-dot border-light dot-sm"></span>
-                  </div>
-                  <div class="ms-4">
-                    <p class="fw-bolder mb-1">Helen Lewis</p>
-                    <p class="text-muted small mb-0">Need to arrange for this year's Office lisences. Have to add two team licenses...</p>
-                    <span class="fs-xs fw-bolder text-muted text-uppercase">43 mins ago</span>
-                  </div>
-                </div>
-                <!-- / Notification-->
-            
-                <!-- View all Btn-->
-                <a href="#" class="btn btn-outline-secondary w-100 mt-4" role="button">View all notifications</a>
-                <!-- / View all btn-->
-            
-              </div>
-            </div>            <!-- / Footer-->
+      <!-- Default Example Offcanvas Import-->
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div>
+            Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists,
+            etc.
+          </div>
+          <div class="dropdown mt-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+              data-bs-toggle="dropdown">
+              Dropdown button
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Navbar Notifications offcanvas-->
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNotifications"
+        aria-labelledby="offcanvasNotificationsLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNotificationsLabel">Notifications</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
 
-        </section>
-        <!-- / Content-->
+          <!-- Notification-->
+          <div class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3">
+            <div class="position-relative mt-1 ">
+              <picture class="avatar avatar-sm">
+                <img src="./assets/images/profile-small-2.jpeg" alt="">
+              </picture>
+              <span class="dot bg-success avatar-dot border-light dot-sm"></span>
+            </div>
+            <div class="ms-4">
+              <p class="fw-bolder mb-1">John Jackson</p>
+              <p class="text-muted small mb-0">Just sent over regional sales. If you can let me know by the end...</p>
+              <span class="fs-xs fw-bolder text-muted text-uppercase">5 mins ago</span>
+            </div>
+          </div>
+          <!-- / Notification-->
 
-    </main>
-    <!-- /Page Content -->
+          <!-- Notification-->
+          <div class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3">
+            <div class="position-relative mt-1 ">
+              <picture class="avatar avatar-sm">
+                <img src="./assets/images/profile-small-3.jpeg" alt="HTML Bootstrap Admin Template by Pixel Rocket">
+              </picture>
+              <span class="dot bg-success avatar-dot border-light dot-sm"></span>
+            </div>
+            <div class="ms-4">
+              <p class="fw-bolder mb-1">Peter Smith</p>
+              <p class="text-muted small mb-0">Hi Rob, can we setup a meeting for tomorrow around 2pm...</p>
+              <span class="fs-xs fw-bolder text-muted text-uppercase">30 mins ago</span>
+            </div>
+          </div>
+          <!-- / Notification-->
 
-    <!-- Page Aside-->
-    <aside class="aside bg-dark-700">
-    
-        <div class="simplebar-wrapper">
-            <div data-pixr-simplebar>
-                <div class="pb-6 pb-sm-0 position-relative">
-    
-                    <!-- Mobile close btn-->
-                    <div class="cursor-pointer close-menu me-4 text-primary-hover transition-color disable-child-pointer position-absolute end-0 top-0 mt-3 pt-1 d-xl-none">
-                        <i class="ri-close-circle-line ri-lg align-middle me-n2"></i>
-                    </div>
-                    <!-- / Mobile close btn-->
-    
-                    <!-- Mobile Logo-->
-                    <div class="d-flex justify-content-center align-items-center py-3">
+          <!-- Notification-->
+          <div class="d-flex justify-content-start align-items-start p-3 rounded bg-light mb-3">
+            <div class="position-relative mt-1 ">
+              <picture class="avatar avatar-sm">
+                <img src="./assets/images/profile-small-4.jpeg" alt="">
+              </picture>
+              <span class="dot bg-danger avatar-dot border-light dot-sm"></span>
+            </div>
+            <div class="ms-4">
+              <p class="fw-bolder mb-1">Helen Lewis</p>
+              <p class="text-muted small mb-0">Need to arrange for this year's Office lisences. Have to add two team
+                licenses...</p>
+              <span class="fs-xs fw-bolder text-muted text-uppercase">43 mins ago</span>
+            </div>
+          </div>
+          <!-- / Notification-->
+
+          <!-- View all Btn-->
+          <a href="#" class="btn btn-outline-secondary w-100 mt-4" role="button">View all notifications</a>
+          <!-- / View all btn-->
+
+        </div>
+      </div> <!-- / Footer-->
+
+    </section>
+    <!-- / Content-->
+
+  </main>
+  <!-- /Page Content -->
+
+  <!-- Page Aside-->
+  <aside class="aside bg-dark-700">
+
+    <div class="simplebar-wrapper">
+      <div data-pixr-simplebar>
+        <div class="pb-6 pb-sm-0 position-relative">
+
+          <!-- Mobile close btn-->
+          <div
+            class="cursor-pointer close-menu me-4 text-primary-hover transition-color disable-child-pointer position-absolute end-0 top-0 mt-3 pt-1 d-xl-none">
+            <i class="ri-close-circle-line ri-lg align-middle me-n2"></i>
+          </div>
+          <!-- / Mobile close btn-->
+
+          <!-- Mobile Logo-->
+          <div class="d-flex justify-content-center align-items-center py-3">
             <a class="m-0" href="/index">
               <div class="d-flex align-items-center justify-content-center">
-                {{!-- <svg class="f-w-6 me-2 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 398.39 353.81">
+                {{!-- <svg class="f-w-6 me-2 text-primary" xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 398.39 353.81">
                   <polygon
                     points="228.38 33.94 0 262.32 0 0 119.61 0 119.61 43.01 101.9 60.73 86.02 76.61 86.02 33.6 33.6 33.6 33.6 181.2 214.46 0.34 390.66 0.34 242.09 148.91 218.73 124.76 309.55 33.94 228.38 33.94"
                     fill="currentColor" />
@@ -607,104 +648,110 @@ console.log(categoryId)
                     points="398.39 353.81 217.51 353.81 131.04 261.75 45.09 353.81 0 353.81 0 353.49 131.26 212.91 232.05 320.21 317.27 320.21 170.28 173.21 194.19 149.29 194.19 149.55 254.9 210.51 254.97 210.39 398.39 353.81"
                     fill="currentColor" />
                 </svg> --}}
-                <img style="height:40px;width:40px" src="https://res.cloudinary.com/dd6qdgpfr/image/upload/v1712070189/photo_2024-03-12_20-09-56_2_1_crswy6.png" alt="">
+                <img style="height:40px;width:40px"
+                  src="https://res.cloudinary.com/dd6qdgpfr/image/upload/v1712070189/photo_2024-03-12_20-09-56_2_1_crswy6.png"
+                  alt="">
                 <span style="margin-top: 1%;" class="fw-bold fs-3 text-white">QuickbuY</span>
               </div>
             </a>
           </div>
-                    <!-- / Mobile Logo-->
-    
-                    <!-- User Details-->
-                    <div class="border-bottom pt-3 pb-5 mb-6 d-flex flex-column align-items-center">
-                        <div class="position-relative">
-               
-                   <div
-                  class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1"
-                >
-                                           <a   style="width: 95px;height: 30px;color: black; background-color: transparent;text-align: center;"  href="logout" >logout</a>
+          <!-- / Mobile Logo-->
 
-                </div>
-    
-                        
-                        </div>
-                    </div>
-                    <!-- User Details-->
-    
-                    <ul class="list-unstyled mb-6 aside-menu">
-    
-                        <!-- Dashboard Menu Section-->
-                        <li class="menu-section">Menu</li>
-                        <li class="menu-item"><a class="d-flex align-items-center menu-link" href="index"><i
-                                    class="ri-home-4-line me-3"></i> <span>Dashboard</span></a></li>
-                        <!-- / Dashboard Menu Section-->
-    
-                        <!-- UI Kit Menu Section-->
-                        <li class="menu-section mt-5">UI Kit</li>
-                        <li class="menu-item"><a class="d-flex align-items-center collapsed  menu-link" href="#"
-                                data-bs-toggle="collapse" data-bs-target="#collapseMenuItemUI" aria-expanded="false"
-                                aria-controls="collapseMenuItemUI"><i class="ri-shape-fill me-3"></i>
-                                <span>Components</span></a>
-                            <div class="collapse" id="collapseMenuItemUI">
-                                <ul class="submenu">
-                                            <li><a class="submenu-link" href="categorylist">Category-List</a></li>
-                                    <li><a class="submenu-link" href="subcategories">Sub-Category-List</a></li>
-                                    <li><a class="submenu-link" href="vender-product-list">Productlist</a></li>
-                                    <li><a class="submenu-link" href="User">User management</a></li>
-                                    <li><a class="submenu-link" href="Vender">Vender management</a></li>
-                                    {{!-- <li><a class="submenu-link" href=""></a></li> 
-                                    <li><a class="submenu-link" href=""></a></li> 
-                                    <li><a class="submenu-link" href=""></a></li> 
-                                    <li><a class="submenu-link" href=""></a></li> 
-                                    <li><a class="submenu-link" href=""></a></li>
-                                    <li><a class="submenu-link" href=""></a></li>
-                                    <li><a class="submenu-link" href=""></a></li>
-                                    <li><a class="submenu-link" href=""></a></li> --}}
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="menu-item"><a class="d-flex align-items-center collapsed menu-link" href="#"
-                                data-bs-toggle="collapse" data-bs-target="#collapseMenuItemContent" aria-expanded="false"
-                                aria-controls="collapseMenuItemContent"><i class="ri-stack-line me-3"></i>
-                                <span>Content</span></a>
-                            <div class="collapse" id="collapseMenuItemContent">
-                                <ul class="submenu">
-                                    <li><a class="submenu-link" href="HomepageControl">Home-Page-Control</a></li>
-                                    <li><a class="submenu-link" href="HomepageFooterImage">HomepageFooterImage</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <!-- / UI Kit Menu Section-->
-    
-                        <!-- Pages Menu Section-->
-                        <li class="menu-section mt-5">Pages</li>
-                        <li class="menu-item"><a class="d-flex align-items-center collapsed menu-link" href="#"
-                                data-bs-toggle="collapse" data-bs-target="#collapseMenuItemPages" aria-expanded="false"
-                                aria-controls="collapseMenuItemPages"><i class="ri-pencil-line me-3"></i> <span>Pages</span></a>
-                            <div class="collapse" id="collapseMenuItemPages">
-                                <ul class="submenu">
-                                    <li><a class="submenu-link" href="./login.html">Login</a></li>
-                                    <li><a class="submenu-link" href="./register.html">Register</a></li>
-                                    <li><a class="submenu-link" href="./forgot-password.html">Forgot Password</a></li>
-                                    <li><a class="submenu-link" href="./404.html">404 Page</a></li>
-                                    <li><a class="submenu-link" href="./blank.html">Blank Page</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <!-- / Pages Menu Section-->
-    
-                    </ul>
-                </div>
+          <!-- User Details-->
+          <div class="border-bottom pt-3 pb-5 mb-6 d-flex flex-column align-items-center">
+            <div class="position-relative">
+
+              <div
+                class="py-2 f-h-9 px-3 d-flex justify-content-center align-items-center bg-dark-opacity rounded p-2 small fw-bolder me-1">
+                <a style="width: 95px;height: 30px;color: black; background-color: transparent;text-align: center;"
+                  href="logout">logout</a>
+
+              </div>
+
+
             </div>
-        </div>
-    
-    </aside>    <!-- / Page Aside-->
+          </div>
+          <!-- User Details-->
 
-    <!-- Theme JS -->
-    <!-- Vendor JS -->
-    <script src="/admin//vendor.bundle.js"></script>
-    
-    <!-- Theme JS -->
-    <script src="/admin/theme.bundle.js"></script>
+          <ul class="list-unstyled mb-6 aside-menu">
+
+            <!-- Dashboard Menu Section-->
+            <li class="menu-section">Menu</li>
+            <li class="menu-item"><a class="d-flex align-items-center menu-link" href="index"><i
+                  class="ri-home-4-line me-3"></i> <span>Dashboard</span></a></li>
+            <!-- / Dashboard Menu Section-->
+
+            <!-- UI Kit Menu Section-->
+            <li class="menu-section mt-5">UI Kit</li>
+            <li class="menu-item"><a class="d-flex align-items-center collapsed  menu-link" href="#"
+                data-bs-toggle="collapse" data-bs-target="#collapseMenuItemUI" aria-expanded="false"
+                aria-controls="collapseMenuItemUI"><i class="ri-shape-fill me-3"></i>
+                <span>Components</span></a>
+              <div class="collapse" id="collapseMenuItemUI">
+                <ul class="submenu">
+                  <li><a class="submenu-link" href="categorylist">Category-List</a></li>
+                  <li><a class="submenu-link" href="subcategories">Sub-Category-List</a></li>
+                  <li><a class="submenu-link" href="vender-product-list">Productlist</a></li>
+                  <li><a class="submenu-link" href="User">User management</a></li>
+                  <li><a class="submenu-link" href="Vender">Vender management</a></li>
+                  <li><a class="submenu-link" href="orderList">Orderlist</a></li>
+
+                  <li><a class="submenu-link" href="coupen">Coupen</a></li>
+
+                  {{!-- <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li> --}}
+                </ul>
+              </div>
+            </li>
+            <li class="menu-item"><a class="d-flex align-items-center collapsed menu-link" href="#"
+                data-bs-toggle="collapse" data-bs-target="#collapseMenuItemContent" aria-expanded="false"
+                aria-controls="collapseMenuItemContent"><i class="ri-stack-line me-3"></i>
+                <span>Content</span></a>
+              <div class="collapse" id="collapseMenuItemContent">
+                <ul class="submenu">
+                  <li><a class="submenu-link" href="HomepageControl">Home-Page-Control</a></li>
+                  <li><a class="submenu-link" href="HomepageFooterImage">HomepageFooterImage</a></li>
+                </ul>
+              </div>
+            </li>
+            <!-- / UI Kit Menu Section-->
+
+            <!-- Pages Menu Section-->
+            <li class="menu-section mt-5">logout</li>
+            <li class="menu-item"> <a
+                style="width: 95px;height: 30px;color: rgb(250, 250, 250); background-color: transparent;text-align: center;"
+                href="logout">logout</a><i class="ri-pencil-line me-3"></i> <span></span></a>
+              <div class="collapse" id="collapseMenuItemPages">
+                <ul class="submenu">
+                  <li><a class="submenu-link" href="./login.hbs">Login</a></li>
+                  <li><a class="submenu-link" href="./register.hbs">Register</a></li>
+                  <li><a class="submenu-link" href="./forgot-password.hbs">Forgot Password</a></li>
+                  <li><a class="submenu-link" href="./404.hbs">404 Page</a></li>
+                  <li><a class="submenu-link" href="./blank.hbs">Blank Page</a></li>
+                </ul>
+              </div>
+            </li>
+            <!-- / Pages Menu Section-->
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </aside> <!-- / Page Aside-->
+
+  <!-- Theme JS -->
+  <!-- Vendor JS -->
+  <script src="/admin//vendor.bundle.js"></script>
+
+  <!-- Theme JS -->
+  <script src="/admin/theme.bundle.js"></script>
 </body>
 
 </html>

@@ -73,7 +73,7 @@
           <!-- / Menu Toggle-->
     
           <!-- Navbar Actions-->
-          <div class="d-flex align-items-center">
+          {{!-- <div class="d-flex align-items-center">
     
             <!-- Search-->
             <button class="btn-icon btn-hover-dark btn-search me-2">
@@ -130,7 +130,7 @@
             </a>
             <!-- / Notifications-->
     
-          </div>
+          </div> --}}
           <!-- / Navbar Actions-->
         
         </div>
@@ -458,21 +458,25 @@
                                 aria-controls="collapseMenuItemUI"><i class="ri-shape-fill me-3"></i>
                                 <span>Components</span></a>
                             <div class="collapse" id="collapseMenuItemUI">
-                                <ul class="submenu">
-                                               <li><a class="submenu-link" href="categorylist">Category-List</a></li>
-                                    <li><a class="submenu-link" href="subcategories">Sub-Category-List</a></li>
-                                    <li><a class="submenu-link" href="vender-product-list">Productlist</a></li>
-                                    <li><a class="submenu-link" href="User">User management</a></li>
+                                 <ul class="submenu">
+                  <li><a class="submenu-link" href="categorylist">Category-List</a></li>
+                  <li><a class="submenu-link" href="subcategories">Sub-Category-List</a></li>
+                  <li><a class="submenu-link" href="vender-product-list">Productlist</a></li>
+                  <li><a class="submenu-link" href="User">User management</a></li>
                                     <li><a class="submenu-link" href="Vender">Vender management</a></li>
-                                    {{!-- <li><a class="submenu-link" href=""></a></li> 
-                                    <li><a class="submenu-link" href=""></a></li> 
-                                    <li><a class="submenu-link" href=""></a></li> 
-                                    <li><a class="submenu-link" href=""></a></li> 
-                                    <li><a class="submenu-link" href=""></a></li>
-                                    <li><a class="submenu-link" href=""></a></li>
-                                    <li><a class="submenu-link" href=""></a></li>
-                                    <li><a class="submenu-link" href=""></a></li> --}}
-                                </ul>
+                  <li><a class="submenu-link" href="orderList">Orderlist</a></li>
+
+                  <li><a class="submenu-link" href="coupen">Coupen</a></li>
+
+                  {{!-- <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li>
+                  <li><a class="submenu-link" href=""></a></li> --}}
+                </ul>
                             </div>
                         </li>
                         <li class="menu-item"><a class="d-flex align-items-center collapsed menu-link" href="#"
@@ -489,20 +493,19 @@
                         <!-- / UI Kit Menu Section-->
     
                         <!-- Pages Menu Section-->
-                        <li class="menu-section mt-5">Pages</li>
-                        <li class="menu-item"><a class="d-flex align-items-center collapsed menu-link" href="#"
-                                data-bs-toggle="collapse" data-bs-target="#collapseMenuItemPages" aria-expanded="false"
-                                aria-controls="collapseMenuItemPages"><i class="ri-pencil-line me-3"></i> <span>Pages</span></a>
-                            <div class="collapse" id="collapseMenuItemPages">
-                                <ul class="submenu">
-                                    <li><a class="submenu-link" href="./login.html">Login</a></li>
-                                    <li><a class="submenu-link" href="./register.html">Register</a></li>
-                                    <li><a class="submenu-link" href="./forgot-password.html">Forgot Password</a></li>
-                                    <li><a class="submenu-link" href="./404.html">404 Page</a></li>
-                                    <li><a class="submenu-link" href="./blank.html">Blank Page</a></li>
-                                </ul>
-                            </div>
-                        </li>
+                        <li class="menu-section mt-5">logout</li>
+                          <li class="menu-item">    <a style="width: 95px;height: 30px;color: rgb(250, 250, 250); background-color: transparent;text-align: center;"
+                  href="logout">logout</a><i class="ri-pencil-line me-3"></i> <span></span></a>
+              <div class="collapse" id="collapseMenuItemPages">
+                <ul class="submenu">
+                  <li><a class="submenu-link" href="./login.hbs">Login</a></li>
+                  <li><a class="submenu-link" href="./register.hbs">Register</a></li>
+                  <li><a class="submenu-link" href="./forgot-password.hbs">Forgot Password</a></li>
+                  <li><a class="submenu-link" href="./404.hbs">404 Page</a></li>
+                  <li><a class="submenu-link" href="./blank.hbs">Blank Page</a></li>
+                </ul>
+              </div>
+            </li>
                         <!-- / Pages Menu Section-->
     
                     </ul>
