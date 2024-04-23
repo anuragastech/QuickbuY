@@ -442,6 +442,9 @@ const coupencheck = async (req, res) => {
 // }
 // };
 
+
+
+
 const orderPost = async (req, res) => {
     try {
         const userId = req.user.id;
@@ -528,6 +531,10 @@ console.log(paymentMethod,"hh");
             }));
         }).flat();
 
+
+
+
+
         // Create orders in the database
         const savePromises = unwoundOrders.map(async (orderDetails) => {
             const { product, size, quantity, address, color, productname, brand, category, subcategory, venderId } = orderDetails;
@@ -575,6 +582,9 @@ console.log(paymentMethod,"hh");
             }
         }
 
+
+
+        
         // Remove items from the cart after successful order creation
         await cart.updateOne({ userId }, { $pull: { products: { productId: { $in: productId } } } });
         // Send payment response back to the client

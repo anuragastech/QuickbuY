@@ -608,19 +608,27 @@
                             },
                             body: JSON.stringify(paymentData),
                         })
-                        .then(response => response.json())
-                        .then(verifyResponse => {
-                            if (verifyResponse.message === 'Payment successful') {
-                                console.log("Payment successful!");
-                                window.location.href = '/'; // Redirect to the home page
-                            } else {
-                                console.log(verifyResponse.message);
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error verifying payment:', error);
-                        });
-                    },
+                     .then(response => response.json())
+    .then(paymentResponse => {
+        if (paymentResponse.message === 'Order placed successfully with Razorpay') {
+            console.log("Payment successful!");
+            
+            
+        } else {
+            console.log(paymentResponse.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error verifying payment:', error);
+    })
+    .finally(() => {
+        console.log("Before redirection");
+
+
+        window.location.href = 'OrderDetails'
+        console.log("After redirection");
+    });
+},
                     prefill: {
                         name: 'Anurag',
                         email: 'anuragraveendreen98in@.com',
@@ -699,7 +707,7 @@
     }).then((result) => {
         if (result.isConfirmed) {
             console.log("Before redirection");
-            window.location.href = '/'; // Redirect to the index page
+            window.location.href = 'OrderDetails'; // Redirect to the index page
             console.log("After redirection");
         }
     });

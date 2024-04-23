@@ -412,7 +412,7 @@
     <button class="btn txt-light mb-3 mb-md-0" style="height:42px;background-color: rgb(95, 92, 92);color: white;font-size:18px;" onclick="handleAddToCart('{{data._id}}', '{{token}}')">
         <i class="material-icons" style="color: #ffffff;font-size:19px;">shopping_cart</i> Add to Cart
     </button>
-    <button class="btn txt-light mb-3 mb-md-0" style="height:42px;background-color: rgb(95, 92, 92);color: white;font-size:18px;" onclick="handleAddToCartto('{{data._id}}', '{{token}}')">
+    <button class="btn txt-light mb-3 mb-md-0" style="height:42px;background-color: rgb(95, 92, 92);color: white;font-size:18px;" onclick="handleAddToCartts('{{data._id}}', '{{token}}')">
         <i class="material-icons" style="color: #ffffff;font-size:19px;">shopping_cart</i> Buy Now 
     </button>
 </div>
@@ -424,9 +424,9 @@
 
 
                             <ul class="p-info">
-                                <li>Product Information</li>
-                                <li>Reviews</li>
-                                <li>Product Care</li>
+                                {{!-- <li>Product Information </li> --}}
+                                {{!-- <li>Reviews</li> --}}
+                                {{!-- <li>Product Care</li> --}}
 
                             </ul>
                         </div>
@@ -452,7 +452,19 @@
     </script>
 
 
+  <script>
+        function handleAddToCartts(productId, token) {
+            if (token) {
+                addToCarts(productId);
+            } else {
+                window.location.href = "/login";
+            }
+        }
 
+        function addToCarts(productId) {
+            console.log("Item added to cart with ID: " + productId);
+        }
+    </script>
 
 
 
@@ -497,6 +509,8 @@
         }
         
     </script>
+    
+
 
 
     <style>

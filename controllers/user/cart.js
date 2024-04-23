@@ -3,17 +3,25 @@ const product=require('../../models/vender/productAdd')
 const subcategory=require('../../models/admin/subcategory');
 const mongoose = require('mongoose');
 
+
+
+
+
 let deleteCart = async (req, res) => {
     try {
-        const cartId = req.params.id;
-
-        const deletedProduct = await Cart.updateOne(
-      
-            { $pull: { products: { productId: cartId} } }
+        // const userId = req.user.id;
+        // console.log(userId," kk")
+        const productIdToDelete = req.params.id; 
+        console.log(productIdToDelete,"zzz");
+    
+ 
+        const cart = await Cart.findOneAndUpdate(
+            { "products._id": productIdToDelete },
+            { $pull: { products: { _id: productIdToDelete } } },
+            { new: true } 
         );
 
-        // console.log(cartId  );
-        if (!deletedProduct) {
+        if (!cart) {
             return res.status(404).json({ message: "Product not found in cart" });
         }
 
@@ -26,18 +34,20 @@ let deleteCart = async (req, res) => {
 
 
 
+
 const updateCart = async (req, res) => {
     try {
-        const userId = req.user.id;
-        const productId = req.params.cartId; // Corrected parameter name
-        console.log(productId,"hfhghr ");
-        const newQuantity = req.body.quantity;
+        console.log("kjfhfhfhfhfhfhfh");
+        // const userId = req.user.id;
+        // const productId = req.params.cartId; 
+        // console.log(productId,"hfhghr ");
+        // const newQuantity = req.body.quantity;
 
-        const updatedCart = await Cart.findOneAndUpdate(
-            { userId, "products.productId": productId },
-            { $set: { "products.$.quantity": newQuantity } },
-            { new: true }
-        );
+        // const updatedCart = await Cart.findOneAndUpdate(
+        //     { userId, "products.productId": productId },
+        //     { $set: { "products.$.quantity": newQuantity } },
+        //     { new: true }
+        // );
 
         res.status(200).json({ message: 'Cart updated successfully' });
     } catch (error) {
@@ -62,7 +72,6 @@ let  getcartpage=async (req, res) => {
     }
 };
 
-// const Cart = require('./path/to/cartModel'); // Import the Cart model
 
 let postcart = async (req, res) => {
     try {

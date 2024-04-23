@@ -173,21 +173,21 @@
                             </td>
                             <td>{{this.productData.productname}}</td>
                             <td>₹{{this.productData.price}}</td>
-                            <td>
-                                <input type="number" class="form-control quantity" id="quantity-{{this.cart_id}}" value="1" min="1" data-price="{{this.productData.price}}">
-                            </td>
-                            <td>
-                                <button class="btn btn-outline-primary btn-sm update-btn" data-cartid="{{this.cart_id}}">Update</button>
-                            </td>
+                             <td>
+            <input style="" type="number" class="form-control quantity" id="quantity-{{this._id}}" value="{{this.quantity}}" min="1" data-price="{{this.productData.price}}">
+        </td>
+        <td>
+            <button class="btn btn-outline-primary btn-sm update-btn" data-cartid="{{this._id}}" onclick="updateQuantity('{{this.cart}}')">Update</button>
+        </td>
                             <td>
                                 <button class="btn btn-outline-primary btn-sm" >{{this._id.size}}</button>
                             </td>
                             <td>
-                                <button class="btn btn-outline-danger btn-sm delete-btn" data-productid="{{this.productData._id}}">
+                                <button class="btn btn-outline-danger btn-sm delete-btn" data-productid="{{this.cart}}"         onclick="deleteCart('{{this.cart}}')">
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </td>
-                            <td>₹<span class="item-total">0</span></td>
+                            <td><span class="item-total">0</span></td>
                         </tr>
                         {{/each}}
                     </tbody>
@@ -195,10 +195,13 @@
             </div>
         </div>
 
+
         <div class="row mt-4 justify-content-center">
+
             <div class="col-lg-6 text-center">
                 <button class="btn btn-dark checkout" style="border-radius:20px;height:38px;">Proceed to Buy</button>
             </div>
+            
         </div>
         <div class="row mt-5">
             <div class="col-lg-3">
@@ -291,35 +294,34 @@
                     });
             }
         </script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    function updateQuantity(cartId) {
+        const newQuantity = document.getElementById(`quantity-${cartId}`).value;
 
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        axios.post(`/updateCart/${cartId}`, { quantity: newQuantity })
+            .then((response) => {
+                if (response.status === 200) {
+                    // You may want to refresh the page or update the UI here
+                    Toastify({
+                        text: "Item updated to cart successfully!",
+                        duration: 3000, // 3 seconds
+                        close: true, // Enable close button
+                        gravity: "top", // Display position
+                        position: "center", // Custom position
+                        className: "custom-toastify", // Custom class name
+                    }).showToast();
+                } else {
+                    alert('Failed to update cart');
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+                alert('Error updating cart');
+            });
+    }
+</script>
 
-        <script>
-            function updateQuantity(cartId) {
-                const newQuantity = document.getElementById(`quantity-${cartId}`).value;
-
-                axios.post(`/updateCart/${cartId}`, { quantity: newQuantity })
-                    .then((response) => {
-                        if (response.status === 200) {
-                            // You may want to refresh the page or update the UI here
-                            Toastify({
-                                text: "Item updated to cart successfully!",
-                                duration: 3000, // 3 seconds
-                                close: true, // Enable close button
-                                gravity: "top", // Display position
-                                position: "center", // Custom position
-                                className: "custom-toastify", // Custom class name
-                            }).showToast();
-                        } else {
-                            alert('Failed to update cart');
-                        }
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                        alert('Error updating cart');
-                    });
-            }
-        </script>
 
         <!-- Footer Section Begin -->
         <footer class="footer-section spad">
