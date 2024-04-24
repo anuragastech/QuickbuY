@@ -78,6 +78,7 @@ const getpostProductAdd = async (req, res) => {
 let productDelete = async (req, res) => {
   try {
     const productId = req.params.id;
+    console.log(productId,"delete");
     const deleteproduct = await product.findOneAndDelete({
       productname: productId,
     });
@@ -116,9 +117,13 @@ let getproductAdd = (req, res) => {
   res.render("vender/productAdd");
 };
 
+
+
 let postedit = async (req, res) => {
   try {
-    const productId = req.params.id; // Use req.params to get the category ID from the route
+    const productId = req.params.id; 
+
+    console.log(productId,"codeeee");
     const {
       productname,
       manufacturename,
@@ -133,17 +138,17 @@ let postedit = async (req, res) => {
     } = req.body;
     const venderId = req.vender._id;
 
+
     if (!productname || !description) {
-      return res
-        .status(400)
-        .json({
-          success: false,
-          message: "Incomplete data for product update",
-        });
+      return res.status(400).json({
+        success: false,
+        message: "Incomplete data for product update",
+      });
     }
     const desiredWidth = 600;
     const desiredHeight = 300;
 
+    // Uncomment the following code if you are using Cloudinary for image upload
     // const photo = await cloudinary.uploader.upload(req.file.path, {
     //     width: desiredWidth,
     //     height: desiredHeight,
@@ -164,8 +169,7 @@ let postedit = async (req, res) => {
           subcategory: subcategory,
           size: size,
           color: color,
-          Quantity:quantity,
-
+          quantity: quantity,
           // image: {
           //     public_id: photo.public_id,
           //     url: photo.secure_url,
@@ -175,19 +179,20 @@ let postedit = async (req, res) => {
       { new: true }
     );
 
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "product updated successfully",
-        updatedProduct,
-      });
-    res.redirect("vender/productdetails");
+    res.status(200).json({
+      success: true,
+      message: "Product updated successfully",
+      updatedProduct,
+    });
+    // Remove the following line if you want to redirect to "vender/productdetails"
+    // res.redirect("vender/productdetails");
   } catch (error) {
     console.error(error);
     res.status(500).json({ success: false });
   }
 };
+
+
 
 let geteditProduct = async (req, res) => {
   try {

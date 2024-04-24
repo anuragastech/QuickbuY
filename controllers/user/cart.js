@@ -28,7 +28,7 @@ let deleteCart = async (req, res) => {
         return res.status(200).json({ success: true });
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ message: "Error deleting product from cart", error: error.message });
+        return res.status(500).json({ message: "Error deleting product from cart",error:error.message});
     }
 };
 
@@ -39,9 +39,11 @@ const updateCart = async (req, res) => {
     try {
         console.log("kjfhfhfhfhfhfhfh");
         // const userId = req.user.id;
-        // const productId = req.params.cartId; 
-        // console.log(productId,"hfhghr ");
-        // const newQuantity = req.body.quantity;
+        const carts = req.body.cartId; 
+        console.log(carts,"hfhghr ");
+        const newQuantity = req.body.quantity;
+console.log(newQuantity,"quanty");
+
 
         // const updatedCart = await Cart.findOneAndUpdate(
         //     { userId, "products.productId": productId },
@@ -160,8 +162,8 @@ let getshoppingcart = async (req, res) => {
             });
         });
 
-console.log(cart.products ,"jo")
-        console.log(cart , "hell");
+// console.log(cart.products ,"jo")
+        // console.log(cart , "hell");
         res.render('user/shopping-cart', { cart });
 
     } catch (error) {

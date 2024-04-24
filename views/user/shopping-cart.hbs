@@ -173,12 +173,13 @@
                             </td>
                             <td>{{this.productData.productname}}</td>
                             <td>₹{{this.productData.price}}</td>
-                             <td>
-            <input style="" type="number" class="form-control quantity" id="quantity-{{this._id}}" value="{{this.quantity}}" min="1" data-price="{{this.productData.price}}">
-        </td>
-        <td>
-            <button class="btn btn-outline-primary btn-sm update-btn" data-cartid="{{this._id}}" onclick="updateQuantity('{{this.cart}}')">Update</button>
-        </td>
+<td>
+    <input style="" type="number" class="form-control quantity" id="quantity-{{this._id}}" value="{{this.quantity}}" min="1" data-price="{{this.productData.price}}">
+</td>
+<td> 
+    <button class="btn btn-outline-primary btn-sm update-btn" data-cartid="{{this.cart}}" data-cartid="{{this._id}}" onclick="updateQuantity('{{this._id}}')">Update</button>
+</td>
+
                             <td>
                                 <button class="btn btn-outline-primary btn-sm" >{{this._id.size}}</button>
                             </td>
@@ -294,12 +295,14 @@
                     });
             }
         </script>
+        
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     function updateQuantity(cartId) {
         const newQuantity = document.getElementById(`quantity-${cartId}`).value;
+    const cartId = document.querySelector(`[data-productid="{{this.cart}}"]`).getAttribute('data-cartid');
 
-        axios.post(`/updateCart/${cartId}`, { quantity: newQuantity })
+        axios.post(`/updateCart`, {cartId, quantity: newQuantity })
             .then((response) => {
                 if (response.status === 200) {
                     // You may want to refresh the page or update the UI here
@@ -321,8 +324,6 @@
             });
     }
 </script>
-
-
         <!-- Footer Section Begin -->
         <footer class="footer-section spad">
             <div class="container">

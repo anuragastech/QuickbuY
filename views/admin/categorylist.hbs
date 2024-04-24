@@ -364,13 +364,20 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="refreshPage()">Close</button>
                     <button type="submit" class="btn btn-primary" id="saveChangesBtn">Save Changes</button>
                 </div>
             </div>
         </div>
     </div>
 </form>
+
+
+<script>
+    function refreshPage() {
+        window.location.reload();
+    }
+</script>
 
       <script>
     $(document).ready(function () {
