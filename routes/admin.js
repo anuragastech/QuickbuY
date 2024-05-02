@@ -1,5 +1,8 @@
 const express = require("express");
 const router = express.Router();
+
+const { preventAccessToLoginSignup } =require('../middleware/preventAccess')
+
 const Saved=require('../models/admin/saved')
 const categoryControllers = require('../controllers/admin/category');
 const subCategoryControllers = require('../controllers/admin/subcategory');
@@ -23,7 +26,7 @@ router.get('/index',dashboardController.index)
 router.get('/chart-data',dashboardController.chart)
 
 
-router.get('/login', (req,res)=>{
+router.get('/login',preventAccessToLoginSignup, (req,res)=>{
     res.render('admin/login')
 })
 
@@ -39,7 +42,7 @@ router.post('/HomepageController', upload,HomepageController.HomepagepicPost );
 router.get('/HomepageControl',authenticateJWT,HomepageController.HomepagepicGet)
 
 router.post("/signup",adminControllers.AdminSignup);
-router.get("/signup",adminControllers.getsignUp);
+router.get("/signup",preventAccessToLoginSignup,adminControllers.getsignUp);
 
 router.get("/login",adminControllers.getlogin);
 router.post("/loginpost",adminControllers.Addlogin);

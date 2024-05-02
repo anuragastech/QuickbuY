@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const multer = require("../models/common/multerconfig");
 
+
+const { preventAccessToLoginSignup } =require('../middleware/preventAccess')
+
 const getcatasubController=require('../controllers/vender/getcategorysub')
 // const bcrypt = require("bcryptjs");
 
@@ -17,9 +20,9 @@ const ordersControls  = require('../controllers/vender/order')
 
 router.post("/loginPost",venderControllers.loginvender);
 
-router.get("/login",venderControllers.getlogin);
+router.get("/login",preventAccessToLoginSignup,venderControllers.getlogin);
 
-router.get("/signup",venderControllers.getsignup);
+router.get("/signup",preventAccessToLoginSignup,venderControllers.getsignup);
 
 router.post("/signup",venderControllers.signvender);
 

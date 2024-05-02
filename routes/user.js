@@ -1,7 +1,7 @@
 const express = require('express');
 const router=express.Router();
 
-const { preventAccessToLoginSignup } =require('../middleware/SuperAdmin')
+const { preventAccessToLoginSignup } =require('../middleware/preventAccess')
 
 const { authenticateJWT } = require('../middleware/authmiddleware');
 

@@ -12,13 +12,13 @@ function preventAccessToLoginSignup(req, res, next) {
         jwt.verify(token, secretKey, (err, user) => {
             if (!err && user) {
                 // User is already logged in, redirect to dashboard or homepage
-                let redirectUrl = '/';
+                // let redirectUrl = '/';
                 if (user.role === 'vendor') {
-                    redirectUrl = '/vender/dashboard';
+                    redirectUrl = '/vender/index';
                 } else if (user.role === 'user') {
                     redirectUrl = '/';
                 } else if (user.role === 'admin') {
-                    redirectUrl = '/admin/dashboard';
+                    redirectUrl = '/admin/index';
                 }
                 return res.redirect(redirectUrl);
             }
