@@ -1,6 +1,7 @@
 const express = require('express');
 const router=express.Router();
 
+const { preventAccessToLoginSignup } =require('../middleware/SuperAdmin')
 
 const { authenticateJWT } = require('../middleware/authmiddleware');
 
@@ -22,9 +23,9 @@ router.post('/sign',userControllers.Addsign)
 
 router.post('/login',userControllers.Addlogin)
 
-router.get('/sign',userControllers.getsign)
+router.get('/sign',preventAccessToLoginSignup,userControllers.getsign)
 
-router.get('/login',userControllers.getlogin)
+router.get('/login',preventAccessToLoginSignup,userControllers.getlogin)
 
 // Logout route
 router.get("/logout",authenticateJWT,userControllers.getlogout)
@@ -46,8 +47,8 @@ router.get('/user',authenticateJWT,getAllControllers.getuser)
 router.get('/productpage', getProductControllers.getproductpage)
 
 
-router.get('/products',getProductControllers.getproductData)
-router.get('/',getControllerHome.getproductDataIn)
+router.get('/products',getProductControllers.getproductData) 
+router.get('/',getControllerHome.getproductDataIn) 
 
 
 router.delete("/deletecart/:id",getCartControllers.deleteCart);

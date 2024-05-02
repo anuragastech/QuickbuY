@@ -1,14 +1,15 @@
 const Order=require("../../models/user/order")
 const chart = async (req, res) => {
 
+
     try {
-      const userId = req.vender.id
-       console.log(userId);
+      // const userId = req.vender.id
+      //  console.log(userId);
   
       const chartData = await Order.aggregate([
         {
           $match: {
-            venderId: userId
+            // venderId: userId
                     }
         },
         {

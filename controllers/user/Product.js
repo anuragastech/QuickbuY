@@ -1,6 +1,7 @@
 const product =require('../../models/vender/productAdd')
 
 
+
 let getproductpage =async (req, res) => {
     try {
         const token = req.cookies.token;
@@ -28,20 +29,17 @@ let getproductpage =async (req, res) => {
 
 
 
-
-
 let getproductData = async (req, res) => {
     try {
-        
         const token = req.cookies.token;
-        const loggedIn = !!token; // Set loggedIn to true if token exists, false otherwise
+        const loggedIn = !!token; 
 
         let query = {};
 
-        // Extract query parameters for filtering from both query and body
         const { category, subcategory, size, color, priceRange } = req.method === 'POST' ? req.body : req.query;
+        console.log(req.body,"updstte");
         const page = parseInt(req.query.page) || 1;
-        const limit = 8; // Number of products per page
+        const limit = 8;
 
         if (category && category.length > 0) {
             query.categoryName = { $in: category };
@@ -68,20 +66,16 @@ let getproductData = async (req, res) => {
                                       .skip(skip)
                                       .limit(limit);
 
-        // Count total number of products (without pagination)
         const totalCount = await product.countDocuments(query);
 
-        // Calculate total pages
         const totalPages = Math.ceil(totalCount / limit);
 
-        // Pagination details
         const pagination = {
             prev: page > 1 ? `?page=${page - 1}` : null,
             next: page < totalPages ? `?page=${page + 1}` : null,
             pages: []
         };
 
-        // Create pagination page numbers
         for (let i = 1; i <= totalPages; i++) {
             pagination.pages.push({
                 number: i,
@@ -90,7 +84,6 @@ let getproductData = async (req, res) => {
             });
         }
 
-        // Check if the request is a POST request, if so, return JSON response
         if (req.method === 'POST') {
             return res.json({
                 products,
@@ -98,7 +91,6 @@ let getproductData = async (req, res) => {
             });
         }
 
-        // Render the user/products page with the fetched products and pagination
         res.render('user/products', { products, pagination ,loggedIn});
     } catch (error) {
         console.error(error);

@@ -42,6 +42,9 @@ const getproductDataIn = async (req, res) => {
 
 
 
+
+
+
 const Search = async (req, res) => {
     try {
         const token = req.cookies.token;
@@ -49,25 +52,25 @@ const Search = async (req, res) => {
 
         const { search } = req.method === 'POST' ? req.body : req.query;
 
-        // console.log(search,"hehfheuwfhue");
+        console.log(search,"hehfheuwfhue");
 
         if (!search || search.trim().length === 0) {
             return res.status(400).json({ success: false, message: 'Search query is required.' });
         }
 
-        // Search for products based on name, description, category, subcategory, size, color, etc.
+        // Search for products based on exact match of name, description, category, subcategory, size, color, etc.
         const products = await product.find({
             $or: [
-                { productname: { $regex: search, $options: 'i' } }, // Assuming productname is the field for product name
-                { description: { $regex: search, $options: 'i' } },
-                { categoryName: { $regex: search, $options: 'i' } },
-                { subcategoryName: { $regex: search, $options: 'i' } },
-                { 'properties.size': { $regex: search, $options: 'i' } },
-                { color: { $regex: search, $options: 'i' } },
-                // Add more fields as needed for search
+                { productname: search }, 
+                { description: search },
+                { categoryName: search },
+                { subcategoryName: search },
+                { 'properties.size': search },
+                { color: search },
             ]
         }).populate('category').populate('subcategory');
 
+        console.log(products,"daaa");
         // Render the search page with the fetched products
         res.render('user/search', { products, searchQuery: search ,loggedIn});
     } catch (error) {
@@ -75,6 +78,10 @@ const Search = async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
+
+
+
+
 
 
 module.exports = { getproductDataIn ,Search};
