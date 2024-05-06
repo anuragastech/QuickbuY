@@ -412,6 +412,7 @@
     <button class="btn txt-light mb-3 mb-md-0" style="height:42px;background-color: rgb(95, 92, 92);color: white;font-size:18px;" onclick="handleAddToCart('{{data._id}}', '{{token}}')">
         <i class="material-icons" style="color: #ffffff;font-size:19px;">shopping_cart</i> Add to Cart
     </button>
+
     <button class="btn txt-light mb-3 mb-md-0" style="height:42px;background-color: rgb(95, 92, 92);color: white;font-size:18px;" onclick="handleAddToCartts('{{data._id}}', '{{token}}')">
         <i class="material-icons" style="color: #ffffff;font-size:19px;">shopping_cart</i> Buy Now 
     </button>
@@ -539,55 +540,117 @@
             transform: translateY(-50%);
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-    <script>
-        function addToCart() {
-            var productId = document.getElementById("productId").innerText;
-            var productName = document.getElementById("productName").innerText;
-            var size = document.getElementById("selectedSize").value;
-            var quantitys = document.getElementById("quantity").value;
+   {{!-- <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script>
+    function addToCart() {
+        var productId = document.getElementById("productId").innerText;
+        var productName = document.getElementById("productName").innerText;
+        var size = document.getElementById("selectedSize").value;
+        var quantity = document.getElementById("quantity").value;
 
-            // Check if size is not selected
-            if (!size) {
+        // Check if size is not selected
+        if (!size) {
+            Toastify({
+                text: "Please select a size.",
+                duration: 3000, // 3 seconds
+                close: true,
+                gravity: "top",
+                position: "center",
+                className: "custom-toastify",
+            }).showToast();
+            return; // Exit the function if size is not selected
+        }
+
+        // Constructing the data object
+        var data = {
+            productId: productId,
+            productName: productName,
+            size: size,
+            quantity: quantity,
+        };
+
+        // Using Axios to post data to the server
+        axios.post('/cart/product', data)
+            .then(function (response) {
+                // Handle success
                 Toastify({
-                    text: "Please select a size.",
+                    text: "Item added to cart successfully!",
                     duration: 3000, // 3 seconds
                     close: true,
                     gravity: "top",
                     position: "center",
                     className: "custom-toastify",
                 }).showToast();
-                return; // Exit the function if size is not selected
-            }
 
-            // Constructing the data object
-            var data = {
-                productId: productId,
-                productName: productName,
-                size: size,
-                quantity: quantitys,
-            };
+                // Change the button text to "Go to Cart" after adding the product
+                document.getElementById("addToCartBtn").innerText = "Go to Cart";
 
-            // Using Axios to post data to the server
-            axios.post('/cart/product', data)
-                .then(function (response) {
-                    // Handle success
+                // Redirect the user to the cart page after a short delay
+                setTimeout(function () {
+                    window.location.href = '/shopping-cart';
+                }, 2000); // Delay of 2 seconds before redirecting to cart page
+            })
+            .catch(function (error) {
+                // Handle error
+                console.error('Error adding item to cart:', error);
+            });
+    }
+</script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+ 
+<script>
+    function addToCart(productId) {
+        var size = document.getElementById("selectedSize").value;
+        var quantity = document.getElementById("quantity").value;
+
+        if (!size || !quantity) {
+            Toastify({
+                text: "Please select size and quantity.",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "center",
+                className: "custom-toastify",
+            }).showToast();
+            return;
+        }
+
+        var data = {
+            productId: productId,
+            size: size,
+            quantity: quantity,
+        };
+
+        axios.post('/cart/product', data)
+            .then(function (response) {
+                if (response.data && response.data.alert) {
                     Toastify({
-                        text: "Item added to cart successfully!",
-                        duration: 3000, // 3 seconds
+                        text: response.data.alert,
+                        duration: 3000,
                         close: true,
                         gravity: "top",
                         position: "center",
                         className: "custom-toastify",
                     }).showToast();
-                })
-                .catch(function (error) {
-                    // Handle error
-                    console.error('Error adding item to cart:', error);
-                });
-        }
+                } else {
+                    Toastify({
+                        text: "Item added to cart successfully!",
+                        duration: 3000,
+                        close: true,
+                        gravity: "top",
+                        position: "center",
+                        className: "custom-toastify",
+                    }).showToast();
+                }
+            })
+            .catch(function (error) {
+                console.error('Error adding item to cart:', error);
+            });
+    }
+</script>
 
-    </script>
 
 
 

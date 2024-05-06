@@ -72,9 +72,27 @@ console.log(orderDetails,"mfkefmf3rmki");
     }
 }
 
+const canceorder = async (req, res) => {
+    try {
+        const { orderIds } = req.body;
+        console.log(orderIds, "orderId"); // Just for debugging
+        
+        const updatedOrder = await order.findOneAndUpdate(
+            { _id: orderIds },
+            { orderAccepted: "cancelled" },
+            { new: true } 
+        );
+        
+        if (!updatedOrder) {
+            return res.status(404).json({ error: 'Order not found' });
+        }
+        
+        res.status(200).json({ message: 'Order cancelled successfully', updatedOrder });
+    } catch (error) {
+        console.error('Error cancelling order:', error);
+        res.status(500).json({ error: 'An error occurred while cancelling order' });
+    }
+}
 
 
-
-
-
-module.exports={orderGet,PostOrder}
+module.exports={orderGet,PostOrder,canceorder}

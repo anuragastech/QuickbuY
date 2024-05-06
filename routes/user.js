@@ -138,6 +138,11 @@ router.get('/search',getControllerHome.Search)
 
 router.delete('/addressDelete/:id',getPaymentway.deleteAddress)
 
+
+
+router.post('/cancelOrder',OrderController.canceorder)
+
+
 module.exports = router;
 
 

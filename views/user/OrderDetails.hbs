@@ -163,7 +163,7 @@
                                 <p class="card-text">Price: {{this.price}}</p>
                                 <p class="card-text">Size: {{this.size}}</p>
                                 <p class="card-text">Quantity: {{this.quantity}}</p>
-                                <p class="card-text">Order Status: {{this.orderAccepted}}</p>
+<p class="card-text" id="orderStatus">Order Status: {{this.orderAccepted}}</p>
                                 <div class="mt-3 mt-md-auto">
                                     <div class="row justify-content-center justify-content-md-start">
                                         <div class="col-md-auto mb-2 mb-md-0">
@@ -171,9 +171,10 @@
                                                 <i class="material-icons">visibility</i> Invoice
                                             </button>
                                         </div>
-                                        <div class="col-md-auto">
-                                            <button class="btn btn-light">Cancel Order</button>
-                                        </div>
+<div class="col-md-auto" id="cancelOrderContainer">
+    <button id="cancelOrderButton" data-order-id="{{this._id}}" class="btn btn-light">Cancel Order</button>
+</div>
+
                                     </div>
                                 </div>
 
@@ -184,6 +185,48 @@
             </div>
             {{/each}}
         </div>
+
+<script>
+$(document).ready(function() {
+    // Get the order status text
+    const orderStatusText = $("#orderStatus").text().trim();
+    
+    // Hide the cancel order button if the order status is "cancelled"
+    if (orderStatusText === "Order Status: cancelled") {
+        $("#cancelOrderContainer").hide();
+    }
+});
+
+
+</script>
+
+<script>
+    document.getElementById("cancelOrderButton").addEventListener("click", function() {
+        // Retrieve the orderId from the button's data-order-id attribute
+        const orderId = this.getAttribute("data-order-id");
+console.log(orderId,"hanhf")
+        // Make a fetch request to the backend to cancel the order
+        fetch('/cancelOrder', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ orderIds: orderId })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response from the backend if needed
+            console.log('Order cancelled:', data);
+            // You can perform additional actions based on the response, such as showing a confirmation message or updating the UI
+        })
+        .catch(error => {
+            console.error('Error cancelling order:', error);
+            // Handle errors if the fetch request fails
+        });
+    });
+</script>
+
+
 
         <!-- Bootstrap Pagination -->
         <nav aria-label="Page navigation">

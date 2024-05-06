@@ -75,6 +75,56 @@ let  getcartpage=async (req, res) => {
 };
 
 
+// let postcart = async (req, res) => {
+//     try {
+//         const { productId, size, quantity } = req.body;
+//         const userId = req.user.id;
+
+//         if (!productId || !size || !quantity) {
+//             return res.status(400).json({ alert: 'Product ID, size, and quantity are required' });
+//         }
+
+//         let cart = await Cart.findOne({ userId });
+
+//         if (!cart) {
+//             const newCart = new Cart({
+//                 userId: userId,
+//                 products: [{ productId: productId, size: size, quantity: quantity }]
+//             });
+//             await newCart.save();
+//         } 
+//         else {
+//                 if (cart.products) {
+//                     let existingProduct = await Cart.findOne({
+//                         "products.productId": productId,
+//                         "products.size": size
+//                     });
+//                     // console.log(existingProduct);
+//                 if (existingProduct) {
+//                     await Cart.updateOne(
+//                         { userId: userId, "products.productId": productId, "products.size": size },
+//                         { $inc: { "products.$.quantity": quantity } }
+//                     );
+//                 } else {
+//                     cart.products.push({ productId: productId, size: size, quantity: quantity });
+//                     await cart.save();
+//                 }
+//             } else {
+//                 cart.products = [{ productId: productId, size: size, quantity: quantity }];
+//                 await cart.save();
+//             }
+//         }
+
+//         return res.redirect('/shopping-cart');
+//     } catch (error) {
+//         console.error(error);
+//         return res.status(500).json({ message: 'Internal server error' });
+//     }
+// };
+
+
+
+
 let postcart = async (req, res) => {
     try {
         const { productId, size, quantity } = req.body;
@@ -92,7 +142,8 @@ let postcart = async (req, res) => {
                 products: [{ productId: productId, size: size, quantity: quantity }]
             });
             await newCart.save();
-        } else {
+        } 
+        else {
                 if (cart.products) {
                     let existingProduct = await Cart.findOne({
                         "products.productId": productId,
@@ -100,10 +151,7 @@ let postcart = async (req, res) => {
                     });
                     // console.log(existingProduct);
                 if (existingProduct) {
-                    await Cart.updateOne(
-                        { userId: userId, "products.productId": productId, "products.size": size },
-                        { $inc: { "products.$.quantity": quantity } }
-                    );
+                    return res.status(400).json({ alert: 'Product already added' });
                 } else {
                     cart.products.push({ productId: productId, size: size, quantity: quantity });
                     await cart.save();
@@ -120,9 +168,6 @@ let postcart = async (req, res) => {
         return res.status(500).json({ message: 'Internal server error' });
     }
 };
-
-
-
 
 
 
@@ -171,6 +216,7 @@ let getshoppingcart = async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
+
 
 
 
