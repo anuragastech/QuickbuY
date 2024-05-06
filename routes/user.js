@@ -140,6 +140,9 @@ router.delete('/addressDelete/:id',getPaymentway.deleteAddress)
 
 
 
+
+router.post('/Gotocart',getCartControllers.gotocarts)
+
 router.post('/cancelOrder',OrderController.canceorder)
 
 

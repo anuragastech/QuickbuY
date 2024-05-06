@@ -74,6 +74,7 @@ console.log(orderDetails,"mfkefmf3rmki");
 
 const canceorder = async (req, res) => {
     try {
+        console.log("jaiajaiajiuewhudhwuehu");
         const { orderIds } = req.body;
         console.log(orderIds, "orderId"); // Just for debugging
         

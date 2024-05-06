@@ -217,7 +217,16 @@ let getshoppingcart = async (req, res) => {
     }
 };
 
+const gotocarts =async (req, res) => {
+    try {
+
+      console.log("lallqlajhfsahahfhjfh");
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Internal Server Error' });
+    }
+};
 
 
-
-module.exports={ updateCart, deleteCart,getcartpage,postcart,getshoppingcart}  
+module.exports={ updateCart, deleteCart,getcartpage,postcart,getshoppingcart,gotocarts}  

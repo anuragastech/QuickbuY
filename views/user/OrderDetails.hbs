@@ -171,9 +171,10 @@
                                                 <i class="material-icons">visibility</i> Invoice
                                             </button>
                                         </div>
-<div class="col-md-auto" id="cancelOrderContainer">
-    <button id="cancelOrderButton" data-order-id="{{this._id}}" class="btn btn-light">Cancel Order</button>
+<div class="col-md-auto cancelOrderContainer">
+    <button class="cancelOrderButton btn btn-light" data-order-id="{{this._id}}">Cancel Order</button>
 </div>
+
 
                                     </div>
                                 </div>
@@ -186,45 +187,74 @@
             {{/each}}
         </div>
 
+
 <script>
-$(document).ready(function() {
-    // Get the order status text
-    const orderStatusText = $("#orderStatus").text().trim();
-    
-    // Hide the cancel order button if the order status is "cancelled"
-    if (orderStatusText === "Order Status: cancelled") {
-        $("#cancelOrderContainer").hide();
-    }
-});
-
-
+    // Iterate over each order item
+    $(".card-text").each(function(index) {
+        // Get the order status text for this order item
+        const orderStatusText = $(this).text().trim();
+        // Hide the cancel order button if the order status is "cancelled"
+        if (orderStatusText === "Order Status: cancelled") {
+            $(this).closest(".custom-card").find(".cancelOrderContainer").hide();
+                      //      $(".openModalBtn").hide(); 
+        }
+    });
 </script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    document.getElementById("cancelOrderButton").addEventListener("click", function() {
-        // Retrieve the orderId from the button's data-order-id attribute
-        const orderId = this.getAttribute("data-order-id");
-console.log(orderId,"hanhf")
-        // Make a fetch request to the backend to cancel the order
-        fetch('/cancelOrder', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ orderIds: orderId })
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Handle the response from the backend if needed
-            console.log('Order cancelled:', data);
-            // You can perform additional actions based on the response, such as showing a confirmation message or updating the UI
-        })
-        .catch(error => {
-            console.error('Error cancelling order:', error);
-            // Handle errors if the fetch request fails
+    // Select all cancel order buttons and attach event listeners to each one
+    document.querySelectorAll(".cancelOrderButton").forEach(function(button) {
+        button.addEventListener("click", function() {
+            // Retrieve the orderId from the button's data-order-id attribute
+            const orderId = this.getAttribute("data-order-id");
+
+            // Show a confirmation dialog using SweetAlert
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Do you want to cancel this order?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, cancel it!",
+                cancelButtonText: "No, keep it"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Make a fetch request to the backend to cancel the order
+                    fetch("/cancelOrder", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ orderIds: orderId })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Handle the response from the backend if needed
+                        console.log("Order cancelled:", data);
+                        // Show a success message using SweetAlert
+                        Swal.fire({
+                            title: "Cancelled!",
+                            text: "Your order has been cancelled.",
+                            icon: "success"
+                        }).then(() => {
+                            // Reload the page after displaying the success message
+                            location.reload();
+                        });
+                    })
+                    .catch(error => {
+                        console.error("Error cancelling order:", error);
+                        // Show an error message using SweetAlert
+                        Swal.fire({
+                            title: "Error!",
+                            text: "An error occurred while cancelling the order. Please try again later.",
+                            icon: "error"
+                        });
+                    });
+                }
+            });
         });
     });
 </script>
+
 
 
 
