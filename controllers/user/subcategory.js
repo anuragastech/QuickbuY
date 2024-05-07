@@ -23,3 +23,4 @@ let getsubcategories = async (req, res) => {
 
 
 module.exports={getsubcategories}
+

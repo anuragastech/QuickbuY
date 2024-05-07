@@ -2,6 +2,7 @@ const Cart =require('../../models/user/cart')
 const product=require('../../models/vender/productAdd')
 const subcategory=require('../../models/admin/subcategory');
 const mongoose = require('mongoose');
+const cart = require('../../models/user/cart');
 
 
 
@@ -217,16 +218,39 @@ let getshoppingcart = async (req, res) => {
     }
 };
 
-const gotocarts =async (req, res) => {
+
+// const gotocarts =async (req, res) => {
+//     try {
+
+//       const {productID,size}=req.body
+// console.log(size,productID,"gooo");
+// const matchData =await cart.find({size,productID})
+
+//     } catch (error) {
+//         console.error(error);
+//         res.status(500).json({ success: false, message: 'Internal Server Error' });
+//     }
+// };
+const gotocarts = async (req, res) => {
     try {
+        const { productID, size } = req.body;
 
-      console.log("lallqlajhfsahahfhjfh");
-
+        // Find documents in the cart collection that match the size, productID, and quantity
+        const matchData = await Cart.find({ "products.size": size });
+                console.log(matchData,"matchdata");
+        if (matchData.length > 0) {
+            // If match found, send response to frontend
+            res.status(200).json({ success: true, available: true });
+        } else {
+            // If no match found, send response to frontend
+            res.status(200).json({ success: true, available: false });
+        }
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
+
 
 
 module.exports={ updateCart, deleteCart,getcartpage,postcart,getshoppingcart,gotocarts}  
