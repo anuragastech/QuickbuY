@@ -145,6 +145,10 @@ router.post('/Gotocart',getCartControllers.gotocarts)
 
 router.post('/cancelOrder',OrderController.canceorder)
 
+router.get('/wishlist', (req, res) => {
+  res.render("user/wishlist");
+});
+
 
 module.exports = router;
 

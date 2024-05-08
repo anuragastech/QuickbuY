@@ -280,34 +280,30 @@ QuickBuY</h5>
     <!-- Hero Slider End -->
 
 
-    <section class="hero-slider" style="height: 500px;margin-top:7%;">
-        <div class="hero-items owl-carousel">
+  <section class="hero-slider" style="height: 500px;margin-top:7%;">
+    {{!-- <section class="hero-slider" style="height: 500px;margin-top:7%; display: {{#if homebanner.length}}block{{else}}none{{/if}}"> --}}
+    <div class="hero-items owl-carousel">
+        {{#if homebanner.length}}
             {{#each homebanner }}
-
-            <div class="single-slider-item set-bg" style="height: 500px;" data-setbg="{{this.image.url}}">
-                {{!-- <img src="{{this.image.url}}" alt="" class="full-width-image"> --}}
-
-                {{!-- <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1>{{this.h1}}</h1>
-                            <h2>{{this.h2}}</h2>
-                            <a href="#" class="primary-btn">See More</a>
-                        </div>
-                    </div>
-                </div> --}}
-            </div>
+                <div class="single-slider-item set-bg" style="height: 500px;" data-setbg="{{this.image.url}}">
+                    <!-- Add any content you want to display for each banner here -->
+                </div>
             {{/each}}
+        {{else}}
+            <div class="single-slider-item set-bg" style="height: 500px;">
+                <!-- Add message for no banner available -->
+                <p style="font-size:20px;">No banner available</p>
+            </div>
+        {{/if}}
+    </div>
+</section>
 
-
-        </div>
-    </section>
     <!-- Features Section Begin -->
     <section class="features-section spad">
         <div class="features-ads">
             <div class="container-fluid">
                 <h2 style="font-size: 1.8em;margin-left: 2%;font-family: sans-serif;color:#3e4152;font-weight: 700;">
-                    MEDAL WORTHY BRANDS TO BAG</h2>
+                    BUY  YOUR STYLE</h2>
                 {{!-- <div class="row">
                     <div class="col-lg-4">
                         <div class="single-features-ads first">

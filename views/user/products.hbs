@@ -377,18 +377,18 @@ QuickBuY</h5>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>
+                                    {{!-- <label>
                                         <button type="button" style="border:none;" class="toggle-btn" data-target="price">+</button>
                                         Price Range:
 
-                                    </label><br>
-                                    <div class="price-options hidden">
+                                    </label><br> --}}
+                                    {{!-- <div class="price-options hidden">
                                         <!-- Price options here -->
                                         <label for="price-range">Price Range:</label><br>
                                         <input type="range" class="form-control-range" style="width: 10rem;"
                                             id="price-range" name="price-range" min="100" max="10000">
                                         <span id="price-range-output">0 - 1000</span>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <button type="submit" id="apply-filters-btn" class="btn btn-primary">Apply
                                     Filters</button>
@@ -493,22 +493,25 @@ QuickBuY</h5>
                     </style>
                     <div class="col-md-10" id="display-filtered">
                         <!-- Content for the second column (7 units) -->
-                        <div class="row" id="from-hiding-point">
-                            {{#each products}}
-                            <div class="col-lg-3 col-sm-5">
-                                <div class="single-product-item">
-                                    <figure>
-                                        <a href="/productpage?name={{this._id}}"><img src="{{this.image.url}}"
-                                                alt=""></a>
-                                    </figure>
-                                    <div class="product-text">
-                                        <h6>{{this.productname}}</h6>
-                                        <p>₹{{this.price}}</p>
-                                    </div>
-                                </div>
-                            </div>
-                            {{/each}}
-                        </div>
+                      {{#if products.length}}
+    <div class="row" id="from-hiding-point">
+        {{#each products}}
+            <div class="col-lg-3 col-sm-5">
+                <div class="single-product-item">
+                    <figure>
+                        <a href="/productpage?name={{this._id}}"><img src="{{this.image.url}}" alt=""></a>
+                    </figure>
+                    <div class="product-text">
+                        <h6>{{this.productname}}</h6>
+                        <p>₹{{this.price}}</p>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+{{else}}
+    <p style="align-items: center;font-size: 40px;margin-left: 30%;margin-top: 14%;color: rgb(112, 110, 110);font-weight: bolder;">No results found</p>
+{{/if}}
 
                          <!-- Pagination -->
     <nav aria-label="Page navigation">

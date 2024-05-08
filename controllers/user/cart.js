@@ -3,6 +3,7 @@ const product=require('../../models/vender/productAdd')
 const subcategory=require('../../models/admin/subcategory');
 const mongoose = require('mongoose');
 const cart = require('../../models/user/cart');
+const { log } = require('handlebars');
 
 
 
@@ -33,30 +34,31 @@ let deleteCart = async (req, res) => {
     }
 };
 
-
-
-
 const updateCart = async (req, res) => {
     try {
-        console.log("kjfhfhfhfhfhfhfh");
-        // const userId = req.user.id;
-        const carts = req.body.cartId; 
-        console.log(carts,"hfhghr ");
-        const newQuantity = req.body.quantity;
-console.log(newQuantity,"quanty");
+        const cartId = req.params.cartId; // Retrieve cartId from URL parameter
+        const newQuantity = req.body.quantity; // Retrieve new quantity from request body
+        const userId = req.user.id;
+        const size = req.body.size;
 
+        console.log(size, "size"); // Logging size for debugging
+        console.log(cartId, newQuantity, "cartId, newQuantity"); // Logging cartId and newQuantity for debugging
 
-        // const updatedCart = await Cart.findOneAndUpdate(
-        //     { userId, "products.productId": productId },
-        //     { $set: { "products.$.quantity": newQuantity } },
-        //     { new: true }
-        // );
+        // Update the quantity of the product in the cart
+        await Cart.updateOne(
+            { userId: userId, "products.productId": cartId, "products.size": size }, // Filter by userId, productId, and size
+            { $set: { "products.$.quantity": newQuantity } } // Set the quantity to the new value
+        );
 
         res.status(200).json({ message: 'Cart updated successfully' });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
+};
+
+module.exports = {
+    updateCart
 };
 
 
@@ -201,9 +203,10 @@ let getshoppingcart = async (req, res) => {
                     }
             }
         ]);
+        console.log(cart,"hell")
         cart.forEach(item => {
             item.products.forEach(product => {
-                // console.log("Size:", product.size);
+                console.log("Size:", product.size);
 
             });
         });
