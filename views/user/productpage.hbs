@@ -124,13 +124,51 @@
 
 
                 </div>
+               
+                
                 <div class="user-access">
-                    <a href="/sign" style="display: none;">Register</a>
-                    <a href="/login" style="display: none;" class="in">Sign in</a>
-                    <a href="/logout">Logout</a>
-                    </a>
+                    <!-- Conditional rendering based on user authentication -->
+                    {{#if loggedIn}}
 
+                    <a style="color: #ad0101;" href="/logout" id="logoutButton">Logout</a>
+                    {{else}}
+
+                    <a style="color: #ad0101;" href="/login" id="signInButton">sign in</a>/
+                    <a style="color: rgb(218, 105, 105)142);" href="/sign" id="signUpButton">sign up</a>
+
+                    {{/if}}
                 </div>
+
+
+                <!-- Your JavaScript code can go here -->
+                <script>
+                    // Example JavaScript code
+                    // This script can handle interactions such as logging out
+                    document.addEventListener('DOMContentLoaded', () => {
+                        // Check if the user is logged in
+                        const loggedIn = {{ loggedIn }};
+
+                    if (loggedIn) {
+                        // If logged in, add event listener to the logout button
+                        document.getElementById('logoutButton').addEventListener('click', () => {
+                            // Perform logout actions, e.g., redirect to logout route
+                            // Example: window.location.href = '/logout';
+                        });
+                    } else {
+                        // If not logged in, add event listeners to the sign in and sign up buttons
+                        document.getElementById('signInButton').addEventListener('click', () => {
+                            // Perform sign in actions, e.g., redirect to sign in route
+                            // Example: window.location.href = '/signin';
+                        });
+
+                        document.getElementById('signUpButton').addEventListener('click', () => {
+                            // Perform sign up actions, e.g., redirect to sign up route
+                            // Example: window.location.href = '/signup';
+                        });
+                    }
+    });
+                </script>
+
                 <nav class="main-menu mobile-menu">
                     <ul>
                         <li><a class="active" href="/">Home</a></li>
@@ -299,7 +337,7 @@
                                     <input type="hidden" id="selectedSize" name="selectedSize" value="">
 
 
-<button id="check-cart-button">Check Inventory</button>
+{{!-- <button id="check-cart-button">Check Inventory</button> --}}
 
 
 
@@ -542,7 +580,6 @@ async function checkAndUpdateCart() {
             }
         }
     } catch (error) {
-        // Handle any errors during fetch
         console.error('Fetch Error:', error);
     }
 }
@@ -562,14 +599,12 @@ function modifyButtonForDataAvailable(button) {
     //button.style.border ='2px solid #d6c9c9'
 }
 
-// Function to restore button to its original state when no data is available
 function restoreOriginalButton(button) {
     if (originalButtonHTML) {
         button.innerHTML = originalButtonHTML;
     }
 }
 
-// Save the original button HTML when the page loads
 window.addEventListener('DOMContentLoaded', function() {
     const addToCartButton = document.getElementById('add-to-cart-button');
     if (addToCartButton) {
@@ -577,10 +612,8 @@ window.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Add event listener to the button
 document.getElementById('check-cart-button').addEventListener('click', checkAndUpdateCart);
 
-// Call checkAndUpdateCart function when page loads
 checkAndUpdateCart();
 
 </script>

@@ -36,18 +36,17 @@ let deleteCart = async (req, res) => {
 
 const updateCart = async (req, res) => {
     try {
-        const cartId = req.params.cartId; // Retrieve cartId from URL parameter
-        const newQuantity = req.body.quantity; // Retrieve new quantity from request body
+        const cartId = req.params.cartId; 
+        const newQuantity = req.body.quantity;
         const userId = req.user.id;
         const size = req.body.size;
 
-        console.log(size, "size"); // Logging size for debugging
-        console.log(cartId, newQuantity, "cartId, newQuantity"); // Logging cartId and newQuantity for debugging
+        console.log(size, "size"); 
+        console.log(cartId, newQuantity, "cartId, newQuantity"); 
 
-        // Update the quantity of the product in the cart
         await Cart.updateOne(
-            { userId: userId, "products.productId": cartId, "products.size": size }, // Filter by userId, productId, and size
-            { $set: { "products.$.quantity": newQuantity } } // Set the quantity to the new value
+            { userId: userId, "products.productId": cartId, "products.size": size }, 
+            { $set: { "products.$.quantity": newQuantity } } 
         );
 
         res.status(200).json({ message: 'Cart updated successfully' });
