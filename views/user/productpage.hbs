@@ -272,7 +272,7 @@
                             <h1
                                 style="margin-bottom: 15px; font-size: 18px;font-weight:lighter;color: rgb(35, 35, 35);font-family: sans-serif;">
                                 <div class="price-container">
-                                    <h5 style="font-size:15px;">Color:</h5>
+                                    <h5 style="font-size:15px;">Color : {{data.color}}</h5>
 
                                     <h5 class="original-price">₹{{data.price}}</h5>
                                     <span style="background-color: rgb(194, 180, 180);font-size:15px;"
@@ -492,89 +492,101 @@ document.querySelectorAll('.size').forEach(sizeButton => {
 
 
 <script>
-    async function checkAndUpdateCart() {
-        console.log("checkAndUpdateCart function called");
+let originalButtonHTML = '';
+let isDataAvailable = false;
 
-        // Retrieve size and quantity from input fields
-        const sizes = document.getElementById("selectedSize").value;
-        const currentId = document.getElementById('currentId').value;
-        const quantityInput = document.getElementById("quantity");
-        const quantity = parseInt(quantityInput.value);
+async function checkAndUpdateCart() {
+    console.log("checkAndUpdateCart function called");
 
-        // Data to send to the API
-        const data = {
-            size: sizes,
-            productID: currentId,
-            quantity: quantity
-        };
+    // Retrieve size and quantity from input fields
+    const sizes = document.getElementById("selectedSize").value;
+    const currentId = document.getElementById('currentId').value;
+    const quantityInput = document.getElementById("quantity");
+    const quantity = parseInt(quantityInput.value);
 
-        // Fetch request to the API
-        try {
-            const response = await fetch('/gotocart', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            });
+    // Data to send to the API
+    const data = {
+        size: sizes,
+        productID: currentId,
+        quantity: quantity
+    };
 
-            // Ensure response is ok
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
+    // Fetch request to the API
+    try {
+        const response = await fetch('/gotocart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
 
-            // Parse JSON response
-            const result = await response.json();
-
-            // Check if size and quantity match
-            if (result.available) {
-                // Change the text of the "Add to Cart" button
-                const addToCartButton = document.getElementById('add-to-cart-button');
-                if (addToCartButton) {
-                    // Change button text to "Go to Cart"
-                // Change button text to "Go to Cart"
-    addToCartButton.innerText = 'Go to Cart';
-
-    // Create and append the icon element
-    const iconElement = document.createElement('i');
-    iconElement.classList.add('material-icons');
-    iconElement.style.color = '#ffffff';
-    iconElement.style.fontSize = '20px';
-    iconElement.innerText = 'shopping_cart';
-    addToCartButton.appendChild(iconElement);
-
-    // Set href attribute
-    addToCartButton.setAttribute('href', '/cart');
-
-    // Update button style
-    addToCartButton.style.fontSize = '17px';
-    addToCartButton.style.height = '42px';
-        addToCartButton.style.paddingLeft = '19px';
-
-    addToCartButton.style.width = '155px';
-    addToCartButton.style.textAlign = 'center';
-    addToCartButton.style.backgroundColor = 'rgb(95, 92, 92)';
-    addToCartButton.style.color = 'white';
-                    } else {
-
-                    console.error('Element with ID "add-to-cart-button" not found.');
-                }
-            } else {
-                // Do nothing or handle differently if not in cart
-                console.log('Item not in cart');
-            }
-        } catch (error) {
-            // Handle any errors during fetch
-            console.error('Fetch Error:', error);
+        // Ensure response is ok
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
+
+        // Parse JSON response
+        const result = await response.json();
+
+        // Check if size and quantity match
+        isDataAvailable = result.available;
+
+        // Change the button based on data availability
+        const addToCartButton = document.getElementById('add-to-cart-button');
+        if (addToCartButton) {
+            if (isDataAvailable) {
+                modifyButtonForDataAvailable(addToCartButton);
+            } else {
+                restoreOriginalButton(addToCartButton);
+            }
+        }
+    } catch (error) {
+        // Handle any errors during fetch
+        console.error('Fetch Error:', error);
     }
+}
 
-    // Add event listener to the button
-    document.getElementById('check-cart-button').addEventListener('click', checkAndUpdateCart);
+// Function to modify button appearance and behavior when data is available
+function modifyButtonForDataAvailable(button) {
+    // Change button text to "Go to Cart"
+    button.innerHTML = '<a href="/shopping-cart" style="color: white; text-decoration: none;"><i class="material-icons" style="color: #ffffff; font-size: 18px;">shopping_cart</i> Go to Cart</a>';
+        button.setAttribute('href', '/shopping-cart ');
+    button.style.fontSize = '23px';
+    button.style.height = '42px';
+//    button.style.paddingLeft = '19px';
+    button.style.width = '155px';
+    button.style.textAlign = 'center';
+    button.style.backgroundColor = 'rgb(95, 92, 92)';
+    button.style.color = 'white';
+    //button.style.border ='2px solid #d6c9c9'
+}
 
-    // Call checkAndUpdateCart function when page loads
-    checkAndUpdateCart();
+// Function to restore button to its original state when no data is available
+function restoreOriginalButton(button) {
+    if (originalButtonHTML) {
+        button.innerHTML = originalButtonHTML;
+    }
+}
+
+// Save the original button HTML when the page loads
+window.addEventListener('DOMContentLoaded', function() {
+    const addToCartButton = document.getElementById('add-to-cart-button');
+    if (addToCartButton) {
+        originalButtonHTML = addToCartButton.innerHTML;
+    }
+});
+
+// Add event listener to the button
+document.getElementById('check-cart-button').addEventListener('click', checkAndUpdateCart);
+
+// Call checkAndUpdateCart function when page loads
+checkAndUpdateCart();
+
 </script>
+
+
+
 
 
 
