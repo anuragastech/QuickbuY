@@ -233,18 +233,20 @@ let getshoppingcart = async (req, res) => {
 //         res.status(500).json({ success: false, message: 'Internal Server Error' });
 //     }
 // };
+
 const gotocarts = async (req, res) => {
     try {
         const { productID, size } = req.body;
+        const userId = req.user.id;
+        console.log(userId,"user");
 
-        // Find documents in the cart collection that match the size, productID, and quantity
-        const matchData = await Cart.find({ "products.size": size });
-                console.log(matchData,"matchdata");
+        const matchData = await Cart.find({ userId: userId, "products.size": size});
+        // const matchData = await Cart.find({ userId: userId, "products.size": size, "products.productId": productID });
+        console.log(matchData, "matchdata");
+
         if (matchData.length > 0) {
-            // If match found, send response to frontend
             res.status(200).json({ success: true, available: true });
         } else {
-            // If no match found, send response to frontend
             res.status(200).json({ success: true, available: false });
         }
     } catch (error) {
@@ -252,7 +254,6 @@ const gotocarts = async (req, res) => {
         res.status(500).json({ success: false, message: 'Internal Server Error' });
     }
 };
-
 
 
 module.exports={ updateCart, deleteCart,getcartpage,postcart,getshoppingcart,gotocarts}  

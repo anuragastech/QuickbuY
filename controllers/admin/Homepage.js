@@ -37,8 +37,9 @@ let HomepagepicPost = async (req, res) => {
   
       const savedHomepagepic = await newHomepagepic.save();
   
-      res.status(201).json(savedHomepagepic);
-    } catch (error) {
+      // res.status(201).json(savedHomepagepic);
+      res.redirect("/admin/HomepageControl");   
+        } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
@@ -83,7 +84,8 @@ let HomepageFooterpost = async (req, res) => {
 
     const savedHomepageFoot = await newHomepageFooter.save();
 
-    res.status(201).json(savedHomepageFoot);
+    // res.status(201).json(savedHomepageFoot);
+    res.redirect("/admin/HomepageFooterImage")
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });

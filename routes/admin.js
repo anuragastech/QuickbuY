@@ -108,6 +108,8 @@ router.post('/unblock-user/:userId',  userController.unblockUser);
 router.post('/block-vender/:userId',  venderBlockController.blockVender);
 router.post('/unblock-vender/:userId',  venderBlockController.unblockVender);
 
+
+router.delete('/admin/delete',otherControllers.deleteCoupen)
 router.get('/coupen',authenticateJWT,otherControllers.getCoupen)
 router.post('/coupon',otherControllers.postCoupen)
 router.get('/orderList',authenticateJWT,orderController.order )
@@ -126,6 +128,7 @@ router.get('/ResetPassword',(req,res)=>{
     res.render('admin/matchEmail')
     });
 // Dashboard route 
+
 
 
 module.exports = router;

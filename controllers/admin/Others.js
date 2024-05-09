@@ -96,7 +96,7 @@ let postCoupen = async (req, res) => {
 
     await newCoupon.save();
 
-    res.rendirect('admin/coupen');
+    res.redirect('/admin/coupen');
   } catch (error) {
     console.error('Error creating coupon:', error);
     res.status(500).send('Internal Server Error');
@@ -104,7 +104,12 @@ let postCoupen = async (req, res) => {
 };
 
 
+const deleteCoupen =async (req,res)=>{
+  const {categoryId}=req.params
+  console.log(categoryId,"goo");
+}
 
 
 
-  module.exports={venderlist,venderadmin, userlist ,deleteUser ,deletVender,getCoupen,postCoupen} ;
+
+  module.exports={venderlist,venderadmin, userlist ,deleteUser ,deletVender,getCoupen,postCoupen ,deleteCoupen} ;

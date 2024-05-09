@@ -476,8 +476,16 @@ QuickBuY</h5>
                                 filteredProductsContainer.appendChild(productElement);
                             });
                         }
-                    </script>
 
+
+                        <style>
+    .red-heart {
+        color: red;
+    }
+</style>
+
+                    </script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
                     {{!--
                     ----------------------------------------------------------------------------------------------------------------
                     --}}
@@ -505,7 +513,20 @@ QuickBuY</h5>
                         <h6>{{this.productname}}</h6>
                         <p>₹{{this.price}}</p>
                     </div>
+
+
+
+<button id="loveButton" style="border:none;color: #fdfdfd;font-size: 10px;background-color: rgb(255, 255, 255)"> 
+    <i id="heartIcon" class="material-icons" style="color: beige;">favorite</i>
+</button>
+
+
+
+
+
+  
                 </div>
+            
             </div>
         {{/each}}
     </div>
@@ -534,8 +555,26 @@ QuickBuY</h5>
                     </div>
                 </div>
             </div>
+<script>
+    // Get the heart button and icon elements
+    const loveButton = document.getElementById('loveButton');
+    const heartIcon = document.getElementById('heartIcon');
 
+    // Initialize a variable to track the color state
+    let isRed = false;
 
+    // Add click event listener to the heart button
+    loveButton.addEventListener('click', function() {
+        // Toggle the color of the heart icon
+        if (isRed) {
+            heartIcon.style.color = 'beige'; // Change color to beige
+        } else {
+            heartIcon.style.color = 'red'; // Change color to red
+        }
+        // Toggle the color state
+        isRed = !isRed;
+    });
+</script>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {

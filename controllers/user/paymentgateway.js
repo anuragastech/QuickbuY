@@ -445,38 +445,215 @@ const coupencheck = async (req, res) => {
 
 
 
+// const orderPost = async (req, res) => {
+//     try {
+//         const userId = req.user.id;
+//         const { address, paymentMethod, grandTotal } = req.body;
+// console.log(paymentMethod,"hh");
+//         // Fetch cart data for the user
+//         const cartData = await cart.findOne({ userId });
+
+//         if (!cartData) {
+//             return res.status(404).json({ message: 'Cart is empty' });
+//         }
+
+//         const products = cartData.products;
+//         const productId = products.map(product => product.productId);
+//         const sizes = products.map(product => product.size);
+//         const quantity = products.map(product => product.quantity);
+
+//         let prices;
+
+//         // Check if there are any items with discounted prices in cartData
+//         const discountedPrices = cartData.products.filter(item => item.discountedAmount !== undefined && item.discountedAmount !== null);
+
+//         if (discountedPrices.length > 0) {
+//             // If there are discounted prices, use the first one
+//             prices = discountedPrices[0].discountedAmount;
+//         } else {
+//             // If there are no discounted prices, use the grand total
+//             prices = grandTotal;
+//         }
+
+//         const orders = [];
+
+//         const productresult = await Product.aggregate([
+//             {
+//                 $match: {
+//                     _id: { $in: productId }
+//                 }
+//             },
+//             {
+//                 $lookup: {
+//                     from: 'products',
+//                     localField: 'product',
+//                     foreignField: '_id',
+//                     as: 'productDetails'
+//                 }
+//             }
+//         ]);
+
+//         const color = productresult.map(l => l.color);
+//         const productname = productresult.map(l => l.productname);
+//         const brand = productresult.map(l => l.brand);
+//         const category = productresult.map(l => l.categoryName);
+//         const subcategory = productresult.map(l => l.subcategoryName);
+//         const venderId = productresult.map(l => l.venderId);
+
+//         const orderid = {
+//             product: productId,
+//             size: sizes,
+//             quantity: quantity,
+//             address: address,
+//             color: color,
+//             productname: productname,
+//             brand: brand,
+//             category: category,
+//             subcategory: subcategory,
+//             venderId: venderId,
+//         };
+
+//         orders.push(orderid);
+
+//         const unwoundOrders = orders.map(orderDetails => {
+//             const numProducts = orderDetails.product.length;
+//             return Array.from({ length: numProducts }, (_, i) => ({
+//                 product: orderDetails.product[i],
+//                 size: orderDetails.size[i],
+//                 quantity: orderDetails.quantity[i],
+//                 address: orderDetails.address,
+//                 color: orderDetails.color[i],
+//                 productname: orderDetails.productname[i],
+//                 brand: orderDetails.brand[i],
+//                 venderId: orderDetails.venderId[i],
+//                 category: orderDetails.category[i],
+//                 subcategory: orderDetails.subcategory[i],
+//             }));
+//         }).flat();
+
+
+
+
+
+//         // Create orders in the database
+//         const savePromises = unwoundOrders.map(async (orderDetails) => {
+//             const { product, size, quantity, address, color, productname, brand, category, subcategory, venderId } = orderDetails;
+
+//             const newOrder = new order({
+//                 product,
+//                 size,
+//                 quantity,
+//                 address,
+//                 price: prices,
+//                 color,
+//                 productname,
+//                 brand,
+//                 category,
+//                 subcategory,
+//                 venderId, // Ensure venderId is included here
+//                                 paymentMethod: paymentMethod,
+//                 paymentStatus: 'success',
+//                 shippingStatus: 'processing',
+//                 orderAccepted: 'pending',
+//                 userId: userId,
+//             });
+
+//             return newOrder.save();
+//         });
+
+//         // Integrate Razorpay payment
+//         if (paymentMethod === 'online') {
+//             const razorpayOrder = await razorpay.orders.create({
+//                 amount: prices * 100, // Amount in paise
+//                 currency: 'INR',
+//                 receipt: 'order_rcptid_11', // Replace with your receipt ID
+//                 payment_capture: 1
+//             });
+//             // Send the Razorpay order details back to the client
+//             return res.status(200).json({ message: 'Order placed successfully with Razorpay', razorpayOrder });
+//         }
+
+//         // Update product quantities and remove items from the cart after successful order creation
+//         for (let i = 0; i < productId.length; i++) {
+//             const existingProduct = await Product.findById(productId[i]);
+//             if (existingProduct) {
+//                 existingProduct.quantity -= quantity[i];
+//                 await existingProduct.save();
+//             }
+//         }
+
+
+
+        
+//         // Remove items from the cart after successful order creation
+//         await cart.updateOne({ userId }, { $pull: { products: { productId: { $in: productId } } } });
+//         // Send payment response back to the client
+//         let paymentResponse;
+//         if (paymentMethod === 'cash') {
+//             // For cash on delivery
+//             paymentResponse = { message: 'Order placed successfully with Cash on Delivery' };
+//         } else {
+//             paymentResponse = { message: 'Order placed successfully' };
+//         }
+
+//         res.status(200).json(paymentResponse);
+//     } catch (error) {
+//         console.error('Error creating order:', error);
+//         res.status(500).json({ message: 'Internal server error' });
+//     }
+// };
+
 const orderPost = async (req, res) => {
     try {
+        // Extract user ID, address, payment method, and grand total from request body
         const userId = req.user.id;
         const { address, paymentMethod, grandTotal } = req.body;
-console.log(paymentMethod,"hh");
+
         // Fetch cart data for the user
         const cartData = await cart.findOne({ userId });
 
+        // Check if cart is empty
         if (!cartData) {
             return res.status(404).json({ message: 'Cart is empty' });
         }
 
+        // If payment method is online, integrate Razorpay payment
+        if (paymentMethod === 'online') {
+            // Create Razorpay order
+            const razorpayOrder = await razorpay.orders.create({
+                amount: grandTotal * 100, // Amount in paise
+                currency: 'INR',
+                receipt: 'order_rcptid_11', // Replace with your receipt ID
+                payment_capture: 1
+            });
+
+            // Send Razorpay order details back to the client
+            return res.status(200).json({ message: 'Order placed successfully with Razorpay', razorpayOrder });
+        }
+
+        // Check payment status for online payments
+        if (paymentMethod === 'online') {
+            // Check if payment is canceled (replace this with your actual logic)
+            const isPaymentCancelled = false;
+
+            if (isPaymentCancelled) {
+                return res.status(400).json({ message: 'Payment canceled. Order creation aborted.' });
+            }
+        }
+
+        // Proceed with creating the order
+
+        // Extract product IDs, sizes, and quantities from cart data
         const products = cartData.products;
         const productId = products.map(product => product.productId);
         const sizes = products.map(product => product.size);
         const quantity = products.map(product => product.quantity);
 
-        let prices;
-
-        // Check if there are any items with discounted prices in cartData
+        // Check for discounted prices in cart data
         const discountedPrices = cartData.products.filter(item => item.discountedAmount !== undefined && item.discountedAmount !== null);
+        const prices = discountedPrices.length > 0 ? discountedPrices[0].discountedAmount : grandTotal;
 
-        if (discountedPrices.length > 0) {
-            // If there are discounted prices, use the first one
-            prices = discountedPrices[0].discountedAmount;
-        } else {
-            // If there are no discounted prices, use the grand total
-            prices = grandTotal;
-        }
-
-        const orders = [];
-
+        // Fetch product details using product IDs
         const productresult = await Product.aggregate([
             {
                 $match: {
@@ -493,6 +670,7 @@ console.log(paymentMethod,"hh");
             }
         ]);
 
+        // Extract relevant product details
         const color = productresult.map(l => l.color);
         const productname = productresult.map(l => l.productname);
         const brand = productresult.map(l => l.brand);
@@ -500,6 +678,7 @@ console.log(paymentMethod,"hh");
         const subcategory = productresult.map(l => l.subcategoryName);
         const venderId = productresult.map(l => l.venderId);
 
+        // Construct order details
         const orderid = {
             product: productId,
             size: sizes,
@@ -513,8 +692,9 @@ console.log(paymentMethod,"hh");
             venderId: venderId,
         };
 
-        orders.push(orderid);
+        const orders = [orderid];
 
+        // Unwind orders array to create individual order objects
         const unwoundOrders = orders.map(orderDetails => {
             const numProducts = orderDetails.product.length;
             return Array.from({ length: numProducts }, (_, i) => ({
@@ -531,10 +711,6 @@ console.log(paymentMethod,"hh");
             }));
         }).flat();
 
-
-
-
-
         // Create orders in the database
         const savePromises = unwoundOrders.map(async (orderDetails) => {
             const { product, size, quantity, address, color, productname, brand, category, subcategory, venderId } = orderDetails;
@@ -550,8 +726,8 @@ console.log(paymentMethod,"hh");
                 brand,
                 category,
                 subcategory,
-                venderId, // Ensure venderId is included here
-                                paymentMethod: paymentMethod,
+                venderId,
+                paymentMethod: paymentMethod,
                 paymentStatus: 'success',
                 shippingStatus: 'processing',
                 orderAccepted: 'pending',
@@ -560,18 +736,6 @@ console.log(paymentMethod,"hh");
 
             return newOrder.save();
         });
-
-        // Integrate Razorpay payment
-        if (paymentMethod === 'online') {
-            const razorpayOrder = await razorpay.orders.create({
-                amount: prices * 100, // Amount in paise
-                currency: 'INR',
-                receipt: 'order_rcptid_11', // Replace with your receipt ID
-                payment_capture: 1
-            });
-            // Send the Razorpay order details back to the client
-            return res.status(200).json({ message: 'Order placed successfully with Razorpay', razorpayOrder });
-        }
 
         // Update product quantities and remove items from the cart after successful order creation
         for (let i = 0; i < productId.length; i++) {
@@ -582,18 +746,15 @@ console.log(paymentMethod,"hh");
             }
         }
 
-
-
-        
         // Remove items from the cart after successful order creation
         await cart.updateOne({ userId }, { $pull: { products: { productId: { $in: productId } } } });
+
         // Send payment response back to the client
         let paymentResponse;
         if (paymentMethod === 'cash') {
-            // For cash on delivery
             paymentResponse = { message: 'Order placed successfully with Cash on Delivery' };
         } else {
-            paymentResponse = { message: 'Order placed successfully' }; // Or any other response you want
+            paymentResponse = { message: 'Order placed successfully' };
         }
 
         res.status(200).json(paymentResponse);

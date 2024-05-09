@@ -30,6 +30,8 @@ let getproductpage =async (req, res) => {
 
 
 
+
+
 let getproductData = async (req, res) => {
     try {
         const token = req.cookies.token;
