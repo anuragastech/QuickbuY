@@ -26,4 +26,5 @@ QuichbuY is an e-commerce website specializing in dresses. It allows users to br
 ## Installation
 
 1. Clone the repository:
+## quckbuy.shp
 
