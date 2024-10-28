@@ -42,7 +42,7 @@ app.use('/',userRouter);
 
 // Connection URI with database name
 
-const uri = 'mongodb+srv://anurag:uZ3b7uWu5E5C1Rk8@cluster0.9mscwvc.mongodb.net/data';
+const uri = 'mongodb+srv://anurag:9A7Ld8CEMhSNMHNd@cluster0.9mscwvc.mongodb.net/data';
 mongoose.connect(uri, {
 
   })
